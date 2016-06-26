@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Humdrum Verovio Viewer </title>
+<script src="scripts/verovio-toolkit.js"></script>
+</head>
+<body>
+
+<h1> Humdrum Verovio Viewer </h1>
+<table class="viewer">
+<tr>
+<td>
+<textarea id="input">
+**kern
+*clefG2
+*M4/4
+=1-
+1c;
+==
+*-
+</textarea>
+</td>
+<td>
+<div id="output"></div>
+</td>
+<tr>
+</table>
+
+<script>
+
+var vrvToolkit;
+
+document.addEventListener("DOMContentLoaded", function() {
+	vrvToolkit = new verovio.toolkit();
+	displayNotation();
+
+	var inputarea = document.querySelector("#input");
+	inputarea.addEventListener("keyup", function() {
+		displayNotation();
+	});
+
+});
+
+
+//////////////////////////////
+//
+// displayNotation --
+//
+
+function displayNotation() {
+	var inputarea = document.querySelector("#input");
+	console.log(inputarea);
+	var data = inputarea.value;
+	console.log("DATA", data);
+	var options = {
+		inputFormat: "humdrum",
+ 		adjustPageHeight : 1,
+ 		border : 0,
+		font: "Bravura"
+	};
+	document.querySelector("#output").innerHTML = 
+		vrvToolkit.renderData(data, JSON.stringify(options)
+	);
+}
+
+
+</script>
+
+<style>
+
+.viewer tr {
+	valign: top;
+}
+
+.viewer tr td:first-child {
+	padding-right: 20px;
+}
+
+textarea#input {
+	font-family: Courier;
+	width: 150px;
+	height: 300px;
+}
+
+</style>
+
+
+
+</body>
+</html>
+
