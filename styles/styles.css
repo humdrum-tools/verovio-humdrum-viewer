@@ -1,0 +1,60 @@
+
+html {
+	font-size: 12pt;
+}
+
+.viewer tr {
+	vertical-align: top;
+}
+
+.viewer tr td:first-child {
+	padding-top: 95px;
+}
+
+.viewer tr td:first-child {
+	padding-top: 95px;
+}
+
+textarea#input {
+	font-family: Courier;
+	font-size: 1rem;
+	width: 150px;
+	height: 300px;
+	min-width: 0;
+	min-height: 0;
+}
+
+textarea#input {
+	-moz-tab-size: 12;
+	-o-tab-size: 12;
+	tab-size: 12;
+	white-space: pre;
+	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	overflow: -moz-scrollbars-vertical;
+	
+}
+
+#title {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+#subtitle {
+	text-align: center;
+	font-size: 1.10rem;
+}
+
+div#dropArea {
+	background: gray;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	opacity: 0.6;
+	visibility: hidden;
+}
+

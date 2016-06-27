@@ -2,12 +2,17 @@
 <head>
 <title>Humdrum Verovio Viewer </title>
 <script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
+<script src="scripts/listeners.js"></script>
+<script src="scripts/drop.js"></script>
+<script src="scripts/main.js"></script>
+<link rel="stylesheet" href="styles/styles.css"/>
 </head>
 <body>
 
 <h1> Humdrum Verovio Viewer </h1>
 <table class="viewer">
 <tr>
+
 <td>
 <textarea id="input">
 **kern
@@ -19,98 +24,17 @@
 *-
 </textarea>
 </td>
+
 <td>
+<div id="title"></div>
+<div id="subtitle"></div>
 <div id="output"></div>
 </td>
+
 <tr>
 </table>
 
-<script>
-
-var vrvToolkit;
-
-document.addEventListener("DOMContentLoaded", function() {
-	vrvToolkit = new verovio.toolkit();
-	displayNotation();
-
-	var inputarea = document.querySelector("#input");
-	inputarea.addEventListener("keyup", function() {
-		displayNotation();
-	});
-
-});
-
-
-//////////////////////////////
-//
-// displayNotation --
-//
-
-function displayNotation() {
-	var inputarea = document.querySelector("#input");
-	console.log(inputarea);
-	var data = inputarea.value;
-	console.log("DATA", data);
-	var options = {
-		inputFormat: "humdrum",
- 		adjustPageHeight : 1,
- 		border : 20,
-		font: "Bravura"
-	};
-	document.querySelector("#output").innerHTML = 
-		vrvToolkit.renderData(data, JSON.stringify(options)
-	);
-}
-
-
-var textareas = document.getElementsByTagName('textarea');
-var count = textareas.length;
-for (var i=0; i<count; i++) {
-	textareas[i].onkeydown = function(e) {
-		if (e.keyCode==9 || e.which==9) {
-			e.preventDefault();
-			var s = this.selectionStart;
-			this.value = this.value.substring(0,this.selectionStart)
-				+ "\t" + this.value.substring(this.selectionEnd);
-			this.selectionEnd = s+1; 
-        }
-    }
-}
-
-</script>
-
-<style>
-
-.viewer tr {
-	vertical-align: top;
-}
-
-.viewer tr td:first-child {
-	padding-right: 20px;
-	padding-top: 95px;
-}
-
-html {
-	font-size: 12pt;
-}
-
-textarea#input {
-	font-family: Courier;
-	font-size: 1rem;
-	width: 150px;
-	height: 300px;
-}
-
-textarea#input {
-	-moz-tab-size: 12;
-	-o-tab-size: 12;
-	tab-size: 12;
-}
-
-</style>
-
-
-
+<div id="dropArea"></div>
 </body>
 </html>
 
