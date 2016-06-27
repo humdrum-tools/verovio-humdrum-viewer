@@ -54,7 +54,7 @@ function displayNotation() {
 	var options = {
 		inputFormat: "humdrum",
  		adjustPageHeight : 1,
- 		border : 0,
+ 		border : 2,
 		font: "Bravura"
 	};
 	document.querySelector("#output").innerHTML = 
@@ -82,11 +82,12 @@ for (var i=0; i<count; i++) {
 <style>
 
 .viewer tr {
-	valign: top;
+	vertical-align: top;
 }
 
 .viewer tr td:first-child {
 	padding-right: 20px;
+	padding-top: 95px;
 }
 
 html {
