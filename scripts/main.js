@@ -41,7 +41,7 @@ function displayNotation() {
  		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
-		font              : "Bravura"
+		font              : "Leipzig"
 	};
 	document.querySelector("#output").innerHTML = 
 		vrvToolkit.renderData(data, JSON.stringify(options)
