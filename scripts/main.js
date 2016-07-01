@@ -8,6 +8,22 @@ var InputVisible = "true";
 //
 // displayNotation -- Convert Humdum data in textarea to notation.
 //
+
+function displayNotation() {
+	var inputarea = document.querySelector("#input");
+	var data = inputarea.value;
+	var options = humdrumToSvgOptions();
+	document.querySelector("#output").innerHTML = 
+		vrvToolkit.renderData(data, JSON.stringify(options)
+	);
+	displayFileTitle(inputarea.value);
+}
+
+
+//////////////////////////////
+//
+// humdrumToSvgOptions --
+//
 // Verovio options:
 // # = number
 // B = boolean (1, or 0)
@@ -31,23 +47,32 @@ var InputVisible = "true";
 // spacigSystem #     == spacing above each system (MEI vu)
 //
 
-function displayNotation() {
-	var inputarea = document.querySelector("#input");
-	var data = inputarea.value;
-	var options = {
+function humdrumToSvgOptions() {
+	return {
 		inputFormat       : "humdrum",
  		adjustPageHeight  : 1,
 		pageHeight        : 8000,
  		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
+		type              : "midi",
 		font              : "Leipzig"
-	};
-	document.querySelector("#output").innerHTML = 
-		vrvToolkit.renderData(data, JSON.stringify(options)
-	);
-	displayFileTitle(inputarea.value);
+	}
 }
+
+function humdrumToMeiOptions() {
+	return {
+		inputFormat       : "humdrum",
+ 		adjustPageHeight  : 1,
+		pageHeight        : 8000,
+ 		border            : 20,
+		pageWidth         : 2500,
+		scale             : 40,
+		type              : "mei",
+		font              : "Leipzig"
+	}
+}
+
 
 
 
