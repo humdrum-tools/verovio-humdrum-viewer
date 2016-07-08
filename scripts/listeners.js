@@ -27,6 +27,31 @@ document.addEventListener("DOMContentLoaded", function() {
 		displayNotation();
 	});
 
+	var cgi = GetCgiParameters();
+	if (cgi.file) {
+		loadKernScoresFile(cgi.file);
+	}
+
+
+	$("#player").midiPlayer({
+		color: "#c00",
+		onUnpdate: midiUpdate,
+		onStop: midiStop,
+		width: 250
+	});
+
+});
+
+
+
+//////////////////////////////
+//
+// window blur event listener -- Stop MIDI playback.  It is very computaionally
+//    expensive, and is not useful if the window is not in focus.
+//
+
+window.addEventListener("blur", function() {
+	pause();
 });
 
 

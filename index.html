@@ -2,14 +2,57 @@
 <head>
 <title>Humdrum Verovio Viewer </title>
 <script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="scripts/listeners.js"></script>
 <script src="scripts/drop.js"></script>
 <script src="scripts/main.js"></script>
+<script src="scripts/midiplayer/wildwebmidi.js"></script>
+<script src="scripts/midiplayer/midiplayer.js"></script>
+<script src="scripts/midiplayer.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="styles/styles.css"/>
+<link rel="stylesheet" href="styles/midiplayer.css"/>
+<link rel="stylesheet" href="styles/w3.css"/>
+<link rel="stylesheet" href="styles/stdtheme.css"/>
+<link rel="stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
 <body>
 
-<h1> Humdrum Verovio Viewer </h1>
+
+<div class="w3-navbar w3-card-2 w3-slim topnav" id="topnav" style="position: fixed; top: 0px;">
+	<div style="overflow:auto;">
+		<div style="float:left;width:50%;overflow:hidden;height:44px">
+<table>
+	<tr>
+	<td>        
+		<h1 style="padding-left:10px; color:#ffffff; font-size:110%;" > Humdrum Verovio Viewer </h1>
+	</td>
+	<td>
+		<div xmlns="http://www.w3.org/1999/xhtml" class="btn-group">
+        		<button id="play-button" onclick="play_midi();" class="btn btn-sm btn-default" type="button" 
+				style=" position: absolute; right:10; top:10; ">
+            			Play
+        		</button>
+		</div>
+
+		<div xmlns="http://www.w3.org/1999/xhtml" id="player" 
+			style="z-index: 1; position: absolute; right:4; top:4; display: none;">
+		</div>
+	</td>
+	</tr>
+</table>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
 <table class="viewer">
 <tr>
 

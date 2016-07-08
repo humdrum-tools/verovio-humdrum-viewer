@@ -1,6 +1,10 @@
 // vim: ts=3
 
 var vrvToolkit;
+
+var page = 1;
+var ids = [];
+
 var InputVisible = "true";
 
 
@@ -51,7 +55,7 @@ function humdrumToSvgOptions() {
 	return {
 		inputFormat       : "humdrum",
  		adjustPageHeight  : 1,
-		pageHeight        : 8000,
+		pageHeight        : 30000,
  		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
@@ -162,5 +166,63 @@ function displayFileTitle(contents) {
 
 }
 
+
+
+//////////////////////////////
+//
+// GetCgiParameters -- Returns an associative array containing the
+//     page's URL's CGI parameters
+//
+
+function GetCgiParameters() {
+	var url = window.location.search.substring(1);
+	var output = {};
+	var settings = url.split('&');
+	for (var i=0; i<settings.length; i++) {
+		var pair = settings[i].split('=');
+		pair[0] = decodeURIComponent(pair[0]);
+		pair[1] = decodeURIComponent(pair[1]);
+		if (typeof output[pair[0]] === 'undefined') {
+			output[pair[0]] = pair[1];
+		} else if (typeof output[pair[0]] === 'string') {
+			var arr = [ output[pair[0]], pair[1] ];
+			output[pair[0]] = arr;
+		} else {
+			output[pair[0]].push(pair[1]);
+		}
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// loadKernScoresFile(cgi.file);
+//
+
+function loadKernScoresFile(file) {
+	var location;
+   var filename;
+	var matches;
+   if (matches = file.match(/(.*)\/([^\/]+)/)) {
+		location = matches[1];
+		filename = matches[2];
+	}
+	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+   console.log("URL", url);
+	var request = new XMLHttpRequest();
+	request.open("GET", url);
+	request.addEventListener("load", function() {
+		if (request.status == 200) {
+			console.log("DATA", request.responseText);
+			var inputarea = document.querySelector("#input");
+			inputarea.value = request.response;
+			displayNotation();
+		}
+	});
+
+	request.send();
+}
 
 
