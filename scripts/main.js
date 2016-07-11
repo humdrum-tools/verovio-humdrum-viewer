@@ -205,6 +205,7 @@ function loadKernScoresFile(file) {
 	var location;
    var filename;
 	var matches;
+	console.log("LOADING", file);
    if (matches = file.match(/(.*)\/([^\/]+)/)) {
 		location = matches[1];
 		filename = matches[2];

@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		displayNotation();
 	});
 
+	console.log("GOT HERE AAA");
 	var cgi = GetCgiParameters();
 	if (cgi.file) {
 		loadKernScoresFile(cgi.file);
