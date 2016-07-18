@@ -66,6 +66,7 @@ function humdrumToSvgOptions() {
 	if (OriginalClef) {
 		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
 	}
+console.log("OPTIONS", output);
 	return output;
 }
 

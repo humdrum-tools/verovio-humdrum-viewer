@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		loadKernScoresFile(cgi.file);
 	}
 
-
 	$("#player").midiPlayer({
 		color: "#c00",
 		onUnpdate: midiUpdate,
