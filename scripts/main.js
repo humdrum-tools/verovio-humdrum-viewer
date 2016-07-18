@@ -68,7 +68,7 @@ function humdrumToSvgOptions() {
 	} else {
 		// the xpath query may need to be cleared
 		// out of the persistent object:
-		output.appXPathQuery = "";
+		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
 	return output;
 }
