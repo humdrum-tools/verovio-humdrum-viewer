@@ -56,7 +56,7 @@ function humdrumToSvgOptions() {
 	var output = {
 		inputFormat       : "humdrum",
  		adjustPageHeight  : 1,
-		pageHeight        : 40000,
+		pageHeight        : 60000,
  		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
