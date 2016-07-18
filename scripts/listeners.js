@@ -116,6 +116,12 @@ function processKeyCommand(event) {
 			toggleInputArea();
 			break;
 
+		case OKey:
+			OriginalClef = !OriginalClef;
+			console.log("Original clef changed to:", OriginalClef);
+			displayNotation();
+			break;
+
 	}
 }
 

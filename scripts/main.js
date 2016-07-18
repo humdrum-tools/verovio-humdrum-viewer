@@ -6,6 +6,7 @@ var page = 1;
 var ids = [];
 
 var InputVisible = "true";
+var OriginalClef = false;
 
 
 //////////////////////////////
@@ -52,16 +53,20 @@ function displayNotation() {
 //
 
 function humdrumToSvgOptions() {
-	return {
+	var output = {
 		inputFormat       : "humdrum",
  		adjustPageHeight  : 1,
-		pageHeight        : 30000,
+		pageHeight        : 40000,
  		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
 		type              : "midi",
 		font              : "Leipzig"
 	}
+	if (OriginalClef) {
+		output.appXpathQuery = "./rdg[contains(@label, 'original-clef')]";
+	}
+	return output;
 }
 
 function humdrumToMeiOptions() {
