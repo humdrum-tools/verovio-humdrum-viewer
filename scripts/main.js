@@ -45,7 +45,7 @@ function displayNotation() {
 // ignoreLayout       == ignore any encoded layout and recalulate
 // noLayout B         == ignore any encoded layout and display single system
 // page #             == select page to engrave
-// appXpathQuery S    == xpath query for selecting app
+// appXPathQuery S    == xpath query for selecting app
 // spacingLinear #    == linear spacing factor (default 0.25)
 // spacingNonLinear # == non-linear spacing factor (default 0.6)
 // spacingStaff #     == spacing above each staff (MEI vu)
@@ -64,7 +64,7 @@ function humdrumToSvgOptions() {
 		font              : "Leipzig"
 	}
 	if (OriginalClef) {
-		output.appXpathQuery = "./rdg[contains(@label, 'original-clef')]";
+		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
 	}
 	return output;
 }
