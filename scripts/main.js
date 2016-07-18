@@ -65,8 +65,11 @@ function humdrumToSvgOptions() {
 	}
 	if (OriginalClef) {
 		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
+	} else {
+		// the xpath query may need to be cleared
+		// out of the persistent object:
+		output.appXPathQuery = "";
 	}
-console.log("OPTIONS", output);
 	return output;
 }
 
