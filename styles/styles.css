@@ -1,11 +1,11 @@
 
 svg:not(:root) {
-  // overflow: inherit; 
-  overflow: visible; 
+  overflow: inherit; 
 }
 
 html {
 	font-size: 12pt;
+	background: red;
 }
 
 .viewer tr {
