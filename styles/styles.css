@@ -58,3 +58,9 @@ div#dropArea {
 	visibility: hidden;
 }
 
+
+svg:not(:root) {
+  overflow: inherit; 
+}
+
+
