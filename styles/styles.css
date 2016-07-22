@@ -1,4 +1,9 @@
 
+svg:not(:root) {
+  // overflow: inherit; 
+  overflow: visible; 
+}
+
 html {
 	font-size: 12pt;
 }
@@ -58,9 +63,5 @@ div#dropArea {
 	visibility: hidden;
 }
 
-
-svg:not(:root) {
-  overflow: inherit; 
-}
 
 
