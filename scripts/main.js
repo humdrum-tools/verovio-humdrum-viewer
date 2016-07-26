@@ -482,6 +482,8 @@ function gotoNextPage() {
 	loadPage(page);
 }
 
+
+
 //////////////////////////////
 //
 // displayMei --
@@ -489,12 +491,46 @@ function gotoNextPage() {
 
 function displayMei() {
 	var data = vrvToolkit.getMEI();
-	var prefix = "<textarea style='width:100%; height:100%;'>";
+	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
-	var w = window.open("", "", 'width=600,height=800,resizeable,scrollabars');
+	var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
 	w.document.write(prefix + data + postfix);
 	w.document.close();
+	function checkTitle() {
+		if (w.document) {
+			w.document.title = "MEI transcoding";
+		} else {
+			setTimeout(checkTitle, 40);
+		}
+	}
+	checkTitle();
 }
+
+
+
+
+//////////////////////////////
+//
+// displaySvg --
+//
+
+function displaySvg() {
+	var data = vrvToolkit.renderPage(PAGE, "");
+	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
+	var postfix = "</textarea>";
+	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
+	w.document.write(prefix + data + postfix);
+	w.document.close();
+	function checkTitle() {
+		if (w.document) {
+			w.document.title = "SVG transcoding";
+		} else {
+			setTimeout(checkTitle, 40);
+		}
+	}
+	checkTitle();
+}
+
 
 
 

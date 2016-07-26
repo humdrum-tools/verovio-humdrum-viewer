@@ -154,7 +154,11 @@ function processKeyCommand(event) {
 		case MKey:
 			displayMei();
 			break;
-	
+
+		case SKey:
+			displaySvg();
+			break;
+
 		case SpaceKey:
 			if (!PLAY) {
 				play_midi();
