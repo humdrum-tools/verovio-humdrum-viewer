@@ -1,14 +1,14 @@
 
 
 #midiPlayer_div  {
-	width		:	700px;
 	height		:	36px;
 	background	:	#999;
+	opacity         :       0.75;
 }
 
 #midiPlayer_bar  {
 	height		:	12px;
-	width		:	500px;
+	width		:	300px;
 	background	:	#ccc;
 	cursor		:	pointer;
 	display		:	inline-block;

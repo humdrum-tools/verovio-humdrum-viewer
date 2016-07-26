@@ -20,14 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	vrvToolkit = new verovio.toolkit();
 	displayNotation();
 	allowTabs();
-   setupDropArea();
+	setupDropArea();
 
 	var inputarea = document.querySelector("#input");
 	inputarea.addEventListener("keyup", function() {
 		displayNotation();
 	});
 
-	console.log("GOT HERE AAA");
 	var cgi = GetCgiParameters();
 	if (cgi.file) {
 		loadKernScoresFile(cgi.file);
@@ -40,7 +39,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		width: 250
 	});
 
+	$(window).resize(function() { applyZoom(); });
+
+	// set init (default) state
+	$("#input").data('x', $("#input").outerWidth());
+	$("#input").data('y', $("#input").outerHeight());
+
+	$("#input").mouseup(function () {
+		var $this = $(this);
+		if ($this.outerWidth() != $this.data('x') || $this.outerHeight() != $this.data('y')) {
+			applyZoom();
+		}
+		$this.data('x', $this.outerWidth());
+		$this.data('y', $this.outerHeight());
+	});
+
+
+	$("#input").keydown(function() {
+			stop();
+	});
+
 });
+
 
 
 
@@ -64,6 +84,7 @@ window.addEventListener("blur", function() {
 window.addEventListener("keydown", processKeyCommand);
 
 function processKeyCommand(event) {
+
 	var CKey      = 67;
 	var DKey      = 68;
 	var EKey      = 69;
@@ -102,10 +123,9 @@ function processKeyCommand(event) {
 
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
-   }
+	}
 
-
-   if (!event.altKey) {
+	if (!event.altKey && (event.target.nodeName == "TEXTAREA")) {
 		return;
 	}
 
@@ -121,8 +141,34 @@ function processKeyCommand(event) {
 			displayNotation();
 			break;
 
+		case LeftKey:
+			gotoPreviousPage();
+			console.log("PAGE", PAGE);
+			break;
+
+		case RightKey:
+			gotoNextPage();
+			console.log("PAGE", PAGE);
+			break;
+	
+		case SpaceKey:
+			if (!PLAY) {
+				play_midi();
+				PLAY = true;
+				PAUSE = false;
+			} else if (PAUSE) {
+				play();
+				PAUSE = !PAUSE;
+			} else {
+				pause();
+				PAUSE = !PAUSE;
+			}
+			break;
+
 	}
 }
+
+
 
 
 

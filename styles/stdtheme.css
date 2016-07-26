@@ -41,43 +41,8 @@ table.lamp, table.w3-table-all {
 .w3schools-logo:hover {
   color:#555555;
 }
-.topnav {
-  position:relative;
-  z-index:2;
-  font-size: 17px;
-  background-color:#5f5f5f;
-  color:#f1f1f1;
-  width:100%;
-  padding:0;
-  letter-spacing:1px;
-}
-.topnav a{
-  padding:10px 15px 9px 15px !important;
-  display:inline-block;
-}
-.topnav a:hover{
-  background-color:#000000;
-  color:#ffffff;
-}
-.topnav a.active {
-  background-color:#73AD21;
-  background-color:#4CAF50;  
-  color:#ffffff;
-}
-a.topnav-icons {
-  width:52px;
-  font-size:20px !important;
-  padding-top:11px !important;
-  padding-bottom:13px !important;
-}
-a.topnav-icons.fa-home {
-  font-size:22px !important;
-}
-a.topnav-localicons {
-  font-size:20px !important;
-  padding-top:6px !important;
-  padding-bottom:12px !important;
-}
+
+
 i.fa-caret-down,i.fa-caret-up {
   width:10px;
 }

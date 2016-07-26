@@ -8,6 +8,7 @@ function play_midi() {
 	$("#player").show();
 	$("#play-button").hide();
 	$("#player").midiPlayer.play(song);
+	PLAY = true;
 }
 
 
@@ -15,9 +16,9 @@ var midiUpdate = function(time) {
 	var vrvTime = Math.max(0, 2 * time - 800);
 	var elementsattime = JSON.parse(vrvToolkit.getElementsAtTime(vrvTime))
 	if (elementsattime.page > 0) {
-		if (elementsattime.page != page) {
-			page = elementsattime.page;
-			load_page();
+		if (elementsattime.page != PAGE) {
+			PAGE = elementsattime.page;
+			loadPage();
 		}
 		if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
 			ids.forEach(function(noteid) {
@@ -41,7 +42,10 @@ var midiUpdate = function(time) {
 }
 
 
-
+//////////////////////////////
+//
+// midiStop --
+//
 
 var midiStop = function() {
 	ids.forEach(function(noteid) {
@@ -51,6 +55,7 @@ var midiStop = function() {
 	});
 	$("#player").hide();
 	$("#play-button").show();
+	PLAY = false;
 }
 
 

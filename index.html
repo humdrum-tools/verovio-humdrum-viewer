@@ -21,19 +21,21 @@
 
 <div class="w3-navbar w3-card-2 w3-slim topnav" id="topnav" style="position: fixed; top: 0px;">
 	<div style="overflow:auto;">
-		<div style="float:left;width:50%;overflow:hidden;height:44px">
+		<div style="float:left; overflow:hidden;height:44px">
 <table>
 	<tr>
 	<td>        
-		<h1 style="padding-left:10px; color:#ffffff; font-size:110%;" > Verovio Humdrum Viewer </h1>
+		<h1 id="vhv">Verovio Humdrum Viewer </h1>
 	</td>
-	<td>
-	XXXXX
+	<td width="100%">
+		<span id="title-info">
+			<span id="composer"></span>&nbsp;<span id="title"></span>
+		</span>
 	</td>
 	<td>
 		<div xmlns="http://www.w3.org/1999/xhtml" class="btn-group">
         		<button id="play-button" onclick="play_midi();" class="btn btn-sm btn-default" type="button" 
-				style=" position: absolute; right:10; top:10; ">
+				style="background:#ccc; position:absolute; right:10; top:10; ">
             			Play
         		</button>
 		</div>
@@ -57,9 +59,10 @@
 
 
 <table class="viewer">
-<tr>
+<tr valign="top">
 
 <td>
+<!-- see http://jsfiddle.net/ZbTkJ/ for highlighting in textarea -->
 <textarea id="input">
 **kern
 *clefG2
@@ -71,9 +74,7 @@
 </textarea>
 </td>
 
-<td>
-<div id="title"></div>
-<div id="subtitle"></div>
+<td width="100%">
 <div id="output"></div>
 </td>
 

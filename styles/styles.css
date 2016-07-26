@@ -16,26 +16,24 @@ html {
 }
 
 .viewer tr td:first-child {
-	padding-top: 95px;
-}
-
-.viewer tr td:first-child {
-	padding-top: 95px;
+	padding-top: 10px;
+	padding-left: 5px;
 }
 
 textarea#input {
-	font-family: Courier;
 	font-size: 1rem;
 	width: 150px;
 	height: 300px;
 	min-width: 0;
 	min-height: 0;
+	background: #f3f3f3;
+	margin-right: 10px;
 }
 
 textarea#input {
-	-moz-tab-size: 12;
-	-o-tab-size: 12;
-	tab-size: 12;
+	-moz-tab-size: 30;
+	-o-tab-size: 30;
+	tab-size: 30;
 	white-space: pre;
 	overflow: scroll;
 	overflow-y: scroll;
@@ -44,27 +42,87 @@ textarea#input {
 	
 }
 
-#title {
-	text-align: center;
-	font-size: 1.5rem;
-}
-
-#subtitle {
-	text-align: center;
-	font-size: 1.10rem;
-}
-
 div#dropArea {
 	background: gray;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 999;
-	opacity: 0.6;
+	position:   fixed;
+	top:        0;
+	left:       0;
+	width:      100%;
+	height:     100%;
+	z-index:    999;
+	opacity:    0.6;
 	visibility: hidden;
 }
 
+#title-info {
+	width:       100%;
+	color:       #f8f8f8;
+	font-family: Palatino, Times-Roman, serif;
+	position:    relative;
+	font-size:   130%;
+	top:         0px;
+	padding:     0;
+	margin:      0;
+	white-space: nowrap;
+}
+
+#composer {
+	letter-spacing: -0.5px;
+}
+
+#vhv {
+	padding-top:    2px;
+	padding-left:   10px; 
+	padding-right:  15px; 
+	color:          #888; 
+	font-size:      110%;
+	letter-spacing: -1px;
+	white-space:    nowrap;
+	word-spacing:   -3px;
+}
 
 
+
+.topnav {
+  position:relative;
+  z-index:2;
+  font-size: 17px;
+  background-color: #556;
+  color: #f1f1f1;
+  width:100%;
+  padding:0;
+  letter-spacing:1px;
+}
+
+.topnav a{
+  padding:10px 15px 9px 15px !important;
+  display:inline-block;
+}
+
+.topnav a:hover{
+  background-color:#000000;
+  color:#ffffff;
+}
+
+.topnav a.active {
+  background-color:#73AD21;
+  background-color:#4CAF50;  
+  color:#ffffff;
+}
+
+a.topnav-icons {
+  width:52px;
+  font-size:20px !important;
+  padding-top:11px !important;
+  padding-bottom:13px !important;
+}
+
+a.topnav-icons.fa-home {
+  font-size:22px !important;
+}
+
+a.topnav-localicons {
+  font-size:20px !important;
+  padding-top:6px !important;
+  padding-bottom:12px !important;
+}

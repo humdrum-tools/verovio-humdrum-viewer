@@ -2,8 +2,15 @@
 
 var vrvToolkit;
 
-var page = 1;
+var PAGE = 1;
 var ids = [];
+var FILEINFO = {};
+var HEIGHT = 0;
+var WIDTH = 0;
+var PAGED = true;
+var ZOOM = 0.4;
+var PLAY = false;
+var PAUSE = false;
 
 var InputVisible = "true";
 var OriginalClef = false;
@@ -18,9 +25,8 @@ function displayNotation() {
 	var inputarea = document.querySelector("#input");
 	var data = inputarea.value;
 	var options = humdrumToSvgOptions();
-	document.querySelector("#output").innerHTML = 
-		vrvToolkit.renderData(data, JSON.stringify(options)
-	);
+	document.querySelector("#output").innerHTML =
+		vrvToolkit.renderData(data, JSON.stringify(options));
 	displayFileTitle(inputarea.value);
 }
 
@@ -55,9 +61,9 @@ function displayNotation() {
 function humdrumToSvgOptions() {
 	var output = {
 		inputFormat       : "humdrum",
- 		adjustPageHeight  : 1,
+		adjustPageHeight  : 1,
 		pageHeight        : 60000,
- 		border            : 20,
+		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
 		type              : "midi",
@@ -70,15 +76,24 @@ function humdrumToSvgOptions() {
 		// out of the persistent object:
 		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
+	if (PAGED) {
+		var tw = $("#input").outerWidth();
+		if ($("#input").css("display") == "none") {
+			tw = 0;
+		}
+		output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
+		output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
+	}
+
 	return output;
 }
 
 function humdrumToMeiOptions() {
 	return {
 		inputFormat       : "humdrum",
- 		adjustPageHeight  : 1,
+		adjustPageHeight  : 1,
 		pageHeight        : 8000,
- 		border            : 20,
+		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
 		type              : "mei",
@@ -104,9 +119,9 @@ function allowTabs() {
 				var s = this.selectionStart;
 				this.value = this.value.substring(0,this.selectionStart)
 					+ "\t" + this.value.substring(this.selectionEnd);
-				this.selectionEnd = s+1; 
-        	}
-    	}
+				this.selectionEnd = s+1;
+			}
+		}
 	}
 }
 
@@ -122,11 +137,97 @@ function toggleInputArea() {
 	var area = document.querySelector("#input");
 	if (InputVisible) {
 		area.style.visibility = "visible";
+		area.style.display = "inline";
 	} else {
 		area.style.visibility = "hidden";
+		area.style.display = "none";
 	}
+	applyZoom();
 }
 
+
+
+//////////////////////////////
+//
+// getReferenceRecords --
+//
+
+function getReferenceRecords(contents) {
+	var lines = contents.split(/\r?\n/);
+	var output = {};
+
+	var matches;
+	for (i=lines.length-1; i>=0; i--) {
+		if (matches = lines[i].match(/^\!\!\!([^\s]+):\s*(.*)\s*$/)) {
+			var key   = matches[1];
+			var value = matches[2];
+			output[key] = value;
+			if (matches = key.match(/(.*)@@(.*)/)) {
+				output[matches[1]] = value;
+			}
+			if (matches = key.match(/(.*)@(.*)/)) {
+				output[matches[1]] = value;
+			}
+		}
+		if (matches = lines[i].match(/^\!?\!\!title:\s*(.*)\s*/)) {
+			output["title"] = matches[1];
+		}
+	}
+
+	if ((!output["title"]) || output["title"].match(/^\s*$/)) {
+		output["title"] = FILEINFO["title-expansion"];
+	}
+
+	var counter = 0;
+	var prefix = "";
+	var postfix = "";
+	var substitute;
+	if (output["title"] && !output["title"].match(/^\s*$/)) {
+		var pattern = output["title"];
+		while (matches = pattern.match(/@\{([^\}]*)\}/)) {
+			prefix = "";
+			postfix = "";
+			key = "";
+			if (matches = pattern.match(/@\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}/)) {
+				prefix = matches[1];
+				key = matches[2];
+				postfix = matches[3];
+			   pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
+			} else if (matches = pattern.match(/@\{([^\}]*)\}\{([^\}]*)\}/)) {
+				prefix = matches[1];
+				key = matches[2];
+				postfix = "";
+			   pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
+			} else if (matches = pattern.match(/@\{([^\}]*)\}/)) {
+				prefix = "";
+				key = matches[1];
+				postfix = "";
+			   pattern = pattern.replace(/@\{([^\}]*)\}/, "ZZZZZ");
+			}
+
+			if (!key) {
+				break;
+			}
+			if (key.match(/^\s*$/)) {
+				break;
+			}
+			if (output[key]) {
+				substitute = prefix + output[key] + postfix;
+			} else {
+				substitute = "";
+			}
+			pattern = pattern.replace(/ZZZZZ/, substitute);
+			counter++;
+			if (counter > 20) {
+				// avoid infinite loop in case something goes wrong
+				break;
+			}
+		}
+		output["title"] = pattern;
+	}
+
+	return output;
+}
 
 
 //////////////////////////////
@@ -135,32 +236,31 @@ function toggleInputArea() {
 //
 
 function displayFileTitle(contents) {
+	var references = getReferenceRecords(contents);
+
 	var lines = contents.split(/\r?\n/);
 	var title = "";
 	var number = "";
+   var composer = "";
 	var sct = "";
 	var matches;
-   for (i=0; i<lines.length; i++) {
-		if (matches = lines[i].match(/^!!!OTL[^:]*:\s*(.*)\s*/)) {
-			if (title.match(/^\s*$/)) {
-				title = matches[1];
-			}
-		}
-		if (matches = lines[i].match(/^!!!PC#:\s*(.*)\s*/)) {
-			if (number.match(/^\s*$/)) {
-				number = matches[1];
-			}
-		}
-		if (matches = lines[i].match(/^!!!SCT:\s*(.*)\s*/)) {
-			if (sct.match(/^\s*$/)) {
-				sct = matches[1];
-			}
+
+	if (references["title"] && !references["title"].match(/^\s*$/)) {
+		title = references["title"];
+	} else if (references["OTL"] && !references["OTL"].match(/^\s*$/)) {
+		title = references["OTL"];
+	}
+
+	if (references["COM"] && !references["COM"].match(/^\s*$/)) {
+		if (matches = references["COM"].match(/^\s*([^,]+),/)) {
+			composer = matches[1];
+		} else {
+			composer = references["COM"];
 		}
 	}
 
-	if (!number.match(/^\s*$/)) {
-		title = number + ".&nbsp;&nbsp;" + title;
-	}
+	title = title.replace(/-sharp/g, "&#9839;");
+	title = title.replace(/-flat/g, "&#9837;");
 
 	var tarea;
 	tarea = document.querySelector("#title");
@@ -168,9 +268,9 @@ function displayFileTitle(contents) {
 		tarea.innerHTML = title;
 	}
 
-	tarea = document.querySelector("#subtitle");
-	if (tarea) {
-		tarea.innerHTML = sct;
+	tarea = document.querySelector("#composer");
+	if (tarea && !composer.match(/^\s*$/)) {
+		tarea.innerHTML = composer + ", ";
 	}
 
 }
@@ -207,20 +307,52 @@ function GetCgiParameters() {
 
 //////////////////////////////
 //
-// loadKernScoresFile(cgi.file);
+// loadKernScoresFile --
 //
 
 function loadKernScoresFile(file) {
 	var location;
-   var filename;
+	var filename;
 	var matches;
-	console.log("LOADING", file);
-   if (matches = file.match(/(.*)\/([^\/]+)/)) {
+	if (matches = file.match(/(.*)\/([^\/]+)/)) {
 		location = matches[1];
 		filename = matches[2];
 	}
 	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
-   console.log("URL", url);
+	url += "&format=info-json";
+
+	console.log("Loading JSON INFO", url);
+
+	var request = new XMLHttpRequest();
+	request.open("GET", url);
+	request.addEventListener("load", function() {
+		if (request.status == 200) {
+			FILEINFO = JSON.parse(request.responseText);
+			console.log("JSON INFO = ", FILEINFO);
+			downloadKernScoresFile(file);
+		}
+	});
+	request.send();
+}
+
+
+
+//////////////////////////////
+//
+// downloadKernScoresFile --
+//
+
+function downloadKernScoresFile(file) {
+	var location;
+	var filename;
+	var matches;
+	if (matches = file.match(/(.*)\/([^\/]+)/)) {
+		location = matches[1];
+		filename = matches[2];
+	}
+	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+
+	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
 	request.addEventListener("load", function() {
@@ -231,8 +363,115 @@ function loadKernScoresFile(file) {
 			displayNotation();
 		}
 	});
-
 	request.send();
+}
+
+
+
+///////////////////////////////
+//
+// applyZoom --
+//
+
+function applyZoom() {
+	var measure = 0;
+	if (PAGE != 1) {
+		measure = $("#output .measure").attr("id");
+	}
+
+	var options = humdrumToSvgOptions();
+	if ((HEIGHT != options.pageHeight) || (WIDTH != options.pageWidth)) {
+		stop();
+		HEIGHT = options.pageHeight;
+		WIDTH = options.pageWidth;
+		vrvToolkit.setOptions(JSON.stringify(options));
+		vrvToolkit.redoLayout();
+	}
+
+	PAGE = 1;
+	if (measure != 0) {
+		PAGE = vrvToolkit.getPageWithElement(measure);
+	}
+	loadPage(PAGE);
+}
+
+
+
+//////////////////////////////
+//
+// loadPage --
+//
+
+function loadPage(page) {
+	if (!page) {
+		page = PAGE;
+	}
+	PAGE = page;
+	$("#overlay").hide().css("cursor", "auto");
+	$("#jump_text").val(page);
+	svg = vrvToolkit.renderPage(page, "");
+	$("#output").html(svg);
+	// adjustPageHeight();
+	resizeImage();
+}
+
+
+
+//////////////////////////////
+//
+// resizeImage -- Make all SVG images match the width of the new
+//     width of the window.
+//
+
+function resizeImage(image) {
+	var ww = $("window").innerWidth;
+	var tw = $("#input").outerWidth;
+	var newwidth = ww - tw;
+
+	var newheight = $(window).innerWidth
+
+	var image = document.querySelector("#output svg");
+	if (!image) {
+		return;
+	}
+
+	$(image).width(newwidth);
+	$(image).height(newheight);
+	$(image.parentNode).height(newheight);
+	$(image.parentNode).width(newwidth);
+}
+
+
+//////////////////////////////
+//
+// gotoPreviousPage --
+//
+
+function gotoPreviousPage() {
+	var page = PAGE;
+	if (page <= 1) {
+		page = vrvToolkit.getPageCount();
+	} else {
+		page--;
+	}
+	PAGE = page;
+	loadPage(page);
+}
+
+
+//////////////////////////////
+//
+// gotoNextPage --
+//
+
+function gotoNextPage() {
+	var page = PAGE;
+	page++;
+	if (page > vrvToolkit.getPageCount()) {
+		page = 1;
+	}
+	PAGE = page;
+	loadPage(page);
 }
 
 
