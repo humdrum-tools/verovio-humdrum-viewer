@@ -150,6 +150,10 @@ function processKeyCommand(event) {
 			gotoNextPage();
 			console.log("PAGE", PAGE);
 			break;
+
+		case MKey:
+			displayMei();
+			break;
 	
 		case SpaceKey:
 			if (!PLAY) {
@@ -167,8 +171,6 @@ function processKeyCommand(event) {
 
 	}
 }
-
-
 
 
 

@@ -482,4 +482,19 @@ function gotoNextPage() {
 	loadPage(page);
 }
 
+//////////////////////////////
+//
+// displayMei --
+//
+
+function displayMei() {
+	var data = vrvToolkit.getMEI();
+	var prefix = "<textarea style='width:100%; height:100%;'>";
+	var postfix = "</textarea>";
+	var w = window.open("", "", 'width=600,height=800,resizeable,scrollabars');
+	w.document.write(prefix + data + postfix);
+	w.document.close();
+}
+
+
 
