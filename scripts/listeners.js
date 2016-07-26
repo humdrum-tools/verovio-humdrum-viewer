@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	var cgi = GetCgiParameters();
 	if (cgi.file) {
-		loadKernScoresFile(cgi.file);
+		loadKernScoresFile(cgi.file, cgi.mm);
 	}
 
 	$("#player").midiPlayer({

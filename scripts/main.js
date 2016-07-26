@@ -300,6 +300,11 @@ function GetCgiParameters() {
 			output[pair[0]].push(pair[1]);
 		}
 	}
+	if (!output.mm || output.mm.match(/^\s*$/)) {
+		if (output.m) {
+			output.mm = output.m;
+		}
+	}
 	return output;
 }
 
@@ -310,7 +315,7 @@ function GetCgiParameters() {
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(file) {
+function loadKernScoresFile(file, measures) {
 	var location;
 	var filename;
 	var matches;
@@ -329,7 +334,7 @@ function loadKernScoresFile(file) {
 		if (request.status == 200) {
 			FILEINFO = JSON.parse(request.responseText);
 			console.log("JSON INFO = ", FILEINFO);
-			downloadKernScoresFile(file);
+			downloadKernScoresFile(file, measures);
 		}
 	});
 	request.send();
@@ -342,7 +347,7 @@ function loadKernScoresFile(file) {
 // downloadKernScoresFile --
 //
 
-function downloadKernScoresFile(file) {
+function downloadKernScoresFile(file, measures) {
 	var location;
 	var filename;
 	var matches;
@@ -351,6 +356,9 @@ function downloadKernScoresFile(file) {
 		filename = matches[2];
 	}
 	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+	if (measures) {
+		url += "&mm=" + measures;
+	}
 
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
