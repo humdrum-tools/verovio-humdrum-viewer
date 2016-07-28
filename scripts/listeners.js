@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 
 	CGI = GetCgiParameters();
+
+	if (CGI.k && CGI.k.match(/h/)) {
+		toggleInputArea(true);
+	}
+
 	if (CGI.file) {
 		loadKernScoresFile(CGI.file, CGI.mm);
 	} else {
@@ -86,42 +91,6 @@ window.addEventListener("keydown", processKeyCommand);
 
 function processKeyCommand(event) {
 
-	var CKey      = 67;
-	var DKey      = 68;
-	var EKey      = 69;
-	var FKey      = 70;
-	var GKey      = 71;
-	var HKey      = 72;
-	var IKey      = 73;
-	var JKey      = 74;
-	var KKey      = 75;
-	var LKey      = 76;
-	var MKey      = 77;
-	var NKey      = 78;
-	var OKey      = 79;
-	var PKey      = 80;
-	var QKey      = 81;
-	var RKey      = 82;
-	var SKey      = 83;
-	var TKey      = 84;
-	var UKey      = 85;
-	var VKey      = 86;
-	var WKey      = 87;
-	var XKey      = 88;
-	var YKey      = 89;
-	var ZKey      = 90;
-	var OneKey    = 49;
-	var TwoKey    = 50;
-	var LeftKey   = 37;
-	var UpKey     = 38;
-	var RightKey  = 39;
-	var DownKey   = 40;
-	var EnterKey  = 13;
-	var SpaceKey  = 32;
-	var SlashKey  = 191;
-	var EscKey    = 27;
-	var BackKey   = 8;
-
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
@@ -147,13 +116,21 @@ function processKeyCommand(event) {
 			break;
 
 		case LeftKey:
-			gotoPreviousPage();
-			console.log("PAGE", PAGE);
+			if (event.shiftKey) {
+				displayWork(FILEINFO["previous-work"]);
+			} else {
+				gotoPreviousPage();
+				console.log("PAGE", PAGE);
+			}
 			break;
 
 		case RightKey:
-			gotoNextPage();
-			console.log("PAGE", PAGE);
+			if (event.shiftKey) {
+				displayWork(FILEINFO["next-work"]);
+			} else {
+				gotoNextPage();
+				console.log("PAGE", PAGE);
+			}
 			break;
 
 		case MKey:

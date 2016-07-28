@@ -13,10 +13,46 @@ var ZOOM = 0.4;
 var PLAY = false;
 var PAUSE = false;
 
-var InputVisible = "true";
+var FirstInitialization = false;
+var InputVisible = true;
 var VrvTitle = "true";
 var OriginalClef = false;
 
+var CKey      = 67;
+var DKey      = 68;
+var EKey      = 69;
+var FKey      = 70;
+var GKey      = 71;
+var HKey      = 72;
+var IKey      = 73;
+var JKey      = 74;
+var KKey      = 75;
+var LKey      = 76;
+var MKey      = 77;
+var NKey      = 78;
+var OKey      = 79;
+var PKey      = 80;
+var QKey      = 81;
+var RKey      = 82;
+var SKey      = 83;
+var TKey      = 84;
+var UKey      = 85;
+var VKey      = 86;
+var WKey      = 87;
+var XKey      = 88;
+var YKey      = 89;
+var ZKey      = 90;
+var OneKey    = 49;
+var TwoKey    = 50;
+var LeftKey   = 37;
+var UpKey     = 38;
+var RightKey  = 39;
+var DownKey   = 40;
+var EnterKey  = 13;
+var SpaceKey  = 32;
+var SlashKey  = 191;
+var EscKey    = 27;
+var BackKey   = 8;
 
 
 //////////////////////////////
@@ -57,8 +93,20 @@ function processOptions() {
  		event.target = {};
 		event.target.nodeName = "moxie";
 		event.keyCode = list[i].charCodeAt(0) - 32;
-		processKeyCommand(event);
+		switch(event.keyCode) {
+			case HKey:
+				break;
+			case OKey:
+			case VKey:
+				if (!FirstInitialization) {
+					processKeyCommand(event);
+				}
+				break;
+			default:
+				processKeyCommand(event);
+		}
    }
+	FirstInitialization = true;
 }
 
 
@@ -163,7 +211,7 @@ function allowTabs() {
 // toggleInputArea --
 //
 
-function toggleInputArea() {
+function toggleInputArea(suppressZoom) {
 	InputVisible = !InputVisible;
 	var area = document.querySelector("#input");
 	if (InputVisible) {
@@ -173,7 +221,9 @@ function toggleInputArea() {
 		area.style.visibility = "hidden";
 		area.style.display = "none";
 	}
-	applyZoom();
+	if (!suppressZoom) {
+		applyZoom();
+	}
 }
 
 
@@ -366,6 +416,9 @@ function displayFileTitle(contents) {
 //
 
 function displayWork(file) {
+	if (!file) {
+		return;
+	}
 	CGI.file = file;
 	delete CGI.mm;
 	delete CGI.kInitialized;
@@ -485,6 +538,7 @@ function applyZoom() {
 		measure = $("#output .measure").attr("id");
 	}
 
+console.log("MEASURE",  measure);
 	var options = humdrumToSvgOptions();
 	if ((HEIGHT != options.pageHeight) || (WIDTH != options.pageWidth)) {
 		stop();
