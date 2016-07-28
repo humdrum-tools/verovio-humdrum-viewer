@@ -1,4 +1,9 @@
 
+body.waiting * {
+	cursor: progress;
+}
+
+
 svg:not(:root) {
   overflow: inherit; 
 }

@@ -34,6 +34,7 @@ function displayNotation() {
 	if (CGI.k && !CGI.kInitialized) {
 		processOptions();
    }
+	$('html').css('cursor', 'auto');
 }
 
 
@@ -319,10 +320,57 @@ function displayFileTitle(contents) {
 	}
 
 	tarea = document.querySelector("#composer");
-	if (tarea && !composer.match(/^\s*$/)) {
-		tarea.innerHTML = composer + ", ";
+   var pretitle = "";
+   if (FILEINFO["previous-work"]) {
+      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+		pretitle += FILEINFO["previous-work"];
+		pretitle += "');\"";
+		pretitle += " title='previous work/movement'";
+		pretitle += ">";
+		pretitle += "&#9664;";
+		pretitle += "</span>";
 	}
 
+   if (FILEINFO["previous-work"] &&
+       FILEINFO["next-work"]) {
+      pretitle += "&nbsp;";
+	}
+
+   if (FILEINFO["next-work"]) {
+      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+		pretitle += FILEINFO["next-work"];
+		pretitle += "');\"";
+		pretitle += " title='next work/movement'";
+		pretitle += ">";
+      pretitle += "&#9658;";
+		pretitle += "</span>";
+	}
+
+   if (FILEINFO["previous-work"] ||
+       FILEINFO["next-work"]) {
+      pretitle += "&nbsp;&nbsp;";
+	}
+
+	if (tarea && !composer.match(/^\s*$/)) {
+		pretitle += composer + ", ";
+	}
+	tarea.innerHTML = pretitle;
+
+}
+
+
+
+//////////////////////////////
+//
+// displayWork --
+//
+
+function displayWork(file) {
+	CGI.file = file;
+	delete CGI.mm;
+	delete CGI.kInitialized;
+	$('html').css('cursor', 'wait');
+	loadKernScoresFile(CGI.file, CGI.mm);
 }
 
 
@@ -383,7 +431,7 @@ function loadKernScoresFile(file, measures) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			FILEINFO = JSON.parse(request.responseText);
-			console.log("JSON INFO = ", FILEINFO);
+			console.log("FILEINFO= ", FILEINFO);
 			downloadKernScoresFile(file, measures);
 		}
 	});

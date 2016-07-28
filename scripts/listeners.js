@@ -18,7 +18,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 	vrvToolkit = new verovio.toolkit();
-	displayNotation();
 	allowTabs();
 	setupDropArea();
 
@@ -30,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	CGI = GetCgiParameters();
 	if (CGI.file) {
 		loadKernScoresFile(CGI.file, CGI.mm);
+	} else {
+		displayNotation();
 	}
 
 	$("#player").midiPlayer({
