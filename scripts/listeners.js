@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Sun Apr 17 18:05:09 PDT 2016
+// Last Modified:  Wed Jul 27 23:10:04 PDT 2016
 // Filename:       listeners.js
 // Web Address:    http://flashcards.sapp.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		displayNotation();
 	});
 
-	var cgi = GetCgiParameters();
-	if (cgi.file) {
-		loadKernScoresFile(cgi.file, cgi.mm);
+	CGI = GetCgiParameters();
+	if (CGI.file) {
+		loadKernScoresFile(CGI.file, CGI.mm);
 	}
 
 	$("#player").midiPlayer({
@@ -129,6 +129,10 @@ function processKeyCommand(event) {
 		return;
 	}
 
+	if (event.metaKey) {
+		return;
+	}
+
 	switch (event.keyCode) {
 
 		case HKey:
@@ -157,6 +161,10 @@ function processKeyCommand(event) {
 
 		case SKey:
 			displaySvg();
+			break;
+
+		case VKey:
+			toggleVhvTitle();
 			break;
 
 		case SpaceKey:

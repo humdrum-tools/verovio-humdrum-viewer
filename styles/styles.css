@@ -3,6 +3,25 @@ svg:not(:root) {
   overflow: inherit; 
 }
 
+#header-table td:first-child {
+	padding-left 10px;
+}
+
+#header-table td {
+	height: 44px;
+	padding-top: 2px;
+	padding-right: 15px;
+}
+
+#vhv {
+	color:          #888; 
+	font-size:      110%;
+	letter-spacing: -1px;
+	margin-top: 	11px;
+	white-space:    nowrap;
+	word-spacing:   -3px;
+}
+
 body {
 	margin-top: 40px;
 }
@@ -60,7 +79,7 @@ div#dropArea {
 	font-family: Palatino, Times-Roman, serif;
 	position:    relative;
 	font-size:   130%;
-	top:         0px;
+	top:         2px;
 	padding:     0;
 	margin:      0;
 	white-space: nowrap;
@@ -68,17 +87,6 @@ div#dropArea {
 
 #composer {
 	letter-spacing: -0.5px;
-}
-
-#vhv {
-	padding-top:    2px;
-	padding-left:   10px; 
-	padding-right:  15px; 
-	color:          #888; 
-	font-size:      110%;
-	letter-spacing: -1px;
-	white-space:    nowrap;
-	word-spacing:   -3px;
 }
 
 

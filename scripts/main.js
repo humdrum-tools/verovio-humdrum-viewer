@@ -2,6 +2,7 @@
 
 var vrvToolkit;
 
+var CGI = {};
 var PAGE = 1;
 var ids = [];
 var FILEINFO = {};
@@ -13,7 +14,9 @@ var PLAY = false;
 var PAUSE = false;
 
 var InputVisible = "true";
+var VrvTitle = "true";
 var OriginalClef = false;
+
 
 
 //////////////////////////////
@@ -28,7 +31,35 @@ function displayNotation() {
 	document.querySelector("#output").innerHTML =
 		vrvToolkit.renderData(data, JSON.stringify(options));
 	displayFileTitle(inputarea.value);
+	if (CGI.k && !CGI.kInitialized) {
+		processOptions();
+   }
 }
+
+
+
+//////////////////////////////
+//
+// processOptions -- Can only handle alphabetic key commands.
+//   Also only lower case, but that is easier to fix when there
+//   is an uppercase command.
+//
+
+function processOptions() {
+	CGI.kInitialized = true;
+	if (!CGI.k) {
+		return;
+	}
+	var list = CGI.k.split('');
+	for (var i=0; i<list.length; i++) {
+		var event = {};
+ 		event.target = {};
+		event.target.nodeName = "moxie";
+		event.keyCode = list[i].charCodeAt(0) - 32;
+		processKeyCommand(event);
+   }
+}
+
 
 
 //////////////////////////////
@@ -103,7 +134,6 @@ function humdrumToMeiOptions() {
 
 
 
-
 //////////////////////////////
 //
 // allowTabs -- Allow tab characters in textarea content.
@@ -129,7 +159,7 @@ function allowTabs() {
 
 //////////////////////////////
 //
-// ToggleInputArea --
+// toggleInputArea --
 //
 
 function toggleInputArea() {
@@ -144,6 +174,26 @@ function toggleInputArea() {
 	}
 	applyZoom();
 }
+
+
+
+//////////////////////////////
+//
+// toggleVhvTitle --
+//
+
+function toggleVhvTitle() {
+	VrvTitle = !VrvTitle;
+	var area = document.querySelector("#vhv");
+	if (VrvTitle) {
+		area.style.visibility = "visible";
+		area.style.display = "inline";
+	} else {
+		area.style.visibility = "hidden";
+		area.style.display = "none";
+	}
+}
+
 
 
 
