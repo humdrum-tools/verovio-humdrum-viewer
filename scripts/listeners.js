@@ -90,7 +90,6 @@ window.addEventListener("blur", function() {
 window.addEventListener("keydown", processKeyCommand);
 
 function processKeyCommand(event) {
-
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}

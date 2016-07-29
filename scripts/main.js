@@ -382,7 +382,30 @@ function displayFileTitle(contents) {
 	}
 
    if (FILEINFO["previous-work"] &&
-       FILEINFO["next-work"]) {
+       FILEINFO["next-work"] &&
+       (FILEINFO["has-index"] == "true")) {
+      pretitle += "&nbsp;";
+	}
+
+   if (FILEINFO["has-index"] == "true") {
+      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
+		pretitle += FILEINFO["location"];
+		pretitle += "');\"";
+		pretitle += " title='index'";
+		pretitle += ">";
+      pretitle += "&#9650;";
+		pretitle += "</span>";
+	}
+
+   if (FILEINFO["previous-work"] &&
+       FILEINFO["next-work"] &&
+       (FILEINFO["has-index"] == "true")) {
+      pretitle += "&nbsp;";
+	}
+
+   if (FILEINFO["previous-work"] &&
+       FILEINFO["next-work"] &&
+       (FILEINFO["has-index"] != "true")) {
       pretitle += "&nbsp;";
 	}
 
@@ -416,6 +439,7 @@ function displayFileTitle(contents) {
 //
 
 function displayWork(file) {
+console.log("DISPLAY WORK = ", file);
 	if (!file) {
 		return;
 	}
@@ -424,6 +448,22 @@ function displayWork(file) {
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
 	loadKernScoresFile(CGI.file, CGI.mm);
+}
+
+
+
+//////////////////////////////
+//
+// displayIndex --
+//
+
+function displayIndex(directory) {
+console.log("GOT HERE IN DISPLAY INDEX");
+	if (!directory) {
+		return;
+	}
+	$('html').css('cursor', 'wait');
+	loadIndexFile(directory);
 }
 
 
@@ -457,6 +497,118 @@ function GetCgiParameters() {
 		}
 	}
 	return output;
+}
+
+
+
+///////////////////////////////
+//
+// loadIndexFile --
+//
+
+function loadIndexFile(location) {
+console.log("GOT HERE IN LOAD INDEX FILE");
+	var url = "http://kern.humdrum.org/data?l=" + location;
+	url += "&format=index";
+
+	console.log("Loading index", url);
+
+	var request = new XMLHttpRequest();
+	request.open("GET", url);
+	request.addEventListener("load", function() {
+		if (request.status == 200) {
+			var INDEX = request.responseText;
+			console.log("INDEX= ", INDEX);
+	      $('html').css('cursor', 'auto');
+			displayIndexFinally(INDEX, location);
+		}
+	});
+	request.send();
+}
+
+
+
+//////////////////////////////
+//
+// displayIndexFinally --
+//
+
+function displayIndexFinally(index, location) {
+   var output = document.querySelector("#output");
+	var lines = index.split(/\r?\n/);
+	var i;
+   var newlines = [];
+	var data;
+	for (i=0; i<lines.length; i++) {
+		if (lines[i].match(/^\s*$/)) {
+			continue;
+		}
+		data = lines[i].split(/\t+/);
+		if (data.length >= 3) {
+ 			newline = data[1] + "\t" + data[0] + "\t" + data[2];
+         newlines.push(newline);
+		}
+	}
+	newlines.sort();
+	var items = [];
+	for (i=0; i<newlines.length; i++) {
+		data = newlines[i].split(/\t+/);
+		var entry = {};
+      entry.filename = data[1];
+      entry.text = data[2];
+      entry.sorter = data[0];
+		items.push(entry);
+	}
+
+	var indents = {};
+
+	var final = "<table class='index-list'>";
+	for (i=0; i<items.length; i++) {
+		if (items[i].text.match(/^All /)) {
+			continue;
+		}
+		items[i].text = items[i].text.replace(/\[?<a[^>]*wikipedia[^<]*.*?<\/a>\]?/gi, "");
+		final += "<tr><td>"
+
+		if (indents[items[i].sorter]) {
+			final += "<span class='indenter'></span>";
+		}
+
+		if (items[i].filename.match(/^@/)) {
+			items[i].text.replace(/<not>.*?<\/not>/g, "");
+			final += items[i].text;
+			var xtext = items[i].filename;
+			xtext = xtext.replace(/^@/, "");
+			var tindent = xtext.split(/:/);
+			indents = {};
+			for (var j=0; j<tindent.length; j++) {
+				indents[tindent[j]] = "true";
+			}
+		} else if (!items[i].text.match(/hlstart/)) {
+			final += "<span class='ilink' onclick=\"displayWork('";
+			final += location;
+			final += "/" + items[i].filename;
+			final += "');\">";
+			final += items[i].text;
+			final += "</span>";
+		} else {
+			var spantext = "";
+			spantext += "<span class='ilink' onclick=\"displayWork('";
+			spantext += location;
+			spantext += "/" + items[i].filename;
+			spantext += "');\">";
+			items[i].text = items[i].text.replace(/<hlstart>/, spantext);
+			if (items[i].text.match(/<hlend>/)) {
+				items[i].text = items[i].text.replace(/<hlend>/, "</span>");
+			} else {
+				items[i].text += "</span>";
+			}
+			final += items[i].text;
+		}
+		final += "</td></tr>"
+	}
+	final += "</html>";
+	output.innerHTML = final;
 }
 
 

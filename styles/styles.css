@@ -3,6 +3,27 @@ body.waiting * {
 	cursor: progress;
 }
 
+table.index-list {
+	padding-left: 40px;
+	margin-left: 40px;
+	padding-top: 40px;
+	margin-top: 40px;
+}
+
+
+.indenter {
+	margin-left: 50px;
+}
+
+.index-list td {
+	font-family: Palatino;
+	font-size: 18pt;
+}
+
+.ilink {
+	cursor: pointer;
+	color: 333388;
+}
 
 svg:not(:root) {
   overflow: inherit; 
