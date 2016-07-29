@@ -114,6 +114,14 @@ function processKeyCommand(event) {
 			displayNotation();
 			break;
 
+		case UpKey:
+			if (event.shiftKey) {
+				if (FILEINFO["has-index"] == "true") {
+					displayIndex(FILEINFO["location"]);
+				}
+			}
+			break;
+
 		case LeftKey:
 			if (event.shiftKey) {
 				displayWork(FILEINFO["previous-work"]);
