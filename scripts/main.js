@@ -17,6 +17,7 @@ var FirstInitialization = false;
 var InputVisible = true;
 var VrvTitle = "true";
 var OriginalClef = false;
+var UndoHide = false;
 
 var CKey      = 67;
 var DKey      = 68;
@@ -67,9 +68,15 @@ function displayNotation() {
 	document.querySelector("#output").innerHTML =
 		vrvToolkit.renderData(data, JSON.stringify(options));
 	displayFileTitle(inputarea.value);
+
+	if (UndoHide) {
+		showInputArea(true);
+		UndoHide = false;
+	}
+
 	if (CGI.k && !CGI.kInitialized) {
 		processOptions();
-   }
+	}
 	$('html').css('cursor', 'auto');
 }
 
@@ -90,7 +97,7 @@ function processOptions() {
 	var list = CGI.k.split('');
 	for (var i=0; i<list.length; i++) {
 		var event = {};
- 		event.target = {};
+		event.target = {};
 		event.target.nodeName = "moxie";
 		event.keyCode = list[i].charCodeAt(0) - 32;
 		switch(event.keyCode) {
@@ -105,7 +112,7 @@ function processOptions() {
 			default:
 				processKeyCommand(event);
 		}
-   }
+	}
 	FirstInitialization = true;
 }
 
@@ -230,6 +237,50 @@ function toggleInputArea(suppressZoom) {
 
 //////////////////////////////
 //
+// hideInputArea --
+//
+
+function hideInputArea(suppressZoom) {
+	InputVisible = false;
+	var area = document.querySelector("#input");
+	if (InputVisible) {
+		area.style.visibility = "visible";
+		area.style.display = "inline";
+	} else {
+		area.style.visibility = "hidden";
+		area.style.display = "none";
+	}
+	if (!suppressZoom) {
+		applyZoom();
+	}
+}
+
+
+
+//////////////////////////////
+//
+// showInputArea --
+//
+
+function showInputArea(suppressZoom) {
+	InputVisible = true;
+	var area = document.querySelector("#input");
+	if (InputVisible) {
+		area.style.visibility = "visible";
+		area.style.display = "inline";
+	} else {
+		area.style.visibility = "hidden";
+		area.style.display = "none";
+	}
+	if (!suppressZoom) {
+		applyZoom();
+	}
+}
+
+
+
+//////////////////////////////
+//
 // toggleVhvTitle --
 //
 
@@ -293,17 +344,17 @@ function getReferenceRecords(contents) {
 				prefix = matches[1];
 				key = matches[2];
 				postfix = matches[3];
-			   pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
+				pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
 			} else if (matches = pattern.match(/@\{([^\}]*)\}\{([^\}]*)\}/)) {
 				prefix = matches[1];
 				key = matches[2];
 				postfix = "";
-			   pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
+				pattern = pattern.replace(/@\{([^\}]*)\}\{([^\}]*)\}/, "ZZZZZ");
 			} else if (matches = pattern.match(/@\{([^\}]*)\}/)) {
 				prefix = "";
 				key = matches[1];
 				postfix = "";
-			   pattern = pattern.replace(/@\{([^\}]*)\}/, "ZZZZZ");
+				pattern = pattern.replace(/@\{([^\}]*)\}/, "ZZZZZ");
 			}
 
 			if (!key) {
@@ -342,7 +393,7 @@ function displayFileTitle(contents) {
 	var lines = contents.split(/\r?\n/);
 	var title = "";
 	var number = "";
-   var composer = "";
+	var composer = "";
 	var sct = "";
 	var matches;
 
@@ -370,9 +421,9 @@ function displayFileTitle(contents) {
 	}
 
 	tarea = document.querySelector("#composer");
-   var pretitle = "";
-   if (FILEINFO["previous-work"]) {
-      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+	var pretitle = "";
+	if (FILEINFO["previous-work"]) {
+		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
 		pretitle += FILEINFO["previous-work"];
 		pretitle += "');\"";
 		pretitle += " title='previous work/movement'";
@@ -381,47 +432,47 @@ function displayFileTitle(contents) {
 		pretitle += "</span>";
 	}
 
-   if (FILEINFO["previous-work"] &&
-       FILEINFO["next-work"] &&
-       (FILEINFO["has-index"] == "true")) {
-      pretitle += "&nbsp;";
+	if (FILEINFO["previous-work"] &&
+		FILEINFO["next-work"] &&
+		(FILEINFO["has-index"] == "true")) {
+		pretitle += "&nbsp;";
 	}
 
-   if (FILEINFO["has-index"] == "true") {
-      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
+	if (FILEINFO["has-index"] == "true") {
+		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
 		pretitle += FILEINFO["location"];
 		pretitle += "');\"";
 		pretitle += " title='index'";
 		pretitle += ">";
-      pretitle += "&#9650;";
+		pretitle += "&#9650;";
 		pretitle += "</span>";
 	}
 
-   if (FILEINFO["previous-work"] &&
-       FILEINFO["next-work"] &&
-       (FILEINFO["has-index"] == "true")) {
-      pretitle += "&nbsp;";
+	if (FILEINFO["previous-work"] &&
+			FILEINFO["next-work"] &&
+			(FILEINFO["has-index"] == "true")) {
+		pretitle += "&nbsp;";
 	}
 
-   if (FILEINFO["previous-work"] &&
-       FILEINFO["next-work"] &&
-       (FILEINFO["has-index"] != "true")) {
-      pretitle += "&nbsp;";
+	if (FILEINFO["previous-work"] &&
+			FILEINFO["next-work"] &&
+			(FILEINFO["has-index"] != "true")) {
+		pretitle += "&nbsp;";
 	}
 
-   if (FILEINFO["next-work"]) {
-      pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+	if (FILEINFO["next-work"]) {
+		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
 		pretitle += FILEINFO["next-work"];
 		pretitle += "');\"";
 		pretitle += " title='next work/movement'";
 		pretitle += ">";
-      pretitle += "&#9658;";
+		pretitle += "&#9658;";
 		pretitle += "</span>";
 	}
 
-   if (FILEINFO["previous-work"] ||
-       FILEINFO["next-work"]) {
-      pretitle += "&nbsp;&nbsp;";
+	if (FILEINFO["previous-work"] ||
+		FILEINFO["next-work"]) {
+		pretitle += "&nbsp;&nbsp;";
 	}
 
 	if (tarea && !composer.match(/^\s*$/)) {
@@ -439,7 +490,6 @@ function displayFileTitle(contents) {
 //
 
 function displayWork(file) {
-console.log("DISPLAY WORK = ", file);
 	if (!file) {
 		return;
 	}
@@ -507,7 +557,6 @@ function GetCgiParameters() {
 //
 
 function loadIndexFile(location) {
-console.log("GOT HERE IN LOAD INDEX FILE");
 	var url = "http://kern.humdrum.org/data?l=" + location;
 	url += "&format=index";
 
@@ -519,7 +568,7 @@ console.log("GOT HERE IN LOAD INDEX FILE");
 		if (request.status == 200) {
 			var INDEX = request.responseText;
 			console.log("INDEX= ", INDEX);
-	      $('html').css('cursor', 'auto');
+			$('html').css('cursor', 'auto');
 			displayIndexFinally(INDEX, location);
 		}
 	});
@@ -534,10 +583,17 @@ console.log("GOT HERE IN LOAD INDEX FILE");
 //
 
 function displayIndexFinally(index, location) {
-   var output = document.querySelector("#output");
+
+	IndexSupressOfInput = true;
+	if (InputVisible == true) {
+		UndoHide = true;
+		hideInputArea(true);
+	}
+
+	var output = document.querySelector("#output");
 	var lines = index.split(/\r?\n/);
 	var i;
-   var newlines = [];
+	var newlines = [];
 	var data;
 	for (i=0; i<lines.length; i++) {
 		if (lines[i].match(/^\s*$/)) {
@@ -545,8 +601,8 @@ function displayIndexFinally(index, location) {
 		}
 		data = lines[i].split(/\t+/);
 		if (data.length >= 3) {
- 			newline = data[1] + "\t" + data[0] + "\t" + data[2];
-         newlines.push(newline);
+			newline = data[1] + "\t" + data[0] + "\t" + data[2];
+			newlines.push(newline);
 		}
 	}
 	newlines.sort();
@@ -554,9 +610,9 @@ function displayIndexFinally(index, location) {
 	for (i=0; i<newlines.length; i++) {
 		data = newlines[i].split(/\t+/);
 		var entry = {};
-      entry.filename = data[1];
-      entry.text = data[2];
-      entry.sorter = data[0];
+		entry.filename = data[1];
+		entry.text = data[2];
+		entry.sorter = data[0];
 		items.push(entry);
 	}
 
@@ -626,6 +682,17 @@ function loadKernScoresFile(file, measures) {
 		location = matches[1];
 		filename = matches[2];
 	}
+
+	if ((!filename) || !filename.match(/\.[a-z][a-z][a-z]$/)) {
+		loadIndexFile(file);
+		return;
+	}
+
+	if (filename.match(/^\s*$/)) {
+		loadIndexFile(file);
+		return;
+	}
+
 	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 	url += "&format=info-json";
 
@@ -662,6 +729,7 @@ function downloadKernScoresFile(file, measures) {
 	if (measures) {
 		url += "&mm=" + measures;
 	}
+console.log("GOTHERE BBB");
 
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
@@ -723,7 +791,7 @@ function loadPage(page) {
 	$("#jump_text").val(page);
 	svg = vrvToolkit.renderPage(page, "");
 	$("#output").html(svg);
-	// adjustPageHeight();
+	adjustPageHeight();
 	resizeImage();
 }
 

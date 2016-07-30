@@ -108,10 +108,36 @@ function processKeyCommand(event) {
 			toggleInputArea();
 			break;
 
+		case MKey:
+			displayMei();
+			break;
+
 		case OKey:
 			OriginalClef = !OriginalClef;
 			console.log("Original clef changed to:", OriginalClef);
 			displayNotation();
+			break;
+
+		case SKey:
+			displaySvg();
+			break;
+
+		case VKey:
+			toggleVhvTitle();
+			break;
+
+		case SpaceKey:
+			if (!PLAY) {
+				play_midi();
+				PLAY = true;
+				PAUSE = false;
+			} else if (PAUSE) {
+				play();
+				PAUSE = !PAUSE;
+			} else {
+				pause();
+				PAUSE = !PAUSE;
+			}
 			break;
 
 		case UpKey:
@@ -137,32 +163,6 @@ function processKeyCommand(event) {
 			} else {
 				gotoNextPage();
 				console.log("PAGE", PAGE);
-			}
-			break;
-
-		case MKey:
-			displayMei();
-			break;
-
-		case SKey:
-			displaySvg();
-			break;
-
-		case VKey:
-			toggleVhvTitle();
-			break;
-
-		case SpaceKey:
-			if (!PLAY) {
-				play_midi();
-				PLAY = true;
-				PAUSE = false;
-			} else if (PAUSE) {
-				play();
-				PAUSE = !PAUSE;
-			} else {
-				pause();
-				PAUSE = !PAUSE;
 			}
 			break;
 
