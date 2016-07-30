@@ -18,6 +18,7 @@ var InputVisible = true;
 var VrvTitle = "true";
 var OriginalClef = false;
 var UndoHide = false;
+var ApplyZoom = false;
 
 var CKey      = 67;
 var DKey      = 68;
@@ -74,9 +75,19 @@ function displayNotation() {
 		UndoHide = false;
 	}
 
+	if (ApplyZoom) {
+		applyZoom();
+		ApplyZoom = false;
+	}
+
 	if (CGI.k && !CGI.kInitialized) {
 		processOptions();
 	}
+	if (ApplyZoom) {
+		applyZoom();
+		ApplyZoom = false;
+	}
+console.log("FIXED CURSOR");
 	$('html').css('cursor', 'auto');
 }
 
@@ -587,6 +598,7 @@ function displayIndexFinally(index, location) {
 	IndexSupressOfInput = true;
 	if (InputVisible == true) {
 		UndoHide = true;
+		ApplyZoom = true;
 		hideInputArea(true);
 	}
 
@@ -754,11 +766,16 @@ console.log("GOTHERE BBB");
 
 function applyZoom() {
 	var measure = 0;
+
+	var testing = document.querySelector("#output svg");
+	if (!testing) {
+		return;
+	}
+
 	if (PAGE != 1) {
 		measure = $("#output .measure").attr("id");
 	}
 
-console.log("MEASURE",  measure);
 	var options = humdrumToSvgOptions();
 	if ((HEIGHT != options.pageHeight) || (WIDTH != options.pageWidth)) {
 		stop();
@@ -791,7 +808,7 @@ function loadPage(page) {
 	$("#jump_text").val(page);
 	svg = vrvToolkit.renderPage(page, "");
 	$("#output").html(svg);
-	adjustPageHeight();
+	// adjustPageHeight();
 	resizeImage();
 }
 
