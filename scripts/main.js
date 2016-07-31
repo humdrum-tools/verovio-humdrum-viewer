@@ -64,15 +64,19 @@ var BackKey   = 8;
 // displayNotation -- Convert Humdum data in textarea to notation.
 //
 
-function displayNotation() {
+function displayNotation(page) {
 	if (FreezeRendering) {
 		return;
 	}
 	var inputarea = document.querySelector("#input");
 	var data = inputarea.value;
 	var options = humdrumToSvgOptions();
-	document.querySelector("#output").innerHTML =
-		vrvToolkit.renderData(data, JSON.stringify(options));
+	var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+	if (page) {
+		svg = vrvToolkit.renderPage(page, "");
+	}
+	document.querySelector("#output").innerHTML = svg;
+
 	displayFileTitle(inputarea.value);
 
 	if (UndoHide) {
@@ -713,7 +717,7 @@ function displayIndexFinally(index, location) {
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(file, measures) {
+function loadKernScoresFile(file, measures, page) {
 	var location;
 	var filename;
 	var matches;
@@ -743,7 +747,7 @@ function loadKernScoresFile(file, measures) {
 		if (request.status == 200) {
 			FILEINFO = JSON.parse(request.responseText);
 			console.log("FILEINFO= ", FILEINFO);
-			downloadKernScoresFile(file, measures);
+			downloadKernScoresFile(file, measures, page);
 		}
 	});
 	request.send();
@@ -756,7 +760,7 @@ function loadKernScoresFile(file, measures) {
 // downloadKernScoresFile --
 //
 
-function downloadKernScoresFile(file, measures) {
+function downloadKernScoresFile(file, measures, page) {
 	var location;
 	var filename;
 	var matches;
@@ -774,11 +778,11 @@ function downloadKernScoresFile(file, measures) {
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
-			console.log("DATA", request.responseText);
+			// console.log("DATA", request.responseText);
 			var inputarea = document.querySelector("#input");
 			console.log("Current file:", file);
 			inputarea.value = request.response;
-			displayNotation();
+			displayNotation(page);
 		}
 	});
 	request.send();
@@ -987,7 +991,7 @@ function displayPdf() {
 //
 
 function reloadData() {
-	loadKernScoresFile(CGI.file, CGI.mm);
+	loadKernScoresFile(CGI.file, CGI.mm, PAGE);
 }
 
 
