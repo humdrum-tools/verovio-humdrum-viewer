@@ -776,6 +776,7 @@ function downloadKernScoresFile(file, measures) {
 		if (request.status == 200) {
 			console.log("DATA", request.responseText);
 			var inputarea = document.querySelector("#input");
+			console.log("Current file:", file);
 			inputarea.value = request.response;
 			displayNotation();
 		}
@@ -973,12 +974,20 @@ function displayPdf() {
 
 	console.log("Loading PDF", url);
 
-	var wpdf = window.open(url, "Scanned score", 'width=600,height=800,resizeable,scrollabars,location=false');
+	var wpdf = window.open(url, "Scanned score", 
+			'width=600,height=800,resizeable,scrollabars,location=false');
 
 }
 
 
 
+//////////////////////////////
+//
+// reloadData --
+//
 
+function reloadData() {
+	loadKernScoresFile(CGI.file, CGI.mm);
+}
 
 

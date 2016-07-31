@@ -131,8 +131,13 @@ function processKeyCommand(event) {
 			break;
 
 		case PKey:
-			console.log("DISPLAYING PDF");
 			displayPdf();
+			event.preventDefault();
+			break;
+
+		case RKey:
+			console.log("RELOADING DATA");
+			reloadData();
 			event.preventDefault();
 			break;
 
