@@ -19,6 +19,8 @@ var VrvTitle = "true";
 var OriginalClef = false;
 var UndoHide = false;
 var ApplyZoom = false;
+var ShowingIndex = false;
+var FreezeRendering = false;
 
 var CKey      = 67;
 var DKey      = 68;
@@ -63,6 +65,9 @@ var BackKey   = 8;
 //
 
 function displayNotation() {
+	if (FreezeRendering) {
+		return;
+	}
 	var inputarea = document.querySelector("#input");
 	var data = inputarea.value;
 	var options = humdrumToSvgOptions();
@@ -87,7 +92,7 @@ function displayNotation() {
 		applyZoom();
 		ApplyZoom = false;
 	}
-console.log("FIXED CURSOR");
+	ShowingIndex = false;
 	$('html').css('cursor', 'auto');
 }
 
@@ -158,7 +163,7 @@ function processOptions() {
 
 function humdrumToSvgOptions() {
 	var output = {
-		inputFormat       : "humdrum",
+		inputFormat       : "auto",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
 		border            : 20,
@@ -179,8 +184,12 @@ function humdrumToSvgOptions() {
 		if ($("#input").css("display") == "none") {
 			tw = 0;
 		}
-		output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
-		output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
+		// output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
+		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
+		// jQuery $winow.innerHeight() not working properly (in Chrome).
+		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
+		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
+console.log("PAGEHEIGHT =", output.pageHeight);
 	}
 
 	return output;
@@ -219,6 +228,22 @@ function allowTabs() {
 				this.selectionEnd = s+1;
 			}
 		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleFreeze --
+//
+
+function toggleFreeze() {
+	FreezeRendering = !FreezeRendering;
+	console.log("FreezeRendering =,", FreezeRendering);
+	if (!FreezeRendering) {
+		console.log("Updating notation");
+		displayNotation();
 	}
 }
 
@@ -437,7 +462,7 @@ function displayFileTitle(contents) {
 		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
 		pretitle += FILEINFO["previous-work"];
 		pretitle += "');\"";
-		pretitle += " title='previous work/movement'";
+		pretitle += " title='previous work/movement (&#8679;+&#8592;)'";
 		pretitle += ">";
 		pretitle += "&#9664;";
 		pretitle += "</span>";
@@ -453,7 +478,7 @@ function displayFileTitle(contents) {
 		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
 		pretitle += FILEINFO["location"];
 		pretitle += "');\"";
-		pretitle += " title='index'";
+		pretitle += " title='index (&#8679;+&#8593;)'";
 		pretitle += ">";
 		pretitle += "&#9650;";
 		pretitle += "</span>";
@@ -475,7 +500,7 @@ function displayFileTitle(contents) {
 		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
 		pretitle += FILEINFO["next-work"];
 		pretitle += "');\"";
-		pretitle += " title='next work/movement'";
+		pretitle += " title='next work/movement (&#8679;+&#8594;)'";
 		pretitle += ">";
 		pretitle += "&#9658;";
 		pretitle += "</span>";
@@ -508,6 +533,7 @@ function displayWork(file) {
 	delete CGI.mm;
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
+	stop();
 	loadKernScoresFile(CGI.file, CGI.mm);
 }
 
@@ -519,7 +545,7 @@ function displayWork(file) {
 //
 
 function displayIndex(directory) {
-console.log("GOT HERE IN DISPLAY INDEX");
+	ShowingIndex = true;
 	if (!directory) {
 		return;
 	}
@@ -594,6 +620,7 @@ function loadIndexFile(location) {
 //
 
 function displayIndexFinally(index, location) {
+	ShowingIndex = true;
 
 	IndexSupressOfInput = true;
 	if (InputVisible == true) {
@@ -675,7 +702,7 @@ function displayIndexFinally(index, location) {
 		}
 		final += "</td></tr>"
 	}
-	final += "</html>";
+	final += "</table>";
 	output.innerHTML = final;
 }
 
@@ -741,7 +768,6 @@ function downloadKernScoresFile(file, measures) {
 	if (measures) {
 		url += "&mm=" + measures;
 	}
-console.log("GOTHERE BBB");
 
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
@@ -879,6 +905,9 @@ function gotoNextPage() {
 //
 
 function displayMei() {
+	if (ShowingIndex) {
+		return;
+	}
 	var data = vrvToolkit.getMEI();
 	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
@@ -904,6 +933,9 @@ function displayMei() {
 //
 
 function displaySvg() {
+	if (ShowingIndex) {
+		return;
+	}
 	var data = vrvToolkit.renderPage(PAGE, "");
 	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
@@ -919,6 +951,33 @@ function displaySvg() {
 	}
 	checkTitle();
 }
+
+
+
+//////////////////////////////
+//
+// displayPdf --
+//
+
+function displayPdf() {
+	if (!FILEINFO["has-pdf"]) {
+		return;
+	}
+	if (FILEINFO["has-pdf"] != "true") {
+		return;
+	}
+
+	var url = "http://kern.humdrum.org/data?l=" + FILEINFO["location"];
+	url += "&file=" + FILEINFO["file"];
+	url += "&format=pdf";
+
+	console.log("Loading PDF", url);
+
+	var wpdf = window.open(url, "Scanned score", 'width=600,height=800,resizeable,scrollabars,location=false');
+
+}
+
+
 
 
 

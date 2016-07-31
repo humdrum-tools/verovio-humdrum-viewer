@@ -104,26 +104,46 @@ function processKeyCommand(event) {
 
 	switch (event.keyCode) {
 
+		case FKey:
+			toggleFreeze();
+			event.preventDefault();
+			break;
+
 		case HKey:
-			toggleInputArea();
+			if (!ShowingIndex) {
+				toggleInputArea();
+			}
+			event.preventDefault();
 			break;
 
 		case MKey:
 			displayMei();
+			event.preventDefault();
 			break;
 
 		case OKey:
 			OriginalClef = !OriginalClef;
 			console.log("Original clef changed to:", OriginalClef);
-			displayNotation();
+			if (!ShowingIndex) {
+				displayNotation();
+			}
+			event.preventDefault();
+			break;
+
+		case PKey:
+			console.log("DISPLAYING PDF");
+			displayPdf();
+			event.preventDefault();
 			break;
 
 		case SKey:
 			displaySvg();
+			event.preventDefault();
 			break;
 
 		case VKey:
 			toggleVhvTitle();
+			event.preventDefault();
 			break;
 
 		case SpaceKey:
@@ -138,6 +158,7 @@ function processKeyCommand(event) {
 				pause();
 				PAUSE = !PAUSE;
 			}
+			event.preventDefault();
 			break;
 
 		case UpKey:
@@ -146,6 +167,7 @@ function processKeyCommand(event) {
 					displayIndex(FILEINFO["location"]);
 				}
 			}
+			event.preventDefault();
 			break;
 
 		case LeftKey:
@@ -155,6 +177,7 @@ function processKeyCommand(event) {
 				gotoPreviousPage();
 				console.log("PAGE", PAGE);
 			}
+			event.preventDefault();
 			break;
 
 		case RightKey:
@@ -164,6 +187,7 @@ function processKeyCommand(event) {
 				gotoNextPage();
 				console.log("PAGE", PAGE);
 			}
+			event.preventDefault();
 			break;
 
 	}
