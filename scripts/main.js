@@ -913,7 +913,7 @@ function displayMei() {
 	if (ShowingIndex) {
 		return;
 	}
-	var data = vrvToolkit.getMEI();
+	var data = vrvToolkit.getMEI(0, 1);
 	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
 	var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
