@@ -1,17 +1,17 @@
 # Verovio Humdrum Viewer (VRV)
 
 [VRV](http://verovio.humdrum.org) is an online
-[Humdrum](http://www.humdrum.org) file notation renderer which uses
+[Humdrum](http://www.humdrum.org) file notation renderer that uses
 [verovio](http://verovio.org).
 
 In the text box on the VRV homepage type some Humdrum data, and
 it will be converted immediately into music notation on the right.
 The homepage includes some sample data you can play with:
 
-[http://verovio.humdrum.org
+http://verovio.humdrum.org
 ![](images/figure1.png?raw=true)
 
-Try editing the text to match this content:
+Try editing (or copy/paste) the following text into the text box on the [homepage](http://verovio.humdrum.org) to match:
 
 ```
 **kern
