@@ -117,7 +117,7 @@ on this page:
 
      https://github.com/humdrum-tools/verovio-humdrum-viewer/issues
 
-Bach chorale repertory should be behaving nicely without bugs, but
+The Bach chorale repertory should be behaving nicely without bugs, but
 occasional problems in Mozart and Beethoven sonatas that need to
 be fixed).  Most notation rendering bugs should be reported directly
 to verovio:
