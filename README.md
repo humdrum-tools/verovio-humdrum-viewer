@@ -30,8 +30,8 @@ on the [homepage](http://verovio.humdrum.org) to match:
 ## Loading files from your Desktop
 
 You can drag and drop Humdrum files from your desktop onto the page
-and it will load the data into the text box and render the notation
-automatically.  
+and the data content will be loaded into the text box and rendered
+into notation automatically.  
 
 Files cannot be saved from the webpage yet, but you can copy/paste
 the text box content into a plain-text editor (with line-wrap turned
@@ -60,7 +60,7 @@ to see more columns of the Humdrum data.
 
 ![](images/figure3.png?raw=true)
 
-* When the music does not fit onto a single page, use the left/right arrow keys to move to the next page of music (or alt-left/right/arrow keys when editing in the text box.
+* When the music does not fit onto a single page, use the &larr;/&rarr; keys to move to the next page of music (or alt+&larr;/&rarr; keys when editing in the text box.
 
 * Notice the white triangles in the title bar.  When there are a group of scores forming a repertory, these triangles will appear.  You can click on the left/right triangles to move to the next/previous work/movement in the repertory.
 
