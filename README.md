@@ -8,10 +8,11 @@ In the text box on the VRV homepage type some Humdrum data, and
 it will be converted immediately into music notation on the right.
 The homepage includes some sample data you can play with:
 
-http://verovio.humdrum.org
 ![](images/figure1.png?raw=true)
 
-Try editing (or copy/paste) the following text into the text box on the [homepage](http://verovio.humdrum.org) to match:
+Try editing (or copy/paste) the following text into the text box
+on the [homepage](http://verovio.humdrum.org) to match:
+
 
 ```
 **kern
@@ -26,10 +27,20 @@ Try editing (or copy/paste) the following text into the text box on the [homepag
 *-
 ```
 
+## Loading files from your Desktop
+
 You can drag and drop Humdrum files from your desktop onto the page
 and it will load the data into the text box and render the notation
-automatically.  The website accesses data from kernScores, so you can
-also view online content.  For example, here is a Bach chorale:
+automatically.  
+
+Files cannot be saved from the webpage yet, but you can copy/paste
+the text box content into a plain-text editor (with line-wrap turned
+off).
+
+## Loading online content
+
+The VRV website can access data from [kernScores](https://kern.humdrum.org),
+so you can also view online content.  For example, here is a Bach chorale:
 
 http://verovio.humdrum.org/?file=chorales/chor001.krn
 
@@ -39,9 +50,9 @@ Notice that you can pull the bottom right corner of the text box
 to see more columns of the Humdrum data.
 
 
-* Try typing "o" (lower-case letter "O"), or "alt-o" when editing in the text box.
+* Try typing "o" (lower-case letter "O"), or "alt-o" when editing in the text box to toggle display of the original clefs.
 
-* Also notice the "Play" button in the top right corner of the page.
+* Also notice the "Play" button in the top right corner of the page that can be used to listing to the music notation.
 
 * The Humdrum text box can be shown/hidden by typing "h", or "alt-h" when text box has focus.
 
