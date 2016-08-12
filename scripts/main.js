@@ -1163,9 +1163,8 @@ function initializeVerovioToolkit() {
 //
 
 function downloadWildWebMidi(url) {
-
-	var url2 = "scripts/midiplayer/midiplayer.js";
-	var url3 = "scripts/midiplayer.js";
+	var url2 = "scripts/midiplayer.js";
+	var url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
 		{url: url, expire: 26},
