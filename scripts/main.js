@@ -1,7 +1,6 @@
 // vim: ts=3
 
 var vrvToolkit;
-
 var CGI = {};
 var PAGE = 1;
 var ids = [];
@@ -65,6 +64,11 @@ var BackKey   = 8;
 //
 
 function displayNotation(page) {
+	if (!vrvToolkit) {
+		console.log("Verovio toolkit not (yet) loaded");
+		return;
+	}
+
 	if (FreezeRendering) {
 		return;
 	}
@@ -538,7 +542,13 @@ function displayWork(file) {
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
 	stop();
-	loadKernScoresFile(CGI.file, CGI.mm);
+	loadKernScoresFile(
+		{
+			file: CGI.file,
+			measures: CGI.mm,
+			previous: true,
+			next: true
+		});
 }
 
 
@@ -711,13 +721,27 @@ function displayIndexFinally(index, location) {
 }
 
 
+var COUNTER = 0;
 
 //////////////////////////////
 //
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(file, measures, page) {
+function loadKernScoresFile(obj) {
+	var file = obj.file;
+	var measures = obj.measures;
+	var page = obj.page;
+	var getnext = obj.next;
+	var getprevious = obj.previous;
+	console.log("Downloading file", file, "getnext", getnext, "getprev", getprevious);
+
+	COUNTER++;
+   if (COUNTER > 100) {
+		console.log("TOO LARGE", file);
+		return;
+	}
+
 	var location;
 	var filename;
 	var matches;
@@ -739,6 +763,44 @@ function loadKernScoresFile(file, measures, page) {
 	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 	url += "&format=info-json";
 
+	var key = location + "/" + filename;
+	var info = basketSession.get(key);
+	var jinfo;
+	if (!info) {
+		console.log("Going to download", key);
+		basketSession.require(
+			{	url: url,
+				key: key,
+				expire: 172,
+				execute: false
+			}
+		).then(function() {
+				console.log("Downloaded", key);
+				info = basketSession.get(key);
+				if (info) {
+					jinfo = JSON.parse(info.data);
+					if (getnext) {
+						console.log("processing AAA");
+						processInfo(jinfo, obj, false, false);
+						console.log("processing BBB");
+					}
+						console.log("processing CCC");
+				} else {
+					console.log("Error retrieving", key);
+				}
+			}, function() {
+				console.log("Eror retrieving", key);
+			});
+	} else {
+		console.log("Already have", key);
+		jinfo = JSON.parse(info.data);
+		if (getnext) {
+			processInfo(jinfo, obj, false, false);
+		}
+	}
+
+
+/*
 	console.log("Loading JSON INFO", url);
 
 	var request = new XMLHttpRequest();
@@ -747,11 +809,59 @@ function loadKernScoresFile(file, measures, page) {
 		if (request.status == 200) {
 			FILEINFO = JSON.parse(request.responseText);
 			console.log("FILEINFO= ", FILEINFO);
-			downloadKernScoresFile(file, measures, page);
+			downloadKernScoresFile({file: file, measures: measures, page: page, next: true, previous: true});
 		}
 	});
 	request.send();
+*/
+
 }
+
+
+//////////////////////////////
+//
+// processInfo --
+//
+
+function processInfo(info, obj, nextwork, prevwork) {
+	var score;
+	if (info) {
+		FILEINFO = info;
+		score = atob(info.content);
+		console.log("SCORE unpacked");
+	} else {
+		console.log("Impossible error for", infojson);
+		return;
+	}
+
+
+	var inputarea = document.querySelector("#input");
+	inputarea.value = score;
+console.log("Displaying score");
+	displayNotation(PAGE);
+
+	obj.next = false;
+	obj.previous = false;
+
+	if (!obj) {
+		return;
+	}
+
+console.log("GOT HERE AAA", info);
+	if (info["next-work"]) {
+console.log("GOT HERE BBB", info["next-work"]);
+		obj.file = info["next-work"];
+console.log("NOW GOING TO BUFFER", obj.file);
+		loadKernScoresFile(obj)
+console.log("GOT HERE CCC");
+	}
+	if (info["previous-work"]) {
+		obj.file = info["previous-work"];
+console.log("NOW GOING TO BUFFER", obj.file);
+		loadKernScoresFile(obj)
+	}
+}
+
 
 
 
@@ -978,7 +1088,7 @@ function displayPdf() {
 
 	console.log("Loading PDF", url);
 
-	var wpdf = window.open(url, "Scanned score", 
+	var wpdf = window.open(url, "Scanned score",
 			'width=600,height=800,resizeable,scrollabars,location=false');
 
 }
@@ -993,5 +1103,104 @@ function displayPdf() {
 function reloadData() {
 	loadKernScoresFile(CGI.file, CGI.mm, PAGE);
 }
+
+
+
+//////////////////////////////
+//
+// downloadVerovioToolkit --
+//
+
+function downloadVerovioToolkit(url) {
+console.log("GOT HERE in downloadVerovioToolkit()");
+	basket.require({url: url, expire: 27})
+		.then(function() { initializeVerovioToolkit(); },
+				function() { console.log("There was an error loading script", url)
+		});
+}
+
+
+
+//////////////////////////////
+//
+// initializeVerovioToolkit --
+//
+
+function initializeVerovioToolkit() {
+	console.log("Verovio toolkit being initialize.");
+
+	vrvToolkit = new verovio.toolkit();
+
+	var inputarea = document.querySelector("#input");
+	inputarea.addEventListener("keyup", function() {
+		displayNotation();
+	});
+
+	$(window).resize(function() { applyZoom(); });
+
+	$("#input").mouseup(function () {
+		var $this = $(this);
+		if ($this.outerWidth() != $this.data('x') || $this.outerHeight() != $this.data('y')) {
+			applyZoom();
+		}
+		$this.data('x', $this.outerWidth());
+		$this.data('y', $this.outerHeight());
+	});
+
+	if (!ShowingIndex) {
+		console.log("Display curent score after verovio initialized");
+		displayNotation();
+	}
+
+	downloadWildWebMidi('scripts/midiplayer/wildwebmidi.js');
+}
+
+
+
+//////////////////////////////
+//
+// downloadWildWebMidi --
+//
+
+function downloadWildWebMidi(url) {
+
+	var url2 = "scripts/midiplayer/midiplayer.js";
+	var url3 = "scripts/midiplayer.js";
+
+	basket.require(
+		{url: url, expire: 26},
+		{url: url2, expire: 11},
+		{url: url3, expire: 17}
+	).then(function() { initializeWildWebMidi(); },
+		function() { console.log("There was an error loading script", url)
+	});
+}
+
+
+
+//////////////////////////////
+//
+// initializeWildWebMidi --
+//
+
+function initializeWildWebMidi() {
+	$("#player").midiPlayer({
+		color: "#c00",
+		onUnpdate: midiUpdate,
+		onStop: midiStop,
+		width: 250
+	});
+
+	$("#input").keydown(function() {
+			stop();
+	});
+
+	// window blur event listener -- Stop MIDI playback.  It is very computaionally
+	//    expensive, and is not useful if the window is not in focus.
+	window.addEventListener("blur", function() {
+		pause();
+	});
+}
+
 
 

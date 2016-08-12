@@ -10,21 +10,16 @@
 // Description:   Event listeners and related code for index.html.
 //
 
-
 //////////////////////////////
 //
 // DomContentLoaded event listener -- Display the sample data.
 //
 
 document.addEventListener("DOMContentLoaded", function() {
-	vrvToolkit = new verovio.toolkit();
+	downloadVerovioToolkit('http://verovio-script.humdrum.org/scripts/verovio-toolkit.js');
+
 	allowTabs();
 	setupDropArea();
-
-	var inputarea = document.querySelector("#input");
-	inputarea.addEventListener("keyup", function() {
-		displayNotation();
-	});
 
 	CGI = GetCgiParameters();
 
@@ -33,51 +28,22 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	if (CGI.file) {
-		loadKernScoresFile(CGI.file, CGI.mm);
+		loadKernScoresFile(
+			{
+				file: CGI.file, 
+				measures: CGI.mm,
+				next: true,
+				previous: true
+			}
+		);
 	} else {
 		displayNotation();
 	}
-
-	$("#player").midiPlayer({
-		color: "#c00",
-		onUnpdate: midiUpdate,
-		onStop: midiStop,
-		width: 250
-	});
-
-	$(window).resize(function() { applyZoom(); });
 
 	// set init (default) state
 	$("#input").data('x', $("#input").outerWidth());
 	$("#input").data('y', $("#input").outerHeight());
 
-	$("#input").mouseup(function () {
-		var $this = $(this);
-		if ($this.outerWidth() != $this.data('x') || $this.outerHeight() != $this.data('y')) {
-			applyZoom();
-		}
-		$this.data('x', $this.outerWidth());
-		$this.data('y', $this.outerHeight());
-	});
-
-
-	$("#input").keydown(function() {
-			stop();
-	});
-
-});
-
-
-
-
-//////////////////////////////
-//
-// window blur event listener -- Stop MIDI playback.  It is very computaionally
-//    expensive, and is not useful if the window is not in focus.
-//
-
-window.addEventListener("blur", function() {
-	pause();
 });
 
 
