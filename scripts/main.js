@@ -734,10 +734,9 @@ function loadKernScoresFile(obj) {
 	var page = obj.page;
 	var getnext = obj.next;
 	var getprevious = obj.previous;
-	console.log("Downloading file", file, "getnext", getnext, "getprev", getprevious);
 
 	COUNTER++;
-   if (COUNTER > 100) {
+   if (COUNTER > 1000) {
 		console.log("TOO LARGE", file);
 		return;
 	}
@@ -764,6 +763,12 @@ function loadKernScoresFile(obj) {
 	url += "&format=info-json";
 
 	var key = location + "/" + filename;
+	if (measures) {
+		url += "&mm=" + measures;
+		key += "&mm=" + measures;
+	}
+console.log("KEY", key);
+
 	var info = basketSession.get(key);
 	var jinfo;
 	if (!info) {
