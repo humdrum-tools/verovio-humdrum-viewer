@@ -126,9 +126,14 @@ to verovio:
 
 ## Build your own HVH website:
 
-You can use the source code for the VRV website to see how to add a Humdrum viewer editor to your own webpages:
+The [VHV Demos](http://www.humdrum.org/vhv-demos) website provides
+example implementations of the Humdrum-enabled Verovio Toolkit for
+you to build your own pages or websites using similar functionality
+to VHV.  Here are a few simple examples to get started.  You can
+also look at the source code for VHV:
+https://github.com/humdrum-tools/verovio-humdrum-viewer/tree/gh-pages
 
-   https://github.com/humdrum-tools/verovio-humdrum-viewer/tree/gh-pages
+### Minimal editor
 
 Here is a minimal webpage which demonstrates embedding a verovio-humdrum editor into your own webpage:
 
@@ -199,9 +204,10 @@ Example view of the webpage:
 
 ![](images/figure10.png?raw=true)
 
-## Using Humdrum-aware verovio on your webpage.
+### Static image created in the browser.
 
-Or even easier, embedding Humdrum data for a static view of the notation:
+Or even easier, here is an example of a static image created from
+Humdrum content embedded inside of the webpage:
 
 ```html
 <html>
