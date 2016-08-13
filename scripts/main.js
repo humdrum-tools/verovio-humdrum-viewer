@@ -729,11 +729,16 @@ var COUNTER = 0;
 //
 
 function loadKernScoresFile(obj) {
-	var file = obj.file;
-	var measures = obj.measures;
-	var page = obj.page;
-	var getnext = obj.next;
+	var file        = obj.file;
+	var measures    = obj.measures;
+	var page        = obj.page;
+	var getnext     = obj.next;
 	var getprevious = obj.previous;
+
+	if (measures) {
+		var getnext     = false;
+		var getprevious = false;
+	}
 
 	COUNTER++;
    if (COUNTER > 1000) {
@@ -767,7 +772,6 @@ function loadKernScoresFile(obj) {
 		url += "&mm=" + measures;
 		key += "&mm=" + measures;
 	}
-console.log("KEY", key);
 
 	var info = basketSession.get(key);
 	var jinfo;
@@ -789,7 +793,6 @@ console.log("KEY", key);
 						processInfo(jinfo, obj, false, false);
 						console.log("processing BBB");
 					}
-						console.log("processing CCC");
 				} else {
 					console.log("Error retrieving", key);
 				}
@@ -803,23 +806,6 @@ console.log("KEY", key);
 			processInfo(jinfo, obj, false, false);
 		}
 	}
-
-
-/*
-	console.log("Loading JSON INFO", url);
-
-	var request = new XMLHttpRequest();
-	request.open("GET", url);
-	request.addEventListener("load", function() {
-		if (request.status == 200) {
-			FILEINFO = JSON.parse(request.responseText);
-			console.log("FILEINFO= ", FILEINFO);
-			downloadKernScoresFile({file: file, measures: measures, page: page, next: true, previous: true});
-		}
-	});
-	request.send();
-*/
-
 }
 
 
@@ -842,7 +828,6 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	var inputarea = document.querySelector("#input");
 	inputarea.value = score;
-console.log("Displaying score");
 	displayNotation(PAGE);
 
 	obj.next = false;
@@ -852,21 +837,15 @@ console.log("Displaying score");
 		return;
 	}
 
-console.log("GOT HERE AAA", info);
 	if (info["next-work"]) {
-console.log("GOT HERE BBB", info["next-work"]);
 		obj.file = info["next-work"];
-console.log("NOW GOING TO BUFFER", obj.file);
 		loadKernScoresFile(obj)
-console.log("GOT HERE CCC");
 	}
 	if (info["previous-work"]) {
 		obj.file = info["previous-work"];
-console.log("NOW GOING TO BUFFER", obj.file);
 		loadKernScoresFile(obj)
 	}
 }
-
 
 
 
@@ -1091,11 +1070,8 @@ function displayPdf() {
 	url += "&file=" + FILEINFO["file"];
 	url += "&format=pdf";
 
-	console.log("Loading PDF", url);
-
 	var wpdf = window.open(url, "Scanned score",
 			'width=600,height=800,resizeable,scrollabars,location=false');
-
 }
 
 
@@ -1117,7 +1093,6 @@ function reloadData() {
 //
 
 function downloadVerovioToolkit(url) {
-console.log("GOT HERE in downloadVerovioToolkit()");
 	basket.require({url: url, expire: 27})
 		.then(function() { initializeVerovioToolkit(); },
 				function() { console.log("There was an error loading script", url)
