@@ -1,10 +1,10 @@
-# Verovio Humdrum Viewer (VRV)
+# Verovio Humdrum Viewer (VHV)
 
-[VRV](http://verovio.humdrum.org) is an online
+[VHV](http://verovio.humdrum.org) is an online
 [Humdrum](http://www.humdrum.org) file notation renderer that uses
-[verovio](http://verovio.org).
+the [verovio](http://verovio.org) typesetting engine.
 
-In the text box on the VRV homepage type some Humdrum data, and
+In the text box on the VHV homepage type some Humdrum data, and
 it will be converted immediately into music notation on the right.
 The homepage includes some sample data you can play with:
 
@@ -39,7 +39,7 @@ off).
 
 ## Loading online content
 
-The VRV website can access data from [kernScores](https://kern.humdrum.org),
+The VHV website can access data from [kernScores](https://kern.humdrum.org),
 so you can also view online content.  For example, here is a Bach chorale:
 
 http://verovio.humdrum.org/?file=chorales/chor001.krn
