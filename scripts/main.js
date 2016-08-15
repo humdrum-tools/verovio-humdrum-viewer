@@ -1,25 +1,29 @@
 // vim: ts=3
 
-var vrvToolkit;
 var CGI = {};
-var PAGE = 1;
-var ids = [];
+
+// verovio variables for a movement:
+var vrvToolkit;
+var PAGE     = 1;
 var FILEINFO = {};
-var HEIGHT = 0;
-var WIDTH = 0;
+var HEIGHT   = 0;
+var WIDTH    = 0;
+
+var ids   = [];
 var PAGED = true;
-var ZOOM = 0.4;
-var PLAY = false;
+var ZOOM  = 0.4;
+var PLAY  = false;
 var PAUSE = false;
 
+// State variables for interface:
 var FirstInitialization = false;
-var InputVisible = true;
-var VrvTitle = "true";
-var OriginalClef = false;
-var UndoHide = false;
-var ApplyZoom = false;
-var ShowingIndex = false;
-var FreezeRendering = false;
+var InputVisible        = true;
+var VrvTitle            = true;
+var OriginalClef        = false;
+var UndoHide            = false;
+var ApplyZoom           = false;
+var ShowingIndex        = false;
+var FreezeRendering     = false;
 
 var CKey      = 67;
 var DKey      = 68;
@@ -537,6 +541,7 @@ function displayWork(file) {
 	if (!file) {
 		return;
 	}
+	PAGE = 1;
 	CGI.file = file;
 	delete CGI.mm;
 	delete CGI.kInitialized;
