@@ -1,4 +1,14 @@
-// vim: ts=3
+//
+// Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date:  Sun Apr 17 17:21:46 PDT 2016
+// Last Modified:  Thu Aug 18 21:03:35 CEST 2016
+// Filename:       listeners.js
+// Web Address:    http://flashcards.sapp.org/listeners.js
+// Syntax:         JavaScript 1.8/ECMAScript 5
+// vim:            ts=3: ft=javascript
+//
+// Description:   Event listeners and related code for index.html.
+//
 
 var CGI = {};
 
@@ -51,6 +61,8 @@ var YKey      = 89;
 var ZKey      = 90;
 var OneKey    = 49;
 var TwoKey    = 50;
+var EndKey    = 35;
+var HomeKey   = 36;
 var LeftKey   = 37;
 var UpKey     = 38;
 var RightKey  = 39;
@@ -986,6 +998,7 @@ function gotoPreviousPage() {
 }
 
 
+
 //////////////////////////////
 //
 // gotoNextPage --
@@ -997,6 +1010,32 @@ function gotoNextPage() {
 	if (page > vrvToolkit.getPageCount()) {
 		page = 1;
 	}
+	PAGE = page;
+	loadPage(page);
+}
+
+
+
+//////////////////////////////
+//
+// gotoLastPage --
+//
+
+function gotoLastPage() {
+	var page = vrvToolkit.getPageCount();
+	PAGE = page;
+	loadPage(page);
+}
+
+
+
+//////////////////////////////
+//
+// gotoFirstPage --
+//
+
+function gotoFirstPage() {
+	var page = 1;
 	PAGE = page;
 	loadPage(page);
 }

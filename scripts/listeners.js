@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Wed Jul 27 23:10:04 PDT 2016
+// Last Modified:  Thu Aug 18 21:03:35 CEST 2016
 // Filename:       listeners.js
 // Web Address:    http://flashcards.sapp.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -165,6 +165,16 @@ function processKeyCommand(event) {
 				gotoNextPage();
 				console.log("PAGE", PAGE);
 			}
+			event.preventDefault();
+			break;
+
+		case HomeKey:
+			gotoFirstPage();
+			event.preventDefault();
+			break;
+
+		case EndKey:
+			gotoLastPage();
 			event.preventDefault();
 			break;
 
