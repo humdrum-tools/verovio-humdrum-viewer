@@ -75,7 +75,11 @@ function handleDrop(event) {
 			}
 		};
 		// reader.readAsDataURL(file); // loads MIME64 version of file
-		reader.readAsBinaryString(file);
+		// reader.readAsBinaryString(file);
+		// file has to be read as Text with UTF-8 encoding
+		// in order that files with UTF-8 characters are read
+		// properly:
+		reader.readAsText(file, 'UTF-8');
 		break;   // only reading the first file if more than one.
 	}
 }
