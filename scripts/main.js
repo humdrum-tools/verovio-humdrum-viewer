@@ -80,6 +80,7 @@ var BackKey   = 8;
 //
 
 function displayNotation(page) {
+console.log("GOING TO DISPLAY NOTATION");
 	if (!vrvToolkit) {
 		console.log("Verovio toolkit not (yet) loaded");
 		return;
@@ -96,6 +97,7 @@ function displayNotation(page) {
 		svg = vrvToolkit.renderPage(page, "");
 	}
 	document.querySelector("#output").innerHTML = svg;
+console.log("NOTATION was DISPLAYED");
 
 	displayFileTitle(inputarea.value);
 
@@ -213,7 +215,6 @@ function humdrumToSvgOptions() {
 		// jQuery $winow.innerHeight() not working properly (in Chrome).
 		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
 		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
-console.log("PAGEHEIGHT =", output.pageHeight);
 	}
 
 	return output;
@@ -836,12 +837,11 @@ function processInfo(info, obj, nextwork, prevwork) {
 	if (info) {
 		FILEINFO = info;
 		score = atob(info.content);
-		console.log("SCORE unpacked");
+		console.log("Score unpacked");
 	} else {
 		console.log("Impossible error for", infojson);
 		return;
 	}
-
 
 	var inputarea = document.querySelector("#input");
 	inputarea.value = score;
@@ -1225,5 +1225,28 @@ function initializeWildWebMidi() {
 	});
 }
 
+
+
+//////////////////////////////
+//
+// dataIntoView -- When clicking on a note (or other itmes in SVG images later),
+//      make the text line in the Humdum data visible in the text area.
+//
+
+function	dataIntoView(event) {
+	var path = event.path;
+	var matches;
+	for (var i=0; i<path.length; i++) {
+		if (!path[i].id) {
+			continue;
+		}
+		matches = path[i].id.match(/-.*L(\d+)/);
+		if (matches) {
+			console.log("Line ", matches[1]);
+			break;
+		}
+	}
+
+}
 
 

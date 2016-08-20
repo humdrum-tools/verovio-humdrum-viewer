@@ -54,6 +54,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+//////////////////////////////
+//
+// document click event listener --
+//
+
+document.addEventListener("click", function(event) {
+	dataIntoView(event);
+});
+
 
 //////////////////////////////
 //

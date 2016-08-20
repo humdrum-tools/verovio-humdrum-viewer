@@ -168,6 +168,8 @@ font b {
 }
 
 
-
-
+g[id^="note-"]:hover,
+g[id^="rest-"]:hover {
+    fill: orange; 
+}
 
