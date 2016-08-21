@@ -90,9 +90,16 @@ function processKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case HKey:
+		case IKey:
 			if (!ShowingIndex) {
 				toggleInputArea();
+			}
+			event.preventDefault();
+			break;
+
+		case HKey:
+			if (!ShowingIndex) {
+				showBufferedHumdrumData();
 			}
 			event.preventDefault();
 			break;

@@ -19,6 +19,13 @@ var FILEINFO = {};
 var HEIGHT   = 0;
 var WIDTH    = 0;
 var EDITOR;
+var EditorMode = "ace/mode/text";
+var Actiontime = 0;
+
+// see https://github.com/ajaxorg/ace/wiki/Embedding-API
+// Use EditSession instead of BufferedHumdrumFile:
+var BufferedHumdrumFile = "";
+var Range = function() { console.log("Range is undefined"); }
 
 var ids   = [];
 var PAGED = true;
@@ -130,7 +137,7 @@ SPLITTER.prototype.setPositionX = function(xPosition) {
       this.splitContent.style.left = xPosition + 'px';
    }
    if (this.rightContent) {
-      this.rightContent.style.left = (xPosition 
+      this.rightContent.style.left = (xPosition
 				+ this.splitWidth + this.rightPadding)
             + 'px';
    }
@@ -158,7 +165,7 @@ function displayNotation(page) {
    // if input area is a <textarea>, then use .value to access contnets:
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
-	var data = EDITOR.getValue();
+	var data = EDITOR.getValue().replace(/^\s+/, "");
 	var options = humdrumToSvgOptions();
 	var svg = vrvToolkit.renderData(data, JSON.stringify(options));
 	if (page) {
@@ -261,7 +268,7 @@ function processOptions() {
 
 function humdrumToSvgOptions() {
 	var output = {
-		inputFormat       : "humdrum",
+		inputFormat       : "auto",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
 		border            : 20,
@@ -907,8 +914,7 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
-	EDITOR.setValue(score, -1);
-	displayNotation(PAGE);
+	displayScoreTextInEditor(score, PAGE);
 
 	obj.next = false;
 	obj.previous = false;
@@ -1110,6 +1116,21 @@ function gotoFirstPage() {
 
 //////////////////////////////
 //
+// showBufferedHumdrumData --
+//
+
+function showBufferedHumdrumData() {
+	if (!BufferedHumdrumFile.match(/^\s*$/)) {
+		var page = PAGE;
+		displayScoreTextInEditor(BufferedHumdrumFile, PAGE);
+		BufferedHumdrumFile = "";
+	}
+}
+
+
+
+//////////////////////////////
+//
 // displayMei --
 //
 
@@ -1117,20 +1138,26 @@ function displayMei() {
 	if (ShowingIndex) {
 		return;
 	}
-	var data = vrvToolkit.getMEI(0, 1);
-	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
-	var postfix = "</textarea>";
-	var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
-	w.document.write(prefix + data + postfix);
-	w.document.close();
-	function checkTitle() {
-		if (w.document) {
-			w.document.title = "MEI transcoding";
-		} else {
-			setTimeout(checkTitle, 40);
-		}
+	var meidata = vrvToolkit.getMEI(0, 1);
+	if (BufferedHumdrumFile.match(/^\s*$/)) {
+		BufferedHumdrumFile = EDITOR.getValue();
 	}
-	checkTitle();
+	var page = PAGE;
+	displayScoreTextInEditor(meidata, page);
+	
+	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
+	// var postfix = "</textarea>";
+	// var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
+	// w.document.write(prefix + data + postfix);
+	// w.document.close();
+	// function checkTitle() {
+	// 	if (w.document) {
+	// 		w.document.title = "MEI transcoding";
+	// 	} else {
+	// 		setTimeout(checkTitle, 40);
+	// 	}
+	// }
+	// checkTitle();
 }
 
 
@@ -1245,7 +1272,7 @@ function initializeVerovioToolkit() {
 	if (EDITOR) {
 		EDITOR.session.on("change", function() {
 			// console.log("EDITOR content changed");
-			displayNotation();
+			monitorNotationUpdating();
 		});
 	} else {
 		console.log("Warning: Editor not setup yet");
@@ -1269,6 +1296,44 @@ function initializeVerovioToolkit() {
 
 	downloadWildWebMidi('scripts/midiplayer/wildwebmidi.js');
 }
+
+
+
+//////////////////////////////
+//
+// monitorNotationUpdating --
+//
+
+function	monitorNotationUpdating() {
+
+   if (EDITOR.session.getLength() < 500) {
+			displayNotation();
+			return;
+	}
+
+	var delay = 3000;  // 3000 milliseconds = 3 seconds
+
+	if (EDITOR.session.getLength() < 1000) {
+		delay = 500;
+	} else if (EDITOR.session.getLength() < 2000) {
+		delay = 1000;
+	} else if (EDITOR.session.getLength() < 3000) {
+		delay = 1500;
+	} else if (EDITOR.session.getLength() < 4000) {
+		delay = 2000;
+	}
+
+	var actiontime = new Date().getTime() + delay;
+	ActionTime = actiontime;
+
+	setTimeout(function() {
+		if (actiontime <= ActionTime) {
+			console.log("Updating notation in setTimeout");
+			displayNotation();
+		}
+	}, delay);
+}
+
 
 
 
@@ -1321,13 +1386,62 @@ function initializeWildWebMidi() {
 //////////////////////////////
 //
 // dataIntoView -- When clicking on a note (or other itmes in SVG images later),
-//      make the text line in the Humdum data visible in the text area.
+//      go to the corresponding line in the editor.
 //
 
 function	dataIntoView(event) {
+	if (EditorMode == "ace/mode/xml") {
+		xmlDataIntoView(event);
+	} else {
+		humdrumDataIntoView(event);
+   }
+}
+
+
+
+//////////////////////////////
+//
+// xmlDataIntoView -- When clicking on a note (or other itmes in SVG images later),
+//      make the text line in the MEI data visible in the text area.
+//
+// https://github.com/ajaxorg/ace/wiki/Embedding-API
+//
+
+function xmlDataIntoView(event) {
 	var path = event.path;
 	var matches;
 	var i;
+	for (i=0; i<path.length; i++) {
+		if (!path[i].id) {
+			continue;
+		}
+		// still need to verify if inside of svg element in the first place.
+console.log("SEARHCING FOR ID", path[i].id);
+		EDITOR.find(path[i].id, {
+			wrap: true,
+			caseSensitive: true,
+			wholeWord: true
+		});
+		break; // assume that the first id found is valid.
+	}
+}
+
+
+
+//////////////////////////////
+//
+// humdrumDataIntoView -- When clicking on a note (or other itmes in SVG images later),
+//      make the text line in the Humdum data visible in the text area.
+//
+
+function humdrumDataIntoView(event) {
+	var path = event.path;
+	var matches;
+	var i;
+	var row;
+   var col;
+   var col2;
+
 	for (i=0; i<path.length; i++) {
 		if (!path[i].id) {
 			continue;
@@ -1337,22 +1451,22 @@ function	dataIntoView(event) {
 			continue;
 		}
 
-		var line = matches[1];
+		var row = matches[1];
 		var field = matches[2];
 		var subtoken = 0;
 		if (matches = path[i].id.match(/-.*L\d+F\d+S(\d+)/)) {
 			subtoken = matches[1];
 		}
 
-		var linecontent = EDITOR.session.getLine(line-1);
+		var linecontent = EDITOR.session.getLine(row-1);
 		console.log("LINE CONTENT", linecontent);
 		console.log("FIELD", field);
 
-		var column = 0;
+		var col = 0;
 		if (field > 1) {
 			var tabcount = 0;
 			for (i=0; i<linecontent.length; i++) {
-				column += 1
+				col += 1
 				if (linecontent[i] == '\t') {
 					console.log("Found tab at ", i);
 					tabcount++;
@@ -1365,19 +1479,46 @@ function	dataIntoView(event) {
 
 		if (subtoken >= 1) {
 			var scount = 1;
-			while ((column < linecontent.length) && (scount < subtoken)) {
-				column++;
-				if (linecontent[column] == " ") {
+			while ((col < linecontent.length) && (scount < subtoken)) {
+				col++;
+				if (linecontent[col] == " ") {
 					scount++;
 					if (scount == subtoken) {
-						column++;
+						col++;
 						break;
 					}
 				}
 			}
 		}
 
-		EDITOR.gotoLine(line, column);
+		col2 = col;
+		var searchstring = linecontent[col2];
+		while (col2 < linecontent.length) {
+			col2++;
+			if (linecontent[col2] == " ") {
+				break;
+			} else if (linecontent[col2] == "\t") {
+				break;
+			} else {
+				searchstring += linecontent[col2];
+			}
+		}
+
+console.log("SEARCH STRING ", searchstring);
+
+		EDITOR.gotoLine(row, col);
+		// interesting: http://stackoverflow.com/questions/26573429/highlighting-a-single-character-in-ace
+		// var range = new Range (row-1, col, row-1, col2);
+		// console.log("SEARCH RANGE", range);
+		// var r = EDITOR.find(searchstring, {
+		// 	wrap: false,
+		// 	caseSensitive: true,
+		// 	wholeWord: true,
+		// 	range: range
+		// });
+      //  this does not work well because same text at other locations
+		// are also highlighted in a black box:
+		// EDITOR.selection.setRange(r);
 		break;
 	}
 }
@@ -1388,11 +1529,14 @@ function	dataIntoView(event) {
 //
 // setupAceEditor --
 //  see: https://github.com/ajaxorg/ace/wiki/Embedding-API
-// 
+//
 // Folding:
 //   https://cloud9-sdk.readme.io/docs/code-folding
 //
 // console.log("NUMBER OF LINES IN FILE", EDITOR.session.getLength());
+// 
+// ACE Grammar editor:
+// http://foo123.github.io/examples/ace-grammar
 //
 
 function setupAceEditor(idtag) {
@@ -1419,6 +1563,8 @@ function setupAceEditor(idtag) {
 
 	// don't show line at 80 columns:
 	EDITOR.setShowPrintMargin(false);
+
+	Range = require("ace/range").Range;
 }
 
 
@@ -1609,6 +1755,44 @@ var Base64 = {
         return string;
     }
 }
+
+
+
+//////////////////////////////
+//
+// displayScoreTextInEditor --
+//
+
+function displayScoreTextInEditor(text, page) {
+	// -1 is to unselect added text, and move cursor to start
+	var mode = getMode(text);
+	if (mode != EditorMode) {
+		EDITOR.session.setMode(mode);
+		EditorMode = mode;
+	}
+	EDITOR.setValue(text, -1);
+	// unpdate the notation display
+	displayNotation(page);
+	PAGE = page;
+}
+
+
+
+//////////////////////////////
+//
+// getMode -- return the Ace editor mode to display the data in:
+//    ace/mode/text  == for Humdrum (until a mode is added for Humdrum)
+//    ace/mode/xml   == for XML data (i.e., MEI, or SVG)
+//
+
+function getMode(text) {
+	if (text.match(/^\s*</)) {
+		return "ace/mode/xml";
+	} else {
+		return "ace/mode/text";
+	}
+}
+
 
 
 
