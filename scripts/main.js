@@ -1218,7 +1218,7 @@ function reloadData() {
 //
 
 function downloadVerovioToolkit(url) {
-	basket.require({url: url, expire: 27})
+	basket.require({url: url, expire: 500, unique: 1})
 		.then(function() { initializeVerovioToolkit(); },
 				function() { console.log("There was an error loading script", url)
 		});
