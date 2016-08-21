@@ -18,6 +18,7 @@ var PAGE     = 1;
 var FILEINFO = {};
 var HEIGHT   = 0;
 var WIDTH    = 0;
+var EDITOR;
 
 var ids   = [];
 var PAGED = true;
@@ -28,6 +29,7 @@ var PAUSE = false;
 // State variables for interface:
 var FirstInitialization = false;
 var InputVisible        = true;
+var LastInputWidth      = 0;
 var VrvTitle            = true;
 var OriginalClef        = false;
 var UndoHide            = false;
@@ -61,6 +63,8 @@ var YKey      = 89;
 var ZKey      = 90;
 var OneKey    = 49;
 var TwoKey    = 50;
+var PgUpKey   = 33;
+var PgDnKey   = 34;
 var EndKey    = 35;
 var HomeKey   = 36;
 var LeftKey   = 37;
@@ -74,13 +78,75 @@ var EscKey    = 27;
 var BackKey   = 8;
 
 
+///////////////////////////////////////////////////////////////////////////
+//
+// Split window interface:
+//
+
+function SPLITTER() {
+   this.mouseState    = 0;
+   this.positionX     = null;
+   this.leftContent   = null;
+   this.splitContent  = null;
+	this.splitWidth    = 5;
+	this.minXPos       = 100;
+	this.maxXPos       = 2000;
+   this.rightPadding  = 10;
+	this.defaultPos    = 400;
+   this.snapTolerance = 30;
+   return this;
+}
+
+
+SPLITTER.prototype.setPositionX = function(xPosition) {
+   if ((xPosition < this.defaultPos + this.snapTolerance) &&
+         (xPosition > this.defaultPos - this.snapTolerance)){
+      xPosition = this.defaultPos;
+   }
+
+   if (xPosition < 0) {
+      xPosition = 0;
+   }
+   if (xPosition > this.maxXPos) {
+      xPosition = this.maxXPos;
+   }
+   this.positionX = xPosition;
+
+   if (!this.leftContent) {
+      this.leftContent = document.querySelector('#input');
+   }
+   if (!this.splitContent) {
+      this.splitContent = document.querySelector('#splitter');
+   }
+   if (!this.rightContent) {
+      this.rightContent = document.querySelector('#output');
+   }
+
+   if (this.leftContent) {
+      this.leftContent.style.left = 0;
+      this.leftContent.style.width = xPosition + 'px';
+   }
+   if (this.splitContent) {
+      this.splitContent.style.left = xPosition + 'px';
+   }
+   if (this.rightContent) {
+      this.rightContent.style.left = (xPosition 
+				+ this.splitWidth + this.rightPadding)
+            + 'px';
+   }
+
+};
+
+var Splitter = new SPLITTER();
+
+
+
 //////////////////////////////
 //
 // displayNotation -- Convert Humdum data in textarea to notation.
 //
 
 function displayNotation(page) {
-console.log("GOING TO DISPLAY NOTATION");
 	if (!vrvToolkit) {
 		console.log("Verovio toolkit not (yet) loaded");
 		return;
@@ -89,17 +155,23 @@ console.log("GOING TO DISPLAY NOTATION");
 	if (FreezeRendering) {
 		return;
 	}
-	var inputarea = document.querySelector("#input");
-	var data = inputarea.value;
+   // if input area is a <textarea>, then use .value to access contnets:
+	// var inputarea = document.querySelector("#input");
+	// var data = inputarea.value;
+	var data = EDITOR.getValue();
 	var options = humdrumToSvgOptions();
 	var svg = vrvToolkit.renderData(data, JSON.stringify(options));
 	if (page) {
 		svg = vrvToolkit.renderPage(page, "");
 	}
-	document.querySelector("#output").innerHTML = svg;
-console.log("NOTATION was DISPLAYED");
+	var output = document.querySelector("#output");
+	var indexelement = document.querySelector("#index");
+	indexelement.style.visibility = "invisibile";
+	indexelement.style.display = "none";
 
-	displayFileTitle(inputarea.value);
+	document.querySelector("#output").innerHTML = svg;
+
+	displayFileTitle(data);
 
 	if (UndoHide) {
 		showInputArea(true);
@@ -189,7 +261,7 @@ function processOptions() {
 
 function humdrumToSvgOptions() {
 	var output = {
-		inputFormat       : "auto",
+		inputFormat       : "humdrum",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
 		border            : 20,
@@ -281,13 +353,12 @@ function toggleFreeze() {
 
 function toggleInputArea(suppressZoom) {
 	InputVisible = !InputVisible;
-	var area = document.querySelector("#input");
+	var input = document.querySelector("#input");
 	if (InputVisible) {
-		area.style.visibility = "visible";
-		area.style.display = "inline";
+		Splitter.setPositionX(LastInputWidth);
 	} else {
-		area.style.visibility = "hidden";
-		area.style.display = "none";
+		LastInputWidth = parseInt(input.style.width);
+		Splitter.setPositionX(0);
 	}
 	if (!suppressZoom) {
 		applyZoom();
@@ -303,14 +374,9 @@ function toggleInputArea(suppressZoom) {
 
 function hideInputArea(suppressZoom) {
 	InputVisible = false;
-	var area = document.querySelector("#input");
-	if (InputVisible) {
-		area.style.visibility = "visible";
-		area.style.display = "inline";
-	} else {
-		area.style.visibility = "hidden";
-		area.style.display = "none";
-	}
+	var input = document.querySelector("#input");
+	LastInputWidth = parseInt(input.style.width);
+	Splitter.setPositionX(0);
 	if (!suppressZoom) {
 		applyZoom();
 	}
@@ -325,14 +391,7 @@ function hideInputArea(suppressZoom) {
 
 function showInputArea(suppressZoom) {
 	InputVisible = true;
-	var area = document.querySelector("#input");
-	if (InputVisible) {
-		area.style.visibility = "visible";
-		area.style.display = "inline";
-	} else {
-		area.style.visibility = "hidden";
-		area.style.display = "none";
-	}
+	Splitter.setPositionX(LastInputWidth);
 	if (!suppressZoom) {
 		applyZoom();
 	}
@@ -661,7 +720,6 @@ function displayIndexFinally(index, location) {
 		hideInputArea(true);
 	}
 
-	var output = document.querySelector("#output");
 	var lines = index.split(/\r?\n/);
 	var i;
 	var newlines = [];
@@ -735,7 +793,10 @@ function displayIndexFinally(index, location) {
 		final += "</td></tr>"
 	}
 	final += "</table>";
-	output.innerHTML = final;
+	var indexelem = document.querySelector("#index");
+	indexelem.innerHTML = final;
+	indexelem.style.visibility = "visible";
+	indexelem.style.display = "block";
 }
 
 
@@ -815,7 +876,7 @@ function loadKernScoresFile(obj) {
 					console.log("Error retrieving", key);
 				}
 			}, function() {
-				console.log("Eror retrieving", key);
+				console.log("Error retrieving", key);
 			});
 	} else {
 		console.log("Already have", key);
@@ -837,14 +898,15 @@ function processInfo(info, obj, nextwork, prevwork) {
 	if (info) {
 		FILEINFO = info;
 		score = atob(info.content);
-		console.log("Score unpacked");
+		// console.log("Score unpacked");
 	} else {
 		console.log("Impossible error for", infojson);
 		return;
 	}
 
-	var inputarea = document.querySelector("#input");
-	inputarea.value = score;
+	// var inputarea = document.querySelector("#input");
+	// inputarea.value = score;
+	EDITOR.setValue(score, -1);
 	displayNotation(PAGE);
 
 	obj.next = false;
@@ -890,9 +952,12 @@ function downloadKernScoresFile(file, measures, page) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			// console.log("DATA", request.responseText);
-			var inputarea = document.querySelector("#input");
-			console.log("Current file:", file);
-			inputarea.value = request.response;
+			//var inputarea = document.querySelector("#input");
+			//console.log("Current file:", file);
+			//inputarea.value = request.response;
+
+			// https://ace.c9.io/#nav=api&api=editor
+			EDITOR.setValue(request.response, -1);
 			displayNotation(page);
 		}
 	});
@@ -1126,7 +1191,22 @@ function displayPdf() {
 //
 
 function reloadData() {
-	loadKernScoresFile(CGI.file, CGI.mm, PAGE);
+	console.log("CGI", CGI);
+	if (!CGI || !CGI.file) {
+		return;
+	}
+
+	var basket = "basket-" + CGI.file;
+	if (CGI.mm) {
+		basket += "&mm=" + CGI.mm;
+	}
+	sessionStorage.removeItem(basket);
+	loadKernScoresFile({
+			file: CGI.file,
+			measures: CGI.mm,
+			previous: false,
+			next: false
+		});
 }
 
 
@@ -1156,9 +1236,19 @@ function initializeVerovioToolkit() {
 	vrvToolkit = new verovio.toolkit();
 
 	var inputarea = document.querySelector("#input");
-	inputarea.addEventListener("keyup", function() {
-		displayNotation();
-	});
+
+	// now done with Ace editor callback:
+	// inputarea.addEventListener("keyup", function() {
+	//		displayNotation();
+	//});
+	if (EDITOR) {
+		EDITOR.session.on("change", function() {
+			// console.log("EDITOR content changed");
+			displayNotation();
+		});
+	} else {
+		console.log("Warning: Editor not setup yet");
+	}
 
 	$(window).resize(function() { applyZoom(); });
 
@@ -1236,17 +1326,148 @@ function initializeWildWebMidi() {
 function	dataIntoView(event) {
 	var path = event.path;
 	var matches;
-	for (var i=0; i<path.length; i++) {
+	var i;
+	for (i=0; i<path.length; i++) {
 		if (!path[i].id) {
 			continue;
 		}
-		matches = path[i].id.match(/-.*L(\d+)/);
-		if (matches) {
-			console.log("Line ", matches[1]);
-			break;
+		matches = path[i].id.match(/-.*L(\d+)F(\d+)/);
+		if (!matches) {
+			continue;
 		}
+
+		var line = matches[1];
+		var field = matches[2];
+		var subtoken = 0;
+		if (matches = path[i].id.match(/-.*L\d+F\d+S(\d+)/)) {
+			subtoken = matches[1];
+		}
+
+		var linecontent = EDITOR.session.getLine(line-1);
+		console.log("LINE CONTENT", linecontent);
+		console.log("FIELD", field);
+
+		var column = 0;
+		if (field > 1) {
+			var tabcount = 0;
+			for (i=0; i<linecontent.length; i++) {
+				column += 1
+				if (linecontent[i] == '\t') {
+					console.log("Found tab at ", i);
+					tabcount++;
+				}
+				if (tabcount == field - 1) {
+					break;
+				}
+			}
+		}
+
+		if (subtoken >= 1) {
+			var scount = 1;
+			while ((column < linecontent.length) && (scount < subtoken)) {
+				column++;
+				if (linecontent[column] == " ") {
+					scount++;
+					if (scount == subtoken) {
+						column++;
+						break;
+					}
+				}
+			}
+		}
+
+		EDITOR.gotoLine(line, column);
+		break;
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setupAceEditor --
+//  see: https://github.com/ajaxorg/ace/wiki/Embedding-API
+// 
+// Folding:
+//   https://cloud9-sdk.readme.io/docs/code-folding
+//
+// console.log("NUMBER OF LINES IN FILE", EDITOR.session.getLength());
+//
+
+function setupAceEditor(idtag) {
+	EDITOR = ace.edit(idtag);
+	EDITOR.$blockScrolling = Infinity;
+	EDITOR.setAutoScrollEditorIntoView(true);
+
+	EDITOR.setTheme("ace/theme/solarized_light");
+	// best themes:
+	// kr_theme == black background, gray highlight, muted colorizing
+	// solarized_dark == blue background, light blue hilight, relaxing colorizing
+	// vibrant_ink == black background, gray highlight, nice colorizing
+	// solarized_light == yellowish background, gray highlight, nice colorizing
+
+	// EDITOR.setKeyboardHandler("ace/keyboard/vim");
+
+	// keybinding = ace | vim | emacs | custom
+	// fontsize   = 10px, etc
+	// theme = "ace/theme/solarize_light"
+
+	// EDITOR.getSession().setMode("ace/mode/javascript");
+
+	EDITOR.getSession().setTabSize(15);
+
+	// don't show line at 80 columns:
+	EDITOR.setShowPrintMargin(false);
+}
+
+
+
+//////////////////////////////
+//
+// setupSplitter --
+//
+
+function setupSplitter() {
+	var splitter = document.querySelector("#splitter");
+	if (!splitter) {
+		return;
 	}
 
+	splitter.addEventListener('mousedown', function(event) {
+		Splitter.mouseState    = 1;
+		if (!Splitter.leftContent) {
+			Splitter.leftContent   = document.querySelector('#input');
+		}
+		if (!Splitter.splitContent) {
+			Splitter.splitContent  = document.querySelector('#splitter');
+		}
+		if (!Splitter.rightContent) {
+			Splitter.rightContent  = document.querySelector('#output');
+		}
+		Splitter.setPositionX(event.pageX);
+	});
+
+	window.addEventListener('mouseup', function(event) {
+		if (Splitter.mouseState != 0) {
+			Splitter.mouseState = 0;
+			displayNotation();
+		}
+	});
+
+	window.addEventListener('mousemove', function(event) {
+		if (Splitter.mouseState) {
+			var minXPos = Splitter.minXPos;
+			if (event.pageX < minXPos){
+				if (event.pageX < minXPos - 70){ //Adjust closing snap tolerance here
+					Splitter.setPositionX(0);
+				}
+				return;
+			}
+			Splitter.setPositionX(event.pageX);
+		}
+	});
+
 }
+
 
 

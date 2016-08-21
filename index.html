@@ -5,6 +5,7 @@
 <!-- downloaded by basket:
 <script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js"></script>
 <script src="scripts/basket-session.js"></script>
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
@@ -59,30 +60,21 @@
 
 
 
-
-
-<table class="viewer">
-<tr valign="top">
-
-<td>
-<!-- see http://jsfiddle.net/ZbTkJ/ for highlighting in textarea -->
-<textarea id="input">
-**kern
+<div id="input" style="width:400px;">**kern
 *clefG2
 *M4/4
 =1-
 1c;
 ==
 *-
-</textarea>
-</td>
+</div>
 
-<td width="100%">
+<div id="splitter"></div>
+
 <div id="output"></div>
-</td>
 
-<tr>
-</table>
+<div id="index"></div>
+
 
 <div id="dropArea"></div>
 </body>

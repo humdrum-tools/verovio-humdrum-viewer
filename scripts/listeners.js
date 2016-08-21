@@ -17,6 +17,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 	downloadVerovioToolkit('http://verovio-script.humdrum.org/scripts/verovio-toolkit.js');
+	setupAceEditor("input");
 
 	allowTabs();
 	setupDropArea();
@@ -40,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		displayNotation();
 	}
 
+	setupSplitter();
+
 	// set init (default) state
 	$("#input").data('x', $("#input").outerWidth());
 	$("#input").data('y', $("#input").outerHeight());
@@ -51,17 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
   ga('create', 'UA-82554203-1', 'auto');
   ga('send', 'pageview');
 
+	var body = document.querySelector("body");
+	body.addEventListener("click", function(event) {
+		dataIntoView(event);
+	});
+
 });
 
-
-//////////////////////////////
-//
-// document click event listener --
-//
-
-document.addEventListener("click", function(event) {
-	dataIntoView(event);
-});
 
 
 //////////////////////////////
@@ -157,6 +156,7 @@ function processKeyCommand(event) {
 			event.preventDefault();
 			break;
 
+		case PgUpKey:
 		case LeftKey:
 			if (event.shiftKey) {
 				displayWork(FILEINFO["previous-work"]);
@@ -167,6 +167,7 @@ function processKeyCommand(event) {
 			event.preventDefault();
 			break;
 
+		case PgDnKey:
 		case RightKey:
 			if (event.shiftKey) {
 				displayWork(FILEINFO["next-work"]);
