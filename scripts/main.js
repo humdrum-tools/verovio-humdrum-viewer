@@ -1471,7 +1471,7 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id) {
-	matches = path[i].id.match(/-.*L(\d+)F(\d+)/);
+	matches = id.match(/-.*L(\d+)F(\d+)/);
 	if (!matches) {
 		return;
 	}
@@ -1479,7 +1479,7 @@ function highlightIdInEditor(id) {
 	var row = matches[1];
 	var field = matches[2];
 	var subtoken = 0;
-	if (matches = path[i].id.match(/-.*L\d+F\d+S(\d+)/)) {
+	if (matches = id.match(/-.*L\d+F\d+S(\d+)/)) {
 		subtoken = matches[1];
 	}
 
