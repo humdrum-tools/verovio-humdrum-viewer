@@ -20,6 +20,9 @@ var HEIGHT   = 0;
 var WIDTH    = 0;
 var EDITOR;
 var EditorMode = "ace/mode/text";
+var KeyboardMode = "ace/keyboard/ace";
+var EditorTheme = "ace/theme/solarized_light";
+
 var Actiontime = 0;
 
 // see https://github.com/ajaxorg/ace/wiki/Embedding-API
@@ -44,6 +47,8 @@ var ApplyZoom           = false;
 var ShowingIndex        = false;
 var FreezeRendering     = false;
 
+var AKey      = 65;
+var BKey      = 66;
 var CKey      = 67;
 var DKey      = 68;
 var EKey      = 69;
@@ -362,6 +367,9 @@ function toggleInputArea(suppressZoom) {
 	InputVisible = !InputVisible;
 	var input = document.querySelector("#input");
 	if (InputVisible) {
+		if (LastInputWidth == 0) {
+			LastInputWidth = 400;
+		}
 		Splitter.setPositionX(LastInputWidth);
 	} else {
 		LastInputWidth = parseInt(input.style.width);
@@ -1290,7 +1298,7 @@ function initializeVerovioToolkit() {
 	});
 
 	if (!ShowingIndex) {
-		console.log("Display curent score after verovio initialized");
+		console.log("Display current score after verovio initialized");
 		displayNotation();
 	}
 
@@ -1451,76 +1459,89 @@ function humdrumDataIntoView(event) {
 			continue;
 		}
 
-		var row = matches[1];
-		var field = matches[2];
-		var subtoken = 0;
-		if (matches = path[i].id.match(/-.*L\d+F\d+S(\d+)/)) {
-			subtoken = matches[1];
+		highlightLineInEditor(path[i].id);
+		break;
+	}
+}
+
+
+//////////////////////////////
+//
+// highlightIdInEditor --
+//
+
+function highlightIdInEditor(id) {
+	matches = path[i].id.match(/-.*L(\d+)F(\d+)/);
+	if (!matches) {
+		continue;
+	}
+
+	var row = matches[1];
+	var field = matches[2];
+	var subtoken = 0;
+	if (matches = path[i].id.match(/-.*L\d+F\d+S(\d+)/)) {
+		subtoken = matches[1];
+	}
+
+	var linecontent = EDITOR.session.getLine(row-1);
+	console.log("LINE CONTENT", linecontent);
+	console.log("FIELD", field);
+
+	var col = 0;
+	if (field > 1) {
+		var tabcount = 0;
+		for (i=0; i<linecontent.length; i++) {
+			col += 1
+			if (linecontent[i] == '\t') {
+				console.log("Found tab at ", i);
+				tabcount++;
+			}
+			if (tabcount == field - 1) {
+				break;
+			}
 		}
+	}
 
-		var linecontent = EDITOR.session.getLine(row-1);
-		console.log("LINE CONTENT", linecontent);
-		console.log("FIELD", field);
-
-		var col = 0;
-		if (field > 1) {
-			var tabcount = 0;
-			for (i=0; i<linecontent.length; i++) {
-				col += 1
-				if (linecontent[i] == '\t') {
-					console.log("Found tab at ", i);
-					tabcount++;
-				}
-				if (tabcount == field - 1) {
+	if (subtoken >= 1) {
+		var scount = 1;
+		while ((col < linecontent.length) && (scount < subtoken)) {
+			col++;
+			if (linecontent[col] == " ") {
+				scount++;
+				if (scount == subtoken) {
+					col++;
 					break;
 				}
 			}
 		}
-
-		if (subtoken >= 1) {
-			var scount = 1;
-			while ((col < linecontent.length) && (scount < subtoken)) {
-				col++;
-				if (linecontent[col] == " ") {
-					scount++;
-					if (scount == subtoken) {
-						col++;
-						break;
-					}
-				}
-			}
-		}
-
-		col2 = col;
-		var searchstring = linecontent[col2];
-		while (col2 < linecontent.length) {
-			col2++;
-			if (linecontent[col2] == " ") {
-				break;
-			} else if (linecontent[col2] == "\t") {
-				break;
-			} else {
-				searchstring += linecontent[col2];
-			}
-		}
-
-console.log("SEARCH STRING ", searchstring);
-
-		EDITOR.gotoLine(row, col);
-		// interesting: http://stackoverflow.com/questions/26573429/highlighting-a-single-character-in-ace
-		// var range = new Range (row-1, col, row-1, col2);
-		// console.log("SEARCH RANGE", range);
-		// var r = EDITOR.find(searchstring, {
-		// 	wrap: false,
-		// 	caseSensitive: true,
-		// 	wholeWord: true,
-		// 	range: range
-		// });
-      //  this does not work well because same text at other locations
-		// are also highlighted in a black box:
-		// EDITOR.selection.setRange(r);
-		break;
 	}
+
+	col2 = col;
+	var searchstring = linecontent[col2];
+	while (col2 < linecontent.length) {
+		col2++;
+		if (linecontent[col2] == " ") {
+			break;
+		} else if (linecontent[col2] == "\t") {
+			break;
+		} else {
+			searchstring += linecontent[col2];
+		}
+	}
+
+	EDITOR.gotoLine(row, col);
+	// interesting: http://stackoverflow.com/questions/26573429/highlighting-a-single-character-in-ace
+	// var range = new Range (row-1, col, row-1, col2);
+	// console.log("SEARCH RANGE", range);
+	// var r = EDITOR.find(searchstring, {
+	// 	wrap: false,
+	// 	caseSensitive: true,
+	// 	wholeWord: true,
+	// 	range: range
+	// });
+     //  this does not work well because same text at other locations
+	// are also highlighted in a black box:
+	// EDITOR.selection.setRange(r);
 }
 
 
@@ -1534,6 +1555,9 @@ console.log("SEARCH STRING ", searchstring);
 //   https://cloud9-sdk.readme.io/docs/code-folding
 //
 // console.log("NUMBER OF LINES IN FILE", EDITOR.session.getLength());
+//
+// Keyboard Shortcuts:
+//   https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
 // 
 // ACE Grammar editor:
 // http://foo123.github.io/examples/ace-grammar
@@ -1607,10 +1631,12 @@ function setupSplitter() {
 			if (event.pageX < minXPos){
 				if (event.pageX < minXPos - 70){ //Adjust closing snap tolerance here
 					Splitter.setPositionX(0);
+					InputVisible = false;
 				}
 				return;
 			}
 			Splitter.setPositionX(event.pageX);
+			InputVisible = true;
 		}
 	});
 
@@ -1794,5 +1820,48 @@ function getMode(text) {
 }
 
 
+
+//////////////////////////////
+//
+// showIdInEditor -- Highlight the current line of data being played,
+//     and center it.  But only do this if Humdrum data is being shown
+//     in the editor (MEI data is not time-ordered by notes, only by
+//     measure).
+//
+
+function showIdInEditor(id) {
+	if (EditorMode == "ace/mode/xml") {
+		return;
+	}
+	var matches = id.match(/-.*L(\d+)/);
+	if (!matches) {
+		return;
+	}
+	var row = parseInt(matches[1]);
+	EDITOR.gotoLine(row, 0);
+	EDITOR.centerSelection();
+	console.log("PLAYING ROW", row);
+}
+
+
+
+//////////////////////////////
+//
+// toggleEditorMode --
+//
+
+function toggleEditorMode() {
+	if (KeyboardMode == "ace/keyboard/ace") {
+		KeyboardMode  = "ace/keyboard/vim";
+		EditorTheme   = "ace/theme/solarized_dark";
+	} else {
+		KeyboardMode  = "ace/keyboard/ace";
+		EditorTheme   = "ace/theme/solarized_light";
+	}
+	if (EDITOR) {
+		EDITOR.setTheme(EditorTheme);
+		EDITOR.setKeyboardHandler(KeyboardMode);
+	}
+}
 
 

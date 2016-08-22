@@ -371,7 +371,6 @@ function runConversion() {
             .append("<a class=\"icon stop\" id=\"midiPlayer_stop\" onclick=\"stop()\"></a>");
             
         $("#midiPlayer_div").css("width", options.width + 200);
-console.log("WITDH", options.width + 200);
         $("#midiPlayer_bar").css("width", options.width);
         $("#midiPlayer_progress").css("background", options.color);
         

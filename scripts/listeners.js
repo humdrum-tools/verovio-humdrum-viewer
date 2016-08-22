@@ -85,6 +85,11 @@ function processKeyCommand(event) {
 
 	switch (event.keyCode) {
 
+		case BKey:
+			toggleVhvTitle();
+			event.preventDefault();
+			break;
+
 		case FKey:
 			toggleFreeze();
 			event.preventDefault();
@@ -135,7 +140,7 @@ function processKeyCommand(event) {
 			break;
 
 		case VKey:
-			toggleVhvTitle();
+			toggleEditorMode();
 			event.preventDefault();
 			break;
 
