@@ -1459,7 +1459,7 @@ function humdrumDataIntoView(event) {
 			continue;
 		}
 
-		highlightLineInEditor(path[i].id);
+		highlightIdInEditor(path[i].id);
 		break;
 	}
 }
