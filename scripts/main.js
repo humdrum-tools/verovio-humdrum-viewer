@@ -23,6 +23,13 @@ var EditorMode = "ace/mode/text";
 var KeyboardMode = "ace/keyboard/ace";
 var EditorTheme = "ace/theme/solarized_light";
 
+// used to highlight the current note at the location of the cursor.
+var CursorNote;
+
+// Increment BasketVersion when the verovio toolkit is updated, or
+// the Midi player software or soundfont is updated.
+var BasketVersion = 2;
+
 var Actiontime = 0;
 
 // see https://github.com/ajaxorg/ace/wiki/Embedding-API
@@ -204,6 +211,11 @@ function displayNotation(page) {
 	}
 	ShowingIndex = false;
 	$('html').css('cursor', 'auto');
+
+	// these lines are needed to re-highlight the note when
+	// the notation has been updated.
+	CursorNote = null;
+	highlightNoteInScore();
 }
 
 
@@ -1253,7 +1265,7 @@ function reloadData() {
 //
 
 function downloadVerovioToolkit(url) {
-	basket.require({url: url, expire: 500, unique: 1})
+	basket.require({url: url, expire: 500, unique: BasketVersion})
 		.then(function() { initializeVerovioToolkit(); },
 				function() { console.log("There was an error loading script", url)
 		});
@@ -1355,9 +1367,9 @@ function downloadWildWebMidi(url) {
 	var url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
-		{url: url, expire: 26},
-		{url: url2, expire: 11},
-		{url: url3, expire: 17}
+		{url: url, expire: 26, unique: BasketVersion},
+		{url: url2, expire: 11, unique: BasketVersion},
+		{url: url3, expire: 17, unique: BasketVersion}
 	).then(function() { initializeWildWebMidi(); },
 		function() { console.log("There was an error loading script", url)
 	});
@@ -1409,8 +1421,9 @@ function	dataIntoView(event) {
 
 //////////////////////////////
 //
-// xmlDataIntoView -- When clicking on a note (or other itmes in SVG images later),
-//      make the text line in the MEI data visible in the text area.
+// xmlDataIntoView -- When clicking on a note (or other itmes in SVG
+//      images later), make the text line in the MEI data visible in
+//      the text area.
 //
 // https://github.com/ajaxorg/ace/wiki/Embedding-API
 //
@@ -1424,7 +1437,6 @@ function xmlDataIntoView(event) {
 			continue;
 		}
 		// still need to verify if inside of svg element in the first place.
-console.log("SEARHCING FOR ID", path[i].id);
 		EDITOR.find(path[i].id, {
 			wrap: true,
 			caseSensitive: true,
@@ -1438,8 +1450,9 @@ console.log("SEARHCING FOR ID", path[i].id);
 
 //////////////////////////////
 //
-// humdrumDataIntoView -- When clicking on a note (or other itmes in SVG images later),
-//      make the text line in the Humdum data visible in the text area.
+// humdrumDataIntoView -- When clicking on a note (or other itmes in 
+//      SVG images later), make the text line in the Humdum data visible
+//      in the text area.
 //
 
 function humdrumDataIntoView(event) {
@@ -1484,8 +1497,6 @@ function highlightIdInEditor(id) {
 	}
 
 	var linecontent = EDITOR.session.getLine(row-1);
-	console.log("LINE CONTENT", linecontent);
-	console.log("FIELD", field);
 
 	var col = 0;
 	if (field > 1) {
@@ -1493,7 +1504,6 @@ function highlightIdInEditor(id) {
 		for (i=0; i<linecontent.length; i++) {
 			col += 1
 			if (linecontent[i] == '\t') {
-				console.log("Found tab at ", i);
 				tabcount++;
 			}
 			if (tabcount == field - 1) {
@@ -1589,6 +1599,114 @@ function setupAceEditor(idtag) {
 	EDITOR.setShowPrintMargin(false);
 
 	Range = require("ace/range").Range;
+
+	EDITOR.getSession().selection.on("changeCursor", function(event) {highlightNoteInScore(event)});
+
+}
+
+
+
+//////////////////////////////
+//
+// highlightNoteInScore -- Called when the cursor has changed position
+//     int the editor.
+//
+
+function highlightNoteInScore(event) {
+	var location = EDITOR.selection.getCursor();
+	var line = location.row;
+	var column = location.column;
+	var text = EDITOR.session.getLine(line);
+	var fys = getFieldAndSubspine(text, column);
+	var field = fys.field;
+	var subspine = fys.subspine;
+	var query = "L" + (line+1) + "F" + field;
+	if (subspine > 0) {
+		query += "S" + subspine;
+	}
+	var item;
+	if (Splitter.rightContent) {
+		// see: https://www.w3.org/TR/selectors
+		var item = Splitter.rightContent.querySelector("g[id$='" + 
+			query + "']");
+		// console.log("ITEM", item);
+	}
+	markNote(item);
+}
+
+
+
+//////////////////////////////
+//
+// markNote -- Used by highlightNoteInScore.
+//
+
+function markNote(item) {
+	if (CursorNote && item && (CursorNote.id == item.id)) {
+		// console.log("THE SAME NOTE");
+		return;
+	}
+	if (CursorNote) {
+		// console.log("TURNING OFF OLD NOTE", CursorNote);
+		CursorNote.setAttribute("fill", "#000");
+	}
+	CursorNote = item;
+	if (CursorNote) {
+		// console.log("TURNING ON NEW NOTE", CursorNote);
+		CursorNote.setAttribute("fill", "#c00");
+	}
+}
+
+
+
+//////////////////////////////
+//
+// getFieldAndSubspine --
+//
+
+function getFieldAndSubspine(text, column) {
+	var output = {field: -1, subspine: -1};
+	if (text.match(/^[*!=]/)) {
+		return output;
+	}
+	if (text == "") {
+		return output;
+	}
+
+	var field = 0;
+   var subspine = 0;
+	var i;
+	for (i=0; i<column; i++) {
+		if (text[i] == '\t') {
+			field++;
+			subspine = 0;
+      } else if (text[i] == ' ') {
+			subspine++;
+		}
+	}
+
+	var subtok = false;
+	// check if the field contains subtokens.  If so, set the
+	if (subspine > 0) {
+		subtok = true;
+	} else {
+		for (i=column; i<text.length; i++) {
+			if (text[i] == " ") {
+				subtok = true;
+				break;
+			} else if (text[i] == '\t') {
+				break;
+			}
+		}
+	}
+	if (subtok) {
+		subspine++;
+	}
+	field++;
+
+	output.field = field;
+	output.subspine = subspine;
+	return output;
 }
 
 
@@ -1603,6 +1721,16 @@ function setupSplitter() {
 	if (!splitter) {
 		return;
 	}
+
+   if (!Splitter.leftContent) {
+      Splitter.leftContent = document.querySelector('#input');
+   }
+   if (!Splitter.splitContent) {
+      Splitter.splitContent = document.querySelector('#splitter');
+   }
+   if (!this.rightContent) {
+      Splitter.rightContent = document.querySelector('#output');
+   }
 
 	splitter.addEventListener('mousedown', function(event) {
 		Splitter.mouseState    = 1;
