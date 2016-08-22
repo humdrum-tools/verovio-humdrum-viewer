@@ -1473,7 +1473,7 @@ function humdrumDataIntoView(event) {
 function highlightIdInEditor(id) {
 	matches = path[i].id.match(/-.*L(\d+)F(\d+)/);
 	if (!matches) {
-		continue;
+		return;
 	}
 
 	var row = matches[1];
