@@ -22,13 +22,14 @@ var EDITOR;
 var EditorMode = "ace/mode/text";
 var KeyboardMode = "ace/keyboard/ace";
 var EditorTheme = "ace/theme/solarized_light";
+var EditorLine = -1;
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 2;
+var BasketVersion = 6;
 
 var Actiontime = 0;
 
@@ -1446,19 +1447,29 @@ function	dataIntoView(event) {
 //
 
 function xmlDataIntoView(event) {
-	var path = event.path;
+	var target = event.target;
 	var matches;
-	var i;
-	for (i=0; i<path.length; i++) {
-		if (!path[i].id) {
+	while (target) {
+		if (!target.id) {
+			target = target.parentNode;
 			continue;
 		}
+		var id = target.id;
+		if (!id.match(/-L\d+F\d+/)) {
+			target = target.parentNode;
+			continue;
+		}
+		
 		// still need to verify if inside of svg element in the first place.
-		EDITOR.find(path[i].id, {
+		var searchstring = 'xml:id="' + target.id + '"';
+		var regex = new RegExp(searchstring);
+		var range = EDITOR.find(regex, {
 			wrap: true,
 			caseSensitive: true,
 			wholeWord: true
 		});
+		
+		console.log("FOUND ID AT", range);
 		break; // assume that the first id found is valid.
 	}
 }
@@ -1473,6 +1484,10 @@ function xmlDataIntoView(event) {
 //
 
 function humdrumDataIntoView(event) {
+console.log(event);
+
+	var target = event.target;
+
 	var path = event.path;
 	var matches;
 	var i;
@@ -1480,16 +1495,18 @@ function humdrumDataIntoView(event) {
    var col;
    var col2;
 
-	for (i=0; i<path.length; i++) {
-		if (!path[i].id) {
-			continue;
-		}
-		matches = path[i].id.match(/-.*L(\d+)F(\d+)/);
-		if (!matches) {
-			continue;
-		}
 
-		highlightIdInEditor(path[i].id);
+   while (target) {
+		if (!target.id) {
+			target = target.parentNode;
+			continue;
+		}
+		matches = target.id.match(/-.*L(\d+)F(\d+)/);
+		if (!matches) {
+			target = target.parentNode;
+			continue;
+		}
+		highlightIdInEditor(target.id);
 		break;
 	}
 }
@@ -1617,7 +1634,8 @@ function setupAceEditor(idtag) {
 
 	Range = require("ace/range").Range;
 
-	EDITOR.getSession().selection.on("changeCursor", function(event) {highlightNoteInScore(event)});
+	EDITOR.getSession().selection.on("changeCursor", function(event) 
+		{ highlightNoteInScore(event)});
 
 }
 
@@ -1630,6 +1648,52 @@ function setupAceEditor(idtag) {
 //
 
 function highlightNoteInScore(event) {
+	if (EditorMode == "ace/mode/xml") {
+		xmlDataNoteIntoView(event);
+	} else {
+		humdrumDataNoteIntoView(event);
+   }
+}
+
+
+
+//////////////////////////////
+//
+// xmlDataNoteIntoView --
+//
+
+function xmlDataNoteIntoView(event) {
+	var location = EDITOR.selection.getCursor();
+	var line = location.row;
+	if (EditorLine == line) {
+		// already highlighted (or close enough)
+		return;
+	}
+	// var column = location.column;
+	var text = EDITOR.session.getLine(line);
+	var matches = text.match(/xml:id="([^"]+)"/);
+	if (!matches) {
+		markNote(null, line);
+		return;
+	}
+	var id = matches[1];
+	var item;
+	if (Splitter.rightContent) {
+		// see: https://www.w3.org/TR/selectors
+		var item = Splitter.rightContent.querySelector("#" + id);
+		// console.log("ITEM", item);
+	}
+	markNote(item, line);
+}
+
+
+
+//////////////////////////////
+//
+// humdrumDataNoteIntoView --
+//
+
+function humdrumDataNoteIntoView(event) {
 	var location = EDITOR.selection.getCursor();
 	var line = location.row;
 	var column = location.column;
@@ -1658,7 +1722,8 @@ function highlightNoteInScore(event) {
 // markNote -- Used by highlightNoteInScore.
 //
 
-function markNote(item) {
+function markNote(item, line) {
+	EditorLine = line;
 	if (CursorNote && item && (CursorNote.id == item.id)) {
 		// console.log("THE SAME NOTE");
 		return;

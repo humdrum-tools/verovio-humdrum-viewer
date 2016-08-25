@@ -128,15 +128,15 @@ div#dropArea {
 	z-index: 10;
 	position:relative;
 	font-size: 17px;
-	background-color: #556;
-	color: #f1f1f1;
+	background-color: #01313f;
+	color: #30edf7;
 	width:100%;
 	padding:0;
 	letter-spacing:1px;
 }
 
 
-.topnav a{
+.topnav > a{
 	padding:10px 15px 9px 15px !important;
 	display:inline-block;
 }

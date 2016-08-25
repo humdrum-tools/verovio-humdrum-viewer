@@ -4,6 +4,11 @@
 
 LASTLINE = -1;
 
+//////////////////////////////
+//
+// play_midi --
+//
+
 function play_midi() {
 	var base64midi = vrvToolkit.renderToMidi();
 	var song = 'data:audio/midi;base64,' + base64midi;
@@ -14,6 +19,12 @@ function play_midi() {
 	LASTLINE = -1;
 }
 
+
+
+//////////////////////////////
+//
+// midiUpdate --
+//
 
 var midiUpdate = function(time) {
 	var vrvTime = Math.max(0, 2 * time - 800);

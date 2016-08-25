@@ -322,7 +322,7 @@ function runConversion() {
             // These are the defaults.
             color: "#556b2f",
             backgroundColor: "white",
-            width: 200,
+            width: 100,
             onStop: null,
             onUpdate: null,
             updateRate: 50,
@@ -366,9 +366,9 @@ function runConversion() {
         $("#midiPlayer_div").append("<div id=\"midiPlayer_playingTime\">0:00</div>")
             .append("<div id=\"midiPlayer_bar\"><div id=\"midiPlayer_progress\"></div></div>")
             .append("<div id=\"midiPlayer_totalTime\">0:00</div>")
-            .append("<a class=\"icon play\" id=\"midiPlayer_play\" onclick=\"play()\"></a>")
-            .append("<a class=\"icon pause\" id=\"midiPlayer_pause\" onclick=\"pause()\"></a>")
-            .append("<a class=\"icon stop\" id=\"midiPlayer_stop\" onclick=\"stop()\"></a>");
+            .append("<a class=\"icon play\" id=\"midiPlayer_play\" onclick=\"play()\">&#9654;</a>")
+            .append("<a class=\"icon pause\" id=\"midiPlayer_pause\" onclick=\"pause()\">&#9208;</a>")
+            .append("<a class=\"icon stop\" id=\"midiPlayer_stop\" onclick=\"stop()\">&#9209;</a>");
             
         $("#midiPlayer_div").css("width", options.width + 200);
         $("#midiPlayer_bar").css("width", options.width);
