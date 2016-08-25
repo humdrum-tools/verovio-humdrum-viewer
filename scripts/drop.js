@@ -64,16 +64,15 @@ function handleDrop(event) {
 		// console.log("NAME", escape(file.name));
 		// console.log("SIZE", file.size);
 		// console.log("DATE", file.lastModifiedDate.toLocaleDateString());
+
 		var reader = new FileReader();
+
 		reader.onload = function (event) {
 			var content = reader.result;
-			// console.log(content);
-			var area = document.querySelector("#input");
-			if (area) {
-				area.value = content;
-				displayNotation();
-			}
+			// console.log("Loaded file content:", content);
+			replaceEditorContentWithHumdrumFile(content);
 		};
+
 		// reader.readAsDataURL(file); // loads MIME64 version of file
 		// reader.readAsBinaryString(file);
 		// file has to be read as Text with UTF-8 encoding

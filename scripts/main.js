@@ -1,9 +1,9 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Thu Aug 18 21:03:35 CEST 2016
-// Filename:       listeners.js
-// Web Address:    http://flashcards.sapp.org/listeners.js
+// Last Modified:  Thu Aug 25 13:16:42 CEST 2016
+// Filename:       main.js
+// Web Address:    http://verovio.humdrum.org/scripts/main.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //
@@ -984,11 +984,28 @@ function downloadKernScoresFile(file, measures, page) {
 			//inputarea.value = request.response;
 
 			// https://ace.c9.io/#nav=api&api=editor
-			EDITOR.setValue(request.response, -1);
-			displayNotation(page);
+			replaceEditorContentWithHumdrumFile(request.response, page);
 		}
 	});
 	request.send();
+}
+
+
+
+//////////////////////
+//
+// replaceEditorContentWithHumdrumFile --
+//
+
+function replaceEditorContentWithHumdrumFile(text, page) {
+		if (!page) {
+			page = PAGE;
+		}
+		// -1 is to unselect the inserted text and move cursor to
+		// start of inserted text.
+		EDITOR.setValue(text, -1);
+		// display the notation for the data:
+		displayNotation(page);
 }
 
 
