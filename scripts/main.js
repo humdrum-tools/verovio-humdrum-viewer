@@ -1485,16 +1485,8 @@ function xmlDataIntoView(event) {
 
 function humdrumDataIntoView(event) {
 console.log(event);
-
 	var target = event.target;
-
-	var path = event.path;
 	var matches;
-	var i;
-	var row;
-   var col;
-   var col2;
-
 
    while (target) {
 		if (!target.id) {
@@ -1510,6 +1502,7 @@ console.log(event);
 		break;
 	}
 }
+
 
 
 //////////////////////////////
