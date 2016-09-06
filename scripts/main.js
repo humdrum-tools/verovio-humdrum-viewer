@@ -29,7 +29,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 9;
+var BasketVersion = 10;
 
 var Actiontime = 0;
 
@@ -1052,9 +1052,11 @@ function applyZoom() {
 //
 
 function loadPage(page) {
+console.log("OAGE", page);
 	if (!page) {
 		page = PAGE;
 	}
+console.log("LOADING PAGE", page);
 	PAGE = page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
@@ -1116,10 +1118,15 @@ function gotoPreviousPage() {
 
 function gotoNextPage() {
 	var page = PAGE;
+console.log("CPAGE", page);
 	page++;
+console.log("DPAGE", page);
 	if (page > vrvToolkit.getPageCount()) {
 		page = 1;
+console.log("EPAGE", page);
+console.log("vPAGE", vrvToolkit.getPageCount());
 	}
+console.log("FPAGE", page);
 	PAGE = page;
 	loadPage(page);
 }
