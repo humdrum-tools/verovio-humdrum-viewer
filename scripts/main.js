@@ -1730,7 +1730,8 @@ function markNote(item, line) {
 	}
 	if (CursorNote) {
 		// console.log("TURNING OFF OLD NOTE", CursorNote);
-		CursorNote.setAttribute("fill", "#000");
+		// CursorNote.setAttribute("fill", "#000");
+		CursorNote.removeAttribute("fill");
 	}
 	CursorNote = item;
 	if (CursorNote) {
