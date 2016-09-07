@@ -180,18 +180,30 @@ function displayNotation(page) {
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
 	var options = humdrumToSvgOptions();
-	var svg = vrvToolkit.renderData(data, JSON.stringify(options));
-	if (page) {
-		svg = vrvToolkit.renderPage(page, "");
+	vrvToolkit.setOptions(JSON.stringify(options));
+	try {
+		vrvToolkit.loadData(data);
+		if (vrvToolkit.getPageCount() == 0) {
+			var log = vrvToolkit.getLog();
+			console.log("ERROR LOG:", log);
+			document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
+		} else {
+			var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+			if (page) {
+				svg = vrvToolkit.renderPage(page, "");
+			}
+
+			var output = document.querySelector("#output");
+			var indexelement = document.querySelector("#index");
+			indexelement.style.visibility = "invisibile";
+			indexelement.style.display = "none";
+			document.querySelector("#output").innerHTML = svg;
+
+			displayFileTitle(data);
+		}
+	} catch(err) {
+		console.log("Error displaying page");
 	}
-	var output = document.querySelector("#output");
-	var indexelement = document.querySelector("#index");
-	indexelement.style.visibility = "invisibile";
-	indexelement.style.display = "none";
-
-	document.querySelector("#output").innerHTML = svg;
-
-	displayFileTitle(data);
 
 	if (UndoHide) {
 		showInputArea(true);
