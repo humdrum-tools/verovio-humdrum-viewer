@@ -2106,10 +2106,10 @@ console.log("EDITOR MODE", EditorMode);
 		if (lines[i].match(/^\*\*/)) {
 			if (lines[i].match(/,/)) {
 				console.log("CONVERTING TO TSV");
-				EDITOR.setValue(convertDataToTsv(lines));
+				EDITOR.setValue(convertDataToTsv(lines), -1);
 			} else {
 				console.log("CONVERTING TO CSV");
-				EDITOR.setValue(convertDataToCsv(lines));
+				EDITOR.setValue(convertDataToCsv(lines), -1);
 			}
 			break;
 		}
