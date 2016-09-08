@@ -74,6 +74,7 @@ function processKeyCommand(event) {
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
+console.log("EVENT", event);
 
 	if (!event.altKey && (event.target.nodeName == "TEXTAREA")) {
 		return;
@@ -157,6 +158,10 @@ function processKeyCommand(event) {
 				PAUSE = !PAUSE;
 			}
 			event.preventDefault();
+			break;
+
+		case CommaKey:
+			toggleHumdrumCsvTsv();
 			break;
 
 		case UpKey:

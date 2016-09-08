@@ -29,7 +29,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 14;
+var BasketVersion = 16;
 
 var Actiontime = 0;
 
@@ -96,6 +96,7 @@ var SpaceKey  = 32;
 var SlashKey  = 191;
 var EscKey    = 27;
 var BackKey   = 8;
+var CommaKey  = 188;
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -2086,5 +2087,154 @@ function toggleEditorMode() {
 		EDITOR.setKeyboardHandler(KeyboardMode);
 	}
 }
+
+
+//////////////////////////////
+//
+// toggleHumdrumCsvTsv --
+//
+
+function toggleHumdrumCsvTsv() {
+console.log("EDITOR MODE", EditorMode);
+	if (EditorMode == "ace/mode/xml") {
+		// not editing Humdrum data
+		return;
+	}
+	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var lines = data.split("\n");
+	for (var i=0; i<lines.length; i++) {
+		if (lines[i].match(/^\*\*/)) {
+			if (lines[i].match(/,/)) {
+				console.log("CONVERTING TO TSV");
+				EDITOR.setValue(convertDataToTsv(lines));
+			} else {
+				console.log("CONVERTING TO CSV");
+				EDITOR.setValue(convertDataToCsv(lines));
+			}
+			break;
+		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// convertDataToCsv --
+//
+
+function convertDataToCsv(lines) {
+	var output = "";
+	for (var i=0; i<lines.length; i++) {
+		output += convertLineToCsv(lines[i]) + "\n";
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// convertDataToTsv --
+//
+
+function convertDataToTsv(lines) {
+	var output = "";
+	for (var i=0; i<lines.length; i++) {
+		output += convertLineToTsv(lines[i]) + "\n";
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// convertLineToTsv --
+//
+
+function convertLineToTsv(line) {
+	var chars = line.split("");
+	var output = "";
+	if (chars.length < 1) {
+		return output;
+	}
+	var inquote = 0;
+
+	if ((chars.length >= 2) && (chars[0] == '!') && (chars[1] == '!')) {
+		// Global commands and reference records which do not start with a
+		// quote are considered to be literal.
+		return line;
+	}
+
+	var separator = ",";
+
+	for (var i=0; i<chars.length; i++) {
+
+		if ((chars[i] == '"') && !inquote) {
+			inquote = 1;
+			continue;
+		}
+		if (inquote && (chars[i] == '"') && (chars[i+1] == '"') 
+				&& (i < chars.length-1)) {
+			output += '"';
+			i++;
+			continue;
+		}
+		if (chars[i] == '"') {
+			inquote = 0;
+			continue;
+		}
+		if ((!inquote) && (line.substr(i, separator.length) == separator)) {
+			output += '\t';
+			i += separator.length - 1;
+			continue;
+		}
+		output += chars[i];
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// convertLineToCsv --
+//
+
+function convertLineToCsv(line) {
+	if (line.match(/^!!/)) {
+		return line;
+	}
+	var tokens = line.split(/\t/);
+	var output = "";
+	for (var i=0; i<tokens.length; i++) {
+		output += convertTokenToCsv(tokens[i]);
+		if (i<tokens.length-1) {
+			output += ",";
+		}
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// convertTokenToCsv --
+//
+
+function convertTokenToCsv(token) {
+	var output = "";
+	if (token.match(/,/) || token.match(/"/)) {
+		output += '"';
+		output += token.replace(/"/g, '""');
+		output += '"';
+		return output;
+	} else {
+		return token;
+	}
+}
+
 
 
