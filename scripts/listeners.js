@@ -28,10 +28,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		toggleInputArea(true);
 	}
 
-	if (CGI.file) {
+	if (CGI.file || CGI.tasso || CGI.jrp) {
 		loadKernScoresFile(
 			{
 				file: CGI.file, 
+				tasso: CGI.tasso,
+				jrp: CGI.jrp,
 				measures: CGI.mm,
 				next: true,
 				previous: true

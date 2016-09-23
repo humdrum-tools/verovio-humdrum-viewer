@@ -29,7 +29,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 17;
+var BasketVersion = 19;
 
 var Actiontime = 0;
 
@@ -326,6 +326,9 @@ function humdrumToSvgOptions() {
 		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
 		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
 	}
+   if (CGI.tasso) {
+		output.spacingNonLinear = 0.65;
+   }
 
 	return output;
 }
@@ -849,6 +852,7 @@ var COUNTER = 0;
 //
 
 function loadKernScoresFile(obj) {
+
 	var file        = obj.file;
 	var measures    = obj.measures;
 	var page        = obj.page;
@@ -861,11 +865,102 @@ function loadKernScoresFile(obj) {
 	}
 
 	COUNTER++;
-   if (COUNTER > 1000) {
+	if (COUNTER > 10000) {
 		console.log("TOO LARGE", file);
 		return;
 	}
 
+	var url = "";
+	var ret;
+
+console.log("FILE", file);
+	if (file) {
+		if (file.match(/^https?:/)) {
+			url = file;
+			key = file;
+		} else {
+			ret = kernScoresUrl(file, measures);
+			url = ret.url;
+			key = ret.key;
+   	}
+	} else if (obj.tasso) {
+		ret = getTassoUrl(obj.tasso, measures);
+		url = ret.url;
+		key = ret.key;
+	}
+	
+	var info = basketSession.get(key);
+	var jinfo;
+	if (!info) {
+		console.log("Going to download", key);
+		basketSession.require(
+			{	url: url,
+				key: key,
+				expire: 172,
+				execute: false
+			}
+		).then(function() {
+				console.log("Downloaded", key);
+				info = basketSession.get(key);
+				if (info) {
+					try {
+						jinfo = JSON.parse(info.data);
+						if (getnext) {
+							console.log("processing AAA");
+							processInfo(jinfo, obj, false, false);
+							console.log("processing BBB");
+						}
+					} catch(err) {
+						displayScoreTextInEditor(info.data, PAGE);
+					}
+				} else {
+					console.log("Error retrieving", key);
+				}
+			}, function() {
+				console.log("Error retrieving", key);
+			});
+	} else {
+		console.log("Already have", key);
+		try {
+			jinfo = JSON.parse(info.data);
+			if (getnext) {
+				processInfo(jinfo, obj, false, false);
+			}
+		} catch(err) {
+			displayScoreTextInEditor(info.data, PAGE);
+		}
+	}
+}
+
+
+//////////////////////////////
+//
+// getTassoUrl --
+//
+
+function getTassoUrl(file, measures) {
+	var filename = file.replace(/\.krn$/, "");;
+
+	var url = "http://www.tassomusic.org/cgi-bin/tasso?&file=" + filename;
+	url += "&a=humdrum";
+
+	var key = filename;
+	if (measures) {
+		url += "&mm=" + measures;
+		key += "&mm=" + measures;
+	}
+
+	return {url: url, key: key};
+}
+
+
+
+//////////////////////////////
+//
+// kernScoresUrl -- convert kernscores location into URL.
+//
+
+function kernScoresUrl(file, measures) {
 	var location;
 	var filename;
 	var matches;
@@ -893,40 +988,9 @@ function loadKernScoresFile(obj) {
 		key += "&mm=" + measures;
 	}
 
-	var info = basketSession.get(key);
-	var jinfo;
-	if (!info) {
-		console.log("Going to download", key);
-		basketSession.require(
-			{	url: url,
-				key: key,
-				expire: 172,
-				execute: false
-			}
-		).then(function() {
-				console.log("Downloaded", key);
-				info = basketSession.get(key);
-				if (info) {
-					jinfo = JSON.parse(info.data);
-					if (getnext) {
-						console.log("processing AAA");
-						processInfo(jinfo, obj, false, false);
-						console.log("processing BBB");
-					}
-				} else {
-					console.log("Error retrieving", key);
-				}
-			}, function() {
-				console.log("Error retrieving", key);
-			});
-	} else {
-		console.log("Already have", key);
-		jinfo = JSON.parse(info.data);
-		if (getnext) {
-			processInfo(jinfo, obj, false, false);
-		}
-	}
+	return {url: url, key: key};
 }
+
 
 
 //////////////////////////////
