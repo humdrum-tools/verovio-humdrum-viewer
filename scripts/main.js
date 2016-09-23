@@ -889,6 +889,7 @@ function loadKernScoresFile(obj) {
 		key = ret.key;
 	}
 	
+console.log("KEY", key);
 	var info = basketSession.get(key);
 	var jinfo;
 	if (!info) {
