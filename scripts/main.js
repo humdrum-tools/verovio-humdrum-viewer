@@ -871,9 +871,9 @@ function loadKernScoresFile(obj) {
 	}
 
 	var url = "";
+	var key = "";
 	var ret;
 
-console.log("FILE", file);
 	if (file) {
 		if (file.match(/^https?:/)) {
 			url = file;
@@ -1129,7 +1129,6 @@ function applyZoom() {
 //
 
 function loadPage(page) {
-console.log("OAGE", page);
 	if (!page) {
 		page = PAGE;
 	}
@@ -1195,15 +1194,10 @@ function gotoPreviousPage() {
 
 function gotoNextPage() {
 	var page = PAGE;
-console.log("CPAGE", page);
 	page++;
-console.log("DPAGE", page);
 	if (page > vrvToolkit.getPageCount()) {
 		page = 1;
-console.log("EPAGE", page);
-console.log("vPAGE", vrvToolkit.getPageCount());
 	}
-console.log("FPAGE", page);
 	PAGE = page;
 	loadPage(page);
 }
@@ -1568,7 +1562,6 @@ function xmlDataIntoView(event) {
 //
 
 function humdrumDataIntoView(event) {
-console.log(event);
 	var target = event.target;
 	var matches;
 
