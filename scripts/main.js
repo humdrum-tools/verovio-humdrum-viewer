@@ -1115,7 +1115,8 @@ function applyZoom() {
 		stop();
 		HEIGHT = options.pageHeight;
 		WIDTH = options.pageWidth;
-		vrvToolkit.setOptions(JSON.stringify(options));
+		// vrvToolkit.setOptions(JSON.stringify(options));
+		vrvToolkit.setOptions(options);
 		vrvToolkit.redoLayout();
 	}
 
