@@ -29,7 +29,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 23;
+var BasketVersion = 24;
 
 var Actiontime = 0;
 
@@ -195,7 +195,7 @@ function displayNotation(page) {
 			// newer version takes object data directly:
 			var svg = vrvToolkit.renderData(data, options);
 			if (page) {
-				svg = vrvToolkit.renderPage(page, "");
+				svg = vrvToolkit.renderPage(page, {});
 			}
 
 			var output = document.querySelector("#output");
@@ -1142,7 +1142,7 @@ console.log("LOADING PAGE", page);
 	PAGE = page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
-	svg = vrvToolkit.renderPage(page, "");
+	svg = vrvToolkit.renderPage(page, {});
 	$("#output").html(svg);
 	// adjustPageHeight();
 	resizeImage();
@@ -1294,7 +1294,7 @@ function displaySvg() {
 	if (ShowingIndex) {
 		return;
 	}
-	var data = vrvToolkit.renderPage(PAGE, "");
+	var data = vrvToolkit.renderPage(PAGE, {});
 	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
 	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
