@@ -181,7 +181,9 @@ function displayNotation(page) {
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
 	var options = humdrumToSvgOptions();
-	vrvToolkit.setOptions(JSON.stringify(options));
+	// vrvToolkit.setOptions(JSON.stringify(options));
+	// newer version takes object data directly:
+	vrvToolkit.setOptions(options);
 	try {
 		vrvToolkit.loadData(data);
 		if (vrvToolkit.getPageCount() == 0) {
@@ -189,7 +191,9 @@ function displayNotation(page) {
 			console.log("ERROR LOG:", log);
 			document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
 		} else {
-			var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+			// var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+			// newer version takes object data directly:
+			var svg = vrvToolkit.renderData(data, options);
 			if (page) {
 				svg = vrvToolkit.renderPage(page, "");
 			}
