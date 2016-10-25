@@ -242,9 +242,9 @@ textarea#input {
 
 
 textarea#input {
-	-moz-tab-size: 30;
-	-o-tab-size: 30;
-	tab-size: 30;
+	-moz-tab-size: 15;
+	-o-tab-size: 15;
+	tab-size: 15;
 	white-space: pre;
 	overflow: scroll;
 	overflow-y: scroll;

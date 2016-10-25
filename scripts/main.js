@@ -23,13 +23,14 @@ var EditorMode = "ace/mode/text";
 var KeyboardMode = "ace/keyboard/ace";
 var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
+var TABSIZE = 10;
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 19;
+var BasketVersion = 30;
 
 var Actiontime = 0;
 
@@ -97,6 +98,7 @@ var SlashKey  = 191;
 var EscKey    = 27;
 var BackKey   = 8;
 var CommaKey  = 188;
+var DotKey    = 190;
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -181,7 +183,7 @@ function displayNotation(page) {
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
 	var options = humdrumToSvgOptions();
-	vrvToolkit.setOptions(JSON.stringify(options));
+	vrvToolkit.setOptions(options);
 	try {
 		vrvToolkit.loadData(data);
 		if (vrvToolkit.getPageCount() == 0) {
@@ -189,9 +191,9 @@ function displayNotation(page) {
 			console.log("ERROR LOG:", log);
 			document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
 		} else {
-			var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+			var svg = vrvToolkit.renderData(data, options);
 			if (page) {
-				svg = vrvToolkit.renderPage(page, "");
+				svg = vrvToolkit.renderPage(page, {});
 			}
 
 			var output = document.querySelector("#output");
@@ -1111,7 +1113,7 @@ function applyZoom() {
 		stop();
 		HEIGHT = options.pageHeight;
 		WIDTH = options.pageWidth;
-		vrvToolkit.setOptions(JSON.stringify(options));
+		vrvToolkit.setOptions(options);
 		vrvToolkit.redoLayout();
 	}
 
@@ -1137,7 +1139,7 @@ console.log("LOADING PAGE", page);
 	PAGE = page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
-	svg = vrvToolkit.renderPage(page, "");
+	svg = vrvToolkit.renderPage(page, {});
 	$("#output").html(svg);
 	// adjustPageHeight();
 	resizeImage();
@@ -1289,7 +1291,7 @@ function displaySvg() {
 	if (ShowingIndex) {
 		return;
 	}
-	var data = vrvToolkit.renderPage(PAGE, "");
+	var data = vrvToolkit.renderPage(PAGE, {});
 	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	var postfix = "</textarea>";
 	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
@@ -1698,7 +1700,7 @@ function setupAceEditor(idtag) {
 
 	// EDITOR.getSession().setMode("ace/mode/javascript");
 
-	EDITOR.getSession().setTabSize(15);
+	EDITOR.getSession().setTabSize(TABSIZE);
 
 	// don't show line at 80 columns:
 	EDITOR.setShowPrintMargin(false);
@@ -2172,6 +2174,36 @@ console.log("EDITOR MODE", EditorMode);
 			break;
 		}
 	}
+}
+
+
+
+//////////////////////////////
+//
+// decreaseTab --
+//
+
+function decreaseTab() {
+	TABSIZE--;
+	if (TABSIZE < 1) {
+		TABSIZE = 1;
+	}
+	EDITOR.getSession().setTabSize(TABSIZE);
+}
+
+
+
+//////////////////////////////
+//
+// increaseTab --
+//
+
+function increaseTab() {
+	TABSIZE++;
+	if (TABSIZE > 100) {
+		TABSIZE = 100;
+	}
+	EDITOR.getSession().setTabSize(TABSIZE);
 }
 
 

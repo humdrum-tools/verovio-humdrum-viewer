@@ -76,7 +76,6 @@ function processKeyCommand(event) {
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
-console.log("EVENT", event);
 
 	if (!event.altKey && (event.target.nodeName == "TEXTAREA")) {
 		return;
@@ -163,7 +162,17 @@ console.log("EVENT", event);
 			break;
 
 		case CommaKey:
-			toggleHumdrumCsvTsv();
+			if (event.shiftKey) {
+				decreaseTab();
+			} else {
+				toggleHumdrumCsvTsv();
+			}
+			break;
+
+		case DotKey:
+			if (event.shiftKey) {
+				increaseTab();
+			} 
 			break;
 
 		case UpKey:
