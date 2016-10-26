@@ -23,7 +23,7 @@ var EditorMode = "ace/mode/text";
 var KeyboardMode = "ace/keyboard/ace";
 var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
-var TABSIZE = 10;
+var TABSIZE = 12;
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
