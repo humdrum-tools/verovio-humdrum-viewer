@@ -30,7 +30,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 34;
+var BasketVersion = 54;
 
 var Actiontime = 0;
 
@@ -1097,6 +1097,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			vrvToolkit.setOptions(options);
 			vrvToolkit.loadData(text);
 			var newtext = vrvToolkit.getHumdrum();
+console.log("NEW TEXT = ", newtext);
 			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
 		} else {
