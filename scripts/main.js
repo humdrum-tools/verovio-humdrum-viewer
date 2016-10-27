@@ -1093,7 +1093,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		if (text.slice(0, 1000).match(/<score-partwise>/)) {
 			// this is MusicXML data, so first convert into Humdrum
 			// before displaying in the editor.
-			var options = function musicxmlToHumdrumOptions();
+			var options = musicxmlToHumdrumOptions();
 			vrvToolkit.setOptions(options);
 			vrvToolkit.loadData(text);
 			var newtext = vrvToolkit.getHumdrum();
