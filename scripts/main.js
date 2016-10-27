@@ -30,7 +30,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 32;
+var BasketVersion = 33;
 
 var Actiontime = 0;
 
@@ -166,7 +166,7 @@ var Splitter = new SPLITTER();
 
 //////////////////////////////
 //
-// displayNotation -- Convert Humdum data in textarea to notation.
+// displayNotation -- Convert Humdrum data in textarea to notation.
 //
 
 function displayNotation(page) {
@@ -1559,8 +1559,8 @@ function xmlDataIntoView(event) {
 
 //////////////////////////////
 //
-// humdrumDataIntoView -- When clicking on a note (or other itmes in 
-//      SVG images later), make the text line in the Humdum data visible
+// humdrumDataIntoView -- When clicking on a note (or other items in 
+//      SVG images later), make the text line in the Humdrum data visible
 //      in the text area.
 //
 
@@ -1591,6 +1591,7 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id) {
+console.log("HIGHLIGHTING", id);
 	matches = id.match(/-.*L(\d+)F(\d+)/);
 	if (!matches) {
 		return;
