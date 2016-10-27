@@ -30,7 +30,7 @@ var CursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 33;
+var BasketVersion = 34;
 
 var Actiontime = 0;
 
@@ -345,6 +345,13 @@ function humdrumToMeiOptions() {
 		scale             : 40,
 		type              : "mei",
 		font              : "Leipzig"
+	}
+}
+
+function musicxmlToHumdrumOptions() {
+	return {
+		inputFormat       : "musicxml",
+		type              : "humdrum"
 	}
 }
 
@@ -1082,11 +1089,23 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		if (!page) {
 			page = PAGE;
 		}
-		// -1 is to unselect the inserted text and move cursor to
-		// start of inserted text.
-		EDITOR.setValue(text, -1);
-		// display the notation for the data:
-		displayNotation(page);
+
+		if (text.slice(0, 1000).match(/<score-partwise>/)) {
+			// this is MusicXML data, so first convert into Humdrum
+			// before displaying in the editor.
+			var options = function musicxmlToHumdrumOptions();
+			vrvToolkit.setOptions(options);
+			vrvToolkit.loadData(text);
+			var newtext = vrvToolkit.getHumdrum();
+			EDITOR.setValue(newtext, -1);
+			displayNotation(page);
+		} else {
+			// -1 is to unselect the inserted text and move cursor to
+			// start of inserted text.
+			EDITOR.setValue(text, -1);
+			// display the notation for the data:
+			displayNotation(page);
+		}
 }
 
 
