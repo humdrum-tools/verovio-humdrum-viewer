@@ -363,6 +363,8 @@ function musicxmlToHumdrumOptions() {
 //
 
 function allowTabs() {
+// This function is not needed to activate tabs with the ace editor.
+return;
 	var textareas = document.getElementsByTagName('textarea');
 	var count = textareas.length;
 	for (var i=0; i<count; i++) {
