@@ -1722,7 +1722,7 @@ function setupAceEditor(idtag) {
 	// EDITOR.getSession().setMode("ace/mode/javascript");
 
 	EDITOR.getSession().setTabSize(TABSIZE);
-
+	EDITOR.getSession().setUseSoftTabs(false);
 	// don't show line at 80 columns:
 	EDITOR.setShowPrintMargin(false);
 
