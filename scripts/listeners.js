@@ -64,15 +64,48 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+//////////////////////////////
+//
+// keydown event listener -- Notation edition listener.
+//
+
+window.addEventListener("keydown", processNotationKeyCommand);
+
+function processNotationKeyCommand(event) {
+	if (!event.preventDefault) {
+		event.preventDefault = function() { };
+	}
+
+	// only works outside of the editor.
+	if (event.altKey || event.target.nodeName == "TEXTAREA") {
+		return;
+	}
+
+	switch (event.keyCode) {
+		case IKey:
+			processNotationKey("i", CursorNote);
+			break;
+		case SKey:
+			processNotationKey("s", CursorNote);
+			break;
+		case FKey:
+			processNotationKey("f", CursorNote);
+			break;
+		case NKey:
+			processNotationKey("n", CursorNote);
+			break;
+	}
+}
+
 
 //////////////////////////////
 //
-// keydown event listener --
+// keydown event listener -- Interface control listener.
 //
 
-window.addEventListener("keydown", processKeyCommand);
+window.addEventListener("keydown", processInterfaceKeyCommand);
 
-function processKeyCommand(event) {
+function processInterfaceKeyCommand(event) {
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
@@ -88,62 +121,81 @@ function processKeyCommand(event) {
 	switch (event.keyCode) {
 
 		case BKey:
-			toggleVhvTitle();
-			event.preventDefault();
+			if (event.altKey) {
+				toggleVhvTitle();
+				event.preventDefault();
+			}
 			break;
 
 		case FKey:
-			toggleFreeze();
-			event.preventDefault();
+			if (event.altKey) {
+				toggleFreeze();
+				event.preventDefault();
+			}
 			break;
 
 		case IKey:
-			if (!ShowingIndex) {
-				toggleInputArea();
+			if (event.altKey) {
+				if (!ShowingIndex) {
+					toggleInputArea();
+				}
+				event.preventDefault();
 			}
-			event.preventDefault();
 			break;
 
 		case HKey:
-			if (!ShowingIndex) {
-				showBufferedHumdrumData();
+			if (event.altKey) {
+				if (!ShowingIndex) {
+					showBufferedHumdrumData();
+				}
+				event.preventDefault();
 			}
-			event.preventDefault();
 			break;
 
 		case MKey:
-			displayMei();
-			event.preventDefault();
+			if (event.altKey) {
+				displayMei();
+				event.preventDefault();
+			}
 			break;
 
 		case OKey:
-			OriginalClef = !OriginalClef;
-			console.log("Original clef changed to:", OriginalClef);
-			if (!ShowingIndex) {
-				displayNotation();
+			if (event.altKey) {
+				OriginalClef = !OriginalClef;
+				console.log("Original clef changed to:", OriginalClef);
+				if (!ShowingIndex) {
+					displayNotation();
+				}
+				event.preventDefault();
 			}
-			event.preventDefault();
 			break;
 
 		case PKey:
-			displayPdf();
-			event.preventDefault();
+			if (event.altKey) {
+				displayPdf();
+				event.preventDefault();
+			}
 			break;
 
 		case RKey:
-			console.log("RELOADING DATA");
-			reloadData();
-			event.preventDefault();
+			if (event.altKey) {
+				reloadData();
+				event.preventDefault();
+			}
 			break;
 
 		case SKey:
-			displaySvg();
-			event.preventDefault();
+			if (event.altKey) {
+				displaySvg();
+				event.preventDefault();
+			}
 			break;
 
 		case VKey:
-			toggleEditorMode();
-			event.preventDefault();
+			if (event.altKey) {
+				toggleEditorMode();
+				event.preventDefault();
+			}
 			break;
 
 		case SpaceKey:

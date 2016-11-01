@@ -220,7 +220,7 @@ div#index {
 	background: #f8f8f8;
 }
 
-div#output { 
+#output { 
 	position: fixed;
 	top: 44;
 	left: 415;

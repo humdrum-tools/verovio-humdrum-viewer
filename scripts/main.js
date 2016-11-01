@@ -28,6 +28,10 @@ var TABSIZE = 12;
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
 
+// RestoreCursorNote: Used to go back to a highlighted note after a redraw.  
+// This is an ID string rather than an element.
+var RestoreCursorNote;
+
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
 var BasketVersion = 72;
@@ -167,6 +171,7 @@ var Splitter = new SPLITTER();
 //////////////////////////////
 //
 // displayNotation -- Convert Humdrum data in textarea to notation.
+//  This function seems to be called twice in certain cases (editing).
 //
 
 function displayNotation(page) {
@@ -188,7 +193,7 @@ function displayNotation(page) {
 		vrvToolkit.loadData(data);
 		if (vrvToolkit.getPageCount() == 0) {
 			var log = vrvToolkit.getLog();
-			console.log("ERROR LOG:", log);
+			console.log(">>>>>>>>>>> ERROR LOG:", log);
 			document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
 		} else {
 			var svg = vrvToolkit.renderData(data, options);
@@ -201,7 +206,7 @@ function displayNotation(page) {
 			indexelement.style.visibility = "invisibile";
 			indexelement.style.display = "none";
 			document.querySelector("#output").innerHTML = svg;
-
+			restoreSelectedSvgElement(RestoreCursorNote);
 			displayFileTitle(data);
 		}
 	} catch(err) {
@@ -918,9 +923,7 @@ console.log("KEY", key);
 					try {
 						jinfo = JSON.parse(info.data);
 						if (getnext) {
-							console.log("processing AAA");
 							processInfo(jinfo, obj, false, false);
-							console.log("processing BBB");
 						}
 					} catch(err) {
 						displayScoreTextInEditor(info.data, PAGE);
@@ -1613,7 +1616,6 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id) {
-console.log("HIGHLIGHTING", id);
 	matches = id.match(/-.*L(\d+)F(\d+)/);
 	if (!matches) {
 		return;
@@ -1749,6 +1751,33 @@ function highlightNoteInScore(event) {
 	} else {
 		humdrumDataNoteIntoView(event);
    }
+}
+
+
+
+///////////////////////////////////
+//
+// restoreSelectedSvgElement -- Need to generalize to multiple pages.
+//
+
+function restoreSelectedSvgElement(id) {
+/* Does not work: desired note is not in the list...
+	if (RestoreCursorNote) {
+		var svg = document.querySelector("svg");
+		var glist = svg.getElementsByTagName("g");
+		GGG = glist;
+		for (var i=0; i<glist.length; i++) {
+			if (!glist[i].id.match("note")) {
+				continue;
+			}
+			console.log("GOT HERE ", glist[i].id);
+			if (RestoreCursorNote === glist[i].id) {
+				console.log("RESTORING ID", id);
+			}
+		}
+		RestoreCursorNote = "";
+	}
+*/
 }
 
 
@@ -2348,6 +2377,4 @@ function convertTokenToCsv(token) {
 		return token;
 	}
 }
-
-
 
