@@ -1087,7 +1087,8 @@ function downloadKernScoresFile(file, measures, page) {
 
 //////////////////////
 //
-// replaceEditorContentWithHumdrumFile --
+// replaceEditorContentWithHumdrumFile -- If the editor contents is
+//    MusicXML, then convert to Humdrum and display in the editor.
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
@@ -1095,14 +1096,13 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			page = PAGE;
 		}
 
-		if (text.slice(0, 1000).match(/<score-partwise>/)) {
+		if (text.slice(0, 1000).match(/<score-partwise/)) {
 			// this is MusicXML data, so first convert into Humdrum
 			// before displaying in the editor.
 			var options = musicxmlToHumdrumOptions();
 			vrvToolkit.setOptions(options);
 			vrvToolkit.loadData(text);
 			var newtext = vrvToolkit.getHumdrum();
-console.log("NEW TEXT = ", newtext);
 			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
 		} else {
