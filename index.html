@@ -1,5 +1,6 @@
 <html>
 <head>
+<!-- vim: set ts=3: -->
 <title>Verovio Humdrum Viewer </title>
 <meta charset="UTF-8">
 <!-- downloaded by basket:
@@ -41,6 +42,13 @@
 			<span id="composer"></span>&nbsp;<span id="title"></span>
 		</span>
 	</td>
+	
+	<td style="width:100%;">
+		<span id="search-help" onclick="toggleHelpMenu();"
+			class="info" data-hasqtip="1" aria-describedby="qtip-1">help</span>
+	</td>
+
+
 	<td>
 		<div xmlns="http://www.w3.org/1999/xhtml" class="btn-group">
         		<button id="play-button" onclick="play_midi();" class="btn btn-sm btn-default" type="button"
@@ -198,6 +206,10 @@
 
 
 <div id="dropArea"></div>
+
+<div id="help-container" style="display:none;"></div>
+
+
 </body>
 </html>
 

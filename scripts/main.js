@@ -2378,3 +2378,89 @@ function convertTokenToCsv(token) {
 	}
 }
 
+
+
+//////////////////////////////
+//
+// prepareHelpMenu --
+//
+
+function prepareHelpMenu(selector) {
+	var request = new XMLHttpRequest();
+	request.open("GET", "/scripts/key-commands.txt");
+	request.addEventListener("load", function() {
+		fillInHelpContainer(selector, request.responseText);
+	});
+	request.send();
+}
+
+//////////////////////////////
+//
+// fillInHelpContainer -- Convert the text file with the help
+//    contents into a table shown in the help window.
+
+function fillInHelpContainer(selector, data) {
+console.log("SELECTOR", selector);
+   var lines = data.match(/[^\r\n]+/g);
+   var help = document.querySelector(selector);
+   if (!help) {
+console.log("GOT HERE AAA cannot find", selector);
+      return;
+   }
+   var output = "";
+   output += '<table id="help-table">\n';
+// output += '<tr><td colspan="2">\n';
+// output += ' <b style="font-size:110%;">Keyboard commands</b>';
+// output += '</td></tr>\n';
+   var line;
+   for (var i=0; i<lines.length; i++) {
+      line = lines[i];
+      var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
+      if (matches) {
+         var key  = matches[1];
+         var desc = matches[2];
+         output += '<tr><td><b>'
+         output += '<span style="color:#d8ab5c; cursor:pointer;"';
+         output += " onclick='processKeyCommand(";
+         output += '{keyCode: "' + key + '".charCodeAt(0)}' + ");'";
+         output += '>';
+         output += key
+         output += '</span>';
+         output += '</b></td>';
+         output += '<td>' + desc + '</td></tr>';
+      } else if (!line.match(/^\s*$/)) {
+         output += '<tr><td colspan="2">';
+         output += line;
+			output += '</td></tr>\n';
+      }
+   }
+   output += '</table>\n';
+   help.innerHTML = output;
+console.log("HELP", help);
+}
+
+
+
+//////////////////////////////
+//
+// toggleHelpMenu --
+//
+
+function toggleHelpMenu(state) {
+	var help = document.querySelector("#help-container");
+   if (!help) {
+      return;
+   }
+   if (typeof state === 'undefined') {
+      state = help.style.display === 'none' ? 0 : 1;
+   	state = !state;
+   }
+   if (state) {
+		help.style.display = 'block';
+   } else {
+		help.style.display = 'none';
+   }
+}
+
+
+

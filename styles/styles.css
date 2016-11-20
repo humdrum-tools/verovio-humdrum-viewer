@@ -252,4 +252,56 @@ textarea#input {
 	overflow: -moz-scrollbars-vertical;
 }
 
+/* Menu stylings */
+
+
+#help-container {
+	-moz-box-shadow:    -1px -1px 25px #888;
+	-webkit-box-shadow: -1px -1px 25px #888;
+	box-shadow:         -1px -1px 25px #888;
+
+	border-radius: 11px;
+	position:fixed;
+	bottom:0%;
+	right:0%;
+	background:#e9e0e0;
+	margin-bottom:5px;
+	width:400px;
+	opacity:0.95;
+	padding:30px;
+}
+
+#search-help {
+   margin-right: 31px;
+   margin-top:   6.5px;
+   height: 30px;
+}
+
+table#help-table td {
+	text-align: left;
+	vertical-align:top;
+}
+
+table#help-table tr {
+	vertical-align:top;
+}
+
+table#help-table td:first-child {
+	padding-right:20px;
+}
+
+span.info {
+	z-index: 111;
+	display: inline;
+	text-indent: -19999px;
+	width: 24px;
+	height: 14px;
+	background: url(/images/info.png) no-repeat 0 0;
+	float: right;
+	cursor: pointer;
+	margin-top: -6px;
+	margin-right: 17px;
+	padding-left: 20px;
+}
+
 

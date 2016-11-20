@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	allowTabs();
 	setupDropArea();
 
+   prepareHelpMenu('#help-container');
+
 	CGI = GetCgiParameters();
 
 	if (CGI.k && CGI.k.match(/h/)) {
@@ -267,6 +269,9 @@ function processInterfaceKeyCommand(event) {
 			gotoLastPage();
 			event.preventDefault();
 			break;
+
+		case SlashKey:
+			toggleHelpMenu();
 
 	}
 }
