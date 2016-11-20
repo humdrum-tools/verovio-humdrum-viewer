@@ -1,0 +1,30 @@
+
+?	toggle this help menu
+&larr;/&rarr;	next/previous page
+<i>home</i>	go to first page
+<i>end</i>	go to last page
+<i>space</i>	start/stop score playback
+,	toggle CSV/TSV display of Humdrum data
+< >	+/&ndash; tab size in editor
+<nobr>shft-&larr;/&rarr;</nobr>	next/previous work
+shft-up	go back to repertory index
+
+<b> more commands (+<i>alt</i> key) <b>
+b	show/hide logo
+f	(un)freeze dynamic notation
+h	show Humdrum data
+m	show MEI data
+i	show/hide data editor
+o	toggle original clefs
+p	show source scan (when available)
+r	reload file from server
+s	display SVG text for current page
+v	toggle vi/plain editor
+
+<p><b> Notation editing (click on note) </b></p>
+
+s	toggle sharp on note
+f	toggle flat on note
+n	toggle natural on note
+
+

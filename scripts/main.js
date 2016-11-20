@@ -2387,7 +2387,7 @@ function convertTokenToCsv(token) {
 
 function prepareHelpMenu(selector) {
 	var request = new XMLHttpRequest();
-	request.open("GET", "/key-commands.html");
+	request.open("GET", "/scripts/key-commands.txt");
 	request.addEventListener("load", function() {
 		fillInHelpContainer(selector, request.responseText);
 	});
