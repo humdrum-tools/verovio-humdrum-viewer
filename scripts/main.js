@@ -398,9 +398,40 @@ function toggleFreeze() {
 	if (!FreezeRendering) {
 		console.log("Updating notation");
 		displayNotation();
+		setBackgroundColorUnfrozen();
+	} else {
+		setBackgroundColorFrozen();
 	}
 }
 
+
+//////////////////////////////
+//
+// setBackgroundColorFrozen --
+//
+
+function setBackgroundColorFrozen() {
+	var output = document.querySelector("#output");
+	output.style["background"]  = "#ffffff";
+	var splitter = document.querySelector('div#splitter');
+	splitter.style["background"]  = "#ffffff";
+	var body = document.querySelector('body');
+	body.style["background"]  = "#ffffff";
+}
+
+//////////////////////////////
+//
+// setBackgroundColorUnfrozen --
+//
+
+function setBackgroundColorUnfrozen() {
+	var output = document.querySelector("#output");
+	output.style["background"]  = "#fffcf1";
+	var splitter = document.querySelector('div#splitter');
+	splitter.style["background"]  = "#fffcf1";
+	var body = document.querySelector('body');
+	body.style["background"]  = "#fffcf1";
+}
 
 
 //////////////////////////////
@@ -905,7 +936,6 @@ function loadKernScoresFile(obj) {
 		key = ret.key;
 	}
 	
-console.log("KEY", key);
 	var info = basketSession.get(key);
 	var jinfo;
 	if (!info) {
@@ -2126,6 +2156,11 @@ var Base64 = {
 //
 
 function displayScoreTextInEditor(text, page) {
+
+	if (CGI.filter) {
+		text = "!!!filter: " + CGI.filter + "\n" + text;
+	}
+
 	// -1 is to unselect added text, and move cursor to start
 	var mode = getMode(text);
 	if (mode != EditorMode) {
