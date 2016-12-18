@@ -1009,23 +1009,45 @@ function kernScoresUrl(file, measures) {
 	var location;
 	var filename;
 	var matches;
-	if (matches = file.match(/(.*)\/([^\/]+)/)) {
-		location = matches[1];
-		filename = matches[2];
+	var jrp = false;
+
+	if (matches = file.match(/^jrp:(.*)/)) {
+		jrp = true;
+		file = matches[1];
+	}
+
+	if (jrp) {
+		filename = file;
+		location = "";
+	} else {
+		if (matches = file.match(/(.*)\/([^\/]+)/)) {
+			location = matches[1];
+			filename = matches[2];
+		}
 	}
 
 	if ((!filename) || !filename.match(/\.[a-z][a-z][a-z]$/)) {
-		loadIndexFile(file);
-		return;
+		if (!jrp) {
+			loadIndexFile(file);
+			return;
+		}
 	}
 
 	if (filename.match(/^\s*$/)) {
-		loadIndexFile(file);
-		return;
+		if (!jrp) {
+			loadIndexFile(file);
+			return;
+		}
 	}
 
-	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
-	url += "&format=info-json";
+	var url;
+	if (jrp) {
+		url = "http://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
+		url += "&a=humdrum";
+	} else {
+		url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+		url += "&format=info-json";
+	}
 
 	var key = location + "/" + filename;
 	if (measures) {
@@ -1087,13 +1109,27 @@ function downloadKernScoresFile(file, measures, page) {
 	var location;
 	var filename;
 	var matches;
+	var jrp = false;
+
+	matches = file.match(/^jrp:(.*)/);
+	if (matches) {
+		jrp = true;
+		file = matches[1];
+	}
+
 	if (matches = file.match(/(.*)\/([^\/]+)/)) {
 		location = matches[1];
 		filename = matches[2];
 	}
-	var url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
-	if (measures) {
-		url += "&mm=" + measures;
+	var url;
+	if (jrp) {
+		url = "http://josquin.stanford.edu/data?id=" + location;
+		url += "&a=humdrum";
+	} else {
+		url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+		if (measures) {
+			url += "&mm=" + measures;
+		}
 	}
 
 	console.log("DATA URL", url);
