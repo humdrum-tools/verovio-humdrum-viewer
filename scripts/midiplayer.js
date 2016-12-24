@@ -38,9 +38,24 @@ var midiUpdate = function(time) {
 		if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
 			ids.forEach(function(noteid) {
   				if ($.inArray(noteid, elementsattime.notes) == -1) {
-					$("#" + noteid ).attr("fill", "#000");
-  					$("#" + noteid ).attr("stroke", "#000"); 
-					//$("#" + noteid ).removeClassSVG("highlighted"); 
+					//$("#" + noteid ).attr("fill", "#000");
+  					//$("#" + noteid ).attr("stroke", "#000"); 
+					// $("#" + noteid ).removeClassSVG("highlighted"); 
+
+					var element = document.querySelector("#" + noteid);
+					if (element) {
+						var classes = element.getAttribute("class");
+						var classlist = classes.split(" ");
+						var outclass = "";
+						for (var i=0; i<classlist.length; i++) {
+							if (classlist[i] == "highlight") {
+								continue;
+							}
+							outclass += " " + classlist[i];
+						}
+						element.setAttribute("class", outclass);
+					}
+
  				}
 			});
 			ids = elementsattime.notes;
@@ -68,9 +83,25 @@ var midiUpdate = function(time) {
 						}
 					}
 
-					$("#" + noteid ).attr("fill", "#c00");
-					$("#" + noteid ).attr("stroke", "#c00");; 
-					//$("#" + noteid ).addClassSVG("highlighted"); 
+					// $("#" + noteid ).attr("fill", "#c00");
+					// $("#" + noteid ).attr("stroke", "#c00");; 
+					// $("#" + noteid ).addClassSVG("highlighted"); 
+
+					var element = document.querySelector("#" + noteid);
+					if (element) {
+						var classes = element.getAttribute("class");
+						var classlist = classes.split(" ");
+						var outclass = "";
+						for (var i=0; i<classlist.length; i++) {
+							if (classlist[i] == "highlight") {
+								continue;
+							}
+							outclass += " " + classlist[i];
+						}
+						outclass += " highlight";
+						element.setAttribute("class", outclass);
+					}
+
 				}
 			}); 
 		}

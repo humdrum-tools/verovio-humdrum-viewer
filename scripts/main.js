@@ -1574,7 +1574,8 @@ function downloadWildWebMidi(url) {
 
 function initializeWildWebMidi() {
 	$("#player").midiPlayer({
-		color: "#c00",
+		color: null,
+		// color: "#c00",
 		onUnpdate: midiUpdate,
 		onStop: midiStop,
 		width: 250
@@ -1920,14 +1921,41 @@ function markNote(item, line) {
 		return;
 	}
 	if (CursorNote) {
-		// console.log("TURNING OFF OLD NOTE", CursorNote);
-		// CursorNote.setAttribute("fill", "#000");
-		CursorNote.removeAttribute("fill");
+		/// console.log("TURNING OFF OLD NOTE", CursorNote);
+		/// CursorNote.setAttribute("fill", "#000");
+		// CursorNote.removeAttribute("fill");
+
+		var classes = CursorNote.getAttribute("class");
+		var classlist = classes.split(" ");
+		var outclass = "";
+		for (var i=0; i<classlist.length; i++) {
+			if (classlist[i] == "highlight") {
+				continue;
+			}
+			outclass += " " + classlist[i];
+		}
+		CursorNote.setAttribute("class", outclass);
+console.log("REMOVING HIGHLIGHT");
+
 	}
 	CursorNote = item;
 	if (CursorNote) {
-		// console.log("TURNING ON NEW NOTE", CursorNote);
-		CursorNote.setAttribute("fill", "#c00");
+		/// console.log("TURNING ON NEW NOTE", CursorNote);
+		// CursorNote.setAttribute("fill", "#c00");
+console.log("ADDING HIGHLIGHT");
+
+		var classes = CursorNote.getAttribute("class");
+		var classlist = classes.split(" ");
+		var outclass = "";
+		for (var i=0; i<classlist.length; i++) {
+			if (classlist[i] == "highlight") {
+				continue;
+			}
+			outclass += " " + classlist[i];
+		}
+		outclass += " highlight";
+		CursorNote.setAttribute("class", outclass);
+
 	}
 }
 
