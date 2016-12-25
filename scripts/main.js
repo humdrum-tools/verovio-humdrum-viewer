@@ -34,7 +34,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 127;
+var BasketVersion = 131;
 
 var Actiontime = 0;
 
@@ -350,6 +350,13 @@ function humdrumToMeiOptions() {
 		scale             : 40,
 		type              : "mei",
 		font              : "Leipzig"
+	}
+}
+
+function humdrumToHumdrumOptions() {
+	return {
+		inputFormat       : "humdrum",
+		type              : "humdrum"
 	}
 }
 
@@ -2559,6 +2566,34 @@ function toggleHelpMenu(state) {
    } else {
 		help.style.display = 'none';
    }
+}
+
+
+
+//////////////////////////////
+//
+// showCompiledFilterData -- Run the Humdrum data through the vrvToolkit
+//      to extract the output from tool filtering.
+//
+
+function showCompiledFilterData() {
+	var page = PAGE;
+	var options = humdrumToHumdrumOptions();
+console.log("HUMDRUM OPTIONS", options);
+	var data    = EDITOR.getValue().replace(/^\s+/, "");
+	var options = humdrumToSvgOptions();
+	vrvToolkit.setOptions(options);
+	vrvToolkit.loadData(data);
+	var newdata = vrvToolkit.getHumdrum();
+	var lines = newdata.split(/\n/);
+	var output = "";
+	for (var i=0; i<lines.length; i++) {
+		if (!lines[i].match(/^!!!filter:/)) {
+			output += lines[i] + "\n";
+		}
+	}
+	EDITOR.setValue(output, -1);
+//	displayNotation(page);
 }
 
 

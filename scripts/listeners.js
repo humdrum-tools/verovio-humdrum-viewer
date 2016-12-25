@@ -129,6 +129,13 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case CKey:
+			if (event.altKey) {
+				showCompiledFilterData();
+				event.preventDefault();
+			}
+			break;
+
 		case FKey:
 			if (event.altKey) {
 				toggleFreeze();
