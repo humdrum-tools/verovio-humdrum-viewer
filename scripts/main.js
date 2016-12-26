@@ -34,7 +34,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 131;
+var BasketVersion = 133;
 
 var Actiontime = 0;
 
@@ -793,7 +793,7 @@ function loadIndexFile(location) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			var INDEX = request.responseText;
-			console.log("INDEX= ", INDEX);
+			// console.log("INDEX= ", INDEX);
 			$('html').css('cursor', 'auto');
 			displayIndexFinally(INDEX, location);
 		}
@@ -934,13 +934,21 @@ function loadKernScoresFile(obj) {
 			key = file;
 		} else {
 			ret = kernScoresUrl(file, measures);
-			url = ret.url;
-			key = ret.key;
+			if (ret) {
+				url = ret.url;
+				key = ret.key;
+			}
    	}
 	} else if (obj.tasso) {
 		ret = getTassoUrl(obj.tasso, measures);
-		url = ret.url;
-		key = ret.key;
+		if (ret) {
+			url = ret.url;
+			key = ret.key;
+		}
+	}
+
+	if (!key) {
+		return;
 	}
 	
 	var info = basketSession.get(key);
@@ -1476,7 +1484,7 @@ function downloadVerovioToolkit(url) {
 //
 
 function initializeVerovioToolkit() {
-	console.log("Verovio toolkit being initialize.");
+	// console.log("Verovio toolkit being initialized.");
 
 	vrvToolkit = new verovio.toolkit();
 
@@ -2506,11 +2514,10 @@ function prepareHelpMenu(selector) {
 //    contents into a table shown in the help window.
 
 function fillInHelpContainer(selector, data) {
-console.log("SELECTOR", selector);
    var lines = data.match(/[^\r\n]+/g);
    var help = document.querySelector(selector);
    if (!help) {
-console.log("GOT HERE AAA cannot find", selector);
+		console.log("CANNOT FIND HELP SELECTOR", selector);
       return;
    }
    var output = "";
@@ -2542,7 +2549,6 @@ console.log("GOT HERE AAA cannot find", selector);
    }
    output += '</table>\n';
    help.innerHTML = output;
-console.log("HELP", help);
 }
 
 
