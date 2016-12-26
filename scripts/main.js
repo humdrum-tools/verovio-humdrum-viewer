@@ -2583,22 +2583,18 @@ function toggleHelpMenu(state) {
 //
 
 function showCompiledFilterData() {
-	var page = PAGE;
-	var options = humdrumToHumdrumOptions();
-console.log("HUMDRUM OPTIONS", options);
-	var data    = EDITOR.getValue().replace(/^\s+/, "");
+
 	var options = humdrumToSvgOptions();
 	vrvToolkit.setOptions(options);
+
+	var data    = EDITOR.getValue().replace(/^\s+/, "");
+	var data    = data.replace(/\s+$/, "");
 	vrvToolkit.loadData(data);
+
 	var newdata = vrvToolkit.getHumdrum();
-	var lines = newdata.split(/\n/);
-	var output = "";
-	for (var i=0; i<lines.length; i++) {
-		if (!lines[i].match(/^!!!filter:/)) {
-			output += lines[i] + "\n";
-		}
-	}
-	EDITOR.setValue(output, -1);
+	EDITOR.setValue(newdata, -1);
+
+//	var page = PAGE;
 //	displayNotation(page);
 }
 
