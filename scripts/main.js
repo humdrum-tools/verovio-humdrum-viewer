@@ -2588,10 +2588,10 @@ function showCompiledFilterData() {
 	vrvToolkit.setOptions(options);
 
 	var data    = EDITOR.getValue().replace(/^\s+/, "");
-	var data    = data.replace(/\s+$/, "");
 	vrvToolkit.loadData(data);
 
 	var newdata = vrvToolkit.getHumdrum();
+	newdata.replace(/\s+$/s, "");
 	EDITOR.setValue(newdata, -1);
 
 //	var page = PAGE;
