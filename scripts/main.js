@@ -969,7 +969,7 @@ function loadKernScoresFile(obj, force) {
 				execute: false
 			}
 		).then(function() {
-				console.log("Downloaded", key);
+				console.log("X Downloaded", key);
 				info = basketSession.get(key);
 				console.log("NEW INFO", info);
 				if (info) {
