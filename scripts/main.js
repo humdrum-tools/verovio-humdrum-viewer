@@ -956,6 +956,7 @@ function loadKernScoresFile(obj, force) {
 		console.log("removed ", key);
 	}
 	var expire = 172;
+	console.log("EXPIRE", expire);
 	var info = basketSession.get(key);
 	console.log("INFO", info);
 	var jinfo;
