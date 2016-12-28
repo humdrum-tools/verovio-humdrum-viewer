@@ -34,7 +34,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 138;
+var BasketVersion = 139;
 
 var Actiontime = 0;
 
@@ -958,10 +958,10 @@ function loadKernScoresFile(obj, force) {
 	var expire = 172;
 	console.log("EXPIRE", expire);
 	var info = basketSession.get(key);
-	console.log("INFO", info);
+	// console.log("INFO", info);
 	var jinfo;
 	if (!info) {
-		console.log("Going to download", key);
+		// console.log("Going to download", key);
 		basketSession.require(
 			{	url: url,
 				key: key,
@@ -969,17 +969,19 @@ function loadKernScoresFile(obj, force) {
 				execute: false
 			}
 		).then(function() {
-				console.log("X Downloaded", key);
+				// console.log("X Downloaded", key);
 				info = basketSession.get(key);
-				console.log("NEW INFO", info);
+
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
+						// console.log("NEW JSON INFO", jinfo);
+						displayScoreTextInEditor(atob(jinfo.content), PAGE);
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
-						displayScoreTextInEditor(info.data, PAGE);
+						console.log("Error downloading", key);
 					}
 				} else {
 					console.log("Error retrieving", key);
@@ -999,6 +1001,7 @@ function loadKernScoresFile(obj, force) {
 		}
 	}
 }
+
 
 
 //////////////////////////////
