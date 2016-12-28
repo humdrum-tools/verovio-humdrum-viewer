@@ -951,10 +951,11 @@ function loadKernScoresFile(obj, force) {
 		return;
 	}
 	
-	var expire = 172;
 	if (force) {
-		expire = -1;
+		basketSession.remove(key);
+		console.log("removed ", key);
 	}
+	var expire = 172;
 	var info = basketSession.get(key);
 	var jinfo;
 	if (!info) {
