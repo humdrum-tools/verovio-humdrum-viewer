@@ -905,7 +905,7 @@ var COUNTER = 0;
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(obj) {
+function loadKernScoresFile(obj, force) {
 
 	var file        = obj.file;
 	var measures    = obj.measures;
@@ -951,6 +951,10 @@ function loadKernScoresFile(obj) {
 		return;
 	}
 	
+	var expire = 172;
+	if (force) {
+		expire = -1;
+	}
 	var info = basketSession.get(key);
 	var jinfo;
 	if (!info) {
@@ -958,7 +962,7 @@ function loadKernScoresFile(obj) {
 		basketSession.require(
 			{	url: url,
 				key: key,
-				expire: 172,
+				expire: expire,
 				execute: false
 			}
 		).then(function() {
@@ -1459,7 +1463,7 @@ function reloadData() {
 			measures: CGI.mm,
 			previous: false,
 			next: false
-		});
+		}, true);
 }
 
 
