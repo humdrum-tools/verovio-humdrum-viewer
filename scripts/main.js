@@ -971,6 +971,7 @@ function loadKernScoresFile(obj, force) {
 		).then(function() {
 				console.log("Downloaded", key);
 				info = basketSession.get(key);
+				console.log("NEW INFO", info);
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
