@@ -24,6 +24,7 @@ var KeyboardMode = "ace/keyboard/ace";
 var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
 var TABSIZE = 12;
+var DISPLAYTIME = 0;
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
@@ -179,6 +180,10 @@ function displayNotation(page) {
 		console.log("Verovio toolkit not (yet) loaded");
 		return;
 	}
+	DISPLAYTIME = new Date().getTime();
+	if (!page) {
+		page = PAGE;
+	}
 
 	if (FreezeRendering) {
 		return;
@@ -190,15 +195,20 @@ function displayNotation(page) {
 	var options = humdrumToSvgOptions();
 	vrvToolkit.setOptions(options);
 	try {
-		vrvToolkit.loadData(data);
+		if (!data.match(/^\s*$/)) {
+			vrvToolkit.loadData(data);
+		}
 		if (vrvToolkit.getPageCount() == 0) {
 			var log = vrvToolkit.getLog();
 			console.log(">>>>>>>>>>> ERROR LOG:", log);
-			document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
+			return;
+			// document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
 		} else {
-			var svg = vrvToolkit.renderData(data, options);
+			var svg;
 			if (page) {
 				svg = vrvToolkit.renderPage(page, {});
+			} else {
+				svg = vrvToolkit.renderData(data, options);
 			}
 
 			var output = document.querySelector("#output");
@@ -956,7 +966,6 @@ function loadKernScoresFile(obj, force) {
 		console.log("removed ", key);
 	}
 	var expire = 172;
-	console.log("EXPIRE", expire);
 	var info = basketSession.get(key);
 	// console.log("INFO", info);
 	var jinfo;
@@ -1252,7 +1261,6 @@ function loadPage(page) {
 	if (!page) {
 		page = PAGE;
 	}
-console.log("LOADING PAGE", page);
 	PAGE = page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
@@ -1542,7 +1550,7 @@ function initializeVerovioToolkit() {
 
 function	monitorNotationUpdating() {
 
-   if (EDITOR.session.getLength() < 500) {
+   if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
 			displayNotation();
 			return;
 	}
@@ -1563,8 +1571,12 @@ function	monitorNotationUpdating() {
 	ActionTime = actiontime;
 
 	setTimeout(function() {
+		if (DISPLAYTIME > actiontime - delay) {
+			return;
+		}
 		if (actiontime <= ActionTime) {
 			console.log("Updating notation in setTimeout");
+			DISPLAYTIME = new Date().getTime();
 			displayNotation();
 		}
 	}, delay);
@@ -1961,14 +1973,12 @@ function markNote(item, line) {
 			outclass += " " + classlist[i];
 		}
 		CursorNote.setAttribute("class", outclass);
-console.log("REMOVING HIGHLIGHT");
 
 	}
 	CursorNote = item;
 	if (CursorNote) {
 		/// console.log("TURNING ON NEW NOTE", CursorNote);
 		// CursorNote.setAttribute("fill", "#c00");
-console.log("ADDING HIGHLIGHT");
 
 		var classes = CursorNote.getAttribute("class");
 		var classlist = classes.split(" ");
@@ -2332,7 +2342,6 @@ function toggleEditorMode() {
 //
 
 function toggleHumdrumCsvTsv() {
-console.log("EDITOR MODE", EditorMode);
 	if (EditorMode == "ace/mode/xml") {
 		// not editing Humdrum data
 		return;
