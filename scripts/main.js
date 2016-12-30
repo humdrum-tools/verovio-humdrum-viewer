@@ -185,6 +185,8 @@ function displayNotation(page) {
 		page = PAGE;
 	}
 
+console.log("PRINTING PAGE", page, "TIME", DISPLAYTIME);
+
 	if (FreezeRendering) {
 		return;
 	}
@@ -414,6 +416,7 @@ function toggleFreeze() {
 	console.log("FreezeRendering =,", FreezeRendering);
 	if (!FreezeRendering) {
 		console.log("Updating notation");
+console.log("GOT HERE AAA");
 		displayNotation();
 		setBackgroundColorUnfrozen();
 	} else {
@@ -1205,12 +1208,14 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			vrvToolkit.loadData(text);
 			var newtext = vrvToolkit.getHumdrum();
 			EDITOR.setValue(newtext, -1);
+console.log("GOT HERE BBB");
 			displayNotation(page);
 		} else {
 			// -1 is to unselect the inserted text and move cursor to
 			// start of inserted text.
 			EDITOR.setValue(text, -1);
 			// display the notation for the data:
+console.log("GOT HERE CCC");
 			displayNotation(page);
 		}
 }
@@ -1535,6 +1540,7 @@ function initializeVerovioToolkit() {
 
 	if (!ShowingIndex) {
 		console.log("Display current score after verovio initialized");
+console.log("GOT HERE DDD");
 		displayNotation();
 	}
 
@@ -1551,6 +1557,7 @@ function initializeVerovioToolkit() {
 function	monitorNotationUpdating() {
 
    if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
+console.log("GOT HERE EEE");
 			displayNotation();
 			return;
 	}
@@ -1577,6 +1584,7 @@ function	monitorNotationUpdating() {
 		if (actiontime <= ActionTime) {
 			console.log("Updating notation in setTimeout");
 			DISPLAYTIME = new Date().getTime();
+console.log("GOT HERE FFF");
 			displayNotation();
 		}
 	}, delay);
@@ -2087,6 +2095,7 @@ function setupSplitter() {
 	window.addEventListener('mouseup', function(event) {
 		if (Splitter.mouseState != 0) {
 			Splitter.mouseState = 0;
+console.log("GOT HERE GGG");
 			displayNotation();
 		}
 	});
@@ -2269,6 +2278,7 @@ function displayScoreTextInEditor(text, page) {
 	}
 	EDITOR.setValue(text, -1);
 	// unpdate the notation display
+console.log("GOT HERE HHH");
 	displayNotation(page);
 	PAGE = page;
 }
