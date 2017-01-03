@@ -194,6 +194,7 @@ console.log("PRINTING PAGE", page, "TIME", DISPLAYTIME);
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
+console.log("data start", data.slice(0,200));
 	var options = humdrumToSvgOptions();
 	vrvToolkit.setOptions(options);
 	try {
@@ -918,7 +919,7 @@ var COUNTER = 0;
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(obj, force) {
+function loadKernScoresFile(obj, force, show) {
 
 	var file        = obj.file;
 	var measures    = obj.measures;
@@ -988,7 +989,10 @@ function loadKernScoresFile(obj, force) {
 					try {
 						jinfo = JSON.parse(info.data);
 						// console.log("NEW JSON INFO", jinfo);
-						displayScoreTextInEditor(atob(jinfo.content), PAGE);
+console.log("GOT HERE 111");
+						if (show) {
+							displayScoreTextInEditor(atob(jinfo.content), PAGE);
+						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);
 						}
@@ -1009,6 +1013,7 @@ function loadKernScoresFile(obj, force) {
 				processInfo(jinfo, obj, false, false);
 			}
 		} catch(err) {
+console.log("GOT HERE 222");
 			displayScoreTextInEditor(info.data, PAGE);
 		}
 	}
@@ -1104,6 +1109,7 @@ function kernScoresUrl(file, measures) {
 //
 
 function processInfo(info, obj, nextwork, prevwork) {
+console.log("PROCESSINFO", info, obj ,nextwork, prevwork);
 	var score;
 	if (info) {
 		FILEINFO = info;
@@ -1117,6 +1123,7 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
+console.log("GOT HERE 333");
 	displayScoreTextInEditor(score, PAGE);
 
 	obj.next = false;
@@ -1128,11 +1135,13 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	if (info["next-work"]) {
 		obj.file = info["next-work"];
+console.log("LOADING NEXT WORK", obj.file);
 		loadKernScoresFile(obj)
 	}
 	if (info["previous-work"]) {
 		obj.file = info["previous-work"];
 		loadKernScoresFile(obj)
+console.log("LOADING PREVIOUS WORK", obj.file);
 	}
 }
 
@@ -1371,6 +1380,7 @@ function gotoFirstPage() {
 function showBufferedHumdrumData() {
 	if (!BufferedHumdrumFile.match(/^\s*$/)) {
 		var page = PAGE;
+console.log("GOT HERE 444");
 		displayScoreTextInEditor(BufferedHumdrumFile, PAGE);
 		BufferedHumdrumFile = "";
 	}
@@ -1392,6 +1402,7 @@ function displayMei() {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
 	var page = PAGE;
+console.log("GOT HERE 555");
 	displayScoreTextInEditor(meidata, page);
 	
 	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
