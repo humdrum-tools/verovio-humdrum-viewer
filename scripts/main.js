@@ -919,7 +919,7 @@ var COUNTER = 0;
 // loadKernScoresFile --
 //
 
-function loadKernScoresFile(obj, force, show) {
+function loadKernScoresFile(obj, force) {
 
 	var file        = obj.file;
 	var measures    = obj.measures;
@@ -990,7 +990,7 @@ function loadKernScoresFile(obj, force, show) {
 						jinfo = JSON.parse(info.data);
 						// console.log("NEW JSON INFO", jinfo);
 console.log("GOT HERE 111");
-						if (show) {
+						if (force) {
 							displayScoreTextInEditor(atob(jinfo.content), PAGE);
 						}
 						if (getnext) {
