@@ -185,8 +185,6 @@ function displayNotation(page) {
 		page = PAGE;
 	}
 
-console.log("PRINTING PAGE", page, "TIME", DISPLAYTIME);
-
 	if (FreezeRendering) {
 		return;
 	}
@@ -194,7 +192,6 @@ console.log("PRINTING PAGE", page, "TIME", DISPLAYTIME);
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
-console.log("data start", data.slice(0,200));
 	var options = humdrumToSvgOptions();
 	vrvToolkit.setOptions(options);
 	try {
@@ -375,7 +372,7 @@ function humdrumToHumdrumOptions() {
 
 function musicxmlToHumdrumOptions() {
 	return {
-		inputFormat       : "musicxml",
+		inputFormat       : "musicxml-hum",
 		type              : "humdrum"
 	}
 }
@@ -417,7 +414,6 @@ function toggleFreeze() {
 	console.log("FreezeRendering =,", FreezeRendering);
 	if (!FreezeRendering) {
 		console.log("Updating notation");
-console.log("GOT HERE AAA");
 		displayNotation();
 		setBackgroundColorUnfrozen();
 	} else {
@@ -989,7 +985,6 @@ function loadKernScoresFile(obj, force) {
 					try {
 						jinfo = JSON.parse(info.data);
 						// console.log("NEW JSON INFO", jinfo);
-console.log("GOT HERE 111");
 						if (force) {
 							displayScoreTextInEditor(atob(jinfo.content), PAGE);
 						}
@@ -1013,7 +1008,6 @@ console.log("GOT HERE 111");
 				processInfo(jinfo, obj, false, false);
 			}
 		} catch(err) {
-console.log("GOT HERE 222");
 			displayScoreTextInEditor(info.data, PAGE);
 		}
 	}
@@ -1109,7 +1103,6 @@ function kernScoresUrl(file, measures) {
 //
 
 function processInfo(info, obj, nextwork, prevwork) {
-console.log("PROCESSINFO", info, obj ,nextwork, prevwork);
 	var score;
 	if (info) {
 		FILEINFO = info;
@@ -1123,7 +1116,6 @@ console.log("PROCESSINFO", info, obj ,nextwork, prevwork);
 
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
-console.log("GOT HERE 333");
 	displayScoreTextInEditor(score, PAGE);
 
 	obj.next = false;
@@ -1135,13 +1127,11 @@ console.log("GOT HERE 333");
 
 	if (info["next-work"]) {
 		obj.file = info["next-work"];
-console.log("LOADING NEXT WORK", obj.file);
 		loadKernScoresFile(obj)
 	}
 	if (info["previous-work"]) {
 		obj.file = info["previous-work"];
 		loadKernScoresFile(obj)
-console.log("LOADING PREVIOUS WORK", obj.file);
 	}
 }
 
@@ -1217,14 +1207,12 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			vrvToolkit.loadData(text);
 			var newtext = vrvToolkit.getHumdrum();
 			EDITOR.setValue(newtext, -1);
-console.log("GOT HERE BBB");
 			displayNotation(page);
 		} else {
 			// -1 is to unselect the inserted text and move cursor to
 			// start of inserted text.
 			EDITOR.setValue(text, -1);
 			// display the notation for the data:
-console.log("GOT HERE CCC");
 			displayNotation(page);
 		}
 }
@@ -1380,7 +1368,6 @@ function gotoFirstPage() {
 function showBufferedHumdrumData() {
 	if (!BufferedHumdrumFile.match(/^\s*$/)) {
 		var page = PAGE;
-console.log("GOT HERE 444");
 		displayScoreTextInEditor(BufferedHumdrumFile, PAGE);
 		BufferedHumdrumFile = "";
 	}
@@ -1402,7 +1389,6 @@ function displayMei() {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
 	var page = PAGE;
-console.log("GOT HERE 555");
 	displayScoreTextInEditor(meidata, page);
 	
 	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
@@ -1551,7 +1537,6 @@ function initializeVerovioToolkit() {
 
 	if (!ShowingIndex) {
 		console.log("Display current score after verovio initialized");
-console.log("GOT HERE DDD");
 		displayNotation();
 	}
 
@@ -1568,7 +1553,6 @@ console.log("GOT HERE DDD");
 function	monitorNotationUpdating() {
 
    if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
-console.log("GOT HERE EEE");
 			displayNotation();
 			return;
 	}
@@ -1595,7 +1579,6 @@ console.log("GOT HERE EEE");
 		if (actiontime <= ActionTime) {
 			console.log("Updating notation in setTimeout");
 			DISPLAYTIME = new Date().getTime();
-console.log("GOT HERE FFF");
 			displayNotation();
 		}
 	}, delay);
@@ -2106,7 +2089,6 @@ function setupSplitter() {
 	window.addEventListener('mouseup', function(event) {
 		if (Splitter.mouseState != 0) {
 			Splitter.mouseState = 0;
-console.log("GOT HERE GGG");
 			displayNotation();
 		}
 	});
@@ -2289,7 +2271,6 @@ function displayScoreTextInEditor(text, page) {
 	}
 	EDITOR.setValue(text, -1);
 	// unpdate the notation display
-console.log("GOT HERE HHH");
 	displayNotation(page);
 	PAGE = page;
 }
