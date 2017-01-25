@@ -35,7 +35,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 173;
+var BasketVersion = 174;
 
 var Actiontime = 0;
 
@@ -89,6 +89,13 @@ var YKey      = 89;
 var ZKey      = 90;
 var OneKey    = 49;
 var TwoKey    = 50;
+var ThreeKey  = 51;
+var FourKey   = 52;
+var FiveKey   = 53;
+var SixKey    = 54;
+var SevenKey  = 55;
+var EightKey  = 56;
+var NineKey   = 57;
 var PgUpKey   = 33;
 var PgDnKey   = 34;
 var EndKey    = 35;
@@ -103,7 +110,11 @@ var SlashKey  = 191;
 var EscKey    = 27;
 var BackKey   = 8;
 var CommaKey  = 188;
+var MinusKey  = 189;
 var DotKey    = 190;
+var SemiColonKey = 186;
+var BackQuoteKey   = 192;
+var SingleQuoteKey = 222;
 
 
 ///////////////////////////////////////////////////////////////////////////

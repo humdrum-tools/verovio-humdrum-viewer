@@ -84,18 +84,59 @@ function processNotationKeyCommand(event) {
 	}
 
 	switch (event.keyCode) {
-		case IKey:
-			processNotationKey("i", CursorNote);
+
+		case YKey:
+			processNotationKey("y", CursorNote);
 			break;
-		case SKey:
-			processNotationKey("s", CursorNote);
+
+		case TKey:
+			if (event.shiftKey) {
+				processNotationKey("T", CursorNote);
+			} else {
+				processNotationKey("t", CursorNote);
+			}
 			break;
-		case FKey:
-			processNotationKey("f", CursorNote);
+
+		case ThreeKey:
+			processNotationKey("#", CursorNote);
 			break;
+
+		case MinusKey:
+			processNotationKey("-", CursorNote);
+			break;
+
 		case NKey:
 			processNotationKey("n", CursorNote);
 			break;
+
+		case SingleQuoteKey:
+			processNotationKey("'", CursorNote);
+			break;
+
+		case SemiColonKey:
+			if (event.shiftKey) {
+				processNotationKey(":", CursorNote);
+			} else {
+				processNotationKey(";", CursorNote);
+			}
+			break;
+
+		case BackQuoteKey:
+			if (event.shiftKey) {
+				processNotationKey("~", CursorNote);
+			} else {
+				processNotationKey("`", CursorNote);
+			}
+			break;
+
+		case SixKey:
+			if (event.shiftKey) {
+				processNotationKey("^^", CursorNote);
+			} else {
+				processNotationKey("^", CursorNote);
+			}
+			break;
+
 	}
 }
 

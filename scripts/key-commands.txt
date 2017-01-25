@@ -23,8 +23,16 @@ v	toggle vi/plain editor
 
 <p><b> Notation editing (click on note) </b></p>
 
-s	toggle sharp on note
-f	toggle flat on note
+#	toggle sharp on note
+-	toggle flat on note
 n	toggle natural on note
+'	toggle staccato
+^	toggle accent
+shift-^	toggle marcato
+~	toggle tenuto
+`	toggle staccatissimo
+t	toggle minor-second trill
+T	toggle major-second trill
+;	toggle fermata
 
 

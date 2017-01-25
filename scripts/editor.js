@@ -29,22 +29,52 @@ function processNotationKey(key, element) {
 	}
 
 	if (name === "note") {
-		if (key === "i") {
+		if (key === "y") {
 			toggleVisibility(id, line, field);
 		}
-		if (key === "s") {
+		if (key === "#") {
 			toggleSharp(id, line, field);
 		}
-		if (key === "f") {
+		if (key === "-") {
 			toggleFlat(id, line, field);
 		}
 		if (key === "n") {
 			toggleNatural(id, line, field);
 		}
+		if (key === "'") {
+			toggleStaccato(id, line, field);
+		}
+		if (key === "^") {
+			toggleAccent(id, line, field);
+		}
+		if (key === "^^") {
+			toggleMarcato(id, line, field);
+		}
+		if (key === "~") {
+			toggleTenuto(id, line, field);
+		}
+		if (key === "t") {
+			toggleMinorTrill(id, line, field);
+		}
+		if (key === "T") {
+			toggleMajorTrill(id, line, field);
+		}
+		if (key === "`") {
+			toggleStaccatissimo(id, line, field);
+		}
+		if (key === ";") {
+			toggleFermata(id, line, field);
+		}
+		if (key === ":") {
+			toggleArpeggio(id, line, field);
+		}
 	}
 	if (name === "rest") {
-		if (key === "i") {
+		if (key === "y") {
 			toggleVisibility(id, line, field);
+		}
+		if (key === ";") {
+			toggleFermata(id, line, field);
 		}
 	}
 }
@@ -149,6 +179,316 @@ function toggleNatural(id, line, field) {
 	} else {
 		// remove sharp
 		token = token.replace(/n+/, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleStaccato --
+//
+
+function toggleStaccato(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match("'")) {
+		// add staccato
+		token = token.replace(/'+/, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "'" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove staccato
+		token = token.replace(/'/g, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleAccent --
+//
+
+function toggleAccent(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/\^+/)) {
+		// add accent
+		token = token.replace(/\^+/, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "^" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove accent
+		token = token.replace(/\^+/g, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleMarcato --
+//
+
+function toggleMarcato(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/\^+/)) {
+		// add marcato
+		token = token.replace(/\^+/, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "^^" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/\^+/g, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleMinorTrill --
+//
+
+function toggleMinorTrill(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/T/i)) {
+		// add marcato
+		token = token.replace(/T/gi, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "t" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/T/gi, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleMajorTrill --
+//
+
+function toggleMajorTrill(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/T/i)) {
+		// add marcato
+		token = token.replace(/T/gi, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "T" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/T/gi, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleArpeggio --
+//
+
+function toggleArpeggio(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/:/i)) {
+		// add marcato
+		token = token.replace(/:/gi, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + ":" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/:/gi, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleFermata --
+//
+
+function toggleFermata(id, line, field) {
+console.log("TOGGLING FERMATA");
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (!token.match(/;/i)) {
+		// add marcato
+		token = token.replace(/;/gi, "");
+		token = token.replace(/([ra-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + ";" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/;/gi, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+//////////////////////////////
+//
+// toggleTenuto --
+//
+
+function toggleTenuto(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/~/)) {
+		// add marcato
+		token = token.replace(/~+/g, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "~" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/~/g, "");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleStaccatissimo --
+//
+
+function toggleStaccatissimo(id, line, field) {
+	if (line < 1 || field < 1) {
+		return;
+	}
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	if (token.match("r")) {
+		// not a note
+		return;
+	}
+	if (!token.match(/`/)) {
+		// add marcato
+		token = token.replace(/`/g, "");
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+				function(str,p1) { return p1 ? p1 + "`" : str});
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
+	} else {
+		// remove marcato
+		token = token.replace(/`/g, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	}

@@ -8,9 +8,20 @@ body {
 	background: #fffcf1;
 	margin: 0;
 	padding 0;
+	/* overflow: scroll; */
 	overflow: scroll;
 }
 
+/* needed to see scroll bar in help menu */
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 7px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 
 g[id^="note-"]:hover,
 g[id^="rest-"]:hover {
@@ -269,6 +280,8 @@ textarea#input {
 	width:400px;
 	opacity:0.95;
 	padding:30px;
+	max-height: 90%;
+	overflow: scroll;
 }
 
 #search-help {
