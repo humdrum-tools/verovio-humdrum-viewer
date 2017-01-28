@@ -1718,7 +1718,7 @@ function humdrumDataIntoView(event) {
 			target = target.parentNode;
 			continue;
 		}
-		matches = target.id.match(/-.*L(\d+)F(\d+)/);
+		matches = target.id.match(/-[^-]*L(\d+)F(\d+)/);
 		if (!matches) {
 			target = target.parentNode;
 			continue;
@@ -1736,7 +1736,7 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id) {
-	matches = id.match(/-.*L(\d+)F(\d+)/);
+	matches = id.match(/-[^-]*L(\d+)F(\d+)/);
 	if (!matches) {
 		return;
 	}
@@ -2319,7 +2319,7 @@ function showIdInEditor(id) {
 	if (EditorMode == "ace/mode/xml") {
 		return;
 	}
-	var matches = id.match(/-.*L(\d+)/);
+	var matches = id.match(/-[^-]*L(\d+)/);
 	if (!matches) {
 		return;
 	}

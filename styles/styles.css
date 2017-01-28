@@ -24,8 +24,18 @@ body {
 }
 
 g[id^="note-"]:hover,
+g[id^="slur-"]:hover,
+g[id^="tie-"]:hover,
 g[id^="rest-"]:hover {
-	  fill: orange; 
+	fill: orange; 
+}
+
+g[id^="note-"]:hover [stroke],
+g[id^="slur-"]:hover [stroke],
+g[id^="tie-"]:hover [stroke],
+g[id^="rest-"]:hover [stroke] {
+	stroke: orange;
+	stroke-width: 50px;
 }
 
 
