@@ -35,7 +35,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 179;
+var BasketVersion = 180;
 
 var Actiontime = 0;
 
@@ -398,6 +398,7 @@ function musicxmlToHumdrumOptions() {
 function allowTabs() {
 // This function is not needed to activate tabs with the ace editor.
 return;
+/*
 	var textareas = document.getElementsByTagName('textarea');
 	var count = textareas.length;
 	for (var i=0; i<count; i++) {
@@ -411,6 +412,7 @@ return;
 			}
 		}
 	}
+*/
 }
 
 

@@ -61,7 +61,7 @@ svg:not(:root) {
 
 
 #header-table td:first-child {
-	padding-left 10px;
+	padding-left: 10px;
 }
 
 
@@ -79,10 +79,10 @@ svg:not(:root) {
 	margin-top: 	11px;
 	white-space:    nowrap;
 	word-spacing:   -3px;
-	user-select:    none;
 	-moz-user-select:    none;
 	-webkit-user-select:    none;
 	-ms-user-select:    none;
+	user-select:    none;
 }
 
 
@@ -260,6 +260,7 @@ textarea#input {
 
 textarea#input {
 	-moz-tab-size: 15;
+	-ms-tab-size: 15;
 	-o-tab-size: 15;
 	tab-size: 15;
 	white-space: pre;

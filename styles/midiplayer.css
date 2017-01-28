@@ -66,16 +66,16 @@
 
 /* STOP ******************************************************************/
 
-#midiPlayer_div a.stop	: after {
+#midiPlayer_div a.stop :after {
 	background	: #ccc;
 	border-radius	: 0%;
 }
 
-#midiPlayer_div a.stop	:	hover:after {
+#midiPlayer_div a.stop :hover :after {
 	background	:	#ccc;
 }
 
-#midiPlayer_div a.stop	:	before {
+#midiPlayer_div a.stop :before {
 	border		:	none;
 }
 
