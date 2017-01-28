@@ -3,27 +3,29 @@
 *{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
-	box-sizing:border-box
+	box-sizing:border-box;
 }
 
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 
 html{
+	text-size-adjust: 100%;
 	-ms-text-size-adjust:100%;
-	-webkit-text-size-adjust:100%
+	-moz-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
 }
 
 body{
-	margin:0
+	margin:0;
 }
 
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{
-	display:block
+	display:block;
 }
 
 audio,canvas,video{
 	display:inline-block;
-	vertical-align:baseline
+	vertical-align:baseline;
 }
 
 audio:not([controls]){
@@ -104,9 +106,11 @@ input[type=checkbox],input[type=radio]{
 	padding:0
 }
 
+/*
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{
 	height:auto
 }
+*/
 
 input[type=search]{
 	box-sizing:content-box;
@@ -388,22 +392,21 @@ ul.w3-ul li:last-child{
 	float:left
 }
 
-.w3-navbar li a{display:block;
-	padding:8px 16px
+.w3-navbar li a{
+	display:block;
+	padding: 8px 16px;
 }
 
-.w3-navbar li a:hover{
+.w3-navbar li a:hover {
 	color:#000;
-	// background-color:#ccc;
 	background-color: pink;
 }
 
-.w3-navbar .w3-dropdown-hover,.w3-navbar .w3-dropdown-click{
+.w3-navbar .w3-dropdown-hover,.w3-navbar .w3-dropdown-click {
 	position:static
 }
 
 .w3-navbar .w3-dropdown-hover:hover,.w3-navbar .w3-dropdown-hover:first-child,.w3-navbar .w3-dropdown-click:hover{
-	// background-color:#ccc;
 	background-color:orange;
 	color:#000
 }

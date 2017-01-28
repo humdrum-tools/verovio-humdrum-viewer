@@ -240,7 +240,7 @@ td.gsc-search-button input.gsc-search-button {
 input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button {
   box-sizing: content-box;
   line-height: normal;
-  xborder-color:transparent !important;
+  border-color:transparent !important;
 }
 .gsc-tabsArea div {
   overflow: visible; 

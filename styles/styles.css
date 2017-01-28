@@ -7,7 +7,7 @@ body.waiting * {
 body {
 	background: #fffcf1;
 	margin: 0;
-	padding 0;
+	padding: 0;
 	/* overflow: scroll; */
 	overflow: scroll;
 }
@@ -80,6 +80,9 @@ svg:not(:root) {
 	white-space:    nowrap;
 	word-spacing:   -3px;
 	user-select:    none;
+	-moz-user-select:    none;
+	-webkit-user-select:    none;
+	-ms-user-select:    none;
 }
 
 
@@ -217,6 +220,9 @@ div#splitter {
 	border-left: 1px solid #ddd8d0;
 	cursor: ew-resize;
 	user-select: none;
+	-moz-user-select:    none;
+	-webkit-user-select:    none;
+	-ms-user-select:    none;
 }
 		
 
@@ -260,7 +266,7 @@ textarea#input {
 	overflow: scroll;
 	overflow-y: scroll;
 	overflow-x: scroll;
-	overflow: -moz-scrollbars-vertical;
+	/* overflow: -moz-scrollbars-vertical; */
 }
 
 /* Menu stylings */
@@ -268,6 +274,7 @@ textarea#input {
 
 #help-container {
 	-moz-box-shadow:    -1px -1px 25px #888;
+	-ms-box-shadow:    -1px -1px 25px #888;
 	-webkit-box-shadow: -1px -1px 25px #888;
 	box-shadow:         -1px -1px 25px #888;
 
