@@ -1,4 +1,6 @@
 
+<b> navigation commands <b>
+
 ?	toggle this help menu
 &larr;/&rarr;	next/previous page
 <i>home</i>	go to first page
@@ -14,14 +16,14 @@ b	show/hide logo
 f	(un)freeze dynamic notation
 h	show Humdrum data
 m	show MEI data
-i	show/hide data editor
 o	toggle original clefs
 p	show source scan (when available)
 r	reload file from server
 s	display SVG text for current page
 v	toggle vi/plain editor
+y	show/hide data editor
 
-<p><b> Notation editing (click on note) </b></p>
+<p><b> Note editing commands </b></p>
 
 #	toggle sharp on note
 -	toggle flat on note
@@ -34,5 +36,25 @@ shift-^	toggle marcato
 t	toggle minor-second trill
 T	toggle major-second trill
 ;	toggle fermata
+
+<p><b> Slur editing commands </b></p>
+
+a	force slur above
+b	force slur below
+d	delete slur orientation
+
+<p><b> Tie editing commands </b></p>
+
+a	force tie above
+b	force tie below
+d	delete tie orientation
+
+<p><b> Beam editing commands </b></p>
+
+a	force beam above
+b	force beam below
+d	delete beam orientation
+
+
 
 

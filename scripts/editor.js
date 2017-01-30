@@ -18,64 +18,608 @@
 
 function processNotationKey(key, element) {
 	var id    = element.id;
-	var line  = id.match(/L(\d+)/)[1];
-	var field = id.match(/F(\d+)/)[1];
+console.log("PROCESSING ", id);
+	var matches;
+
+	if (matches = id.match(/L(\d+)/)) {
+		var line = matches[1];
+	} else {
+		return; // required
+	}
+	if (matches = id.match(/F(\d+)/)) {
+		var field = matches[1];
+	} else {
+		return; // required
+	}
+	if (matches = id.match(/S(\d+)/)) {
+		var subfield = matches[1];
+	}
+	if (matches = id.match(/N(\d+)/)) {
+		var number = matches[1];
+	} else {
+		number = 1;
+	}
+	if (matches = id.match(/^([a-z]+)-/)) {
+		var name = matches[1];
+	} else {
+		return; // required
+	}
+	
 	var name  = id.match(/^([a-z]+)-/)[1];
+
 	if (!(line && field)) {
 		return;
 	}
 	if (line < 1 || field < 1) {
 		return;
 	}
+console.log("PROCESSING COMMAND FOR ", name);
 
 	if (name === "note") {
-		if (key === "y") {
-			toggleVisibility(id, line, field);
+		if (key === "y") { toggleVisibility(id, line, field); }
+		else if (key === "#") { toggleSharp(id, line, field); }
+		else if (key === "-") { toggleFlat(id, line, field); }
+		else if (key === "n") { toggleNatural(id, line, field); }
+		else if (key === "'") { toggleStaccato(id, line, field); }
+		else if (key === "^") { toggleAccent(id, line, field); }
+		else if (key === "^^") { toggleMarcato(id, line, field); }
+		else if (key === "~") { toggleTenuto(id, line, field); }
+		else if (key === "t") { toggleMinorTrill(id, line, field); }
+		else if (key === "T") { toggleMajorTrill(id, line, field); }
+		else if (key === "`") { toggleStaccatissimo(id, line, field); }
+		else if (key === ";") { toggleFermata(id, line, field); }
+		else if (key === ":") { toggleArpeggio(id, line, field); }
+	} else if (name === "rest") {
+		if (key === "y") { toggleVisibility(id, line, field); }
+		else if (key === ";") { toggleFermata(id, line, field); }
+	} else if (name === "slur") {
+		if (key === "a") { setSlurAboveMarker(id, line, field, number); }
+		else if (key === "b") { setSlurBelowMarker(id, line, field, number); }
+		else if (key === "d") { deleteSlurDirectionMarker(id, line, field, number); }
+		else if (key === "f") { flipSlurDirection(id, line, field, number); }
+	} else if (name === "tie") {
+		// need to fix tie functions to deal with chord notes (subfield values):
+		if (key === "a") { setTieAboveMarker(id, line, field, subfield); }
+		else if (key === "b") { setTieBelowMarker(id, line, field, subfield); }
+		else if (key === "d") { deleteTieDirectionMarker(id, line, field, subfield); }
+		else if (key === "f") { flipTieDirection(id, line, field, subfield); }
+	} else if (name === "beam") {
+		if (key === "a") { setBeamAboveMarker(id, line, field); }
+		else if (key === "b") { setBeamBelowMarker(id, line, field); }
+		else if (key === "d") { deleteBeamDirectionMarker(id, line, field); }
+		else if (key === "f") { flipBeamDirection(id, line, field); }
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setBeamAboveMarker --
+//
+
+function setBeamAboveMarker(id, line, field) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("TOGGLE BEAM ABOVE", token, line, field, id);
+	var counter = 0;
+	var newtoken = "";
+	
+	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	if (!matches) {
+		return;
+	}
+	
+	var newtoken = matches[1];
+	newtoken += matches[2];
+	newtoken += ">";
+	newtoken += matches[4];
+	
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setBeamBelowMarker --
+//
+
+function setBeamBelowMarker(id, line, field) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("TOGGLE BEAM ABOVE", token, line, field, id);
+	var counter = 0;
+	var newtoken = "";
+	
+	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	if (!matches) {
+		return;
+	}
+	
+	var newtoken = matches[1];
+	newtoken += matches[2];
+	newtoken += "<";
+	newtoken += matches[4];
+	
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// flipBeamDirection --
+//
+
+function flipBeamDirection(id, line, field) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("TOGGLE BEAM DIRECTION", token, line, field, id);
+	var counter = 0;
+	var newtoken = "";
+	
+	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	if (!matches) {
+		return;
+	}
+
+	var olddir = matches[3];
+	
+	var newtoken = matches[1];
+	newtoken += matches[2];
+	if (olddir === "<") {
+		newtoken += ">";
+	} else if (olddir === ">") {
+		newtoken += "<";
+	} else { 
+		newtoken += "<";
+	}
+	newtoken += matches[4];
+	
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// deleteBeamDirectionMarker --
+//
+
+function deleteBeamDirectionMarker(id, line, field) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("DELETE BEAM DIRECTION", token, line, field, id);
+	var counter = 0;
+	var newtoken = "";
+	
+	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	if (!matches) {
+		return;
+	}
+	
+	var newtoken = matches[1];
+	newtoken += matches[2];
+	newtoken += matches[4];
+	
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setSlurAboveMarker --
+//
+
+function setSlurAboveMarker(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	// console.log("TOGGLE SLUR ABOVE", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			counter++;
 		}
-		if (key === "#") {
-			toggleSharp(id, line, field);
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
 		}
-		if (key === "-") {
-			toggleFlat(id, line, field);
-		}
-		if (key === "n") {
-			toggleNatural(id, line, field);
-		}
-		if (key === "'") {
-			toggleStaccato(id, line, field);
-		}
-		if (key === "^") {
-			toggleAccent(id, line, field);
-		}
-		if (key === "^^") {
-			toggleMarcato(id, line, field);
-		}
-		if (key === "~") {
-			toggleTenuto(id, line, field);
-		}
-		if (key === "t") {
-			toggleMinorTrill(id, line, field);
-		}
-		if (key === "T") {
-			toggleMajorTrill(id, line, field);
-		}
-		if (key === "`") {
-			toggleStaccatissimo(id, line, field);
-		}
-		if (key === ";") {
-			toggleFermata(id, line, field);
-		}
-		if (key === ":") {
-			toggleArpeggio(id, line, field);
+		if (token[i+1] == '>') {
+			counter++;
+			continue;
+		} else if (token[i+1] == '<') {
+			newtoken += '>';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '>';
+			counter++;
+			continue;
 		}
 	}
-	if (name === "rest") {
-		if (key === "y") {
-			toggleVisibility(id, line, field);
+
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+
+}
+
+
+
+//////////////////////////////
+//
+// setSlurBelowMarker --
+//
+
+function setSlurBelowMarker(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	// console.log("TOGGLE SLUR BELOW", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			counter++;
 		}
-		if (key === ";") {
-			toggleFermata(id, line, field);
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
 		}
+		if (token[i+1] == '<') {
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			newtoken += '<';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '<';
+			counter++;
+			continue;
+		}
+	}
+
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// flipSlurDirection --
+//
+
+function flipSlurDirection(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	console.log("FLIP SLUR DIRECTION", token, line, field, number, id);
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	// console.log("TOGGLE SLUR DIRECTION", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '<') {
+			newtoken += '>';
+			i++;
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			newtoken += '<';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '<';
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+//////////////////////////////
+//
+// deleteSlurDirectionMarker --
+//
+
+function deleteSlurDirectionMarker(id, line, field, number) {
+
+	var token = getEditorContents(line, field);
+	console.log("DELETE SLUR DIRECTION", token, line, field, number, id);
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '<') {
+			i++;
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			i++;
+			counter++;
+			continue;
+		} else {
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setTieAboveMarker --
+//
+
+function setTieAboveMarker(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("TOGGLE TIE ABOVE", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if ((token[i] == '[') || (token[i] == '_')) {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '>') {
+			counter++;
+			continue;
+		} else if (token[i+1] == '<') {
+			newtoken += '>';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '>';
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+
+}
+
+
+
+//////////////////////////////
+//
+// setTieBelowMarker --
+//
+
+function setTieBelowMarker(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	console.log("TOGGLE SLUR BELOW", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if ((token[i] == '[') || (token[i] == '_')) {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '<') {
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			newtoken += '<';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '<';
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// flipTieDirection --
+//
+
+function flipTieDirection(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	console.log("FLIP SLUR DIRECTION", token, line, field, number, id);
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	// console.log("TOGGLE SLUR DIRECTION", token, line, field, number, id);
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if ((token[i] == '[') || (token[i] == '_')) {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '<') {
+			newtoken += '>';
+			i++;
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			newtoken += '<';
+			i++;
+			counter++;
+			continue;
+		} else {
+			newtoken += '<';
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// deleteTieDirectionMarker --
+//
+
+function deleteTieDirectionMarker(id, line, field, number) {
+	console.log("DELETE SLUR DIRECTION", token, line, field, number, id);
+	var token = getEditorContents(line, field);
+	if (token === ".") {
+		// nothing to do, just a null data token
+		return;
+	}
+	var counter = 0;
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if ((token[i] == '[') || (token[i] == '_')) {
+			counter++;
+		}
+		newtoken += token[i];
+		if (counter != number) {
+			continue;
+		}
+		if (token[i+1] == '<') {
+			i++;
+			counter++;
+			continue;
+		} else if (token[i+1] == '>') {
+			i++;
+			counter++;
+			continue;
+		} else {
+			counter++;
+			continue;
+		}
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
 	}
 }
 
@@ -546,7 +1090,18 @@ function setEditorContents(line, field, token, id) {
 	var components = linecontent.split("\t");
 	components[field-1] = token;
 	linecontent = components.join("\t");
+
+	var column = 0;
+	for (var i=0; i<field-1; i++) {
+		column += components[i].length;
+	}
+	EDITINGID = id;
+console.log("EDITING ID ", id);
+
 	EDITOR.session.replace(range, linecontent);
+	EDITOR.gotoLine(line, column+1);
+
+
 	RestoreCursorNote = id;
 }
 

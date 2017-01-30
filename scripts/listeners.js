@@ -84,6 +84,21 @@ function processNotationKeyCommand(event) {
 	}
 
 	switch (event.keyCode) {
+		case AKey:
+			processNotationKey("a", CursorNote);
+			break;
+
+		case BKey:
+			processNotationKey("b", CursorNote);
+			break;
+
+		case DKey:
+			processNotationKey("d", CursorNote);
+			break;
+
+		case FKey:
+			processNotationKey("f", CursorNote);
+			break;
 
 		case YKey:
 			processNotationKey("y", CursorNote);
@@ -184,7 +199,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case IKey:
+		case YKey:
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					toggleInputArea();

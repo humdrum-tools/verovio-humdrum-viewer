@@ -25,6 +25,9 @@ var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
 var TABSIZE = 12;
 var DISPLAYTIME = 0;
+var HIGHLIGHTQUERY = null;
+var EDITINGID = null;
+var SUPPRESSMONITOR = null;
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
@@ -1565,6 +1568,14 @@ function initializeVerovioToolkit() {
 
 function	monitorNotationUpdating() {
 
+console.log("GOT HERE IN MONITOR NOTATION UPDATING");
+
+	if (SUPPRESSMONITOR) {
+		console.log("SUPPRESSING MONITOR NOTATION");
+		SUPPRESSMIONITOR = null;
+		return;
+	}
+
    if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
 			displayNotation();
 			return;
@@ -1718,11 +1729,15 @@ function humdrumDataIntoView(event) {
 			target = target.parentNode;
 			continue;
 		}
+console.log("TARGET = ", target.id);
 		matches = target.id.match(/-[^-]*L(\d+)F(\d+)/);
 		if (!matches) {
 			target = target.parentNode;
+console.log("\tGOT HERE SINCE NO MATCH in ", target.id);
 			continue;
 		}
+console.log("\tHIGHLIGHTING ELE<EMT ", target.id);
+		HIGHLIGHTQUERY = target.id
 		highlightIdInEditor(target.id);
 		break;
 	}
@@ -1866,6 +1881,7 @@ function setupAceEditor(idtag) {
 //
 
 function highlightNoteInScore(event) {
+console.log("HIGHLIGHTINTE NOTE IN SCORE ", event);
 	if (EditorMode == "ace/mode/xml") {
 		xmlDataNoteIntoView(event);
 	} else {
@@ -1943,19 +1959,43 @@ function humdrumDataNoteIntoView(event) {
 	var line = location.row;
 	var column = location.column;
 	var text = EDITOR.session.getLine(line);
-	var fys = getFieldAndSubspine(text, column);
+	var fys = getFieldAndSubspine(text, column-1);
+console.log("TEXT", text, "COL", column);
 	var field = fys.field;
 	var subspine = fys.subspine;
-	var query = "L" + (line+1) + "F" + field;
-	if (subspine > 0) {
-		query += "S" + subspine;
+	var query = HIGHLIGHTQUERY;
+console.log("HIGHLIGHT QUERY is set to  ", HIGHLIGHTQUERY);
+	HIGHLIGHTQUERY = "";
+console.log("EDITING ID IS CUrRENTLY ", EDITINGID);
+	if (!query) {
+		query = EDITINGID;
+		HIGHLLIGHTQUERY = EDITINGID;
+console.log("SAVING EDIT ID TO HIGHLIGHT", EDITINGID);
+		// EDITINGID = null;
 	}
+	if (!query) {
+console.log("CONSTRUCTING QUERY");
+		var query = "L" + (line+1) + "F" + field;
+		if (subspine > 0) {
+			query += "S" + subspine;
+		}
+	}
+console.log("QUERY", query);
 	var item;
 	if (Splitter.rightContent) {
 		// see: https://www.w3.org/TR/selectors
-		var item = Splitter.rightContent.querySelector("g[id$='" + 
+		var items = Splitter.rightContent.querySelectorAll("g[id$='" + 
 			query + "']");
-		// console.log("ITEM", item);
+		console.log("FOUND ITEMS", items);
+		if (items.length == 0) {
+			// cannot find (hidden rest for example)
+			return;
+		}
+		item = items[items.length-1];
+		if (item.id.match(/^accid/)) {
+			item = items[items.length-2];
+		}
+		console.log("FOUND ITEM", item);
 	}
 	markNote(item);
 }
@@ -1968,6 +2008,12 @@ function humdrumDataNoteIntoView(event) {
 //
 
 function markNote(item, line) {
+	if (!item) {
+		item = CursorNote;
+	}
+	if (!item) {
+		return;
+	}
 	EditorLine = line;
 	if (CursorNote && item && (CursorNote.id == item.id)) {
 		// console.log("THE SAME NOTE");
@@ -1990,7 +2036,10 @@ function markNote(item, line) {
 		CursorNote.setAttribute("class", outclass);
 
 	}
-	CursorNote = item;
+	if (item) {
+		CursorNote = item;
+console.log("CURSORNOTE = ", CursorNote.id);
+	}
 	if (CursorNote) {
 		/// console.log("TURNING ON NEW NOTE", CursorNote);
 		// CursorNote.setAttribute("fill", "#c00");

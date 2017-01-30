@@ -23,16 +23,34 @@ body {
 	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
+g[id^="bline-"]:hover,
+g[id^="clef-"]:hover,
+g[id^="ksig-"]:hover,
+g[id^="msig-"]:hover,
 g[id^="note-"]:hover,
+g[id^="accid-"]:hover,
+g[id^="trill-"]:hover,
+g[id^="artic-"]:hover,
 g[id^="slur-"]:hover,
 g[id^="tie-"]:hover,
+g[id^="slur-"]:hover,
+g[id^="fermata-"]:hover,
 g[id^="rest-"]:hover {
 	fill: orange; 
 }
 
+g[id^="bline-"]:hover [stroke],
+g[id^="clef-"]:hover [stroke],
+g[id^="ksig-"]:hover [stroke],
+g[id^="msig-"]:hover [stroke],
 g[id^="note-"]:hover [stroke],
+g[id^="accid-"]:hover [stroke],
+g[id^="trill-"]:hover [stroke],
+g[id^="artic-"]:hover [stroke],
 g[id^="slur-"]:hover [stroke],
 g[id^="tie-"]:hover [stroke],
+g[id^="slur-"]:hover [stroke],
+g[id^="fermta-"]:hover [stroke],
 g[id^="rest-"]:hover [stroke] {
 	stroke: orange;
 	stroke-width: 50px;
@@ -340,6 +358,11 @@ span.info {
 	color: #c00;
 	fill: #c00;
 	stroke: #c00;
+}
+
+.highlight [stroke] {
+	stroke: #c00;
+	stroke-width: 50px;
 }
 
 
