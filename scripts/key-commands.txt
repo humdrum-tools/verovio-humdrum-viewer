@@ -1,5 +1,5 @@
 
-<b> navigation commands <b>
+<b> Navigation commands <b>
 
 ?	toggle this help menu
 &larr;/&rarr;	next/previous page
@@ -11,7 +11,7 @@
 <nobr>shft-&larr;/&rarr;</nobr>	next/previous work
 shft-up	go back to repertory index
 
-<b> more commands (+<i>alt</i> key) <b>
+<b> More commands (+<i>alt</i> key) <b>
 b	show/hide logo
 f	(un)freeze dynamic notation
 h	show Humdrum data
@@ -28,33 +28,49 @@ y	show/hide data editor
 #	toggle sharp on note
 -	toggle flat on note
 n	toggle natural on note
+x	force display of accidental
+a	force stem up
+b	force stem down
+c	clear stem direction
 '	toggle staccato
 ^	toggle accent
 shift-^	toggle marcato
 ~	toggle tenuto
 `	toggle staccatissimo
+q	toggle grace-note style
 t	toggle minor-second trill
 T	toggle major-second trill
 ;	toggle fermata
+
+<p><b> Rest editing commands </b></p>
+
+y	make rest invisible
 
 <p><b> Slur editing commands </b></p>
 
 a	force slur above
 b	force slur below
-d	delete slur orientation
+c	clear slur orientation
+D	delete slur
+&larr;	move slur start 1 note left
+&rarr;	slur start 1 note right
+#&larr;	slur start # notes left
+#&rarr;	slur start # notes right
+<nobr>shft-&larr;</nobr>	slur end left
+<nobr>shft-&rarr;</nobr>	slur end right
+<nobr># shft-&larr;</nobr>	slur end # notes left
+<nobr># shft-&rarr;</nobr>	slur end # notes right
 
 <p><b> Tie editing commands </b></p>
 
 a	force tie above
 b	force tie below
-d	delete tie orientation
+c	clear tie orientation
 
 <p><b> Beam editing commands </b></p>
 
 a	force beam above
 b	force beam below
-d	delete beam orientation
-
-
+c	clear beam orientation
 
 

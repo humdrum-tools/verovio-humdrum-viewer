@@ -62,6 +62,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	body.addEventListener("click", function(event) {
 		dataIntoView(event);
 	});
+	body.addEventListener("dblclick", function(event) {
+		console.log("DOUBLE CLICK");
+	});
+
+	window.addEventListener("keydown", processNotationKeyCommand, true);
+	window.addEventListener("keydown", processInterfaceKeyCommand);
 
 });
 
@@ -71,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // keydown event listener -- Notation edition listener.
 //
 
-window.addEventListener("keydown", processNotationKeyCommand);
 
 function processNotationKeyCommand(event) {
 	if (!event.preventDefault) {
@@ -80,6 +85,13 @@ function processNotationKeyCommand(event) {
 
 	// only works outside of the editor.
 	if (event.altKey || event.target.nodeName == "TEXTAREA") {
+		return;
+	}
+
+	if (!CursorNote) {
+		return;
+	}
+	if (!CursorNote.id) {
 		return;
 	}
 
@@ -92,16 +104,26 @@ function processNotationKeyCommand(event) {
 			processNotationKey("b", CursorNote);
 			break;
 
+		case CKey:
+			processNotationKey("c", CursorNote);
+			break;
+
 		case DKey:
-			processNotationKey("d", CursorNote);
+			if (event.shiftKey) {
+				processNotationKey("D", CursorNote);
+			}
 			break;
 
 		case FKey:
 			processNotationKey("f", CursorNote);
 			break;
 
-		case YKey:
-			processNotationKey("y", CursorNote);
+		case QKey:
+			processNotationKey("q", CursorNote);
+			break;
+
+		case SKey:
+			processNotationKey("s", CursorNote);
 			break;
 
 		case TKey:
@@ -112,8 +134,60 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		case XKey:
+			processNotationKey("X", CursorNote);
+			break;
+
+		case YKey:
+			processNotationKey("y", CursorNote);
+			break;
+
+		case OneKey:
+			processNotationKey("1", CursorNote);
+			break;
+
+		case TwoKey:
+			processNotationKey("2", CursorNote);
+			break;
+
 		case ThreeKey:
-			processNotationKey("#", CursorNote);
+			if (event.shiftKey) {
+				processNotationKey("#", CursorNote);
+			} else {
+				processNotationKey("3", CursorNote);
+			}
+			break;
+
+		case FourKey:
+			processNotationKey("4", CursorNote);
+			break;
+
+		case FiveKey:
+			processNotationKey("5", CursorNote);
+			break;
+
+		case SixKey:
+			if (CursorNote.id.match("note-")) {
+				if (event.shiftKey) {
+					processNotationKey("^^", CursorNote);
+				} else {
+					processNotationKey("^", CursorNote);
+				}
+			} else {
+				processNotationKey("6", CursorNote);
+			}
+			break;
+
+		case SevenKey:
+			processNotationKey("7", CursorNote);
+			break;
+
+		case EightKey:
+			processNotationKey("8", CursorNote);
+			break;
+
+		case NineKey:
+			processNotationKey("9", CursorNote);
 			break;
 
 		case MinusKey:
@@ -144,11 +218,27 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case SixKey:
-			if (event.shiftKey) {
-				processNotationKey("^^", CursorNote);
-			} else {
-				processNotationKey("^", CursorNote);
+		case LeftKey:
+			if (CursorNote.id.match("slur-")) {
+				event.preventDefault();
+				event.stopPropagation();
+				if (event.shiftKey) {
+					processNotationKey("rightEndMoveBack", CursorNote);
+				} else {
+					processNotationKey("leftEndMoveBack", CursorNote);
+				}
+			}
+			break;
+
+		case RightKey:
+			if (CursorNote.id.match("slur-")) {
+				event.preventDefault();
+				event.stopPropagation();
+				if (event.shiftKey) {
+					processNotationKey("rightEndMoveForward", CursorNote);
+				} else {
+					processNotationKey("leftEndMoveForward", CursorNote);
+				}
 			}
 			break;
 
@@ -161,7 +251,6 @@ function processNotationKeyCommand(event) {
 // keydown event listener -- Interface control listener.
 //
 
-window.addEventListener("keydown", processInterfaceKeyCommand);
 
 function processInterfaceKeyCommand(event) {
 	if (!event.preventDefault) {
@@ -334,7 +423,9 @@ function processInterfaceKeyCommand(event) {
 			break;
 
 		case SlashKey:
-			toggleHelpMenu();
+			if (event.shiftKey) {
+				toggleHelpMenu();
+			}
 
 	}
 }

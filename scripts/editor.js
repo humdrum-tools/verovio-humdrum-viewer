@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Mon Oct 31 14:42:33 PDT 2016
-// Last Modified:  Mon Oct 31 14:42:36 PDT 2016
+// Last Modified:  Tue Jan 31 04:12:38 PST 2017
 // Filename:       editor.js
 // Web Address:    http://verovio.humdrum.org/scripts/editor.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -10,15 +10,16 @@
 // Description:   Processing key commands to edit music.
 //
 
+var SlurJump = 1;  // number of notes to jump when moving a slur.
+
 //////////////////////////////
 //
-// processNontationKey -- Also consider whether MEI or Humdrum is
-//    currently being displayed.
+// processNotationKey -- Also consider whether MEI or Humdrum is
+//    currently being displayed, but that would double the code...
 //
 
 function processNotationKey(key, element) {
 	var id    = element.id;
-console.log("PROCESSING ", id);
 	var matches;
 
 	if (matches = id.match(/L(\d+)/)) {
@@ -26,71 +27,123 @@ console.log("PROCESSING ", id);
 	} else {
 		return; // required
 	}
+
 	if (matches = id.match(/F(\d+)/)) {
 		var field = matches[1];
 	} else {
 		return; // required
 	}
+
 	if (matches = id.match(/S(\d+)/)) {
 		var subfield = matches[1];
+	} else {
+		subfield = null;
 	}
+
 	if (matches = id.match(/N(\d+)/)) {
 		var number = matches[1];
 	} else {
 		number = 1;
 	}
+
 	if (matches = id.match(/^([a-z]+)-/)) {
 		var name = matches[1];
 	} else {
 		return; // required
 	}
-	
-	var name  = id.match(/^([a-z]+)-/)[1];
 
-	if (!(line && field)) {
+	if ((line < 1) || (field < 1)) {
 		return;
 	}
-	if (line < 1 || field < 1) {
-		return;
+
+	var line2 = 0;
+	var field2 = 0;
+	var subfield2 = 0;
+	var number2 = 1;
+
+	if (matches = id.match(/^[^-]+-[^-]+-.*L(\d+)/)) {
+		line2 = matches[1];
 	}
-console.log("PROCESSING COMMAND FOR ", name);
+	if (matches = id.match(/^[^-]+-[^-]+-.*F(\d+)/)) {
+		field2 = matches[1];
+	}
+	if (matches = id.match(/^[^-]+-[^-]+-.*S(\d+)/)) {
+		subfield2 = matches[1];
+	}
+	if (matches = id.match(/^[^-]+-[^-]+-.*N(\d+)/)) {
+		number2 = matches[1];
+	}
 
 	if (name === "note") {
-		if (key === "y") { toggleVisibility(id, line, field); }
-		else if (key === "#") { toggleSharp(id, line, field); }
-		else if (key === "-") { toggleFlat(id, line, field); }
-		else if (key === "n") { toggleNatural(id, line, field); }
-		else if (key === "'") { toggleStaccato(id, line, field); }
-		else if (key === "^") { toggleAccent(id, line, field); }
+		if (key === "y")       { toggleVisibility(id, line, field); }
+		else if (key === "a")  { setStemAboveMarker(id, line, field); }
+		else if (key === "b")  { setStemBelowMarker(id, line, field); }
+		else if (key === "c")  { deleteStemMarker(id, line, field); }
+		else if (key === "#")  { toggleSharp(id, line, field, subfield); }
+		else if (key === "-")  { toggleFlat(id, line, field, subfield); }
+		else if (key === "n")  { toggleNatural(id, line, field, subfield); }
+		else if (key === "X")  { toggleExplicitAccidental(id, line, field, subfield); }
+		else if (key === "'")  { toggleStaccato(id, line, field); }
+		else if (key === "^")  { toggleAccent(id, line, field); }
 		else if (key === "^^") { toggleMarcato(id, line, field); }
-		else if (key === "~") { toggleTenuto(id, line, field); }
-		else if (key === "t") { toggleMinorTrill(id, line, field); }
-		else if (key === "T") { toggleMajorTrill(id, line, field); }
-		else if (key === "`") { toggleStaccatissimo(id, line, field); }
-		else if (key === ";") { toggleFermata(id, line, field); }
-		else if (key === ":") { toggleArpeggio(id, line, field); }
+		else if (key === "~")  { toggleTenuto(id, line, field); }
+		else if (key === "s")  { addSlur(id, line, field); }
+		else if (key === "q")  { toggleGraceNoteType(id, line, field); }
+		else if (key === "t")  { toggleMinorTrill(id, line, field); }
+		else if (key === "T")  { toggleMajorTrill(id, line, field); }
+		else if (key === "`")  { toggleStaccatissimo(id, line, field); }
+		else if (key === ";")  { toggleFermata(id, line, field); }
+		else if (key === ":")  { toggleArpeggio(id, line, field); }
+		else if (key === "1")  { SlurJump = 1; }
+		else if (key === "2")  { SlurJump = 2; }
+		else if (key === "3")  { SlurJump = 3; }
+		else if (key === "4")  { SlurJump = 4; }
+		else if (key === "5")  { SlurJump = 5; }
+		else if (key === "6")  { SlurJump = 6; }
+		else if (key === "7")  { SlurJump = 7; }
+		else if (key === "8")  { SlurJump = 8; }
+		else if (key === "9")  { SlurJump = 9; }
 	} else if (name === "rest") {
-		if (key === "y") { toggleVisibility(id, line, field); }
-		else if (key === ";") { toggleFermata(id, line, field); }
+		if (key === "y")       { toggleVisibility(id, line, field); }
+		else if (key === ";")  { toggleFermata(id, line, field); }
 	} else if (name === "slur") {
-		if (key === "a") { setSlurAboveMarker(id, line, field, number); }
-		else if (key === "b") { setSlurBelowMarker(id, line, field, number); }
-		else if (key === "d") { deleteSlurDirectionMarker(id, line, field, number); }
-		else if (key === "f") { flipSlurDirection(id, line, field, number); }
+		if (key === "a")       { setSlurAboveMarker(id, line, field, number); }
+		else if (key === "b")  { setSlurBelowMarker(id, line, field, number); }
+		else if (key === "c")  { deleteSlurDirectionMarker(id, line, field, number); }
+		else if (key === "D")  { deleteSlur(id, line, field, number, line2, field2, number2); }
+		else if (key === "f")  { flipSlurDirection(id, line, field, number); }
+		else if (key === "leftEndMoveBack")     { leftEndMoveBack(id, line, field, number, line2, field2, number2); }
+		else if (key === "leftEndMoveForward")  { leftEndMoveForward(id, line, field, number, line2, field2, number2); }
+		else if (key === "rightEndMoveForward") { rightEndMoveForward(id, line, field, number, line2, field2, number2); }
+		else if (key === "rightEndMoveBack")    { rightEndMoveBack(id, line, field, number, line2, field2, number2); }
+		else if (key === "1")  { SlurJump = 1; }
+		else if (key === "2")  { SlurJump = 2; }
+		else if (key === "3")  { SlurJump = 3; }
+		else if (key === "4")  { SlurJump = 4; }
+		else if (key === "5")  { SlurJump = 5; }
+		else if (key === "6")  { SlurJump = 6; }
+		else if (key === "7")  { SlurJump = 7; }
+		else if (key === "8")  { SlurJump = 8; }
+		else if (key === "9")  { SlurJump = 9; }
 	} else if (name === "tie") {
 		// need to fix tie functions to deal with chord notes (subfield values):
 		if (key === "a") { setTieAboveMarker(id, line, field, subfield); }
-		else if (key === "b") { setTieBelowMarker(id, line, field, subfield); }
-		else if (key === "d") { deleteTieDirectionMarker(id, line, field, subfield); }
-		else if (key === "f") { flipTieDirection(id, line, field, subfield); }
+		else if (key === "b")  { setTieBelowMarker(id, line, field, subfield); }
+		else if (key === "c")  { deleteTieDirectionMarker(id, line, field, subfield); }
+		else if (key === "f")  { flipTieDirection(id, line, field, subfield); }
 	} else if (name === "beam") {
-		if (key === "a") { setBeamAboveMarker(id, line, field); }
-		else if (key === "b") { setBeamBelowMarker(id, line, field); }
-		else if (key === "d") { deleteBeamDirectionMarker(id, line, field); }
-		else if (key === "f") { flipBeamDirection(id, line, field); }
+		if (key === "a")       { setBeamAboveMarker(id, line, field); }
+		else if (key === "b")  { setBeamBelowMarker(id, line, field); }
+		else if (key === "c")  { deleteBeamDirectionMarker(id, line, field); }
+		else if (key === "f")  { flipBeamDirection(id, line, field); }
 	}
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Beam editing --
+//
 
 
 //////////////////////////////
@@ -99,24 +152,24 @@ console.log("PROCESSING COMMAND FOR ", name);
 //
 
 function setBeamAboveMarker(id, line, field) {
+	// console.log("SET BEAM ABOVE", token, line, field, id);
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	console.log("TOGGLE BEAM ABOVE", token, line, field, id);
-	var counter = 0;
-	var newtoken = "";
-	
-	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^LJKk]*)([LJKk]+)([" + above + below + "]*)([^LJKk]*)");
+	var matches = re.exec(token);
 	if (!matches) {
 		return;
+	} else {
+		var newtoken = matches[1];
+		newtoken += matches[2];
+		newtoken += above;
+		newtoken += matches[4];
 	}
-	
-	var newtoken = matches[1];
-	newtoken += matches[2];
-	newtoken += ">";
-	newtoken += matches[4];
 	
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
@@ -134,67 +187,24 @@ function setBeamAboveMarker(id, line, field) {
 //
 
 function setBeamBelowMarker(id, line, field) {
+	// console.log("SET BEAM BELOW", token, line, field, id);
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	console.log("TOGGLE BEAM ABOVE", token, line, field, id);
-	var counter = 0;
-	var newtoken = "";
-	
-	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^LJKk]*)([LJKk]+)([" + above + below + "]*)([^LJKk]*)");
+	var matches = re.exec(token);
 	if (!matches) {
 		return;
+	} else {
+		var newtoken = matches[1];
+		newtoken += matches[2];
+		newtoken += below;
+		newtoken += matches[4];
 	}
-	
-	var newtoken = matches[1];
-	newtoken += matches[2];
-	newtoken += "<";
-	newtoken += matches[4];
-	
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
-	if (newtoken !== token) {
-		RestoreCursorNote = id;
-		HIGHLIGHTQUERY = id;
-		setEditorContents(line, field, newtoken, id);
-	}
-}
-
-
-
-//////////////////////////////
-//
-// flipBeamDirection --
-//
-
-function flipBeamDirection(id, line, field) {
-	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
-		return;
-	}
-	console.log("TOGGLE BEAM DIRECTION", token, line, field, id);
-	var counter = 0;
-	var newtoken = "";
-	
-	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
-	if (!matches) {
-		return;
-	}
-
-	var olddir = matches[3];
-	
-	var newtoken = matches[1];
-	newtoken += matches[2];
-	if (olddir === "<") {
-		newtoken += ">";
-	} else if (olddir === ">") {
-		newtoken += "<";
-	} else { 
-		newtoken += "<";
-	}
-	newtoken += matches[4];
 	
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
@@ -212,23 +222,23 @@ function flipBeamDirection(id, line, field) {
 //
 
 function deleteBeamDirectionMarker(id, line, field) {
+	// console.log("REMOVE BEAM DIRECTION", token, line, field, id);
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	console.log("DELETE BEAM DIRECTION", token, line, field, id);
-	var counter = 0;
-	var newtoken = "";
-	
-	var matches = token.match("([^LJKk]*)([LJKk]+)([<>]*)([^LJKk]*)");
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^LJKk]*)([LJKk]+)([" + above + below + "]*)([^LJKk]*)");
+	var matches = re.exec(token);
 	if (!matches) {
 		return;
+	} else {
+		var newtoken = matches[1];
+		newtoken += matches[2];
+		newtoken += matches[4];
 	}
-	
-	var newtoken = matches[1];
-	newtoken += matches[2];
-	newtoken += matches[4];
 	
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
@@ -239,6 +249,11 @@ function deleteBeamDirectionMarker(id, line, field) {
 }
 
 
+///////////////////////////////////////////////////////////////////////////
+//
+// Slur editing --
+//
+
 
 //////////////////////////////
 //
@@ -247,11 +262,14 @@ function deleteBeamDirectionMarker(id, line, field) {
 
 function setSlurAboveMarker(id, line, field, number) {
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	// console.log("TOGGLE SLUR ABOVE", token, line, field, number, id);
+	console.log("TOGGLE SLUR ABOVE", token, line, field, number, id);
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
 	var counter = 0;
 	var newtoken = "";
 	for (var i=0; i<token.length; i++) {
@@ -262,16 +280,16 @@ function setSlurAboveMarker(id, line, field, number) {
 		if (counter != number) {
 			continue;
 		}
-		if (token[i+1] == '>') {
+		if (token[i+1] == above) {
 			counter++;
 			continue;
-		} else if (token[i+1] == '<') {
-			newtoken += '>';
+		} else if (token[i+1] == below) {
+			newtoken += above;
 			i++;
 			counter++;
 			continue;
 		} else {
-			newtoken += '>';
+			newtoken += above;
 			counter++;
 			continue;
 		}
@@ -295,11 +313,16 @@ function setSlurAboveMarker(id, line, field, number) {
 
 function setSlurBelowMarker(id, line, field, number) {
 	var token = getEditorContents(line, field);
-	if (token === ".") {
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		// nothing to do, just a null data token
 		return;
 	}
+	var token = getEditorContents(line, field);
 	// console.log("TOGGLE SLUR BELOW", token, line, field, number, id);
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
 	var counter = 0;
 	var newtoken = "";
 	for (var i=0; i<token.length; i++) {
@@ -310,16 +333,16 @@ function setSlurBelowMarker(id, line, field, number) {
 		if (counter != number) {
 			continue;
 		}
-		if (token[i+1] == '<') {
+		if (token[i+1] == below) {
 			counter++;
 			continue;
-		} else if (token[i+1] == '>') {
-			newtoken += '<';
+		} else if (token[i+1] == above) {
+			newtoken += below;
 			i++;
 			counter++;
 			continue;
 		} else {
-			newtoken += '<';
+			newtoken += below;
 			counter++;
 			continue;
 		}
@@ -337,18 +360,19 @@ function setSlurBelowMarker(id, line, field, number) {
 
 //////////////////////////////
 //
-// flipSlurDirection --
+// deleteSlurDirectionMarker --
 //
 
-function flipSlurDirection(id, line, field, number) {
+function deleteSlurDirectionMarker(id, line, field, number) {
 	var token = getEditorContents(line, field);
-	console.log("FLIP SLUR DIRECTION", token, line, field, number, id);
-	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	// console.log("TOGGLE SLUR DIRECTION", token, line, field, number, id);
+	//console.log("DELETE SLUR DIRECTION", token, line, field, number, id);
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
 	var counter = 0;
 	var newtoken = "";
 	for (var i=0; i<token.length; i++) {
@@ -359,18 +383,15 @@ function flipSlurDirection(id, line, field, number) {
 		if (counter != number) {
 			continue;
 		}
-		if (token[i+1] == '<') {
-			newtoken += '>';
+		if (token[i+1] == below) {
 			i++;
 			counter++;
 			continue;
-		} else if (token[i+1] == '>') {
-			newtoken += '<';
+		} else if (token[i+1] == above) {
 			i++;
 			counter++;
 			continue;
 		} else {
-			newtoken += '<';
 			counter++;
 			continue;
 		}
@@ -382,55 +403,482 @@ function flipSlurDirection(id, line, field, number) {
 		HIGHLIGHTQUERY = id;
 		setEditorContents(line, field, newtoken, id);
 	}
+}
+
+
+
+//////////////////////////////
+//
+// leftEndMoveBack -- Only woks in regions where spines don't split or merge.
+//
+
+function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
+	console.log("LEFT END MOVE BACK");
+	var token1 = getEditorContents(line, field);
+	if (parseInt(line) >= parseInt(line2)) {
+		return;
+	}
+	var i = line - 2; // -1 for 0-index and -1 for line after
+	var counter = 0;
+	while (i > 0) {
+		var text = EDITOR.session.getLine(i);
+		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
+			i--;
+			continue;
+		}
+		var token2 = getEditorContents(i+1, field);
+		if (token2.match(/[A-G]/i)) {
+			counter++;
+		}
+		if (counter != SlurJump) {
+			i--;
+			continue;
+		}
+		break;
+	}
+	console.log("LEFTENDMOVEBACK NEW", token1, line, field, number, token2, i+1, id);
+
+	if (i <= 0) {
+		// no note to attach to
+		return;
+	}
+	if ((text[0] == '*') || (text[0] == '!') || (text === "")) {
+		// no note to attach to
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
+	var slurstart = deleteSlurStart(id, line, field, number);
+	if (slurstart !== "") {
+		addSlurStart(id, i+1, field, slurstart);
+	}
+	FreezeRendering = freezeBackup;
+	displayNotation();
+
+	SlurJump = 1;
+}
+
+
+
+//////////////////////////////
+//
+// addSlur -- add a slur to a note, which goes to the next note in the field.
+//
+
+function addSlur(id, line, field) {
+	var token = getEditorContents(line, field);
+	var freezeBackup = FreezeRendering;
+	addSlurStart(id, line, field, '(');
+
+	var i = parseInt(line); // -1 for 0-index and +1 for line after
+	var counter = 0;
+	var size = EDITOR.session.getLength();
+	while (i < size) {
+		var text = EDITOR.session.getLine(i);
+		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
+			i++;
+			continue;
+		}
+		var token2 = getEditorContents(i+1, field);
+		if (token2.match(/[A-G]/i)) {
+			counter++;
+		}
+		if (counter != SlurJump) {
+			i++;
+			continue;
+		}
+		break;
+	}
+	if (i >= size) {
+		// no note to attach to
+		return;
+	}
+	if ((text[0] == '*') || (text[0] == '!') || (text === "")) {
+		// no note to attach to
+		return;
+	}
+	if (i+1 <= line) {
+		// do not pass slur begin
+		return;
+	}
+
+	addSlurEnd(id, i+1, field, ')');
+	var newid = id.replace(/^note-/, "slur-");
+	// FIX N number here later:
+	var ending = "-L" + (i+1) + "F" + field + "N" + 1;
+	newid += ending;
+	RestoreCursorNote = newid;
+	HIGHLIGHTQUERY = newid;
+
+	FreezeRendering = freezeBackup;
+	if (!FreezeRendering) {
+		displayNotation();
+	}
+	SlurJump = 1;
+}
+
+
+
+//////////////////////////////
+//
+// addSlurStart --
+//
+
+function addSlurStart(id, line, field, slurstart) {
+	var token = getEditorContents(line, field);
+	var newtoken = "";
+	for (var i=token.length-1; i>=0; i--) {
+		if (token[i] == '(') {
+			// need to insert new slur after last one
+			newtoken = token.substr(0, i);
+			newtoken += slurstart;
+			newtoken = token.substr(i+1);
+		}
+	}
+
+	if (newtoken === "") {
+		newtoken = slurstart + token;
+	}
+
+	var pcount = 0;
+	for (i=0; i<newtoken.length; i++) {
+		if (newtoken[i] == '(') {
+			pcount++;
+		}
+	}
+
+	var newid = id.replace(/L\d+/, "L" + line);
+	newid = newid.replace(/F\d+/, "F" + field);
+	newid = newid.replace(/N\d+/, "N" + pcount);
+   console.log("OLDTOKEN2", token, "NEWTOKEN2", newtoken);
+   console.log("OLDID", id, "NEWID", newid);
+	if (newtoken !== token) {
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+		setEditorContents(line, field, newtoken, newid);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// addSlurEnd --
+//
+
+function addSlurEnd(id, line, field, slurend) {
+	var token = getEditorContents(line, field);
+	var newtoken = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			// need to insert new slur before first one
+			newtoken = token.substr(0, i);
+			newtoken += slurend;
+			newtoken = token.substr(i+1);
+		}
+	}
+
+	if (newtoken === "") {
+		newtoken = token + slurend;
+	}
+
+	var pcount = 0;
+	for (i=0; i<newtoken.length; i++) {
+		if (newtoken[i] == '(') {
+			pcount++;
+		}
+	}
+
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// deleteSlurStart --
+//
+
+function deleteSlurStart(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	var newtoken = "";
+	var counter = 0;
+	var output = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == '(') {
+			counter++;
+		}
+		if (counter != number) {
+			newtoken += token[i];
+			continue;
+		}
+		output += token[i];
+		if (token[i+1] == '>') {
+			output += '>';
+			i++;
+		} else if (token[i+1] == '<') {
+			output += '<';
+			i++;
+		}
+		counter++;
+   }
+
+   console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// deleteSlurEnd --
+//
+
+function deleteSlurEnd(id, line, field, number) {
+	var token = getEditorContents(line, field);
+	var newtoken = "";
+	var counter = 0;
+	var output = "";
+	for (var i=0; i<token.length; i++) {
+		if (token[i] == ')') {
+			counter++;
+			output = ')';
+		}
+		if (counter == number) {
+			counter++;
+			continue;
+		}
+		newtoken += token[i];
+   }
+
+   console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+
+	return output;
 }
 
 
 //////////////////////////////
 //
-// deleteSlurDirectionMarker --
+// deleteSlur --
 //
 
-function deleteSlurDirectionMarker(id, line, field, number) {
-
-	var token = getEditorContents(line, field);
-	console.log("DELETE SLUR DIRECTION", token, line, field, number, id);
-	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
-		return;
-	}
-	var counter = 0;
-	var newtoken = "";
-	for (var i=0; i<token.length; i++) {
-		if (token[i] == '(') {
-			counter++;
-		}
-		newtoken += token[i];
-		if (counter != number) {
-			continue;
-		}
-		if (token[i+1] == '<') {
-			i++;
-			counter++;
-			continue;
-		} else if (token[i+1] == '>') {
-			i++;
-			counter++;
-			continue;
-		} else {
-			counter++;
-			continue;
-		}
-	}
-
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
-	if (newtoken !== token) {
-		RestoreCursorNote = id;
-		HIGHLIGHTQUERY = id;
-		setEditorContents(line, field, newtoken, id);
+function deleteSlur(id, line, field, number, line2, field2, number2) {
+	// console.log("DELETING SLUR");
+	var freezeBackup = FreezeRendering;
+	deleteSlurStart(id, line, field, number);
+	deleteSlurEnd(id, line2, field2, number2);
+	FreezeRendering = freezeBackup;
+	RestoreCursorNote = null;
+	HIGHLIGHTQUERY = null;
+	if (!FreezeRendering) {
+		displayNotation();
 	}
 }
 
+
+
+
+//////////////////////////////
+//
+// leftEndMoveForward --
+//
+
+function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
+	console.log("LEFT END MOVE FORWARD");
+	var token1 = getEditorContents(line, field);
+	if (parseInt(line) >= parseInt(line2)) {
+		return;
+	}
+
+	var i = parseInt(line); // -1 for 0-index and +1 for line after
+	var counter = 0;
+	var size = EDITOR.session.getLength();
+	while (i < size) {
+		var text = EDITOR.session.getLine(i);
+		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
+			i++;
+			continue;
+		}
+		var token2 = getEditorContents(i+1, field);
+		if (token2.match(/[A-G]/i)) {
+			counter++;
+		}
+		if (counter != SlurJump) {
+			i++;
+			continue;
+		}
+		break;
+	}
+	if (i >= size) {
+		// no note to attach to
+		return;
+	}
+	if ((text[0] == '*') || (text[0] == '!') || (text === "")) {
+		// no note to attach to
+		return;
+	}
+	if (i+1 >= line2) {
+		// do not pass slur end
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
+	var slurstart = deleteSlurStart(id, line, field, number);
+	if (slurstart !== "") {
+		addSlurStart(id, i+1, field, slurstart);
+	}
+	FreezeRendering = freezeBackup;
+	displayNotation();
+
+	SlurJump = 1;
+}
+
+
+
+//////////////////////////////
+//
+// rightEndMoveForward --
+//
+
+function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
+	// console.log("RIGHT END MOVE FORWARD");
+	var token1 = getEditorContents(line2, field);
+	if (parseInt(line) >= parseInt(line2)) {
+		return;
+	}
+	var i = parseInt(line2); // -1 for 0-index and +1 for line after
+	var counter = 0;
+	var size = EDITOR.session.getLength();
+	while (i < size) {
+		var text = EDITOR.session.getLine(i);
+		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
+			i++;
+			continue;
+		}
+		var token2 = getEditorContents(i+1, field);
+		if (token2.match(/[A-G]/i)) {
+			counter++;
+		}
+		if (counter != SlurJump) {
+			i++;
+			continue;
+		}
+		break;
+	}
+	if (i >= size) {
+		// no note to attach to
+		return;
+	}
+	if ((text[0] == '*') || (text[0] == '!') || (text === "")) {
+		// no note to attach to
+		return;
+	}
+	if (i+1 <= line) {
+		// do not pass slur start
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
+	var slurend = deleteSlurEnd(id, line2, field2, number2);
+	if (slurend !== "") {
+		addSlurEnd(id, i+1, field, slurend);
+	}
+	// need to remove "N" if "N1" (in verovio)
+	var newend = "L" + (i+1) + "F" + field2 + "N" + number2;
+	var newid = id.replace(/-[^-]+$/, "-" + newend);
+	RestoreCursorNote = newid;
+	HIGHLIGHTQUERY = newid;
+	FreezeRendering = freezeBackup;
+	displayNotation();
+
+	SlurJump = 1;
+}
+
+
+
+//////////////////////////////
+//
+// rightEndMoveBack --
+//
+
+function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
+	// console.log("RIGHT END MOVE BACKWARD");
+	var token1 = getEditorContents(line2, field);
+	if (parseInt(line) >= parseInt(line2)) {
+		return;
+	}
+	var i = parseInt(line2) - 2; // -1 for 0-index and -1 for line after
+	var counter = 0;
+	while (i >= 0) {
+		var text = EDITOR.session.getLine(i);
+		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
+			i--;
+			continue;
+		}
+		var token2 = getEditorContents(i+1, field);
+		if (token2.match(/[A-G]/i)) {
+			counter++;
+		}
+		if (counter != SlurJump) {
+			i--;
+			continue;
+		}
+		break;
+	}
+	if (i <= 0) {
+		// no note to attach to
+		return;
+	}
+	if ((text[0] == '*') || (text[0] == '!') || (text === "")) {
+		// no note to attach to
+		return;
+	}
+	if (i+1 <= line) {
+		// do not pass slur start
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
+	var slurend = deleteSlurEnd(id, line2, field2, number2);
+	if (slurend !== "") {
+		addSlurEnd(id, i+1, field, slurend);
+	}
+	// need to remove "N" if "N1" (in verovio)
+	var newend = "L" + (i+1) + "F" + field2 + "N" + number2;
+	var newid = id.replace(/-[^-]+$/, "-" + newend);
+	RestoreCursorNote = newid;
+	HIGHLIGHTQUERY = newid;
+	FreezeRendering = freezeBackup;
+	displayNotation();
+
+	SlurJump = 1;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Tie editing --
+//
 
 
 //////////////////////////////
@@ -438,36 +886,44 @@ function deleteSlurDirectionMarker(id, line, field, number) {
 // setTieAboveMarker --
 //
 
-function setTieAboveMarker(id, line, field, number) {
+function setTieAboveMarker(id, line, field, subfield) {
+	console.log("TIE ABOVE", token, line, field, subfield, id);
+
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	console.log("TOGGLE TIE ABOVE", token, line, field, number, id);
-	var counter = 0;
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+	if (token.match("r")) {
+		// reset, so no tie allowed
+		return;
+	}
+	
 	var newtoken = "";
-	for (var i=0; i<token.length; i++) {
-		if ((token[i] == '[') || (token[i] == '_')) {
-			counter++;
-		}
-		newtoken += token[i];
-		if (counter != number) {
-			continue;
-		}
-		if (token[i+1] == '>') {
-			counter++;
-			continue;
-		} else if (token[i+1] == '<') {
-			newtoken += '>';
-			i++;
-			counter++;
-			continue;
-		} else {
-			newtoken += '>';
-			counter++;
-			continue;
-		}
+	var matches;
+
+	if (!(token.match(/[[]/) || token.match("_"))) {
+		// no tie start
+		return;
+	}
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^_[]*)([_[]+)([" + above + below + "]*)([^_[]*)");
+	if (matches = re.exec(token)) {
+		newtoken = matches[1] + matches[2] + above + matches[4];
+	} else {
+		newtoken = token;
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
 	}
 
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
@@ -476,8 +932,8 @@ function setTieAboveMarker(id, line, field, number) {
 		HIGHLIGHTQUERY = id;
 		setEditorContents(line, field, newtoken, id);
 	}
-
 }
+
 
 
 
@@ -486,87 +942,44 @@ function setTieAboveMarker(id, line, field, number) {
 // setTieBelowMarker --
 //
 
-function setTieBelowMarker(id, line, field, number) {
+function setTieBelowMarker(id, line, field, subfield) {
+	console.log("TIE BELOW", token, line, field, subfield, id);
+
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	console.log("TOGGLE SLUR BELOW", token, line, field, number, id);
-	var counter = 0;
-	var newtoken = "";
-	for (var i=0; i<token.length; i++) {
-		if ((token[i] == '[') || (token[i] == '_')) {
-			counter++;
-		}
-		newtoken += token[i];
-		if (counter != number) {
-			continue;
-		}
-		if (token[i+1] == '<') {
-			counter++;
-			continue;
-		} else if (token[i+1] == '>') {
-			newtoken += '<';
-			i++;
-			counter++;
-			continue;
-		} else {
-			newtoken += '<';
-			counter++;
-			continue;
-		}
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
 	}
-
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
-	if (newtoken !== token) {
-		RestoreCursorNote = id;
-		HIGHLIGHTQUERY = id;
-		setEditorContents(line, field, newtoken, id);
-	}
-}
-
-
-
-//////////////////////////////
-//
-// flipTieDirection --
-//
-
-function flipTieDirection(id, line, field, number) {
-	var token = getEditorContents(line, field);
-	console.log("FLIP SLUR DIRECTION", token, line, field, number, id);
-	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if (token.match("r")) {
+		// reset, so no tie allowed
 		return;
 	}
-	// console.log("TOGGLE SLUR DIRECTION", token, line, field, number, id);
-	var counter = 0;
+	
 	var newtoken = "";
-	for (var i=0; i<token.length; i++) {
-		if ((token[i] == '[') || (token[i] == '_')) {
-			counter++;
-		}
-		newtoken += token[i];
-		if (counter != number) {
-			continue;
-		}
-		if (token[i+1] == '<') {
-			newtoken += '>';
-			i++;
-			counter++;
-			continue;
-		} else if (token[i+1] == '>') {
-			newtoken += '<';
-			i++;
-			counter++;
-			continue;
-		} else {
-			newtoken += '<';
-			counter++;
-			continue;
-		}
+	var matches;
+
+	if (!(token.match(/[[]/) || token.match("_"))) {
+		// no tie start
+		return;
+	}
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^_[]*)([_[]+)([" + above + below + "]*)([^_[]*)");
+	if (matches = re.exec(token)) {
+		newtoken = matches[1] + matches[2] + below + matches[4];
+	} else {
+		newtoken = token;
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
 	}
 
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
@@ -584,35 +997,211 @@ function flipTieDirection(id, line, field, number) {
 // deleteTieDirectionMarker --
 //
 
-function deleteTieDirectionMarker(id, line, field, number) {
-	console.log("DELETE SLUR DIRECTION", token, line, field, number, id);
+function deleteTieDirectionMarker(id, line, field, subfield) {
+	console.log("TIE DIRECTION REMOVE", token, line, field, subfield, id);
+
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
-	var counter = 0;
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+	if (token.match("r")) {
+		// reset, so no tie allowed
+		return;
+	}
+	
 	var newtoken = "";
-	for (var i=0; i<token.length; i++) {
-		if ((token[i] == '[') || (token[i] == '_')) {
-			counter++;
+	var matches;
+
+	if (!(token.match(/[[]/) || token.match("_"))) {
+		// no tie start
+		return;
+	}
+
+	var directions = insertDirectionRdfs();
+	var above = directions[0];
+	var below = directions[1];
+	var re = new RegExp("([^_[]*)([_[]+)([" + above + below + "]*)([^_[]*)");
+	if (matches = re.exec(token)) {
+		newtoken = matches[1] + matches[2] + matches[4];
+	} else {
+		newtoken = token;
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Stem editing --
+//
+
+
+
+//////////////////////////////
+//
+// setStemAboveMarker --
+//
+
+function setStemAboveMarker(id, line, field) {
+	console.log("STEM ABOVE", line, field, id);
+	var token = getEditorContents(line, field);
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have a natural
+		return;
+	}
+
+	var matches;
+	var subtokens = token.split(" ");
+	for (var i=0; i<subtokens.length; i++) {
+		if (matches = subtokens[i].match(/([^\\\\\\\/]*)([\\\\\\\/]+)([^\\\\\\\/]*)/)) {
+			subtokens[i] = matches[1] + "/" + matches[3];
+		} else if (matches = subtokens[i].match(/([^A-Ga-g#XxYyTt:'~oOS$MmWw\^<>n-]*)([A-Ga-g#Xx<>yYnTt:'~oOS$MmWw\^-]+)(.*)/)) {
+			subtokens[i] = matches[1] + matches[2] + "/" + matches[3];
 		}
-		newtoken += token[i];
-		if (counter != number) {
-			continue;
+	}
+
+	var newtoken = subtokens.join(" ");
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setStemBelowMarker --
+//
+
+function setStemBelowMarker(id, line, field) {
+	console.log("STEM BELOW", line, field, id);
+	var token = getEditorContents(line, field);
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have a natural
+		return;
+	}
+
+	var matches;
+	var subtokens = token.split(" ");
+	for (var i=0; i<subtokens.length; i++) {
+		if (matches = subtokens[i].match(/([^\\\/]*)([\\\\\\\/]+)([^\\\\\\\/]*)/)) {
+			subtokens[i] = matches[1] + "\\" + matches[3];
+		} else if (matches = subtokens[i].match(/([^A-Ga-g#XxYyTt:'~oOS$MmWw\^<>n-]*)([A-Ga-g#Xx<>yYnTt:'~oOS$MmWw\^-]+)(.*)/)) {
+			subtokens[i] = matches[1] + matches[2] + "\\" + matches[3];
 		}
-		if (token[i+1] == '<') {
-			i++;
-			counter++;
-			continue;
-		} else if (token[i+1] == '>') {
-			i++;
-			counter++;
-			continue;
-		} else {
-			counter++;
-			continue;
-		}
+	}
+
+	var newtoken = subtokens.join(" ");
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// deleteStemMarker --
+//
+
+function deleteStemMarker(id, line, field) {
+	console.log("REMOVE STEMS", line, field, id);
+	var token = getEditorContents(line, field);
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have a natural
+		return;
+	}
+
+	var newtoken = token.replace(/[\\\/]/g, "");
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Accidetnal editing --
+//
+
+//////////////////////////////
+//
+// toggleSharp --
+//
+
+function toggleSharp(id, line, field, subfield) {
+	console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
+	var token = getEditorContents(line, field);
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have a natural
+		return;
+	}
+
+	var newtoken;
+	if (!token.match("#")) {
+		// add sharp
+		newtoken = token.replace(/[#n-]+/, "");
+		newtoken = newtoken.replace(/([a-gA-G]+)/, 
+				function(str,p1) { return p1 ? p1 + "#" : str});
+	} else {
+		// remove sharp
+		newtoken = token.replace(/#+/, "");
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
 	}
 
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
@@ -627,69 +1216,47 @@ function deleteTieDirectionMarker(id, line, field, number) {
 
 //////////////////////////////
 //
-// toggleSharp --
-//
-
-function toggleSharp(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
-	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
-		return;
-	}
-	if (token.match("r")) {
-		// not a note
-		return;
-	}
-	if (!token.match("#")) {
-		// add sharp
-		token = token.replace(/[#n-]+/, "");
-		token = token.replace(/([a-gA-G]+)/, 
-				function(str,p1) { return p1 ? p1 + "#" : str});
-		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
-	} else {
-		// remove sharp
-		token = token.replace(/#+/, "");
-		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
-	}
-}
-
-
-
-//////////////////////////////
-//
 // toggleFlat --
 //
 
-function toggleFlat(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
+function toggleFlat(id, line, field, subfield) {
+	console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
 	if (token.match("r")) {
-		// not a note
+		// rest, which does not need/have a natural
 		return;
 	}
+
+	var newtoken;
 	if (!token.match("-")) {
 		// add flat
-		token = token.replace(/[#n-]+/, "");
-		token = token.replace(/([a-gA-G]+)/, 
+		newtoken = token.replace(/[#n-]+/, "");
+		newtoken = newtoken.replace(/([a-gA-G]+)/, 
 				function(str,p1) { return p1 ? p1 + "-" : str});
-		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
 	} else {
-		// remove sharp
-		token = token.replace(/-+/, "");
+		// remove flat
+		newtoken = token.replace(/-+/, "");
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
 		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
 	}
 }
 
@@ -700,32 +1267,105 @@ function toggleFlat(id, line, field) {
 // toggleNatural --
 //
 
-function toggleNatural(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
+function toggleNatural(id, line, field, subfield) {
+	console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
 	var token = getEditorContents(line, field);
-	if (token === ".") {
-		// nothing to do, just a null data token
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
 	}
 	if (token.match("r")) {
-		// not a note
+		// rest, which does not need/have a natural
 		return;
 	}
+
+	var newtoken;
 	if (!token.match("n")) {
 		// add natural
-		token = token.replace(/[#n-]+/, "");
-		token = token.replace(/([a-gA-G]+)/, 
+		newtoken = token.replace(/[#n-]+/, "");
+		newtoken = newtoken.replace(/([a-gA-G]+)/, 
 				function(str,p1) { return p1 ? p1 + "n" : str});
-		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
 	} else {
-		// remove sharp
-		token = token.replace(/n+/, "");
-		RestoreCursorNote = id;
-		setEditorContents(line, field, token, id);
+		// remove natural
+		newtoken = token.replace(/n+/, "");
 	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleExplicitAccidental --
+//
+
+function toggleExplicitAccidental(id, line, field, subfield) {
+	console.log("TOGGLE EXPLICIT ACCIDENTAL", line, field, subfield, id);
+	var token = getEditorContents(line, field);
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, so no accidental
+		return;
+	}
+
+	var newtoken;
+	var matches;
+
+	if (token.match(/n/)) {
+		// remove cautionary natural
+		newtoken = token.replace(/n/g, "");
+	} else if (matches = token.match(/([^#-]*)([#-]+)(X?)([^#-]*)/)) {
+		// add or remove "X" from sharp/flats
+		if (matches[3] === "X") {
+			// remove cautionary accidental
+			newtoken = matches[1] + matches[2] + matches[4];
+		} else {
+			// add cautionary accidental
+			newtoken = matches[1] + matches[2] + "X" + matches[4];
+		}
+	} else {
+		// add a natural sign
+		if (matches = token.match(/([^A-G]*)([A-G]+)([^A-G]*)/i)) {
+			newtoken = matches[1] + matches[2] + "n" + matches[3];
+		}
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+
 }
 
 
@@ -736,9 +1376,6 @@ function toggleNatural(id, line, field) {
 //
 
 function toggleStaccato(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -771,9 +1408,6 @@ function toggleStaccato(id, line, field) {
 //
 
 function toggleAccent(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -806,9 +1440,6 @@ function toggleAccent(id, line, field) {
 //
 
 function toggleMarcato(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -837,13 +1468,38 @@ function toggleMarcato(id, line, field) {
 
 //////////////////////////////
 //
+// toggleGraceNoteType --
+//
+
+function toggleGraceNoteType(id, line, field) {
+	var token = getEditorContents(line, field);
+	var subtokens = token.split(" ");
+	for (var i=0; i<subtokens.length; i++) {
+		if (subtokens[i].match("qq")) {
+			subtokens[i] = subtokens[i].replace(/qq/g, "q");
+		} else if (subtokens[i].match("q")) {
+			subtokens[i] = subtokens[i].replace(/q/g, "qq");
+		}
+	}
+	var newtoken = subtokens.join(" ");
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+
+
+//////////////////////////////
+//
 // toggleMinorTrill --
 //
 
 function toggleMinorTrill(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -876,9 +1532,6 @@ function toggleMinorTrill(id, line, field) {
 //
 
 function toggleMajorTrill(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -911,9 +1564,6 @@ function toggleMajorTrill(id, line, field) {
 //
 
 function toggleArpeggio(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -946,10 +1596,7 @@ function toggleArpeggio(id, line, field) {
 //
 
 function toggleFermata(id, line, field) {
-console.log("TOGGLING FERMATA");
-	if (line < 1 || field < 1) {
-		return;
-	}
+	console.log("TOGGLING FERMATA");
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -976,9 +1623,6 @@ console.log("TOGGLING FERMATA");
 //
 
 function toggleTenuto(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -1011,9 +1655,6 @@ function toggleTenuto(id, line, field) {
 //
 
 function toggleStaccatissimo(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 	if (token === ".") {
 		// nothing to do, just a null data token
@@ -1046,9 +1687,6 @@ function toggleStaccatissimo(id, line, field) {
 //
 
 function toggleVisibility(id, line, field) {
-	if (line < 1 || field < 1) {
-		return;
-	}
 	var token = getEditorContents(line, field);
 
 	if (token === ".") {
@@ -1077,12 +1715,6 @@ function toggleVisibility(id, line, field) {
 //
 
 function setEditorContents(line, field, token, id) {
-	if (line < 1) {
-		return;
-	}
-	if (field < 1) {
-		return;
-	}
 
 	var linecontent = EDITOR.session.getLine(line-1);
 	var range = new Range(line-1, 0, line-1, linecontent.length);
@@ -1096,11 +1728,9 @@ function setEditorContents(line, field, token, id) {
 		column += components[i].length;
 	}
 	EDITINGID = id;
-console.log("EDITING ID ", id);
 
 	EDITOR.session.replace(range, linecontent);
 	EDITOR.gotoLine(line, column+1);
-
 
 	RestoreCursorNote = id;
 }
@@ -1114,12 +1744,6 @@ console.log("EDITING ID ", id);
 
 function getEditorContents(line, field) {
 	var token = "";
-	if (line < 1) {
-		return;
-	}
-	if (field < 1) {
-		return;
-	}
 
 	var linecontent = EDITOR.session.getLine(line-1);
 

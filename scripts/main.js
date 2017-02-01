@@ -426,15 +426,36 @@ return;
 //
 
 function toggleFreeze() {
-	FreezeRendering = !FreezeRendering;
-	console.log("FreezeRendering =,", FreezeRendering);
 	if (!FreezeRendering) {
-		console.log("Updating notation");
-		displayNotation();
-		setBackgroundColorUnfrozen();
+		freezeNotationDisplay();
 	} else {
-		setBackgroundColorFrozen();
+		unfreezeNotationDisplay();
 	}
+}
+
+
+
+//////////////////////////////
+//
+// freezeNotationDisplay --
+//
+
+function freezeNotationDisplay() {
+	FreezeRendering = true;
+	setBackgroundColorFrozen();
+}
+
+
+
+//////////////////////////////
+//
+// unfreezeNotationDisplay --
+//
+
+function unfreezeNotationDisplay() {
+	FreezeRendering = false;
+	displayNotation();
+	setBackgroundColorUnfrozen();
 }
 
 
@@ -1567,14 +1588,19 @@ function initializeVerovioToolkit() {
 //
 
 function	monitorNotationUpdating() {
-
-console.log("GOT HERE IN MONITOR NOTATION UPDATING");
+	if (FreezeRendering) {
+		return;
+	}
 
 	if (SUPPRESSMONITOR) {
 		console.log("SUPPRESSING MONITOR NOTATION");
 		SUPPRESSMIONITOR = null;
 		return;
 	}
+
+	displayNotation();
+
+/*
 
    if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
 			displayNotation();
@@ -1606,6 +1632,7 @@ console.log("GOT HERE IN MONITOR NOTATION UPDATING");
 			displayNotation();
 		}
 	}, delay);
+*/
 }
 
 
@@ -1729,14 +1756,11 @@ function humdrumDataIntoView(event) {
 			target = target.parentNode;
 			continue;
 		}
-console.log("TARGET = ", target.id);
 		matches = target.id.match(/-[^-]*L(\d+)F(\d+)/);
 		if (!matches) {
 			target = target.parentNode;
-console.log("\tGOT HERE SINCE NO MATCH in ", target.id);
 			continue;
 		}
-console.log("\tHIGHLIGHTING ELE<EMT ", target.id);
 		HIGHLIGHTQUERY = target.id
 		highlightIdInEditor(target.id);
 		break;
@@ -1844,6 +1868,7 @@ function setupAceEditor(idtag) {
 	EDITOR = ace.edit(idtag);
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
+	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
 
 	EDITOR.setTheme("ace/theme/solarized_light");
 	// best themes:
@@ -1881,7 +1906,6 @@ function setupAceEditor(idtag) {
 //
 
 function highlightNoteInScore(event) {
-console.log("HIGHLIGHTINTE NOTE IN SCORE ", event);
 	if (EditorMode == "ace/mode/xml") {
 		xmlDataNoteIntoView(event);
 	} else {
@@ -1960,33 +1984,27 @@ function humdrumDataNoteIntoView(event) {
 	var column = location.column;
 	var text = EDITOR.session.getLine(line);
 	var fys = getFieldAndSubspine(text, column-1);
-console.log("TEXT", text, "COL", column);
 	var field = fys.field;
 	var subspine = fys.subspine;
 	var query = HIGHLIGHTQUERY;
-console.log("HIGHLIGHT QUERY is set to  ", HIGHLIGHTQUERY);
 	HIGHLIGHTQUERY = "";
-console.log("EDITING ID IS CUrRENTLY ", EDITINGID);
 	if (!query) {
 		query = EDITINGID;
 		HIGHLLIGHTQUERY = EDITINGID;
-console.log("SAVING EDIT ID TO HIGHLIGHT", EDITINGID);
 		// EDITINGID = null;
 	}
 	if (!query) {
-console.log("CONSTRUCTING QUERY");
 		var query = "L" + (line+1) + "F" + field;
 		if (subspine > 0) {
 			query += "S" + subspine;
 		}
 	}
-console.log("QUERY", query);
 	var item;
 	if (Splitter.rightContent) {
 		// see: https://www.w3.org/TR/selectors
 		var items = Splitter.rightContent.querySelectorAll("g[id$='" + 
 			query + "']");
-		console.log("FOUND ITEMS", items);
+		// console.log("FOUND ITEMS", items);
 		if (items.length == 0) {
 			// cannot find (hidden rest for example)
 			return;
@@ -1995,7 +2013,7 @@ console.log("QUERY", query);
 		if (item.id.match(/^accid/)) {
 			item = items[items.length-2];
 		}
-		console.log("FOUND ITEM", item);
+		// console.log("FOUND ITEM", item);
 	}
 	markNote(item);
 }
@@ -2680,6 +2698,91 @@ function showCompiledFilterData() {
 
 //	var page = PAGE;
 //	displayNotation(page);
+}
+
+
+
+
+//////////////////////////////
+//
+// insertDirectionRdfs -- If not present, insert above/below RDF markers
+//     in data; otherwise returns what chatacters should represent "above"
+//     and "below".  Typically ">" means "above" and "<" means "below".
+//     also can be used to check if "<" or ">" are already used for
+//     something else.
+//
+function insertDirectionRdfs() {
+	var limit = 20; // search only first and last 20 lines of data for RDF entries.
+	var abovechar = "";
+	var belowchar = "";
+	var matches;
+	var i;
+	var size = EDITOR.session.getLength();
+   for (i=size-1; i>=0; i--) {
+		if (size - i > limit) {
+			break;
+		}
+ 		var line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
+			abovechar = matches[1];
+		} else if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
+			belowchar = matches[1];
+		}
+		if ((abovechar !== "") && (belowchar !== "")) {
+			break;
+		}
+	}
+
+	if ((abovechar === "") || (belowchar === "")) {
+   	for (i=0; i<size; i++) {
+			if (i > limit) {
+				break;
+			}
+ 			var line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
+				abovechar = matches[1];
+			} else if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
+				belowchar = matches[1];
+			}
+			if ((abovechar !== "") && (belowchar !== "")) {
+				break;
+			}
+		}
+	}
+
+	if ((abovechar !== "") && (belowchar !== "")) {
+		return [abovechar, belowchar];
+	}
+
+	var text  = "";
+
+	if (abovechar === "") {
+		text     +=  "!!!RDF**kern: > = above\n";
+		abovechar = ">";
+	} else {
+		text     +=  "!!!RDF**kern: " + abovechar + " = above\n";
+	}
+
+	if (belowchar === "") {
+		text     +=  "!!!RDF**kern: < = below";
+		belowchar = "<";
+	} else {
+		text     +=  "!!!RDF**kern: " + belowchar + " = below";
+	}
+
+	// append markers to end of file.
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+	EDITOR.session.insert({
+			row: EDITOR.session.getLength(),
+			column: 0
+		},
+		"\n" + text);
+	FreezeRendering = freezeBackup;
+
+	return [abovechar, belowchar];
 }
 
 
