@@ -23,25 +23,25 @@ function processNotationKey(key, element) {
 	var matches;
 
 	if (matches = id.match(/L(\d+)/)) {
-		var line = matches[1];
+		var line = parseInt(matches[1]);
 	} else {
 		return; // required
 	}
 
 	if (matches = id.match(/F(\d+)/)) {
-		var field = matches[1];
+		var field = parseInt(matches[1]);
 	} else {
 		return; // required
 	}
 
 	if (matches = id.match(/S(\d+)/)) {
-		var subfield = matches[1];
+		var subfield = parseInt(matches[1]);
 	} else {
 		subfield = null;
 	}
 
 	if (matches = id.match(/N(\d+)/)) {
-		var number = matches[1];
+		var number = parseInt(matches[1]);
 	} else {
 		number = 1;
 	}
@@ -62,16 +62,16 @@ function processNotationKey(key, element) {
 	var number2 = 1;
 
 	if (matches = id.match(/^[^-]+-[^-]+-.*L(\d+)/)) {
-		line2 = matches[1];
+		line2 = parseInt(matches[1]);
 	}
 	if (matches = id.match(/^[^-]+-[^-]+-.*F(\d+)/)) {
-		field2 = matches[1];
+		field2 = parseInt(matches[1]);
 	}
 	if (matches = id.match(/^[^-]+-[^-]+-.*S(\d+)/)) {
-		subfield2 = matches[1];
+		subfield2 = parseInt(matches[1]);
 	}
 	if (matches = id.match(/^[^-]+-[^-]+-.*N(\d+)/)) {
-		number2 = matches[1];
+		number2 = parseInt(matches[1]);
 	}
 
 	if (name === "note") {
@@ -90,6 +90,8 @@ function processNotationKey(key, element) {
 		else if (key === "s")  { addSlur(id, line, field); }
 		else if (key === "q")  { toggleGraceNoteType(id, line, field); }
 		else if (key === "t")  { toggleMinorTrill(id, line, field); }
+		else if (key === "p")  { console.log("p pressed");  togglePedalStart(id, line, field); }
+		else if (key === "P")  { togglePedalEnd(id, line, field); }
 		else if (key === "T")  { toggleMajorTrill(id, line, field); }
 		else if (key === "`")  { toggleStaccatissimo(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
@@ -531,9 +533,10 @@ function addSlurStart(id, line, field, slurstart) {
 	for (var i=token.length-1; i>=0; i--) {
 		if (token[i] == '(') {
 			// need to insert new slur after last one
-			newtoken = token.substr(0, i);
+			newtoken = token.substring(0, i+1);
 			newtoken += slurstart;
-			newtoken = token.substr(i+1);
+			newtoken += token.substring(i+1);
+			break;
 		}
 	}
 
@@ -573,9 +576,9 @@ function addSlurEnd(id, line, field, slurend) {
 	for (var i=0; i<token.length; i++) {
 		if (token[i] == '(') {
 			// need to insert new slur before first one
-			newtoken = token.substr(0, i);
+			newtoken = token.substring(0, i+1);
 			newtoken += slurend;
-			newtoken = token.substr(i+1);
+			newtoken += token.substring(i+1);
 		}
 	}
 
@@ -1522,6 +1525,110 @@ function toggleMinorTrill(id, line, field) {
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	}
+}
+
+
+
+//////////////////////////////
+//
+// togglePedalStart -- Inserting before LO:TX is a problem
+//
+//
+
+function togglePedalStart(id, line, field) {
+	console.log("PEDAL START TOGGLE", line);
+	var text = EDITOR.session.getLine(line-1);
+	if (text.match(/^!/)) {
+		return;
+	}
+	if (text.match(/^\*/)) {
+		return;
+	}
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line-2);
+	if (ptext.match(/^\*/) && ptext.match(/\*ped/)) {
+			addline = false;
+	}
+	var newid;
+	if (!addline) {
+		// delete existing pedal line
+		console.log("DELETING PEDAL START");
+		EDITOR.session.replace(new Range(line-2, 0, line-1, 0), "");
+		newid = id.replace(/L\d+/, "L" + (line-1));
+   	console.log("OLDID", id, "NEWID", newid);
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+		return;
+	}
+	var fields = text.split("\t");
+	for (var i=0; i<fields.length; i++) {
+		// inserting in the first column, but maybe should be
+		// the first **kern dataspine...
+		fields[i] = "*";
+	}
+	fields[0] = "*ped";
+	console.log("ADDING START PEDAL LINE");
+	var newline = fields.join("\t") + "\n";
+	EDITOR.session.insert({row:line-1, column:0}, newline);
+	newid = id.replace(/L\d+/, "L" + (line+1));
+  	console.log("OLDID", id, "NEWID", newid);
+	RestoreCursorNote = newid;
+	HIGHLIGHTQUERY = newid;
+}
+
+
+
+//////////////////////////////
+//
+// togglePedalEnd --
+//
+//
+
+function togglePedalEnd(id, line, field) {
+	console.log("PEDAL END TOGGLE", line);
+	var text = EDITOR.session.getLine(line-1);
+	if (text.match(/^!/)) {
+		return;
+	}
+	if (text.match(/^\*/)) {
+		return;
+	}
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line);
+	if (ptext.match(/^\*/) && ptext.match(/\*Xped/)) {
+			addline = false;
+	}
+	var newid;
+	if (!addline) {
+		// delete existing pedal line
+		console.log("DELETING PEDAL END");
+		EDITOR.session.replace(new Range(line, 0, line+1, 0), "");
+		newid = id;
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+		return;
+	}
+	var fields = text.split("\t");
+	for (var i=0; i<fields.length; i++) {
+		// inserting in the first column, but maybe should be
+		// the first **kern dataspine...
+		fields[i] = "*";
+	}
+	fields[0] = "*Xped";
+
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
+	console.log("ADDING END PEDAL LINE");
+	var newline = fields.join("\t") + "\n";
+	//var oldline = EDITOR.session.getLine(line);
+	EDITOR.session.replace(new Range(line, 0, line, 0), newline);
+	newid = id;
+  	console.log("OLDID", id, "NEWID", newid);
+	RestoreCursorNote = newid;
+	HIGHLIGHTQUERY = newid;
+
+	FreezeRendering = freezeBackup;
+	displayNotation();
 }
 
 

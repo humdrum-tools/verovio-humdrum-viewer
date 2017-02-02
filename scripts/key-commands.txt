@@ -37,6 +37,8 @@ c	clear stem direction
 shift-^	toggle marcato
 ~	toggle tenuto
 `	toggle staccatissimo
+p	toggle pedal start before note
+P	toggle pedal stop after note
 q	toggle grace-note style
 t	toggle minor-second trill
 T	toggle major-second trill
