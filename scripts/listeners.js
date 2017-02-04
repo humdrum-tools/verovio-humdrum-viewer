@@ -118,8 +118,15 @@ function processNotationKeyCommand(event) {
 			processNotationKey("f", CursorNote);
 			break;
 
+		case MKey:
+			if (event.shiftKey) {
+				processNotationKey("M", CursorNote);
+			} else {
+				processNotationKey("m", CursorNote);
+			}
+			break;
+
 		case PKey:
-console.log("P KEY PRESSED");
 			if (event.shiftKey) {
 				processNotationKey("P", CursorNote);
 			} else {
@@ -140,6 +147,14 @@ console.log("P KEY PRESSED");
 				processNotationKey("T", CursorNote);
 			} else {
 				processNotationKey("t", CursorNote);
+			}
+			break;
+
+		case WKey:
+			if (event.shiftKey) {
+				processNotationKey("W", CursorNote);
+			} else {
+				processNotationKey("w", CursorNote);
 			}
 			break;
 

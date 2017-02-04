@@ -83,6 +83,10 @@ function processNotationKey(key, element) {
 		else if (key === "-")  { toggleFlat(id, line, field, subfield); }
 		else if (key === "n")  { toggleNatural(id, line, field, subfield); }
 		else if (key === "X")  { toggleExplicitAccidental(id, line, field, subfield); }
+		else if (key === "m")  { toggleMordent("m", id, line, field, subfield); }
+		else if (key === "M")  { toggleMordent("M", id, line, field, subfield); }
+		else if (key === "w")  { toggleMordent("w", id, line, field, subfield); }
+		else if (key === "W")  { toggleMordent("W", id, line, field, subfield); }
 		else if (key === "'")  { toggleStaccato(id, line, field); }
 		else if (key === "^")  { toggleAccent(id, line, field); }
 		else if (key === "^^") { toggleMarcato(id, line, field); }
@@ -1524,6 +1528,69 @@ function toggleMinorTrill(id, line, field) {
 		token = token.replace(/T/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleMordent --
+//
+
+function toggleMordent(mtype, id, line, field, subfield) {
+	console.log("TOGGLE MORDENT", token, line, field, subfield, id);
+
+	var token = getEditorContents(line, field);
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+	if (token.match("r")) {
+		// reset, so no mordent allowed
+		return;
+	}
+	
+	var newtoken = "";
+	var matches;
+	var matches = token.match(/[MmWw]/);
+	var hasmordent = false;
+	if (matches) {
+		hasmordent = true;
+	}
+	var hascurrentmordent = false;
+	if (hasmordent) {
+		var re2 = new RegExp(mtype);
+		if (re2.exec(token)) {
+			hascurrentmordent = true;
+		}
+	}
+	
+	if (hascurrentmordent) {
+		// remove existing mordent
+		newtoken = token.replace(/[MmWw][<>]*/g, "");
+	} else if (hasmordent) {
+		// change the current mordent to the new one
+		newtoken = token.replace(/[MmWw]/g, mtype);
+	} else {
+		// add the given mordent
+		newtoken = token + mtype;
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
 	}
 }
 

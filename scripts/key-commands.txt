@@ -25,24 +25,25 @@ y	show/hide data editor
 
 <p><b> Note editing commands </b></p>
 
-#	toggle sharp on note
--	toggle flat on note
-n	toggle natural on note
-x	force display of accidental
 a	force stem up
 b	force stem down
 c	clear stem direction
-'	toggle staccato
-^	toggle accent
-shift-^	toggle marcato
-~	toggle tenuto
-`	toggle staccatissimo
+m/M	toggle lower mordent
+n	toggle natural on note
 p	toggle pedal start before note
 P	toggle pedal stop after note
 q	toggle grace-note style
-t	toggle minor-second trill
-T	toggle major-second trill
+t/T	toggle trill
+w/W	toggle upper mordent
+x	force display of accidental
+#	toggle sharp on note
+'	toggle staccato
+-	toggle flat on note
 ;	toggle fermata
+^	toggle accent
+shift-^	toggle marcato
+`	toggle staccatissimo
+~	toggle tenuto
 
 <p><b> Rest editing commands </b></p>
 
