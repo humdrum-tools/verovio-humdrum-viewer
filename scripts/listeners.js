@@ -321,6 +321,13 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case GKey:
+			if (event.altKey) {
+				displaySvg();
+				event.preventDefault();
+			}
+			break;
+
 		case HKey:
 			if (event.altKey) {
 				if (!ShowingIndex) {
@@ -364,7 +371,7 @@ function processInterfaceKeyCommand(event) {
 
 		case SKey:
 			if (event.altKey) {
-				displaySvg();
+				saveEditorContents();
 				event.preventDefault();
 			}
 			break;

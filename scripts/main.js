@@ -28,6 +28,7 @@ var DISPLAYTIME = 0;
 var HIGHLIGHTQUERY = null;
 var EDITINGID = null;
 var SUPPRESSMONITOR = null;
+var SAVEFILENAME = "data.txt";
 
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
@@ -38,7 +39,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 186;
+var BasketVersion = 187;
 
 var Actiontime = 0;
 
@@ -1151,6 +1152,11 @@ function processInfo(info, obj, nextwork, prevwork) {
 		return;
 	}
 
+	var matches;
+	if (obj && obj.file && (matches = obj.file.match(/([^\/]+)$/))) {
+		SAVEFILENAME = matches[1];
+	}
+
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
 	displayScoreTextInEditor(score, PAGE);
@@ -1204,6 +1210,11 @@ function downloadKernScoresFile(file, measures, page) {
 		if (measures) {
 			url += "&mm=" + measures;
 		}
+	}
+
+	if (filename) {
+		SAVEFILENAME = filename;
+		console.log("SAVEFILENAME - ", SAVEFILENAME);
 	}
 
 	console.log("DATA URL", url);
@@ -1894,6 +1905,19 @@ function setupAceEditor(idtag) {
 
 	EDITOR.getSession().selection.on("changeCursor", function(event) 
 		{ highlightNoteInScore(event)});
+
+	//EDITOR.commands.addCommand({
+	//	name: 'saveFile',
+	//	bindKey: {
+	//			win: 'Alt-G',
+	//			mac: 'Alt-G',
+	//			sender: 'editor|cli'
+	//		},
+	//	exec: function(env, argc, request) {
+	//		alert("HI!", env, argc, request);
+	//	}
+	//});
+
 
 }
 
@@ -2784,6 +2808,28 @@ function insertDirectionRdfs() {
 
 	return [abovechar, belowchar];
 }
+
+
+
+
+function saveEditorContents() {
+	var filename = SAVEFILENAME;
+	var size = EDITOR.session.getLength();
+	var matches;
+	var line;
+	for (var i=0; i<size; i++) {
+		line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
+			filename = matches[1];
+		}
+		
+	}
+
+	var text = EDITOR.session.getValue();
+	var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+	saveAs(blob, filename);
+}
+
 
 
 
