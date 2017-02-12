@@ -29,6 +29,7 @@ y	show/hide data editor
 a	force stem up
 b	force stem down
 c	clear stem direction
+i	toggle editorial accidental
 m/M	toggle lower mordent
 n	toggle natural on note
 p	toggle pedal start before note
@@ -76,5 +77,13 @@ c	clear tie orientation
 a	force beam above
 b	force beam below
 c	clear beam orientation
+
+<p><b> Repertories </b></p>
+
+<a href="/?file=chorales">J.S. Bach chorales</a> (SATB layout)
+<nobr><a href="/?file=chorales&filter=satb2gs">J.S.Bach chorales</a> (Grand staff layout)</nobr>
+<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc">J.S.Bach chorales</a> (C tonic)</nobr>
+<a href="/?file=mozart/sonatas">Mozart piano sonatas</a>
+<a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a>
 
 

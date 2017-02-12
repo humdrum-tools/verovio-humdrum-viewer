@@ -118,6 +118,10 @@ function processNotationKeyCommand(event) {
 			processNotationKey("f", CursorNote);
 			break;
 
+		case IKey:
+			processNotationKey("i", CursorNote);
+			break;
+
 		case MKey:
 			if (event.shiftKey) {
 				processNotationKey("M", CursorNote);

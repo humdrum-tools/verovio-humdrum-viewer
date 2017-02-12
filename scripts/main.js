@@ -2735,6 +2735,7 @@ function showCompiledFilterData() {
 //     also can be used to check if "<" or ">" are already used for
 //     something else.
 //
+
 function insertDirectionRdfs() {
 	var limit = 20; // search only first and last 20 lines of data for RDF entries.
 	var abovechar = "";
@@ -2811,6 +2812,10 @@ function insertDirectionRdfs() {
 
 
 
+//////////////////////////////
+//
+// saveEditorContents -- Save the editor contents to a file on the local disk.
+//
 
 function saveEditorContents() {
 	var filename = SAVEFILENAME;
@@ -2832,4 +2837,73 @@ function saveEditorContents() {
 
 
 
+
+//////////////////////////////
+//
+// insertEditorialAccidentalRdf -- If not present, insert editorial accidental
+//     RDF marker in data; otherwise returns what chatacters should represent
+//     an editorial accidental.
+//
+
+function insertEditorialAccidentalRdf() {
+	var limit = 20; // search only first and last 20 lines of data for RDF entries.
+	var editchar = "";
+	var matches;
+	var i;
+	var size = EDITOR.session.getLength();
+   for (i=size-1; i>=0; i--) {
+		if (size - i > limit) {
+			break;
+		}
+ 		var line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
+			editchar = matches[1];
+		}
+		if (editchar !== "") {
+			break;
+		}
+	}
+
+	if (editchar === "") {
+   	for (i=0; i<size; i++) {
+			if (i > limit) {
+				break;
+			}
+ 			var line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
+				editchar = matches[1];
+			}
+			if (editchar !== "") {
+				break;
+			}
+		}
+	}
+
+	if (editchar !== "") {
+		return editchar;
+	}
+
+	var text  = "";
+
+	if (editchar === "") {
+		text     +=  "!!!RDF**kern: i = editorial accidental\n";
+		editchar = "i";
+	} else {
+		text     +=  "!!!RDF**kern: " + editchar + " = editorial accidental\n";
+	}
+
+	// append markers to end of file.
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+	EDITOR.session.insert({
+			row: EDITOR.session.getLength(),
+			column: 0
+		},
+		"\n" + text);
+	FreezeRendering = freezeBackup;
+
+	return editchar;
+}
 
