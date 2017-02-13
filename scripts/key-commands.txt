@@ -9,7 +9,8 @@
 ,	toggle CSV/TSV display of Humdrum data
 < >	+/&ndash; tab size in editor
 <nobr>shft-&larr;/&rarr;</nobr>	next/previous work
-shft-up	go back to repertory index
+shft-&uarr;	go back to repertory index
+esc	unfocus graphical element(s)
 
 <b> More commands (+<i>alt</i> key) <b>
 b	show/hide logo
@@ -18,9 +19,9 @@ g	display SVG text for current page
 h	show Humdrum data
 m	show MEI data
 o	toggle original clefs
-p	show source scan (when available)
+p	show source scan (if available)
 r	reload file from server
-s	save editor contents in local file
+s	save to local file
 v	toggle vi/plain editor
 y	show/hide data editor
 
@@ -32,8 +33,8 @@ c	clear stem direction
 i	toggle editorial accidental
 m/M	toggle lower mordent
 n	toggle natural on note
-p	toggle pedal start before note
-P	toggle pedal stop after note
+p	toggle pedal start before
+P	toggle pedal stop after
 q	toggle grace-note style
 t/T	toggle trill
 w/W	toggle upper mordent
@@ -43,9 +44,12 @@ x	force display of accidental
 -	toggle flat on note
 ;	toggle fermata
 ^	toggle accent
-shift-^	toggle marcato
+shft-^	toggle marcato
 `	toggle staccatissimo
 ~	toggle tenuto
+&uarr;/&darr;	up/down step
+# &uarr;/&darr;	up/down interval
+shft-&uarr;/&darr;	up/down octave
 
 <p><b> Rest editing commands </b></p>
 
@@ -80,10 +84,10 @@ c	clear beam orientation
 
 <p><b> Repertories </b></p>
 
-<a href="/?file=chorales">J.S. Bach chorales</a> (SATB layout)
+<nobr><a href="/?file=chorales">J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
 <nobr><a href="/?file=chorales&filter=satb2gs">J.S.Bach chorales</a> (Grand staff layout)</nobr>
-<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc">J.S.Bach chorales</a> (C tonic)</nobr>
-<a href="/?file=mozart/sonatas">Mozart piano sonatas</a>
-<a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a>
+<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc">J.S.Bach chorales</a> (transposed to C )</nobr>
+<nobr><a href="/?file=mozart/sonatas">Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
+<nobr><a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
 
 

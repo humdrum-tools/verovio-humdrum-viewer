@@ -2080,7 +2080,6 @@ function markNote(item, line) {
 	}
 	if (item) {
 		CursorNote = item;
-console.log("CURSORNOTE = ", CursorNote.id);
 	}
 	if (CursorNote) {
 		/// console.log("TURNING ON NEW NOTE", CursorNote);
@@ -2906,4 +2905,99 @@ function insertEditorialAccidentalRdf() {
 
 	return editchar;
 }
+
+
+
+//////////////////////////////
+//
+// transposeDiatonic --
+//
+
+function transposeDiatonic(pitch, amount) {
+	var len = pitch.length;
+	amount = parseInt(amount);
+	if (len == 0) {
+		return "";
+	}
+	var pitchnum = humdrumToDiatonic(pitch);
+	pitchnum += amount;
+	if (pitchnum < 1) {
+		// to low to process or mean anything
+		return pitch;
+	}
+	if (pitchnum >= 70) {
+		// to high to process or mean anything
+		return pitch;
+	}
+	return diatonicToHumdrum(pitchnum);
+}
+
+
+
+//////////////////////////////
+//
+// humdrumToDiatonic -- Does not like rests, null tokens.
+//
+
+function humdrumToDiatonic(pitch) {
+	var len = pitch.length;
+	var octave = 0;
+	var firstchar = pitch.charAt(0);
+	var firstlow = firstchar.toLowerCase();
+	if (firstchar === firstlow) {
+		octave = 3 + len;
+	} else {
+		octave = 4 - len;
+	}
+	var diatonic = 0;
+	if      (firstlow === "d") { diatonic = 1; }
+	else if (firstlow === "e") { diatonic = 2; }
+	else if (firstlow === "f") { diatonic = 3; }
+	else if (firstlow === "g") { diatonic = 4; }
+	else if (firstlow === "a") { diatonic = 5; }
+	else if (firstlow === "b") { diatonic = 6; }
+	return 7 * octave + diatonic;
+}
+
+
+
+//////////////////////////////
+//
+// diatonicToHumdrum -- 
+//
+
+function diatonicToHumdrum(pitch) {
+	pitch = parseInt(pitch);
+	var octave = parseInt(pitch / 7);
+	var pc = pitch % 7;
+	var pchar = "x";
+	if      (pc == 0) { pchar = "c"; }
+	else if (pc == 1) { pchar = "d"; }
+	else if (pc == 2) { pchar = "e"; }
+	else if (pc == 3) { pchar = "f"; }
+	else if (pc == 4) { pchar = "g"; }
+	else if (pc == 5) { pchar = "a"; }
+	else if (pc == 6) { pchar = "b"; }
+
+	var i;
+	var count;
+	var output = "";
+	if (octave < 4) {
+		pchar = pchar.toUpperCase();
+		count = 4 - octave;
+		for (i=0; i<count; i++) {
+			output += pchar;
+		}
+	} else {
+		count = octave - 3;
+		for (i=0; i<count; i++) {
+			output += pchar;
+		}
+	}
+
+	return output;
+}
+
+
+
 

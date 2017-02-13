@@ -246,6 +246,38 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		case UpKey:
+			if (event.shiftKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-up-octave", CursorNote);
+				}
+			} else {
+				event.preventDefault();
+				event.stopPropagation();
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-up-step", CursorNote);
+				}
+			}
+			break;
+			
+		case DownKey:
+			if (event.shiftKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-down-octave", CursorNote);
+				}
+			} else {
+				event.preventDefault();
+				event.stopPropagation();
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-down-step", CursorNote);
+				}
+			}
+			break;
+
 		case LeftKey:
 			if (CursorNote.id.match("slur-")) {
 				event.preventDefault();
@@ -268,6 +300,12 @@ function processNotationKeyCommand(event) {
 					processNotationKey("leftEndMoveForward", CursorNote);
 				}
 			}
+			break;
+
+		case EscKey:
+			event.preventDefault();
+			event.stopPropagation();
+			processNotationKey("esc", CursorNote);
 			break;
 
 	}

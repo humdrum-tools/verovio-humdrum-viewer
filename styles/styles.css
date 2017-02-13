@@ -320,6 +320,11 @@ textarea#input {
 	overflow: scroll;
 }
 
+#help-container a {
+	text-decoration: none;
+	color:       #d8ab5c;
+}
+
 #search-help {
    margin-right: 31px;
    margin-top:   6.5px;

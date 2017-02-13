@@ -10,7 +10,7 @@
 // Description:   Processing key commands to edit music.
 //
 
-var SlurJump = 1;  // number of notes to jump when moving a slur.
+var InterfaceSingleNumber = 1;  // number of notes to jump when moving a slur.
 
 //////////////////////////////
 //
@@ -74,6 +74,26 @@ function processNotationKey(key, element) {
 		number2 = parseInt(matches[1]);
 	}
 
+
+	if (key === "esc") {
+		HIGHLIGHTQUERY = "";
+		if (!element) {
+			return;
+		}
+		var classes = element.getAttribute("class");
+		var classlist = classes.split(" ");
+		var outclass = "";
+		for (var i=0; i<classlist.length; i++) {
+			if (classlist[i] == "highlight") {
+				continue;
+			}
+			outclass += " " + classlist[i];
+		}
+		element.setAttribute("class", outclass);
+		CursorNote = "";
+		return;
+	}
+
 	if (name === "note") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === "a")  { setStemAboveMarker(id, line, field); }
@@ -88,28 +108,32 @@ function processNotationKey(key, element) {
 		else if (key === "M")  { toggleMordent("M", id, line, field, subfield); }
 		else if (key === "w")  { toggleMordent("w", id, line, field, subfield); }
 		else if (key === "W")  { toggleMordent("W", id, line, field, subfield); }
+		else if (key === "transpose-up-step")  { transposeNote(id, line, field, subfield, +1); }
+		else if (key === "transpose-down-step")  { transposeNote(id, line, field, subfield, -1); }
+		else if (key === "transpose-up-octave")  { transposeNote(id, line, field, subfield, +7); }
+		else if (key === "transpose-down-octave")  { transposeNote(id, line, field, subfield, -7); }
 		else if (key === "'")  { toggleStaccato(id, line, field); }
 		else if (key === "^")  { toggleAccent(id, line, field); }
 		else if (key === "^^") { toggleMarcato(id, line, field); }
 		else if (key === "~")  { toggleTenuto(id, line, field); }
 		else if (key === "s")  { addSlur(id, line, field); }
 		else if (key === "q")  { toggleGraceNoteType(id, line, field); }
-		else if (key === "t")  { toggleMinorTrill(id, line, field); }
 		else if (key === "p")  { console.log("p pressed");  togglePedalStart(id, line, field); }
 		else if (key === "P")  { togglePedalEnd(id, line, field); }
+		else if (key === "t")  { toggleMinorTrill(id, line, field); }
 		else if (key === "T")  { toggleMajorTrill(id, line, field); }
 		else if (key === "`")  { toggleStaccatissimo(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
 		else if (key === ":")  { toggleArpeggio(id, line, field); }
-		else if (key === "1")  { SlurJump = 1; }
-		else if (key === "2")  { SlurJump = 2; }
-		else if (key === "3")  { SlurJump = 3; }
-		else if (key === "4")  { SlurJump = 4; }
-		else if (key === "5")  { SlurJump = 5; }
-		else if (key === "6")  { SlurJump = 6; }
-		else if (key === "7")  { SlurJump = 7; }
-		else if (key === "8")  { SlurJump = 8; }
-		else if (key === "9")  { SlurJump = 9; }
+		else if (key === "1")  { InterfaceSingleNumber = 1; }
+		else if (key === "2")  { InterfaceSingleNumber = 2; }
+		else if (key === "3")  { InterfaceSingleNumber = 3; }
+		else if (key === "4")  { InterfaceSingleNumber = 4; }
+		else if (key === "5")  { InterfaceSingleNumber = 5; }
+		else if (key === "6")  { InterfaceSingleNumber = 6; }
+		else if (key === "7")  { InterfaceSingleNumber = 7; }
+		else if (key === "8")  { InterfaceSingleNumber = 8; }
+		else if (key === "9")  { InterfaceSingleNumber = 9; }
 	} else if (name === "rest") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
@@ -123,15 +147,15 @@ function processNotationKey(key, element) {
 		else if (key === "leftEndMoveForward")  { leftEndMoveForward(id, line, field, number, line2, field2, number2); }
 		else if (key === "rightEndMoveForward") { rightEndMoveForward(id, line, field, number, line2, field2, number2); }
 		else if (key === "rightEndMoveBack")    { rightEndMoveBack(id, line, field, number, line2, field2, number2); }
-		else if (key === "1")  { SlurJump = 1; }
-		else if (key === "2")  { SlurJump = 2; }
-		else if (key === "3")  { SlurJump = 3; }
-		else if (key === "4")  { SlurJump = 4; }
-		else if (key === "5")  { SlurJump = 5; }
-		else if (key === "6")  { SlurJump = 6; }
-		else if (key === "7")  { SlurJump = 7; }
-		else if (key === "8")  { SlurJump = 8; }
-		else if (key === "9")  { SlurJump = 9; }
+		else if (key === "1")  { InterfaceSingleNumber = 1; }
+		else if (key === "2")  { InterfaceSingleNumber = 2; }
+		else if (key === "3")  { InterfaceSingleNumber = 3; }
+		else if (key === "4")  { InterfaceSingleNumber = 4; }
+		else if (key === "5")  { InterfaceSingleNumber = 5; }
+		else if (key === "6")  { InterfaceSingleNumber = 6; }
+		else if (key === "7")  { InterfaceSingleNumber = 7; }
+		else if (key === "8")  { InterfaceSingleNumber = 8; }
+		else if (key === "9")  { InterfaceSingleNumber = 9; }
 	} else if (name === "tie") {
 		// need to fix tie functions to deal with chord notes (subfield values):
 		if (key === "a") { setTieAboveMarker(id, line, field, subfield); }
@@ -437,7 +461,7 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != SlurJump) {
+		if (counter != InterfaceSingleNumber) {
 			i--;
 			continue;
 		}
@@ -463,7 +487,7 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	SlurJump = 1;
+	InterfaceSingleNumber = 1;
 }
 
 
@@ -491,7 +515,7 @@ function addSlur(id, line, field) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != SlurJump) {
+		if (counter != InterfaceSingleNumber) {
 			i++;
 			continue;
 		}
@@ -522,7 +546,7 @@ function addSlur(id, line, field) {
 	if (!FreezeRendering) {
 		displayNotation();
 	}
-	SlurJump = 1;
+	InterfaceSingleNumber = 1;
 }
 
 
@@ -727,7 +751,7 @@ function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != SlurJump) {
+		if (counter != InterfaceSingleNumber) {
 			i++;
 			continue;
 		}
@@ -755,7 +779,7 @@ function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	SlurJump = 1;
+	InterfaceSingleNumber = 1;
 }
 
 
@@ -784,7 +808,7 @@ function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != SlurJump) {
+		if (counter != InterfaceSingleNumber) {
 			i++;
 			continue;
 		}
@@ -817,7 +841,7 @@ function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	SlurJump = 1;
+	InterfaceSingleNumber = 1;
 }
 
 
@@ -845,7 +869,7 @@ function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != SlurJump) {
+		if (counter != InterfaceSingleNumber) {
 			i--;
 			continue;
 		}
@@ -878,7 +902,7 @@ function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	SlurJump = 1;
+	InterfaceSingleNumber = 1;
 }
 
 
@@ -1158,6 +1182,68 @@ function deleteStemMarker(id, line, field) {
 	}
 
 	var newtoken = token.replace(/[\\\/]/g, "");
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Transposing --
+//
+
+
+//////////////////////////////
+//
+// tranposeUp --
+//
+
+function transposeNote(id, line, field, subfield, amount)  {
+	console.log("TRANSPOSE Note", line, field, subfield, id);
+	var token = getEditorContents(line, field);
+
+	amount = parseInt(amount);
+
+	if (InterfaceSingleNumber > 1) {
+		if (amount > 0) {
+			amount = InterfaceSingleNumber - 1;
+		} else {
+			amount = -InterfaceSingleNumber + 1;
+		}
+		InterfaceSingleNumber = 1;
+	}
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have a natural
+		return;
+	}
+
+	var newtoken;
+	var matches;
+	if (matches = token.match(/([^a-gA-G]*)([a-gA-G]+)([^a-gA-G]*)/)) {
+		newtoken = matches[1];
+		newtoken += transposeDiatonic(matches[2], amount);
+		newtoken += matches[3];
+
+	}
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
 
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
@@ -1574,14 +1660,19 @@ function toggleMinorTrill(id, line, field) {
 		return;
 	}
 	if (!token.match(/T/i)) {
-		// add marcato
+		// add trill
 		token = token.replace(/T/gi, "");
 		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
 				function(str,p1) { return p1 ? p1 + "t" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
+	} else if (token.match(/T/)) {
+		// change to major-second trill
+		token = token.replace(/T/g, "t");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
 	} else {
-		// remove marcato
+		// remove trill
 		token = token.replace(/T/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -1773,14 +1864,19 @@ function toggleMajorTrill(id, line, field) {
 		return;
 	}
 	if (!token.match(/T/i)) {
-		// add marcato
+		// add trill
 		token = token.replace(/T/gi, "");
 		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
 				function(str,p1) { return p1 ? p1 + "T" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
+	} else if (token.match(/t/)) {
+		// switch to major second trill
+		token = token.replace(/t/g, "T");
+		RestoreCursorNote = id;
+		setEditorContents(line, field, token, id);
 	} else {
-		// remove marcato
+		// remove trill
 		token = token.replace(/T/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
