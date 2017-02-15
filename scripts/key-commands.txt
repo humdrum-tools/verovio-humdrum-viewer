@@ -17,6 +17,7 @@ b	show/hide logo
 f	(un)freeze dynamic notation
 g	display SVG text for current page
 h	show Humdrum data
+l	toggle layer coloring
 m	show MEI data
 o	toggle original clefs
 p	show source scan (if available)
@@ -89,5 +90,6 @@ c	clear beam orientation
 <nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc">J.S.Bach chorales</a> (transposed to C )</nobr>
 <nobr><a href="/?file=mozart/sonatas">Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
 <nobr><a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
+<nobr><a href="/?file=chopin/mazurkas">Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
 
 
