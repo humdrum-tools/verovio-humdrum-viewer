@@ -379,6 +379,13 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case LKey:
+			if (event.altKey) {
+				toggleLayerColoring();
+				event.preventDefault();
+			}
+			break;
+
 		case MKey:
 			if (event.altKey) {
 				displayMei();

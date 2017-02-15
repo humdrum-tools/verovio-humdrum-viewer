@@ -39,7 +39,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 189;
+var BasketVersion = 190;
 
 var Actiontime = 0;
 
@@ -2998,6 +2998,33 @@ function diatonicToHumdrum(pitch) {
 	return output;
 }
 
+
+
+//////////////////////////////
+//
+// toggleLayerColoring -- turn layer color highlighting on/off.
+//
+
+function toggleLayerColoring() {
+	var sylesheet;
+	stylesheet = document.querySelector("#layer-color-stylesheet");
+	if (stylesheet) {
+		var parentElement = stylesheet.parentNode;
+		parentElement.removeChild(stylesheet);
+		return;
+	}
+	stylesheet = document.createElement('style');
+	var text = "";
+	text += "g[id^='layer-'][id*='N2'] { fill: #00cc00; }";
+	text += "g[id^='layer-'][id*='N3'] { fill: #cc00aa; }";
+	text += "g[id^='layer-'][id*='N4'] { fill: #0088cc; }";
+	text += "g[id^='layer-'][id*='N5'] { fill: #0000cc; }";
+	text += "g[id^='layer-'][id*='N6'] { fill: #cc0000; }";
+	text += "g[id^='layer-'][id*='N7'] { fill: #00cc00; }";
+	stylesheet.innerHTML = text;
+	stylesheet.id = "layer-color-stylesheet";
+	document.body.appendChild(stylesheet);
+}
 
 
 
