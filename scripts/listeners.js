@@ -450,14 +450,17 @@ function processInterfaceKeyCommand(event) {
 		case CommaKey:
 			if (event.shiftKey) {
 				decreaseTab();
+				event.preventDefault();
 			} else {
 				toggleHumdrumCsvTsv();
+				event.preventDefault();
 			}
 			break;
 
 		case DotKey:
 			if (event.shiftKey) {
 				increaseTab();
+				event.preventDefault();
 			} 
 			break;
 
@@ -505,6 +508,7 @@ function processInterfaceKeyCommand(event) {
 		case SlashKey:
 			if (event.shiftKey) {
 				toggleHelpMenu();
+				event.preventDefault();
 			}
 
 	}
