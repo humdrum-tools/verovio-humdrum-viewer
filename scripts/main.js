@@ -2921,6 +2921,7 @@ function transposeDiatonic(pitch, amount) {
 	}
 	var pitchnum = humdrumToDiatonic(pitch);
 	pitchnum += amount;
+
 	if (pitchnum < 1) {
 		// to low to process or mean anything
 		return pitch;

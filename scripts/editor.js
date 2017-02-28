@@ -1257,7 +1257,7 @@ function transposeNote(id, line, field, subfield, amount)  {
 
 ///////////////////////////////////////////////////////////////////////////
 //
-// Accidetnal editing --
+// Accidental editing --
 //
 
 
