@@ -1,3 +1,4 @@
 scripts/verovio-toolkit.js
 _site
 *.swp
+.DS_Store
