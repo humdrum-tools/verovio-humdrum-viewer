@@ -1,5 +1,7 @@
+Also see the <a href="http://doc.verovio.humdrum.org" target="_blank">full documentation</a>.
+<br>
 
-<b> Navigation commands <b>
+<p><b> Navigation commands <b>
 
 ?	toggle this help menu
 &larr;/&rarr;	next/previous page
