@@ -1,89 +1,91 @@
-Also see the <a href="http://doc.verovio.humdrum.org" target="_blank">full documentation</a>.
+Also see the <a target="_doc" href="http://doc.verovio.humdrum.org" target="_blank">full documentation</a>,
+or click red commands for their doc.
 <br>
 
 <p><b> Navigation commands <b>
 
-?	toggle this help menu
-&larr;/&rarr;	next/previous page
-<i>home</i>	go to first page
-<i>end</i>	go to last page
-<i>space</i>	start/stop score playback
-,	toggle CSV/TSV display of Humdrum data
-< >	+/&ndash; tab size in editor
-<nobr>shft-&larr;/&rarr;</nobr>	next/previous work
-shft-&uarr;	go back to repertory index
-esc	unfocus graphical element(s)
+?	toggle this help menu	.
+&larr;/&rarr;	next/previous page	.
+<i>home</i>	go to first page	.
+<i>end</i>	go to last page	.
+<i>space</i>	start/stop score playback	.
+,	toggle CSV/TSV display of Humdrum data	.
+< >	+/&ndash; tab size in editor	.
+<nobr>shft-&larr;/&rarr;</nobr>	next/previous work	.
+shft-&uarr;	go back to repertory index	.
+esc	unfocus graphical element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-b	show/hide logo
-f	(un)freeze dynamic notation
-g	display SVG text for current page
-h	show Humdrum data
-l	toggle layer coloring
-m	show MEI data
-o	toggle original clefs
-p	show source scan (if available)
-r	reload file from server
-s	save to local file
-v	toggle vi/plain editor
-y	show/hide data editor
+b	show/hide logo	.
+f	(un)freeze dynamic notation	/commands/alt-f
+g	display SVG text for current page	.
+h	show Humdrum data	.
+l	toggle layer coloring	/commands/alt-l
+m	show MEI data	/commands/alt-m
+o	toggle original clefs	.
+p	show source scan (if available)	.
+r	reload file from server	.
+s	save to local file	.
+v	toggle vi/plain editor	/commands/alt-v
+y	show/hide data editor	.
 
 <p><b> Note editing commands </b></p>
 
-a	force stem up
-b	force stem down
-c	clear stem direction
-i	toggle editorial accidental
-m/M	toggle lower mordent
-n	toggle natural on note
-p	toggle pedal start before
-P	toggle pedal stop after
-q	toggle grace-note style
-t/T	toggle trill
-w/W	toggle upper mordent
-x	force display of accidental
-#	toggle sharp on note
-'	toggle staccato
--	toggle flat on note
-;	toggle fermata
-^	toggle accent
-shft-^	toggle marcato
-`	toggle staccatissimo
-~	toggle tenuto
-&uarr;/&darr;	up/down step
-# &uarr;/&darr;	up/down interval
-shft-&uarr;/&darr;	up/down octave
+a	force stem up	.
+b	force stem down	.
+c	clear stem direction	.
+i	toggle editorial accidental	.
+m/M	toggle lower mordent	.
+n	toggle natural on note	.
+p	toggle pedal start before	.
+P	toggle pedal stop after	.
+q	toggle grace-note style	.
+s	add slur to next note	/graphical/slurs
+t/T	toggle trill	.
+w/W	toggle upper mordent	.
+x	force display of accidental	.
+#	toggle sharp on note	.
+'	toggle staccato	.
+-	toggle flat on note	.
+;	toggle fermata	.
+^	toggle accent	.
+shft-^	toggle marcato	.
+`	toggle staccatissimo	.
+~	toggle tenuto	.
+&uarr;/&darr;	up/down step	.
+# &uarr;/&darr;	up/down interval	.
+shft-&uarr;/&darr;	up/down octave	.
 
 <p><b> Rest editing commands </b></p>
 
-y	make rest invisible
+y	make rest invisible	.
 
 <p><b> Slur editing commands </b></p>
 
-a	force slur above
-b	force slur below
-c	clear slur orientation
-D	delete slur
-&larr;	move slur start 1 note left
-&rarr;	slur start 1 note right
-#&larr;	slur start # notes left
-#&rarr;	slur start # notes right
-<nobr>shft-&larr;</nobr>	slur end left
-<nobr>shft-&rarr;</nobr>	slur end right
-<nobr># shft-&larr;</nobr>	slur end # notes left
-<nobr># shft-&rarr;</nobr>	slur end # notes right
+a	force slur above	.
+b	force slur below	.
+c	clear slur orientation	.
+D	delete slur	.
+&larr;	move slur start 1 note left	.
+&rarr;	slur start 1 note right	.
+#&larr;	slur start # notes left	.
+#&rarr;	slur start # notes right	.
+<nobr>shft-&larr;</nobr>	slur end left	.
+<nobr>shft-&rarr;</nobr>	slur end right	.
+<nobr># shft-&larr;</nobr>	slur end # notes left	.
+<nobr># shft-&rarr;</nobr>	slur end # notes right	.
 
 <p><b> Tie editing commands </b></p>
 
-a	force tie above
-b	force tie below
-c	clear tie orientation
+a	force tie above	.
+b	force tie below	.
+c	clear tie orientation	.
 
 <p><b> Beam editing commands </b></p>
 
-a	force beam above
-b	force beam below
-c	clear beam orientation
+a	force beam above	.
+b	force beam below	.
+c	clear beam orientation	.
 
 <p><b> Repertories </b></p>
 

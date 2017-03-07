@@ -39,7 +39,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 194;
+var BasketVersion = 195;
 
 var Actiontime = 0;
 
@@ -2651,20 +2651,40 @@ function fillInHelpContainer(selector, data) {
 // output += ' <b style="font-size:110%;">Keyboard commands</b>';
 // output += '</td></tr>\n';
    var line;
+	var docbase = "http://doc.verovio.humdrum.org";
    for (var i=0; i<lines.length; i++) {
       line = lines[i];
-      var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
-      if (matches) {
-         var key  = matches[1];
-         var desc = matches[2];
-         output += '<tr><td><b>'
-         output += '<span style="color:#d8ab5c; cursor:pointer;"';
+		var fields = line.split(/\t+/);
+      // var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
+      if (fields.length > 1) {
+         var key  = fields[0];
+         var desc = fields[1];
+			if (fields.length > 2) {
+				var docurl = fields[2];
+			}
+			if (docurl === ".") {
+				docurl = "";
+			}
+
+         output += '<tr><td>'
+
+			output += "<b>";
+         output += '<span class="helpentry"';
          output += " onclick='processKeyCommand(";
          output += '{keyCode: "' + key + '".charCodeAt(0)}' + ");'";
          output += '>';
+
+			if (docurl) {
+				output += "<a class='doclink' href='" + docbase + docurl + "' target='_doc'>";
+			}
          output += key
+
+			if (docurl) {
+				output += "</a>";
+			}
          output += '</span>';
-         output += '</b></td>';
+			output += "</b>";
+         output += '</td>';
          output += '<td>' + desc + '</td></tr>';
       } else if (!line.match(/^\s*$/)) {
          output += '<tr><td colspan="2">';
@@ -2814,6 +2834,7 @@ function insertDirectionRdfs() {
 //////////////////////////////
 //
 // saveEditorContents -- Save the editor contents to a file on the local disk.
+//   Saves in UTF-8 format.
 //
 
 function saveEditorContents() {
@@ -2830,7 +2851,8 @@ function saveEditorContents() {
 	}
 
 	var text = EDITOR.session.getValue();
-	var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+	// var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+	var blob = new Blob([text], {type: 'text/plain'});
 	saveAs(blob, filename);
 }
 
