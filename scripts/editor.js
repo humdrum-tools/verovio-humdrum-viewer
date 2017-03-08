@@ -10,7 +10,11 @@
 // Description:   Processing key commands to edit music.
 //
 
-var InterfaceSingleNumber = 1;  // number of notes to jump when moving a slur.
+// InterfaceSingleNumber: digit typed on the keyboard before 
+// certain commands, suh as slurs, which indicates the number
+// of notes to include under the slur.  Or "2" for double-flats/
+// sharps, or for the transposing interval when changing pitch.
+var InterfaceSingleNumber = 1;  
 
 //////////////////////////////
 //
@@ -202,7 +206,7 @@ function setBeamAboveMarker(id, line, field) {
 		newtoken += matches[4];
 	}
 	
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -237,7 +241,7 @@ function setBeamBelowMarker(id, line, field) {
 		newtoken += matches[4];
 	}
 	
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -271,7 +275,7 @@ function deleteBeamDirectionMarker(id, line, field) {
 		newtoken += matches[4];
 	}
 	
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -428,7 +432,7 @@ function deleteSlurDirectionMarker(id, line, field, number) {
 		}
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -583,8 +587,8 @@ function addSlurStart(id, line, field, slurstart) {
 	var newid = id.replace(/L\d+/, "L" + line);
 	newid = newid.replace(/F\d+/, "F" + field);
 	newid = newid.replace(/N\d+/, "N" + pcount);
-   console.log("OLDTOKEN2", token, "NEWTOKEN2", newtoken);
-   console.log("OLDID", id, "NEWID", newid);
+   // console.log("OLDTOKEN2", token, "NEWTOKEN2", newtoken);
+   // console.log("OLDID", id, "NEWID", newid);
 	if (newtoken !== token) {
 		RestoreCursorNote = newid;
 		HIGHLIGHTQUERY = newid;
@@ -660,7 +664,7 @@ function deleteSlurStart(id, line, field, number) {
 		counter++;
    }
 
-   console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
+   // console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -694,7 +698,7 @@ function deleteSlurEnd(id, line, field, number) {
 		newtoken += token[i];
    }
 
-   console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
+   // console.log("OLDTOKEN1", token, "NEWTOKEN1", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -958,7 +962,7 @@ function setTieAboveMarker(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1014,7 +1018,7 @@ function setTieBelowMarker(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1069,7 +1073,7 @@ function deleteTieDirectionMarker(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1115,7 +1119,7 @@ function setStemAboveMarker(id, line, field) {
 
 	var newtoken = subtokens.join(" ");
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1154,7 +1158,7 @@ function setStemBelowMarker(id, line, field) {
 
 	var newtoken = subtokens.join(" ");
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1183,7 +1187,7 @@ function deleteStemMarker(id, line, field) {
 
 	var newtoken = token.replace(/[\\\/]/g, "");
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1245,7 +1249,7 @@ function transposeNote(id, line, field, subfield, amount)  {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1306,7 +1310,7 @@ function toggleEditorialAccidental(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1318,11 +1322,11 @@ function toggleEditorialAccidental(id, line, field, subfield) {
 
 //////////////////////////////
 //
-// toggleSharp --
+// toggleSharp -- show or hide a sharp or double sharp on a note.
 //
 
 function toggleSharp(id, line, field, subfield) {
-	console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
+	// console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
 	var token = getEditorContents(line, field);
 
 	if (subfield) {
@@ -1339,14 +1343,29 @@ function toggleSharp(id, line, field, subfield) {
 	}
 
 	var newtoken;
-	if (!token.match("#")) {
-		// add sharp
-		newtoken = token.replace(/[#n-]+/, "");
-		newtoken = newtoken.replace(/([a-gA-G]+)/, 
-				function(str,p1) { return p1 ? p1 + "#" : str});
+
+
+	if (InterfaceSingleNumber == 2) {
+		if (!token.match("##")) {
+			// add double sharp
+			newtoken = token.replace(/[#n-]+/, "");
+			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+					function(str,p1) { return p1 ? p1 + "##" : str});
+		} else {
+			// remove double-sharp
+			newtoken = token.replace(/#+/, "");
+		}
+		InterfaceSingleNumber = 1;
 	} else {
-		// remove sharp
-		newtoken = token.replace(/#+/, "");
+		if (token.match("##") || !token.match("#")) {
+			// add sharp
+			newtoken = token.replace(/[#n-]+/, "");
+			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+					function(str,p1) { return p1 ? p1 + "#" : str});
+		} else {
+			// remove sharp
+			newtoken = token.replace(/#+/, "");
+		}
 	}
 
 	if (subfield) {
@@ -1354,7 +1373,7 @@ function toggleSharp(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1366,11 +1385,11 @@ function toggleSharp(id, line, field, subfield) {
 
 //////////////////////////////
 //
-// toggleFlat --
+// toggleFlat -- Show or hide a flat or double flat on a note.
 //
 
 function toggleFlat(id, line, field, subfield) {
-	console.log("TOGGLE NATURAL ACCIDENTAL", line, field, subfield, id);
+	// console.log("TOGGLE FLAT ACCIDENTAL", line, field, subfield, id);
 	var token = getEditorContents(line, field);
 
 	if (subfield) {
@@ -1387,14 +1406,27 @@ function toggleFlat(id, line, field, subfield) {
 	}
 
 	var newtoken;
-	if (!token.match("-")) {
-		// add flat
-		newtoken = token.replace(/[#n-]+/, "");
-		newtoken = newtoken.replace(/([a-gA-G]+)/, 
-				function(str,p1) { return p1 ? p1 + "-" : str});
+	if (InterfaceSingleNumber == 2) {
+		if (!token.match("--")) {
+			// add flat
+			newtoken = token.replace(/[#n-]+/, "");
+			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+					function(str,p1) { return p1 ? p1 + "--" : str});
+		} else {
+			// remove flat
+			newtoken = token.replace(/-+/, "");
+		}
+		InterfaceSingleNumber = 1;
 	} else {
-		// remove flat
-		newtoken = token.replace(/-+/, "");
+		if (token.match("--") || !token.match("-")) {
+			// add flat
+			newtoken = token.replace(/[#n-]+/, "");
+			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+					function(str,p1) { return p1 ? p1 + "-" : str});
+		} else {
+			// remove flat
+			newtoken = token.replace(/-+/, "");
+		}
 	}
 
 	if (subfield) {
@@ -1402,7 +1434,7 @@ function toggleFlat(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1450,7 +1482,7 @@ function toggleNatural(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1509,7 +1541,7 @@ function toggleExplicitAccidental(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1633,7 +1665,7 @@ function toggleGraceNoteType(id, line, field) {
 	}
 	var newtoken = subtokens.join(" ");
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -1734,7 +1766,7 @@ function toggleMordent(mtype, id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+   // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
