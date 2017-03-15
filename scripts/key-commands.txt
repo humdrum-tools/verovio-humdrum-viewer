@@ -22,7 +22,7 @@ g	display SVG text for current page	.
 h	show Humdrum data	.
 l	toggle layer coloring	/commands/alt-l
 m	show MEI data	/commands/alt-m
-o	toggle original clefs	.
+o	toggle original clefs	/commands/alt-o
 p	show source scan (if available)	.
 r	reload file from server	.
 s	save to local file	.

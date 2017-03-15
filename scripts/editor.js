@@ -2135,3 +2135,51 @@ function getEditorContents(line, field) {
 
 
 
+//////////////////////////////
+//
+// toggleMarkedNote --
+//
+
+function toggleMarkedNote(id, line, field, subfield) {
+	console.log("TOGGLE MARKED NOTE ", line, field, subfield, id);
+	var token = getEditorContents(line, field);
+
+	if (subfield) {
+		var subtokens = token.split(" ");
+		token = subtokens[subfield-1];
+	}
+
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+	if (token.match("r")) {
+		// rest, which does not need/have an accidental
+		return;
+	}
+
+   var editchar = insertMarkedNoteRdf();
+	var newtoken;
+	var matches;
+
+	var re = new RegExp(editchar);
+	if (re.exec(token)) {
+		// remove mark
+		newtoken = token.replace(new RegExp(editchar, "g"), "");
+	} else {
+		// add a natural and an editorial accidental
+		newtoken = newtoken + editchar;
+   }
+
+	if (subfield) {
+		subtokens[subfield-1] = newtoken;
+		newtoken = subtokens.join(" ");
+	}
+
+   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
+	if (newtoken !== token) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(line, field, newtoken, id);
+	}
+}
+
