@@ -175,7 +175,11 @@ function processNotationKeyCommand(event) {
 			break;
 
 		case TwoKey:
-			processNotationKey("2", CursorNote);
+			if (event.shiftKey) {
+				processNotationKey("@", CursorNote);
+			} else {
+				processNotationKey("2", CursorNote);
+			}
 			break;
 
 		case ThreeKey:

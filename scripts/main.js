@@ -2976,10 +2976,10 @@ function insertMarkedNoteRdf() {
 	var text  = "";
 
 	if (editchar === "") {
-		text     +=  "!!!RDF**kern: @ = marked note\n";
-		editchar = "i";
+		text     +=  "!!!RDF**kern: @ = marked note";
+		editchar = "@";
 	} else {
-		text     +=  "!!!RDF**kern: " + editchar + " = marked note\n";
+		text     +=  "!!!RDF**kern: " + editchar + " = marked note";
 	}
 
 	// append markers to end of file.

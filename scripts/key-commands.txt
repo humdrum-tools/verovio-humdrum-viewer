@@ -13,7 +13,7 @@ or click red commands for their doc.
 < >	+/&ndash; tab size in editor	.
 <nobr>shft-&larr;/&rarr;</nobr>	next/previous work	.
 shft-&uarr;	go back to repertory index	.
-esc	unfocus graphical element(s)	.
+esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
 b	show/hide logo	.
@@ -40,21 +40,22 @@ n	toggle natural on note	.
 p	toggle pedal start before	.
 P	toggle pedal stop after	.
 q	toggle grace-note style	.
-s	add slur to next note	/graphical/slurs
+s	add slur to next note	/graphic/slurs
 t/T	toggle trill	.
 w/W	toggle upper mordent	.
-x	force display of accidental	.
-#	toggle sharp on note	.
+x	force display of accidental	/graphic/pitch
+#	toggle sharp on note	/graphic/pitch
 '	toggle staccato	.
--	toggle flat on note	.
+-	toggle flat on note	/graphic/pitch
 ;	toggle fermata	.
 ^	toggle accent	.
 shft-^	toggle marcato	.
 `	toggle staccatissimo	.
 ~	toggle tenuto	.
-&uarr;/&darr;	up/down step	.
-# &uarr;/&darr;	up/down interval	.
-shft-&uarr;/&darr;	up/down octave	.
+@	toggle mark	/graphic/marks
+&uarr;/&darr;	up/down step	/graphic/pitch
+# &uarr;/&darr;	up/down interval	/graphic/pitch
+shft-&uarr;/&darr;	up/down octave	/graphic/pitch
 
 <p><b> Rest editing commands </b></p>
 

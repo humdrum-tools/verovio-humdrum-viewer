@@ -138,6 +138,7 @@ function processNotationKey(key, element) {
 		else if (key === "7")  { InterfaceSingleNumber = 7; }
 		else if (key === "8")  { InterfaceSingleNumber = 8; }
 		else if (key === "9")  { InterfaceSingleNumber = 9; }
+		else if (key === "@")  { toggleMarkedNote(id, line, field, subfield); }
 	} else if (name === "rest") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
@@ -2158,6 +2159,7 @@ function toggleMarkedNote(id, line, field, subfield) {
 	}
 
    var editchar = insertMarkedNoteRdf();
+console.log("EDITCHAR = ", editchar);
 	var newtoken;
 	var matches;
 
@@ -2167,7 +2169,7 @@ function toggleMarkedNote(id, line, field, subfield) {
 		newtoken = token.replace(new RegExp(editchar, "g"), "");
 	} else {
 		// add a natural and an editorial accidental
-		newtoken = newtoken + editchar;
+		newtoken = token + editchar;
    }
 
 	if (subfield) {
@@ -2175,11 +2177,15 @@ function toggleMarkedNote(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
+	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
    console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
 		setEditorContents(line, field, newtoken, id);
 	}
+	FreezeRendering = freezeBackup;
+	displayNotation();
 }
 
