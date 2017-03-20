@@ -39,7 +39,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 201;
+var BasketVersion = 202;
 
 var Actiontime = 0;
 
