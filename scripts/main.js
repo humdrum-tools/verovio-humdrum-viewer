@@ -1061,7 +1061,7 @@ function loadKernScoresFile(obj, force) {
 function getTassoUrl(file, measures) {
 	var filename = file.replace(/\.krn$/, "");;
 
-	var url = "http://www.tassomusic.org/cgi-bin/tasso?&file=" + filename;
+	var url = "http://josquin.stanford.edu/cgi-bin/tasso?&file=" + filename;
 	url += "&a=humdrum";
 
 	var key = filename;

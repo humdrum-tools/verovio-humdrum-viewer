@@ -97,6 +97,6 @@ c	clear beam orientation	.
 <nobr><a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
 <nobr><a href="/?file=chopin/mazurkas">Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
 <nobr><a href="/?file=joplin">Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
-<nobr><a href="/?file=tmp">Tasso Rime</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-digital-scores">GH</a>)</nobr>
+<nobr><a href="/?file=tmp">Tasso Rime Settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-digital-scores">GH</a>, <a target="tmp" href="http//tmp.tassomusic.org">TMP</a>)</nobr>
 
 
