@@ -1030,7 +1030,7 @@ function loadKernScoresFile(obj, force) {
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
-						console.log("Error downloading", key, err);
+						console.log("Error downloading", key, "Error:", err);
 					}
 				} else {
 					console.log("Error retrieving", key);
