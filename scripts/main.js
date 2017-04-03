@@ -1021,7 +1021,6 @@ function loadKernScoresFile(obj, force) {
 
 				if (info) {
 					try {
-console.log("info", info);
 						jinfo = JSON.parse(info.data);
 						// console.log("NEW JSON INFO", jinfo);
 						if (force) {
@@ -1031,7 +1030,8 @@ console.log("info", info);
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
-						console.log("Error downloading", key, "Error:", err);
+						// console.log("Error downloading", key, "Error:", err);
+						displayScoreTextInEditor(info.data, PAGE);
 					}
 				} else {
 					console.log("Error retrieving", key);
