@@ -1021,6 +1021,7 @@ function loadKernScoresFile(obj, force) {
 
 				if (info) {
 					try {
+console.log("info", info);
 						jinfo = JSON.parse(info.data);
 						// console.log("NEW JSON INFO", jinfo);
 						if (force) {
