@@ -327,6 +327,7 @@ function processOptions() {
 // spacingNonLinear # == non-linear spacing factor (default 0.6)
 // spacingStaff #     == spacing above each staff (MEI vu)
 // spacigSystem #     == spacing above each system (MEI vu)
+// humType            == embedd extra type/class attributes
 //
 
 function humdrumToSvgOptions() {
@@ -337,6 +338,7 @@ function humdrumToSvgOptions() {
 		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
+		humType           : 1,
 		type              : "midi",
 		font              : "Leipzig"
 	}
