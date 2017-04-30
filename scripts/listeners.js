@@ -392,7 +392,11 @@ function processInterfaceKeyCommand(event) {
 
 		case MKey:
 			if (event.altKey) {
-				displayMei();
+				if (event.shiftKey) {
+					displayMei();
+				} else {
+					displayMeiNoType();
+				}
 				event.preventDefault();
 			}
 			break;

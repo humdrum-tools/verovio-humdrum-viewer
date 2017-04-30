@@ -39,7 +39,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 208;
+var BasketVersion = 209;
 
 var Actiontime = 0;
 
@@ -1422,6 +1422,21 @@ function showBufferedHumdrumData() {
 		displayScoreTextInEditor(BufferedHumdrumFile, PAGE);
 		BufferedHumdrumFile = "";
 	}
+}
+
+
+//////////////////////////////
+//
+// displayMeiNoType --
+//
+
+function displayMeiNoType() {
+	var options = humdrumToSvgOptions();
+	options.humType = 0;
+	vrvToolkit.setOptions(options);
+	var data    = EDITOR.getValue().replace(/^\s+/, "");
+	vrvToolkit.loadData(data);
+	displayMei();
 }
 
 
