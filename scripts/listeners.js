@@ -154,6 +154,12 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		case VKey:
+			if (CursorNote.id.match("note-")) {
+				processNotationKey("^", CursorNote);
+			}
+			break;
+
 		case WKey:
 			if (event.shiftKey) {
 				processNotationKey("W", CursorNote);
@@ -202,9 +208,7 @@ function processNotationKeyCommand(event) {
 			if (CursorNote.id.match("note-")) {
 				if (event.shiftKey) {
 					processNotationKey("^^", CursorNote);
-				} else {
-					processNotationKey("^", CursorNote);
-				}
+				} 
 			} else {
 				processNotationKey("6", CursorNote);
 			}
