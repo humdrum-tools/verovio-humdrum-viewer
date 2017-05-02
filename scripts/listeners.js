@@ -208,6 +208,8 @@ function processNotationKeyCommand(event) {
 			if (CursorNote.id.match("note-")) {
 				if (event.shiftKey) {
 					processNotationKey("^^", CursorNote);
+				} else {
+					processNotationKey("6", CursorNote);
 				} 
 			} else {
 				processNotationKey("6", CursorNote);
