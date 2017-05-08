@@ -26,8 +26,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	CGI = GetCgiParameters();
 
-	if (CGI.k && CGI.k.match(/h/)) {
-		toggleInputArea(true);
+	if (CGI.k) { 
+		if (CGI.k.match(/y/)) {
+			toggleInputArea(true);
+		}
+		if (CGI.k.match(/b/)) {
+			toggleVhvTitle();
+		}
 	}
 
 	if (CGI.file || CGI.tasso || CGI.jrp) {
