@@ -3138,3 +3138,18 @@ function toggleLayerColoring() {
 
 
 
+//////////////////////////////
+//
+// clearContent --
+//
+
+function clearContent() {
+	EDITOR.setValue("", -1);
+	var output = document.querySelector("#output");
+	if (output) {
+		output.innerHTML = "";
+	}
+}
+
+
+

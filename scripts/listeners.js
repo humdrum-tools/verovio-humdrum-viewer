@@ -17,14 +17,22 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 	downloadVerovioToolkit('http://verovio-script.humdrum.org/scripts/verovio-toolkit.js');
-	setupAceEditor("input");
-
-	allowTabs();
-	setupDropArea();
-
-   prepareHelpMenu('#help-container');
 
 	CGI = GetCgiParameters();
+
+	if (CGI.k) { 
+		if (CGI.k.match(/e/)) {
+			var input = document.querySelector("#input");
+			if (input) {
+				input.innerHTML = "";
+			}
+		}
+	}
+
+	setupAceEditor("input");
+	allowTabs();
+	setupDropArea();
+   prepareHelpMenu('#help-container');
 
 	if (CGI.k) { 
 		if (CGI.k.match(/y/)) {
@@ -358,6 +366,13 @@ function processInterfaceKeyCommand(event) {
 		case CKey:
 			if (event.altKey) {
 				showCompiledFilterData();
+				event.preventDefault();
+			}
+			break;
+
+		case EKey:
+			if (event.altKey) {
+				clearContent();
 				event.preventDefault();
 			}
 			break;

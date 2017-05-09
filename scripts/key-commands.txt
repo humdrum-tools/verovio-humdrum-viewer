@@ -16,8 +16,9 @@ shft-&uarr;	go back to repertory index	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-b	show/hide logo	.
+b	show/hide logo	/commands/alt-b
 c	compile filters	/commands/alt-c
+e	erase score	/commands/alt-e
 f	(un)freeze dynamic notation	/commands/alt-f
 g	display SVG text for current page	/commands/alt-g
 h	show Humdrum data	.
