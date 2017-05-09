@@ -3143,11 +3143,18 @@ function toggleLayerColoring() {
 // clearContent --
 //
 
+var ERASED_DATA = "";
 function clearContent() {
-	EDITOR.setValue("", -1);
-	var output = document.querySelector("#output");
-	if (output) {
-		output.innerHTML = "";
+	var data = EDITOR.getValue();
+	if (data.match(/^\s*$/)) {
+		EDITOR.setValue(ERASED_DATA, -1);
+	} else {
+		ERASED_DATA = data;
+		EDITOR.setValue("", -1);
+		var output = document.querySelector("#output");
+		if (output) {
+			output.innerHTML = "";
+		}
 	}
 }
 
