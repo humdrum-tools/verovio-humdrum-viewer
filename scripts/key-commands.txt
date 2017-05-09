@@ -17,6 +17,7 @@ esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
 b	show/hide logo	.
+c	show/hide logo	/commands/alt-c
 f	(un)freeze dynamic notation	/commands/alt-f
 g	display SVG text for current page	/commands/alt-g
 h	show Humdrum data	.
