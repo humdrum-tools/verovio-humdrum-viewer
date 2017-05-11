@@ -25,7 +25,7 @@ h	show Humdrum data	.
 l	toggle layer coloring	/commands/alt-l
 m	show MEI data	/commands/alt-m
 o	toggle original clefs	/commands/alt-o
-p	show source scan (if available)	.
+p	show source scan (if available)	/commands/alt-p
 r	reload file from server	.
 s	save to local file	.
 v	toggle vi/plain editor	/commands/alt-v
@@ -92,13 +92,13 @@ c	clear beam orientation	.
 
 <p><b> Repertories </b></p>
 
-<nobr><a href="/?file=chorales">J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
-<nobr><a href="/?file=chorales&filter=satb2gs">J.S.Bach chorales</a> (Grand staff layout)</nobr>
-<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc">J.S.Bach chorales</a> (transposed to C )</nobr>
-<nobr><a href="/?file=mozart/sonatas">Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
-<nobr><a href="/?file=beethoven/sonatas">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
-<nobr><a href="/?file=chopin/mazurkas">Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
-<nobr><a href="/?file=joplin">Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
-<nobr><a href="/?file=tmp">Tasso Rime Settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-digital-scores">GH</a>, <a target="tmp" href="http//tmp.tassomusic.org">TMP</a>)</nobr>
+<nobr><a href="/?file=chorales&k=e">J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
+<nobr><a href="/?file=chorales&filter=satb2gs&k=e">J.S.Bach chorales</a> (Grand staff layout)</nobr>
+<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc&k=e">J.S.Bach chorales</a> (transposed to C )</nobr>
+<nobr><a href="/?file=mozart/sonatas&k=e">Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
+<nobr><a href="/?file=beethoven/sonatas&k=e">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
+<nobr><a href="/?file=chopin/mazurkas&k=e">Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
+<nobr><a href="/?file=joplin&k=e">Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
+<nobr><a href="/?file=tmp&k=e">Tasso Rime Settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-scores">GH</a>, <a target="tmp" href="http//tmp.tassomusic.org">TMP</a>)</nobr>
 
 
