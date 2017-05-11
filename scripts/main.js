@@ -278,6 +278,8 @@ function processOptions() {
 	if (!CGI.k) {
 		return;
 	}
+/* is this function needed anymore?  Now seems to be done
+ * in DOMContentLoaded event listener 
 	var list = CGI.k.split('');
 	for (var i=0; i<list.length; i++) {
 		var event = {};
@@ -298,6 +300,7 @@ function processOptions() {
 		}
 	}
 	FirstInitialization = true;
+*/
 }
 
 
@@ -839,6 +842,7 @@ function loadIndexFile(location) {
 	console.log("Loading index", url);
 
 	var request = new XMLHttpRequest();
+console.log("GOT HERE AAA");
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
@@ -1024,15 +1028,19 @@ function loadKernScoresFile(obj, force) {
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
-						// console.log("NEW JSON INFO", jinfo);
+						console.log("NEW JSON INFO", jinfo);
 						if (force) {
+							var textdata = atob(jinfo.content);
+							if (textdata.match(/^\s*$/)) {
+								textdata = "!!!ONB: No data content\n";
+							}
 							displayScoreTextInEditor(atob(jinfo.content), PAGE);
 						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
-						// console.log("Error downloading", key, "Error:", err);
+						console.log("Error downloading", key, "Error:", err);
 						displayScoreTextInEditor(info.data, PAGE);
 					}
 				} else {
@@ -1222,6 +1230,7 @@ function downloadKernScoresFile(file, measures, page) {
 
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
+console.log("GOT HERE bbb");
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
