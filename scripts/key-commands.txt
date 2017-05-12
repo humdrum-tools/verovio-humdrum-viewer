@@ -90,15 +90,23 @@ a	force beam above	.
 b	force beam below	.
 c	clear beam orientation	.
 
-<p><b> Repertories </b></p>
+<p><b> Repertories </b> (<a target="_blank" href="http://doc.verovio.humdrum.org/repertory">more info</a>) </p>
 
-<nobr><a href="/?file=chorales&k=e">J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
-<nobr><a href="/?file=chorales&filter=satb2gs&k=e">J.S.Bach chorales</a> (Grand staff layout)</nobr>
-<nobr><a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc&k=e">J.S.Bach chorales</a> (transposed to C )</nobr>
-<nobr><a href="/?file=mozart/sonatas&k=e">Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
-<nobr><a href="/?file=beethoven/sonatas&k=e">Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
-<nobr><a href="/?file=chopin/mazurkas&k=e">Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
-<nobr><a href="/?file=joplin&k=e">Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
-<nobr><a href="/?file=tmp&k=e">Tasso Rime Settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-scores">GH</a>, <a target="tmp" href="http//tmp.tassomusic.org">TMP</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=chorales&k=e">270 J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
+   <span style="margin-left:30px"><nobr>(<a href="/?file=chorales&filter=satb2gs&k=e">on grand staff</a>) (<a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc&k=e">Transposed to C</a>)</nobr></span>
+<nobr><a style="color: #cc5500 !important" href="?file=liederschatz1&k=e">200 Deutscher Liederschatz</a> (<a target="github" href="https://github.com/craigsapp/liederschatz">GH</a>)</nobr>
+   <span style="margin-left:30px"> (<a href="?file=liederschatz1&k=e&filter=extract%20-k3">vocal part</a>) (<a href="?file=liederschatz1&k=e&filter=extract%20-k1-2">piano part</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=mozart/sonatas&k=e">17 Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=beethoven/sonatas&k=e">32 Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=beethoven/quartets&k=e">16 Beethoven string quartets</a> (<a target="github" href="https://github.com/craigsapp/beethoven-quartets">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=chopin/mazurkas&k=e">56 Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=hummel/preludes&k=e">24 Hummel preludes, op 67</a> (<a target="github" href="https://github.com/craigsapp/hummel-preludes">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=joplin&k=e">54 Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=tmp&k=e">19 Tasso Rime Settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-scores">GH</a>, <a target="tmp" href="http://tmp.tassomusic.org">TMP</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Jos&k=e">300 works by Josquin des Prez</a> (<a target="github" href="https://github.com/josquin-research-project/Jos">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
+   <span style="margin-left:30px"> (<a href="?file=jrp/Joa&k=e">secure attribution</a>) (<a href="?file=jrp/Job&k=e">not secure</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Ock&k=e">44 works by Johannes Ockeghem</a> (<a target="github" href="https://github.com/josquin-research-project/Ock">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Rue&k=e">78 works by Pierre de la Rue</a> (<a target="github" href="https://github.com/josquin-research-project/Rue">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Ort&k=e">23 works by Mabrianus de Orto</a> (<a target="github" href="https://github.com/josquin-research-project/Ort">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
 
 
