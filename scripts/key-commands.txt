@@ -94,7 +94,7 @@ c	clear beam orientation	.
 
 <nobr><a style="color: #cc5500 !important" href="/?file=chorales&k=e">270 J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
    <span style="margin-left:30px"><nobr>(<a href="/?file=chorales&filter=satb2gs&k=e">on grand staff</a>) (<a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc&k=e">Transposed to C</a>)</nobr></span>
-   <span style="margin-left:30px"><nobr>(<a href="/?file=bhchorales&filter=extract%20-s1,$,2-$1&k=e">w/ harmony analyses</a>) 
+   <span style="margin-left:30px"><nobr>(<a href="/?file=BachChoralesAnalyzed&filter=autobeam%7cextract%20-s1,$1,$,2-$2&k=e">w/ harmony analyses</a>) 
 <nobr><a style="color: #cc5500 !important" href="?file=liederschatz1&k=e">200 Deutscher Liederschatz</a> (<a target="github" href="https://github.com/craigsapp/liederschatz">GH</a>)</nobr>
    <span style="margin-left:30px"> (<a href="?file=liederschatz1&k=e&filter=extract%20-k3">vocal part</a>) (<a href="?file=liederschatz1&k=e&filter=extract%20-k1-2">piano part</a>)</nobr>
 <nobr><a style="color: #cc5500 !important" href="/?file=mozart/sonatas&k=e">17 Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
