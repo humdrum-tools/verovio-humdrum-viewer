@@ -30,6 +30,10 @@ var EDITINGID = null;
 var SUPPRESSMONITOR = null;
 var SAVEFILENAME = "data.txt";
 
+// no timeout for slow delivery of verovio
+window.basketSession.timeout = 1000000000;
+
+
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
 
@@ -39,7 +43,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 219;
+var BasketVersion = 220;
 
 var Actiontime = 0;
 
