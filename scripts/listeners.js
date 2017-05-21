@@ -475,6 +475,21 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case WKey:
+			if (event.altKey) {
+				if (event.shiftKey) {
+					SPACINGADJUSTMENT -= 0.05;
+				} else {
+					SPACINGADJUSTMENT += 0.05;
+				}
+				if (SPACINGADJUSTMENT <= 0.0) {
+					SPACINGADJUSTMENT = 0.0;
+				}
+				event.preventDefault();
+				displayNotation();
+			}
+			break;
+
 		case SpaceKey:
 			if (!PLAY) {
 				play_midi();

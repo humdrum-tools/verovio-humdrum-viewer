@@ -29,6 +29,7 @@ var HIGHLIGHTQUERY = null;
 var EDITINGID = null;
 var SUPPRESSMONITOR = null;
 var SAVEFILENAME = "data.txt";
+var SPACINGADJUSTMENT = 0.0;
 
 // no timeout for slow delivery of verovio
 window.basketSession.timeout = 1000000000;
@@ -43,7 +44,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 221;
+var BasketVersion = 222;
 
 var Actiontime = 0;
 
@@ -345,6 +346,8 @@ function humdrumToSvgOptions() {
 		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
+		spacingNonLinear	: 0.6,
+		spacingLinear		: 0.25,
 		humType           : 1,
 		type              : "midi",
 		font              : "Leipzig"
@@ -371,6 +374,12 @@ function humdrumToSvgOptions() {
 		output.spacingNonLinear = 0.65;
    }
 
+	var newLinearSpacing = SPACINGADJUSTMENT + output.spacingLinear;
+	if (newLinearSpacing < 0.05) {
+		newLinearSpacing = 0.05;
+	}
+	output.spacingLinear = newLinearSpacing;
+
 	return output;
 }
 
@@ -382,6 +391,8 @@ function humdrumToMeiOptions() {
 		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
+		spacingNonLinear	: 0.6,
+		spacingLinear		: 0.25,
 		type              : "mei",
 		font              : "Leipzig"
 	}
