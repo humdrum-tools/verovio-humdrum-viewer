@@ -48,6 +48,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (CGI.k.match(/b/)) {
 			toggleVhvTitle();
 		}
+		var wcount = 0;
+		for (var i=0; i<CGI.k.length; i++) {
+			if (CGI.k.charAt(i) === "w") {
+				SPACINGADJUSTMENT += 0.05;
+			} else if (CGI.k.charAt(i) === "W") {
+				SPACINGADJUSTMENT -= 0.05;
+			}
+		}
 	}
 
 	if (CGI.file || CGI.tasso || CGI.jrp) {
