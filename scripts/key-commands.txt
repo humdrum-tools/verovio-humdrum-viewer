@@ -29,6 +29,8 @@ p	show source scan (if available)	/commands/alt-p
 r	reload file from server	.
 s	save to local file	.
 v	toggle vi/plain editor	/commands/alt-v
+w	widen note spacing
+W	narrow note spacing
 y	show/hide data editor	.
 
 <p><b> Note editing commands </b></p>
