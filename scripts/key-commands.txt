@@ -32,6 +32,7 @@ v	toggle vi/plain editor	/commands/alt-v
 w	widen note spacing
 W	narrow note spacing
 y	show/hide data editor	.
+,	toggle CSV/TSV display of data	.
 
 <p><b> Note editing commands </b></p>
 
