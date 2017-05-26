@@ -1112,7 +1112,7 @@ function kernScoresUrl(file, measures) {
 	var matches;
 	var jrp = false;
 
-	if (matches = file.match(/^jrp:(.*)/)) {
+	if (matches = file.match(/^jrp:\/?\/?(.*)/)) {
 		jrp = true;
 		file = matches[1];
 	}
