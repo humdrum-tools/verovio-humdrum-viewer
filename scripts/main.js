@@ -1290,7 +1290,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			var newtext = vrvToolkit.getHumdrum();
 			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
-		} else if (text.slice(0, 1000).match(/CUT\[/)) {
+		} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 console.log("SETTING DATA TYPE TO ESAC");
 			// this is EsAC data, so first convert into Humdrum
 			// before displaying in the editor.
