@@ -864,7 +864,6 @@ function loadIndexFile(location) {
 	console.log("Loading index", url);
 
 	var request = new XMLHttpRequest();
-console.log("GOT HERE AAA");
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
@@ -1252,7 +1251,6 @@ function downloadKernScoresFile(file, measures, page) {
 
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
-console.log("GOT HERE bbb");
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
@@ -1282,6 +1280,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		}
 
 		if (text.slice(0, 1000).match(/<score-partwise/)) {
+console.log("SETTING DATA TYPE TO MUSICXML");
 			// this is MusicXML data, so first convert into Humdrum
 			// before displaying in the editor.
 			var options = musicxmlToHumdrumOptions();
@@ -1301,6 +1300,7 @@ console.log("SETTING DATA TYPE TO ESAC");
 			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
 		} else {
+console.log("GOT HERE AXA");
 			// -1 is to unselect the inserted text and move cursor to
 			// start of inserted text.
 			EDITOR.setValue(text, -1);
