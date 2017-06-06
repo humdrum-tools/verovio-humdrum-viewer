@@ -213,7 +213,7 @@ function displayNotation(page) {
 	// var data = inputarea.value;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
 	var options = humdrumToSvgOptions();
-	if (data.match(/CUT[[]/) {
+	if (data.match(/CUT[[]/)) {
 		options.inputFormat = "esac";
 	}
 	vrvToolkit.setOptions(options);
