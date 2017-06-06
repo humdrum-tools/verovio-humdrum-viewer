@@ -1291,6 +1291,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
 		} else if (text.slice(0, 1000).match(/CUT\[/)) {
+console.log("SETTING DATA TYPE TO ESAC");
 			// this is EsAC data, so first convert into Humdrum
 			// before displaying in the editor.
 			var options = esacToHumdrumOptions();
