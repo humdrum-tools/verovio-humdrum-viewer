@@ -19,9 +19,29 @@ var FILEINFO = {};
 var HEIGHT   = 0;
 var WIDTH    = 0;
 var EDITOR;
-var EditorMode = "ace/mode/text";
-var KeyboardMode = "ace/keyboard/ace";
-var EditorTheme = "ace/theme/solarized_light";
+var EditorModes = {
+  humdrum: {
+    vim: {
+      theme: "ace/theme/humdrum_dark"
+    },
+    ace: {
+      theme: "ace/theme/humdrum_light"
+    }
+  },
+  xml: {
+    vim: {
+      theme: "ace/theme/solarized_dark"
+    },
+    ace: {
+      theme: "ace/theme/solarized_light"
+    }
+  }
+};
+
+var EditorMode = "humdrum";
+var KeyboardMode = "ace";
+
+//var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
 var TABSIZE = 12;
 var DISPLAYTIME = 0;
@@ -38,7 +58,7 @@ window.basketSession.timeout = 1000000000;
 // used to highlight the current note at the location of the cursor.
 var CursorNote;
 
-// RestoreCursorNote: Used to go back to a highlighted note after a redraw.  
+// RestoreCursorNote: Used to go back to a highlighted note after a redraw.
 // This is an ID string rather than an element.
 var RestoreCursorNote;
 
@@ -287,7 +307,7 @@ function processOptions() {
 		return;
 	}
 /* is this function needed anymore?  Now seems to be done
- * in DOMContentLoaded event listener 
+ * in DOMContentLoaded event listener
 	var list = CGI.k.split('');
 	for (var i=0; i<list.length; i++) {
 		var event = {};
@@ -1028,7 +1048,7 @@ function loadKernScoresFile(obj, force) {
 	if (!key) {
 		return;
 	}
-	
+
 	if (force) {
 		basketSession.remove(key);
 		console.log("removed ", key);
@@ -1500,7 +1520,7 @@ function displayMei() {
 	}
 	var page = PAGE;
 	displayScoreTextInEditor(meidata, page);
-	
+
 	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	// var postfix = "</textarea>";
 	// var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
@@ -1765,7 +1785,7 @@ function initializeWildWebMidi() {
 //
 
 function	dataIntoView(event) {
-	if (EditorMode == "ace/mode/xml") {
+	if (EditorMode == "xml") {
 		xmlDataIntoView(event);
 	} else {
 		humdrumDataIntoView(event);
@@ -1796,7 +1816,7 @@ function xmlDataIntoView(event) {
 			target = target.parentNode;
 			continue;
 		}
-		
+
 		// still need to verify if inside of svg element in the first place.
 		var searchstring = 'xml:id="' + target.id + '"';
 		var regex = new RegExp(searchstring);
@@ -1805,7 +1825,7 @@ function xmlDataIntoView(event) {
 			caseSensitive: true,
 			wholeWord: true
 		});
-		
+
 		console.log("FOUND ID AT", range);
 		break; // assume that the first id found is valid.
 	}
@@ -1815,7 +1835,7 @@ function xmlDataIntoView(event) {
 
 //////////////////////////////
 //
-// humdrumDataIntoView -- When clicking on a note (or other items in 
+// humdrumDataIntoView -- When clicking on a note (or other items in
 //      SVG images later), make the text line in the Humdrum data visible
 //      in the text area.
 //
@@ -1932,7 +1952,7 @@ function highlightIdInEditor(id) {
 //
 // Keyboard Shortcuts:
 //   https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
-// 
+//
 // ACE Grammar editor:
 // http://foo123.github.io/examples/ace-grammar
 //
@@ -1943,7 +1963,6 @@ function setupAceEditor(idtag) {
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
 
-	EDITOR.setTheme("ace/theme/solarized_light");
 	// best themes:
 	// kr_theme == black background, gray highlight, muted colorizing
 	// solarized_dark == blue background, light blue hilight, relaxing colorizing
@@ -1958,6 +1977,8 @@ function setupAceEditor(idtag) {
 
 	// EDITOR.getSession().setMode("ace/mode/javascript");
 
+  setEditorModeAndKeyboard();
+
 	EDITOR.getSession().setTabSize(TABSIZE);
 	EDITOR.getSession().setUseSoftTabs(false);
 	// don't show line at 80 columns:
@@ -1965,7 +1986,7 @@ function setupAceEditor(idtag) {
 
 	Range = require("ace/range").Range;
 
-	EDITOR.getSession().selection.on("changeCursor", function(event) 
+	EDITOR.getSession().selection.on("changeCursor", function(event)
 		{ highlightNoteInScore(event)});
 
 	//EDITOR.commands.addCommand({
@@ -1992,7 +2013,7 @@ function setupAceEditor(idtag) {
 //
 
 function highlightNoteInScore(event) {
-	if (EditorMode == "ace/mode/xml") {
+	if (EditorMode == "xml") {
 		xmlDataNoteIntoView(event);
 	} else {
 		humdrumDataNoteIntoView(event);
@@ -2088,7 +2109,7 @@ function humdrumDataNoteIntoView(event) {
 	var item;
 	if (Splitter.rightContent) {
 		// see: https://www.w3.org/TR/selectors
-		var items = Splitter.rightContent.querySelectorAll("g[id$='" + 
+		var items = Splitter.rightContent.querySelectorAll("g[id$='" +
 			query + "']");
 		// console.log("FOUND ITEMS", items);
 		if (items.length == 0) {
@@ -2431,9 +2452,10 @@ function displayScoreTextInEditor(text, page) {
 	// -1 is to unselect added text, and move cursor to start
 	var mode = getMode(text);
 	if (mode != EditorMode) {
-		EDITOR.session.setMode(mode);
 		EditorMode = mode;
-	}
+    setEditorModeAndKeyboard();
+	};
+
 	EDITOR.setValue(text, -1);
 	// unpdate the notation display
 	displayNotation(page);
@@ -2445,15 +2467,15 @@ function displayScoreTextInEditor(text, page) {
 //////////////////////////////
 //
 // getMode -- return the Ace editor mode to display the data in:
-//    ace/mode/text  == for Humdrum (until a mode is added for Humdrum)
+//    ace/mode/humdrum  == for Humdrum
 //    ace/mode/xml   == for XML data (i.e., MEI, or SVG)
 //
 
 function getMode(text) {
 	if (text.match(/^\s*</)) {
-		return "ace/mode/xml";
+		return "xml";
 	} else {
-		return "ace/mode/text";
+		return "humdrum";
 	}
 }
 
@@ -2468,7 +2490,7 @@ function getMode(text) {
 //
 
 function showIdInEditor(id) {
-	if (EditorMode == "ace/mode/xml") {
+	if (EditorMode == "xml") {
 		return;
 	}
 	var matches = id.match(/-[^-]*L(\d+)/);
@@ -2489,18 +2511,21 @@ function showIdInEditor(id) {
 //
 
 function toggleEditorMode() {
-	if (KeyboardMode == "ace/keyboard/ace") {
-		KeyboardMode  = "ace/keyboard/vim";
-		EditorTheme   = "ace/theme/solarized_dark";
+	if (KeyboardMode == "ace") {
+		KeyboardMode  = "vim";
 	} else {
-		KeyboardMode  = "ace/keyboard/ace";
-		EditorTheme   = "ace/theme/solarized_light";
-	}
-	if (EDITOR) {
-		EDITOR.setTheme(EditorTheme);
-		EDITOR.setKeyboardHandler(KeyboardMode);
-	}
-}
+		KeyboardMode  = "ace";
+	};
+  setEditorModeAndKeyboard();
+};
+
+function setEditorModeAndKeyboard() {
+  if (EDITOR) {
+    EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
+    EDITOR.getSession().setMode("ace/mode/" + EditorMode);
+    EDITOR.setKeyboardHandler("ace/keyboard/" + KeyboardMode);
+  };
+};
 
 
 //////////////////////////////
@@ -2509,7 +2534,7 @@ function toggleEditorMode() {
 //
 
 function toggleHumdrumCsvTsv() {
-	if (EditorMode == "ace/mode/xml") {
+	if (EditorMode == "xml") {
 		// not editing Humdrum data
 		return;
 	}
@@ -2618,7 +2643,7 @@ function convertLineToTsv(line) {
 			inquote = 1;
 			continue;
 		}
-		if (inquote && (chars[i] == '"') && (chars[i+1] == '"') 
+		if (inquote && (chars[i] == '"') && (chars[i+1] == '"')
 				&& (i < chars.length-1)) {
 			output += '"';
 			i++;
@@ -2909,7 +2934,7 @@ function saveEditorContents() {
 		if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
 			filename = matches[1];
 		}
-		
+
 	}
 
 	var text = EDITOR.session.getValue();
@@ -3117,7 +3142,7 @@ function humdrumToDiatonic(pitch) {
 
 //////////////////////////////
 //
-// diatonicToHumdrum -- 
+// diatonicToHumdrum --
 //
 
 function diatonicToHumdrum(pitch) {
@@ -3201,6 +3226,3 @@ function clearContent() {
 		}
 	}
 }
-
-
-
