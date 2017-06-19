@@ -68,7 +68,7 @@
              next : "start"
          }, {
                token : "comment.layout",
-               regex : /^!!?LO:.*$|^![^!].*\t!LO:.*$/,
+               regex : /^!!?LO:.*$|^!\t!LO:.*$|^![^!].*\t!LO:.*$/,
                next: "start"
          }, {
              token : "comment.global",
