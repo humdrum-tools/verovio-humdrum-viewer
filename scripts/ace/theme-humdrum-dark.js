@@ -16,9 +16,10 @@ define("ace/theme/humdrum_dark",["require","exports","module","ace/lib/dom"],fun
   .ace-humdrum-dark .ace_bibliographic {color: green}\
   .ace-humdrum-dark .ace_exinterp {color: red}\
   .ace-humdrum-dark .ace_interp {color: violet}\
-  .ace-humdrum-dark .ace_comment {color: blue}\
+  .ace-humdrum-dark .ace_comment {color: #2fc584}\
   .ace-humdrum-dark .ace_unknown {color: darkgoldenrod}\
   .ace-humdrum-dark .ace_comment.ace_global {color: lightblue}\
+  .ace-humdrum-dark .ace_comment.ace_layout {color: orange}\
   .ace-humdrum-dark .ace_barline {color: silver; background: rgba(255, 255, 255, 0.125)}\
   .ace-humdrum-dark .ace_invalid.ace_tab {background-color: red}\
   .ace-humdrum-dark .ace_invalid.ace_space {background-color: cyan}\

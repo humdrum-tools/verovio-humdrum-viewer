@@ -67,6 +67,10 @@
              regex : /^!!![^:]+:.*$/,
              next : "start"
          }, {
+               token : "comment.layout",
+               regex : /^!!?LO:.*$|^![^!].*\t!LO:.*$/,
+               next: "start"
+         }, {
              token : "comment.global",
              regex : /^!!.*$/,
              next: "start"
