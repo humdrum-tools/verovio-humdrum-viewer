@@ -2490,6 +2490,7 @@ function showIdInEditor(id) {
 
 function toggleEditorMode() {
 	if (KeyboardMode == "ace/keyboard/ace") {
+console.log("VIM MODE");
 		KeyboardMode  = "ace/keyboard/vim";
 		EditorTheme   = "ace/theme/solarized_dark";
 	} else {

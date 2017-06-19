@@ -27,7 +27,7 @@ function play_midi() {
 //
 
 var midiUpdate = function(time) {
-	var vrvTime = Math.max(0, time - 300);
+	var vrvTime = Math.max(0, time - 200);
 	var elementsattime = vrvToolkit.getElementsAtTime(vrvTime);
 	var matches;
 	if (elementsattime.page > 0) {
@@ -116,9 +116,9 @@ var midiUpdate = function(time) {
 
 var midiStop = function() {
 	ids.forEach(function(noteid) {
-		$("#" + noteid ).attr("fill", "#000");
-		$("#" + noteid ).attr("stroke", "#000"); 
-		//$("#" + noteid ).removeClassSVG("highlighted"); 
+		// $("#" + noteid ).attr("fill", "#000");
+		// $("#" + noteid ).attr("stroke", "#000"); 
+		$("#" + noteid ).removeClassSVG("highlighted"); 
 	});
 	$("#player").hide();
 	$("#play-button").show();
