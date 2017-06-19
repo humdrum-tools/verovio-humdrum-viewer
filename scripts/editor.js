@@ -1593,7 +1593,7 @@ function toggleStaccato(id, line, field) {
 		if (!token.match("'")) {
 			// add staccato
 			token = token.replace(/'+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g, 
 					function(str,p1) { return p1 ? p1 + "'" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -2116,14 +2116,14 @@ function toggleArpeggio(id, line, field) {
 		return;
 	}
 	if (!token.match(/:/i)) {
-		// add marcato
+		// add arpeggio
 		token = token.replace(/:/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g, 
 				function(str,p1) { return p1 ? p1 + ":" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	} else {
-		// remove marcato
+		// remove arpeggio
 		token = token.replace(/:/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);

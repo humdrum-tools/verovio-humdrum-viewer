@@ -364,7 +364,6 @@ span.info {
 	fill: #c00;
 	stroke: #c00;
 }
-
 .highlight [stroke] {
 	stroke: #c00;
 	stroke-width: 50px;
@@ -384,5 +383,36 @@ span.helpentry {
 svg tspan {
 	font-family: Palatino, VerovioText !important;
 }
+
+
+/* Analytic phrase markers */
+
+.phraseStart {
+	color: green;
+	fill: green;
+	stroke: green;
+}
+.phraseStart [stroke] {
+	stroke: green;
+}
+
+.phraseStop {
+	color: blue;
+	fill: blue;
+	stroke: blue;
+}
+.phraseStop [stroke] {
+	stroke: blue;
+}
+
+.phraseStart.phraseStop {
+	color: orange;
+	fill: orange;
+	stroke: orange;
+}
+.phraseStart.phraseStop [stroke] {
+	stroke: orange;
+}
+
 
 
