@@ -77,6 +77,12 @@
              regex : /^!!.*$/,
              next: "start"
          }, {
+            token : "label",
+            regex : /^\*>[^[]+$/
+         }, {
+            token : "label",
+            regex : /^\*>[^[]+\t/
+         }, {
             token : "exinterp",
             regex : /(\*\*)([^\t ]*)/
          }, {
