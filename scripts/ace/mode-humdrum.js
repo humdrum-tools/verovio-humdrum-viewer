@@ -50,6 +50,8 @@
 // syntax match LocalComment   "^![^!].*$"          contains=BadTabbing
 // syntax match Exclusive      "\*\*[^\t]*"
 
+// Reference:
+// https://github.com/ajaxorg/ace/wiki/Creating-or-Extending-an-Edit-Mode
 
  define("ace/mode/humdrum_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
  "use strict";
@@ -79,6 +81,12 @@
             regex : /(\*\*)([^\t ]*)/
          }, {
             token : "terminator",
+            regex : /\t\*-(?=\t)/
+         }, {
+            token : "terminator",
+            regex : /\*-$/
+         }, {
+            token : "terminator",
             regex : /^\*-$/
          }, {
             token : "terminator",
@@ -88,7 +96,7 @@
             regex : /^(\*[\*\t]+)$/
          }, {
             token : "manip",
-            regex : /^(\*[\*\t^xv+-]+)$/
+            regex : /^(\*[\*\t^xv+]+)$/
          }, {
             token : "interp",
             regex : /(\*)([^\t ]*)/
