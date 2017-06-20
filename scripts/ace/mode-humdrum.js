@@ -78,6 +78,18 @@
             token : "exinterp",
             regex : /(\*\*)([^\t ]*)/
          }, {
+            token : "terminator",
+            regex : /^\*-$/
+         }, {
+            token : "terminator",
+            regex : /^\*-(?=\t)/
+         }, {
+            token : "interp",
+            regex : /^(\*[\*\t]+)$/
+         }, {
+            token : "manip",
+            regex : /^(\*[\*\t^xv+-]+)$/
+         }, {
             token : "interp",
             regex : /(\*)([^\t ]*)/
          }, {

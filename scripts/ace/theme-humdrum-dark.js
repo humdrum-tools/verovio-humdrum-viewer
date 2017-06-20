@@ -15,6 +15,8 @@ define("ace/theme/humdrum_dark",["require","exports","module","ace/lib/dom"],fun
   .ace-humdrum-dark .ace_invisible {color: rgba(147, 161, 161, 0.50)}\
   .ace-humdrum-dark .ace_bibliographic {color: green}\
   .ace-humdrum-dark .ace_exinterp {color: red}\
+  .ace-humdrum-dark .ace_terminator {color: red}\
+  .ace-humdrum-dark .ace_manip {color: magenta}\
   .ace-humdrum-dark .ace_interp {color: violet}\
   .ace-humdrum-dark .ace_comment {color: #2fc584}\
   .ace-humdrum-dark .ace_unknown {color: darkgoldenrod}\
