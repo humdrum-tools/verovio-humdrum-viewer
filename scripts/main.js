@@ -2500,7 +2500,7 @@ function showIdInEditor(id) {
 	var row = parseInt(matches[1]);
 	EDITOR.gotoLine(row, 0);
 	EDITOR.centerSelection();
-	console.log("PLAYING ROW", row);
+	// console.log("PLAYING ROW", row);
 }
 
 
