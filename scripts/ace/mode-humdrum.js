@@ -172,7 +172,7 @@
  var TextMode = require("./text").Mode;
  var HumdrumHighlightRules = require("./humdrum_highlight_rules").HumdrumHighlightRules;
 
- //var UIWorkerClient = require("ace/worker/worker_client").UIWorkerClient;
+ var UIWorkerClient = require("ace/worker/worker_client").UIWorkerClient;
 
  var Mode = function() {
      this.HighlightRules = HumdrumHighlightRules;
@@ -184,9 +184,9 @@
     this.type = "text";
     this.$id = "ace/mode/humdrum";
 
-    /*this.createWorker = function(session) {
-      var worker = new UIWorkerClient(["ace"], "ace/mode/subcheck_worker",
-        "SubCheckWorker");
+    this.createWorker = function(session) {
+      var worker = new UIWorkerClient(["ace"], "ace/mode/humdrum_worker",
+        "HumdrumWorker");
 
       worker.attachToDocument(session.getDocument());
 
@@ -199,7 +199,7 @@
       });
 
       return worker;
-    };*/
+    };
 
 
  }).call(Mode.prototype);
