@@ -13,12 +13,15 @@ define("ace/theme/humdrum_dark",["require","exports","module","ace/lib/dom"],fun
   .ace-humdrum-dark .ace_gutter-active-line {background-color : #0e4445}\
   .ace-humdrum-dark .ace_marker-layer .ace_selected-word {border: 1px solid #073642}\
   .ace-humdrum-dark .ace_invisible {color: rgba(147, 161, 161, 0.50)}\
+  .ace-humdrum-dark .ace_universal {color: green; background: rgba(255,200,200,0.5)}\
   .ace-humdrum-dark .ace_bibliographic {color: green}\
+  .ace-humdrum-dark .ace_filter {color: chartreuse}\
+  .ace-humdrum-dark .ace_filter.ace_used {color: olive}\
   .ace-humdrum-dark .ace_exinterp {color: red}\
   .ace-humdrum-dark .ace_terminator {color: red}\
   .ace-humdrum-dark .ace_manip {color: magenta}\
   .ace-humdrum-dark .ace_interp {color: violet}\
-  .ace-humdrum-dark .ace_label {color: violet; background: rgba(75,0,130,0.3)}\
+  .ace-humdrum-dark .ace_label {color: violet; background: rgba(255,200,255,0.6)}\
   .ace-humdrum-dark .ace_comment {color: #2fc584}\
   .ace-humdrum-dark .ace_unknown {color: darkgoldenrod}\
   .ace-humdrum-dark .ace_comment.ace_global {color: lightblue}\

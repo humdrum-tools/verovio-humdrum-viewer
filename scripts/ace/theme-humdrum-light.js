@@ -13,7 +13,10 @@ define("ace/theme/humdrum_light",["require","exports","module","ace/lib/dom"],fu
   .ace-humdrum-light .ace_gutter-active-line {background-color : #EDE5C1}\
   .ace-humdrum-light .ace_marker-layer .ace_selected-word {border: 1px solid #073642}\
   .ace-humdrum-light .ace_invisible {color: rgba(147, 161, 161, 0.50)}\
+  .ace-humdrum-light .ace_universal {color: green; background: rgba(255,0,0,0.25)}\
   .ace-humdrum-light .ace_bibliographic {color: green}\
+  .ace-humdrum-light .ace_filter {color: limegreen}\
+  .ace-humdrum-light .ace_filter.ace_used {color: olive}\
   .ace-humdrum-light .ace_exinterp {color: red}\
   .ace-humdrum-light .ace_terminator {color: red}\
   .ace-humdrum-light .ace_manip {color: magenta}\

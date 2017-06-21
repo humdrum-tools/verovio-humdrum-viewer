@@ -65,6 +65,15 @@
              token : "empty_line",
              regex : "^$"
          }, {
+            token : "filter",
+            regex : /^!!!?filter:.*/
+         }, {
+            token : "filter.used",
+            regex : /^!!!?Xfilter:.*/
+         }, {
+             token : "universal",
+             regex : /^!!!![^:]+:.*$/,
+         }, {
              token : "bibliographic",
              regex : /^!!![^:]+:.*$/,
              next : "start"
