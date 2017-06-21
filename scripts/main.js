@@ -2275,6 +2275,7 @@ function setupSplitter() {
 	window.addEventListener('mouseup', function(event) {
 		if (Splitter.mouseState != 0) {
 			Splitter.mouseState = 0;
+      EDITOR.resize();
 			displayNotation();
 		}
 	});
@@ -2523,7 +2524,8 @@ function setEditorModeAndKeyboard() {
   if (EDITOR) {
     EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
     EDITOR.getSession().setMode("ace/mode/" + EditorMode);
-    EDITOR.setKeyboardHandler("ace/keyboard/" + KeyboardMode);
+    // null to reset to default (ace) mode
+    EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
   };
 };
 

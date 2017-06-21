@@ -11,20 +11,16 @@ permalink: /index.html
 -->
 
 {% if site.local == "yes" %}
-	<script src="scripts/local/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="scripts/local/basket.full.min.js"></script>
 	<script src="scripts/local/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="scripts/local/FileSaver.min.js"></script>
 {% else %}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 	<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
 {% endif %}
 
-<script src="scripts/ace/mode-humdrum.js"></script>
-<script src="scripts/ace/theme-humdrum-light.js"></script>
-<script src="scripts/ace/theme-humdrum-dark.js"></script>
+<script src="scripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script src="scripts/basket-session.js"></script>
 <script src="scripts/listeners.js"></script>
