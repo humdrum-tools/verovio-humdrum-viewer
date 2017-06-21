@@ -64,7 +64,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 259;
+var BasketVersion = 260;
 
 var Actiontime = 0;
 
@@ -2501,7 +2501,7 @@ function showIdInEditor(id) {
 	var row = parseInt(matches[1]);
 	EDITOR.gotoLine(row, 0);
 	EDITOR.centerSelection();
-	console.log("PLAYING ROW", row);
+	// console.log("PLAYING ROW", row);
 }
 
 
@@ -2512,6 +2512,9 @@ function showIdInEditor(id) {
 //
 
 function toggleEditorMode() {
+//	if (KeyboardMode == "ace/keyboard/ace") {
+//		KeyboardMode  = "ace/keyboard/vim";
+//		EditorTheme   = "ace/theme/solarized_dark";
 	if (KeyboardMode == "ace") {
 		KeyboardMode  = "vim";
 	} else {
