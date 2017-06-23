@@ -13,12 +13,10 @@
 var CGI = {};
 
 // verovio variables for a movement:
-var vrvToolkit;
-var PAGE     = 1;
+var vrv;
 var FILEINFO = {};
-var HEIGHT   = 0;
-var WIDTH    = 0;
 var EDITOR;
+
 var EditorModes = {
   humdrum: {
     vim: {
@@ -47,7 +45,6 @@ var TABSIZE = 12;
 var DISPLAYTIME = 0;
 var HIGHLIGHTQUERY = null;
 var EDITINGID = null;
-var SUPPRESSMONITOR = null;
 var SAVEFILENAME = "data.txt";
 var SPACINGADJUSTMENT = 0.0;
 
@@ -215,81 +212,72 @@ var Splitter = new SPLITTER();
 //  This function seems to be called twice in certain cases (editing).
 //
 
-function displayNotation(page) {
-	if (!vrvToolkit) {
-		console.log("Verovio toolkit not (yet) loaded");
-		return;
-	}
-	DISPLAYTIME = new Date().getTime();
-	if (!page) {
-		page = PAGE;
-	}
+function displayNotation(page, force) {
 
-	if (FreezeRendering) {
+	if (!vrv.initialized || (FreezeRendering && !force)) {
 		return;
-	}
+	};
+
    // if input area is a <textarea>, then use .value to access contnets:
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
+
 	var data = EDITOR.getValue().replace(/^\s+/, "");
+  if (data.match(/^\s*$/)) {
+      return;
+  };
 	var options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
 		options.inputFormat = "esac";
-	}
-	vrvToolkit.setOptions(options);
-	try {
-		if (!data.match(/^\s*$/)) {
-			vrvToolkit.loadData(data);
-		}
-		if (vrvToolkit.getPageCount() == 0) {
-			var log = vrvToolkit.getLog();
-			console.log(">>>>>>>>>>> ERROR LOG:", log);
-			return;
-			// document.querySelector("#output").innerHTML = "<pre>" + log + "</pre>";
-		} else {
-			var svg;
-			if (page) {
-				svg = vrvToolkit.renderPage(page, {});
-			} else {
-				svg = vrvToolkit.renderData(data, options);
-			}
+  };
 
-			var output = document.querySelector("#output");
-			var indexelement = document.querySelector("#index");
-			indexelement.style.visibility = "invisibile";
-			indexelement.style.display = "none";
-			document.querySelector("#output").innerHTML = svg;
-			restoreSelectedSvgElement(RestoreCursorNote);
-			displayFileTitle(data);
-		}
-	} catch(err) {
-		console.log("Error displaying page");
-	}
+  vrv.displayNotation(options, data, page, force)
+  .then(function(svg) {
+      var output = document.querySelector("#output");
+      output.innerHTML = svg;
+      restoreSelectedSvgElement(RestoreCursorNote);
+      displayFileTitle(data);
+      if (!force) document.querySelector('body').classList.remove("invalid");
+      return true;
+  })
+  .catch(function(message) {
+    document.querySelector('body').classList.add("invalid");
+    console.log(">>>>>>>>>> ERROR LOG:", message);
+    return false;
 
-	if (UndoHide) {
-		showInputArea(true);
-		UndoHide = false;
-	}
+  })
+  .finally(function() {
 
-	if (ApplyZoom) {
-		applyZoom();
-		ApplyZoom = false;
-	}
+    var indexelement = document.querySelector("#index");
+    indexelement.style.visibility = "invisibile";
+    indexelement.style.display = "none";
 
-	if (CGI.k && !CGI.kInitialized) {
-		processOptions();
-	}
-	if (ApplyZoom) {
-		applyZoom();
-		ApplyZoom = false;
-	}
-	ShowingIndex = false;
-	$('html').css('cursor', 'auto');
+    if (UndoHide) {
+  		showInputArea(true);
+  		UndoHide = false;
+  	}
 
-	// these lines are needed to re-highlight the note when
-	// the notation has been updated.
-	CursorNote = null;
-	highlightNoteInScore();
+  	if (ApplyZoom) {
+  		applyZoom();
+  		ApplyZoom = false;
+  	}
+
+  	if (CGI.k && !CGI.kInitialized) {
+  		processOptions();
+  	}
+  	if (ApplyZoom) {
+  		applyZoom();
+  		ApplyZoom = false;
+  	}
+  	ShowingIndex = false;
+  	$('html').css('cursor', 'auto');
+
+  	// these lines are needed to re-highlight the note when
+  	// the notation has been updated.
+  	CursorNote = null;
+  	highlightNoteInScore();
+
+  });
 }
 
 
@@ -477,66 +465,10 @@ return;
 //
 
 function toggleFreeze() {
-	if (!FreezeRendering) {
-		freezeNotationDisplay();
-	} else {
-		unfreezeNotationDisplay();
-	}
+  FreezeRendering = !FreezeRendering;
+  document.querySelector('body').classList.toggle("frozen");
 }
 
-
-
-//////////////////////////////
-//
-// freezeNotationDisplay --
-//
-
-function freezeNotationDisplay() {
-	FreezeRendering = true;
-	setBackgroundColorFrozen();
-}
-
-
-
-//////////////////////////////
-//
-// unfreezeNotationDisplay --
-//
-
-function unfreezeNotationDisplay() {
-	FreezeRendering = false;
-	displayNotation();
-	setBackgroundColorUnfrozen();
-}
-
-
-//////////////////////////////
-//
-// setBackgroundColorFrozen --
-//
-
-function setBackgroundColorFrozen() {
-	var output = document.querySelector("#output");
-	output.style["background"]  = "#ffffff";
-	var splitter = document.querySelector('div#splitter');
-	splitter.style["background"]  = "#ffffff";
-	var body = document.querySelector('body');
-	body.style["background"]  = "#ffffff";
-}
-
-//////////////////////////////
-//
-// setBackgroundColorUnfrozen --
-//
-
-function setBackgroundColorUnfrozen() {
-	var output = document.querySelector("#output");
-	output.style["background"]  = "#fffcf1";
-	var splitter = document.querySelector('div#splitter');
-	splitter.style["background"]  = "#fffcf1";
-	var body = document.querySelector('body');
-	body.style["background"]  = "#fffcf1";
-}
 
 
 //////////////////////////////
@@ -809,7 +741,7 @@ function displayWork(file) {
 	if (!file) {
 		return;
 	}
-	PAGE = 1;
+	vrv.page = 1;
 	CGI.file = file;
 	delete CGI.mm;
 	delete CGI.kInitialized;
@@ -1078,14 +1010,14 @@ function loadKernScoresFile(obj, force) {
 							if (textdata.match(/^\s*$/)) {
 								textdata = "!!!ONB: No data content\n";
 							}
-							displayScoreTextInEditor(atob(jinfo.content), PAGE);
+							displayScoreTextInEditor(atob(jinfo.content), vrv.page);
 						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
 						console.log("Error downloading", key, "Error:", err);
-						displayScoreTextInEditor(info.data, PAGE);
+						displayScoreTextInEditor(info.data, vrv.page);
 					}
 				} else {
 					console.log("Error retrieving", key);
@@ -1101,7 +1033,7 @@ function loadKernScoresFile(obj, force) {
 				processInfo(jinfo, obj, false, false);
 			}
 		} catch(err) {
-			displayScoreTextInEditor(info.data, PAGE);
+			displayScoreTextInEditor(info.data, vrv.page);
 		}
 	}
 }
@@ -1214,7 +1146,7 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
-	displayScoreTextInEditor(score, PAGE);
+	displayScoreTextInEditor(score, vrv.page);
 
 	obj.next = false;
 	obj.previous = false;
@@ -1298,38 +1230,36 @@ function downloadKernScoresFile(file, measures, page) {
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
-		if (!page) {
-			page = PAGE;
-		}
+
+    page = page || vrv.page;
+    var options;
 
 		if (text.slice(0, 1000).match(/<score-partwise/)) {
-console.log("SETTING DATA TYPE TO MUSICXML");
+      console.log("SETTING DATA TYPE TO MUSICXML");
 			// this is MusicXML data, so first convert into Humdrum
 			// before displaying in the editor.
-			var options = musicxmlToHumdrumOptions();
-			vrvToolkit.setOptions(options);
-			vrvToolkit.loadData(text);
-			var newtext = vrvToolkit.getHumdrum();
-			EDITOR.setValue(newtext, -1);
-			displayNotation(page);
+			options = musicxmlToHumdrumOptions();
 		} else if (text.slice(0, 1000).match(/CUT[[]/)) {
-console.log("SETTING DATA TYPE TO ESAC");
+      console.log("SETTING DATA TYPE TO ESAC");
 			// this is EsAC data, so first convert into Humdrum
 			// before displaying in the editor.
-			var options = esacToHumdrumOptions();
-			vrvToolkit.setOptions(options);
-			vrvToolkit.loadData(text);
-			var newtext = vrvToolkit.getHumdrum();
-			EDITOR.setValue(newtext, -1);
-			displayNotation(page);
+			options = esacToHumdrumOptions();
 		} else {
-console.log("GOT HERE AXA");
-			// -1 is to unselect the inserted text and move cursor to
+      console.log("GOT HERE AXA");
+		};
+    if (options) {
+      vrv.filterData(options, text, "humdrum")
+      .then(function(newtext) {
+        EDITOR.setValue(newtext, -1);
+        displayNotation(page);
+      });
+    } else {
+      // -1 is to unselect the inserted text and move cursor to
 			// start of inserted text.
 			EDITOR.setValue(text, -1);
 			// display the notation for the data:
 			displayNotation(page);
-		}
+    };
 }
 
 
@@ -1347,24 +1277,23 @@ function applyZoom() {
 		return;
 	}
 
-	if (PAGE != 1) {
+	if (vrv.page !== 1) {
 		measure = $("#output .measure").attr("id");
 	}
 
-	var options = humdrumToSvgOptions();
-	if ((HEIGHT != options.pageHeight) || (WIDTH != options.pageWidth)) {
-		stop();
-		HEIGHT = options.pageHeight;
-		WIDTH = options.pageWidth;
-		vrvToolkit.setOptions(options);
-		vrvToolkit.redoLayout();
-	}
+	var options = humdrumToSvgOptions(),
+      redo = (vrv.HEIGHT != options.pageHeight) || (vrv.WIDTH != options.pageWidth);
 
-	PAGE = 1;
-	if (measure != 0) {
-		PAGE = vrvToolkit.getPageWithElement(measure);
-	}
-	loadPage(PAGE);
+	if (redo) {
+		stop();
+		vrv.HEIGHT = options.pageHeight;
+		vrv.WIDTH = options.pageWidth;
+	};
+
+  vrv.redoLayout(options, redo, measure)
+  .then(function() {
+    loadPage(vrv.page);
+  });
 }
 
 
@@ -1375,16 +1304,15 @@ function applyZoom() {
 //
 
 function loadPage(page) {
-	if (!page) {
-		page = PAGE;
-	}
-	PAGE = page;
+	page = page || vrv.page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
-	svg = vrvToolkit.renderPage(page, {});
-	$("#output").html(svg);
-	// adjustPageHeight();
-	resizeImage();
+  vrv.renderPage(page)
+  .then(function(svg) {
+    $("#output").html(svg);
+    // adjustPageHeight();
+  	resizeImage();
+  });
 }
 
 
@@ -1420,14 +1348,10 @@ function resizeImage(image) {
 //
 
 function gotoPreviousPage() {
-	var page = PAGE;
-	if (page <= 1) {
-		page = vrvToolkit.getPageCount();
-	} else {
-		page--;
-	}
-	PAGE = page;
-	loadPage(page);
+  vrv.gotoPage(vrv.page - 1)
+  .then(function() {
+    loadPage(vrv.page);
+  });
 }
 
 
@@ -1438,13 +1362,10 @@ function gotoPreviousPage() {
 //
 
 function gotoNextPage() {
-	var page = PAGE;
-	page++;
-	if (page > vrvToolkit.getPageCount()) {
-		page = 1;
-	}
-	PAGE = page;
-	loadPage(page);
+  vrv.gotoPage(vrv.page + 1)
+  .then(function() {
+    loadPage(vrv.page);
+  });
 }
 
 
@@ -1455,12 +1376,11 @@ function gotoNextPage() {
 //
 
 function gotoLastPage() {
-	var page = vrvToolkit.getPageCount();
-	PAGE = page;
-	loadPage(page);
+  vrv.gotoPage(0)
+  .then(function() {
+    loadPage(vrv.page);
+  });
 }
-
-
 
 //////////////////////////////
 //
@@ -1468,9 +1388,10 @@ function gotoLastPage() {
 //
 
 function gotoFirstPage() {
-	var page = 1;
-	PAGE = page;
-	loadPage(page);
+  vrv.gotoPage(1)
+  .then(function() {
+    loadPage(vrv.page);
+  });
 }
 
 
@@ -1482,8 +1403,8 @@ function gotoFirstPage() {
 
 function showBufferedHumdrumData() {
 	if (!BufferedHumdrumFile.match(/^\s*$/)) {
-		var page = PAGE;
-		displayScoreTextInEditor(BufferedHumdrumFile, PAGE);
+		var page = vrv.page;
+		displayScoreTextInEditor(BufferedHumdrumFile, vrv.page);
 		BufferedHumdrumFile = "";
 	}
 }
@@ -1497,29 +1418,23 @@ function showBufferedHumdrumData() {
 function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
-	vrvToolkit.setOptions(options);
 	var data    = EDITOR.getValue().replace(/^\s+/, "");
-	vrvToolkit.loadData(data);
-	displayMei();
+  vrv.filterData(options, data, "MEI")
+  .then(showMEI);
 }
-
-
 
 //////////////////////////////
 //
-// displayMei --
+// showMei --
 //
-
-function displayMei() {
-	if (ShowingIndex) {
+function showMEI(meidata) {
+  if (ShowingIndex) {
 		return;
 	}
-	var meidata = vrvToolkit.getMEI(0, 1);
-	if (BufferedHumdrumFile.match(/^\s*$/)) {
+  if (BufferedHumdrumFile.match(/^\s*$/)) {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
-	var page = PAGE;
-	displayScoreTextInEditor(meidata, page);
+	displayScoreTextInEditor(meidata, vrv.page);
 
 	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	// var postfix = "</textarea>";
@@ -1537,6 +1452,17 @@ function displayMei() {
 }
 
 
+//////////////////////////////
+//
+// displayMei --
+//
+
+function displayMei() {
+  vrv.getMEI()
+  .then(showMEI);
+}
+
+
 
 
 //////////////////////////////
@@ -1548,20 +1474,23 @@ function displaySvg() {
 	if (ShowingIndex) {
 		return;
 	}
-	var data = vrvToolkit.renderPage(PAGE, {});
-	var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
-	var postfix = "</textarea>";
-	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
-	w.document.write(prefix + data + postfix);
-	w.document.close();
-	function checkTitle() {
-		if (w.document) {
-			w.document.title = "SVG transcoding";
-		} else {
-			setTimeout(checkTitle, 40);
-		}
-	}
-	checkTitle();
+  vrv.renderPage(vrv.page)
+  .then(function(data) {
+    var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
+  	var postfix = "</textarea>";
+  	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
+  	w.document.write(prefix + data + postfix);
+  	w.document.close();
+    //TODO: what is this doing?
+  	function checkTitle() {
+  		if (w.document) {
+  			w.document.title = "SVG transcoding";
+  		} else {
+  			setTimeout(checkTitle, 40);
+  		}
+  	}
+  	checkTitle();
+  });
 }
 
 
@@ -1613,20 +1542,14 @@ function reloadData() {
 		}, true);
 }
 
-
-
 //////////////////////////////
 //
 // downloadVerovioToolkit --
 //
 
-function downloadVerovioToolkit(url) {
-	basket.require({url: url, expire: 500, unique: BasketVersion})
-		.then(function() { initializeVerovioToolkit(); },
-				function() { console.log("There was an error loading script", url)
-		});
-}
-
+function downloadVerovioToolkit(use_worker) {
+  vrv = new vrvInterface(use_worker, initializeVerovioToolkit);
+};
 
 
 //////////////////////////////
@@ -1636,8 +1559,6 @@ function downloadVerovioToolkit(url) {
 
 function initializeVerovioToolkit() {
 	// console.log("Verovio toolkit being initialized.");
-
-	vrvToolkit = new verovio.toolkit();
 
 	var inputarea = document.querySelector("#input");
 
@@ -1681,51 +1602,9 @@ function initializeVerovioToolkit() {
 //
 
 function	monitorNotationUpdating() {
-	if (FreezeRendering) {
-		return;
-	}
-
-	if (SUPPRESSMONITOR) {
-		console.log("SUPPRESSING MONITOR NOTATION");
-		SUPPRESSMIONITOR = null;
-		return;
-	}
 
 	displayNotation();
 
-/*
-
-   if ((EDITOR.session.getLength > 0) && (EDITOR.session.getLength() < 500)) {
-			displayNotation();
-			return;
-	}
-
-	var delay = 3000;  // 3000 milliseconds = 3 seconds
-
-	if (EDITOR.session.getLength() < 1000) {
-		delay = 500;
-	} else if (EDITOR.session.getLength() < 2000) {
-		delay = 1000;
-	} else if (EDITOR.session.getLength() < 3000) {
-		delay = 1500;
-	} else if (EDITOR.session.getLength() < 4000) {
-		delay = 2000;
-	}
-
-	var actiontime = new Date().getTime() + delay;
-	ActionTime = actiontime;
-
-	setTimeout(function() {
-		if (DISPLAYTIME > actiontime - delay) {
-			return;
-		}
-		if (actiontime <= ActionTime) {
-			console.log("Updating notation in setTimeout");
-			DISPLAYTIME = new Date().getTime();
-			displayNotation();
-		}
-	}, delay);
-*/
 }
 
 
@@ -1737,12 +1616,10 @@ function	monitorNotationUpdating() {
 //
 
 function downloadWildWebMidi(url) {
-	var url2 = "scripts/midiplayer.js";
 	var url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
 		{url: url, expire: 26, unique: BasketVersion},
-		{url: url2, expire: 11, unique: BasketVersion},
 		{url: url3, expire: 17, unique: BasketVersion}
 	).then(function() { initializeWildWebMidi(); },
 		function() { console.log("There was an error loading script", url)
@@ -1981,6 +1858,7 @@ function setupAceEditor(idtag) {
 
 	EDITOR.getSession().setTabSize(TABSIZE);
 	EDITOR.getSession().setUseSoftTabs(false);
+
 	// don't show line at 80 columns:
 	EDITOR.setShowPrintMargin(false);
 
@@ -2460,7 +2338,6 @@ function displayScoreTextInEditor(text, page) {
 	EDITOR.setValue(text, -1);
 	// unpdate the notation display
 	displayNotation(page);
-	PAGE = page;
 }
 
 
@@ -2822,17 +2699,13 @@ function toggleHelpMenu(state) {
 function showCompiledFilterData() {
 
 	var options = humdrumToSvgOptions();
-	vrvToolkit.setOptions(options);
+  var data    = EDITOR.getValue().replace(/^\s+/, "");
+  vrv.filterData(options, data, "humdrum")
+  .then(function(newdata) {
+    newdata = newdata.replace(/\s+$/m, "");
+  	EDITOR.setValue(newdata, -1);
+  });
 
-	var data    = EDITOR.getValue().replace(/^\s+/, "");
-	vrvToolkit.loadData(data);
-
-	var newdata = vrvToolkit.getHumdrum();
-	newdata = newdata.replace(/\s+$/m, "");
-	EDITOR.setValue(newdata, -1);
-
-//	var page = PAGE;
-//	displayNotation(page);
 }
 
 

@@ -10,13 +10,15 @@ LASTLINE = -1;
 //
 
 function play_midi() {
-	var base64midi = vrvToolkit.renderToMidi();
-	var song = 'data:audio/midi;base64,' + base64midi;
-	$("#player").show();
-	$("#play-button").hide();
-	$("#player").midiPlayer.play(song);
-	PLAY = true;
-	LASTLINE = -1;
+	vrv.renderToMidi()
+	.then(function(base64midi) {
+		var song = 'data:audio/midi;base64,' + base64midi;
+		$("#player").show();
+		$("#play-button").hide();
+		$("#player").midiPlayer.play(song);
+		PLAY = true;
+		LASTLINE = -1;
+	});
 }
 
 
@@ -28,84 +30,86 @@ function play_midi() {
 
 var midiUpdate = function(time) {
 	var vrvTime = Math.max(0, time - 200);
-	var elementsattime = vrvToolkit.getElementsAtTime(vrvTime);
-	var matches;
-	if (elementsattime.page > 0) {
-		if (elementsattime.page != PAGE) {
-			PAGE = elementsattime.page;
-			loadPage();
-		}
-		if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
-			ids.forEach(function(noteid) {
-  				if ($.inArray(noteid, elementsattime.notes) == -1) {
-					//$("#" + noteid ).attr("fill", "#000");
-  					//$("#" + noteid ).attr("stroke", "#000"); 
-					// $("#" + noteid ).removeClassSVG("highlighted"); 
-
-					var element = document.querySelector("#" + noteid);
-					if (element) {
-						var classes = element.getAttribute("class");
-						var classlist = classes.split(" ");
-						var outclass = "";
-						for (var i=0; i<classlist.length; i++) {
-							if (classlist[i] == "highlight") {
-								continue;
-							}
-							outclass += " " + classlist[i];
-						}
-						element.setAttribute("class", outclass);
-					}
-
- 				}
-			});
-			ids = elementsattime.notes;
-/*
-			for (var i=0; i<ids.length; i++) {
-				if (matches = ids[i].match(/-L(\d+)/)) {
-					var line = matches[1];
-					if (line != LASTLINE) {
-						showIdInEditor(ids[i]);
-						LASTLINE = line;
-					}
-				}
+	vrv.getElementsAtTime(vrvTime)
+	.then(function(elementsattime) {
+		var matches;
+		if (elementsattime.page > 0) {
+			if (elementsattime.page != vrv.page) {
+				vrv.page = elementsattime.page;
+				loadPage();
 			}
-*/
-			ids.forEach(function(noteid) {
-				if ($.inArray(noteid, elementsattime.notes) != -1) {
-					// console.log("NoteID", noteid);
+			if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
+				ids.forEach(function(noteid) {
+						if ($.inArray(noteid, elementsattime.notes) == -1) {
+						//$("#" + noteid ).attr("fill", "#000");
+							//$("#" + noteid ).attr("stroke", "#000");
+						// $("#" + noteid ).removeClassSVG("highlighted");
 
-					if (matches = noteid.match(/-L(\d+)/)) {
-						var line = parseInt(matches[1]);
-// console.log("LASTLINE = ", LASTLINE, "line =", line);
-						if ((line != LASTLINE) && (line > LASTLINE)) {
-							showIdInEditor(noteid);
+						var element = document.querySelector("#" + noteid);
+						if (element) {
+							var classes = element.getAttribute("class");
+							var classlist = classes.split(" ");
+							var outclass = "";
+							for (var i=0; i<classlist.length; i++) {
+								if (classlist[i] == "highlight") {
+									continue;
+								}
+								outclass += " " + classlist[i];
+							}
+							element.setAttribute("class", outclass);
+						}
+
+					}
+				});
+				ids = elementsattime.notes;
+	/*
+				for (var i=0; i<ids.length; i++) {
+					if (matches = ids[i].match(/-L(\d+)/)) {
+						var line = matches[1];
+						if (line != LASTLINE) {
+							showIdInEditor(ids[i]);
 							LASTLINE = line;
 						}
 					}
-
-					// $("#" + noteid ).attr("fill", "#c00");
-					// $("#" + noteid ).attr("stroke", "#c00");; 
-					// $("#" + noteid ).addClassSVG("highlighted"); 
-
-					var element = document.querySelector("#" + noteid);
-					if (element) {
-						var classes = element.getAttribute("class");
-						var classlist = classes.split(" ");
-						var outclass = "";
-						for (var i=0; i<classlist.length; i++) {
-							if (classlist[i] == "highlight") {
-								continue;
-							}
-							outclass += " " + classlist[i];
-						}
-						outclass += " highlight";
-						element.setAttribute("class", outclass);
-					}
-
 				}
-			}); 
+	*/
+				ids.forEach(function(noteid) {
+					if ($.inArray(noteid, elementsattime.notes) != -1) {
+						// console.log("NoteID", noteid);
+
+						if (matches = noteid.match(/-L(\d+)/)) {
+							var line = parseInt(matches[1]);
+	// console.log("LASTLINE = ", LASTLINE, "line =", line);
+							if ((line != LASTLINE) && (line > LASTLINE)) {
+								showIdInEditor(noteid);
+								LASTLINE = line;
+							}
+						}
+
+						// $("#" + noteid ).attr("fill", "#c00");
+						// $("#" + noteid ).attr("stroke", "#c00");;
+						// $("#" + noteid ).addClassSVG("highlighted");
+
+						var element = document.querySelector("#" + noteid);
+						if (element) {
+							var classes = element.getAttribute("class");
+							var classlist = classes.split(" ");
+							var outclass = "";
+							for (var i=0; i<classlist.length; i++) {
+								if (classlist[i] == "highlight") {
+									continue;
+								}
+								outclass += " " + classlist[i];
+							}
+							outclass += " highlight";
+							element.setAttribute("class", outclass);
+						}
+
+					}
+				});
+			}
 		}
-	}
+	});
 }
 
 
@@ -117,8 +121,8 @@ var midiUpdate = function(time) {
 var midiStop = function() {
 	ids.forEach(function(noteid) {
 		// $("#" + noteid ).attr("fill", "#000");
-		// $("#" + noteid ).attr("stroke", "#000"); 
-		$("#" + noteid ).removeClassSVG("highlighted"); 
+		// $("#" + noteid ).attr("stroke", "#000");
+		$("#" + noteid ).removeClassSVG("highlighted");
 	});
 	$("#player").hide();
 	$("#play-button").show();
@@ -142,6 +146,3 @@ $.fn.removeClassSVG = function(className){
 	});
 	return this;
 };
-
-
-
