@@ -251,7 +251,7 @@ div#splitter {
 	-moz-user-select:    none;
 	-webkit-user-select:    none;
 	-ms-user-select:    none;
-	z-index: -1;
+	z-index: 1;
 }
 
 

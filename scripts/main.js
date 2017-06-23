@@ -237,7 +237,7 @@ function displayNotation(page, force) {
       output.innerHTML = svg;
       restoreSelectedSvgElement(RestoreCursorNote);
       displayFileTitle(data);
-      document.querySelector('body').classList.remove("invalid");
+      if (!force) document.querySelector('body').classList.remove("invalid");
       return true;
   })
   .catch(function(message) {
