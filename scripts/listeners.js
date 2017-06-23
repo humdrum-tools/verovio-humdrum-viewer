@@ -19,15 +19,10 @@ permalink: /scripts/listeners.js
 //
 
 document.addEventListener("DOMContentLoaded", function() {
-	{% if site.local == "yes" %}
-		downloadVerovioToolkit('/scripts/local/verovio-toolkit.js');
-	{% else %}
-		downloadVerovioToolkit('http://verovio-script.humdrum.org/scripts/verovio-toolkit.js');
-	{% endif %}
-
 	CGI = GetCgiParameters();
+	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
-	if (CGI.k) { 
+	if (CGI.k) {
 		if (CGI.k.match(/e/)) {
 			var input = document.querySelector("#input");
 			if (input) {
@@ -41,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	setupDropArea();
    prepareHelpMenu('#help-container');
 
-	if (CGI.k) { 
+	if (CGI.k) {
 		if (CGI.k.match(/y/)) {
 			toggleInputArea(true);
 		}
@@ -61,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	if (CGI.file || CGI.tasso || CGI.jrp) {
 		loadKernScoresFile(
 			{
-				file: CGI.file, 
+				file: CGI.file,
 				tasso: CGI.tasso,
 				jrp: CGI.jrp,
 				measures: CGI.mm,
@@ -240,7 +235,7 @@ function processNotationKeyCommand(event) {
 					processNotationKey("^^", CursorNote);
 				} else {
 					processNotationKey("6", CursorNote);
-				} 
+				}
 			} else {
 				processNotationKey("6", CursorNote);
 			}
@@ -301,7 +296,7 @@ function processNotationKeyCommand(event) {
 				}
 			}
 			break;
-			
+
 		case DownKey:
 			if (event.shiftKey) {
 				event.preventDefault();
@@ -396,7 +391,11 @@ function processInterfaceKeyCommand(event) {
 
 		case FKey:
 			if (event.altKey) {
-				toggleFreeze();
+				if (event.shiftKey) {
+					displayNotation(false, true);
+				} else {
+					toggleFreeze();
+				};
 				event.preventDefault();
 			}
 			break;
@@ -527,7 +526,7 @@ function processInterfaceKeyCommand(event) {
 			if (event.shiftKey) {
 				increaseTab();
 				event.preventDefault();
-			} 
+			}
 			break;
 
 		case UpKey:
@@ -545,7 +544,7 @@ function processInterfaceKeyCommand(event) {
 				displayWork(FILEINFO["previous-work"]);
 			} else {
 				gotoPreviousPage();
-				console.log("PAGE", PAGE);
+				console.log("PAGE", vrv.page);
 			}
 			event.preventDefault();
 			break;
@@ -556,7 +555,7 @@ function processInterfaceKeyCommand(event) {
 				displayWork(FILEINFO["next-work"]);
 			} else {
 				gotoNextPage();
-				console.log("PAGE", PAGE);
+				console.log("PAGE", vrv.page);
 			}
 			event.preventDefault();
 			break;
@@ -579,6 +578,3 @@ function processInterfaceKeyCommand(event) {
 
 	}
 }
-
-
-

@@ -36,7 +36,7 @@ g[id^="tie-"]:hover,
 g[id^="slur-"]:hover,
 g[id^="fermata-"]:hover,
 g[id^="rest-"]:hover {
-	fill: orange; 
+	fill: orange;
 }
 
 g[id^="bline-"]:hover [stroke],
@@ -84,7 +84,7 @@ table.index-list {
 
 
 svg:not(:root) {
-	overflow: inherit; 
+	overflow: inherit;
 }
 
 
@@ -101,7 +101,7 @@ svg:not(:root) {
 
 
 #vhv {
-	color:          #888; 
+	color:          #888;
 	font-size:      110%;
 	letter-spacing: -1px;
 	margin-top: 	11px;
@@ -192,7 +192,7 @@ div#dropArea {
 
 .topnav a.active {
 	background-color:#73AD21;
-	background-color:#4CAF50;  
+	background-color:#4CAF50;
 	color:#ffffff;
 }
 
@@ -223,7 +223,7 @@ font b {
 }
 
 
-div#input { 
+div#input {
 	position: fixed;
 	top: 44px;
 	right: 0;
@@ -251,10 +251,11 @@ div#splitter {
 	-moz-user-select:    none;
 	-webkit-user-select:    none;
 	-ms-user-select:    none;
+	z-index: -1;
 }
-		
 
-div#index { 
+
+div#index {
 	position: relative;
 	visibility: hidden;
 	display: none;
@@ -265,15 +266,15 @@ div#index {
 	background: #f8f8f8;
 }
 
-#output { 
+#output {
 	position: fixed;
-	top: 44;
-	left: 415;
+	top: 44px;
+	left: 415px;
 	right: 0;
 	bottom: 0;
 	background: #fffcf1;
+	z-index: -1;
 }
-
 
 textarea#input {
 	font-size: 1rem;
@@ -414,5 +415,14 @@ svg tspan {
 	stroke: orange;
 }
 
+.ace_tooltip {
+	z-index: 1000;
+}
 
+body.frozen #output, body.frozen #splitter, body.frozen {
+	background: #ffffff
+}
 
+body.invalid #output, body.invalid #splitter, body.invalid {
+	background: #ffe0e0
+}
