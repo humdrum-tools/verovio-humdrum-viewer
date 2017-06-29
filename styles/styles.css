@@ -251,6 +251,7 @@ div#splitter {
 	-moz-user-select:    none;
 	-webkit-user-select:    none;
 	-ms-user-select:    none;
+	/* this needs to be high enough to click on */
 	z-index: 1;
 }
 
@@ -273,7 +274,7 @@ div#index {
 	right: 0;
 	bottom: 0;
 	background: #fffcf1;
-	z-index: -1;
+	z-index: 1;
 }
 
 textarea#input {
@@ -415,8 +416,17 @@ svg tspan {
 	stroke: orange;
 }
 
-.ace_tooltip {
+.ace_gutter, .ace-scroller {
 	z-index: 1000;
+}
+
+
+svg {
+	z-index: 3;
+}
+
+.ace_tooltip {
+	z-index: 4000 !important;
 }
 
 body.frozen #output, body.frozen #splitter, body.frozen {

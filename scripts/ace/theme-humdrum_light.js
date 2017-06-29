@@ -1,7 +1,7 @@
 define("ace/theme/humdrum_light",["require","exports","module","ace/lib/dom"],function(e,t,n) {
   t.isDark=false,
   t.cssClass="ace-humdrum-light",
-  t.cssText=".ace-humdrum-light .ace_gutter {background: #fbf1d3;color: #333}\
+  t.cssText=".ace-humdrum-light .ace_gutter {background: #fbf1d3;color: #9191cf}\
   .ace-humdrum-light .ace_print-margin {width: 1px;background: #e8e8e8}\
   .ace-humdrum-light {background-color: #FDF6E3;color: black}\
   .ace-humdrum-light .ace_cursor {color: black}\

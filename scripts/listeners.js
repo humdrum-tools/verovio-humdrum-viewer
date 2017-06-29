@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	var body = document.querySelector("body");
 	body.addEventListener("click", function(event) {
+		// console.log("SINGLE CLICK", event);
 		dataIntoView(event);
 	});
 	body.addEventListener("dblclick", function(event) {
