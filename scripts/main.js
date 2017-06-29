@@ -1720,8 +1720,10 @@ function xmlDataIntoView(event) {
 function humdrumDataIntoView(event) {
 	var target = event.target;
 	var matches;
+console.log("EVENT", event);
 
    while (target) {
+console.log("   TARGET", target);
 		if (!target.id) {
 			target = target.parentNode;
 			continue;

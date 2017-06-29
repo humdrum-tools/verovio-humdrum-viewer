@@ -10,6 +10,7 @@ body {
 	padding: 0;
 	/* overflow: scroll; */
 	overflow: scroll;
+	z-index: 1 !important;
 }
 
 /* needed to see scroll bar in help menu */
@@ -252,7 +253,7 @@ div#splitter {
 	-webkit-user-select:    none;
 	-ms-user-select:    none;
 	/* this needs to be high enough to click on */
-	z-index: 1;
+	z-index: 2;
 }
 
 
@@ -274,7 +275,7 @@ div#index {
 	right: 0;
 	bottom: 0;
 	background: #fffcf1;
-	z-index: 1;
+	z-index: 2;
 }
 
 textarea#input {
@@ -347,7 +348,7 @@ table#help-table td:first-child {
 }
 
 span.info {
-	z-index: 111;
+	z-index: 3;
 	display: inline;
 	text-indent: -19999px;
 	width: 24px;
@@ -417,7 +418,7 @@ svg tspan {
 }
 
 .ace_gutter, .ace-scroller {
-	z-index: 1000;
+	z-index: 100;
 }
 
 
@@ -426,7 +427,7 @@ svg {
 }
 
 .ace_tooltip {
-	z-index: 4000 !important;
+	z-index: 400 !important;
 }
 
 body.frozen #output, body.frozen #splitter, body.frozen {
