@@ -321,6 +321,7 @@ textarea#input {
 	padding:30px;
 	max-height: 90%;
 	overflow: scroll;
+	z-index: 2000;
 }
 
 #help-container a {
@@ -419,6 +420,10 @@ svg tspan {
 
 .ace_gutter, .ace-scroller {
 	z-index: 100;
+}
+
+.ace_dialog, .ace_dialog_bottom {
+	z-index: 200 !important;
 }
 
 

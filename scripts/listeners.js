@@ -113,6 +113,10 @@ function processNotationKeyCommand(event) {
 	if (event.altKey || event.target.nodeName == "TEXTAREA") {
 		return;
 	}
+	if (document.activeElement.nodeName == "INPUT") {
+		// needed to suppress key commands when running vim command
+		return;
+	}
 
 	if (!CursorNote) {
 		return;
@@ -355,11 +359,17 @@ function processNotationKeyCommand(event) {
 
 
 function processInterfaceKeyCommand(event) {
+
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
 
-	if (!event.altKey && (event.target.nodeName == "TEXTAREA")) {
+	if ((!event.altKey) && (event.target.nodeName == "TEXTAREA")) {
+		// needed to prevent key commands when editing text
+		return;
+	}
+	if ((!event.altKey) && (document.activeElement.nodeName == "INPUT")) {
+		// needed to prevent key commands when running vim command
 		return;
 	}
 
