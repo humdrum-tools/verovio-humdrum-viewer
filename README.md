@@ -7,5 +7,5 @@ the [verovio](http://verovio.org) typesetting engine for generation graphical no
 [humlib](http://humlib.humdrum.org) for digital score processing in the Humdrum file syntax.
 
 * [Documenation for VHV](http://doc.verovio.humdrum.org)
-* [Maintenance documentation for VHV](http://doc.verovio.humdrum.org/maintenance)
+* [Maintenance documentation for VHV](http://doc.verovio.humdrum.org/maintenance/newpage)
 
