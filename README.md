@@ -8,5 +8,5 @@ the [verovio](http://verovio.org) typesetting engine for generating graphical no
 
 * [Documenation for VHV](http://doc.verovio.humdrum.org)
 * [Maintenance documentation for VHV](http://doc.verovio.humdrum.org/maintenance/newpage)
-* [Presentation on VHV at the Music Encoding Conference, Tours, France 2017](http://bit.ly/mec2017-vhv)
+* [Presentation of VHV at the Music Encoding Conference, Tours, France 2017](http://bit.ly/mec2017-vhv)
 
