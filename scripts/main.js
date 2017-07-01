@@ -1236,7 +1236,6 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
 		options = musicxmlToHumdrumOptions();
-
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 		// this is EsAC data, so first convert into Humdrum
 		// before displaying in the editor.
@@ -1246,7 +1245,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		return;
 	};
 	if (options) {
-console.log("OPTIONS ARE", options, "TEXT:", text);
+console.log("OPTIONS ARE", options);
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
 console.log("NEWTEXT:", newtext);
