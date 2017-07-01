@@ -29,7 +29,8 @@ function play_midi() {
 //
 
 var midiUpdate = function(time) {
-	var vrvTime = Math.max(0, time - 200);
+	var delay = 50;
+	var vrvTime = Math.max(0, time - delay);
 	vrv.getElementsAtTime(vrvTime)
 	.then(function(elementsattime) {
 		var matches;
