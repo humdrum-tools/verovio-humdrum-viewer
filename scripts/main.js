@@ -18,22 +18,22 @@ var FILEINFO = {};
 var EDITOR;
 
 var EditorModes = {
-  humdrum: {
-    vim: {
-      theme: "ace/theme/humdrum_dark"
-    },
-    ace: {
-      theme: "ace/theme/humdrum_light"
-    }
-  },
-  xml: {
-    vim: {
-      theme: "ace/theme/solarized_dark"
-    },
-    ace: {
-      theme: "ace/theme/solarized_light"
-    }
-  }
+	humdrum: {
+		vim: {
+			theme: "ace/theme/humdrum_dark"
+		},
+		ace: {
+			theme: "ace/theme/humdrum_light"
+		}
+	},
+	xml: {
+		vim: {
+			theme: "ace/theme/solarized_dark"
+		},
+		ace: {
+			theme: "ace/theme/solarized_light"
+		}
+	}
 };
 
 var EditorMode = "humdrum";
@@ -149,56 +149,56 @@ var SingleQuoteKey = 222;
 //
 
 function SPLITTER() {
-   this.mouseState    = 0;
-   this.positionX     = null;
-   this.leftContent   = null;
-   this.splitContent  = null;
+	this.mouseState    = 0;
+	this.positionX     = null;
+	this.leftContent   = null;
+	this.splitContent  = null;
 	this.splitWidth    = 5;
 	this.minXPos       = 100;
 	this.maxXPos       = 2000;
-   this.rightPadding  = 10;
+	this.rightPadding  = 10;
 	this.defaultPos    = 400;
-   this.snapTolerance = 30;
-   return this;
+	this.snapTolerance = 30;
+	return this;
 }
 
 
 SPLITTER.prototype.setPositionX = function(xPosition) {
-   if ((xPosition < this.defaultPos + this.snapTolerance) &&
-         (xPosition > this.defaultPos - this.snapTolerance)){
-      xPosition = this.defaultPos;
-   }
+	if ((xPosition < this.defaultPos + this.snapTolerance) &&
+			(xPosition > this.defaultPos - this.snapTolerance)){
+		xPosition = this.defaultPos;
+	}
 
-   if (xPosition < 0) {
-      xPosition = 0;
-   }
-   if (xPosition > this.maxXPos) {
-      xPosition = this.maxXPos;
-   }
-   this.positionX = xPosition;
+	if (xPosition < 0) {
+		xPosition = 0;
+	}
+	if (xPosition > this.maxXPos) {
+		xPosition = this.maxXPos;
+	}
+	this.positionX = xPosition;
 
-   if (!this.leftContent) {
-      this.leftContent = document.querySelector('#input');
-   }
-   if (!this.splitContent) {
-      this.splitContent = document.querySelector('#splitter');
-   }
-   if (!this.rightContent) {
-      this.rightContent = document.querySelector('#output');
-   }
+	if (!this.leftContent) {
+		this.leftContent = document.querySelector('#input');
+	}
+	if (!this.splitContent) {
+		this.splitContent = document.querySelector('#splitter');
+	}
+	if (!this.rightContent) {
+		this.rightContent = document.querySelector('#output');
+	}
 
-   if (this.leftContent) {
-      this.leftContent.style.left = 0;
-      this.leftContent.style.width = xPosition + 'px';
-   }
-   if (this.splitContent) {
-      this.splitContent.style.left = xPosition + 'px';
-   }
-   if (this.rightContent) {
-      this.rightContent.style.left = (xPosition
-				+ this.splitWidth + this.rightPadding)
-            + 'px';
-   }
+	if (this.leftContent) {
+		this.leftContent.style.left = 0;
+		this.leftContent.style.width = xPosition + 'px';
+	}
+	if (this.splitContent) {
+		this.splitContent.style.left = xPosition + 'px';
+	}
+	if (this.rightContent) {
+		this.rightContent.style.left = (xPosition
+			+ this.splitWidth + this.rightPadding)
+			+ 'px';
+	}
 
 };
 
@@ -218,66 +218,64 @@ function displayNotation(page, force) {
 		return;
 	};
 
-   // if input area is a <textarea>, then use .value to access contnets:
+	// if input area is a <textarea>, then use .value to access contnets:
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
 
 	var data = EDITOR.getValue().replace(/^\s+/, "");
-  if (data.match(/^\s*$/)) {
-      return;
-  };
+	if (data.match(/^\s*$/)) {
+		return;
+	};
 	var options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
 		options.inputFormat = "esac";
-  };
+	};
 
-  vrv.displayNotation(options, data, page, force)
-  .then(function(svg) {
-      var output = document.querySelector("#output");
-      output.innerHTML = svg;
-      restoreSelectedSvgElement(RestoreCursorNote);
-      displayFileTitle(data);
-      if (!force) document.querySelector('body').classList.remove("invalid");
-      return true;
-  })
-  .catch(function(message) {
-    document.querySelector('body').classList.add("invalid");
-    console.log(">>>>>>>>>> ERROR LOG:", message);
-    return false;
+	vrv.displayNotation(options, data, page, force)
+	.then(function(svg) {
+		var output = document.querySelector("#output");
+		output.innerHTML = svg;
+		restoreSelectedSvgElement(RestoreCursorNote);
+		displayFileTitle(data);
+		if (!force) document.querySelector('body').classList.remove("invalid");
+		return true;
+	})
+	.catch(function(message) {
+		document.querySelector('body').classList.add("invalid");
+		console.log(">>>>>>>>>> ERROR LOG:", message);
+		return false;
 
-  })
-  .finally(function() {
+	})
+	.finally(function() {
+		var indexelement = document.querySelector("#index");
+		indexelement.style.visibility = "invisibile";
+		indexelement.style.display = "none";
 
-    var indexelement = document.querySelector("#index");
-    indexelement.style.visibility = "invisibile";
-    indexelement.style.display = "none";
+		if (UndoHide) {
+			showInputArea(true);
+			UndoHide = false;
+		}
 
-    if (UndoHide) {
-  		showInputArea(true);
-  		UndoHide = false;
-  	}
+		if (ApplyZoom) {
+			applyZoom();
+			ApplyZoom = false;
+		}
 
-  	if (ApplyZoom) {
-  		applyZoom();
-  		ApplyZoom = false;
-  	}
+		if (CGI.k && !CGI.kInitialized) {
+			processOptions();
+		}
+		if (ApplyZoom) {
+			applyZoom();
+			ApplyZoom = false;
+		}
+		ShowingIndex = false;
+		$('html').css('cursor', 'auto');
 
-  	if (CGI.k && !CGI.kInitialized) {
-  		processOptions();
-  	}
-  	if (ApplyZoom) {
-  		applyZoom();
-  		ApplyZoom = false;
-  	}
-  	ShowingIndex = false;
-  	$('html').css('cursor', 'auto');
-
-  	// these lines are needed to re-highlight the note when
-  	// the notation has been updated.
-  	CursorNote = null;
-  	highlightNoteInScore();
-
-  });
+		// these lines are needed to re-highlight the note when
+		// the notation has been updated.
+		CursorNote = null;
+		highlightNoteInScore();
+	});
 }
 
 
@@ -381,9 +379,9 @@ function humdrumToSvgOptions() {
 		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
 		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
 	}
-   if (CGI.tasso) {
+	if (CGI.tasso) {
 		output.spacingNonLinear = 0.65;
-   }
+	}
 
 	var newLinearSpacing = SPACINGADJUSTMENT + output.spacingLinear;
 	if (newLinearSpacing < 0.05) {
@@ -465,8 +463,8 @@ return;
 //
 
 function toggleFreeze() {
-  FreezeRendering = !FreezeRendering;
-  document.querySelector('body').classList.toggle("frozen");
+	FreezeRendering = !FreezeRendering;
+	document.querySelector('body').classList.toggle("frozen");
 }
 
 
@@ -968,7 +966,7 @@ function loadKernScoresFile(obj, force) {
 				url = ret.url;
 				key = ret.key;
 			}
-   	}
+		}
 	} else if (obj.tasso) {
 		ret = getTassoUrl(obj.tasso, measures);
 		if (ret) {
@@ -1231,35 +1229,37 @@ function downloadKernScoresFile(file, measures, page) {
 
 function replaceEditorContentWithHumdrumFile(text, page) {
 
-    page = page || vrv.page;
-    var options;
+	page = page || vrv.page;
+	var options;
 
-		if (text.slice(0, 1000).match(/<score-partwise/)) {
-      console.log("SETTING DATA TYPE TO MUSICXML");
-			// this is MusicXML data, so first convert into Humdrum
-			// before displaying in the editor.
-			options = musicxmlToHumdrumOptions();
-		} else if (text.slice(0, 1000).match(/CUT[[]/)) {
-      console.log("SETTING DATA TYPE TO ESAC");
-			// this is EsAC data, so first convert into Humdrum
-			// before displaying in the editor.
-			options = esacToHumdrumOptions();
-		} else {
-      console.log("GOT HERE AXA");
-		};
-    if (options) {
-      vrv.filterData(options, text, "humdrum")
-      .then(function(newtext) {
-        EDITOR.setValue(newtext, -1);
-        displayNotation(page);
-      });
-    } else {
-      // -1 is to unselect the inserted text and move cursor to
-			// start of inserted text.
-			EDITOR.setValue(text, -1);
-			// display the notation for the data:
+	if (text.slice(0, 1000).match(/<score-partwise/)) {
+		// this is MusicXML data, so first convert into Humdrum
+		// before displaying in the editor.
+		options = musicxmlToHumdrumOptions();
+
+	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
+		// this is EsAC data, so first convert into Humdrum
+		// before displaying in the editor.
+		options = esacToHumdrumOptions();
+	} else {
+		console.log("Some other unknown input file type (not processing).");
+		return;
+	};
+	if (options) {
+console.log("OPTIONS ARE", options, "TEXT:", text);
+		vrv.filterData(options, text, "humdrum")
+		.then(function(newtext) {
+console.log("NEWTEXT:", newtext);
+			EDITOR.setValue(newtext, -1);
 			displayNotation(page);
-    };
+		});
+	} else {
+		// -1 is to unselect the inserted text and move cursor to
+		// start of inserted text.
+		EDITOR.setValue(text, -1);
+		// display the notation for the data:
+		displayNotation(page);
+	};
 }
 
 
@@ -1282,7 +1282,7 @@ function applyZoom() {
 	}
 
 	var options = humdrumToSvgOptions(),
-      redo = (vrv.HEIGHT != options.pageHeight) || (vrv.WIDTH != options.pageWidth);
+	redo = (vrv.HEIGHT != options.pageHeight) || (vrv.WIDTH != options.pageWidth);
 
 	if (redo) {
 		stop();
@@ -1290,10 +1290,10 @@ function applyZoom() {
 		vrv.WIDTH = options.pageWidth;
 	};
 
-  vrv.redoLayout(options, redo, measure)
-  .then(function() {
-    loadPage(vrv.page);
-  });
+	vrv.redoLayout(options, redo, measure)
+	.then(function() {
+		loadPage(vrv.page);
+	});
 }
 
 
@@ -1307,12 +1307,12 @@ function loadPage(page) {
 	page = page || vrv.page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
-  vrv.renderPage(page)
-  .then(function(svg) {
-    $("#output").html(svg);
-    // adjustPageHeight();
-  	resizeImage();
-  });
+	vrv.renderPage(page)
+	.then(function(svg) {
+		$("#output").html(svg);
+		// adjustPageHeight();
+		resizeImage();
+	});
 }
 
 
@@ -1348,10 +1348,10 @@ function resizeImage(image) {
 //
 
 function gotoPreviousPage() {
-  vrv.gotoPage(vrv.page - 1)
-  .then(function() {
-    loadPage(vrv.page);
-  });
+	vrv.gotoPage(vrv.page - 1)
+	.then(function() {
+		loadPage(vrv.page);
+	});
 }
 
 
@@ -1362,10 +1362,10 @@ function gotoPreviousPage() {
 //
 
 function gotoNextPage() {
-  vrv.gotoPage(vrv.page + 1)
-  .then(function() {
-    loadPage(vrv.page);
-  });
+	vrv.gotoPage(vrv.page + 1)
+	.then(function() {
+		loadPage(vrv.page);
+	});
 }
 
 
@@ -1376,10 +1376,10 @@ function gotoNextPage() {
 //
 
 function gotoLastPage() {
-  vrv.gotoPage(0)
-  .then(function() {
-    loadPage(vrv.page);
-  });
+	vrv.gotoPage(0)
+	.then(function() {
+		loadPage(vrv.page);
+	});
 }
 
 //////////////////////////////
@@ -1388,10 +1388,10 @@ function gotoLastPage() {
 //
 
 function gotoFirstPage() {
-  vrv.gotoPage(1)
-  .then(function() {
-    loadPage(vrv.page);
-  });
+	vrv.gotoPage(1)
+	.then(function() {
+		loadPage(vrv.page);
+	});
 }
 
 
@@ -1419,8 +1419,8 @@ function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
 	var data    = EDITOR.getValue().replace(/^\s+/, "");
-  vrv.filterData(options, data, "MEI")
-  .then(showMEI);
+	vrv.filterData(options, data, "MEI")
+	.then(showMEI);
 }
 
 //////////////////////////////
@@ -1428,10 +1428,10 @@ function displayMeiNoType() {
 // showMei --
 //
 function showMEI(meidata) {
-  if (ShowingIndex) {
+	if (ShowingIndex) {
 		return;
 	}
-  if (BufferedHumdrumFile.match(/^\s*$/)) {
+	if (BufferedHumdrumFile.match(/^\s*$/)) {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
 	displayScoreTextInEditor(meidata, vrv.page);
@@ -1452,16 +1452,16 @@ function showMEI(meidata) {
 }
 
 
+
 //////////////////////////////
 //
 // displayMei --
 //
 
 function displayMei() {
-  vrv.getMEI()
-  .then(showMEI);
+	vrv.getMEI()
+	.then(showMEI);
 }
-
 
 
 
@@ -1474,23 +1474,23 @@ function displaySvg() {
 	if (ShowingIndex) {
 		return;
 	}
-  vrv.renderPage(vrv.page)
-  .then(function(data) {
-    var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
-  	var postfix = "</textarea>";
-  	var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
-  	w.document.write(prefix + data + postfix);
-  	w.document.close();
-    //TODO: what is this doing?
-  	function checkTitle() {
-  		if (w.document) {
-  			w.document.title = "SVG transcoding";
-  		} else {
-  			setTimeout(checkTitle, 40);
-  		}
-  	}
-  	checkTitle();
-  });
+	vrv.renderPage(vrv.page)
+	.then(function(data) {
+		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
+		var postfix = "</textarea>";
+		var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
+		w.document.write(prefix + data + postfix);
+		w.document.close();
+		//TODO: what is this doing?
+		function checkTitle() {
+			if (w.document) {
+				w.document.title = "SVG transcoding";
+			} else {
+				setTimeout(checkTitle, 40);
+			}
+		}
+		checkTitle();
+	});
 }
 
 
@@ -1542,14 +1542,17 @@ function reloadData() {
 		}, true);
 }
 
+
+
 //////////////////////////////
 //
 // downloadVerovioToolkit --
 //
 
 function downloadVerovioToolkit(use_worker) {
-  vrv = new vrvInterface(use_worker, initializeVerovioToolkit);
+	vrv = new vrvInterface(use_worker, initializeVerovioToolkit);
 };
+
 
 
 //////////////////////////////
@@ -1602,11 +1605,8 @@ function initializeVerovioToolkit() {
 //
 
 function	monitorNotationUpdating() {
-
 	displayNotation();
-
 }
-
 
 
 
@@ -1666,7 +1666,7 @@ function	dataIntoView(event) {
 		xmlDataIntoView(event);
 	} else {
 		humdrumDataIntoView(event);
-   }
+	}
 }
 
 
@@ -1721,7 +1721,7 @@ function humdrumDataIntoView(event) {
 	var target = event.target;
 	var matches;
 
-   while (target) {
+	while (target) {
 		if (!target.id) {
 			target = target.parentNode;
 			continue;
@@ -1810,7 +1810,7 @@ function highlightIdInEditor(id) {
 	// 	wholeWord: true,
 	// 	range: range
 	// });
-     //  this does not work well because same text at other locations
+	//  this does not work well because same text at other locations
 	// are also highlighted in a black box:
 	// EDITOR.selection.setRange(r);
 }
@@ -1854,7 +1854,7 @@ function setupAceEditor(idtag) {
 
 	// EDITOR.getSession().setMode("ace/mode/javascript");
 
-  setEditorModeAndKeyboard();
+	setEditorModeAndKeyboard();
 
 	EDITOR.getSession().setTabSize(TABSIZE);
 	EDITOR.getSession().setUseSoftTabs(false);
@@ -1895,7 +1895,7 @@ function highlightNoteInScore(event) {
 		xmlDataNoteIntoView(event);
 	} else {
 		humdrumDataNoteIntoView(event);
-   }
+	}
 }
 
 
@@ -2078,13 +2078,13 @@ function getFieldAndSubspine(text, column) {
 	}
 
 	var field = 0;
-   var subspine = 0;
+	var subspine = 0;
 	var i;
 	for (i=0; i<column; i++) {
 		if (text[i] == '\t') {
 			field++;
 			subspine = 0;
-      } else if (text[i] == ' ') {
+		} else if (text[i] == ' ') {
 			subspine++;
 		}
 	}
@@ -2126,15 +2126,15 @@ function setupSplitter() {
 		return;
 	}
 
-   if (!Splitter.leftContent) {
-      Splitter.leftContent = document.querySelector('#input');
-   }
-   if (!Splitter.splitContent) {
-      Splitter.splitContent = document.querySelector('#splitter');
-   }
-   if (!this.rightContent) {
-      Splitter.rightContent = document.querySelector('#output');
-   }
+	if (!Splitter.leftContent) {
+		Splitter.leftContent = document.querySelector('#input');
+	}
+	if (!Splitter.splitContent) {
+		Splitter.splitContent = document.querySelector('#splitter');
+	}
+	if (!this.rightContent) {
+		Splitter.rightContent = document.querySelector('#output');
+	}
 
 	splitter.addEventListener('mousedown', function(event) {
 		Splitter.mouseState    = 1;
@@ -2153,7 +2153,7 @@ function setupSplitter() {
 	window.addEventListener('mouseup', function(event) {
 		if (Splitter.mouseState != 0) {
 			Splitter.mouseState = 0;
-      EDITOR.resize();
+			EDITOR.resize();
 			displayNotation();
 		}
 	});
@@ -2184,135 +2184,131 @@ function setupSplitter() {
 //
 
 var Base64 = {
-    // private property
-    _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+	// private property
+	_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
-    // public method for encoding
-    encode : function (input) {
-        var output = "";
-        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-        var i = 0;
+	// public method for encoding
+	encode : function (input) {
+		var output = "";
+		var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+		var i = 0;
 
-        input = Base64._utf8_encode(input);
+		input = Base64._utf8_encode(input);
 
-        while (i < input.length) {
+		while (i < input.length) {
 
-            chr1 = input.charCodeAt(i++);
-            chr2 = input.charCodeAt(i++);
-            chr3 = input.charCodeAt(i++);
+			chr1 = input.charCodeAt(i++);
+			chr2 = input.charCodeAt(i++);
+			chr3 = input.charCodeAt(i++);
 
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
+			enc1 = chr1 >> 2;
+			enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+			enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+			enc4 = chr3 & 63;
 
-            if (isNaN(chr2)) {
-                enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
-                enc4 = 64;
-            }
+			if (isNaN(chr2)) {
+				enc3 = enc4 = 64;
+			} else if (isNaN(chr3)) {
+				enc4 = 64;
+			}
 
-            output = output +
-            this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-            this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+			output = output +
+			this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+			this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
 
-        }
+		}
 
-        return output;
-    },
+		return output;
+	},
 
-    // public method for decoding
-    decode : function (input) {
-        var output = "";
-        var chr1, chr2, chr3;
-        var enc1, enc2, enc3, enc4;
-        var i = 0;
+	// public method for decoding
+	decode : function (input) {
+		var output = "";
+		var chr1, chr2, chr3;
+		var enc1, enc2, enc3, enc4;
+		var i = 0;
 
-        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
 
-        while (i < input.length) {
+		while (i < input.length) {
 
-            enc1 = this._keyStr.indexOf(input.charAt(i++));
-            enc2 = this._keyStr.indexOf(input.charAt(i++));
-            enc3 = this._keyStr.indexOf(input.charAt(i++));
-            enc4 = this._keyStr.indexOf(input.charAt(i++));
+			enc1 = this._keyStr.indexOf(input.charAt(i++));
+			enc2 = this._keyStr.indexOf(input.charAt(i++));
+			enc3 = this._keyStr.indexOf(input.charAt(i++));
+			enc4 = this._keyStr.indexOf(input.charAt(i++));
 
-            chr1 = (enc1 << 2) | (enc2 >> 4);
-            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-            chr3 = ((enc3 & 3) << 6) | enc4;
+			chr1 = (enc1 << 2) | (enc2 >> 4);
+			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+			chr3 = ((enc3 & 3) << 6) | enc4;
 
-            output = output + String.fromCharCode(chr1);
+			output = output + String.fromCharCode(chr1);
 
-            if (enc3 != 64) {
-                output = output + String.fromCharCode(chr2);
-            }
-            if (enc4 != 64) {
-                output = output + String.fromCharCode(chr3);
-            }
+			if (enc3 != 64) {
+				output = output + String.fromCharCode(chr2);
+			}
+			if (enc4 != 64) {
+				output = output + String.fromCharCode(chr3);
+			}
 
-        }
+		}
 
-        output = Base64._utf8_decode(output);
+		output = Base64._utf8_decode(output);
 
-        return output;
+		return output;
 
-    },
+	},
 
-    // private method for UTF-8 encoding
-    _utf8_encode : function (string) {
-        string = string.replace(/\r\n/g,"\n");
-        var utftext = "";
+	// private method for UTF-8 encoding
+	_utf8_encode : function (string) {
+		string = string.replace(/\r\n/g,"\n");
+		var utftext = "";
 
-        for (var n = 0; n < string.length; n++) {
+		for (var n = 0; n < string.length; n++) {
 
-            var c = string.charCodeAt(n);
+			var c = string.charCodeAt(n);
 
-            if (c < 128) {
-                utftext += String.fromCharCode(c);
-            }
-            else if((c > 127) && (c < 2048)) {
-                utftext += String.fromCharCode((c >> 6) | 192);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
-            else {
-                utftext += String.fromCharCode((c >> 12) | 224);
-                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
+			if (c < 128) {
+				utftext += String.fromCharCode(c);
+			} else if((c > 127) && (c < 2048)) {
+				utftext += String.fromCharCode((c >> 6) | 192);
+				utftext += String.fromCharCode((c & 63) | 128);
+			} else {
+				utftext += String.fromCharCode((c >> 12) | 224);
+				utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+				utftext += String.fromCharCode((c & 63) | 128);
+			}
 
-        }
+		}
 
-        return utftext;
-    },
+		return utftext;
+	},
 
-    // private method for UTF-8 decoding
-    _utf8_decode : function (utftext) {
-        var string = "";
-        var i = 0;
-        var c = c1 = c2 = 0;
+	// private method for UTF-8 decoding
+	_utf8_decode : function (utftext) {
+		var string = "";
+		var i = 0;
+		var c = c1 = c2 = 0;
 
-        while ( i < utftext.length ) {
+		while ( i < utftext.length ) {
 
-            c = utftext.charCodeAt(i);
+			c = utftext.charCodeAt(i);
 
-            if (c < 128) {
-                string += String.fromCharCode(c);
-                i++;
-            }
-            else if((c > 191) && (c < 224)) {
-                c2 = utftext.charCodeAt(i+1);
-                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-                i += 2;
-            }
-            else {
-                c2 = utftext.charCodeAt(i+1);
-                c3 = utftext.charCodeAt(i+2);
-                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-                i += 3;
-            }
-        }
-        return string;
-    }
+			if (c < 128) {
+				string += String.fromCharCode(c);
+				i++;
+			} else if((c > 191) && (c < 224)) {
+				c2 = utftext.charCodeAt(i+1);
+				string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+				i += 2;
+			} else {
+				c2 = utftext.charCodeAt(i+1);
+				c3 = utftext.charCodeAt(i+2);
+				string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+				i += 3;
+			}
+		}
+		return string;
+	}
 }
 
 
@@ -2332,7 +2328,7 @@ function displayScoreTextInEditor(text, page) {
 	var mode = getMode(text);
 	if (mode != EditorMode) {
 		EditorMode = mode;
-    setEditorModeAndKeyboard();
+		setEditorModeAndKeyboard();
 	};
 
 	EDITOR.setValue(text, -1);
@@ -2397,16 +2393,16 @@ function toggleEditorMode() {
 	} else {
 		KeyboardMode  = "ace";
 	};
-  setEditorModeAndKeyboard();
+	setEditorModeAndKeyboard();
 };
 
 function setEditorModeAndKeyboard() {
-  if (EDITOR) {
-    EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
-    EDITOR.getSession().setMode("ace/mode/" + EditorMode);
-    // null to reset to default (ace) mode
-    EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
-  };
+	if (EDITOR) {
+		EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
+		EDITOR.getSession().setMode("ace/mode/" + EditorMode);
+		// null to reset to default (ace) mode
+		EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
+	};
 };
 
 
@@ -2608,26 +2604,26 @@ function prepareHelpMenu(selector) {
 //    contents into a table shown in the help window.
 
 function fillInHelpContainer(selector, data) {
-   var lines = data.match(/[^\r\n]+/g);
-   var help = document.querySelector(selector);
-   if (!help) {
+	var lines = data.match(/[^\r\n]+/g);
+	var help = document.querySelector(selector);
+	if (!help) {
 		console.log("CANNOT FIND HELP SELECTOR", selector);
-      return;
-   }
-   var output = "";
-   output += '<table id="help-table">\n';
+		return;
+	}
+	var output = "";
+	output += '<table id="help-table">\n';
 // output += '<tr><td colspan="2">\n';
 // output += ' <b style="font-size:110%;">Keyboard commands</b>';
 // output += '</td></tr>\n';
-   var line;
+	var line;
 	var docbase = "http://doc.verovio.humdrum.org";
-   for (var i=0; i<lines.length; i++) {
-      line = lines[i];
+	for (var i=0; i<lines.length; i++) {
+		line = lines[i];
 		var fields = line.split(/\t+/);
-      // var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
-      if (fields.length > 1) {
-         var key  = fields[0];
-         var desc = fields[1];
+		// var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
+		if (fields.length > 1) {
+			var key  = fields[0];
+			var desc = fields[1];
 			if (fields.length > 2) {
 				var docurl = fields[2];
 			}
@@ -2635,34 +2631,34 @@ function fillInHelpContainer(selector, data) {
 				docurl = "";
 			}
 
-         output += '<tr><td>'
+			output += '<tr><td>'
 
 			output += "<b>";
-         output += '<span class="helpentry"';
-         output += " onclick='processKeyCommand(";
-         output += '{keyCode: "' + key + '".charCodeAt(0)}' + ");'";
-         output += '>';
+			output += '<span class="helpentry"';
+			output += " onclick='processKeyCommand(";
+			output += '{keyCode: "' + key + '".charCodeAt(0)}' + ");'";
+			output += '>';
 
 			if (docurl) {
 				output += "<a class='doclink' href='" + docbase + docurl + "' target='_doc'>";
 			}
-         output += key
+			output += key
 
 			if (docurl) {
 				output += "</a>";
 			}
-         output += '</span>';
+			output += '</span>';
 			output += "</b>";
-         output += '</td>';
-         output += '<td>' + desc + '</td></tr>';
-      } else if (!line.match(/^\s*$/)) {
-         output += '<tr><td colspan="2">';
-         output += line;
+			output += '</td>';
+			output += '<td>' + desc + '</td></tr>';
+		} else if (!line.match(/^\s*$/)) {
+			output += '<tr><td colspan="2">';
+			output += line;
 			output += '</td></tr>\n';
-      }
-   }
-   output += '</table>\n';
-   help.innerHTML = output;
+		}
+	}
+	output += '</table>\n';
+	help.innerHTML = output;
 }
 
 
@@ -2674,18 +2670,18 @@ function fillInHelpContainer(selector, data) {
 
 function toggleHelpMenu(state) {
 	var help = document.querySelector("#help-container");
-   if (!help) {
-      return;
-   }
-   if (typeof state === 'undefined') {
-      state = help.style.display === 'none' ? 0 : 1;
-   	state = !state;
-   }
-   if (state) {
+	if (!help) {
+		return;
+	}
+	if (typeof state === 'undefined') {
+		state = help.style.display === 'none' ? 0 : 1;
+		state = !state;
+	}
+	if (state) {
 		help.style.display = 'block';
-   } else {
+	} else {
 		help.style.display = 'none';
-   }
+	}
 }
 
 
@@ -2697,17 +2693,14 @@ function toggleHelpMenu(state) {
 //
 
 function showCompiledFilterData() {
-
 	var options = humdrumToSvgOptions();
-  var data    = EDITOR.getValue().replace(/^\s+/, "");
-  vrv.filterData(options, data, "humdrum")
-  .then(function(newdata) {
-    newdata = newdata.replace(/\s+$/m, "");
-  	EDITOR.setValue(newdata, -1);
-  });
-
+	var data = EDITOR.getValue().replace(/^\s+/, "");
+	vrv.filterData(options, data, "humdrum")
+	.then(function(newdata) {
+		newdata = newdata.replace(/\s+$/m, "");
+		EDITOR.setValue(newdata, -1);
+	});
 }
-
 
 
 
@@ -2727,11 +2720,11 @@ function insertDirectionRdfs() {
 	var matches;
 	var i;
 	var size = EDITOR.session.getLength();
-   for (i=size-1; i>=0; i--) {
+	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
- 		var line = EDITOR.session.getLine(i);
+		var line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
 			abovechar = matches[1];
 		} else if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
@@ -2743,11 +2736,11 @@ function insertDirectionRdfs() {
 	}
 
 	if ((abovechar === "") || (belowchar === "")) {
-   	for (i=0; i<size; i++) {
+		for (i=0; i<size; i++) {
 			if (i > limit) {
 				break;
 			}
- 			var line = EDITOR.session.getLine(i);
+			var line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
 				abovechar = matches[1];
 			} else if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
@@ -2837,11 +2830,11 @@ function insertEditorialAccidentalRdf() {
 	var matches;
 	var i;
 	var size = EDITOR.session.getLength();
-   for (i=size-1; i>=0; i--) {
+	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
- 		var line = EDITOR.session.getLine(i);
+		var line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
 			editchar = matches[1];
 		}
@@ -2851,11 +2844,11 @@ function insertEditorialAccidentalRdf() {
 	}
 
 	if (editchar === "") {
-   	for (i=0; i<size; i++) {
+		for (i=0; i<size; i++) {
 			if (i > limit) {
 				break;
 			}
- 			var line = EDITOR.session.getLine(i);
+			var line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
 				editchar = matches[1];
 			}
@@ -2893,6 +2886,8 @@ function insertEditorialAccidentalRdf() {
 	return editchar;
 }
 
+
+
 //////////////////////////////
 //
 // insertMarkedNoteRdf -- If not present, insert marked note
@@ -2906,11 +2901,11 @@ function insertMarkedNoteRdf() {
 	var matches;
 	var i;
 	var size = EDITOR.session.getLength();
-   for (i=size-1; i>=0; i--) {
+	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
- 		var line = EDITOR.session.getLine(i);
+		var line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
 			editchar = matches[1];
 		}
@@ -2920,11 +2915,11 @@ function insertMarkedNoteRdf() {
 	}
 
 	if (editchar === "") {
-   	for (i=0; i<size; i++) {
+		for (i=0; i<size; i++) {
 			if (i > limit) {
 				break;
 			}
- 			var line = EDITOR.session.getLine(i);
+			var line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
 				editchar = matches[1];
 			}
