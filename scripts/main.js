@@ -16,6 +16,7 @@ var CGI = {};
 var vrv;
 var FILEINFO = {};
 var EDITOR;
+var dummyEDITOR;
 
 var EditorModes = {
 	humdrum: {
@@ -1425,8 +1426,8 @@ function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	// options.humType = 0;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrv.filterData(options, data, "MEI")
-	.then(showMEI);
+	vrv.filterData(options, data, "mei")
+	.then(showMei);
 }
 
 
@@ -1436,7 +1437,8 @@ function displayMeiNoType() {
 // showMei --
 //
 
-function showMEI(meidata) {
+function showMei(meidata) {
+	setEditorModeAndKeyboard();
 	if (ShowingIndex) {
 		return;
 	}
@@ -1469,7 +1471,7 @@ function showMEI(meidata) {
 
 function displayMei() {
 	vrv.getMEI()
-	.then(showMEI);
+	.then(showMei);
 }
 
 
@@ -2328,18 +2330,17 @@ var Base64 = {
 //
 
 function displayScoreTextInEditor(text, page) {
-
 	if (CGI.filter) {
 		text = "!!!filter: " + CGI.filter + "\n" + text;
 	}
 
-	// -1 is to unselect added text, and move cursor to start
 	var mode = getMode(text);
 	if (mode != EditorMode) {
 		EditorMode = mode;
 		setEditorModeAndKeyboard();
 	};
 
+	// -1 is to unselect added text, and move cursor to start
 	EDITOR.setValue(text, -1);
 	// unpdate the notation display
 	displayNotation(page);
@@ -2405,6 +2406,13 @@ function toggleEditorMode() {
 	setEditorModeAndKeyboard();
 };
 
+
+
+//////////////////////////////
+//
+// setEditorModeAndKeyboard --
+//
+
 function setEditorModeAndKeyboard() {
 	if (EDITOR) {
 		EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
@@ -2413,6 +2421,7 @@ function setEditorModeAndKeyboard() {
 		EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
 	};
 };
+
 
 
 //////////////////////////////

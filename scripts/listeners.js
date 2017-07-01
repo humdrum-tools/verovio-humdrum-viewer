@@ -19,6 +19,10 @@ permalink: /scripts/listeners.js
 //
 
 document.addEventListener("DOMContentLoaded", function() {
+	EditorMode = "humdrum";
+	setEditorModeAndKeyboard();
+
+
 	CGI = GetCgiParameters();
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
@@ -445,6 +449,7 @@ function processInterfaceKeyCommand(event) {
 
 		case MKey:
 			if (event.altKey) {
+				EditorMode = "xml";
 				if (event.shiftKey) {
 					displayMei();
 				} else {

@@ -31,6 +31,9 @@ function verovioCalls() {
 		if (options.inputFormat === "musicxml") {
 			checkdata = false;
 		}
+		if (options.inputFormat === "mei") {
+			checkdata = false;
+		}
 		if (options.inputFormat === "musicxml-hum") {
 			checkdata = false;
 		}
@@ -48,7 +51,7 @@ function verovioCalls() {
 			case "humdrum":
 				newdata = this.vrvToolkit.getHumdrum();
 				break;
-			case "MEI":
+			case "mei":
 				newdata = this.vrvToolkit.getMEI(0, 1);
 				break;
 		};
