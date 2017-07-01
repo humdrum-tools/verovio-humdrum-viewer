@@ -233,11 +233,17 @@ function displayNotation(page, force) {
 
 	vrv.displayNotation(options, data, page, force)
 	.then(function(svg) {
+		var ishumdrum = true;
+		if (data.charAt(0) == "<") {
+			ishumdrum = false;
+		}
 		var output = document.querySelector("#output");
 		output.innerHTML = svg;
-		restoreSelectedSvgElement(RestoreCursorNote);
-		displayFileTitle(data);
-		if (!force) document.querySelector('body').classList.remove("invalid");
+		if (ishumdrum) {
+			restoreSelectedSvgElement(RestoreCursorNote);
+			displayFileTitle(data);
+			if (!force) document.querySelector('body').classList.remove("invalid");
+		}
 		return true;
 	})
 	.catch(function(message) {
@@ -626,6 +632,7 @@ function getReferenceRecords(contents) {
 
 	return output;
 }
+
 
 
 //////////////////////////////
@@ -1416,16 +1423,19 @@ function showBufferedHumdrumData() {
 
 function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
-	options.humType = 0;
-	var data    = EDITOR.getValue().replace(/^\s+/, "");
+	// options.humType = 0;
+	var data = EDITOR.getValue().replace(/^\s+/, "");
 	vrv.filterData(options, data, "MEI")
 	.then(showMEI);
 }
+
+
 
 //////////////////////////////
 //
 // showMei --
 //
+
 function showMEI(meidata) {
 	if (ShowingIndex) {
 		return;

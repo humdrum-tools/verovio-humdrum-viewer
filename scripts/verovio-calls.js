@@ -4,6 +4,9 @@ function verovioCalls() {
 	this.page = 1;
 	this.pageCount = 0;
 	this.validate = function (data) {
+		if (data.charAt(0) == "<") {
+			return true;
+		}
 		var error = false,
 		hum = data.split("\n").map(function (l) { return l.split("\t") });
 		validateHumdrum_Process(hum, function () {
@@ -22,8 +25,8 @@ function verovioCalls() {
 	this.filterData = function (options, data, type) {
 		var newdata;
 		var checkdata = true;
-		if (type === "humdrum") {
-			checkdata = true;
+		if (type !== "humdrum") {
+			checkdata = false;
 		}
 		if (options.inputFormat === "musicxml") {
 			checkdata = false;
