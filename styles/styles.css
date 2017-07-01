@@ -266,6 +266,7 @@ div#index {
 	width:100%;
 	overflow: scroll;
 	background: #f8f8f8;
+	z-index: 300;
 }
 
 #output {
