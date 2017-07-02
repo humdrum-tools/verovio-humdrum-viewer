@@ -515,7 +515,16 @@ function processInterfaceKeyCommand(event) {
 
 		case SpaceKey:
 			if (!PLAY) {
-				play_midi();
+				if (CursorNote && CursorNote.id) {
+					var id = CursorNote.id;
+					vrv.getTimeForElement(id)
+					.then(function(time) {
+						console.log("SEEKTIME IS ", time);
+						$("#midi-player").midiPlayer.seek(time);
+					});
+				} else {
+					play_midi();
+				}
 				PLAY = true;
 				PAUSE = false;
 			} else if (PAUSE) {

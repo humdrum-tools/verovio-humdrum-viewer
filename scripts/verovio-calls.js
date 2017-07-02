@@ -119,8 +119,16 @@ function verovioCalls() {
 
 	this.getElementsAtTime = function (vrvTime) {
 		var elements = this.vrvToolkit.getElementsAtTime(vrvTime);
+console.log("ELEMENTS AT TIME", vrvTime, "ARE", elements);
 		return elements;
 	};
+
+	this.getTimeForElement = function (id) {
+console.log("GOT HERE getTimeForElement", id);
+		var time = this.vrvToolkit.getTimeForElement(id);
+console.log("GOT HERE TIME = ", time);
+		return time;
+	}
 };
 
 
