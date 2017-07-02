@@ -9,13 +9,23 @@ LASTLINE = -1;
 // play_midi --
 //
 
-function play_midi() {
+var DELAY = 100;
+
+function play_midi(starttime) {
+	starttime = starttime ? starttime : 0;
+	if (starttime == 0) {
+		DELAY = 100;
+	} else {
+		DELAY = 700;
+	}
+console.log("DELAY IS SET TO ", DELAY);
+
 	vrv.renderToMidi()
-	.then(function(base64midi) {
+	.then(function (base64midi) {
 		var song = 'data:audio/midi;base64,' + base64midi;
-		$("#player").show();
 		$("#play-button").hide();
-		$("#player").midiPlayer.play(song);
+		$("#player").show();
+		$("#player").midiPlayer.play(song, starttime);
 		PLAY = true;
 		LASTLINE = -1;
 	});
@@ -28,11 +38,10 @@ function play_midi() {
 // midiUpdate --
 //
 
-var midiUpdate = function(time) {
-	var delay = 50;
-	var vrvTime = Math.max(0, time - delay);
+var midiUpdate = function (time) {
+	var vrvTime = Math.max(0, time - DELAY);
 	vrv.getElementsAtTime(vrvTime)
-	.then(function(elementsattime) {
+	.then(function (elementsattime) {
 		var matches;
 		if (elementsattime.page > 0) {
 			if (elementsattime.page != vrv.page) {
@@ -40,7 +49,7 @@ var midiUpdate = function(time) {
 				loadPage();
 			}
 			if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
-				ids.forEach(function(noteid) {
+				ids.forEach(function (noteid) {
 						if ($.inArray(noteid, elementsattime.notes) == -1) {
 						//$("#" + noteid ).attr("fill", "#000");
 							//$("#" + noteid ).attr("stroke", "#000");
@@ -74,7 +83,7 @@ var midiUpdate = function(time) {
 					}
 				}
 	*/
-				ids.forEach(function(noteid) {
+				ids.forEach(function (noteid) {
 					if ($.inArray(noteid, elementsattime.notes) != -1) {
 						// console.log("NoteID", noteid);
 
@@ -119,31 +128,35 @@ var midiUpdate = function(time) {
 // midiStop --
 //
 
-var midiStop = function() {
-	ids.forEach(function(noteid) {
+var midiStop = function () {
+	ids.forEach(function (noteid) {
 		// $("#" + noteid ).attr("fill", "#000");
 		// $("#" + noteid ).attr("stroke", "#000");
 		$("#" + noteid ).removeClassSVG("highlighted");
 	});
 	$("#player").hide();
 	$("#play-button").show();
+	CursorNote = null;
 	PLAY = false;
    LASTLINE = -1;
 }
 
 
-$.fn.addClassSVG = function(className) {
-	$(this).attr('class', function(index, existingClassNames) {
+
+$.fn.addClassSVG = function (className) {
+	$(this).attr('class', function (index, existingClassNames) {
 		return existingClassNames + ' ' + className;
 	});
 	return this;
 };
 
 
-$.fn.removeClassSVG = function(className){
-	$(this).attr('class', function(index, existingClassNames) {
+$.fn.removeClassSVG = function (className){
+	$(this).attr('class', function (index, existingClassNames) {
 		//var re = new RegExp(className, 'g');
 		//return existingClassNames.replace(re, '');
 	});
 	return this;
 };
+
+

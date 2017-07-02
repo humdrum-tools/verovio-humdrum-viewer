@@ -62,7 +62,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 282;
+var BasketVersion = 300;
 
 var Actiontime = 0;
 
@@ -3115,3 +3115,25 @@ function clearContent() {
 		}
 	}
 }
+
+
+//////////////////////////////
+//
+// playCurrentMidi -- If a note is selected start playing from that note;
+//     otherwise, start from the start of the music.
+//
+
+function playCurrentMidi() {
+	if (CursorNote && CursorNote.id) {
+		var id = CursorNote.id;
+		vrv.getTimeForElement(id)
+		.then(function(time) {
+			play_midi(time);
+		});
+	} else {
+		play_midi();
+	}
+}
+
+
+
