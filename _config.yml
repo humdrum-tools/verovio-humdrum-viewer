@@ -3,6 +3,6 @@
 # will be local if this variable is set to "yes"; otherwise internet 
 # access is required for any other string.
 # 
-local: "yes"
-#local: "no"
+#local: "yes"
+local: "no"
 
