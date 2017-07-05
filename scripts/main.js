@@ -1238,6 +1238,8 @@ function downloadKernScoresFile(file, measures, page) {
 
 function replaceEditorContentWithHumdrumFile(text, page) {
 
+console.log("GOT HERE ", CGI);
+
 	page = page || vrv.page;
 	var options;
 
@@ -1256,13 +1258,21 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	if (options) {
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
-			EDITOR.setValue(newtext, -1);
+			if (CGI.filter) {
+				EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+			} else {
+				EDITOR.setValue(newtext, -1);
+			}
 			displayNotation(page);
 		});
 	} else {
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
-		EDITOR.setValue(text, -1);
+		if (CGI.filter) {
+			EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + text, -1);
+		} else {
+			EDITOR.setValue(text, -1);
+		}
 		// display the notation for the data:
 		displayNotation(page);
 	};
