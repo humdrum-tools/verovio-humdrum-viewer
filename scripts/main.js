@@ -62,7 +62,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 330;
+var BasketVersion = 336;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -1238,10 +1238,9 @@ function downloadKernScoresFile(file, measures, page) {
 
 function replaceEditorContentWithHumdrumFile(text, page) {
 
-console.log("GOT HERE ", CGI);
-
 	page = page || vrv.page;
 	var options;
+	var humdrumQ = false;
 
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// this is MusicXML data, so first convert into Humdrum
@@ -1252,27 +1251,36 @@ console.log("GOT HERE ", CGI);
 		// before displaying in the editor.
 		options = esacToHumdrumOptions();
 	} else {
-		console.log("Some other unknown input file type (not processing).");
-		return;
+		humdrumQ = true;
 	};
-	if (options) {
+	if (options && !humdrumQ) {
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
+			var freezeBackup = FreezeRendering;
+			if (FreezeRendering == false) {
+				FreezeRendering = true;
+			}
 			if (CGI.filter) {
 				EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
 			} else {
 				EDITOR.setValue(newtext, -1);
 			}
+			FreezeRendering = freezeBackup;
 			displayNotation(page);
 		});
 	} else {
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
+		var freezeBackup = FreezeRendering;
+		if (FreezeRendering == false) {
+			FreezeRendering = true;
+		}
 		if (CGI.filter) {
 			EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + text, -1);
 		} else {
 			EDITOR.setValue(text, -1);
 		}
+		FreezeRendering = freezeBackup;
 		// display the notation for the data:
 		displayNotation(page);
 	};
