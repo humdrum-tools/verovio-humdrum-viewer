@@ -1256,6 +1256,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	if (options && !humdrumQ) {
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
+			newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
 			var freezeBackup = FreezeRendering;
 			if (FreezeRendering == false) {
 				FreezeRendering = true;
