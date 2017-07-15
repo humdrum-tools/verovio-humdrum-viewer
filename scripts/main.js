@@ -1407,6 +1407,8 @@ function gotoLastPage() {
 	});
 }
 
+
+
 //////////////////////////////
 //
 // gotoFirstPage --
@@ -1433,6 +1435,7 @@ function showBufferedHumdrumData() {
 		BufferedHumdrumFile = "";
 	}
 }
+
 
 
 //////////////////////////////
@@ -3135,6 +3138,7 @@ function clearContent() {
 		}
 	}
 }
+
 
 
 //////////////////////////////

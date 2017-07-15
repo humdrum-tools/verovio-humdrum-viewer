@@ -2195,6 +2195,11 @@ function toggleVisibility(id, line, field) {
 //
 
 function setEditorContents(line, field, token, id) {
+console.log("NEW TOKEN", token);
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
 
 	var linecontent = EDITOR.session.getLine(line-1);
 	var range = new Range(line-1, 0, line-1, linecontent.length);
@@ -2213,6 +2218,9 @@ function setEditorContents(line, field, token, id) {
 	EDITOR.gotoLine(line, column+1);
 
 	RestoreCursorNote = id;
+
+	FreezeRendering = freezeBackup;
+	displayNotation();
 }
 
 
@@ -2296,16 +2304,11 @@ function toggleMarkedNote(id, line, field, subfield) {
 		newtoken = subtokens.join(" ");
 	}
 
-	var freezeBackup = FreezeRendering;
-	FreezeRendering = true;
-   console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
 		setEditorContents(line, field, newtoken, id);
 	}
-	FreezeRendering = freezeBackup;
-	displayNotation();
 }
 
 
