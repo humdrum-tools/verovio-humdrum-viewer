@@ -62,7 +62,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 348;
+var BasketVersion = 349;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -2363,8 +2363,16 @@ function displayScoreTextInEditor(text, page) {
 
 	// -1 is to unselect added text, and move cursor to start
 	EDITOR.setValue(text, -1);
-	// unpdate the notation display
+
+// ggg
+// editor contents is not being updated in browser:
+//	EDITOR.resize();
+//	EDITOR.renderer.updateFull();
+console.log("EDITOR CONTENTS:", EDITOR.getValue());
+
+	// update the notation display
 	displayNotation(page);
+
 }
 
 
