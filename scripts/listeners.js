@@ -383,28 +383,28 @@ function processInterfaceKeyCommand(event) {
 
 	switch (event.keyCode) {
 
-		case BKey:
+		case BKey:          // toggle display of banner
 			if (event.altKey) {
 				toggleVhvTitle();
 				event.preventDefault();
 			}
 			break;
 
-		case CKey:
+		case CKey:          // compile filtered contents & display in text editor
 			if (event.altKey) {
 				showCompiledFilterData();
 				event.preventDefault();
 			}
 			break;
 
-		case EKey:
+		case EKey:          // erase text editor contents
 			if (event.altKey) {
 				clearContent();
 				event.preventDefault();
 			}
 			break;
 
-		case FKey:
+		case FKey:          // toogle notation update freezing
 			if (event.altKey) {
 				if (event.shiftKey) {
 					displayNotation(false, true);
@@ -415,7 +415,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case YKey:
+		case YKey:          // show/hide text editor
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					toggleInputArea();
@@ -424,14 +424,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case GKey:
+		case GKey:          // show SVG text in separate window
 			if (event.altKey) {
 				displaySvg();
 				event.preventDefault();
 			}
 			break;
 
-		case HKey:
+		case HKey:          // show Humdrum data in text editor
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					showBufferedHumdrumData();
@@ -440,26 +440,28 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case LKey:
+		case LKey:          // toggle color of staff layers
 			if (event.altKey) {
 				toggleLayerColoring();
 				event.preventDefault();
 			}
 			break;
 
-		case MKey:
+	 	case MKey:          // show MEI data in text editor
 			if (event.altKey) {
 				EditorMode = "xml";
 				if (event.shiftKey) {
+					// display with @type data
 					displayMei();
 				} else {
+					// display without @type data
 					displayMeiNoType();
 				}
 				event.preventDefault();
 			}
 			break;
 
-		case OKey:
+		case OKey:          // toggle display of *oclef data
 			if (event.altKey) {
 				OriginalClef = !OriginalClef;
 				console.log("Original clef changed to:", OriginalClef);
@@ -470,35 +472,35 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case PKey:
+		case PKey:          // show PDF in separate window
 			if (event.altKey) {
 				displayPdf();
 				event.preventDefault();
 			}
 			break;
 
-		case RKey:
+		case RKey:          // reload Humdrum data from server
 			if (event.altKey) {
 				reloadData();
 				event.preventDefault();
 			}
 			break;
 
-		case SKey:
+		case SKey:          // save contents of text editor to file
 			if (event.altKey) {
 				saveEditorContents();
 				event.preventDefault();
 			}
 			break;
 
-		case VKey:
+		case VKey:          // toggle vi mode in text editor
 			if (event.altKey) {
 				toggleEditorMode();
 				event.preventDefault();
 			}
 			break;
 
-		case WKey:
+	 	case WKey:          // adjust notation width parameter
 			if (event.altKey) {
 				if (event.shiftKey) {
 					SPACINGADJUSTMENT -= 0.05;
@@ -513,7 +515,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case SpaceKey:
+		case SpaceKey:          // start/pause MIDI playback
 			if (!PLAY) {
 				playCurrentMidi();
 				PLAY = true;
@@ -528,7 +530,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case CommaKey:
+		case CommaKey:          // toggle TSV/CSV display of Humdrum data
+		                        // decrease tab size in editor
 			if (event.shiftKey) {
 				decreaseTab();
 				event.preventDefault();
@@ -538,14 +541,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case DotKey:
+		case DotKey:          // increase tab size in editor
 			if (event.shiftKey) {
 				increaseTab();
 				event.preventDefault();
 			}
 			break;
 
-		case UpKey:
+		case UpKey:          // return to repertory index
 			if (event.shiftKey) {
 				if (FILEINFO["has-index"] == "true") {
 					displayIndex(FILEINFO["location"]);
@@ -554,8 +557,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case PgUpKey:
-		case LeftKey:
+		case PgUpKey:          // shift: go to previous repertory work/movement
+		case LeftKey:          // go to previous page
 			if (event.shiftKey) {
 				displayWork(FILEINFO["previous-work"]);
 			} else {
@@ -565,8 +568,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case PgDnKey:
-		case RightKey:
+		case PgDnKey:          // shift: go to next repertory work/movement
+		case RightKey:         // go to next page
 			if (event.shiftKey) {
 				displayWork(FILEINFO["next-work"]);
 			} else {
@@ -576,17 +579,17 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case HomeKey:
+		case HomeKey:          // go to the first page
 			gotoFirstPage();
 			event.preventDefault();
 			break;
 
-		case EndKey:
+		case EndKey:          // go to the last page
 			gotoLastPage();
 			event.preventDefault();
 			break;
 
-		case SlashKey:
+		case SlashKey:          // toggle help menu
 			if (event.shiftKey) {
 				toggleHelpMenu();
 				event.preventDefault();
