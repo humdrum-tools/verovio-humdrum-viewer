@@ -1445,7 +1445,7 @@ function showBufferedHumdrumData() {
 
 function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
-	// options.humType = 0;
+	options.humType = 0;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
 	vrv.filterData(options, data, "mei")
 	.then(showMei);
