@@ -528,7 +528,8 @@ function showInputArea(suppressZoom) {
 	Splitter.setPositionX(LastInputWidth);
 	if (!suppressZoom) {
 		applyZoom();
-	}
+	};
+	EDITOR.resize();
 }
 
 
@@ -2366,9 +2367,9 @@ function displayScoreTextInEditor(text, page) {
 
 // ggg
 // editor contents is not being updated in browser:
-//	EDITOR.resize();
-//	EDITOR.renderer.updateFull();
-console.log("EDITOR CONTENTS:", EDITOR.getValue());
+	//EDITOR.resize();
+	//EDITOR.renderer.updateFull();
+//console.log("EDITOR CONTENTS:", EDITOR.getValue());
 
 	// update the notation display
 	displayNotation(page);
@@ -3166,6 +3167,3 @@ function playCurrentMidi() {
 		play_midi();
 	}
 }
-
-
-
