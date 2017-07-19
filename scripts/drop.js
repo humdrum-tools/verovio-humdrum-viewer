@@ -55,6 +55,8 @@ function allowDrag(event) {
 
 function handleDrop(event) {
 	event.preventDefault();
+
+	$('html').css('cursor', 'wait');
 	hideDropArea();
 
 	var file;
