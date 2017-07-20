@@ -497,6 +497,7 @@ function toggleInputArea(suppressZoom) {
 	if (!suppressZoom) {
 		applyZoom();
 	}
+	EDITOR.resize();
 }
 
 
