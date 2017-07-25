@@ -61,6 +61,7 @@ function handleDrop(event) {
 
 	var file;
 	var files = event.dataTransfer.files;
+console.log("FILES", files);
 	for (var i=0; i<files.length; i++) {
 		file = files[i];
 		// console.log("NAME", escape(file.name));
@@ -71,6 +72,7 @@ function handleDrop(event) {
 
 		reader.onload = function (event) {
 			var content = reader.result;
+console.log("CONTENTS", content);
 			// console.log("Loaded file content:", content);
 			replaceEditorContentWithHumdrumFile(content);
 		};
