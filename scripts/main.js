@@ -1754,7 +1754,6 @@ function xmlDataIntoView(event) {
 function humdrumDataIntoView(event) {
 	var target = event.target;
 	var matches;
-
 	while (target) {
 		if (!target.id) {
 			target = target.parentNode;

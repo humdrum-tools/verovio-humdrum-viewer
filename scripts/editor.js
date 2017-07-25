@@ -10,11 +10,11 @@
 // Description:   Processing key commands to edit music.
 //
 
-// InterfaceSingleNumber: digit typed on the keyboard before 
+// InterfaceSingleNumber: digit typed on the keyboard before
 // certain commands, suh as slurs, which indicates the number
 // of notes to include under the slur.  Or "2" for double-flats/
 // sharps, or for the transposing interval when changing pitch.
-var InterfaceSingleNumber = 1;  
+var InterfaceSingleNumber = 1;
 
 //////////////////////////////
 //
@@ -142,6 +142,14 @@ function processNotationKey(key, element) {
 	} else if (name === "rest") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
+	} else if (name === "dynam") {
+		if (key === "a")       { setDynamAboveMarker(id, line, field, number); }
+		else if (key === "b")  { setDynamBelowMarker(id, line, field, number); }
+		else if (key === "c")  { deleteDynamDirectionMarker(id, line, field, number); }
+	} else if (name === "hairpin") {
+		if (key === "a")       { setHairpinAboveMarker(id, line, field, number); }
+		else if (key === "b")  { setHairpinBelowMarker(id, line, field, number); }
+		else if (key === "c")  { deleteHairpinDirectionMarker(id, line, field, number); }
 	} else if (name === "slur") {
 		if (key === "a")       { setSlurAboveMarker(id, line, field, number); }
 		else if (key === "b")  { setSlurBelowMarker(id, line, field, number); }
@@ -206,7 +214,7 @@ function setBeamAboveMarker(id, line, field) {
 		newtoken += above;
 		newtoken += matches[4];
 	}
-	
+
    // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
@@ -241,7 +249,7 @@ function setBeamBelowMarker(id, line, field) {
 		newtoken += below;
 		newtoken += matches[4];
 	}
-	
+
    // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
@@ -275,7 +283,7 @@ function deleteBeamDirectionMarker(id, line, field) {
 		newtoken += matches[2];
 		newtoken += matches[4];
 	}
-	
+
    // console.log("OLDTOKEN", token, "NEWTOKEN", newtoken);
 	if (newtoken !== token) {
 		RestoreCursorNote = id;
@@ -283,6 +291,259 @@ function deleteBeamDirectionMarker(id, line, field) {
 		setEditorContents(line, field, newtoken, id);
 	}
 }
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Dynamics editing --
+//
+
+//////////////////////////////
+//
+// setDynamAboveMarker -- Move dynamic above staff.
+//
+
+function setDynamAboveMarker(id, line, field, number) {
+	setAboveMarker(id, line, field, number, "DY");
+}
+
+
+
+//////////////////////////////
+//
+// setDynamBelowMarker -- Move dynamic below staff.
+//
+
+function setDynamBelowMarker(id, line, field, number) {
+	setBelowMarker(id, line, field, number, "DY");
+}
+
+
+
+//////////////////////////////
+//
+// deleteDynamDirectionMarker -- Remove layout code for dynamic positioning.
+//
+
+function deleteDynamDirectionMarker(id, line, field, number) {
+	deleteDirectionMarker(id, line, field, number, "DY");
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Hairpin layout paramters --
+//
+
+//////////////////////////////
+//
+// setHairpinAboveMarker -- Set to HP layout code later
+//
+
+function setHairpinAboveMarker(id, line, field, number) {
+	setAboveMarker(id, line, field, number, "HP");
+}
+
+
+
+//////////////////////////////
+//
+// setHairpinBelowMarker --
+//
+
+function setHairpinBelowMarker(id, line, field, number) {
+	setBelowMarker(id, line, field, number, "HP");
+}
+
+
+
+//////////////////////////////
+//
+// deleteHairpinDirectionMarker -- remove layout code for hairpins.
+//
+
+function deleteHairpinDirectionMarker(id, line, field, number) {
+	deleteDirectionMarker(id, line, field, number, "HP");
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Generic Layout functions --
+//
+
+//////////////////////////////
+//
+// setAboveMarker -- Add layut code for above parameter.
+//
+
+function setAboveMarker(id, line, field, number, category) {
+	var token = getEditorContents(line, field);
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+
+	var editQ = false;
+	var lastline = line - 1;
+	var ptoken = getEditorContents(lastline, field);
+	if (!ptoken.match(/^!LO/)) {
+		createEmptyLine(line);
+		line += 1;
+		lastline = line - 1;
+		ptoken = "!";
+		editQ = true;
+	}
+
+	if (ptoken.match(/^!LO/)) {
+		if (ptoken.match(/:b(?=:|=|$)/)) {
+			// Change to :a (not very elegant if there is a parameter starting with "b":
+			ptoken = ptoken.replace(/:b(?=:|=|$)/, ":a");
+			editQ = true;
+		} else if (ptoken.match(/:a(:|=|$)/)) {
+			// Do nothing
+		} else {
+			// Assuming no other parameters, but may be clobbering something.
+			// (so fix later):
+			ptoken = "!LO:" + category + ":a"
+			editQ = true;
+		}
+	} else if (ptoken == "!") {
+		ptoken = "!LO:" + category + ":a";
+		editQ = true;
+	} else {
+		console.log("ERROR TOGGLING ABOVE DIRECTION");
+	}
+
+	if (editQ) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(lastline, field, ptoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// setBelowMarker -- Add layout code for below parameter.
+//
+
+function setBelowMarker(id, line, field, number, category) {
+	var token = getEditorContents(line, field);
+	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
+		return;
+	}
+
+	var editQ = false;
+	var lastline = line - 1;
+	var ptoken = getEditorContents(lastline, field);
+	if (!ptoken.match(/^!LO/)) {
+		createEmptyLine(line);
+		line += 1;
+		lastline = line - 1;
+		ptoken = "!";
+		editQ = true;
+	}
+
+	if (ptoken.match(/^!LO/)) {
+		if (ptoken.match(/:a(?=:|=|$)/)) {
+			// Change to :b (not very elegant if there is a parameter starting with "b":
+			ptoken = ptoken.replace(/:a(?=:|=|$)/, ":b");
+			editQ = true;
+		} else if (ptoken.match(/:b(:|=|$)/)) {
+			// Do nothing
+		} else {
+			// Assuming no other parameters, but may be clobbering something.
+			// (so fix later):
+			ptoken = "!LO:" + category + ":b"
+			editQ = true;
+		}
+	} else if (ptoken == "!") {
+		ptoken = "!LO:" + category + ":b";
+		editQ = true;
+	} else {
+		console.log("ERROR TOGGLING ABOVE DIRECTION");
+	}
+
+	if (editQ) {
+		RestoreCursorNote = id;
+		HIGHLIGHTQUERY = id;
+		setEditorContents(lastline, field, ptoken, id);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// deleteDirectionMarker -- remove layout code for hairpins.
+//
+
+function deleteDirectionMarker(id, line, field, number, category) {
+	var token = getEditorContents(line-1, field);
+	if (token[0] !== "!") {
+		// don't know what to do.
+		return;
+	}
+	var editQ = false;
+	var re = new RegExp("^!LO:" + category + ":");
+	if (token.match(re)) {
+		token = "!";
+		editQ = true;
+
+	} else {
+		// don't know what to do
+		return;
+	}
+	if (!editQ) {
+		return;
+	}
+
+	setEditorContents(line-1, field, token, id, true);
+
+	var text = EDITOR.session.getLine(line-2);
+	if (text.match(/^[!\t]+$/)) {
+		// remove line
+		var range = new Range(line-2, 0, line-1, 0);
+		EDITOR.session.remove(range);
+		displayNotation();
+	}
+}
+
+
+
+//////////////////////////////
+//
+// createEmptyLine -- Create a null local comment line.
+//
+
+function createEmptyLine(line) {
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+
+	var text = EDITOR.session.getLine(line - 1);
+	var count = 1;
+	var i;
+	for (i=0; i<text.length; i++) {
+		if (text[i] == "\t") {
+			count++;
+		}
+	}
+	var output = "!";
+	for (i=1; i<count; i++) {
+		output += "\t!";
+	}
+	output += "\n" + text;
+
+	var range = new Range(line-1, 0, line-1, text.length);
+	EDITOR.session.replace(range, output);
+
+	// don't redraw the data
+	FreezeRendering = freezeBackup;
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -949,7 +1210,7 @@ function setTieAboveMarker(id, line, field, subfield) {
 		// reset, so no tie allowed
 		return;
 	}
-	
+
 	var newtoken = "";
 	var matches;
 
@@ -1005,7 +1266,7 @@ function setTieBelowMarker(id, line, field, subfield) {
 		// reset, so no tie allowed
 		return;
 	}
-	
+
 	var newtoken = "";
 	var matches;
 
@@ -1060,7 +1321,7 @@ function deleteTieDirectionMarker(id, line, field, subfield) {
 		// reset, so no tie allowed
 		return;
 	}
-	
+
 	var newtoken = "";
 	var matches;
 
@@ -1360,7 +1621,7 @@ function toggleSharp(id, line, field, subfield) {
 		if (!token.match("##")) {
 			// add double sharp
 			newtoken = token.replace(/[#n-]+/, "");
-			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+			newtoken = newtoken.replace(/([a-gA-G]+)/,
 					function(str,p1) { return p1 ? p1 + "##" : str});
 		} else {
 			// remove double-sharp
@@ -1371,7 +1632,7 @@ function toggleSharp(id, line, field, subfield) {
 		if (token.match("##") || !token.match("#")) {
 			// add sharp
 			newtoken = token.replace(/[#n-]+/, "");
-			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+			newtoken = newtoken.replace(/([a-gA-G]+)/,
 					function(str,p1) { return p1 ? p1 + "#" : str});
 		} else {
 			// remove sharp
@@ -1421,7 +1682,7 @@ function toggleFlat(id, line, field, subfield) {
 		if (!token.match("--")) {
 			// add flat
 			newtoken = token.replace(/[#n-]+/, "");
-			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+			newtoken = newtoken.replace(/([a-gA-G]+)/,
 					function(str,p1) { return p1 ? p1 + "--" : str});
 		} else {
 			// remove flat
@@ -1432,7 +1693,7 @@ function toggleFlat(id, line, field, subfield) {
 		if (token.match("--") || !token.match("-")) {
 			// add flat
 			newtoken = token.replace(/[#n-]+/, "");
-			newtoken = newtoken.replace(/([a-gA-G]+)/, 
+			newtoken = newtoken.replace(/([a-gA-G]+)/,
 					function(str,p1) { return p1 ? p1 + "-" : str});
 		} else {
 			// remove flat
@@ -1481,7 +1742,7 @@ function toggleNatural(id, line, field, subfield) {
 	if (!token.match("n")) {
 		// add natural
 		newtoken = token.replace(/[#n-]+/, "");
-		newtoken = newtoken.replace(/([a-gA-G]+)/, 
+		newtoken = newtoken.replace(/([a-gA-G]+)/,
 				function(str,p1) { return p1 ? p1 + "n" : str});
 	} else {
 		// remove natural
@@ -1593,7 +1854,7 @@ function toggleStaccato(id, line, field) {
 		if (!token.match("'")) {
 			// add staccato
 			token = token.replace(/'+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g,
 					function(str,p1) { return p1 ? p1 + "'" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1646,7 +1907,7 @@ function toggleAccent(id, line, field) {
 		if (!token.match(/\^+/)) {
 			// add accent
 			token = token.replace(/\^+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 					function(str,p1) { return p1 ? p1 + "^" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1700,7 +1961,7 @@ function toggleMarcato(id, line, field) {
 		if (!token.match(/\^+/)) {
 			// add marcato
 			token = token.replace(/\^+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 					function(str,p1) { return p1 ? p1 + "^^" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1754,7 +2015,7 @@ function toggleTenuto(id, line, field) {
 		if (!token.match(/~/)) {
 			// add marcato
 			token = token.replace(/~+/g, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 					function(str,p1) { return p1 ? p1 + "~" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1808,7 +2069,7 @@ function toggleStaccatissimo(id, line, field) {
 		if (!token.match(/`/)) {
 			// add marcato
 			token = token.replace(/`/g, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 					function(str,p1) { return p1 ? p1 + "`" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1877,7 +2138,7 @@ function toggleMinorTrill(id, line, field) {
 	if (!token.match(/T/i)) {
 		// add trill
 		token = token.replace(/T/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 				function(str,p1) { return p1 ? p1 + "t" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -1917,7 +2178,7 @@ function toggleMordent(mtype, id, line, field, subfield) {
 		// reset, so no mordent allowed
 		return;
 	}
-	
+
 	var newtoken = "";
 	var matches;
 	var matches = token.match(/[MmWw]/);
@@ -1932,7 +2193,7 @@ function toggleMordent(mtype, id, line, field, subfield) {
 			hascurrentmordent = true;
 		}
 	}
-	
+
 	if (hascurrentmordent) {
 		// remove existing mordent
 		newtoken = token.replace(/[MmWw][<>]*/g, "");
@@ -2081,7 +2342,7 @@ function toggleMajorTrill(id, line, field) {
 	if (!token.match(/T/i)) {
 		// add trill
 		token = token.replace(/T/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/, 
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
 				function(str,p1) { return p1 ? p1 + "T" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2118,7 +2379,7 @@ function toggleArpeggio(id, line, field) {
 	if (!token.match(/:/i)) {
 		// add arpeggio
 		token = token.replace(/:/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g, 
+		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g,
 				function(str,p1) { return p1 ? p1 + ":" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2147,7 +2408,7 @@ function toggleFermata(id, line, field) {
 	if (!token.match(/;/i)) {
 		// add marcato
 		token = token.replace(/;/gi, "");
-		token = token.replace(/([ra-gA-G]+[-#nXxYy]*)/, 
+		token = token.replace(/([ra-gA-G]+[-#nXxYy]*)/,
 				function(str,p1) { return p1 ? p1 + ";" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2194,8 +2455,7 @@ function toggleVisibility(id, line, field) {
 // setEditorContents --
 //
 
-function setEditorContents(line, field, token, id) {
-console.log("NEW TOKEN", token);
+function setEditorContents(line, field, token, id, dontredraw) {
 	var freezeBackup = FreezeRendering;
 	if (FreezeRendering == false) {
 		FreezeRendering = true;
@@ -2220,7 +2480,9 @@ console.log("NEW TOKEN", token);
 	RestoreCursorNote = id;
 
 	FreezeRendering = freezeBackup;
-	displayNotation();
+	if (!dontredraw) {
+		displayNotation();
+	}
 }
 
 
