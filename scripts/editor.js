@@ -386,8 +386,10 @@ function setAboveMarker(id, line, field, number, category) {
 	var editQ = false;
 	var lastline = line - 1;
 	var ptoken = getEditorContents(lastline, field);
+	var idlineadj = 0;
 	if (!ptoken.match(/^!LO/)) {
 		createEmptyLine(line);
+		idlineadj = 1;
 		line += 1;
 		lastline = line - 1;
 		ptoken = "!";
@@ -414,6 +416,10 @@ function setAboveMarker(id, line, field, number, category) {
 		console.log("ERROR TOGGLING ABOVE DIRECTION");
 	}
 
+	if (idlineadj != 0) {
+		id = id.replace("L"  + (line-1), "L" + (line + idlineadj - 1));
+	}
+
 	if (editQ) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -437,8 +443,10 @@ function setBelowMarker(id, line, field, number, category) {
 	var editQ = false;
 	var lastline = line - 1;
 	var ptoken = getEditorContents(lastline, field);
+	var idlineadj = 0;
 	if (!ptoken.match(/^!LO/)) {
 		createEmptyLine(line);
+		idlineadj = 1;
 		line += 1;
 		lastline = line - 1;
 		ptoken = "!";
@@ -465,6 +473,10 @@ function setBelowMarker(id, line, field, number, category) {
 		console.log("ERROR TOGGLING ABOVE DIRECTION");
 	}
 
+	if (idlineadj != 0) {
+		id = id.replace("L" + (line - 1), "L" *+ (line + idlineadj - 1));
+	}
+
 	if (editQ) {
 		RestoreCursorNote = id;
 		HIGHLIGHTQUERY = id;
@@ -480,6 +492,7 @@ function setBelowMarker(id, line, field, number, category) {
 //
 
 function deleteDirectionMarker(id, line, field, number, category) {
+	line = parseInt(line);
 	var token = getEditorContents(line-1, field);
 	if (token[0] !== "!") {
 		// don't know what to do.
@@ -490,7 +503,6 @@ function deleteDirectionMarker(id, line, field, number, category) {
 	if (token.match(re)) {
 		token = "!";
 		editQ = true;
-
 	} else {
 		// don't know what to do
 		return;
@@ -505,8 +517,13 @@ function deleteDirectionMarker(id, line, field, number, category) {
 	if (text.match(/^[!\t]+$/)) {
 		// remove line
 		var range = new Range(line-2, 0, line-1, 0);
+
 		EDITOR.session.remove(range);
+
+		RestoreCursorNote = id.replace("L" + (line), "L" + (line - 1));
 		displayNotation();
+console.log("HIGHLIGHTING RID=", RestoreCursorNote, "FORMERLY ID=", id);
+		highlightIdInEditor(RestoreCursorNote);
 	}
 }
 
