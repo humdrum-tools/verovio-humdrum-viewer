@@ -38,8 +38,7 @@ var EditorModes = {
 };
 
 var EditorMode = "humdrum";
-var KeyboardMode = "ace";
-
+var KeyboardMode = "ace"; 
 //var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
 var TABSIZE = 12;
@@ -62,7 +61,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 364;
+var BasketVersion = 365;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
