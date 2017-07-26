@@ -23,7 +23,6 @@ function verovioCalls() {
 	};
 
 	this.filterData = function (options, data, type) {
-console.log("GOT HERE ZZZ");
 		var newdata;
 		var checkdata = true;
 		if (type !== "humdrum") {
@@ -36,7 +35,6 @@ console.log("GOT HERE ZZZ");
 			checkdata = false;
 		}
 		if (options.inputFormat === "musicxml-hum") {
-console.log("GOT HERE YYY");
 			checkdata = false;
 		}
 		if ((options.inputFormat === "auto") && (type === "humdrum")) {
@@ -46,23 +44,17 @@ console.log("GOT HERE YYY");
 			this.validate(data);
 		}
 
-console.log("GOT HERE XXX", options);
 		this.vrvToolkit.setOptions(options);
-console.log("GOT HERE WWW");
 		this.vrvToolkit.loadData(data);
-console.log("GOT HERE MMM");
 		this.pageCount = this.vrvToolkit.getPageCount();
 		switch (type) {
 			case "humdrum":
-console.log("GOT HERE TTT");
 				newdata = this.vrvToolkit.getHumdrum();
-console.log("GOT HERE UUU");
 				break;
 			case "mei":
 				newdata = this.vrvToolkit.getMEI(0, 1);
 				break;
 		};
-console.log("GOT HERE VVV");
 		return newdata;
 	};
 
