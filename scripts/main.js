@@ -61,7 +61,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 371;
+var BasketVersion = 372;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -1246,6 +1246,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
+console.log("MUSICXML FILE TO PROCESS");
 		options = musicxmlToHumdrumOptions();
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 		// this is EsAC data, so first convert into Humdrum
@@ -1254,9 +1255,12 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	} else {
 		humdrumQ = true;
 	};
+console.log("GOT HERE 222");
 	if (options && !humdrumQ) {
+console.log("GOT HERE 333", options);
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
+console.log("GOT HERE 444", newtext);
 			newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
 			var freezeBackup = FreezeRendering;
 			if (FreezeRendering == false) {
@@ -1271,6 +1275,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			displayNotation(page);
 		});
 	} else {
+console.log("GOT HERE 444");
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
 		var freezeBackup = FreezeRendering;
