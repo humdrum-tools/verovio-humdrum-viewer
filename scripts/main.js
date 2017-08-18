@@ -61,7 +61,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 376;
+var BasketVersion = 377;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -395,6 +395,7 @@ function humdrumToSvgOptions() {
 		newLinearSpacing = 0.05;
 	}
 	output.spacingLinear = newLinearSpacing;
+console.log("OPTIONS", output);
 
 	return output;
 }
