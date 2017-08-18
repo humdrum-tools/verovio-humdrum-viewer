@@ -27,12 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	if (CGI.k) {
+
 		if (CGI.k.match(/e/)) {
 			var input = document.querySelector("#input");
 			if (input) {
 				input.innerHTML = "";
 			}
 		}
+
 	}
 
 	setupAceEditor("input");
@@ -55,6 +57,16 @@ document.addEventListener("DOMContentLoaded", function() {
 				SPACINGADJUSTMENT -= 0.05;
 			}
 		}
+
+		if (CGI.k.match(/m/)) {
+			// start in MEI mode
+			EditorMode = "xml";
+			setEditorModeAndKeyboard();
+			if (!CGI.k.match(/e/)) {
+				displayMeiNoType();
+			}
+		} 
+
 	}
 
 	if (CGI.file || CGI.tasso || CGI.jrp) {
