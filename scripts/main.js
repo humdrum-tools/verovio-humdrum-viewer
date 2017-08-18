@@ -473,6 +473,9 @@ return;
 function toggleFreeze() {
 	FreezeRendering = !FreezeRendering;
 	document.querySelector('body').classList.toggle("frozen");
+	if (!FreezeRendering) {
+		displayNotation();
+	}
 }
 
 
@@ -1256,12 +1259,9 @@ console.log("MUSICXML FILE TO PROCESS");
 	} else {
 		humdrumQ = true;
 	};
-console.log("GOT HERE 222");
 	if (options && !humdrumQ) {
-console.log("GOT HERE 333", options);
 		vrv.filterData(options, text, "humdrum")
 		.then(function(newtext) {
-console.log("GOT HERE 444", newtext);
 			newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
 			var freezeBackup = FreezeRendering;
 			if (FreezeRendering == false) {
@@ -1276,7 +1276,6 @@ console.log("GOT HERE 444", newtext);
 			displayNotation(page);
 		});
 	} else {
-console.log("GOT HERE 444");
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
 		var freezeBackup = FreezeRendering;
