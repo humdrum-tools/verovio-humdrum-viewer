@@ -1871,7 +1871,7 @@ function toggleStaccato(id, line, field) {
 		if (!token.match("'")) {
 			// add staccato
 			token = token.replace(/'+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g,
+			token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/g,
 					function(str,p1) { return p1 ? p1 + "'" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1924,7 +1924,7 @@ function toggleAccent(id, line, field) {
 		if (!token.match(/\^+/)) {
 			// add accent
 			token = token.replace(/\^+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+			token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 					function(str,p1) { return p1 ? p1 + "^" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -1978,7 +1978,7 @@ function toggleMarcato(id, line, field) {
 		if (!token.match(/\^+/)) {
 			// add marcato
 			token = token.replace(/\^+/, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+			token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 					function(str,p1) { return p1 ? p1 + "^^" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -2032,7 +2032,7 @@ function toggleTenuto(id, line, field) {
 		if (!token.match(/~/)) {
 			// add marcato
 			token = token.replace(/~+/g, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+			token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 					function(str,p1) { return p1 ? p1 + "~" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -2086,7 +2086,7 @@ function toggleStaccatissimo(id, line, field) {
 		if (!token.match(/`/)) {
 			// add marcato
 			token = token.replace(/`/g, "");
-			token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+			token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 					function(str,p1) { return p1 ? p1 + "`" : str});
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
@@ -2155,7 +2155,7 @@ function toggleMinorTrill(id, line, field) {
 	if (!token.match(/T/i)) {
 		// add trill
 		token = token.replace(/T/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+		token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 				function(str,p1) { return p1 ? p1 + "t" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2359,7 +2359,7 @@ function toggleMajorTrill(id, line, field) {
 	if (!token.match(/T/i)) {
 		// add trill
 		token = token.replace(/T/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/,
+		token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/,
 				function(str,p1) { return p1 ? p1 + "T" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2396,7 +2396,7 @@ function toggleArpeggio(id, line, field) {
 	if (!token.match(/:/i)) {
 		// add arpeggio
 		token = token.replace(/:/gi, "");
-		token = token.replace(/([a-gA-G]+[-#nXxYy]*)/g,
+		token = token.replace(/([a-gA-G]+[-#nXxYy<>]*)/g,
 				function(str,p1) { return p1 ? p1 + ":" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
@@ -2425,7 +2425,7 @@ function toggleFermata(id, line, field) {
 	if (!token.match(/;/i)) {
 		// add marcato
 		token = token.replace(/;/gi, "");
-		token = token.replace(/([ra-gA-G]+[-#nXxYy]*)/,
+		token = token.replace(/([ra-gA-G]+[-#nXxYy<>]*)/,
 				function(str,p1) { return p1 ? p1 + ";" : str});
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
