@@ -1642,7 +1642,7 @@ function toggleSharp(id, line, field, subfield) {
 					function(str,p1) { return p1 ? p1 + "##" : str});
 		} else {
 			// remove double-sharp
-			newtoken = token.replace(/#+/, "");
+			newtoken = token.replace(/#+i?/, "");
 		}
 		InterfaceSingleNumber = 1;
 	} else {
@@ -1653,7 +1653,7 @@ function toggleSharp(id, line, field, subfield) {
 					function(str,p1) { return p1 ? p1 + "#" : str});
 		} else {
 			// remove sharp
-			newtoken = token.replace(/#+/, "");
+			newtoken = token.replace(/#+i?/, "");
 		}
 	}
 
@@ -1703,7 +1703,7 @@ function toggleFlat(id, line, field, subfield) {
 					function(str,p1) { return p1 ? p1 + "--" : str});
 		} else {
 			// remove flat
-			newtoken = token.replace(/-+/, "");
+			newtoken = token.replace(/-+i?/, "");
 		}
 		InterfaceSingleNumber = 1;
 	} else {
@@ -1714,7 +1714,7 @@ function toggleFlat(id, line, field, subfield) {
 					function(str,p1) { return p1 ? p1 + "-" : str});
 		} else {
 			// remove flat
-			newtoken = token.replace(/-+/, "");
+			newtoken = token.replace(/-+i?/, "");
 		}
 	}
 
@@ -1763,7 +1763,7 @@ function toggleNatural(id, line, field, subfield) {
 				function(str,p1) { return p1 ? p1 + "n" : str});
 	} else {
 		// remove natural
-		newtoken = token.replace(/n+/, "");
+		newtoken = token.replace(/n+i?/, "");
 	}
 
 	if (subfield) {
@@ -1879,7 +1879,7 @@ function toggleStaccato(id, line, field) {
 			line++;
 		} else {
 			// remove staccato
-			token = token.replace(/'/g, "");
+			token = token.replace(/'[<>]*/g, "");
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
 			counter++;
@@ -1932,7 +1932,7 @@ function toggleAccent(id, line, field) {
 			line++;
 		} else {
 			// remove accent
-			token = token.replace(/\^+/g, "");
+			token = token.replace(/\^+[<>]*/g, "");
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
 			counter++;
@@ -1986,7 +1986,7 @@ function toggleMarcato(id, line, field) {
 			line++;
 		} else {
 			// remove marcato
-			token = token.replace(/\^+/g, "");
+			token = token.replace(/\^+[<>]*/g, "");
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
 			counter++;
@@ -2040,7 +2040,7 @@ function toggleTenuto(id, line, field) {
 			line++;
 		} else {
 			// remove marcato
-			token = token.replace(/~/g, "");
+			token = token.replace(/~[<>]*/g, "");
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
 			setEditorContents(line, field, token, id);
@@ -2094,7 +2094,7 @@ function toggleStaccatissimo(id, line, field) {
 			line++;
 		} else {
 			// remove marcato
-			token = token.replace(/`/g, "");
+			token = token.replace(/`[<>]*/g, "");
 			RestoreCursorNote = id;
 			setEditorContents(line, field, token, id);
 			counter++;
@@ -2166,7 +2166,7 @@ function toggleMinorTrill(id, line, field) {
 		setEditorContents(line, field, token, id);
 	} else {
 		// remove trill
-		token = token.replace(/T/gi, "");
+		token = token.replace(/T[<>]*/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	}
@@ -2370,7 +2370,7 @@ function toggleMajorTrill(id, line, field) {
 		setEditorContents(line, field, token, id);
 	} else {
 		// remove trill
-		token = token.replace(/T/gi, "");
+		token = token.replace(/T[<>]*/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	}
@@ -2431,7 +2431,7 @@ function toggleFermata(id, line, field) {
 		setEditorContents(line, field, token, id);
 	} else {
 		// remove marcato
-		token = token.replace(/;/gi, "");
+		token = token.replace(/;[<>]*/gi, "");
 		RestoreCursorNote = id;
 		setEditorContents(line, field, token, id);
 	}
