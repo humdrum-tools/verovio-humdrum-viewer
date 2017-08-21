@@ -2,7 +2,15 @@
 # Sets the website to use local javascript/css only.  All resource files
 # will be local if this variable is set to "yes"; otherwise internet 
 # access is required for any other string.
-# 
-#local: "yes"
-local: "no"
+#local: "true"
+local: "false"
+
+# the preview server used. Leave as is.
+host: 127.0.0.1
+
+# the port where the preview is rendered. You can leave this as is
+# unless you have other Jekyll builds using this same port that might
+# cause conflicts. in that case, use another port such as 2001.
+port: 2000
+
 

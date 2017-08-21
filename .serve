@@ -1,2 +1,22 @@
-jekyll serve --watch --host 127.0.0.1 --port 2000
-echo "Go to http://127.0.0.1:4000/index.html"
+#!/bin/bash
+#
+# You need to first install jekyll to run the VHV documentation website locally.
+# See the webpage:
+#     https://jekyllrb.com/docs/installation
+#     https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll
+# for instructions on installing it.
+#
+# This script to run the web server for VHV documenation uses external
+# resource (javascript and css files).  Use .serve-local to not depend
+# on any external resources (such as when your computer is not connected
+# to the internet).
+#
+# To run from the comand line, type:
+#     ./.serve
+#
+# Then look for the address of the webserver, which should be:
+#     http://127.0.0.1:4000
+#
+
+bundle exec jekyll serve --watch
+

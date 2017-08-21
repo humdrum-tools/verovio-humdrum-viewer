@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Description: This version of the local website server will use purely local
+# resources with no external webiste dependencies.  Use this version of the
+# website if you are not connected to the internet.  Files in styles/local and 
+# scripts/local are used rather than css/javascript files from other web addresses.
+#
+# Preliminaries:
+# 
+# To use the purely local version of the web server, first run the makefile in
+# scripts/local:
+#    cd scripts/local && make
+# This will download the verovio-toolkit.js script needed for rendering 
+# notation examples for the website.  This only has to be done the first time,
+# but it would be wise to do it every once in a while, since this will keep
+# the verovio toolkit version up-to-date on the local installation.
+# 
+# Also, you need to install jekyll to run the VHV documentation website locally.
+# See the webpage: https://jekyllrb.com/docs/installation for instructions
+# to install it.
+#
+# To run from the comand line, type:
+#     ./.serve-local
+#
+# Then look for the address of the webserver, which should be:
+#     http://127.0.0.1:2000
+#
+
+bundle exec jekyll serve --watch --config _config.yml,_config-local.yml
+

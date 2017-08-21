@@ -4,3 +4,4 @@ _site
 scripts/local
 styles/local
 .DS_Store
+Gemfile.lock
