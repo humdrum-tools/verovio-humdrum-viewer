@@ -395,7 +395,6 @@ function humdrumToSvgOptions() {
 		newLinearSpacing = 0.05;
 	}
 	output.spacingLinear = newLinearSpacing;
-console.log("OPTIONS", output);
 
 	return output;
 }
@@ -426,6 +425,15 @@ function musicxmlToHumdrumOptions() {
 	return {
 		inputFormat       : "musicxml-hum",
 		type              : "humdrum"
+	}
+}
+
+function musicxmlToMeiOptions() {
+	return {
+		inputFormat       : "musicxml",
+		allPages          : 1,
+		noLayout          : 1,
+		type              : "mei"
 	}
 }
 
@@ -1250,8 +1258,11 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
-console.log("MUSICXML FILE TO PROCESS");
-		options = musicxmlToHumdrumOptions();
+		if (EditorMode == "xml") {
+			options = musicxmlToMeiOptions();
+		} else {
+			options = musicxmlToHumdrumOptions();
+		}
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 		// this is EsAC data, so first convert into Humdrum
 		// before displaying in the editor.
@@ -1260,21 +1271,27 @@ console.log("MUSICXML FILE TO PROCESS");
 		humdrumQ = true;
 	};
 	if (options && !humdrumQ) {
-		vrv.filterData(options, text, "humdrum")
-		.then(function(newtext) {
-			newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
-			var freezeBackup = FreezeRendering;
-			if (FreezeRendering == false) {
-				FreezeRendering = true;
-			}
-			if (CGI.filter) {
-				EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
-			} else {
-				EDITOR.setValue(newtext, -1);
-			}
-			FreezeRendering = freezeBackup;
-			displayNotation(page);
-		});
+		if (options.inputFormat == "musicxml") {
+			vrv.filterData(options, text, "mei")
+			.then(showMei);
+		} else {
+			vrv.filterData(options, text, "humdrum")
+			.then(function(newtext) {
+				newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
+				var freezeBackup = FreezeRendering;
+				if (FreezeRendering == false) {
+					FreezeRendering = true;
+				}
+				if (CGI.filter) {
+					EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+				} else {
+					EDITOR.setValue(newtext, -1);
+				}
+				FreezeRendering = freezeBackup;
+				displayNotation(page);
+			});
+
+		}
 	} else {
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
