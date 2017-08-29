@@ -61,7 +61,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 399;
+var BasketVersion = 402;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -215,7 +215,10 @@ var Splitter = new SPLITTER();
 
 function displayNotation(page, force) {
 
+console.log("ENTERING DISPLAY NOTATION");
+
 	if (!vrv.initialized || (FreezeRendering && !force)) {
+console.log("TOO EARLY");
 		return;
 	};
 
@@ -257,17 +260,14 @@ function displayNotation(page, force) {
 		var indexelement = document.querySelector("#index");
 		indexelement.style.visibility = "invisibile";
 		indexelement.style.display = "none";
-
 		if (UndoHide) {
 			showInputArea(true);
 			UndoHide = false;
 		}
-
 		if (ApplyZoom) {
 			applyZoom();
 			ApplyZoom = false;
 		}
-
 		if (CGI.k && !CGI.kInitialized) {
 			processOptions();
 		}
@@ -277,12 +277,12 @@ function displayNotation(page, force) {
 		}
 		ShowingIndex = false;
 		$('html').css('cursor', 'auto');
-
 		// these lines are needed to re-highlight the note when
 		// the notation has been updated.
 		CursorNote = null;
 		highlightNoteInScore();
 	});
+
 }
 
 
@@ -482,7 +482,7 @@ function toggleFreeze() {
 	FreezeRendering = !FreezeRendering;
 	document.querySelector('body').classList.toggle("frozen");
 	if (!FreezeRendering) {
-		displayNotation();
+		vrv.displayNotation();
 	}
 }
 
@@ -1023,6 +1023,7 @@ function loadKernScoresFile(obj, force) {
 
 				if (info) {
 					try {
+console.log("INFODATA = ", info.data);
 						jinfo = JSON.parse(info.data);
 						console.log("NEW JSON INFO", jinfo);
 						if (force) {

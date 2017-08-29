@@ -18,7 +18,7 @@ function verovioCalls() {
 			return true;
 		});
 		if (error) {
-			throw("Invalid humdrum data detected:", data);
+			throw("Invalid humdrum data detected."); //  + data);
 		}
 	};
 

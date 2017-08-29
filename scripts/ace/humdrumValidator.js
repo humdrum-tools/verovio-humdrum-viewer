@@ -1,3 +1,5 @@
+console.log("humdrumValidator is loaded");
+
 function validateHumdrum_Process(hum, onError, onWarning) {
   // based on humdrum toolkit
   // https://github.com/humdrum-tools/humdrum/blob/master/toolkit-source/c-programs/humdrum_.c
@@ -495,7 +497,8 @@ function validateHumdrum_Process(hum, onError, onWarning) {
     // at this point i is > 0
     if (!onWarning("All spines have not been properly terminated.", i - 1, 0)) return;
     for(var j = 0; j < current_no_of_spines; j++) {
-      if (interp[j].hasRhythm && interp[j].top > 0) {
+console.log("INTERP", j, "=", interp[j]);
+      if (interp && interp[j] && (interp[j].hasRhythm && interp[j].top > 0)) {
         if (!onError("Rhythm off by " + interp[j].top + "/" + interp[j].bottom, i - 1, 0)) return;
       };
     };

@@ -92,8 +92,9 @@ vrvInterface.prototype.createDefaultInterface = function (onReady) {
 
 	basket
 	.require(
-		{url: url, expire: 500, unique: BasketVersion},
-		{url: "scripts/ace/humdrumValidator.js", skipCache: true}
+		{url: url, expire: 500, unique: BasketVersion}
+		// loaded as an include:
+		// {url: "scripts/ace/humdrumValidator.js", skipCache: true}
 	)
 	.then(
 		function () {
@@ -137,7 +138,9 @@ vrvInterface.prototype.filterData = function (options, data, type) {
 //
 
 vrvInterface.prototype.displayNotation = function (options, data, page) {
+console.log("vrvInterface DISPLAYNOTATION Entering", arguments );
 	return this.execute("displayNotation", arguments);
+console.log("vrvInterface DISPLAYNOTATION DONE");
 };
 
 
@@ -148,7 +151,9 @@ vrvInterface.prototype.displayNotation = function (options, data, page) {
 //
 
 vrvInterface.prototype.redoLayout = function (options, redo, measure) {
+console.log("REDOLAYOUT");
 	return this.execute("redoLayout", arguments);
+console.log("REDOLAYOUT DONE");
 };
 
 
@@ -159,7 +164,9 @@ vrvInterface.prototype.redoLayout = function (options, redo, measure) {
 //
 
 vrvInterface.prototype.renderPage = function (page) {
+console.log("RENDERING PAGE ");
 	return this.execute("renderPage", arguments);
+console.log("PAGED RENDERED");
 };
 
 
