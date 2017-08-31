@@ -12,6 +12,10 @@ importScripts("ace/humdrumValidator.js");
 importScripts("verovio-calls.js");
 
 
+//////////////////////////////
+//
+// resolve --
+//
 
 function resolve(data, result) {
 	postMessage({
@@ -24,6 +28,11 @@ function resolve(data, result) {
 
 
 
+//////////////////////////////
+//
+// reject --
+//
+
 function reject(data, result) {
 	postMessage({
 		method: data.method,
@@ -33,6 +42,11 @@ function reject(data, result) {
 	});
 };
 
+
+//////////////////////////////
+//
+// message event listener --
+//
 
 addEventListener("message", function(oEvent) {
 	try {
