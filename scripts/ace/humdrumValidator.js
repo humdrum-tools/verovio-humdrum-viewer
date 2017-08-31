@@ -1,5 +1,6 @@
 //
 // Humdrum file syntax validator for ace editor.
+// vim: ts=3
 //
 // Based on humdrum toolkit tool "humdrum":
 //    https://github.com/humdrum-tools/humdrum/blob/master/toolkit-source/c-programs/humdrum_.c

@@ -215,10 +215,7 @@ var Splitter = new SPLITTER();
 
 function displayNotation(page, force) {
 
-console.log("ENTERING DISPLAY NOTATION");
-
 	if (!vrv.initialized || (FreezeRendering && !force)) {
-console.log("TOO EARLY");
 		return;
 	};
 
@@ -970,7 +967,7 @@ function loadKernScoresFile(obj, force) {
 
 	COUNTER++;
 	if (COUNTER > 10000) {
-		console.log("TOO LARGE", file);
+		console.log("RECURSION TOO LARGE", file);
 		return;
 	}
 
@@ -1023,7 +1020,6 @@ function loadKernScoresFile(obj, force) {
 
 				if (info) {
 					try {
-console.log("INFODATA = ", info.data);
 						jinfo = JSON.parse(info.data);
 						console.log("NEW JSON INFO", jinfo);
 						if (force) {
@@ -1646,7 +1642,7 @@ function initializeVerovioToolkit() {
 	});
 
 	if (!ShowingIndex) {
-		console.log("Display current score after verovio initialized");
+		console.log("Score will be displayed after verovio has finished loading");
 		displayNotation();
 	}
 

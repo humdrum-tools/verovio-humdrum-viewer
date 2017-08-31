@@ -575,7 +575,6 @@ function processInterfaceKeyCommand(event) {
 				displayWork(FILEINFO["previous-work"]);
 			} else {
 				gotoPreviousPage();
-				console.log("PAGE", vrv.page);
 			}
 			event.preventDefault();
 			break;
@@ -586,7 +585,6 @@ function processInterfaceKeyCommand(event) {
 				displayWork(FILEINFO["next-work"]);
 			} else {
 				gotoNextPage();
-				console.log("PAGE", vrv.page);
 			}
 			event.preventDefault();
 			break;

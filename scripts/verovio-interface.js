@@ -60,7 +60,7 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 		};
 	};
 
-	console.log("creating worker interface");
+	// console.log("creating worker interface");
 	this.promises = {};
 	this.promiseIdx = 0;
 	this.resolvedIdx = 0;
@@ -138,9 +138,8 @@ vrvInterface.prototype.filterData = function (options, data, type) {
 //
 
 vrvInterface.prototype.displayNotation = function (options, data, page) {
-console.log("vrvInterface DISPLAYNOTATION Entering", arguments );
+console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
 	return this.execute("displayNotation", arguments);
-console.log("vrvInterface DISPLAYNOTATION DONE");
 };
 
 
@@ -151,9 +150,8 @@ console.log("vrvInterface DISPLAYNOTATION DONE");
 //
 
 vrvInterface.prototype.redoLayout = function (options, redo, measure) {
-console.log("REDOLAYOUT");
+console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
 	return this.execute("redoLayout", arguments);
-console.log("REDOLAYOUT DONE");
 };
 
 
@@ -164,9 +162,8 @@ console.log("REDOLAYOUT DONE");
 //
 
 vrvInterface.prototype.renderPage = function (page) {
-console.log("RENDERING PAGE ");
+console.log("%cvrvInterface.renderPage " + page, "color: #00aa88; font-weight: bold");
 	return this.execute("renderPage", arguments);
-console.log("PAGED RENDERED");
 };
 
 
