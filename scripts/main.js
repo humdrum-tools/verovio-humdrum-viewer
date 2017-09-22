@@ -434,6 +434,24 @@ function musicxmlToMeiOptions() {
 	}
 }
 
+function meiToMeiOptions() {
+	return {
+		inputFormat       : "mei",
+		allPages          : 1,
+		noLayout          : 1,
+		type              : "mei"
+	}
+}
+
+function meiToHumdrumOptions() {
+	return {
+		inputFormat       : "mei-hum",
+		allPages          : 1,
+		noLayout          : 1,
+		type              : "humdrum"
+	}
+}
+
 function esacToHumdrumOptions() {
 	return {
 		inputFormat       : "esac",
@@ -1260,13 +1278,22 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		} else {
 			options = musicxmlToHumdrumOptions();
 		}
+	} else if (text.slice(0, 1000).match(/<mei/)) {
+		// this is MEI data, so first convert into Humdrum
+		// before displaying in the editor.
+		if (EditorMode == "xml") {
+			options = meiToMeiOptions();
+		} else {
+			options = meiToHumdrumOptions();
+		}
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 		// this is EsAC data, so first convert into Humdrum
 		// before displaying in the editor.
 		options = esacToHumdrumOptions();
 	} else {
 		humdrumQ = true;
-	};
+	}
+
 	if (options && !humdrumQ) {
 		if (options.inputFormat == "musicxml") {
 			vrv.filterData(options, text, "mei")

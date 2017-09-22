@@ -58,7 +58,6 @@ function handleDrop(event) {
 
 	$('html').css('cursor', 'wait');
 	hideDropArea();
-
 	var file;
 	var files = event.dataTransfer.files;
 	for (var i=0; i<files.length; i++) {

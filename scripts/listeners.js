@@ -22,19 +22,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	EditorMode = "humdrum";
 	setEditorModeAndKeyboard();
 
-
 	CGI = GetCgiParameters();
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	if (CGI.k) {
-
 		if (CGI.k.match(/e/)) {
 			var input = document.querySelector("#input");
 			if (input) {
 				input.innerHTML = "";
 			}
 		}
-
 	}
 
 	setupAceEditor("input");
