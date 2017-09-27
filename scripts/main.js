@@ -1557,10 +1557,13 @@ function displaySvg() {
 	.then(function(data) {
 		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 		var postfix = "</textarea>";
-		var w = window.open("about:blank", "SVG transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
+		var w = window.open("about:blank", "SVG transcoding", 
+				'width=600,height=800,resizeable,scrollabars,location=false');
 		w.document.write(prefix + data + postfix);
 		w.document.close();
-		//TODO: what is this doing?
+
+		// Set the title of the window.  It cannot be set immediately and must wait
+		// until the content has been loaded.
 		function checkTitle() {
 			if (w.document) {
 				w.document.title = "SVG transcoding";
