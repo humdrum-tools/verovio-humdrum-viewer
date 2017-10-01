@@ -362,7 +362,8 @@ function humdrumToSvgOptions() {
 		spacingNonLinear	: 0.6,
 		spacingLinear		: 0.25,
 		humType           : 1,
-		type              : "midi",
+		type              : "svg",
+		noLayout          : 0,
 		font              : "Leipzig"
 	}
 	if (OriginalClef) {
@@ -438,7 +439,7 @@ function meiToMeiOptions() {
 	return {
 		inputFormat       : "mei",
 		allPages          : 1,
-		noLayout          : 1,
+		noLayout          : 0,
 		type              : "mei"
 	}
 }
