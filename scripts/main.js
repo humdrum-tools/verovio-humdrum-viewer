@@ -61,7 +61,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 423;
+var BasketVersion = 425;
 console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
@@ -1275,7 +1275,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
 		if (EditorMode == "xml") {
-			options = musicxmlToMeiOptions();
+			options = musicxmlToHumdrumOptions();
+			// Incorrect identification of xml editor mode when loading a
+			// large Sibelius MusicXML file for some reason.
+			// options = musicxmlToMeiOptions();
 		} else {
 			options = musicxmlToHumdrumOptions();
 		}
@@ -1296,8 +1299,8 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	}
 
 	if (options && !humdrumQ) {
-		if (options.inputFormat == "musicxml") {
-			vrv.filterData(options, text, "mei")
+		if ((options.inputFormat == "musicxml") || (options.inputFormat == "musicxml-hum")) {
+			vrv.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {
 			vrv.filterData(options, text, "humdrum")

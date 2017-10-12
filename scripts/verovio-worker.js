@@ -3,7 +3,7 @@ vim: ts=3
 ---
 
 
-{% if site.local == "yes" %}
+{% if site.local == "true" %}
 	importScripts('local/verovio-toolkit.js');
 {% else %}
 	importScripts("http://verovio-script.humdrum.org/scripts/verovio-toolkit.js");
