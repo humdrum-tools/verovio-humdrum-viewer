@@ -502,6 +502,22 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case TKey:          // save PDF file
+			// Needed functions are defined in _includes/pdfkit.html
+			if (event.altKey) {
+				if (event.shiftKey) {
+					if (typeof generatePdfSnapshot === "function") {
+						generatePdfFull();
+					}
+				} else {
+					if (typeof generatePdfFull === "function") {
+						generatePdfSnapshot();
+					}
+				}
+				event.preventDefault();
+			}
+			break;
+
 		case VKey:          // toggle vi mode in text editor
 			if (event.altKey) {
 				toggleEditorMode();

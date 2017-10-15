@@ -1,0 +1,239 @@
+{% comment %}
+	Functions for saving SVG images to a PDF file.
+	See demo at:
+		http://pdfkit.org/demo/browser.html
+
+	vim: ts=3:ft=javascript
+{% endcomment %}
+
+
+<script src="scripts/pdfkit/blobstream.js" type="text/javascript"></script>
+<script src="scripts/pdfkit/pdfkit.js" type="text/javascript"></script>
+<script src="scripts/pdfkit/source.js" type="text/javascript"></script>
+<script src="scripts/pdfkit/vrv-ttf.js" type="text/javascript"></script>
+{% comment %}
+	The saving process also needs FileSaver.js:
+		https://github.com/eligrey/FileSaver.js
+	but this is already included for saving editor contents.
+{% endcomment %}
+
+
+
+<script>
+
+//////////////////////////////
+//
+// generatePdfShapshot -- Write a PDF file containing the currently displayed SVG.
+//
+
+function generatePdfSnapshot(format, orientation) {
+	$('html').css('cursor', 'wait');
+
+	var svg = document.querySelector("#output svg");
+	var svgwidth = svg.getAttribute("width");
+	var svgheight = svg.getAttribute("height");
+	svgwidth = parseInt(svgwidth);
+	svgheight = parseInt(svgheight);
+	var aspect = svgheight / svgwidth;
+
+	var format = format ? format : "letter";
+
+	var pagewidth = 2159;
+	var pageheight = 2794;
+	if (format === "A4") {
+		pagewidth = 2100;
+		pageheight = 2970;
+	} else if (format === "B3") {
+		pagewidth = 2500;
+		pageheight = 3530;
+	}
+
+	if (!orientation) {
+		if (svgwidth > svgheight) {
+			orientation = "landscape";
+		}
+	}
+	var orientation = orientation ? orientation : "portrait";
+	if (orientation === "landscape") {
+		pagewidth = [pageheight, pageheight = pagewidth][0];
+	}
+
+	var pageaspect = pageheight / pagewidth;
+	var scaling = 0.99;
+	var mmwidth;
+	var mmheight;
+
+	if (aspect < pageaspect) {
+		mmwidth = (pagewidth / 10) * scaling;
+		mmheight = (pagewidth / 10) * aspect * scaling;
+	} else {
+		mmheight = (pageheight / 10) * scaling;
+		mmwidth = (pageheight / 10) / aspect * scaling;
+	}
+
+	var pagewidthmm = pagewidth / 10.0;
+	var pageheightmm = pageheight / 10.0;
+
+	// pdf page offset (units are in mm?)
+	var x = 0;
+	var y = 0;
+
+	if (mmwidth < pagewidthmm) {
+		x = (pagewidthmm - mmwidth);
+	}
+	x += 1;
+
+	var newspan = document.createElement("span");
+	newspan.innerHTML = svg.outerHTML;
+	var newsvg = newspan.querySelector("svg");
+
+	newsvg.setAttribute("width", mmwidth + "mm");
+	newsvg.setAttribute("height", mmheight + "mm");
+
+	var fontCallback = function(family, bold, italic, options) {
+		if (family == "VerovioText") {
+			return family;
+		}
+		if (family.match(/(?:^|,)\s*sans-serif\s*$/) || true) {
+			if (bold && italic)    {return 'Times-BoldItalic'}
+			if (bold && !italic)   {return 'Times-Bold'      }
+			if (!bold && italic)   {return 'Times-Italic'    }
+			if (!bold && !italic)  {return 'Times-Roman'     }
+		}
+	};
+	var pdfOptions = {};
+	pdfOptions.fontCallback = fontCallback;
+	var pdf = new PDFDocument({
+		useCSS:        true,
+		compress:      true,
+		autoFirstPage: false,
+		layout:        orientation
+	});
+	var stream = pdf.pipe(blobStream());
+	stream.on('finish', function() {
+		var blob = stream.toBlob('application/pdf');
+		var pdfFilename;
+		if (SAVEFILENAME) {
+			pdfFilename = SAVEFILENAME.replace(/\.[^.]*$/, "") + "-snapshot.pdf";
+		} else {
+			pdfFilename = "snapshot.pdf";
+		}
+		saveAs(blob, pdfFilename);
+		$('html').css('cursor', 'auto');
+	});
+
+	var buffer = Uint8Array.from(atob(vrvTTF), c => c.charCodeAt(0));
+	pdf.registerFont('VerovioText', buffer);
+
+	pdf.addPage({size: format, layout: orientation});
+	SVGtoPDF(pdf, newsvg, x, y, pdfOptions);
+	pdf.end();
+}
+
+
+
+//////////////////////////////
+//
+// generatePdfFull -- Write a multi-page PDF of the full score in the text editor.
+//
+
+function generatePdfFull(format, orientation) {
+	var oldOptions = vrv.options;
+	// need to explicitly disable mmOutput = 1 set by the printing process.
+	oldOptions.mmOutput = 0;
+
+	$('html').css('cursor', 'wait');
+	var format = format ? format : "letter";
+	var orientation = orientation ? orientation : "portrait";
+
+	var width = 2159;
+	var height = 2794;
+	if (format === "A4") {
+		width = 2100;
+		height = 2970;
+	} else if (format === "B3") {
+		width = 2500;
+		height = 3530;
+	}
+	if (orientation === "landscape") {
+		width = [height, height = width][0];
+	}
+
+	var fontCallback = function(family, bold, italic, options) {
+		if (family == "VerovioText") {
+			return family;
+		}
+		if (family.match(/(?:^|,)\s*sans-serif\s*$/) || true) {
+			if (bold && italic)    {return 'Times-BoldItalic'}
+			if (bold && !italic)   {return 'Times-Bold'      }
+			if (!bold && italic)   {return 'Times-Italic'    }
+			if (!bold && !italic)  {return 'Times-Roman'     }
+		}
+	};
+	var pdfOptions = {};
+	pdfOptions.fontCallback = fontCallback;
+	var pdf = new PDFDocument({
+		useCSS:        true,
+		compress:      true,
+		autoFirstPage: false,
+		layout:        orientation
+	});
+	var stream = pdf.pipe(blobStream());
+	stream.on('finish', function() {
+		var blob = stream.toBlob('application/pdf');
+		var pdfFilename = "output.pdf";
+
+		var pdfFilename;
+		if (SAVEFILENAME) {
+			pdfFilename = SAVEFILENAME.replace(/\.[^.]*$/, "") + ".pdf";
+		} else {
+			pdfFilename = "output.pdf";
+		}
+
+		saveAs(blob, pdfFilename);
+
+		$('html').css('cursor', 'auto');
+	});
+
+	var buffer = Uint8Array.from(atob(vrvTTF), c => c.charCodeAt(0));
+	pdf.registerFont('VerovioText', buffer);
+
+	var vrvOptions = {
+		pageHeight:       height,
+		pageWidth:        width,
+		border:           50,
+		scale:            100,
+		spacingSystem:    2,
+		adjustPageHeight: 0,
+		ignoreLayout:     1,
+		mmOutput:         1,
+		font:             "Leipzig"
+	}
+
+	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
+
+	vrv.renderAllPages(scoredata, vrvOptions)
+	.then(function(svglist) {
+		for (var i=0; i<svglist.length; i++) {
+			pdf.addPage({size: format, layout: orientation});
+			var x = 0;
+			var y = 0;
+			SVGtoPDF(pdf, svglist[i], x, y, pdfOptions);
+		}
+		pdf.end();
+		return true;
+	})
+	.then(function() {
+		// restore the old layout for the VHV  webpage:
+		var force = false;
+		var page = vrv.page;
+		vrv.redoLayout(oldOptions, true);
+		vrv.options = oldOptions;
+	});
+}
+
+
+</script>
+
+
+

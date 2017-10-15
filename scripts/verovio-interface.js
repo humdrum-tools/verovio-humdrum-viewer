@@ -11,6 +11,7 @@ function vrvInterface(use_worker, onReady) {
 	this.WIDTH = 0;
 	this.HEIGHT = 0;
 	this.page = 1;
+	this.options = {};
 
 	this.initialized = false;
 	this.usingWorker = use_worker;
@@ -126,7 +127,8 @@ vrvInterface.prototype.checkInitialized = function () {
 // filterData --
 //
 
-vrvInterface.prototype.filterData = function (options, data, type) {
+vrvInterface.prototype.filterData = function (opts, data, type) {
+	// Don't store options when filtering data.
 	return this.execute("filterData", arguments);
 };
 
@@ -137,8 +139,9 @@ vrvInterface.prototype.filterData = function (options, data, type) {
 // displayNontation --
 //
 
-vrvInterface.prototype.displayNotation = function (options, data, page) {
-console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
+vrvInterface.prototype.displayNotation = function (opts, data, page) {
+	console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
+	this.options = opts;
 	return this.execute("displayNotation", arguments);
 };
 
@@ -149,8 +152,9 @@ console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold
 // redoLayout --
 //
 
-vrvInterface.prototype.redoLayout = function (options, redo, measure) {
-console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
+vrvInterface.prototype.redoLayout = function (opts, redo, measure) {
+	console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
+	this.options = opts;
 	return this.execute("redoLayout", arguments);
 };
 
@@ -162,8 +166,18 @@ console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
 //
 
 vrvInterface.prototype.renderPage = function (page) {
-console.log("%cvrvInterface.renderPage " + page, "color: #00aa88; font-weight: bold");
 	return this.execute("renderPage", arguments);
+};
+
+
+
+//////////////////////////////
+//
+// renderAllPages --
+//
+
+vrvInterface.prototype.renderAllPages = function (data, opts) {
+	return this.execute("renderAllPages", arguments);
 };
 
 

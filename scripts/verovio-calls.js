@@ -3,6 +3,13 @@
 function verovioCalls() {
 	this.page = 1;
 	this.pageCount = 0;
+
+
+	////////////////////////////
+	//
+	// verovioCalls.validate --
+	//
+
 	this.validate = function (data) {
 		if (data.charAt(0) == "<") {
 			return true;
@@ -22,29 +29,36 @@ function verovioCalls() {
 		}
 	};
 
-	this.filterData = function (options, data, type) {
+
+
+	////////////////////////////
+	//
+	// verovioCalls.filterData -- Used to convert from one data type to another.
+	//
+
+	this.filterData = function (opts, data, type) {
 		var newdata;
 		var checkdata = true;
 		if (type !== "humdrum") {
 			checkdata = false;
 		}
-		if (options.inputFormat === "musicxml") {
+		if (opts.inputFormat === "musicxml") {
 			checkdata = false;
 		}
-		if (options.inputFormat === "mei") {
+		if (opts.inputFormat === "mei") {
 			checkdata = false;
 		}
-		if (options.inputFormat === "musicxml-hum") {
+		if (opts.inputFormat === "musicxml-hum") {
 			checkdata = false;
 		}
-		if ((options.inputFormat === "auto") && (type === "humdrum")) {
+		if ((opts.inputFormat === "auto") && (type === "humdrum")) {
 			checkdata = true;
 		}
 		if (checkdata) {
 			this.validate(data);
 		}
 
-		this.vrvToolkit.setOptions(options);
+		this.vrvToolkit.setOptions(opts);
 		this.vrvToolkit.loadData(data);
 		this.pageCount = this.vrvToolkit.getPageCount();
 		switch (type) {
@@ -58,10 +72,17 @@ function verovioCalls() {
 		return newdata;
 	};
 
-	this.displayNotation = function (options, data, page, force) {
+
+
+	//////////////////////////////
+	//
+	// verovioCalls.displayNotation --
+	//
+
+	this.displayNotation = function (opts, data, page, force) {
 		if (!force) this.validate(data);
 		page = page || this.page;
-		this.vrvToolkit.setOptions(options);
+		this.vrvToolkit.setOptions(opts);
 		this.vrvToolkit.loadData(data);
 		this.pageCount = this.vrvToolkit.getPageCount();
 		if (this.pageCount === 0) {
@@ -71,16 +92,23 @@ function verovioCalls() {
 			if (page) {
 				svg = this.vrvToolkit.renderPage(page, {});
 			} else {
-				svg = this.vrvToolkit.renderData(data, options);
+				svg = this.vrvToolkit.renderData(data, opts);
 			};
 			this.page = page;
 			return svg;
 		};
 	};
 
-	this.redoLayout = function (options, redo, measure) {
+
+
+	////////////////////////////
+	//
+	// verovioCalls.redoLayout --
+	//
+
+	this.redoLayout = function (opts, redo, measure) {
 			if (redo) {
-				this.vrvToolkit.setOptions(options);
+				this.vrvToolkit.setOptions(opts);
 				this.vrvToolkit.redoLayout();
 				this.pageCount = this.vrvToolkit.getPageCount();
 			};
@@ -91,10 +119,46 @@ function verovioCalls() {
 			return this.page;
 	};
 
+
+
+	////////////////////////////
+	//
+	// verovioCalls.renderPage --
+	//
+
 	this.renderPage = function (page) {
 		var svg = this.vrvToolkit.renderPage(page, {});
 		return svg;
 	};
+
+
+
+	////////////////////////////
+	//
+	// verovioCalls.renderAllPages -- Render all pages.
+	//    This is used for generatePdfFull().
+	//
+
+	this.renderAllPages = function (data, opts) {
+		var svglist = [];
+		if (!opts) {
+			opts = {};
+		}
+
+		svglist.push(this.displayNotation(opts, data));
+		for (var i = 2; i <= this.pageCount; i++) {
+			svglist.push(this.renderPage(i));
+		}
+
+		return svglist;
+	};
+
+
+
+	////////////////////////////
+	//
+	// verovioCalls.gotoPage --
+	//
 
 	this.gotoPage = function (page) {
 		page = page || this.pageCount;
@@ -107,25 +171,55 @@ function verovioCalls() {
 		return page;
 	};
 
+
+
+	////////////////////////////
+	//
+	// verovioCalls.getMEI --
+	//
+
 	this.getMEI = function () {
 		var meidata = this.vrvToolkit.getMEI(0, 1);
 		return meidata;
 	};
+
+
+
+	////////////////////////////
+	//
+	// verovioCalls.renderToMidi --
+	//
 
 	this.renderToMidi = function () {
 		var midi64 = this.vrvToolkit.renderToMidi();
 		return midi64;
 	};
 
+
+
+	////////////////////////////
+	//
+	// verovioCalls.getElementsAtTime --
+	//
+
 	this.getElementsAtTime = function (vrvTime) {
 		var elements = this.vrvToolkit.getElementsAtTime(vrvTime);
 		return elements;
 	};
 
+
+
+	////////////////////////////
+	//
+	// verovioCalls.getTimeForElement --
+	//
+
 	this.getTimeForElement = function (id) {
 		var time = this.vrvToolkit.getTimeForElement(id);
 		return time;
-	}
+	};
+
+
 };
 
 

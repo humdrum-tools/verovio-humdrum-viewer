@@ -251,7 +251,6 @@ function displayNotation(page, force) {
 		document.querySelector('body').classList.add("invalid");
 		console.log(">>>>>>>>>> ERROR LOG:", message);
 		return false;
-
 	})
 	.finally(function() {
 		var indexelement = document.querySelector("#index");
@@ -1040,7 +1039,7 @@ function loadKernScoresFile(obj, force) {
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
-						console.log("NEW JSON INFO", jinfo);
+						// console.log("NEW JSON INFO", jinfo);
 						if (force) {
 							var textdata = atob(jinfo.content);
 							if (textdata.match(/^\s*$/)) {
@@ -1400,22 +1399,32 @@ function loadPage(page) {
 //
 
 function resizeImage(image) {
-	var ww = $("window").innerWidth;
-	var tw = $("#input").outerWidth;
-	var newwidth = ww - tw;
+return; /* not needed anymore */
+	var ww = window.innerWidth;
+	var tw = $("#input").outerWidth();
 
-	var newheight = $(window).innerWidth
+	// var newheight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
+	// var newwidth = (ww - tw) / ZOOM - 100;
+	var newheight = (window.innerHeight - $("#navbar").outerHeight());
+	var newwidth = (ww - tw);
 
 	var image = document.querySelector("#output svg");
+	//console.log("OLD IMAGE HEIGHT", $(image).height());
+	console.log("OLD IMAGE WIDTH", $(image).width());
 	if (!image) {
 		return;
 	}
+	console.log("ZOOM", ZOOM);
+
+console.log("++++++++", "NEWHEIGHT=", newheight, "NEWWIDTH=", newwidth);
+return;
 
 	$(image).width(newwidth);
 	$(image).height(newheight);
 	$(image.parentNode).height(newheight);
 	$(image.parentNode).width(newwidth);
 }
+
 
 
 //////////////////////////////
@@ -1610,7 +1619,6 @@ function displayPdf() {
 //
 
 function reloadData() {
-	console.log("CGI", CGI);
 	if (!CGI || !CGI.file) {
 		return;
 	}
