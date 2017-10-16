@@ -28,8 +28,8 @@ o	toggle original clefs	/commands/alt-o
 p	show source scan (if available)	/commands/alt-p
 r	reload file from server	.
 s	save to local file	.
-t	save PDF of current view	.
-T	save complete PDF of current score	.
+t	save PDF of current view	/commands/alt-t
+T	save complete PDF of current score	/commands/alt-t
 v	toggle vi/plain editor	/commands/alt-v
 w	widen note spacing
 W	narrow note spacing
