@@ -358,12 +358,11 @@ function humdrumToSvgOptions() {
 		border            : 20,
 		pageWidth         : 2500,
 		scale             : 40,
-		noLayout          : 1,
+		ignoreLayout      : 1,
 		spacingNonLinear	: 0.6,
 		spacingLinear		: 0.25,
 		humType           : 1,
 		type              : "svg",
-		noLayout          : 0,
 		font              : "Leipzig"
 	}
 	if (OriginalClef) {
