@@ -1021,6 +1021,7 @@ function loadKernScoresFile(obj, force) {
 		basketSession.remove(key);
 		console.log("removed ", key);
 	}
+
 	var expire = 172;
 	var info = basketSession.get(key);
 	// console.log("INFO", info);
@@ -1036,7 +1037,6 @@ function loadKernScoresFile(obj, force) {
 		).then(function() {
 				// console.log("X Downloaded", key);
 				info = basketSession.get(key);
-
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
@@ -1072,6 +1072,7 @@ function loadKernScoresFile(obj, force) {
 			displayScoreTextInEditor(info.data, vrv.page);
 		}
 	}
+
 }
 
 
