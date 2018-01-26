@@ -114,7 +114,7 @@
             regex : /^(\*[\*\t^xv+]+)$/
          }, {
             token : "interp",
-            regex : /(\*)([^\t ]*)/
+            regex : /(\*)([^\t]*)/
          }, {
            token : "comment",
            regex : /![^\t]*/
