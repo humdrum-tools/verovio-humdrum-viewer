@@ -369,7 +369,7 @@ function humdrumToSvgOptions() {
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
 		humType           : 1,
-		type              : "svg",
+		// type              : "svg",
 		font              : "Leipzig"
 
 	}
@@ -422,7 +422,7 @@ function humdrumToMeiOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
-		type              : "mei",
+		// type              : "mei",
 		font              : "Leipzig"
 
 	}
@@ -430,49 +430,49 @@ function humdrumToMeiOptions() {
 
 function humdrumToHumdrumOptions() {
 	return {
-		inputFormat       : "humdrum",
-		type              : "humdrum"
+		// type              : "humdrum",
+		inputFormat       : "humdrum"
 	}
 }
 
 function musicxmlToHumdrumOptions() {
 	return {
-		inputFormat       : "musicxml-hum",
-		type              : "humdrum"
+		// type              : "humdrum",
+		inputFormat       : "musicxml-hum"
 	}
 }
 
 function musicxmlToMeiOptions() {
 	return {
 		inputFormat       : "musicxml",
+		// type              : "mei",
 		allPages          : 1,
-		breaks            : "auto",
-		type              : "mei"
+		breaks            : "auto"
 	}
 }
 
 function meiToMeiOptions() {
 	return {
 		inputFormat       : "mei",
+		// type              : "mei",
 		allPages          : 1,
-		breaks            : "encoded",
-		type              : "mei"
+		breaks            : "encoded"
 	}
 }
 
 function meiToHumdrumOptions() {
 	return {
 		inputFormat       : "mei-hum",
+		// type              : "humdrum",
 		allPages          : 1,
-		breaks            : "auto",
-		type              : "humdrum"
+		breaks            : "auto"
 	}
 }
 
 function esacToHumdrumOptions() {
 	return {
-		inputFormat       : "esac",
-		type              : "humdrum"
+		// type              : "humdrum",
+		inputFormat       : "esac"
 	}
 }
 
