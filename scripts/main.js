@@ -352,18 +352,26 @@ function processOptions() {
 
 function humdrumToSvgOptions() {
 	var output = {
+
 		inputFormat       : "auto",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
-		border            : 20,
+		pageLeftMar       : 20,
+		pageRightMar      : 20,
+		pageTopMar        : 20,
 		pageWidth         : 2500,
 		scale             : 40,
-		ignoreLayout      : 1,
+		noFooter          : 1,
+		noHeader          : 1,
+		breaks            : "auto",
 		spacingNonLinear	: 0.6,
 		spacingLinear		: 0.25,
+		barLineWidth		: 0.12,
+		staffLineWidth		: 0.12,
 		humType           : 1,
 		type              : "svg",
 		font              : "Leipzig"
+
 	}
 	if (OriginalClef) {
 		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
@@ -379,7 +387,7 @@ function humdrumToSvgOptions() {
 		}
 		// output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
 		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
-		// jQuery $winow.innerHeight() not working properly (in Chrome).
+		// jQuery $window.innerHeight() not working properly (in Chrome).
 		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
 		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
 	}
@@ -398,17 +406,25 @@ function humdrumToSvgOptions() {
 
 function humdrumToMeiOptions() {
 	return {
+
 		inputFormat       : "humdrum",
 		adjustPageHeight  : 1,
 		pageHeight        : 8000,
-		border            : 20,
+		pageLeftMar       : 20,
+		pageRightMar      : 20,
+		pageTopMar        : 20,
 		pageWidth         : 2500,
 		scale             : 40,
-		noLayout          : 1,
+		noFooter          : 1,
+		noHeader          : 1,
+		breaks            : "auto",
 		spacingNonLinear	: 0.6,
 		spacingLinear		: 0.25,
+		barLineWidth		: 0.12,
+		staffLineWidth		: 0.12,
 		type              : "mei",
 		font              : "Leipzig"
+
 	}
 }
 
@@ -430,7 +446,7 @@ function musicxmlToMeiOptions() {
 	return {
 		inputFormat       : "musicxml",
 		allPages          : 1,
-		noLayout          : 1,
+		breaks            : "auto",
 		type              : "mei"
 	}
 }
@@ -439,7 +455,7 @@ function meiToMeiOptions() {
 	return {
 		inputFormat       : "mei",
 		allPages          : 1,
-		noLayout          : 0,
+		breaks            : "encoded",
 		type              : "mei"
 	}
 }
@@ -448,7 +464,7 @@ function meiToHumdrumOptions() {
 	return {
 		inputFormat       : "mei-hum",
 		allPages          : 1,
-		noLayout          : 1,
+		breaks            : "auto",
 		type              : "humdrum"
 	}
 }
