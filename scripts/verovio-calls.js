@@ -90,7 +90,7 @@ function verovioCalls() {
 		} else {
 			var svg;
 			if (page) {
-				svg = this.vrvToolkit.renderPage(page, {});
+				svg = this.vrvToolkit.renderToSVG(page, {});
 			} else {
 				svg = this.vrvToolkit.renderData(data, opts);
 			};
@@ -127,7 +127,7 @@ function verovioCalls() {
 	//
 
 	this.renderPage = function (page) {
-		var svg = this.vrvToolkit.renderPage(page, {});
+		var svg = this.vrvToolkit.renderToSVG(page, {});
 		return svg;
 	};
 
