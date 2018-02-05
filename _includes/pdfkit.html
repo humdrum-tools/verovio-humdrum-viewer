@@ -199,15 +199,22 @@ function generatePdfFull(format, orientation) {
 	pdf.registerFont('VerovioText', buffer);
 
 	var vrvOptions = {
-		pageHeight:       height,
-		pageWidth:        width,
-		border:           50,
-		scale:            100,
-		spacingSystem:    2,
-		adjustPageHeight: 0,
-		ignoreLayout:     1,
-		mmOutput:         1,
-		font:             "Leipzig"
+		pageHeight        : height,
+		pageWidth         : width,
+		pageMarginLeft    : 50,
+		pageMarginRight   : 50,
+		pageMarginTop     : 50,
+		pageMarginBottom  : 50,
+		scale             : 100,
+		spacingSystem     : 2,
+		adjustPageHeight  : 0,
+		breaks            : "auto",
+		mmOutput          : 1,
+		noHeader          : 0,
+		noFooter          : 1,
+		barLineWidth		: 0.12,
+		staffLineWidth		: 0.12,
+		font              : "Leipzig"
 	}
 
 	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
