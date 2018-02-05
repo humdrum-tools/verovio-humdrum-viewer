@@ -198,6 +198,10 @@ function generatePdfFull(format, orientation) {
 	var buffer = Uint8Array.from(atob(vrvTTF), c => c.charCodeAt(0));
 	pdf.registerFont('VerovioText', buffer);
 
+	var scale = 110;
+	height /= scale / 100;
+	width  /= scale / 100;
+
 	var vrvOptions = {
 		pageHeight        : height,
 		pageWidth         : width,
@@ -205,7 +209,7 @@ function generatePdfFull(format, orientation) {
 		pageMarginRight   : 50,
 		pageMarginTop     : 50,
 		pageMarginBottom  : 50,
-		scale             : 110,
+		scale             : scale,
 		spacingSystem     : 2,
 		adjustPageHeight  : 0,
 		breaks            : "auto",
