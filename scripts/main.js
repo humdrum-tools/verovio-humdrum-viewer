@@ -356,9 +356,11 @@ function humdrumToSvgOptions() {
 		inputFormat       : "auto",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
-		pageLeftMar       : 20,
-		pageRightMar      : 20,
-		pageTopMar        : 20,
+		pageMarginLeft    : 20,
+		pageMarginRight   : 20,
+		pageMarginTop     : 20,
+		pageMarginBottom  : 20,
+		pageMarginBottom  : 20,
 		pageWidth         : 2500,
 		scale             : 40,
 		noFooter          : 1,
@@ -369,7 +371,6 @@ function humdrumToSvgOptions() {
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
 		humType           : 1,
-		// type              : "svg",
 		font              : "Leipzig"
 
 	}
@@ -410,9 +411,10 @@ function humdrumToMeiOptions() {
 		inputFormat       : "humdrum",
 		adjustPageHeight  : 1,
 		pageHeight        : 8000,
-		pageLeftMar       : 20,
-		pageRightMar      : 20,
-		pageTopMar        : 20,
+		pageMarginLeft    : 20,
+		pageMarginRight   : 20,
+		pageMarginTop     : 20,
+		pageMarginBottom  : 20,
 		pageWidth         : 2500,
 		scale             : 40,
 		noFooter          : 1,
@@ -422,7 +424,6 @@ function humdrumToMeiOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
-		// type              : "mei",
 		font              : "Leipzig"
 
 	}
@@ -430,14 +431,12 @@ function humdrumToMeiOptions() {
 
 function humdrumToHumdrumOptions() {
 	return {
-		// type              : "humdrum",
 		inputFormat       : "humdrum"
 	}
 }
 
 function musicxmlToHumdrumOptions() {
 	return {
-		// type              : "humdrum",
 		inputFormat       : "musicxml-hum"
 	}
 }
@@ -445,7 +444,6 @@ function musicxmlToHumdrumOptions() {
 function musicxmlToMeiOptions() {
 	return {
 		inputFormat       : "musicxml",
-		// type              : "mei",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -454,7 +452,6 @@ function musicxmlToMeiOptions() {
 function meiToMeiOptions() {
 	return {
 		inputFormat       : "mei",
-		// type              : "mei",
 		allPages          : 1,
 		breaks            : "encoded"
 	}
@@ -463,7 +460,6 @@ function meiToMeiOptions() {
 function meiToHumdrumOptions() {
 	return {
 		inputFormat       : "mei-hum",
-		// type              : "humdrum",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -471,7 +467,6 @@ function meiToHumdrumOptions() {
 
 function esacToHumdrumOptions() {
 	return {
-		// type              : "humdrum",
 		inputFormat       : "esac"
 	}
 }

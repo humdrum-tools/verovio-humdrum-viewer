@@ -191,7 +191,7 @@ function verovioCalls() {
 	//
 
 	this.renderToMidi = function () {
-		var midi64 = this.vrvToolkit.renderToMidi();
+		var midi64 = this.vrvToolkit.renderToMIDI();
 		return midi64;
 	};
 
