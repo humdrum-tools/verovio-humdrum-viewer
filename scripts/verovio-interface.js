@@ -84,7 +84,7 @@ vrvInterface.prototype.createDefaultInterface = function (onReady) {
 {% if site.local == "yes" %}
 	var url = '/scripts/local/verovio-toolkit.js';
 {% else %}
-	var url = 'http://verovio-script.humdrum.org/scripts/verovio-toolkit.js';
+	var url = 'https://verovio-script.humdrum.org/scripts/verovio-toolkit.js';
 {% endif %}
 
 	console.log("create default interface")

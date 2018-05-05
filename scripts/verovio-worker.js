@@ -16,7 +16,7 @@ For more information about web workers:
 {% if site.local == "true" %}
 	importScripts('local/verovio-toolkit.js');
 {% else %}
-	importScripts("http://verovio-script.humdrum.org/scripts/verovio-toolkit.js");
+	importScripts("https://verovio-script.humdrum.org/scripts/verovio-toolkit.js");
 {% endif %}
 importScripts("ace/humdrumValidator.js");
 importScripts("verovio-calls.js");
