@@ -131,6 +131,12 @@ function processNotationKeyCommand(event) {
 		return;
 	}
 
+	//undo doesn't need CursorNote
+	if (event.keyCode === ZKey && (event.ctrlKey || event.metaKey)) {
+		EDITOR.undo();
+		return;
+	};
+
 	if (!CursorNote) {
 		return;
 	}
@@ -217,12 +223,6 @@ function processNotationKeyCommand(event) {
 
 		case YKey:
 			processNotationKey("y", CursorNote);
-			break;
-
-		case ZKey:
-			if (event.ctrlKey || event.metaKey) {
-				EDITOR.undo();
-			};
 			break;
 
 		case OneKey:
