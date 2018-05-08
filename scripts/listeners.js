@@ -546,12 +546,12 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case ZKey:
+/*		case ZKey:
 			if (event.ctrlKey || event.metaKey) {
 				EDITOR.undo();
 			};
 			break;
-
+*/
 		case SpaceKey:          // start/pause MIDI playback
 			if (!PLAY) {
 				playCurrentMidi();
