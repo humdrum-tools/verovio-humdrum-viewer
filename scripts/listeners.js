@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (!CGI.k.match(/e/)) {
 				displayMeiNoType();
 			}
-		} 
+		}
 
 	}
 
@@ -217,6 +217,12 @@ function processNotationKeyCommand(event) {
 
 		case YKey:
 			processNotationKey("y", CursorNote);
+			break;
+
+		case ZKey:
+			if (event.ctrlKey || event.metaKey) {
+				EDITOR.undo();
+			};
 			break;
 
 		case OneKey:
@@ -620,5 +626,3 @@ function processInterfaceKeyCommand(event) {
 
 	}
 }
-
-
