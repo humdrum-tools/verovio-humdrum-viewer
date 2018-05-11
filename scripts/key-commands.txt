@@ -9,13 +9,13 @@ or click red commands for their doc.
 <i>home</i>	go to first page	.
 <i>end</i>	go to last page	.
 <i>space</i>	start/stop score playback	.
-,	toggle CSV/TSV display of Humdrum data	.
 < >	+/&ndash; tab size in editor	.
 <nobr>shft-&larr;/&rarr;</nobr>	next/previous work	.
 shft-&uarr;	go back to repertory index	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
+a	toggle CSV/TSV display of Humdrum data	.
 b	show/hide logo	/commands/alt-b
 c	compile filters	/commands/alt-c
 e	erase score	/commands/alt-e
