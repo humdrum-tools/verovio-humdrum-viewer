@@ -398,6 +398,17 @@ function processInterfaceKeyCommand(event) {
 
 	switch (event.keyCode) {
 
+		case AKey:              // toggle TSV/CSV display of Humdrum data
+		                        // decrease tab size in editor
+			if (event.shiftKey) {
+				decreaseTab();
+				event.preventDefault();
+			} else {
+				toggleHumdrumCsvTsv();
+				event.preventDefault();
+			}
+			break;
+
 		case BKey:          // toggle display of banner
 			if (event.altKey) {
 				toggleVhvTitle();
@@ -567,16 +578,17 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case CommaKey:          // toggle TSV/CSV display of Humdrum data
-		                        // decrease tab size in editor
-			if (event.shiftKey) {
-				decreaseTab();
-				event.preventDefault();
-			} else {
-				toggleHumdrumCsvTsv();
-				event.preventDefault();
-			}
-			break;
+// See AKey for temporary relocation (related to non-US keyboard layout)
+//		case CommaKey:          // toggle TSV/CSV display of Humdrum data
+//		                        // decrease tab size in editor
+//			if (event.shiftKey) {
+//				decreaseTab();
+//				event.preventDefault();
+//			} else {
+//				toggleHumdrumCsvTsv();
+//				event.preventDefault();
+//			}
+//			break;
 
 		case DotKey:          // increase tab size in editor
 			if (event.shiftKey) {
