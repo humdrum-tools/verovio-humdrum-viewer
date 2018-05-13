@@ -399,7 +399,6 @@ function processInterfaceKeyCommand(event) {
 	switch (event.keyCode) {
 
 		case AKey:              // toggle TSV/CSV display of Humdrum data
-		                        // decrease tab size in editor
 			if (event.shiftKey) {
 				decreaseTab();
 				event.preventDefault();
@@ -437,15 +436,6 @@ function processInterfaceKeyCommand(event) {
 				} else {
 					toggleFreeze();
 				};
-				event.preventDefault();
-			}
-			break;
-
-		case YKey:          // show/hide text editor
-			if (event.altKey) {
-				if (!ShowingIndex) {
-					toggleInputArea();
-				}
 				event.preventDefault();
 			}
 			break;
@@ -554,6 +544,15 @@ function processInterfaceKeyCommand(event) {
 				}
 				event.preventDefault();
 				displayNotation();
+			}
+			break;
+
+		case YKey:          // show/hide text editor
+			if (event.altKey) {
+				if (!ShowingIndex) {
+					toggleInputArea();
+				}
+				event.preventDefault();
 			}
 			break;
 
