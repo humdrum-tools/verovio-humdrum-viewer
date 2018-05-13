@@ -15,7 +15,7 @@ shft-&uarr;	go back to repertory index	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-a	toggle CSV/TSV display of Humdrum data	.
+a	toggle CSV/TSV display of Humdrum data	/commands/alt-a
 b	show/hide logo	/commands/alt-b
 c	compile filters	/commands/alt-c
 e	erase score	/commands/alt-e
