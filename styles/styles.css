@@ -386,11 +386,33 @@ span.helpentry {
 	cursor:pointer;
 }
 
-
-svg tspan {
-	font-family: Palatino, VerovioText !important;
+@font-face {
+	font-family: "Times";
+	src: url("../scripts/pdfkit/EBGaramond-Regular.ttf");
+	font-style: normal;
+	font-weight: normal
 }
 
+@font-face {
+	font-family: "Times";
+	src: url("../scripts/pdfkit/EBGaramond-Italic.ttf");
+	font-style: italic;
+	font-weight: normal
+}
+
+@font-face {
+	font-family: "Times";
+	src: url("../scripts/pdfkit/EBGaramond-Bold.ttf");
+	font-style: normal;
+	font-weight: bold
+}
+
+@font-face {
+	font-family: "Times";
+	src: url("../scripts/pdfkit/EBGaramond-BoldItalic.ttf");
+	font-style: italic;
+	font-weight: bold
+}
 
 /* Analytic phrase markers */
 
