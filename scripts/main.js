@@ -3566,21 +3566,61 @@ function chooseBestId(elist, targetstaff, targetlayer) {
 		var location = getStaffAndLayerNumbers(elist[i].id);
 		if (location.staff == targetstaff) {
 			staffelements[location.layer] = elist[i];
-			if (location.layer == targetlayer) {
+			if ((location.layer == targetlayer) && (!elist[i].id.match(/space/))) {
 				return elist[i].id;
 			}
 		}
 	}
 	// no exact match, so try a different layer on the same staff.
 	if (staffelements.length == 1) {
+		// only one choice so use it
 		return staffelements[0].id;
 	}
-	// find the next lowest layer
+
+	// find a note/rest in a lower layer
 	for (i=targetlayer; i>0; i--) {
-		if (staffelements[i]) {
-			return staffeleents[i].id;
+		if (!staffelements[i]) {
+			continue;
 		}
+		if (staffelements[i].id) {
+			if (staffelements[i].id.match(/space/)) {
+				continue;
+			}
+		}
+		return staffelements[i].id;
 	}
+
+	// find a note/rest in a higher layer
+	for (i=targetlayer; i<staffelements.length; i++) {
+		if (!staffelements[i]) {
+			continue;
+		}
+		if (staffelements[i].id) {
+			if (staffelements[i].id.match(/space/)) {
+				continue;
+			}
+		}
+		return staffelements[i].id;
+	}
+
+	// go back and allow matching to invisible rests
+
+	// find a note/rest in a lower layer
+	for (i=targetlayer; i>0; i--) {
+		if (!staffelements[i]) {
+			continue;
+		}
+		return staffelements[i].id;
+	}
+
+	// find a note/rest in a higher layer
+	for (i=targetlayer; i<staffelements.length; i++) {
+		if (!staffelements[i]) {
+			continue;
+		}
+		return staffelements[i].id;
+	}
+
 	// found nothing suitable
 	return undefined;
 }
