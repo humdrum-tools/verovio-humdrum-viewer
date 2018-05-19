@@ -522,7 +522,6 @@ function deleteDirectionMarker(id, line, field, number, category) {
 
 		RestoreCursorNote = id.replace("L" + (line), "L" + (line - 1));
 		displayNotation();
-console.log("HIGHLIGHTING RID=", RestoreCursorNote, "FORMERLY ID=", id);
 		highlightIdInEditor(RestoreCursorNote);
 	}
 }
@@ -2495,7 +2494,6 @@ function setEditorContents(line, field, token, id, dontredraw) {
 	EDITOR.gotoLine(line, column+1);
 
 	RestoreCursorNote = id;
-
 	FreezeRendering = freezeBackup;
 	if (!dontredraw) {
 		displayNotation();

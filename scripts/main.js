@@ -214,7 +214,6 @@ var Splitter = new SPLITTER();
 //
 
 function displayNotation(page, force) {
-
 	if (!vrv.initialized || (FreezeRendering && !force)) {
 		return;
 	};
@@ -2017,6 +2016,22 @@ function highlightNoteInScore(event) {
 //
 
 function restoreSelectedSvgElement(id) {
+	if (!id) {
+		return;
+	}
+	var item = document.querySelector("#" + id);
+	if (!item) {
+		return;
+	}
+	var line;
+	var matches = id.match(/L(\d+)/);
+	if (matches) {
+		line = parseInt(line);0
+	} else {
+		return;
+	}
+	markNote(item, line);
+// ggg
 /* Does not work: desired note is not in the list...
 	if (RestoreCursorNote) {
 		var svg = document.querySelector("svg");
@@ -2079,7 +2094,9 @@ function humdrumDataNoteIntoView(event) {
 	var line = location.row;
 	var column = location.column;
 	var text = EDITOR.session.getLine(line);
-	var fys = getFieldAndSubspine(text, column-1);
+	// var fys = getFieldAndSubspine(text, column-1);
+	// there was a problem subtracting one from the column data:
+	var fys = getFieldAndSubspine(text, column);
 	var field = fys.field;
 	var subspine = fys.subspine;
 	var query = HIGHLIGHTQUERY;
@@ -2138,12 +2155,13 @@ function markNote(item, line) {
 		return;
 	}
 	EditorLine = line;
-	if (CursorNote && item && (CursorNote.id == item.id)) {
-		// console.log("THE SAME NOTE");
-		return;
-	}
+	// This case is not good for editing a note:
+	//if (CursorNote && item && (CursorNote.id == item.id)) {
+	//	console.log("THE SAME NOTE");
+	//	return;
+	//}
 	if (CursorNote) {
-		/// console.log("TURNING OFF OLD NOTE", CursorNote);
+		console.log("TURNING OFF OLD NOTE", CursorNote);
 		/// CursorNote.setAttribute("fill", "#000");
 		// CursorNote.removeAttribute("fill");
 
@@ -2163,7 +2181,7 @@ function markNote(item, line) {
 		setCursorNote(item, "markNote");
 	}
 	if (CursorNote) {
-		/// console.log("TURNING ON NEW NOTE", CursorNote);
+		console.log("TURNING ON NEW NOTE", CursorNote);
 		// CursorNote.setAttribute("fill", "#c00");
 
 		var classes = CursorNote.getAttribute("class");
@@ -2177,7 +2195,6 @@ function markNote(item, line) {
 		}
 		outclass += " highlight";
 		CursorNote.setAttribute("class", outclass);
-
 	}
 }
 
@@ -2191,7 +2208,7 @@ function markNote(item, line) {
 //
 
 function getFieldAndSubspine(text, column) {
-	column++; // needed for some reason?
+	// column++; // needed for some reason?
 	var output = {field: -1, subspine: -1};
 	if (text.match(/^[*!=]/)) {
 		return output;
@@ -2203,7 +2220,7 @@ function getFieldAndSubspine(text, column) {
 	var field = 0;
 	var subspine = 0;
 	var i;
-	for (i=0; i<column; i++) {
+	for (i=0; i<=column; i++) {
 		if (text[i] == '\t') {
 			field++;
 			subspine = 0;
@@ -2319,7 +2336,6 @@ var Base64 = {
 		input = Base64._utf8_encode(input);
 
 		while (i < input.length) {
-
 			chr1 = input.charCodeAt(i++);
 			chr2 = input.charCodeAt(i++);
 			chr3 = input.charCodeAt(i++);
