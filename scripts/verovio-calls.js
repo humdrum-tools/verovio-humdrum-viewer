@@ -168,7 +168,10 @@ function verovioCalls() {
 			page = 1;
 		};
 		this.page = page;
-		return page;
+		return {
+			page: page,
+			pageCount: this.pageCount
+		}
 	};
 
 

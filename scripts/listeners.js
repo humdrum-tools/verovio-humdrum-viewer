@@ -346,6 +346,11 @@ function processNotationKeyCommand(event) {
 				} else {
 					processNotationKey("leftEndMoveBack", CursorNote);
 				}
+			} else {
+				// move one note to the left
+				event.preventDefault();
+				event.stopPropagation();
+				goToPreviousNoteOrRest(CursorNote.id);
 			}
 			break;
 
@@ -358,6 +363,11 @@ function processNotationKeyCommand(event) {
 				} else {
 					processNotationKey("leftEndMoveForward", CursorNote);
 				}
+			} else {
+				// move one note to the right
+				event.preventDefault();
+				event.stopPropagation();
+				goToNextNoteOrRest(CursorNote.id);
 			}
 			break;
 

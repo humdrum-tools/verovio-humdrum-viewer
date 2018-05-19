@@ -1497,7 +1497,7 @@ function deleteStemMarker(id, line, field) {
 //
 
 function transposeNote(id, line, field, subfield, amount)  {
-	console.log("TRANSPOSE Note", line, field, subfield, id);
+	// console.log("TRANSPOSE Note", line, field, subfield, id);
 	var token = getEditorContents(line, field);
 
 	amount = parseInt(amount);

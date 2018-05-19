@@ -38,7 +38,7 @@ var EditorModes = {
 };
 
 var EditorMode = "humdrum";
-var KeyboardMode = "ace"; 
+var KeyboardMode = "ace";
 //var EditorTheme = "ace/theme/solarized_light";
 var EditorLine = -1;
 var TABSIZE = 12;
@@ -275,7 +275,7 @@ function displayNotation(page, force) {
 		$('html').css('cursor', 'auto');
 		// these lines are needed to re-highlight the note when
 		// the notation has been updated.
-		CursorNote = null;
+		setCursorNote (null, "displayNotation");
 		highlightNoteInScore();
 	});
 
@@ -1582,7 +1582,7 @@ function displaySvg() {
 	.then(function(data) {
 		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 		var postfix = "</textarea>";
-		var w = window.open("about:blank", "SVG transcoding", 
+		var w = window.open("about:blank", "SVG transcoding",
 				'width=600,height=800,resizeable,scrollabars,location=false');
 		w.document.write(prefix + data + postfix);
 		w.document.close();
@@ -1850,13 +1850,19 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id) {
-	matches = id.match(/-[^-]*L(\d+)F(\d+)/);
+	if (!id) {
+		// no element (off of page or outside of musical range
+		console.log("NO ID so not changing to another element");
+		return;
+	}
+	matches = id.match(/^([^-]+)-[^-]*L(\d+)F(\d+)/);
 	if (!matches) {
 		return;
 	}
 
-	var row = matches[1];
-	var field = matches[2];
+	var etype = matches[1];
+	var row   = matches[2];
+	var field = matches[3];
 	var subtoken = 0;
 	if (matches = id.match(/-.*L\d+F\d+S(\d+)/)) {
 		subtoken = matches[1];
@@ -2078,32 +2084,41 @@ function humdrumDataNoteIntoView(event) {
 	var subspine = fys.subspine;
 	var query = HIGHLIGHTQUERY;
 	HIGHLIGHTQUERY = "";
-	if (!query) {
-		query = EDITINGID;
-		HIGHLLIGHTQUERY = EDITINGID;
-		// EDITINGID = null;
-	}
+	// the following code causes problems with note highlighting
+	// after another note was edited.
+	//	if (!query) {
+	//		query = EDITINGID;
+	//		HIGHLLIGHTQUERY = EDITINGID;
+	//		// EDITINGID = null;
+	//	}
 	if (!query) {
 		var query = "L" + (line+1) + "F" + field;
 		if (subspine > 0) {
 			query += "S" + subspine;
 		}
 	}
-	var item;
+	var item = 0;
 	if (Splitter.rightContent) {
 		// see: https://www.w3.org/TR/selectors
 		var items = Splitter.rightContent.querySelectorAll("g[id$='" +
 			query + "']");
-		// console.log("FOUND ITEMS", items);
 		if (items.length == 0) {
 			// cannot find (hidden rest for example)
 			return;
 		}
-		item = items[items.length-1];
+		// give priority to items that possess qon/qoff classes.
+		for (var i=0; i<items.length; i++) {
+			if (items[i].className.baseVal.match(/qon/)) {
+				item = items[i];
+				break;
+			}
+		}
+		if (!item) {
+			item = items[items.length-1];
+		}
 		if (item.id.match(/^accid/)) {
 			item = items[items.length-2];
 		}
-		// console.log("FOUND ITEM", item);
 	}
 	markNote(item);
 }
@@ -2145,7 +2160,7 @@ function markNote(item, line) {
 
 	}
 	if (item) {
-		CursorNote = item;
+		setCursorNote(item, "markNote");
 	}
 	if (CursorNote) {
 		/// console.log("TURNING ON NEW NOTE", CursorNote);
@@ -2170,10 +2185,13 @@ function markNote(item, line) {
 
 //////////////////////////////
 //
-// getFieldAndSubspine --
+// getFieldAndSubspine -- Return the data token and subtoken position
+//    of the item at the given column on the line (column is index from 0),
+//    but token and subtoken are indexed from 1.
 //
 
 function getFieldAndSubspine(text, column) {
+	column++; // needed for some reason?
 	var output = {field: -1, subspine: -1};
 	if (text.match(/^[*!=]/)) {
 		return output;
@@ -3239,3 +3257,342 @@ function playCurrentMidi() {
 		play_midi();
 	}
 }
+
+
+
+
+//////////////////////////////
+//
+// goToPreviousNoteOrRest --
+//
+
+function goToPreviousNoteOrRest(currentid) {
+	var current = document.querySelector("#" + currentid);
+	if (!current) {
+		console.log("CANNOT FIND ITEM ", currentid);
+	}
+	var location = getStaffAndLayerNumbers(current.id);
+	var matches = current.className.baseVal.match(/qon-([^\s]+)/);
+	if (!matches) {
+		console.log("CANNOT FIND QON IN", current.className);
+		return;
+	}
+	var qon = matches[1];
+	if (qon == 0) {
+		// cannot go before start of work
+		return;
+	}
+	offclass = "qoff-" + qon;
+	var alist = getOffClassElements(offclass);
+	var nextid;
+	if (alist.length == 1) {
+		highlightIdInEditor(alist[0].id);
+	} else if (alist.length == 0) {
+		// gotoNextPage();
+		if (vrv.page == 1) {
+			// at first page, so don't do anything.
+			console.log("AT FIRST PAGE, so not continuing further");
+			return;
+		}
+		vrv.gotoPage(vrv.page - 1)
+		.then(function(obj) {
+			// loadPage(vrv.page);
+			var page = obj.page || vrv.page;
+			$("#overlay").hide().css("cursor", "auto");
+			$("#jump_text").val(page);
+			vrv.renderPage(page)
+			.then(function(svg) {
+				$("#output").html(svg);
+				// adjustPageHeight();
+				resizeImage();
+			})
+			.then(function() {
+				alist = getOnClassElements(offclass);
+				if (alist.length == 1) {
+					highlightIdInEditor(alist[0].id);
+				} else {
+					nextid = chooseBestId(alist, location.staff, location.layer);
+					EDITINGID = nextid;
+					highlightIdInEditor(nextid);
+				}
+			});
+		});
+	} else {
+		nextid = chooseBestId(alist, location.staff, location.layer);
+		EDITINGID = nextid;
+		highlightIdInEditor(nextid);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// goToNextNoteOrRest -- current is the value of global variable CursorNote.
+//    This function moves the cursor to the next note or rest in the spine
+//    or subspine.  This is accomplished by examing the timestamps of the
+//    notes and rests in the currently viewed SVG image generated by verovio.
+//
+
+function goToNextNoteOrRest(currentid) {
+	var current = document.querySelector("#" + currentid);
+	if (!current) {
+		return;
+	}
+	var location = getStaffAndLayerNumbers(current.id);
+	var matches = current.className.baseVal.match(/qoff-([^\s]+)/);
+	if (!matches) {
+		return;
+	}
+	var qoff = matches[1];
+	var onclass = "qon-" + qoff;
+	var alist = getOnClassElements(onclass);
+	var nextid;
+	if (alist.length == 1) {
+		highlightIdInEditor(alist[0].id);
+	} else if (alist.length == 0) {
+		// console.log("NO ELEMENT FOUND (ON NEXT PAGE?)");
+		// gotoNextPage();
+		if ((vrv.pageCount > 0) && (vrv.pageCount == vrv.page)) {
+			// at last page, so don't do anything.
+			// console.log("AT LAST PAGE, so not continuing further");
+			return;
+		}
+		vrv.gotoPage(vrv.page + 1)
+		.then(function(obj) {
+			// loadPage(vrv.page);
+			var page = obj.page || vrv.page;
+			$("#overlay").hide().css("cursor", "auto");
+			$("#jump_text").val(page);
+			vrv.renderPage(page)
+			.then(function(svg) {
+				$("#output").html(svg);
+				// adjustPageHeight();
+				resizeImage();
+			})
+			.then(function() {
+				alist = getOnClassElements(onclass);
+				if (alist.length == 1) {
+					highlightIdInEditor(alist[0].id);
+				} else {
+					nextid = chooseBestId(alist, location.staff, location.layer);
+					EDITINGID = nextid;
+					highlightIdInEditor(nextid);
+				}
+			});
+		});
+	} else {
+		nextid = chooseBestId(alist, location.staff, location.layer);
+		EDITINGID = nextid;
+		highlightIdInEditor(nextid);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// getOnClassElements --
+//
+
+function getOnClassElements(onclass) {
+	var nlist = document.querySelectorAll("." + onclass);
+	var rlist = document.querySelectorAll(".r" + onclass);
+	var alist = [];
+	var match;
+	var qon;
+	var qoff;
+	for (var i=0; i<nlist.length; i++) {
+
+		match = nlist[i].className.baseVal.match(/qon-([^\s]+)/);
+		if (match) {
+			qon = match[1];
+		} else {
+			qon = "xyz";
+		}
+
+		match = nlist[i].className.baseVal.match(/qoff-([^\s]+)/);
+		if (match) {
+			qoff = match[1];
+		} else {
+			qoff = "xyz";
+		}
+		if (qon === qoff) {
+			// no grace notes
+			continue;
+		}
+
+		alist.push(nlist[i]);
+	}
+	for (var i=0; i<rlist.length; i++) {
+		alist.push(rlist[i]);
+	}
+	return alist;
+}
+
+
+
+//////////////////////////////
+//
+// getOffClassElements --
+//
+
+function getOffClassElements(offclass) {
+	var nlist = document.querySelectorAll("." + offclass);
+	var rlist = document.querySelectorAll(".r" + offclass);
+	var alist = [];
+	for (var i=0; i<nlist.length; i++) {
+
+		match = nlist[i].className.baseVal.match(/qon-([^\s]+)/);
+		if (match) {
+			qon = match[1];
+		} else {
+			qon = "xyz";
+		}
+
+		match = nlist[i].className.baseVal.match(/qoff-([^\s]+)/);
+		if (match) {
+			qoff = match[1];
+		} else {
+			qoff = "xyz";
+		}
+		if (qon === qoff) {
+			// no grace notes
+			continue;
+		}
+
+		alist.push(nlist[i]);
+	}
+	for (var i=0; i<rlist.length; i++) {
+		alist.push(rlist[i]);
+	}
+	return alist;
+}
+
+
+
+//////////////////////////////
+//
+// getStaffAndLayerNumbers -- Return the staff and layer number of the
+//   location of the given id's element.  The layer and staff numbers
+//   are zero indexed to match MEI's enumeration (but this is not
+//   necessary).
+//
+
+function getStaffAndLayerNumbers(id) {
+	var element = document.querySelector("#" + id);
+	if (!element) {
+		return {};
+	}
+	var staff = 0;
+	var layer = 0;
+	var current = element;
+
+	current = current.parentNode;
+	while (current && current.className.baseVal) {
+		// console.log("CURRENT", current.className.baseVal);
+		if (current.className.baseVal.match(/layer/)) {
+			var match = current.className.baseVal.match(/layer-[^\s]*N(\d)/);
+			if (match) {
+				layer = parseInt(match[1]);
+				console.log("LAYER FROM ID:", layer);
+			} else {
+				layer = getLayerPosition(current);
+			}
+		} else if (current.className.baseVal.match(/staff/)) {
+			staff = getStaffPosition(current);
+		}
+		current = current.parentNode;
+	}
+	return {
+		layer: layer,
+		staff: staff
+	}
+
+}
+
+
+
+//////////////////////////////
+//
+// getLayerPosition -- Return the nth position of a <layer> elemnet within a
+//   staff.
+//
+
+function getLayerPosition(element) {
+	var count = 0;
+	var current = element;
+	while (current) {
+		if (current.className.baseVal.match(/layer/)) {
+			count++;
+		}
+		current = current.previousElementSibling;
+	}
+	return count;
+}
+
+
+
+//////////////////////////////
+//
+// getStaffPosition -- Return the nth position of a <staff> elemnet within a
+//   measure.
+//
+
+function getStaffPosition(element) {
+	var count = 0;
+	var current = element;
+	while (current) {
+		if (current.className.baseVal.match(/staff/)) {
+			count++;
+		}
+		current = current.previousElementSibling;
+	}
+	return count;
+}
+
+
+
+//////////////////////////////
+//
+// chooseBestId -- Match to the staff number and the layer number of the
+//    original element.  The original element could be unattached from the
+//    current SVG image, so its id is passed to this
+//
+
+function chooseBestId(elist, targetstaff, targetlayer) {
+	var staffelements = [0,0,0,0,0,0,0,0,0,0,0,0];
+	for (var i=0; i<elist.length; i++) {
+		var location = getStaffAndLayerNumbers(elist[i].id);
+		if (location.staff == targetstaff) {
+			staffelements[location.layer] = elist[i];
+			if (location.layer == targetlayer) {
+				return elist[i].id;
+			}
+		}
+	}
+	// no exact match, so try a different layer on the same staff.
+	if (staffelements.length == 1) {
+		return staffelements[0].id;
+	}
+	// find the next lowest layer
+	for (i=targetlayer; i>0; i--) {
+		if (staffelements[i]) {
+			return staffeleents[i].id;
+		}
+	}
+	// found nothing suitable
+	return undefined;
+}
+
+
+//////////////////////////////
+//
+// setCursorNote --
+//
+
+function setCursorNote(item, location) {
+	CursorNote = item;
+}
+
+

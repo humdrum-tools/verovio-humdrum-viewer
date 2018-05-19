@@ -11,6 +11,7 @@ function vrvInterface(use_worker, onReady) {
 	this.WIDTH = 0;
 	this.HEIGHT = 0;
 	this.page = 1;
+	this.pageCount = 0;
 	this.options = {};
 
 	this.initialized = false;
@@ -190,8 +191,9 @@ vrvInterface.prototype.renderAllPages = function (data, opts) {
 vrvInterface.prototype.gotoPage = function (page) {
 	var vrv = this;
 	return this.execute("gotoPage", arguments)
-	.then(function (page) {
-		vrv.page = page;
+	.then(function (obj) {
+		vrv.page = obj.page;
+		vrv.pageCount = obj.pageCount;
 		return page;
 	});
 };
