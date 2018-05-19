@@ -2161,7 +2161,7 @@ function markNote(item, line) {
 	//	return;
 	//}
 	if (CursorNote) {
-		console.log("TURNING OFF OLD NOTE", CursorNote);
+		// console.log("TURNING OFF OLD NOTE", CursorNote);
 		/// CursorNote.setAttribute("fill", "#000");
 		// CursorNote.removeAttribute("fill");
 
@@ -2181,7 +2181,7 @@ function markNote(item, line) {
 		setCursorNote(item, "markNote");
 	}
 	if (CursorNote) {
-		console.log("TURNING ON NEW NOTE", CursorNote);
+		// console.log("TURNING ON NEW NOTE", CursorNote);
 		// CursorNote.setAttribute("fill", "#c00");
 
 		var classes = CursorNote.getAttribute("class");
@@ -3497,9 +3497,15 @@ function getOffClassElements(offclass) {
 
 function getStaffAndLayerNumbers(id) {
 	var element = document.querySelector("#" + id);
+	return getStaffAndLayerNumbersByElement(element);
+}
+
+
+function getStaffAndLayerNumbersByElement(element) {
 	if (!element) {
 		return {};
 	}
+	var id = element.id;
 	var staff = 0;
 	var layer = 0;
 	var current = element;
@@ -3508,13 +3514,7 @@ function getStaffAndLayerNumbers(id) {
 	while (current && current.className.baseVal) {
 		// console.log("CURRENT", current.className.baseVal);
 		if (current.className.baseVal.match(/layer/)) {
-			var match = current.className.baseVal.match(/layer-[^\s]*N(\d)/);
-			if (match) {
-				layer = parseInt(match[1]);
-				console.log("LAYER FROM ID:", layer);
-			} else {
-				layer = getLayerPosition(current);
-			}
+			layer = getLayerPosition(current);
 		} else if (current.className.baseVal.match(/staff/)) {
 			staff = getStaffPosition(current);
 		}
@@ -3650,5 +3650,137 @@ function chooseBestId(elist, targetstaff, targetlayer) {
 function setCursorNote(item, location) {
 	CursorNote = item;
 }
+
+
+
+//////////////////////////////
+//
+// goDownHarmonically --
+//
+
+function goDownHarmonically(current) {
+	moveHarmonically(current, -1);
+}
+
+
+
+//////////////////////////////
+//
+// goUpHarmonically --
+//
+
+function goUpHarmonically(current) {
+	moveHarmonically(current, +1);
+}
+
+
+
+//////////////////////////////
+//
+// moveHarmonically --
+//
+
+function moveHarmonically(current, direction) {
+	console.log("MOVING ", direction, "FROM", current);
+	if (!current) {
+		return;
+	}
+	var id = current.id;
+	var match = id.match(/^[^-]+-[^-]*L(\d+)/);
+	var line = -1;
+	if (match) {
+		line = parseInt(match[1]);
+	} else {
+		return;
+	}
+	console.log("ID", id, "FOR HARMONIC MOVING ON LINE", line);
+	// Assuming one svg on the page, which is currently correct.
+	var svg = document.querySelector('svg');
+	var allids = svg.querySelectorAll('*[id]:not([id=""])');
+	console.log("ALLIDS", allids);
+	var regex = new RegExp("^[^-]+-[^-]*L" + line + "(?!\d)");
+	var harmonic = [];
+	var x;
+	var i;
+	for (i=0; i<allids.length; i++) {
+		if (allids[i].id.match(regex)) {
+			x = allids[i].id.replace(/-.*/, "");
+			if (!((x == "note") || (x == "rest") || (x == "mrest"))) {
+				// only keep track of certain types of elements
+				// should chords be included or not? currently not.
+				continue;
+			}
+			harmonic.push(allids[i]);
+		}
+	}
+
+	harmonic.sort(function(a, b) {
+		var aloc = getStaffAndLayerNumbersByElement(a);
+		var bloc = getStaffAndLayerNumbersByElement(b);
+		var astaff = aloc.staff | 0;
+		var bstaff = bloc.staff | 0;
+		var alayer = aloc.layer | 0;
+		var blayer = bloc.layer | 0;
+
+		if (astaff > bstaff) { return -1; }
+		if (astaff < bstaff) { return +1; }
+		if (alayer > blayer) { return -1; }
+		if (alayer < blayer) { return +1; }
+
+		// notes are in a chord so sort by pitch from low to high
+		var match;
+		var aoct = 0;
+		var boct = 0;
+		var ab40 = 0;
+		var bb40 = 0;
+		if (match = a.className.baseVal.match(/oct-(-?\d+)/)) {
+			aoct = parseInt(match[1]);
+		}
+		if (match = b.className.baseVal.match(/oct-(-?\d+)/)) {
+			boct = parseInt(match[1]);
+		}
+		if (match = a.className.baseVal.match(/b40c-(\d+)/)) {
+			ab40 = aoct * 40 + parseInt(match[1]);
+		}
+		if (match = b.className.baseVal.match(/b40c-(\d+)/)) {
+			bb40 = boct * 40 + parseInt(match[1]);
+		}
+		if (ab40 < bb40) { return -1; }
+		if (ab40 > bb40) { return +1; }
+		return 0;
+	});
+
+	if (harmonic.length == 1) {
+		// nothing to do
+		return;
+	}
+
+	console.log("LIST OF THINGS HAPPENING AT THE SAME TIME", harmonic);
+	for (var j=0; j<harmonic.length; j++) {
+		var oc = getStaffAndLayerNumbersByElement(harmonic[j]);
+		console.log("LOCATION", oc, "FOR",  harmonic[j]);
+	}
+
+	var startingindex = -1;
+	for (i=0; i<harmonic.length; i++) {
+		if (harmonic[i].id === id) {
+			startingindex = i;
+			break;
+		}
+	}
+	if (startingindex < 0) {
+		return;
+	}
+	var index = startingindex + direction;
+	if (index < 0) {
+		index = harmonic.length - 1;
+	} else if (index >= harmonic.length) {
+		index = 0;
+	}
+	console.log("MOVING TO", harmonic[index].id);
+	highlightIdInEditor(harmonic[index].id);
+
+}
+
 
 

@@ -15,7 +15,6 @@ shft-&uarr;	go back to repertory index	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-a	toggle CSV/TSV display of Humdrum data	/commands/alt-a
 b	show/hide logo	/commands/alt-b
 c	compile filters	/commands/alt-c
 e	erase score	/commands/alt-e
@@ -30,6 +29,7 @@ r	reload file from server	.
 s	save to local file	.
 t	save PDF of current view	/commands/alt-t
 T	save complete PDF of current score	/commands/alt-t
+u	toggle CSV/TSV display of Humdrum data	/commands/alt-u
 v	toggle vi/plain editor	/commands/alt-v
 w	widen note spacing
 W	narrow note spacing

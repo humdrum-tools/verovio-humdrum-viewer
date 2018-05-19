@@ -312,6 +312,10 @@ function processNotationKeyCommand(event) {
 				if (CursorNote.id.match("note-")) {
 					processNotationKey("transpose-up-octave", CursorNote);
 				}
+			} else if (event.ctrlKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				goUpHarmonically(CursorNote);
 			} else {
 				event.preventDefault();
 				event.stopPropagation();
@@ -328,6 +332,10 @@ function processNotationKeyCommand(event) {
 				if (CursorNote.id.match("note-")) {
 					processNotationKey("transpose-down-octave", CursorNote);
 				}
+			} else if (event.ctrlKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				goDownHarmonically(CursorNote);
 			} else {
 				event.preventDefault();
 				event.stopPropagation();
