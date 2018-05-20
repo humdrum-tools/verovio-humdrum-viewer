@@ -60,9 +60,11 @@ shft-^	toggle marcato	.
 `	toggle staccatissimo	.
 ~	toggle tenuto	.
 @	toggle mark	/graphic/marks
-&uarr;/&darr;	up/down step	/graphic/pitch
-# &uarr;/&darr;	up/down interval	/graphic/pitch
-shft-&uarr;/&darr;	up/down octave	/graphic/pitch
+&uarr;/&darr;	next/previous harmonic note	/graphic/pitch
+&larr;/&rarr;	next/previous melodic note	/graphic/pitch
+shft-&uarr;/&darr;	up/down step	/graphic/pitch
+# shft-&uarr;/&darr;	up/down interval	/graphic/pitch
+ctrl-&uarr;/&darr;	up/down octave	/graphic/pitch
 
 <p><b> Rest editing commands </b></p>
 

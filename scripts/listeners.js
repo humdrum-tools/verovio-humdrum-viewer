@@ -310,18 +310,18 @@ function processNotationKeyCommand(event) {
 				event.preventDefault();
 				event.stopPropagation();
 				if (CursorNote.id.match("note-")) {
-					processNotationKey("transpose-up-octave", CursorNote);
+					processNotationKey("transpose-up-step", CursorNote);
 				}
 			} else if (event.ctrlKey) {
 				event.preventDefault();
 				event.stopPropagation();
-				goUpHarmonically(CursorNote);
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-up-octave", CursorNote);
+				}
 			} else {
 				event.preventDefault();
 				event.stopPropagation();
-				if (CursorNote.id.match("note-")) {
-					processNotationKey("transpose-up-step", CursorNote);
-				}
+				goUpHarmonically(CursorNote);
 			}
 			break;
 
@@ -330,18 +330,18 @@ function processNotationKeyCommand(event) {
 				event.preventDefault();
 				event.stopPropagation();
 				if (CursorNote.id.match("note-")) {
-					processNotationKey("transpose-down-octave", CursorNote);
+					processNotationKey("transpose-down-step", CursorNote);
 				}
 			} else if (event.ctrlKey) {
 				event.preventDefault();
 				event.stopPropagation();
-				goDownHarmonically(CursorNote);
+				if (CursorNote.id.match("note-")) {
+					processNotationKey("transpose-down-octave", CursorNote);
+				}
 			} else {
 				event.preventDefault();
 				event.stopPropagation();
-				if (CursorNote.id.match("note-")) {
-					processNotationKey("transpose-down-step", CursorNote);
-				}
+				goDownHarmonically(CursorNote);
 			}
 			break;
 
