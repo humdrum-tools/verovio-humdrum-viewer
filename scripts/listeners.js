@@ -440,6 +440,15 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case DKey:          // Add null data line
+			if (event.altKey) {
+				if (event.shiftKey) {
+					addDataLineAboveCurrentPosition();
+					event.preventDefault();
+				}
+			}
+			break;
+
 		case EKey:          // erase text editor contents
 			if (event.altKey) {
 				clearContent();
@@ -474,9 +483,22 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case IKey:          // Add null interpretation line
+			if (event.altKey) {
+				if (event.shiftKey) {
+					addInterpretationLineAboveCurrentPosition();
+					event.preventDefault();
+				}
+			}
+			break;
+
 		case LKey:          // toggle color of staff layers
 			if (event.altKey) {
-				toggleLayerColoring();
+				if (event.shiftKey) {
+					addLocalCommentLineAboveCurrentPosition();
+				} else {
+					toggleLayerColoring();
+				}
 				event.preventDefault();
 			}
 			break;

@@ -2590,3 +2590,87 @@ function toggleMarkedNote(id, line, field, subfield) {
 
 
 
+//////////////////////////////
+//
+// addLocalCommentLineAboveCurrentPosition -- Add a local comment
+//   line above the current line. Cursor keeps its position on the
+//   original line.
+//
+
+function addLocalCommentLineAboveCurrentPosition() {
+console.log("ADDING  LOCAL COMMENT LINE");
+	addNullLine("!");
+}
+
+
+
+//////////////////////////////
+//
+// addInterpretationLineAboveCurrentPosition -- Add an interpretation
+//   line above the current line. Cursor keeps its position on the
+//   original line.
+//
+
+function addInterpretationLineAboveCurrentPosition() {
+console.log("ADDING  INTERPRETATION LINE");
+	addNullLine("*");
+}
+
+
+
+//////////////////////////////
+//
+// addDataLineAboveCurrentPosition -- Add an empty data line
+//   above the current line. Cursor keeps its position on the
+//   original line.
+//
+
+function addDataLineAboveCurrentPosition() {
+console.log("ADDING  DATA LINE");
+	addNullLine(".");
+}
+
+
+
+//////////////////////////////
+//
+// addNullLine -- Add a line of tokens based on how many tokens
+//    the given line has.
+//
+
+function addNullLine(token, row) {
+	if (!token) {
+		token = ".";
+	}
+	if (!row) {
+		var location = EDITOR.getCursorPosition();
+		row = location.row;
+	}
+	var currentline = EDITOR.session.getLine(row);
+	if (currentline.match(/^!!/)) {
+		// don't know how many spines to add
+		return;
+	}
+	if (currentline.match(/^$/)) {
+		// empty line: don't know how many spines to add
+		return;
+	}
+	if (currentline.match(/^\*\*/)) {
+		// can't add spines before exclusive interpretation
+		return;
+	}
+	var tokens = currentline.split(/\t/);
+	var tcount = tokens.length;
+	var newline = "";
+	for (var i=0; i<tcount; i++) {
+		newline += token;
+		if (i < tcount - 1) {
+			newline += "\t";
+		}
+	}
+	newline += "\n";
+	EDITOR.session.insert({row:row, column:0}, newline);
+}
+
+
+
