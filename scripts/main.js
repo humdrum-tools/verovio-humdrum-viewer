@@ -3681,24 +3681,39 @@ function goUpHarmonically(current) {
 //
 
 function moveHarmonically(current, direction) {
-	console.log("MOVING ", direction, "FROM", current);
 	if (!current) {
 		return;
 	}
-	var id = current.id;
-	var match = id.match(/^[^-]+-[^-]*L(\d+)/);
-	var line = -1;
-	if (match) {
-		line = parseInt(match[1]);
-	} else {
+	var startid = current.id;
+	var nextid = getNextHarmonicNote(startid, direction)
+	if (!nextid) {
 		return;
 	}
-	console.log("ID", id, "FOR HARMONIC MOVING ON LINE", line);
+	highlightIdInEditor(nextid);
+}
+
+
+
+//////////////////////////////
+//
+// getNextHarmonicNote --
+//
+
+function getNextHarmonicNote(startid, direction) {
+	var match = startid.match(/^[^-]+-[^-]*L(\d+)/);
+	var startline = -1;
+	if (match) {
+		startline = parseInt(match[1]);
+	} else {
+		return undefined;
+	}
+	if (startline == -1) {
+		return undefined;
+	}
 	// Assuming one svg on the page, which is currently correct.
 	var svg = document.querySelector('svg');
 	var allids = svg.querySelectorAll('*[id]:not([id=""])');
-	console.log("ALLIDS", allids);
-	var regex = new RegExp("^[^-]+-[^-]*L" + line + "(?!\d)");
+	var regex = new RegExp("^[^-]+-[^-]*L" + startline + "(?!\d)");
 	var harmonic = [];
 	var x;
 	var i;
@@ -3713,7 +3728,6 @@ function moveHarmonically(current, direction) {
 			harmonic.push(allids[i]);
 		}
 	}
-
 	harmonic.sort(function(a, b) {
 		var aloc = getStaffAndLayerNumbersByElement(a);
 		var bloc = getStaffAndLayerNumbersByElement(b);
@@ -3749,27 +3763,22 @@ function moveHarmonically(current, direction) {
 		if (ab40 > bb40) { return +1; }
 		return 0;
 	});
-
 	if (harmonic.length == 1) {
 		// nothing to do
-		return;
+		return undefined;
 	}
-
-	console.log("LIST OF THINGS HAPPENING AT THE SAME TIME", harmonic);
 	for (var j=0; j<harmonic.length; j++) {
 		var oc = getStaffAndLayerNumbersByElement(harmonic[j]);
-		console.log("LOCATION", oc, "FOR",  harmonic[j]);
 	}
-
 	var startingindex = -1;
 	for (i=0; i<harmonic.length; i++) {
-		if (harmonic[i].id === id) {
+		if (harmonic[i].id === startid) {
 			startingindex = i;
 			break;
 		}
 	}
 	if (startingindex < 0) {
-		return;
+		return undefined;
 	}
 	var index = startingindex + direction;
 	if (index < 0) {
@@ -3777,9 +3786,7 @@ function moveHarmonically(current, direction) {
 	} else if (index >= harmonic.length) {
 		index = 0;
 	}
-	console.log("MOVING TO", harmonic[index].id);
-	highlightIdInEditor(harmonic[index].id);
-
+	return harmonic[index].id;
 }
 
 
