@@ -11,6 +11,7 @@
 //
 
 var CGI = {};
+var OPTIONS = {}; // used for debugging display options.
 
 // verovio variables for a movement:
 var vrv;
@@ -231,6 +232,7 @@ function displayNotation(page, force) {
 		options.inputFormat = "esac";
 	};
 
+	OPTIONS = options;
 	vrv.displayNotation(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
@@ -1375,6 +1377,8 @@ function applyZoom() {
 		vrv.HEIGHT = options.pageHeight;
 		vrv.WIDTH = options.pageWidth;
 	};
+
+	OPTIONS = options;
 
 	vrv.redoLayout(options, redo, measure)
 	.then(function() {
