@@ -105,13 +105,15 @@ function processNotationKey(key, element) {
 		else if (key === "c")  { deleteStemMarker(id, line, field); }
 		else if (key === "#")  { toggleSharp(id, line, field, subfield); }
 		else if (key === "-")  { toggleFlat(id, line, field, subfield); }
-		else if (key === "n")  { toggleNatural(id, line, field, subfield); }
 		else if (key === "i")  { toggleEditorialAccidental(id, line, field, subfield); }
-		else if (key === "X")  { toggleExplicitAccidental(id, line, field, subfield); }
+		else if (key === "n")  { toggleNatural(id, line, field, subfield); }
 		else if (key === "m")  { toggleMordent("m", id, line, field, subfield); }
 		else if (key === "M")  { toggleMordent("M", id, line, field, subfield); }
 		else if (key === "w")  { toggleMordent("w", id, line, field, subfield); }
 		else if (key === "W")  { toggleMordent("W", id, line, field, subfield); }
+		else if (key === "X")  { toggleExplicitAccidental(id, line, field, subfield); }
+		else if (key === "L")  { startNewBeam(element, line, field); }
+		else if (key === "J")  { endNewBeam(element, line, field); }
 		else if (key === "transpose-up-step")  { transposeNote(id, line, field, subfield, +1); }
 		else if (key === "transpose-down-step")  { transposeNote(id, line, field, subfield, -1); }
 		else if (key === "transpose-up-octave")  { transposeNote(id, line, field, subfield, +7); }
@@ -2670,6 +2672,70 @@ function addNullLine(token, row) {
 	}
 	newline += "\n";
 	EDITOR.session.insert({row:row, column:0}, newline);
+}
+
+
+
+////////////////////
+//
+// startNewBeam --
+//
+
+function startNewBeam(element, line, field) {
+	console.log("START NEW BEAM", element, "line", line, "field", field);
+	var parent = element.parentNode;
+	if (!parent) {
+		return;
+	}
+	var pid = parent.id;
+	if (!pid.match(/^beam/)) {
+		return;
+	}
+	var children = parent.querySelectorAll("#" + pid + " > g[id^='note']");
+	console.log("CHILDREN OF BEAM", children);
+	var targeti = -1;
+	for (var i=0; i<children.length; i++) {
+		if (children[i] === element) {
+			targeti = i;
+			break;
+		}
+	}
+	if (targeti < 0) {
+		return;
+	}
+	console.log("YOU CLICKED ON THE ", i+1, "NOTE");
+}
+
+
+
+////////////////////
+//
+// endNewBeam --
+//
+
+function endNewBeam(element, line, field) {
+	console.log("END NEW BEAM", element, "line", line, "field", field);
+	var parent = element.parentNode;
+	if (!parent) {
+		return;
+	}
+	var pid = parent.id;
+	if (!pid.match(/^beam/)) {
+		return;
+	}
+	var children = parent.querySelectorAll("#" + pid + " > g[id^='note']");
+	console.log("CHILDREN OF BEAM", children);
+	var targeti = -1;
+	for (var i=0; i<children.length; i++) {
+		if (children[i] === element) {
+			targeti = i;
+			break;
+		}
+	}
+	if (targeti < 0) {
+		return;
+	}
+	console.log("YOU CLICKED ON THE ", i+1, "NOTE");
 }
 
 
