@@ -3795,3 +3795,22 @@ function getNextHarmonicNote(startid, direction) {
 
 
 
+//////////////////////////////
+//
+// turnOffAllHighlights -- Remove highlights from all svg elements.
+//
+
+function turnOffAllHighlights() {
+	var svg = document.querySelector("svg");
+	var highlights = svg.querySelectorAll(".highlight");
+	for (var i=0; i<highlights.length; i++) {
+		var cname = highlights[i].className.baseVal;
+		cname = cname.replace(/\bhighlight\b/, "");
+		highlights[i].className.className = cname;
+		highlights[i].className.baseVal = cname;
+		highlights[i].className.animVal = cname;
+	}
+}
+
+
+

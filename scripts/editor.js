@@ -144,6 +144,8 @@ function processNotationKey(key, element) {
 	} else if (name === "rest") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
+		else if (key === "L")  { startNewBeam(element, line, field); }
+		else if (key === "J")  { endNewBeam(element, line, field); }
 	} else if (name === "dynam") {
 		if (key === "a")       { setDynamAboveMarker(id, line, field, number); }
 		else if (key === "b")  { setDynamBelowMarker(id, line, field, number); }
@@ -2673,14 +2675,52 @@ function addNullLine(token, row) {
 
 
 
-////////////////////
+//////////////////////////////
+//
+// getBeamParent -- Return the first element containing an id starting
+//   with "beam-" in the ancestors of the given element.
+//
+
+function getBeamParent(element) {
+	var current = element.parentNode;
+	while (current) {
+		if (current.id.match(/^beam-/)) {
+			return current;
+		}
+		current = current.parentNode;
+	}
+	return undefined;
+}
+
+
+
+//////////////////////////////
+//
+// getBeamChild -- Return the direct child of a beam which contains this element.
+//
+
+function getBeamChild(element) {
+	var current = element;
+	while (current) {
+		if (current.parentNode && current.parentNode.id.match(/^beam-/)) {
+			return current;
+		}
+		current = current.parentNode;
+	}
+	return undefined;
+}
+
+
+
+//////////////////////////////
 //
 // startNewBeam -- L: Splitting a beam into two pieces, with the current note
 //    starting a new beam, and the previous note ending the old beam.
 //
 
 function startNewBeam(element, line, field) {
-	var parent = element.parentNode;
+	var parent = getBeamParent(element);
+	var newelement = getBeamChild(element);
 	if (!parent) {
 		return;
 	}
@@ -2694,7 +2734,7 @@ function startNewBeam(element, line, field) {
 	var children = parent.querySelectorAll(selector);
 	var targeti = -1;
 	for (var i=0; i<children.length; i++) {
-		if (children[i] === element) {
+		if (children[i] === newelement) {
 			targeti = i;
 			break;
 		}
@@ -2718,7 +2758,6 @@ function startNewBeam(element, line, field) {
 			removeBeamInfo(children[1]);
 		} else {
 			addBeamStart(children[targeti]);
-			addBeamEnd(children[targeti-1]);
 		}
 	} else if (targeti < children.length - 1) {
 		addBeamStart(children[targeti]);
@@ -2729,22 +2768,28 @@ function startNewBeam(element, line, field) {
 		removeBeamInfo(children[targeti]);
 	}
 
+	EDITINGID = element.id;
+	RestoreCursorNote = element.id;
+
 	FreezeRendering = freezeBackup;
 	if (!FreezeRendering) {
 		displayNotation();
 	}
+	turnOffAllHighlights();
+	highlightIdInEditor(EDITINGID);
 }
 
 
 
-////////////////////
+//////////////////////////////
 //
 // endNewBeam -- J: Splitting a beam into two pieces, with the current note
 //    ending the old beam, and the current note starting a new beam.
 //
 
 function endNewBeam(element, line, field) {
-	var parent = element.parentNode;
+	var parent = getBeamParent(element);
+	var newelement = getBeamChild(element);
 	if (!parent) {
 		return;
 	}
@@ -2752,10 +2797,13 @@ function endNewBeam(element, line, field) {
 	if (!pid.match(/^beam/)) {
 		return;
 	}
-	var children = parent.querySelectorAll("#" + pid + " > g[id^='note']");
+	var selector = "#" + pid + " > g[id^='note']";
+	selector += ", #" + pid + " > g[id^='rest']";
+	selector += ", #" + pid + " > g[id^='chord']";
+	var children = parent.querySelectorAll(selector);
 	var targeti = -1;
 	for (var i=0; i<children.length; i++) {
-		if (children[i] === element) {
+		if (children[i] === newelement) {
 			targeti = i;
 			break;
 		}
@@ -2789,16 +2837,20 @@ function endNewBeam(element, line, field) {
 		addBeamEnd(children[targeti]);
 		addBeamStart(children[targeti+1]);
 	}
+	EDITINGID = element.id;
+	RestoreCursorNote = element.id;
 
 	FreezeRendering = freezeBackup;
 	if (!FreezeRendering) {
 		displayNotation();
 	}
+	turnOffAllHighlights();
+	highlightIdInEditor(EDITINGID);
 }
 
 
 
-////////////////////
+//////////////////////////////
 //
 // removeBeamInfo -- remove [JLKk] characters from given line and field taken
 //     from ID of input element.
@@ -2821,7 +2873,7 @@ function removeBeamInfo(element) {
 
 
 
-////////////////////
+//////////////////////////////
 //
 // addBeamStart -- remove [JLKk] characters from given line and field taken
 //     from ID of input element and place a "L" at the end of the token.
@@ -2845,7 +2897,7 @@ function addBeamStart(element) {
 
 
 
-////////////////////
+//////////////////////////////
 //
 // addBeamEnd -- remove [JLKk] characters from given line and field taken
 //     from ID of input element and place a "J" at the end of the token.
