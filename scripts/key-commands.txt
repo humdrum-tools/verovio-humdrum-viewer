@@ -55,6 +55,7 @@ x	force display of accidental	/graphic/pitch
 '	toggle staccato	.
 -	toggle flat on note	/graphic/pitch
 ;	toggle fermata	.
+:	toggle arpeggio	.
 ^	toggle accent	.
 shft-^	toggle marcato	.
 `	toggle staccatissimo	.
