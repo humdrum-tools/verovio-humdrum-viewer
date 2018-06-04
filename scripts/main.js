@@ -1840,7 +1840,7 @@ function humdrumDataIntoView(event) {
 			continue;
 		}
 		HIGHLIGHTQUERY = target.id
-		highlightIdInEditor(target.id);
+		highlightIdInEditor(target.id, "humdrumDataIntoView");
 		break;
 	}
 }
@@ -1852,7 +1852,7 @@ function humdrumDataIntoView(event) {
 // highlightIdInEditor --
 //
 
-function highlightIdInEditor(id) {
+function highlightIdInEditor(id, source) {
 	if (!id) {
 		// no element (off of page or outside of musical range
 		console.log("NO ID so not changing to another element");
@@ -1914,19 +1914,8 @@ function highlightIdInEditor(id) {
 		}
 	}
 
+	CursorNote == document.querySelector("#" + id);
 	EDITOR.gotoLine(row, col);
-	// interesting: http://stackoverflow.com/questions/26573429/highlighting-a-single-character-in-ace
-	// var range = new Range (row-1, col, row-1, col2);
-	// console.log("SEARCH RANGE", range);
-	// var r = EDITOR.find(searchstring, {
-	// 	wrap: false,
-	// 	caseSensitive: true,
-	// 	wholeWord: true,
-	// 	range: range
-	// });
-	//  this does not work well because same text at other locations
-	// are also highlighted in a black box:
-	// EDITOR.selection.setRange(r);
 }
 
 
@@ -3305,8 +3294,14 @@ function goToPreviousNoteOrRest(currentid) {
 	offclass = "qoff-" + qon;
 	var alist = getOffClassElements(offclass);
 	var nextid;
+	if (!alist) {
+		return;
+	}
+	if (alist.length == 0) {
+		return;
+	}
 	if (alist.length == 1) {
-		highlightIdInEditor(alist[0].id);
+		highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest");
 	} else if (alist.length == 0) {
 		// gotoNextPage();
 		if (vrv.page == 1) {
@@ -3329,18 +3324,22 @@ function goToPreviousNoteOrRest(currentid) {
 			.then(function() {
 				alist = getOnClassElements(offclass);
 				if (alist.length == 1) {
-					highlightIdInEditor(alist[0].id);
+					highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest2");
 				} else {
 					nextid = chooseBestId(alist, location.staff, location.layer);
-					EDITINGID = nextid;
-					highlightIdInEditor(nextid);
+					if (nextid) {
+						EDITINGID = nextid;
+						highlightIdInEditor(nextid, "goToPreviousNoteOrRest3");
+					}
 				}
 			});
 		});
 	} else {
 		nextid = chooseBestId(alist, location.staff, location.layer);
-		EDITINGID = nextid;
-		highlightIdInEditor(nextid);
+		if (nextid) {
+			EDITINGID = nextid;
+			highlightIdInEditor(nextid, "goToPreviousNoteOrRest4");
+		} 
 	}
 }
 
@@ -3368,8 +3367,14 @@ function goToNextNoteOrRest(currentid) {
 	var onclass = "qon-" + qoff;
 	var alist = getOnClassElements(onclass);
 	var nextid;
+	if (!alist) {
+		return;
+	}
+	if (alist.length == 0) {
+		return;
+	}
 	if (alist.length == 1) {
-		highlightIdInEditor(alist[0].id);
+		highlightIdInEditor(alist[0].id, "goToNextNoteOrRest");
 	} else if (alist.length == 0) {
 		// console.log("NO ELEMENT FOUND (ON NEXT PAGE?)");
 		// gotoNextPage();
@@ -3393,18 +3398,22 @@ function goToNextNoteOrRest(currentid) {
 			.then(function() {
 				alist = getOnClassElements(onclass);
 				if (alist.length == 1) {
-					highlightIdInEditor(alist[0].id);
+					highlightIdInEditor(alist[0].id, "goToNextNoteOrRest2");
 				} else {
 					nextid = chooseBestId(alist, location.staff, location.layer);
-					EDITINGID = nextid;
-					highlightIdInEditor(nextid);
+					if (nextid) {
+						EDITINGID = nextid;
+						highlightIdInEditor(nextid, "goToNextNoteOrRest3");
+					}
 				}
 			});
 		});
 	} else {
 		nextid = chooseBestId(alist, location.staff, location.layer);
-		EDITINGID = nextid;
-		highlightIdInEditor(nextid);
+		if (nextid) {
+			EDITINGID = nextid;
+			highlightIdInEditor(nextid, "goToNextNoteOrRest4");
+		}
 	}
 }
 
@@ -3693,7 +3702,7 @@ function moveHarmonically(current, direction) {
 	if (!nextid) {
 		return;
 	}
-	highlightIdInEditor(nextid);
+	highlightIdInEditor(nextid, "moveHarmonically");
 }
 
 
