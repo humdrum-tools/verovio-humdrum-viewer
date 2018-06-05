@@ -829,12 +829,9 @@ function addSlur(id, line, field) {
 	// FIX N number here later:
 	var ending = "-L" + (i+1) + "F" + field + "N" + 1;
 	newid += ending;
-	RestoreCursorNote = newid;
-	HIGHLIGHTQUERY = newid;
-
 	FreezeRendering = freezeBackup;
 	if (!FreezeRendering) {
-		displayNotation();
+		displayNotation(null, null, newid);
 	}
 	InterfaceSingleNumber = 1;
 }

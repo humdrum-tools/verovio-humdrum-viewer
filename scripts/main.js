@@ -214,7 +214,7 @@ var Splitter = new SPLITTER();
 //  This function seems to be called twice in certain cases (editing).
 //
 
-function displayNotation(page, force) {
+function displayNotation(page, force, restoreid) {
 	if (!vrv.initialized || (FreezeRendering && !force)) {
 		return;
 	};
@@ -242,7 +242,11 @@ function displayNotation(page, force) {
 		var output = document.querySelector("#output");
 		output.innerHTML = svg;
 		if (ishumdrum) {
-			restoreSelectedSvgElement(RestoreCursorNote);
+			if (restoreid) {
+				restoreSelectedSvgElement(restoreid);
+			} else if (RestoreCursorNote) {
+				restoreSelectedSvgElement(RestoreCursorNote);
+			}
 			displayFileTitle(data);
 			if (!force) document.querySelector('body').classList.remove("invalid");
 		}
@@ -276,8 +280,8 @@ function displayNotation(page, force) {
 		$('html').css('cursor', 'auto');
 		// these lines are needed to re-highlight the note when
 		// the notation has been updated.
-		setCursorNote (null, "displayNotation");
-		highlightNoteInScore();
+		//setCursorNote (null, "displayNotation");
+		//highlightNoteInScore();
 	});
 
 }
@@ -2030,8 +2034,8 @@ function restoreSelectedSvgElement(id) {
 	} else {
 		return;
 	}
-	markNote(item, line);
-// ggg
+	markItem(item, line);
+
 /* Does not work: desired note is not in the list...
 	if (RestoreCursorNote) {
 		var svg = document.querySelector("svg");
@@ -2069,7 +2073,7 @@ function xmlDataNoteIntoView(event) {
 	var text = EDITOR.session.getLine(line);
 	var matches = text.match(/xml:id="([^"]+)"/);
 	if (!matches) {
-		markNote(null, line);
+		markItem(null, line);
 		return;
 	}
 	var id = matches[1];
@@ -2079,7 +2083,7 @@ function xmlDataNoteIntoView(event) {
 		var item = Splitter.rightContent.querySelector("#" + id);
 		// console.log("ITEM", item);
 	}
-	markNote(item, line);
+	markItem(item, line);
 }
 
 
@@ -2137,17 +2141,17 @@ function humdrumDataNoteIntoView(event) {
 			item = items[items.length-2];
 		}
 	}
-	markNote(item);
+	markItem(item);
 }
 
 
 
 //////////////////////////////
 //
-// markNote -- Used by highlightNoteInScore.
+// markItem -- Used by highlightNoteInScore.
 //
 
-function markNote(item, line) {
+function markItem(item, line) {
 	if (!item) {
 		item = CursorNote;
 	}
@@ -2178,7 +2182,7 @@ function markNote(item, line) {
 
 	}
 	if (item) {
-		setCursorNote(item, "markNote");
+		setCursorNote(item, "markItem");
 	}
 	if (CursorNote) {
 		// console.log("TURNING ON NEW NOTE", CursorNote);
