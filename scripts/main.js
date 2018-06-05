@@ -1827,7 +1827,12 @@ function xmlDataIntoView(event) {
 //
 
 function humdrumDataIntoView(event) {
-	var target = event.target;
+	var target;
+	if (typeof event === "string") {
+		target = document.querySelector("#" + event);
+	} else {
+		target = event.target;
+	}
 	var matches;
 	while (target) {
 		if (!target.id) {
@@ -3297,9 +3302,6 @@ function goToPreviousNoteOrRest(currentid) {
 	if (!alist) {
 		return;
 	}
-	if (alist.length == 0) {
-		return;
-	}
 	if (alist.length == 1) {
 		highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest");
 	} else if (alist.length == 0) {
@@ -3370,9 +3372,7 @@ function goToNextNoteOrRest(currentid) {
 	if (!alist) {
 		return;
 	}
-	if (alist.length == 0) {
-		return;
-	}
+
 	if (alist.length == 1) {
 		highlightIdInEditor(alist[0].id, "goToNextNoteOrRest");
 	} else if (alist.length == 0) {
