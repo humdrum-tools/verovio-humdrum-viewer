@@ -1279,6 +1279,8 @@ function downloadKernScoresFile(file, measures, page) {
 
 function replaceEditorContentWithHumdrumFile(text, page) {
 
+	vrv.page = 1;
+
 	page = page || vrv.page;
 	var options;
 	var humdrumQ = false;
@@ -1347,7 +1349,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		FreezeRendering = freezeBackup;
 		// display the notation for the data:
 		displayNotation(page);
-	};
+	}
 }
 
 

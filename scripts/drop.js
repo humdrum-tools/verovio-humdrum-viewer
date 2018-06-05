@@ -71,7 +71,7 @@ function handleDrop(event) {
 		reader.onload = function (event) {
 			var content = reader.result;
 			// console.log("Loaded file content:", content);
-			replaceEditorContentWithHumdrumFile(content);
+			replaceEditorContentWithHumdrumFile(content, 1);
 		};
 
 		// reader.readAsDataURL(file); // loads MIME64 version of file

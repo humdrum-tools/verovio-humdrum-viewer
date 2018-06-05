@@ -137,7 +137,7 @@ vrvInterface.prototype.filterData = function (opts, data, type) {
 
 //////////////////////////////
 //
-// displayNontation --
+// displayNotation --
 //
 
 vrvInterface.prototype.displayNotation = function (opts, data, page) {
