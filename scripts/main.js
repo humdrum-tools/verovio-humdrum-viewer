@@ -63,7 +63,8 @@ var RestoreCursorNote;
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
 var BasketVersion = 430;
-console.log("VERSION", BasketVersion);
+// Basket is no longer working since verovio.js is now over 5MB (maximum for localStorage)
+// console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
 
@@ -1077,7 +1078,7 @@ function loadKernScoresFile(obj, force) {
 				console.log("Error retrieving", key);
 			});
 	} else {
-		console.log("Already have", key);
+		// console.log("Already have", key);
 		try {
 			jinfo = JSON.parse(info.data);
 			if (getnext) {
@@ -1282,9 +1283,7 @@ function downloadKernScoresFile(file, measures, page) {
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
-
 	vrv.page = 1;
-
 	page = page || vrv.page;
 	var options;
 	var humdrumQ = false;
@@ -1323,7 +1322,6 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		} else {
 			vrv.filterData(options, text, "humdrum")
 			.then(function(newtext) {
-				newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
 				var freezeBackup = FreezeRendering;
 				if (FreezeRendering == false) {
 					FreezeRendering = true;
@@ -1950,6 +1948,10 @@ function highlightIdInEditor(id, source) {
 
 function setupAceEditor(idtag) {
 	EDITOR = ace.edit(idtag);
+	ace.config.set('modePath', "/scripts/ace");
+	ace.config.set('workerPath', "/scripts/ace");
+	ace.config.set('themePath', "/scripts/ace");
+	EDITOR.getSession().setUseWorker(true);
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
@@ -2475,15 +2477,8 @@ function displayScoreTextInEditor(text, page) {
 	// -1 is to unselect added text, and move cursor to start
 	EDITOR.setValue(text, -1);
 
-// ggg
-// editor contents is not being updated in browser:
-	//EDITOR.resize();
-	//EDITOR.renderer.updateFull();
-//console.log("EDITOR CONTENTS:", EDITOR.getValue());
-
 	// update the notation display
 	displayNotation(page);
-
 }
 
 
@@ -3347,7 +3342,7 @@ function goToPreviousNoteOrRest(currentid) {
 		if (nextid) {
 			EDITINGID = nextid;
 			highlightIdInEditor(nextid, "goToPreviousNoteOrRest4");
-		} 
+		}
 	}
 }
 
