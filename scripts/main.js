@@ -2098,9 +2098,7 @@ function humdrumDataNoteIntoView(event) {
 	var line = location.row;
 	var column = location.column;
 	var text = EDITOR.session.getLine(line);
-	// var fys = getFieldAndSubspine(text, column-1);
-	// there was a problem subtracting one from the column data:
-	var fys = getFieldAndSubspine(text, column);
+	var fys = getFieldAndSubtoken(text, column);
 	var field = fys.field;
 	var subspine = fys.subspine;
 	var query = HIGHLIGHTQUERY;
@@ -2206,12 +2204,12 @@ function markNote(item, line) {
 
 //////////////////////////////
 //
-// getFieldAndSubspine -- Return the data token and subtoken position
+// getFieldAndSubtoken -- Return the data token and subtoken position
 //    of the item at the given column on the line (column is index from 0),
 //    but token and subtoken are indexed from 1.
 //
 
-function getFieldAndSubspine(text, column) {
+function getFieldAndSubtoken(text, column) {
 	// column++; // needed for some reason?
 	var output = {field: -1, subspine: -1};
 	if (text.match(/^[*!=]/)) {
@@ -2224,7 +2222,7 @@ function getFieldAndSubspine(text, column) {
 	var field = 0;
 	var subspine = 0;
 	var i;
-	for (i=0; i<=column; i++) {
+	for (i=0; i<column; i++) {
 		if (text[i] == '\t') {
 			field++;
 			subspine = 0;
