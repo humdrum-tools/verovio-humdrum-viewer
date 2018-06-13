@@ -137,11 +137,11 @@ vrvInterface.prototype.filterData = function (opts, data, type) {
 
 //////////////////////////////
 //
-// displayNontation --
+// displayNotation --
 //
 
 vrvInterface.prototype.displayNotation = function (opts, data, page) {
-	console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
+	// console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
 	this.options = opts;
 	return this.execute("displayNotation", arguments);
 };
@@ -154,7 +154,7 @@ vrvInterface.prototype.displayNotation = function (opts, data, page) {
 //
 
 vrvInterface.prototype.redoLayout = function (opts, redo, measure) {
-	console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
+	// console.log("%cvrvInterface.redoLayout", "color: #8800aa; font-weight: bold");
 	this.options = opts;
 	return this.execute("redoLayout", arguments);
 };

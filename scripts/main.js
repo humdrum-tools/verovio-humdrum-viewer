@@ -63,7 +63,8 @@ var RestoreCursorNote;
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
 var BasketVersion = 430;
-console.log("VERSION", BasketVersion);
+// Basket is no longer working since verovio.js is now over 5MB (maximum for localStorage)
+// console.log("VERSION", BasketVersion);
 
 var Actiontime = 0;
 
@@ -214,7 +215,7 @@ var Splitter = new SPLITTER();
 //  This function seems to be called twice in certain cases (editing).
 //
 
-function displayNotation(page, force) {
+function displayNotation(page, force, restoreid) {
 	if (!vrv.initialized || (FreezeRendering && !force)) {
 		return;
 	};
@@ -242,7 +243,11 @@ function displayNotation(page, force) {
 		var output = document.querySelector("#output");
 		output.innerHTML = svg;
 		if (ishumdrum) {
-			restoreSelectedSvgElement(RestoreCursorNote);
+			if (restoreid) {
+				restoreSelectedSvgElement(restoreid);
+			} else if (RestoreCursorNote) {
+				restoreSelectedSvgElement(RestoreCursorNote);
+			}
 			displayFileTitle(data);
 			if (!force) document.querySelector('body').classList.remove("invalid");
 		}
@@ -276,8 +281,8 @@ function displayNotation(page, force) {
 		$('html').css('cursor', 'auto');
 		// these lines are needed to re-highlight the note when
 		// the notation has been updated.
-		setCursorNote (null, "displayNotation");
-		highlightNoteInScore();
+		//setCursorNote (null, "displayNotation");
+		//highlightNoteInScore();
 	});
 
 }
@@ -1073,7 +1078,7 @@ function loadKernScoresFile(obj, force) {
 				console.log("Error retrieving", key);
 			});
 	} else {
-		console.log("Already have", key);
+		// console.log("Already have", key);
 		try {
 			jinfo = JSON.parse(info.data);
 			if (getnext) {
@@ -1278,7 +1283,7 @@ function downloadKernScoresFile(file, measures, page) {
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
-
+	vrv.page = 1;
 	page = page || vrv.page;
 	var options;
 	var humdrumQ = false;
@@ -1317,7 +1322,6 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		} else {
 			vrv.filterData(options, text, "humdrum")
 			.then(function(newtext) {
-				newtext = newtext.replace(/\n$/m, "");  // remove trailing newline to avoid a blank line at end of file
 				var freezeBackup = FreezeRendering;
 				if (FreezeRendering == false) {
 					FreezeRendering = true;
@@ -1347,7 +1351,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		FreezeRendering = freezeBackup;
 		// display the notation for the data:
 		displayNotation(page);
-	};
+	}
 }
 
 
@@ -1827,7 +1831,12 @@ function xmlDataIntoView(event) {
 //
 
 function humdrumDataIntoView(event) {
-	var target = event.target;
+	var target;
+	if (typeof event === "string") {
+		target = document.querySelector("#" + event);
+	} else {
+		target = event.target;
+	}
 	var matches;
 	while (target) {
 		if (!target.id) {
@@ -1840,7 +1849,7 @@ function humdrumDataIntoView(event) {
 			continue;
 		}
 		HIGHLIGHTQUERY = target.id
-		highlightIdInEditor(target.id);
+		highlightIdInEditor(target.id, "humdrumDataIntoView");
 		break;
 	}
 }
@@ -1852,7 +1861,7 @@ function humdrumDataIntoView(event) {
 // highlightIdInEditor --
 //
 
-function highlightIdInEditor(id) {
+function highlightIdInEditor(id, source) {
 	if (!id) {
 		// no element (off of page or outside of musical range
 		console.log("NO ID so not changing to another element");
@@ -1914,19 +1923,8 @@ function highlightIdInEditor(id) {
 		}
 	}
 
+	CursorNote == document.querySelector("#" + id);
 	EDITOR.gotoLine(row, col);
-	// interesting: http://stackoverflow.com/questions/26573429/highlighting-a-single-character-in-ace
-	// var range = new Range (row-1, col, row-1, col2);
-	// console.log("SEARCH RANGE", range);
-	// var r = EDITOR.find(searchstring, {
-	// 	wrap: false,
-	// 	caseSensitive: true,
-	// 	wholeWord: true,
-	// 	range: range
-	// });
-	//  this does not work well because same text at other locations
-	// are also highlighted in a black box:
-	// EDITOR.selection.setRange(r);
 }
 
 
@@ -1950,6 +1948,10 @@ function highlightIdInEditor(id) {
 
 function setupAceEditor(idtag) {
 	EDITOR = ace.edit(idtag);
+	ace.config.set('modePath', "/scripts/ace");
+	ace.config.set('workerPath', "/scripts/ace");
+	ace.config.set('themePath', "/scripts/ace");
+	EDITOR.getSession().setUseWorker(true);
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
@@ -2034,8 +2036,8 @@ function restoreSelectedSvgElement(id) {
 	} else {
 		return;
 	}
-	markNote(item, line);
-// ggg
+	markItem(item, line);
+
 /* Does not work: desired note is not in the list...
 	if (RestoreCursorNote) {
 		var svg = document.querySelector("svg");
@@ -2073,7 +2075,7 @@ function xmlDataNoteIntoView(event) {
 	var text = EDITOR.session.getLine(line);
 	var matches = text.match(/xml:id="([^"]+)"/);
 	if (!matches) {
-		markNote(null, line);
+		markItem(null, line);
 		return;
 	}
 	var id = matches[1];
@@ -2083,7 +2085,7 @@ function xmlDataNoteIntoView(event) {
 		var item = Splitter.rightContent.querySelector("#" + id);
 		// console.log("ITEM", item);
 	}
-	markNote(item, line);
+	markItem(item, line);
 }
 
 
@@ -2139,17 +2141,17 @@ function humdrumDataNoteIntoView(event) {
 			item = items[items.length-2];
 		}
 	}
-	markNote(item);
+	markItem(item);
 }
 
 
 
 //////////////////////////////
 //
-// markNote -- Used by highlightNoteInScore.
+// markItem -- Used by highlightNoteInScore.
 //
 
-function markNote(item, line) {
+function markItem(item, line) {
 	if (!item) {
 		item = CursorNote;
 	}
@@ -2180,7 +2182,7 @@ function markNote(item, line) {
 
 	}
 	if (item) {
-		setCursorNote(item, "markNote");
+		setCursorNote(item, "markItem");
 	}
 	if (CursorNote) {
 		// console.log("TURNING ON NEW NOTE", CursorNote);
@@ -2473,15 +2475,8 @@ function displayScoreTextInEditor(text, page) {
 	// -1 is to unselect added text, and move cursor to start
 	EDITOR.setValue(text, -1);
 
-// ggg
-// editor contents is not being updated in browser:
-	//EDITOR.resize();
-	//EDITOR.renderer.updateFull();
-//console.log("EDITOR CONTENTS:", EDITOR.getValue());
-
 	// update the notation display
 	displayNotation(page);
-
 }
 
 
@@ -3303,8 +3298,11 @@ function goToPreviousNoteOrRest(currentid) {
 	offclass = "qoff-" + qon;
 	var alist = getOffClassElements(offclass);
 	var nextid;
+	if (!alist) {
+		return;
+	}
 	if (alist.length == 1) {
-		highlightIdInEditor(alist[0].id);
+		highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest");
 	} else if (alist.length == 0) {
 		// gotoNextPage();
 		if (vrv.page == 1) {
@@ -3327,18 +3325,22 @@ function goToPreviousNoteOrRest(currentid) {
 			.then(function() {
 				alist = getOnClassElements(offclass);
 				if (alist.length == 1) {
-					highlightIdInEditor(alist[0].id);
+					highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest2");
 				} else {
 					nextid = chooseBestId(alist, location.staff, location.layer);
-					EDITINGID = nextid;
-					highlightIdInEditor(nextid);
+					if (nextid) {
+						EDITINGID = nextid;
+						highlightIdInEditor(nextid, "goToPreviousNoteOrRest3");
+					}
 				}
 			});
 		});
 	} else {
 		nextid = chooseBestId(alist, location.staff, location.layer);
-		EDITINGID = nextid;
-		highlightIdInEditor(nextid);
+		if (nextid) {
+			EDITINGID = nextid;
+			highlightIdInEditor(nextid, "goToPreviousNoteOrRest4");
+		}
 	}
 }
 
@@ -3366,8 +3368,12 @@ function goToNextNoteOrRest(currentid) {
 	var onclass = "qon-" + qoff;
 	var alist = getOnClassElements(onclass);
 	var nextid;
+	if (!alist) {
+		return;
+	}
+
 	if (alist.length == 1) {
-		highlightIdInEditor(alist[0].id);
+		highlightIdInEditor(alist[0].id, "goToNextNoteOrRest");
 	} else if (alist.length == 0) {
 		// console.log("NO ELEMENT FOUND (ON NEXT PAGE?)");
 		// gotoNextPage();
@@ -3391,18 +3397,22 @@ function goToNextNoteOrRest(currentid) {
 			.then(function() {
 				alist = getOnClassElements(onclass);
 				if (alist.length == 1) {
-					highlightIdInEditor(alist[0].id);
+					highlightIdInEditor(alist[0].id, "goToNextNoteOrRest2");
 				} else {
 					nextid = chooseBestId(alist, location.staff, location.layer);
-					EDITINGID = nextid;
-					highlightIdInEditor(nextid);
+					if (nextid) {
+						EDITINGID = nextid;
+						highlightIdInEditor(nextid, "goToNextNoteOrRest3");
+					}
 				}
 			});
 		});
 	} else {
 		nextid = chooseBestId(alist, location.staff, location.layer);
-		EDITINGID = nextid;
-		highlightIdInEditor(nextid);
+		if (nextid) {
+			EDITINGID = nextid;
+			highlightIdInEditor(nextid, "goToNextNoteOrRest4");
+		}
 	}
 }
 
@@ -3691,7 +3701,7 @@ function moveHarmonically(current, direction) {
 	if (!nextid) {
 		return;
 	}
-	highlightIdInEditor(nextid);
+	highlightIdInEditor(nextid, "moveHarmonically");
 }
 
 
@@ -3789,6 +3799,25 @@ function getNextHarmonicNote(startid, direction) {
 		index = 0;
 	}
 	return harmonic[index].id;
+}
+
+
+
+//////////////////////////////
+//
+// turnOffAllHighlights -- Remove highlights from all svg elements.
+//
+
+function turnOffAllHighlights() {
+	var svg = document.querySelector("svg");
+	var highlights = svg.querySelectorAll(".highlight");
+	for (var i=0; i<highlights.length; i++) {
+		var cname = highlights[i].className.baseVal;
+		cname = cname.replace(/\bhighlight\b/, "");
+		highlights[i].className.className = cname;
+		highlights[i].className.baseVal = cname;
+		highlights[i].className.animVal = cname;
+	}
 }
 
 

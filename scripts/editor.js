@@ -144,6 +144,8 @@ function processNotationKey(key, element) {
 	} else if (name === "rest") {
 		if (key === "y")       { toggleVisibility(id, line, field); }
 		else if (key === ";")  { toggleFermata(id, line, field); }
+		else if (key === "L")  { startNewBeam(element, line, field); }
+		else if (key === "J")  { endNewBeam(element, line, field); }
 	} else if (name === "dynam") {
 		if (key === "a")       { setDynamAboveMarker(id, line, field, number); }
 		else if (key === "b")  { setDynamBelowMarker(id, line, field, number); }
@@ -827,12 +829,9 @@ function addSlur(id, line, field) {
 	// FIX N number here later:
 	var ending = "-L" + (i+1) + "F" + field + "N" + 1;
 	newid += ending;
-	RestoreCursorNote = newid;
-	HIGHLIGHTQUERY = newid;
-
 	FreezeRendering = freezeBackup;
 	if (!FreezeRendering) {
-		displayNotation();
+		displayNotation(null, null, newid);
 	}
 	InterfaceSingleNumber = 1;
 }
@@ -2600,7 +2599,6 @@ function toggleMarkedNote(id, line, field, subfield) {
 //
 
 function addLocalCommentLineAboveCurrentPosition() {
-console.log("ADDING  LOCAL COMMENT LINE");
 	addNullLine("!");
 }
 
@@ -2614,7 +2612,6 @@ console.log("ADDING  LOCAL COMMENT LINE");
 //
 
 function addInterpretationLineAboveCurrentPosition() {
-console.log("ADDING  INTERPRETATION LINE");
 	addNullLine("*");
 }
 
@@ -2628,7 +2625,6 @@ console.log("ADDING  INTERPRETATION LINE");
 //
 
 function addDataLineAboveCurrentPosition() {
-console.log("ADDING  DATA LINE");
 	addNullLine(".");
 }
 
@@ -2676,46 +2672,52 @@ function addNullLine(token, row) {
 
 
 
-////////////////////
+//////////////////////////////
 //
-// startNewBeam --
+// getBeamParent -- Return the first element containing an id starting
+//   with "beam-" in the ancestors of the given element.
 //
 
-function startNewBeam(element, line, field) {
-	console.log("START NEW BEAM", element, "line", line, "field", field);
-	var parent = element.parentNode;
-	if (!parent) {
-		return;
-	}
-	var pid = parent.id;
-	if (!pid.match(/^beam/)) {
-		return;
-	}
-	var children = parent.querySelectorAll("#" + pid + " > g[id^='note']");
-	console.log("CHILDREN OF BEAM", children);
-	var targeti = -1;
-	for (var i=0; i<children.length; i++) {
-		if (children[i] === element) {
-			targeti = i;
-			break;
+function getBeamParent(element) {
+	var current = element.parentNode;
+	while (current) {
+		if (current.id.match(/^beam-/)) {
+			return current;
 		}
+		current = current.parentNode;
 	}
-	if (targeti < 0) {
-		return;
-	}
-	console.log("YOU CLICKED ON THE ", i+1, "NOTE");
+	return undefined;
 }
 
 
 
-////////////////////
+//////////////////////////////
 //
-// endNewBeam --
+// getBeamChild -- Return the direct child of a beam which contains this element.
 //
 
-function endNewBeam(element, line, field) {
-	console.log("END NEW BEAM", element, "line", line, "field", field);
-	var parent = element.parentNode;
+function getBeamChild(element) {
+	var current = element;
+	while (current) {
+		if (current.parentNode && current.parentNode.id.match(/^beam-/)) {
+			return current;
+		}
+		current = current.parentNode;
+	}
+	return undefined;
+}
+
+
+
+//////////////////////////////
+//
+// startNewBeam -- L: Splitting a beam into two pieces, with the current note
+//    starting a new beam, and the previous note ending the old beam.
+//
+
+function startNewBeam(element, line, field) {
+	var parent = getBeamParent(element);
+	var newelement = getBeamChild(element);
 	if (!parent) {
 		return;
 	}
@@ -2723,11 +2725,82 @@ function endNewBeam(element, line, field) {
 	if (!pid.match(/^beam/)) {
 		return;
 	}
-	var children = parent.querySelectorAll("#" + pid + " > g[id^='note']");
-	console.log("CHILDREN OF BEAM", children);
+	var selector = "#" + pid + " > g[id^='note']";
+	selector += ", #" + pid + " > g[id^='rest']";
+	selector += ", #" + pid + " > g[id^='chord']";
+	var children = parent.querySelectorAll(selector);
 	var targeti = -1;
 	for (var i=0; i<children.length; i++) {
-		if (children[i] === element) {
+		if (children[i] === newelement) {
+			targeti = i;
+			break;
+		}
+	}
+	if (targeti <= 0) {
+		// no need to start a new beam
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+
+	if (targeti == 1) {
+		// remove the beam on the first note of the original beam group
+		// and add a beam start on this note unless it is at the end 
+		// of the original beam group.
+		removeBeamInfo(children[0]);
+		if (children.length == 2) {
+			removeBeamInfo(children[1]);
+		} else {
+			addBeamStart(children[targeti]);
+		}
+	} else if (targeti < children.length - 1) {
+		addBeamStart(children[targeti]);
+		addBeamEnd(children[targeti-1]);
+	} else {
+		// remove the last note from the beam group
+		addBeamEnd(children[targeti-1]);
+		removeBeamInfo(children[targeti]);
+	}
+
+	EDITINGID = element.id;
+	RestoreCursorNote = element.id;
+
+	FreezeRendering = freezeBackup;
+	if (!FreezeRendering) {
+		displayNotation();
+	}
+	turnOffAllHighlights();
+	highlightIdInEditor(EDITINGID);
+}
+
+
+
+//////////////////////////////
+//
+// endNewBeam -- J: Splitting a beam into two pieces, with the current note
+//    ending the old beam, and the current note starting a new beam.
+//
+
+function endNewBeam(element, line, field) {
+	var parent = getBeamParent(element);
+	var newelement = getBeamChild(element);
+	if (!parent) {
+		return;
+	}
+	var pid = parent.id;
+	if (!pid.match(/^beam/)) {
+		return;
+	}
+	var selector = "#" + pid + " > g[id^='note']";
+	selector += ", #" + pid + " > g[id^='rest']";
+	selector += ", #" + pid + " > g[id^='chord']";
+	var children = parent.querySelectorAll(selector);
+	var targeti = -1;
+	for (var i=0; i<children.length; i++) {
+		if (children[i] === newelement) {
 			targeti = i;
 			break;
 		}
@@ -2735,7 +2808,112 @@ function endNewBeam(element, line, field) {
 	if (targeti < 0) {
 		return;
 	}
-	console.log("YOU CLICKED ON THE ", i+1, "NOTE");
+	if (children.length == 1) {
+		// strange: nothing to do
+		return;
+	}
+	if (targeti == children.length - 1) {
+		// already at the end of a beam, so nothing to do
+		return;
+	}
+
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+
+	if (targeti == 0) {
+		// remove the beam info from the 0th element and add to 1st
+		removeBeamInfo(children[0]);
+		addBeamStart(children[targeti+1]);
+	} else if (targeti == children.length - 2) {
+		// end current beam, and make next note out of a beam
+		removeBeamInfo(children[targeti+1]);
+		addBeamEnd(children[targeti]);
+	} else {
+		addBeamEnd(children[targeti]);
+		addBeamStart(children[targeti+1]);
+	}
+	EDITINGID = element.id;
+	RestoreCursorNote = element.id;
+
+	FreezeRendering = freezeBackup;
+	if (!FreezeRendering) {
+		displayNotation();
+	}
+	turnOffAllHighlights();
+	highlightIdInEditor(EDITINGID);
+}
+
+
+
+//////////////////////////////
+//
+// removeBeamInfo -- remove [JLKk] characters from given line and field taken
+//     from ID of input element.
+//
+
+function removeBeamInfo(element) {
+	if (!element) {
+		return;
+	}
+	var id = element.id;
+	var matches = id.match(/[^-]+-.*L(\d+).*F(\d+)/);
+	if (!matches) {
+		return;
+	}
+	var line = parseInt(matches[1]);
+	var field = parseInt(matches[2]);
+	var token = getEditorContents(line, field).replace(/[LJKk]+[<>]?/g, "");
+	setEditorContents(line, field, token, id, true);
+}
+
+
+
+//////////////////////////////
+//
+// addBeamStart -- remove [JLKk] characters from given line and field taken
+//     from ID of input element and place a "L" at the end of the token.
+//
+
+function addBeamStart(element) {
+	if (!element) {
+		return;
+	}
+	var id = element.id;
+	var matches = id.match(/[^-]+-.*L(\d+).*F(\d+)/);
+	if (!matches) {
+		return;
+	}
+	var line = parseInt(matches[1]);
+	var field = parseInt(matches[2]);
+	var token = getEditorContents(line, field).replace(/[LJKk]+[<>]?/g, "");
+	token += 'L';
+	setEditorContents(line, field, token, id, true);
+}
+
+
+
+//////////////////////////////
+//
+// addBeamEnd -- remove [JLKk] characters from given line and field taken
+//     from ID of input element and place a "J" at the end of the token.
+//
+
+function addBeamEnd(element) {
+	if (!element) {
+		return;
+	}
+	var id = element.id;
+	var matches = id.match(/[^-]+-.*L(\d+).*F(\d+)/);
+	if (!matches) {
+		return;
+	}
+	var line = parseInt(matches[1]);
+	var field = parseInt(matches[2]);
+	var token = getEditorContents(line, field).replace(/[LJKk]+[<>]?/g, "");
+	token += 'J';
+	setEditorContents(line, field, token, id, true);
 }
 
 

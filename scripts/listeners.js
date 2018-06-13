@@ -31,6 +31,22 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (input) {
 				input.innerHTML = "";
 			}
+			localStorage.setItem("AUTOSAVE", "");
+			localStorage.setItem("AUTOSAVE_DATE", 0);
+		}
+	}
+
+	var ctime = (new Date).getTime();
+	var otime = localStorage.getItem("AUTOSAVE_DATE");
+	var dur = ctime - otime;
+	var autosave = localStorage.getItem("AUTOSAVE");
+	if (!autosave) {
+		autosave = "";
+	}
+	if ((!autosave.match(/^\s*$/)) && (dur < 60000)) {
+		var input = document.querySelector("#input");
+		if (input) {
+			input.innerHTML = autosave;
 		}
 	}
 
@@ -696,3 +712,20 @@ function processInterfaceKeyCommand(event) {
 
 	}
 }
+
+
+
+//////////////////////////////
+//
+// beforeunload event -- save the text editor's content when exiting the window.
+//     This is useful if the window is left by accident, and allows the user
+//     to recover their data by loading VHV again within 24 hours.
+//
+
+window.addEventListener("beforeunload", function (event) {
+	localStorage.setItem("AUTOSAVE", EDITOR.getValue());
+	localStorage.setItem("AUTOSAVE_DATE", (new Date).getTime());
+});
+
+
+

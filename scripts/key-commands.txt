@@ -55,6 +55,7 @@ x	force display of accidental	/graphic/pitch
 '	toggle staccato	.
 -	toggle flat on note	/graphic/pitch
 ;	toggle fermata	.
+:	toggle arpeggio	.
 ^	toggle accent	.
 shft-^	toggle marcato	.
 `	toggle staccatissimo	.
@@ -96,6 +97,8 @@ c	clear tie orientation	.
 a	force beam above	.
 b	force beam below	.
 c	clear beam orientation	.
+L	break beam before current note	.
+J	break beam after current note	.
 
 <p><b> Repertories </b> (<a target="_blank" href="http://doc.verovio.humdrum.org/repertory">more info</a>) </p>
 

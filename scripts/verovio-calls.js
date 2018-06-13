@@ -90,6 +90,10 @@ function verovioCalls() {
 		} else {
 			var svg;
 			if (page) {
+				if (page > this.pageCount) {
+					page = 1;
+					this.page = 1;
+				}
 				svg = this.vrvToolkit.renderToSVG(page, {});
 			} else {
 				svg = this.vrvToolkit.renderData(data, opts);
