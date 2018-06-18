@@ -2987,6 +2987,10 @@ function saveEditorContentsLocally() {
 //
 
 function restoreEditorContentsLocally() {
+	// save current contents to 0th buffer
+	localStorage.setItem("SAVE0", EDITOR.getValue());
+	// reset interval timer of buffer 0 autosave here...
+
 	key = "SAVE" + InterfaceSingleNumber;
 	EDITOR.setValue(localStorage.getItem(key), -1);
 	InterfaceSingleNumber = 1;
