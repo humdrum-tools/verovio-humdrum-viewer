@@ -555,15 +555,25 @@ function processInterfaceKeyCommand(event) {
 
 		case RKey:          // reload Humdrum data from server
 			if (event.altKey) {
-				reloadData();
-				event.preventDefault();
+				if (event.shiftKey) {
+					restoreEditorContentsLocally();
+					event.preventDefault();
+				} else {
+					reloadData();
+					event.preventDefault();
+				}
 			}
 			break;
 
 		case SKey:          // save contents of text editor to file
 			if (event.altKey) {
-				saveEditorContents();
-				event.preventDefault();
+				if (event.shiftKey) {
+					saveEditorContentsLocally();
+					event.preventDefault();
+				} else {
+					saveEditorContents();
+					event.preventDefault();
+				}
 			}
 			break;
 
@@ -630,6 +640,18 @@ function processInterfaceKeyCommand(event) {
 			};
 			break;
 */
+
+		case ZeroKey:  InterfaceSingleNumber = 0; break;
+		case OneKey:   InterfaceSingleNumber = 1; break;
+		case TwoKey:   InterfaceSingleNumber = 2; break;
+		case ThreeKey: InterfaceSingleNumber = 3; break;
+		case FourKey:  InterfaceSingleNumber = 4; break;
+		case FiveKey:  InterfaceSingleNumber = 5; break;
+		case SixKey:   InterfaceSingleNumber = 6; break;
+		case SevenKey: InterfaceSingleNumber = 7; break;
+		case EightKey: InterfaceSingleNumber = 8; break;
+		case NineKey:  InterfaceSingleNumber = 9; break;
+
 		case SpaceKey:          // start/pause MIDI playback
 			if (!PLAY) {
 				playCurrentMidi();
@@ -726,6 +748,17 @@ window.addEventListener("beforeunload", function (event) {
 	localStorage.setItem("AUTOSAVE", EDITOR.getValue());
 	localStorage.setItem("AUTOSAVE_DATE", (new Date).getTime());
 });
+
+
+//////////////////////////////
+//
+// Autosave feature:  Save the contents of the editor every 60 seconds to
+//   local storage ("SAVE0")  Which can be recalled by typing 0 shift-R
+//   within one minute after reloading the VHV website.
+//
+
+setInterval(function() { localStorage.setItem("SAVE0", EDITOR.getValue()); }, 60000);
+
 
 
 

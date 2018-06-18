@@ -116,6 +116,7 @@ var WKey      = 87;
 var XKey      = 88;
 var YKey      = 89;
 var ZKey      = 90;
+var ZeroKey   = 48;
 var OneKey    = 49;
 var TwoKey    = 50;
 var ThreeKey  = 51;
@@ -2965,6 +2966,31 @@ function saveEditorContents() {
 	saveAs(blob, filename);
 }
 
+
+
+//////////////////////////////
+//
+// saveEditorContentsLocally -- Save the editor contents to localStorage.
+//
+
+function saveEditorContentsLocally() {
+	key = "SAVE" + InterfaceSingleNumber;
+	localStorage.setItem(key, EDITOR.getValue());
+	InterfaceSingleNumber = 1;
+}
+
+
+
+//////////////////////////////
+//
+// restoreEditorContentsLocally -- Restore the editor contents from localStorage.
+//
+
+function restoreEditorContentsLocally() {
+	key = "SAVE" + InterfaceSingleNumber;
+	EDITOR.setValue(localStorage.getItem(key), -1);
+	InterfaceSingleNumber = 1;
+}
 
 
 
