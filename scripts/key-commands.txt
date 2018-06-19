@@ -26,12 +26,12 @@ m	show MEI data	/commands/alt-m
 o	toggle original clefs	/commands/alt-o
 p	show source scan (if available)	/commands/alt-p
 r	reload file from server	.
-R	load from buffer 1	.
-#R	load from buffer 1-9	.
-0R	load buffer 0 (autosave)	.
+R	load from buffer 1	/interface/buffers
+#R	load from buffer 1-9	/interface/buffers
+0R	load buffer 0 (autosave)	/interface/buffers
 s	save to local file	.
-S	save to bufffer 1	.
-#S	save to bufffer 1-9	.
+S	save to bufffer 1	/interface/buffers
+#S	save to bufffer 1-9	/interface/buffers
 t	save PDF of current view	/commands/alt-t
 T	save complete PDF of current score	/commands/alt-t
 u	toggle CSV/TSV display of Humdrum data	/commands/alt-u
