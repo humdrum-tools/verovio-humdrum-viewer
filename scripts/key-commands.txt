@@ -26,7 +26,12 @@ m	show MEI data	/commands/alt-m
 o	toggle original clefs	/commands/alt-o
 p	show source scan (if available)	/commands/alt-p
 r	reload file from server	.
+R	load from buffer 1	/interface/buffers
+#R	load from buffer 1-9	/interface/buffers
+0R	load buffer 0 (autosave)	/interface/buffers
 s	save to local file	.
+S	save to bufffer 1	/interface/buffers
+#S	save to bufffer 1-9	/interface/buffers
 t	save PDF of current view	/commands/alt-t
 T	save complete PDF of current score	/commands/alt-t
 u	toggle CSV/TSV display of Humdrum data	/commands/alt-u
@@ -102,7 +107,7 @@ J	break beam after current note	.
 
 <p><b> Repertories </b> (<a target="_blank" href="http://doc.verovio.humdrum.org/repertory">more info</a>) </p>
 
-<nobr><a style="color: #cc5500 !important" href="/?file=chorales&k=e">270 J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
+<nobr><a style="color: #cc5500 !important" href="/?file=chorales&k=e">370 J.S. Bach chorales</a> (<a href="https://github.com/craigsapp/bach-371-chorales" target="gethub">GH</a>) (SATB layout)</nobr>
    <span style="margin-left:30px"><nobr>(<a href="/?file=chorales&filter=satb2gs&k=e">on grand staff</a>) (<a href="/?file=chorales&filter=satb2gs%7ctranspose%20-kc&k=e">Transposed to C</a>)</nobr></span>
    <span style="margin-left:30px"><nobr>(<a href="/?file=BachChoralesAnalyzed&filter=autobeam&k=ewwww">w/ harmony analyses</a>) 
 <nobr><a style="color: #cc5500 !important" href="?file=liederschatz1&k=e">200 Deutscher Liederschatz</a> (<a target="github" href="https://github.com/craigsapp/liederschatz">GH</a>)</nobr>

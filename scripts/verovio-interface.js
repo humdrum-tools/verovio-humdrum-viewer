@@ -82,6 +82,8 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 
 vrvInterface.prototype.createDefaultInterface = function (onReady) {
 
+/*  No longer needed?
+
 {% if site.local == "yes" %}
 	var url = '/scripts/local/verovio-toolkit.js';
 {% else %}
@@ -91,6 +93,18 @@ vrvInterface.prototype.createDefaultInterface = function (onReady) {
 	console.log("create default interface")
 	var vrv = this;
 	this.verovio = new verovioCalls();
+
+	var script = document.createEleent('script');
+	script.onload = function () {
+		vrv.verovio.vrvToolkit = new verovio.toolkit();
+		vrv.initialized = true;
+		onReady();
+	};
+	script.src = url;
+	document.head.appendChild(script);
+
+/* verovio toolkit is larger than allowed by localStorage (5 MB limit), so 
+ * using basket to store it between sessions is not useful to use:
 
 	basket
 	.require(
@@ -108,6 +122,11 @@ vrvInterface.prototype.createDefaultInterface = function (onReady) {
 			console.log("There was an error loading script", url);
 		}
 	);
+*/
+
+
+
+
 };
 
 
