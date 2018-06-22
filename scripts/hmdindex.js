@@ -29,8 +29,43 @@ function HMDIndex(contents) {
 //
 
 HMDIndex.prototype.clear = function() {
-	this.parameters = {};
-	this.items = [];
+	// parameters == list of key/value pairs extracted from
+	// Humdrum reference records in the input Humdurm data.
+	this.parameters   = {};
+
+	// items == list of files, groups, or dummy lines stored
+	// on data lines in the input Humdrum data.  These are 
+	// sorted by the sortkey field after loading the data.
+	this.items        = [];
+
+	// groupedItems == database of sortkey values for entries
+	// that are in groups (movements of a larger work).
+	this.groupedItems = {};
+
+	// sortIndex == database of entries indexed by sortkey value.
+	this.sortIndex    = {};
+};
+
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.setParameter -- Set a parameter.
+//
+
+HMDIndex.prototype.setParameter = function(key, value) {
+	this.parameters[key] = value;
+};
+
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.getParameter -- Get a parameter.
+//
+
+HMDIndex.prototype.getParameter = function(key) {
+	return this.parameters[key];
 };
 
 
@@ -47,6 +82,11 @@ HMDIndex.prototype.parse = function(contents) {
 	var exfound          = 0;
 	var index = {};
 	var lines = contents.match(/[^\r\n]+/g);
+	if (lines.length == 1) {
+		if (lines[0].match(/^https?:\/\//)) {
+			return this.parseURL(lines[0]);
+		}
+	}
 	var entry;
 	for (var i = 0; i<lines.length; i++) {
 		var line = lines[i];
@@ -55,7 +95,7 @@ HMDIndex.prototype.parse = function(contents) {
 		}
 		var matches = line.match(/^!!!([^!:\s]+)\s*:\s*(.*)\s*$/);
 		if (matches) {
-			this.parameters[matches[1]] = matches[2];
+			this.setParameter(matches[1], matches[2]);
 			continue;
 		}
 		if (line.match(/^!/)) {
@@ -100,15 +140,65 @@ HMDIndex.prototype.parse = function(contents) {
 
 		}
 		if (data[index["pdf"]]) {
-			pdfname = data[index["file"]];
+			pdfname = data[index["pdf"]];
 		}
 		if (data[index["description"]]) {
-			description = data[index["file"]];
+			description = data[index["description"]];
 		}
 
-		this.addEntry({filename:filename, sortkey:sortkey, available:available, pdfname:pdfname, description:description});
+		this.addEntry({filename:filename, 
+				sortkey:sortkey, 
+				available:available, 
+				pdfname:pdfname, 
+				description:description});
 	}
+
+	this.sortEntries();
+
+	console.log("PARSED", this);
+	console.log("HTML", this.generateHTML());
+	return this;
 };
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.sortEntries --
+//
+
+HMDIndex.prototype.sortEntries = function() {
+	this.items.sort(function(a, b) {
+		if (a.sortkey < b.sortkey) {
+			return -1;
+		} else if (a.sortkey > b.sortkey) {
+			return 1;
+		} else {
+			return 0;
+		}
+	});
+};
+
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.parseURL --
+//
+
+HMDIndex.prototype.parseURL = function(url) {
+	var that = this;
+	var request = new XMLHttpRequest();
+	request.open("GET", url);
+	request.onload = function() {
+		if (request.status == 200) {
+			that.parse(request.responseText);
+		} else {
+			reject("ERROR:", request.status);
+		}
+	}
+	request.send();
+};
+
 
 
 //////////////////////////////
@@ -122,6 +212,8 @@ HMDIndex.prototype.addEntry = function(object) {
 	var available   = object.available;
 	var pdfname     = object.pdfname;
 	var description = object.description;
+
+	var matches;
 
 	if ((!filename) || filename === ".") {
 		// require filename at a minimum
@@ -154,29 +246,106 @@ HMDIndex.prototype.addEntry = function(object) {
 	var directory = "";
 	var basename = "";
 	var extension = "";
-	var matches = filename.match(/(.*)\//);
-	if (matches) {
-		directory = matches[1];
-	}
-	matches = filename.match(/([^\/]+?)(\.[^\/.]*)?$/);
-	if (matches) {
-		extension = matches[2];
-		basename = matches[1];
+
+	var obj = {
+			sortkey:     sortkey,
+			description: description,
+			pdfname:     pdfname
+	};
+		
+	// THERE IS ALSO filename === "DUMMY" to implement.
+	if (filename.match(/^@/)) {
+		// this is a group, not a filename.  The group is a list
+		// of sortkeys of the items that form the group.
+		obj.group = filename.replace(/^@/, "").split(":");
+		for (var i=0; i<obj.group.length; i++) {
+			this.groupedItems[obj.group[i]] = true;
+		}
 	} else {
-		matches = filename.match(/([^\/]+)$/);
+		matches = filename.match(/(.*)\//);
 		if (matches) {
+			directory = matches[1];
+		}
+		matches = filename.match(/([^\/]+?)(\.[^\/.]*)?$/);
+		if (matches) {
+			extension = matches[2];
 			basename = matches[1];
+		} else {
+			matches = filename.match(/([^\/]+)$/);
+			if (matches) {
+				basename = matches[1];
+			}
+		}
+		obj.available = available;
+		obj.file = {
+			fullname:    filename, 
+			extension:   extension, 
+			directory:   directory, 
+			basename:    basename
 		}
 	}
 
-	this.items.push({
-			file:        {fullname:filename, extension:extension, directory:directory, basename:basename},
-			sortkey:     sortkey,
-			available:   available,
-			pdfname:     pdfname,
-			description: description
-		});
+	this.items.push(obj);
+	this.sortIndex[sortkey] = obj;
 }
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.generateHTML --
+//
+
+HMDIndex.prototype.generateHTML = function() {
+	var output = "";
+	for (var i=0; i<this.items.length; i++) {
+		var skey = this.items[i].sortkey;
+		if (this.groupedItems[skey] === true) {
+			continue;
+		}
+		if (this.items[i].file) {
+			output += this.generateFileHTML(this.items[i]);
+		} else if (this.items[i].group) {
+			output += this.generateGroupHTML(this.items[i]);
+		}
+		// print DUMMY item
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.generateFileHTML --
+//
+
+HMDIndex.prototype.generateFileHTML = function(entry) {
+	var output = "";
+	output += "<div class='entry'>\n";
+	output += entry.description;
+console.log("ENTRY", entry);
+	output += "</div>\n";
+	return output;
+};
+
+
+
+//////////////////////////////
+//
+// HMDIndex.prototype.generateGroupHTML --
+//
+
+HMDIndex.prototype.generateGroupHTML = function(entry) {
+	var output = "";
+	output += "<div class='group'>\n";
+	output += entry.description;
+	for (var i=0; i<entry.group.length; i++) {
+		var fileentry = this.sortIndex[entry.group[i]];
+		output += this.generateFileHTML(fileentry);
+	}
+	output += "</div>\n";
+	return output;
+};
 
 
 

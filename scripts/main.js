@@ -13,9 +13,10 @@
 var CGI = {};
 var OPTIONS = {}; // used for debugging display options.
 
-var content = "!!!github: https://github.com/craigsapp/mozart-piano-sonatas\n**file\nkern/sonata01-1.krn\n*-\n";
-var hmdindex = new HMDIndex(content);
-console.log("HMDINDEX", hmdindex);
+var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
+
+var hmdindex = new HMDIndex(turl);
+
 
 // verovio variables for a movement:
 var vrv;
