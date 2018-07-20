@@ -29,6 +29,8 @@
 * ***** END LICENSE BLOCK ***** */
 
 
+// Reference: https://cloud9-sdk.readme.io/docs/highlighting-rules
+
 
 //
 // syntax match Data           "^[^!\*]"            contains=BadTabbing,Chord
@@ -124,6 +126,9 @@ var HumdrumHighlightRules = function() {
 		}, {
 			token : ["barline", "invalid.tab"],
 			regex : /^(=.*)(\t+)$/
+		}, {
+			token : ["manip", "invalid.tab"],
+			regex : /^(\*[\*\t^xv+]+)(\t+)$/
 		}, {
 			token : "manip",
 			regex : /^(\*[\*\t^xv+]+)$/
