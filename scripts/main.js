@@ -13,8 +13,8 @@
 var CGI = {};
 var OPTIONS = {}; // used for debugging display options.
 
-#var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
-# var hmdindex = new HMDIndex(turl);
+// var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
+// var hmdindex = new HMDIndex(turl);
 
 // verovio variables for a movement:
 var vrv;
