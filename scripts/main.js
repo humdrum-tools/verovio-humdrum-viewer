@@ -1959,6 +1959,13 @@ function setupAceEditor(idtag) {
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
+	
+	// See this webpage to turn of certain ace editor shortcuts:
+   // https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js
+
+	// These are eating alt-l and alt-shift-l in VHV on linux:
+	EDITOR.commands.removeCommand("fold", true);
+	EDITOR.commands.removeCommand("unfold", true);
 
 	// best themes:
 	// kr_theme == black background, gray highlight, muted colorizing
