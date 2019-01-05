@@ -1022,7 +1022,7 @@ function loadKernScoresFile(obj, force) {
 			ret = kernScoresUrl(file, measures);
 			if (ret) {
 				url = ret.url;
-				key = ret.key;
+				key = ret.url;
 			}
 		}
 	} else if (obj.tasso) {
@@ -1127,17 +1127,27 @@ function getTassoUrl(file, measures) {
 function kernScoresUrl(file, measures) {
 	var location;
 	var filename;
+	var user = "" ;
+	var repository = "";
 	var matches;
 	var jrp = false;
+	var github = false;
 
-	if (matches = file.match(/^jrp:\/?\/?(.*)/)) {
+	if (matches = file.match(/^(j|jrp):\/?\/?(.*)/)) {
 		jrp = true;
-		file = matches[1];
+		file = matches[2];
+	} else if (matches = file.match(/^(g|gh|github):\/?\/?([^\/]+)\/([^\/]+)\/(.+)/)) {
+		github = true;
+		user = matches[2];
+		repository = matches[3];
+		file = matches[4];
 	}
 
 	if (jrp) {
 		filename = file;
 		location = "";
+	} else if (github) {
+		filename = file;
 	} else {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
 			location = matches[1];
@@ -1163,15 +1173,20 @@ function kernScoresUrl(file, measures) {
 	if (jrp) {
 		url = "http://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
 		url += "&a=humdrum";
+	} else if (github) {
+		url = "https://raw.githubusercontent.com/" + user + "/" + repository + "/master/" + filename;
 	} else {
 		url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 		url += "&format=info-json";
 	}
 
-	var key = location + "/" + filename;
-	if (measures) {
-		url += "&mm=" + measures;
-		key += "&mm=" + measures;
+	var key = "";
+	if (!github) {
+		key = location + "/" + filename;
+		if (measures) {
+			url += "&mm=" + measures;
+			key += "&mm=" + measures;
+		}
 	}
 
 	return {url: url, key: key};
