@@ -1074,6 +1074,10 @@ function loadKernScoresFile(obj, force) {
 					} catch(err) {
 						console.log("Error downloading", key, "Error:", err);
 						displayScoreTextInEditor(info.data, vrv.page);
+						if (CGI.k.match(/c/)) {
+							CGI.k = CGI.k.replace(/c/, "");
+							showCompiledFilterData();
+						}
 					}
 				} else {
 					console.log("Error retrieving", key);
