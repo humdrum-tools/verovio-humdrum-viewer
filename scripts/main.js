@@ -1090,6 +1090,10 @@ function loadKernScoresFile(obj, force) {
 			}
 		} catch(err) {
 			displayScoreTextInEditor(info.data, vrv.page);
+			if (CGI.k.match(/c/)) {
+				CGI.k = CGI.k.replace(/c/, "");
+				showCompiledFilterData();
+			}
 		}
 	}
 
@@ -1275,7 +1279,6 @@ function downloadKernScoresFile(file, measures, page) {
 		SAVEFILENAME = filename;
 		console.log("SAVEFILENAME - ", SAVEFILENAME);
 	}
-
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
@@ -1288,6 +1291,10 @@ function downloadKernScoresFile(file, measures, page) {
 
 			// https://ace.c9.io/#nav=api&api=editor
 			replaceEditorContentWithHumdrumFile(request.response, page);
+			if (CGI.k.match(/c/)) {
+				CGI.k = CGI.k.replace(/c/, "");
+				showCompiledFilterData();
+			}
 		}
 	});
 	request.send();
