@@ -31,7 +31,7 @@ function getTimemap() {
 		var map = vrvToolkit.renderToTimemap();
 		var data;
 		// verovio 2.0.0 switches from string output to parsed JSON object for .renderToTimemap()
-		if (typeof map === "string" || map instance of String) {
+		if (typeof map === "string" || map instanceof String) {
 			data = JSON.parse(map);
 		} else {
 			data = map;
