@@ -29,7 +29,13 @@ var REFRESH;
 function getTimemap() {
 	try {
 		var map = vrvToolkit.renderToTimemap();
-		var data = JSON.parse(map);
+		var data;
+		// verovio 2.0.0 switches from string output to parsed JSON object for .renderToTimemap()
+		if (typeof map === "string" || map instance of String) {
+			data = JSON.parse(map);
+		} else {
+			data = map;
+		}
 		TIMEMAP = data;
 		console.log(TIMEMAP);
 	} catch(err) {
