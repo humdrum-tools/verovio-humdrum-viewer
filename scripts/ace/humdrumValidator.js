@@ -199,7 +199,6 @@ function validateHumdrum_Process(hum, onError, onWarning) {
 
 	function process_indicators() {
 		var j, current, k, error, found, exchange, temp;
-
 		for (j = 0; j < interp.length; j++) {
 			current = interp[j];
 			switch(current.indicator) {
@@ -283,6 +282,7 @@ function validateHumdrum_Process(hum, onError, onWarning) {
 							interp.splice(j, 1);
 							current_no_of_spines--;
 						}
+						j = j - 1;
 					}
 					break;
 
