@@ -379,6 +379,7 @@ function humdrumToSvgOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
+		leftMarginClef		: 1.50,
 		humType           : 1,
 		font              : "Leipzig"
 

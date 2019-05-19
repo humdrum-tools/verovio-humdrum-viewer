@@ -581,11 +581,11 @@ function processInterfaceKeyCommand(event) {
 			// Needed functions are defined in _includes/pdfkit.html
 			if (event.altKey) {
 				if (event.shiftKey) {
-					if (typeof generatePdfSnapshot === "function") {
+					if (typeof generatePdfFull === "function") {
 						generatePdfFull();
 					}
 				} else {
-					if (typeof generatePdfFull === "function") {
+					if (typeof generatePdfSnapshot === "function") {
 						generatePdfSnapshot();
 					}
 				}
