@@ -1,6 +1,5 @@
 # Sets the website to use local javascript/css only.
 local: "true"
-#local: "false"
 
 
 # the preview server used. Leave as is.
