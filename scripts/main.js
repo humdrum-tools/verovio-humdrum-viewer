@@ -5,7 +5,7 @@
 // Filename:       main.js
 // Web Address:    http://verovio.humdrum.org/scripts/main.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
-// vim:            ts=3: ft=javascript
+// vim:            ts=3
 //
 // Description:   Event listeners and related code for index.html.
 //
@@ -234,7 +234,7 @@ function displayNotation(page, force, restoreid) {
 	};
 	var options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
-		options.inputFormat = "esac";
+		options.format = "esac";
 	};
 
 	OPTIONS = options;
@@ -363,7 +363,7 @@ function processOptions() {
 function humdrumToSvgOptions() {
 	var output = {
 
-		inputFormat       : "auto",
+		format            : "auto",
 		adjustPageHeight  : 1,
 		pageHeight        : 60000,
 		pageMarginLeft    : 20,
@@ -418,7 +418,7 @@ function humdrumToSvgOptions() {
 function humdrumToMeiOptions() {
 	return {
 
-		inputFormat       : "humdrum",
+		format            : "humdrum",
 		adjustPageHeight  : 1,
 		pageHeight        : 8000,
 		pageMarginLeft    : 20,
@@ -441,19 +441,19 @@ function humdrumToMeiOptions() {
 
 function humdrumToHumdrumOptions() {
 	return {
-		inputFormat       : "humdrum"
+		format            : "humdrum"
 	}
 }
 
 function musicxmlToHumdrumOptions() {
 	return {
-		inputFormat       : "musicxml-hum"
+		format            : "musicxml-hum"
 	}
 }
 
 function musicxmlToMeiOptions() {
 	return {
-		inputFormat       : "musicxml",
+		format            : "musicxml",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -461,7 +461,7 @@ function musicxmlToMeiOptions() {
 
 function meiToMeiOptions() {
 	return {
-		inputFormat       : "mei",
+		format            : "mei",
 		allPages          : 1,
 		breaks            : "encoded"
 	}
@@ -469,7 +469,7 @@ function meiToMeiOptions() {
 
 function meiToHumdrumOptions() {
 	return {
-		inputFormat       : "mei-hum",
+		format            : "mei-hum",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -477,7 +477,7 @@ function meiToHumdrumOptions() {
 
 function esacToHumdrumOptions() {
 	return {
-		inputFormat       : "esac"
+		format            : "esac"
 	}
 }
 
@@ -1347,7 +1347,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	}
 
 	if (options && !humdrumQ) {
-		if ((options.inputFormat == "musicxml") || (options.inputFormat == "musicxml-hum")) {
+		if ((options.format == "musicxml") || (options.format == "musicxml-hum")) {
 			vrv.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {

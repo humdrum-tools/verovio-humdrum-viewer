@@ -1707,7 +1707,9 @@ define("ace/mode/humdrum_worker", [], function(require, exports, module) {
 // {% include_relative humdrumValidator.js %}
 
 		hum = this.doc.getAllLines().map(function(line) {
-		return line.replace(/\r+$/, "").split("\t");
+		// [20190613: allow multiple tabs between spine fields]
+		return line.replace(/\r+$/, "").split(/\t+/);
+		// return line.replace(/\r+$/, "").split("\t");
 		});
 		validateHumdrum_Process(hum, error, warning);
 

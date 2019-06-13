@@ -11,12 +11,13 @@ function verovioCalls() {
 	//
 
 	this.validate = function (data) {
-console.log("GOT HERE VALIDATE");
 		if (data.charAt(0) == "<") {
 			return true;
 		}
 		var error = false,
-		hum = data.split("\n").map(function (l) { return l.split("\t") });
+		// [20190613: Allow multiple tabs between spine fields]
+		hum = data.split("\n").map(function (l) { return l.split(/\t+/) });
+		// hum = data.split("\n").map(function (l) { return l.split("\t") });
 		validateHumdrum_Process(hum, function () {
 			//break on error
 			error = true;
@@ -38,22 +39,21 @@ console.log("GOT HERE VALIDATE");
 	//
 
 	this.filterData = function (opts, data, type) {
-console.log("GOT HERE FILTERDATA");
 		var newdata;
 		var checkdata = true;
 		if (type !== "humdrum") {
 			checkdata = false;
 		}
-		if (opts.inputFormat === "musicxml") {
+		if (opts.format === "musicxml") {
 			checkdata = false;
 		}
-		if (opts.inputFormat === "mei") {
+		if (opts.format === "mei") {
 			checkdata = false;
 		}
-		if (opts.inputFormat === "musicxml-hum") {
+		if (opts.format === "musicxml-hum") {
 			checkdata = false;
 		}
-		if ((opts.inputFormat === "auto") && (type === "humdrum")) {
+		if ((opts.format === "auto") && (type === "humdrum")) {
 			checkdata = true;
 		}
 		if (checkdata) {
@@ -82,12 +82,9 @@ console.log("GOT HERE FILTERDATA");
 	//
 
 	this.displayNotation = function (opts, data, page, force) {
-console.log("GOT HERE GGGGG");
 		if (!force) this.validate(data);
 		page = page || this.page;
-console.log("INITIAL OPTIONS", opts);
 		cleanopts = cleanOptions(data, opts);
-console.log("NEW OPTIONS", cleanopts);
 		this.vrvToolkit.setOptions(cleanopts);
 		this.vrvToolkit.loadData(data);
 		this.pageCount = this.vrvToolkit.getPageCount();
@@ -150,7 +147,6 @@ console.log("NEW OPTIONS", cleanopts);
 	//
 
 	this.renderAllPages = function (data, opts) {
-console.log("GOT HERE RENDERALLPAGE");
 		var svglist = [];
 		if (!opts) {
 			opts = {};
@@ -175,7 +171,6 @@ console.log("GOT HERE RENDERALLPAGE");
 	//
 
 	this.gotoPage = function (page) {
-console.log("GOT HERE GOTOPAGE");
 		page = page || this.pageCount;
 		if (page < 1) {
 			page = this.pageCount;
@@ -197,7 +192,6 @@ console.log("GOT HERE GOTOPAGE");
 	//
 
 	this.getMEI = function () {
-console.log("GOT HERE GETMEI");
 		var meidata = this.vrvToolkit.getMEI(0, 1);
 		return meidata;
 	};
@@ -210,7 +204,6 @@ console.log("GOT HERE GETMEI");
 	//
 
 	this.renderToMidi = function () {
-console.log("GOT HERE RENDERTOMIDI");
 		var midi64 = this.vrvToolkit.renderToMIDI();
 		return midi64;
 	};
@@ -223,7 +216,6 @@ console.log("GOT HERE RENDERTOMIDI");
 	//
 
 	this.getElementsAtTime = function (vrvTime) {
-console.log("GOT HERE ELEMENTSATTIME");
 		var elements = this.vrvToolkit.getElementsAtTime(vrvTime);
 		return elements;
 	};
@@ -236,7 +228,6 @@ console.log("GOT HERE ELEMENTSATTIME");
 	//
 
 	this.getTimeForElement = function (id) {
-console.log("GOT HERE TIMEFORELEMENT");
 		var time = this.vrvToolkit.getTimeForElement(id);
 		return time;
 	};
@@ -248,7 +239,6 @@ console.log("GOT HERE TIMEFORELEMENT");
 	//
 
 	function cleanOptions(content, options) {
-console.log("GOT HERE  YYY");
 		var lines = content.match(/[^\r\n]+/g);
 		var output = options;
 		var setlist = [""];

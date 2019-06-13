@@ -27,7 +27,7 @@ define("ace/theme/humdrum_dark",["require","exports","module","ace/lib/dom"],fun
   .ace-humdrum-dark .ace_comment.ace_global {color: lightblue}\
   .ace-humdrum-dark .ace_comment.ace_layout {color: orange}\
   .ace-humdrum-dark .ace_barline {color: silver; background: rgba(255, 255, 255, 0.125)}\
-  .ace-humdrum-dark .ace_invalid.ace_tab {background-color: red}\
+//  .ace-humdrum-dark .ace_invalid.ace_tab {background-color: red}\
   .ace-humdrum-dark .ace_invalid.ace_space {background-color: cyan}\
   .ace-humdrum-dark .ace_kern.ace_note {color: white; font-weight:bold}\
   .ace-humdrum-dark .ace_kern.ace_other {color: tomato}\
