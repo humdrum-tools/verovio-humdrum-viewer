@@ -1,0 +1,65 @@
+
+<!-- vim: set ts=3: -->
+<title>Verovio Humdrum Viewer </title>
+<meta charset="UTF-8">
+
+<script src="scripts/FileSaver.js"></script>
+
+{% if site.local == "true" %}
+	<script src="scripts/local/basket.full.min.js"></script>
+	<script src="scripts/local/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+{% else %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+{% endif %}
+
+
+{% if site.local == "true" %}
+	<script src="scripts/local/ace.js" type="text/javascript" charset="utf-8"></script>
+{% else %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js">/script>
+{% endif %}
+
+
+<!-- preload ace modes to prevent visual glitch on first alt-m -->
+<script src="scripts/ace/mode-xml.js"></script>
+<script src="scripts/ace/mode-humdrum.js"></script>
+
+<script src="scripts/basket-session.js"></script>
+<script src="scripts/listeners.js"></script>
+<script src="scripts/drop.js"></script>
+<script src="scripts/verovio-calls.js"></script>
+<script src="scripts/verovio-interface.js"></script>
+<script src="scripts/hmdindex.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/menu.js"></script>
+<script src="scripts/editor.js"></script>
+<script src="scripts/timemap.js"></script>
+
+<script src="scripts/midiplayer.js"></script>
+
+<!-- downloaded by basket:
+<script src="scripts/midiplayer/wildwebmidi.js"></script>
+<script src="scripts/midiplayer/midiplayer.js"></script>
+-->
+
+{% if site.local == "true" %}
+	<script src="/scripts/local/bootstrap.min.js"></script>
+{% else %}
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endif %}
+<link rel="stylesheet" href="/styles/bootstrap.min.css" type="text/css" />
+
+{% include pdfkit.html %}
+
+<link rel="stylesheet" href="styles/w3.css"/>
+<link rel="stylesheet" href="styles/styles.css"/>
+<link rel="stylesheet" href="styles/midiplayer.css"/>
+<link rel="stylesheet" href="styles/stdtheme.css"/>
+{% if site.local == "true" %}
+	<link rel="stylesheet href="styles/local/bootstrap.min.css"/>
+{% else %}
+	<link rel="stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+{% endif %}
+
+

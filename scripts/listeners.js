@@ -424,6 +424,7 @@ function processNotationKeyCommand(event) {
 
 
 function processInterfaceKeyCommand(event) {
+	console.log("EVENT", event);
 
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };

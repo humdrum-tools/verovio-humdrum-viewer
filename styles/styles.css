@@ -3,6 +3,10 @@ body.waiting * {
 	cursor: progress;
 }
 
+body {
+	/* prevent accidentally leaving page in chrome */
+	overscroll-behavior-x: none;
+}
 
 body {
 	background: #fffcf1;
@@ -165,19 +169,20 @@ div#dropArea {
 
 
 #topnav {
-	z-index: 10;
+	z-index: 200;
+	position: relative;
 }
 
 
 .topnav {
-	z-index: 10;
-	position:relative;
+	z-index: 200;
+	position: relative;
 	font-size: 17px;
 	background-color: #01313f;
 	color: #30edf7;
 	width:100%;
 	padding:0;
-	letter-spacing:1px;
+	/* letter-spacing:1px; */
 }
 
 
@@ -273,7 +278,7 @@ div#index {
 
 #output {
 	position: fixed;
-	top: 44px;
+	top: 64px;
 	left: 415px;
 	right: 0;
 	bottom: 0;
@@ -281,13 +286,11 @@ div#index {
 	z-index: 2;
 }
 
-textarea#input {
+#input {
 	font-size: 1rem;
-	width: 150px;
-	height: 300px;
+	width: 400px;
 	min-width: 0;
 	min-height: 0;
-	background: #f3f3f3;
 	margin-right: 10px;
 }
 
@@ -467,3 +470,80 @@ body.frozen #output, body.frozen #splitter, body.frozen {
 body.invalid #output, body.invalid #splitter, body.invalid {
 	background: #ffe0e0
 }
+
+.w3-navbar {
+
+	overflow: visible !important;
+}
+
+.w3-navbar li:hover, .w3-navbar li a:hover {
+	background: none;
+	color: white;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	background: none;
+}
+
+.nav>li>a:hover {
+	color: white;
+}
+
+
+.menu-item {
+	width: auto;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #28292b;
+	white-space: nowrap;
+	padding: 8px 16px;
+	cursor: pointer;
+}
+
+.menu-item:hover {
+	color: #aa3355;
+}
+
+span.gh {
+	display: block;
+	color: black;
+	float: right;
+	cursor: pointer;
+	
+}
+
+
+span.gh:before {
+	content: "(";
+}
+span.gh:after {
+	content: ")";
+}
+
+span.gh a {
+	display: inline;
+	padding: 0;
+}
+
+
+span.gh a:hover {
+	color: #aa3355;
+}
+
+div.menu-heading {
+	color: black;
+	font-weight: bold;
+	white-space: pre;
+	padding: 4px 16px;
+}
+
+div.menu-heading a:hover {
+	color: #aa3355;
+}
+
+table.menu tr:hover {
+	background: #f3f3f3;
+}
+
+

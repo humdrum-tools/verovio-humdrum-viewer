@@ -3887,5 +3887,3 @@ function turnOffAllHighlights() {
 	}
 }
 
-
-

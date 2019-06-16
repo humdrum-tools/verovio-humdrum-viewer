@@ -1,0 +1,90 @@
+<!-- this menu system requires including
+
+<script src="/scripts/bootstrap.min.js"></script> 
+<link rel="stylesheet" href="/styles/bootstrap.min.css" type="text/css" />
+
+-->
+
+<style>
+#primary-nav a.dropdown-toggle {
+	color: #888888 !important;
+	margin-top: 5px;
+	padding: 3px 16px;
+}
+
+</style>
+
+<div role="navigation">
+   <div id="primary-nav">
+      <ul style="margin-top:-15px; padding:0;" class="nav navbar-nav" aria-label="primary navigation">
+
+         <li id="nav-1">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><div class="menu-item" onclick="saveTextEditorContents()">Save</div></li>
+            </ul>
+         </li>
+
+         <li id="nav-2">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><div class="menu-item" onclick="applyFilter('autostem')">Add note stems</div></li>
+               <li><div class="menu-item" onclick="applyFilter('autostem -r')">Remove note stems</div></li>
+               <li><div class="menu-item" onclick="applyFilter('extract -I text')">Remove lyric text</div></li>
+            </ul>
+         </li>
+
+         <li id="nav-3">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">View<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><div class="menu-item" onclick="toggleDataDisplay()">Toggle data display</div></li>
+               <li><div class="menu-item" onclick="fitTabSizeToData()">Auto tab width</div></li>
+               <li><div class="menu-item" onclick="increaseTabSize()">Increase tab width</div></li>
+               <li><div class="menu-item" onclick="decreaseTabSize()">Decrease tab width</div></li>
+               <li><div class="menu-item" onclick="applyFilter('tabber')">Add spacing tabs</div></li>
+               <li><div class="menu-item" onclick="applyFilter('tabber -r')">Remove spacing tabs</div></li>
+            </ul>
+         </li>
+
+         <li id="nav-4">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Scores<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('chorales')">Bach 370 chorales</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/bach-370-chorales">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('beethoven/sonatas')">Beethoven piano sonatas</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('beethoven/quartets')">Beethoven string quartets</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/beethoven-string-quartets">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('chopin/mazurkas')">Chopin mazurkas</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/chopin-mazurkas">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('joplin')">Joplin</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/joplin-rags">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('mozart/sonatas')">Mozart piano sonatas</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a></span></td></tr></table></li>
+               <li><div class="menu-heading"><a target="_blank" href="http://www.tassomusic.org">Tasso in Music Project</a></div></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('tmp')">Rime settings (1570&ndash;1640)</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/TassoInMusicProject/tasso-scores/tree/master/Trm/kern">GH</a></span></td></tr></table></li>
+               <li><div class="menu-heading"><a target="_blank" href="http://josquin.stanford.edu">Josquin Research Project</a></div></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('jrp/Jos')">Josquin des Prez (<i>c</i>1450&ndash;1521)</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/josquin-research-project/Jos">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('jrp/Ock')">Johannes Ockeghem (<i>c</i>c1420&ndash;1497)</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/josquin-research-project/Ock">GH</a></span></td></tr></table></li>
+               <li><table class="menu"><tr><td><span class="menu-item" onclick="loadRepertory('jrp/Rue')">Pierre de la Rue(1452&ndash;1518)</span></td><td style="width:100%; padding-right:4px;"><span class="gh"><a target="_blank" href="https://github.com/josquin-research-project/Ock">GH</a></span></td></tr></table></li>
+            </ul>
+         </li>
+
+         <li id="nav-5">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><div class="menu-item" onclick="applyFilter('dissonant --color2')">Dissonance labels</div></li>
+            </ul>
+         </li>
+
+         <li id="nav-6">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><div class="menu-item" onclick="openUrl('https://doc.verovio.humdrum.org')">Documentation</div></li>
+            </ul>
+         </li>
+
+<!--
+single-entry example:
+         <li id="nav-3"> <a href="/performers">Performers</a> </li>
+-->
+
+      </ul>
+   </div>
+</div>
+
+
