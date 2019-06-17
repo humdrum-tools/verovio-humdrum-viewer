@@ -1,0 +1,93 @@
+
+/* 
+ * Stylings for top menu in navigation bar
+ */
+
+#primary-nav a.dropdown-toggle {
+	color: #888888 !important;
+	margin-top: 5px;
+	padding: 3px 16px;
+}
+
+.w3-navbar {
+
+	overflow: visible !important;
+}
+
+.w3-navbar li:hover, .w3-navbar li a:hover {
+	background: none;
+	color: white;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	background: none;
+}
+
+.nav>li>a:hover {
+	color: white;
+}
+
+
+.menu-item {
+	width: auto;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #28292b;
+	white-space: nowrap;
+	padding: 8px 16px;
+	cursor: pointer;
+}
+
+.menu-item:hover {
+	color: #aa3355;
+}
+
+span.gh {
+	display: block;
+	color: black;
+	float: right;
+	cursor: pointer;
+	
+}
+
+
+span.gh:before {
+	content: "(";
+}
+span.gh:after {
+	content: ")";
+}
+
+span.gh a {
+	display: inline;
+	padding: 0;
+}
+
+
+span.gh a:hover {
+	color: #aa3355;
+}
+
+div.menu-heading {
+	color: black;
+	font-weight: bold;
+	white-space: pre;
+	padding: 4px 16px;
+}
+
+div.menu-heading a:hover {
+	color: #aa3355;
+}
+
+table.menu tr:hover {
+	background: #f3f3f3;
+}
+
+
+td.gh-cell {
+	width:100%; 
+	padding-right:4px;
+}
+
+
