@@ -3887,3 +3887,18 @@ function turnOffAllHighlights() {
 	}
 }
 
+
+
+//////////////////////////////
+//
+// hideRepertoryIndex -- 
+//
+
+function hideRepertoryIndex() {
+	var element = document.querySelector("#index");
+	if (element) {
+		element.style.visibility = "hidden";
+	}
+}
+
+

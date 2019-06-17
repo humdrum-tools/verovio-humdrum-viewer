@@ -732,6 +732,12 @@ function processInterfaceKeyCommand(event) {
 				toggleHelpMenu();
 				event.preventDefault();
 			}
+			break;
+
+		case EscKey:
+			hideRepertoryIndex();
+			event.preventDefault();
+			break;
 
 	}
 }
