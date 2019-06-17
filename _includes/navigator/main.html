@@ -21,7 +21,9 @@
          <li id="nav-1">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><div class="menu-item" onclick="saveTextEditorContents()">Save</div></li>
+               <li><div class="menu-item" onclick="saveTextEditorContents()">Save editor contents</div></li>
+               <li><div class="menu-item" onclick="createPdf()">Create PDF</div></li>
+               <li><div class="menu-item" onclick="createPdfPage()">Create PDF of current view</div></li>
             </ul>
          </li>
 
@@ -39,11 +41,14 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">View<b class="caret"></b></a>
             <ul class="dropdown-menu">
                <li><div class="menu-item" onclick="toggleDataDisplay()">Toggle data display</div></li>
+               <li><div class="menu-item" onclick="increaseNotationSpacing()">Increase notation spacing</div></li>
+               <li><div class="menu-item" onclick="decreaseNotationSpacing()">Decrease notation spacing</div></li>
                <li><div class="menu-item" onclick="fitTabSizeToData()">Auto tab width</div></li>
                <li><div class="menu-item" onclick="increaseTabSize()">Increase tab width</div></li>
                <li><div class="menu-item" onclick="decreaseTabSize()">Decrease tab width</div></li>
                <li><div class="menu-item" onclick="applyFilter('tabber')">Add spacing tabs</div></li>
                <li><div class="menu-item" onclick="applyFilter('tabber -r')">Remove spacing tabs</div></li>
+               <li><div class="menu-item" onclick="showSourceScan()">Show source scan (when available)</div></li>
             </ul>
          </li>
 

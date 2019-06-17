@@ -37,6 +37,78 @@ function saveTextEditorContents() {
 
 //////////////////////////////
 //
+// showSourceScan --
+//
+
+function showSourceScan() {
+	var event = {};
+	event.keyCode = PKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// createPdf --
+//
+
+function createPdf() {
+	var event = {};
+	event.keyCode = TKey;
+	event.altKey = true;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// createPdfPage --
+//
+
+function createPdfPage() {
+	var event = {};
+	event.keyCode = TKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// increaseNotationSpacing --
+//
+
+function increaseNotationSpacing() {
+	var event = {};
+	event.keyCode = WKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// decreaseNotationSpacing --
+//
+
+function decreaseNotationSpacing() {
+	var event = {};
+	event.keyCode = WKey;
+	event.altKey = true;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
 // applyFilter --
 //
 
@@ -129,7 +201,7 @@ function fitTabSizeToData() {
 				continue;
 			}
 			if (line[j].length > max) {
-				max = line[j].length + 2;
+				max = line[j].length + 3;
 			}
 		}
 	}
