@@ -417,24 +417,26 @@ function processNotationKeyCommand(event) {
 }
 
 
+
 //////////////////////////////
 //
 // keydown event listener -- Interface control listener.
 //
 
-
 function processInterfaceKeyCommand(event) {
-	console.log("EVENT", event);
+	console.log("KEY DOWN EVENT", event);
 
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
 	}
 
 	if ((!event.altKey) && (event.target.nodeName == "TEXTAREA")) {
+console.log("GOT HERE AAA");
 		// needed to prevent key commands when editing text
 		return;
 	}
 	if ((!event.altKey) && (document.activeElement.nodeName == "INPUT")) {
+console.log("GOT HERE BBB");
 		// needed to prevent key commands when running vim command
 		return;
 	}
@@ -442,6 +444,7 @@ function processInterfaceKeyCommand(event) {
 	if (event.metaKey) {
 		return;
 	}
+console.log("GOT HERE CCC keycode:", event.keyCode);
 
 	switch (event.keyCode) {
 

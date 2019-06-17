@@ -902,7 +902,7 @@ function displayIndexFinally(index, location) {
 	if (InputVisible == true) {
 		UndoHide = true;
 		ApplyZoom = true;
-		hideInputArea(true);
+		// hideInputArea(true);
 	}
 
 	var lines = index.split(/\r?\n/);
@@ -1056,12 +1056,10 @@ function loadKernScoresFile(obj, force) {
 				execute: false
 			}
 		).then(function() {
-				// console.log("X Downloaded", key);
 				info = basketSession.get(key);
 				if (info) {
 					try {
 						jinfo = JSON.parse(info.data);
-						// console.log("NEW JSON INFO", jinfo);
 						if (force) {
 							var textdata = atob(jinfo.content);
 							if (textdata.match(/^\s*$/)) {
@@ -1087,7 +1085,6 @@ function loadKernScoresFile(obj, force) {
 				console.log("Error retrieving", key);
 			});
 	} else {
-		// console.log("Already have", key);
 		try {
 			jinfo = JSON.parse(info.data);
 			if (getnext) {
@@ -3896,8 +3893,15 @@ function turnOffAllHighlights() {
 
 function hideRepertoryIndex() {
 	var element = document.querySelector("#index");
-	if (element) {
-		element.style.visibility = "hidden";
+	if (element && (element.style.display != "none")) {
+		element.style.display = "none";
+		// element.style.visibility = "hidden";
+		var output = document.querySelector("#output");
+		if (output) {
+			console.log("FOCUSING ON OUTPUT");
+			output.focus();
+		}
+		ShowingIndex = 0;
 	}
 }
 
