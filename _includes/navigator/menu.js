@@ -8,15 +8,20 @@
 // loadRepertory --
 //
 
-function loadRepertory(repertory) {
+function loadRepertory(repertory, filter) {
 	console.log("GOING TO LOAD REPERTORY", repertory);
-	loadKernScoresFile(
-		{
+	var options = {
 			file: repertory,
 			next: true,
 			previous: true
 		}
-	);
+	if (filter) {
+		options.filter = filter;
+		CGI.filter = filter;
+	} else {
+		CGI.filter = "";
+	}
+	loadKernScoresFile(options);
 }
 
 
@@ -29,6 +34,34 @@ function loadRepertory(repertory) {
 function saveTextEditorContents() {
 	var event = {};
 	event.keyCode = SKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// compileEmbeddedFilters --
+//
+
+function compileEmbeddedFilters() {
+	var event = {};
+	event.keyCode = CKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// clearEditorContents --
+//
+
+function clearEditorContents() {
+	var event = {};
+	event.keyCode = EKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -116,7 +149,6 @@ function applyFilter(text) {
 	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 	var options = humdrumToSvgOptions();
 	var data = contents + "\n!!!filter: " + text + "\n";
-
 	vrv.filterData(options, data, "humdrum")
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
@@ -136,12 +168,85 @@ function applyFilter(text) {
 
 //////////////////////////////
 //
+// insertLocalCommentLine --
+//
+
+function insertLocalCommentLine() {
+	var event = {};
+	event.keyCode = LKey;
+	event.shiftKey = true;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// insertNullDataLine --
+//
+
+function insertNullDataLine() {
+	var event = {};
+	event.keyCode = DKey;
+	event.shiftKey = true;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// insertInterpretationLine --
+//
+
+function insertInterpretationLine() {
+	var event = {};
+	event.keyCode = IKey;
+	event.shiftKey = true;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
 // toggleDataDisplay --
 //
 
 function toggleDataDisplay() {
 	var event = {};
 	event.keyCode = YKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// toggleLogoDisplay --
+//
+
+function toggleLogoDisplay() {
+	var event = {};
+	event.keyCode = BKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// toggleLayerHighlighting --
+//
+
+function toggleLayerHighlighting() {
+	var event = {};
+	event.keyCode = LKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -220,8 +325,11 @@ function fitTabSizeToData() {
 // openURL -- opens in a new tab.
 //
 
-function openUrl(url) {
-	window.open(url, "_blank");
+function openUrl(url, target) {
+	if (!target) {
+		target = "_blank";
+	}
+	window.open(url, target);
 }
 
 

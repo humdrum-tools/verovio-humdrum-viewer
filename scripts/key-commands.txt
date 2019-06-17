@@ -1,6 +1,3 @@
-Also see the <a target="_doc" href="http://doc.verovio.humdrum.org" target="_blank">full documentation</a>,
-or click red commands for their doc.
-<br>
 
 <p><b> Navigation commands <b>
 
@@ -9,19 +6,13 @@ or click red commands for their doc.
 <i>home</i>	go to first page	.
 <i>end</i>	go to last page	.
 <i>space</i>	start/stop score playback	.
-< >	+/&ndash; tab size in editor	.
-<nobr>shft-&larr;/&rarr;</nobr>	next/previous work	.
-shft-&uarr;	go back to repertory index	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-b	show/hide logo	/commands/alt-b
 c	compile filters	/commands/alt-c
-e	erase score	/commands/alt-e
 f	(un)freeze dynamic notation	/commands/alt-f
 g	display SVG text for current page	/commands/alt-g
 h	show Humdrum data	.
-l	toggle layer coloring	/commands/alt-l
 m	show MEI data	/commands/alt-m
 o	toggle original clefs	/commands/alt-o
 p	show source scan (if available)	/commands/alt-p
@@ -32,13 +23,8 @@ R	load from buffer 1	/interface/buffers
 s	save to local file	.
 S	save to bufffer 1	/interface/buffers
 #S	save to bufffer 1-9	/interface/buffers
-t	save PDF of current view	/commands/alt-t
-T	save complete PDF of current score	/commands/alt-t
 u	toggle CSV/TSV display of Humdrum data	/commands/alt-u
 v	toggle vi/plain editor	/commands/alt-v
-w	widen note spacing
-W	narrow note spacing
-y	show/hide data editor	.
 ,	toggle CSV/TSV display of data	.
 
 <p><b> Note editing commands </b></p>
@@ -112,22 +98,9 @@ J	break beam after current note	.
    <span style="margin-left:30px"><nobr>(<a href="/?file=BachChoralesAnalyzed&filter=autobeam&k=ewwww">w/ harmony analyses</a>) 
 <nobr><a style="color: #cc5500 !important" href="?file=liederschatz1&k=e">200 Deutscher Liederschatz</a> (<a target="github" href="https://github.com/craigsapp/liederschatz">GH</a>)</nobr>
    <span style="margin-left:30px"> (<a href="?file=liederschatz1&k=e&filter=extract%20-k3">vocal part</a>) (<a href="?file=liederschatz1&k=e&filter=extract%20-k1-2">piano part</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=mozart/sonatas&k=e">17 Mozart piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>)</nobr>
 <nobr><a style="color: #cc5500 !important" href="/?file=users/craig/dice/mozart/cda/realized&filter=autobeam&k=e">100 Contradances</a> (Mozart K<sup>6</sup> Anh. C30.01)</nobr>
    <nobr><span style="margin-left:30px"> (<a href="?file=users/craig/dice/mozart/cda/measures">measures</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=beethoven/sonatas&k=e">32 Beethoven piano sonatas</a> (<a target="github" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=beethoven/quartets&k=e">16 Beethoven string quartets</a> (<a target="github" href="https://github.com/craigsapp/beethoven-quartets">GH</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=chopin/mazurkas&k=e">56 Chopin mazurkas</a> (<a target="github" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=hummel/preludes&k=e">24 Hummel preludes, op 67</a> (<a target="github" href="https://github.com/craigsapp/hummel-preludes">GH</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=joplin&k=e">54 Joplin rags</a> (<a target="github" href="https://github.com/craigsapp/joplin-rags">GH</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=tmp&k=e">19 Tasso rime settings</a> (<a target="github" href="https://github.com/TassoInMusicProject/tasso-scores">GH</a>, <a target="tmp" href="http://tmp.tassomusic.org">TMP</a>)</nobr>
 <nobr><a style="color: #cc5500 !important" href="/?file=jrp/Jos&k=e">300 works by Josquin des Prez</a> (<a target="github" href="https://github.com/josquin-research-project/Jos">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
    <span style="margin-left:30px"> (<a href="?file=jrp/Joa&k=e">secure attribution</a>) (<a href="?file=jrp/Job&k=e">not secure</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Ock&k=e">44 works by Johannes Ockeghem</a> (<a target="github" href="https://github.com/josquin-research-project/Ock">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Rue&k=e">78 works by Pierre de la Rue</a> (<a target="github" href="https://github.com/josquin-research-project/Rue">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Ort&k=e">23 works by Mabrianus de Orto</a> (<a target="github" href="https://github.com/josquin-research-project/Ort">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Bus&k=e">66 works by Antoine Busnoys</a> (<a target="github" href="https://github.com/josquin-research-project/Bus">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Duf&k=e">19 works by Guillaume Du Fay</a> (<a target="github" href="https://github.com/josquin-research-project/Duf">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Jap&k=e">22 works by Jean Japart</a> (<a target="github" href="https://github.com/josquin-research-project/Jap">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
-<nobr><a style="color: #cc5500 !important" href="/?file=jrp/Obr&k=e">15 works by Jacob Obrecht</a> (<a target="github" href="https://github.com/josquin-research-project/Obr">GH</a>, <a target="jrp" href="http://josquin.stanford.edu">JRP</a>)</nobr>
+
 

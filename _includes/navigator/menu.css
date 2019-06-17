@@ -35,7 +35,7 @@
 	line-height: 1.6;
 	color: #28292b;
 	white-space: nowrap;
-	padding: 8px 16px;
+	padding: 3px 16px;
 	cursor: pointer;
 }
 
@@ -43,37 +43,57 @@
 	color: #aa3355;
 }
 
-span.gh {
+span.gh, span.web {
 	display: block;
 	color: black;
-	float: right;
+	/* float: right; */
 	cursor: pointer;
-	
+}
+
+span.shortcut {
+	display: block;
+	font-style: italic;
+	color: #aaaaaa;
+	cursor: pointer;
+}
+
+span.filter {
+	display: block;
+	color: limegreen;
+	cursor: pointer;
+}
+
+span.shortcut a:hover, span.filter a:hover {
+	color: #aa3355;
 }
 
 
-span.gh:before {
+span.gh:before, span.web:before {
 	content: "(";
+	white-space: nowrap;
 }
-span.gh:after {
+span.gh:after, span.web:after {
 	content: ")";
+	white-space: nowrap;
 }
 
-span.gh a {
+span.gh a, span.web a {
 	display: inline;
 	padding: 0;
 }
 
 
-span.gh a:hover {
+span.gh a:hover, span.web a:hover {
 	color: #aa3355;
 }
 
 div.menu-heading {
 	color: black;
 	font-weight: bold;
-	white-space: pre;
-	padding: 4px 16px;
+	white-space: nowrap;
+	font-size: 110%;
+	padding: 0;
+	display: inline;
 }
 
 div.menu-heading a:hover {
@@ -84,6 +104,25 @@ table.menu tr:hover {
 	background: #f3f3f3;
 }
 
+table.menu td:first-child {
+	width: 100%;
+}
+
+table.menu tr {
+	white-space: nowrap;
+}
+
+table.menu a {
+	padding: 3px 16px;
+}
+
+table.menu .gh a, table.menu .shortcut a, table.menu .filter a, table.menu .web a {
+	padding: 0;
+}
+
+table.menu .shortcut a, table.menu .filter a {
+	padding-right: 4px;
+}
 
 td.gh-cell {
 	width:100%; 
