@@ -1,0 +1,48 @@
+<!-- 
+This is the contents of the "Note" menu entry in the top menu.
+This file is included into menu/main.html
+-->
+
+<!-- 
+	vim: ts=2:nowrap
+-->
+
+
+<span class="menu-name nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Note
+</span>
+
+<ul class="dropdown-menu">
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Stems</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-stem.html %}
+		</ul>
+	</li>
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Accidentals</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-accidental.html %}
+		</ul>
+	</li>
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Articulations</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-articulation.html %}
+		</ul>
+	</li>
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Ornaments</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-ornament.html %}
+		</ul>
+	</li>
+
+</ul>
+
+
+

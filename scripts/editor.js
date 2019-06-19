@@ -80,6 +80,7 @@ function processNotationKey(key, element) {
 
 
 	if (key === "esc") {
+		MENU.hideContextualMenus();
 		HIGHLIGHTQUERY = "";
 		if (!element) {
 			return;

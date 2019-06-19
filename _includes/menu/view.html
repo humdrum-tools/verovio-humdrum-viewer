@@ -8,7 +8,7 @@ This file is included into menu/main.html
 -->
 
 
-<span class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="menu-name nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	View
 </span>
 
@@ -18,7 +18,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="toggleDataDisplay()">Toggle text display</span>
+					<span class="menu-item" onclick="MENU.toggleDataDisplay()">Toggle text display</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -33,7 +33,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="toggleLayerHighlighting()">Toggle layer highlighting</span>
+					<span class="menu-item" onclick="MENU.toggleLayerHighlighting()">Toggle layer highlighting</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -48,7 +48,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="increaseNotationSpacing()">Increase notation spacing</span>
+					<span class="menu-item" onclick="MENU.increaseNotationSpacing()">Increase notation spacing</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -63,7 +63,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="decreaseNotationSpacing()">Decrease notation spacing</span>
+					<span class="menu-item" onclick="MENU.decreaseNotationSpacing()">Decrease notation spacing</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -74,13 +74,13 @@ This file is included into menu/main.html
 		</table>
 	</li>
 
-	<li><div class="menu-item" onclick="fitTabSizeToData()">Auto tab width &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+	<li><div class="menu-item" onclick="MENU.fitTabSizeToData()">Auto tab width &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
 
 	<li>
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="increaseTabSize()">Increase tab width</span>
+					<span class="menu-item" onclick="MENU.increaseTabSize()">Increase tab width</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -95,7 +95,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="decreaseTabSize()">Decrease tab width</span>
+					<span class="menu-item" onclick="MENU.decreaseTabSize()">Decrease tab width</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -106,15 +106,15 @@ This file is included into menu/main.html
 		</table>
 	</li>
 
-	<li><div class="menu-item" onclick="applyFilter('tabber')">Add spacing tabs</div></li>
+	<li><div class="menu-item" onclick="MENU.applyFilter('tabber')">Add spacing tabs</div></li>
 
-	<li><div class="menu-item" onclick="applyFilter('tabber -r')">Remove spacing tabs</div></li>
+	<li><div class="menu-item" onclick="MENU.applyFilter('tabber -r')">Remove spacing tabs</div></li>
 
 	<li>
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="showSourceScan()">Show source scan (when avail.)</span>
+					<span class="menu-item" onclick="MENU.showSourceScan()">Show source scan (when avail.)</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -129,7 +129,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="toggleLogoDisplay()">Toggle VHV logo</span>
+					<span class="menu-item" onclick="MENU.toggleLogoDisplay()">Toggle VHV logo</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -139,4 +139,47 @@ This file is included into menu/main.html
 			</tr>
 		</table>
 	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.toggleCsvTsv()">Toggle CSV/TSV Humdrum display</span>
+				</td>
+				<td class="shortcut-cell"">
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.toggleVimPlainTextMode()">Toggle vi/plain text editor mode</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/commands/alt-v">alt-v</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.toggleNotationFreezing()">Freeze/unfreeze notation generation</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/commands/alt-f">alt-f</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
 </ul>

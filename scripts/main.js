@@ -399,7 +399,7 @@ function humdrumToSvgOptions() {
 		// output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
 		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
 		// jQuery $window.innerHeight() not working properly (in Chrome).
-		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
+		output.pageHeight = (window.innerHeight - $("#topnav").outerHeight()) / ZOOM - 50;
 		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
 	}
 	if (CGI.tasso) {
@@ -1951,7 +1951,8 @@ function highlightIdInEditor(id, source) {
 		}
 	}
 
-	CursorNote == document.querySelector("#" + id);
+	CursorNote = document.querySelector("#" + id);
+	MENU.showCursorNoteMenu(CursorNote);
 	EDITOR.gotoLine(row, col);
 }
 
@@ -3725,6 +3726,7 @@ function chooseBestId(elist, targetstaff, targetlayer) {
 
 function setCursorNote(item, location) {
 	CursorNote = item;
+	MENU.showCursorNoteMenu(CursorNote);
 }
 
 

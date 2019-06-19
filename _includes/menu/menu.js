@@ -2,14 +2,118 @@
 // menu.js -- functions to interface with the top menu.
 //
 
+var MENU = { };
+
+function MenuInterface() { 
+	this.contextualMenus = {};
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	MENU = new MenuInterface();
+	MENU.initialize();
+});
+
+
+MenuInterface.prototype.initialize = function () {
+	this.contextualMenus = this.getContextualMenus();
+}
+
+
+MenuInterface.prototype.hideContextualMenus = function () {
+	var keys = Object.keys(this.contextualMenus);
+	for (var i=0; i<keys.length; i++) {
+		this.contextualMenus[keys[i]].style.display = "none";
+	}
+}
+
+
+MenuInterface.prototype.hideMenus = function (name) {
+	this.hideContextualMenu();
+}
+
+
+MenuInterface.prototype.showMenu = function (name) {
+	this.showContextualMenu(name);
+}
+
+
+MenuInterface.prototype.showContextualMenu = function (name) {
+	var keys = Object.keys(this.contextualMenus);
+	for (var i=0; i<keys.length; i++) {
+		if (name === keys[i]) {
+			this.contextualMenus[keys[i]].style.display = "block";
+		} else {
+			this.contextualMenus[keys[i]].style.display = "none";
+		}
+	}
+}
+
+
+
+
+MenuInterface.prototype.showCursorNoteMenu = function (element) {
+	console.log("OBJECT", element);
+	if (!element) {
+		this.hideContextualMenus();
+		return;
+	}
+	var id = element.id;
+	if (!id) {
+		this.hideContextualMenus();
+		return;
+	}
+	var matches = id.match(/^([A-Z]+)-/i);
+	if (!matches) {
+		this.hideContextualMenus();
+		return;
+	}
+	var name = matches[1];
+	name = name.charAt(0).toUpperCase() + name.slice(1);
+	this.showContextualMenu(name);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Maintenance functions
+//
+
+MenuInterface.prototype.getContextualMenus = function () {
+	var output = {};
+	var element = document.querySelector("#navbarNavDropdown");
+	if (!element) {
+		return output;
+	}
+	var items = element.querySelectorAll("li.contextual");
+	if (!items) {
+		return output;
+	}
+	for (var i=0; i<items.length; i++) {
+		var nameelement = items[i].querySelector(".menu-name");
+		if (!nameelement) {
+			continue;
+		}
+		var name = nameelement.textContent.trim();
+		output[name] = items[i];
+	}
+
+	return output;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Regular interface commnds (no graphical commands):
+//
 
 //////////////////////////////
 //
-// loadRepertory --
+// MenuInterface::loadRepertory --
 //
 
-function loadRepertory(repertory, filter) {
-	console.log("GOING TO LOAD REPERTORY", repertory);
+MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 	var options = {
 			file: repertory,
 			next: true,
@@ -28,10 +132,10 @@ function loadRepertory(repertory, filter) {
 
 //////////////////////////////
 //
-// saveTextEditorContents --
+// MenuInterface::saveTextEditorContents --
 //
 
-function saveTextEditorContents() {
+MenuInterface.prototype.saveTextEditorContents = function () {
 	var event = {};
 	event.keyCode = SKey;
 	event.altKey = true;
@@ -42,10 +146,10 @@ function saveTextEditorContents() {
 
 //////////////////////////////
 //
-// compileEmbeddedFilters --
+// MenuInterface::compileEmbeddedFilters --
 //
 
-function compileEmbeddedFilters() {
+MenuInterface.prototype.compileEmbeddedFilters = function () {
 	var event = {};
 	event.keyCode = CKey;
 	event.altKey = true;
@@ -56,10 +160,10 @@ function compileEmbeddedFilters() {
 
 //////////////////////////////
 //
-// clearEditorContents --
+// MenuInterface::clearEditorContents --
 //
 
-function clearEditorContents() {
+MenuInterface.prototype.clearEditorContents = function () {
 	var event = {};
 	event.keyCode = EKey;
 	event.altKey = true;
@@ -70,10 +174,10 @@ function clearEditorContents() {
 
 //////////////////////////////
 //
-// showSourceScan --
+// MenuInterface::showSourceScan --
 //
 
-function showSourceScan() {
+MenuInterface.prototype.showSourceScan = function () {
 	var event = {};
 	event.keyCode = PKey;
 	event.altKey = true;
@@ -84,10 +188,10 @@ function showSourceScan() {
 
 //////////////////////////////
 //
-// createPdf --
+// MenuInterface::createPdf --
 //
 
-function createPdf() {
+MenuInterface.prototype.createPdf = function () {
 	var event = {};
 	event.keyCode = TKey;
 	event.altKey = true;
@@ -99,10 +203,24 @@ function createPdf() {
 
 //////////////////////////////
 //
-// createPdfPage --
+// MenuInterface::reloadFromSource --
 //
 
-function createPdfPage() {
+MenuInterface.prototype.reloadFromSource = function () {
+	var event = {};
+	event.keyCode = RKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::createPdfPage --
+//
+
+MenuInterface.prototype.createPdfPage = function () {
 	var event = {};
 	event.keyCode = TKey;
 	event.altKey = true;
@@ -113,10 +231,10 @@ function createPdfPage() {
 
 //////////////////////////////
 //
-// increaseNotationSpacing --
+// MenuInterface::increaseNotationSpacing --
 //
 
-function increaseNotationSpacing() {
+MenuInterface.prototype.increaseNotationSpacing = function () {
 	var event = {};
 	event.keyCode = WKey;
 	event.altKey = true;
@@ -127,10 +245,10 @@ function increaseNotationSpacing() {
 
 //////////////////////////////
 //
-// decreaseNotationSpacing --
+// MenuInterface::decreaseNotationSpacing --
 //
 
-function decreaseNotationSpacing() {
+MenuInterface.prototype.decreaseNotationSpacing = function () {
 	var event = {};
 	event.keyCode = WKey;
 	event.altKey = true;
@@ -142,15 +260,15 @@ function decreaseNotationSpacing() {
 
 //////////////////////////////
 //
-// applyFilter --
+// MenuInterface::applyFilter --
 //
 
-function applyFilter(text) {
+MenuInterface.prototype.applyFilter = function (text) {
 	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 	var options = humdrumToSvgOptions();
 	var data = contents + "\n!!!filter: " + text + "\n";
 	vrv.filterData(options, data, "humdrum")
-	.then(function(newdata) {
+	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		var lines = newdata.match(/[^\r\n]+/g);
 		for (var i=lines.length-1; i>=0; i--) {
@@ -168,10 +286,10 @@ function applyFilter(text) {
 
 //////////////////////////////
 //
-// insertLocalCommentLine --
+// MenuInterface::insertLocalCommentLine --
 //
 
-function insertLocalCommentLine() {
+MenuInterface.prototype.insertLocalCommentLine = function () {
 	var event = {};
 	event.keyCode = LKey;
 	event.shiftKey = true;
@@ -183,10 +301,10 @@ function insertLocalCommentLine() {
 
 //////////////////////////////
 //
-// insertNullDataLine --
+// MenuInterface::insertNullDataLine --
 //
 
-function insertNullDataLine() {
+MenuInterface.prototype.insertNullDataLine = function () {
 	var event = {};
 	event.keyCode = DKey;
 	event.shiftKey = true;
@@ -198,10 +316,10 @@ function insertNullDataLine() {
 
 //////////////////////////////
 //
-// insertInterpretationLine --
+// MenuInterface::insertInterpretationLine --
 //
 
-function insertInterpretationLine() {
+MenuInterface.prototype.insertInterpretationLine = function () {
 	var event = {};
 	event.keyCode = IKey;
 	event.shiftKey = true;
@@ -213,10 +331,10 @@ function insertInterpretationLine() {
 
 //////////////////////////////
 //
-// toggleDataDisplay --
+// MenuInterface::toggleDataDisplay --
 //
 
-function toggleDataDisplay() {
+MenuInterface.prototype.toggleDataDisplay = function () {
 	var event = {};
 	event.keyCode = YKey;
 	event.altKey = true;
@@ -227,10 +345,10 @@ function toggleDataDisplay() {
 
 //////////////////////////////
 //
-// toggleLogoDisplay --
+// MenuInterface::toggleLogoDisplay --
 //
 
-function toggleLogoDisplay() {
+MenuInterface.prototype.toggleLogoDisplay = function () {
 	var event = {};
 	event.keyCode = BKey;
 	event.altKey = true;
@@ -241,10 +359,10 @@ function toggleLogoDisplay() {
 
 //////////////////////////////
 //
-// toggleLayerHighlighting --
+// MenuInterface::toggleLayerHighlighting --
 //
 
-function toggleLayerHighlighting() {
+MenuInterface.prototype.toggleLayerHighlighting = function () {
 	var event = {};
 	event.keyCode = LKey;
 	event.altKey = true;
@@ -255,10 +373,10 @@ function toggleLayerHighlighting() {
 
 //////////////////////////////
 //
-// increaseTabSize --
+// MenuInterface::increaseTabSize --
 //
 
-function increaseTabSize() {
+MenuInterface.prototype.increaseTabSize = function () {
 	var event = {};
 	event.keyCode = DotKey;
 	event.altKey = true;
@@ -270,10 +388,10 @@ function increaseTabSize() {
 
 //////////////////////////////
 //
-// decreaseTabSize --
+// MenuInterface::decreaseTabSize --
 //
 
-function decreaseTabSize() {
+MenuInterface.prototype.decreaseTabSize = function () {
 	var event = {};
 	event.keyCode = CommaKey;
 	event.altKey = true;
@@ -284,10 +402,10 @@ function decreaseTabSize() {
 
 //////////////////////////////
 //
-// fitTabSizeToData -- Not perfect since not using an equal-sized character font.
+// MenuInterface::fitTabSizeToData -- Not perfect since not using an equal-sized character font.
 //
 
-function fitTabSizeToData() {
+MenuInterface.prototype.fitTabSizeToData = function () {
 	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
 	var max = 4;
 	for (var i=0; i<lines.length; i++) {
@@ -322,10 +440,10 @@ function fitTabSizeToData() {
 
 //////////////////////////////
 //
-// openURL -- opens in a new tab.
+// MenuInterface::openURL -- opens in a new tab.
 //
 
-function openUrl(url, target) {
+MenuInterface.prototype.openUrl = function (url, target) {
 	if (!target) {
 		target = "_blank";
 	}
@@ -336,10 +454,10 @@ function openUrl(url, target) {
 
 //////////////////////////////
 //
-// dropdown menu funcionality:
+// MenuInterface::dropdown menu funcionality:
 //
 
-$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+$('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
   if (!$(this).next().hasClass('show')) {
     $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
   }
@@ -347,10 +465,374 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   $subMenu.toggleClass('show');
 
 
-  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
     $('.dropdown-submenu .show').removeClass("show");
   });
 
   return false;
 });
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleCsvTsv --
+//
+
+MenuInterface.prototype.toggleCsvTsv = function () {
+	toggleHumdrumCsvTsv();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleVimPlainTextMode --
+//
+
+MenuInterface.prototype.toggleVimPlainTextMode = function () {
+	var event = {};
+	event.keyCode = VKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displayHumdrumData --
+//
+
+MenuInterface.prototype.displayHumdrumData = function () {
+	var event = {};
+	event.keyCode = HKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displayMeiData --
+//
+
+MenuInterface.prototype.displayMeiData = function () {
+	var event = {};
+	event.keyCode = MKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::loadFromBuffer --
+//
+
+MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
+	var event = {};
+	event.keyCode = ZeroKey + bufferNumber;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+
+	event.keyCode = RKey;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::saveToBuffer --
+//
+
+MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
+	var event = {};
+	event.keyCode = ZeroKey + bufferNumber;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+
+	event.keyCode = SKey;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goToLastPage --
+//
+
+MenuInterface.prototype.goToLastPage = function () {
+	var event = {};
+	event.keyCode = EndKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goToFirstPage --
+//
+
+MenuInterface.prototype.goToFirstPage = function () {
+	var event = {};
+	event.keyCode = HomeKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goPreviousWork --
+//
+
+MenuInterface.prototype.goToPreviousWork = function () {
+	var event = {};
+	event.keyCode = LeftKey;
+	event.altKey = true;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goToNextWork --
+//
+
+MenuInterface.prototype.goToNextWork = function () {
+	var event = {};
+	event.keyCode = RightKey;
+	event.altKey = true;
+	event.shiftKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goToNextPage --
+//
+
+MenuInterface.prototype.goToNextPage = function () {
+	var event = {};
+	event.keyCode = RightKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::goToPreviousPage --
+//
+
+MenuInterface.prototype.goToPreviousPage = function () {
+	var event = {};
+	event.keyCode = LeftKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMidiPlayback --
+//
+
+MenuInterface.prototype.toggleMidiPlayback = function () {
+	var event = {};
+	event.keyCode = SpaceKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleNotationFreezing --
+//
+
+MenuInterface.prototype.toggleNotationFreezing = function () {
+	var event = {};
+	event.keyCode = FKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Contextual Graphic editing functions
+//
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceNoteStemUp --
+//
+
+MenuInterface.prototype.forceNoteStemUp = function () {
+	processNotationKey("a", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceNoteStemDown --
+//
+
+MenuInterface.prototype.forceNoteStemDown = function () {
+	processNotationKey("b", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::removeStemDirection --
+//
+
+MenuInterface.prototype.removeStemDirection = function () {
+	processNotationKey("c", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleEditorialAccidental --
+//
+
+MenuInterface.prototype.toggleEditorialAccidental = function () {
+	processNotationKey("i", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleNaturalAccidental --
+//
+
+MenuInterface.prototype.toggleNaturalAccidental = function () {
+	processNotationKey("n", CursorNote);
+}
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleSharpAccidental --
+//
+
+MenuInterface.prototype.toggleSharpAccidental = function () {
+	processNotationKey("#", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleFlatAccidental --
+//
+
+MenuInterface.prototype.toggleFlatAccidental = function () {
+	processNotationKey("-", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleForcedDisplay --
+//
+
+MenuInterface.prototype.toggleForcedDisplay = function () {
+	processNotationKey("X", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleStaccato --
+//
+
+MenuInterface.prototype.toggleStaccato = function () {
+	processNotationKey("'", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMinorLowerMordent --
+//
+
+MenuInterface.prototype.toggleMinorLowerMordent = function () {
+	processNotationKey("m", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMajorLowerMordent --
+//
+
+MenuInterface.prototype.toggleMajorLowerMordent = function () {
+	processNotationKey("M", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMinorUpperMordent --
+//
+
+MenuInterface.prototype.toggleMinorUpperMordent = function () {
+	processNotationKey("w", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMajorUpperMordent --
+//
+
+MenuInterface.prototype.toggleMajorUpperMordent = function () {
+	processNotationKey("W", CursorNote);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

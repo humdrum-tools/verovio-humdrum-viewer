@@ -7,7 +7,7 @@ This file is included into menu/main.html
 	vim: ts=2:nowrap
 -->
 
-<span class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="menu-name nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	Edit
 </span>
 
@@ -17,7 +17,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="clearEditorContents()">Clear text editor</span>
+					<span class="menu-item" onclick="MENU.clearEditorContents()">Clear text editor</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">
@@ -32,7 +32,7 @@ This file is included into menu/main.html
 		<table class="menu">
 			<tr>
 				<td>
-					<span class="menu-item" onclick="compileEmbeddedFilters()">Compile embedded filters</span>
+					<span class="menu-item" onclick="MENU.compileEmbeddedFilters()">Compile embedded filters</span>
 				</td>
 				<td class="shortcut-cell"">
 					<span class="shortcut">

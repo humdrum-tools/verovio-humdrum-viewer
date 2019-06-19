@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //////////////////////////////
 //
-// keydown event listener -- Notation edition listener.
+// keydown event listener -- Notation editor listener.
 //
 
 

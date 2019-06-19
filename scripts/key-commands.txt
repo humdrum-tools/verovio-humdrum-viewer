@@ -1,50 +1,20 @@
 
 <p><b> Navigation commands <b>
 
-?	toggle this help menu	.
-&larr;/&rarr;	next/previous page	.
-<i>home</i>	go to first page	.
-<i>end</i>	go to last page	.
-<i>space</i>	start/stop score playback	.
 esc	unfocus graphic element(s)	.
 
 <b> More commands (+<i>alt</i> key) <b>
-c	compile filters	/commands/alt-c
-f	(un)freeze dynamic notation	/commands/alt-f
 g	display SVG text for current page	/commands/alt-g
-h	show Humdrum data	.
-m	show MEI data	/commands/alt-m
 o	toggle original clefs	/commands/alt-o
-p	show source scan (if available)	/commands/alt-p
-r	reload file from server	.
-R	load from buffer 1	/interface/buffers
-#R	load from buffer 1-9	/interface/buffers
-0R	load buffer 0 (autosave)	/interface/buffers
-s	save to local file	.
-S	save to bufffer 1	/interface/buffers
-#S	save to bufffer 1-9	/interface/buffers
-u	toggle CSV/TSV display of Humdrum data	/commands/alt-u
-v	toggle vi/plain editor	/commands/alt-v
-,	toggle CSV/TSV display of data	.
 
 <p><b> Note editing commands </b></p>
 
-a	force stem up	.
-b	force stem down	.
-c	clear stem direction	.
-i	toggle editorial accidental	.
-m/M	toggle lower mordent	.
-n	toggle natural on note	.
 p	toggle pedal start before	.
 P	toggle pedal stop after	.
 q	toggle grace-note style	.
 s	add slur to next note	/graphic/slurs
 t/T	toggle trill	.
-w/W	toggle upper mordent	.
-x	force display of accidental	/graphic/pitch
-#	toggle sharp on note	/graphic/pitch
 '	toggle staccato	.
--	toggle flat on note	/graphic/pitch
 ;	toggle fermata	.
 :	toggle arpeggio	.
 ^	toggle accent	.

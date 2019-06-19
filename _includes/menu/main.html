@@ -33,11 +33,15 @@
 			</li>
 
 			<li class="nav-item dropdown">
-				{% include menu/edit.html %}
+				{% include menu/view.html %}
 			</li>
 
 			<li class="nav-item dropdown">
-				{% include menu/view.html %}
+				{% include menu/edit.html %}
+			</li>
+
+			<li class="nav-item dropdown contextual">
+				{% include menu/contextual-note.html %}
 			</li>
 
 			<li class="nav-item dropdown">
@@ -46,6 +50,10 @@
 
 			<li class="nav-item dropdown">
 				{% include menu/scores.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/navigation.html %}
 			</li>
 
 			<li class="nav-item dropdown">
