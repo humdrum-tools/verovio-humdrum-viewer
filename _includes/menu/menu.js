@@ -826,13 +826,228 @@ MenuInterface.prototype.toggleMajorUpperMordent = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::toggleFermata --
+//
+
+MenuInterface.prototype.toggleFermata = function () {
+	processNotationKey(";", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleArpeggio --
+//
+
+MenuInterface.prototype.toggleArpeggio = function () {
+	processNotationKey(":", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleAccent --
+//
+
+MenuInterface.prototype.toggleAccent = function () {
+	processNotationKey("^", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMarcato --
+//
+
+MenuInterface.prototype.toggleMarcato = function () {
+	processNotationKey("^^", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleStaccatissimo --
+//
+
+MenuInterface.prototype.toggleStaccatissimo = function () {
+	processNotationKey("`", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleTenuto --
+//
+
+MenuInterface.prototype.toggleTenuto = function () {
+	processNotationKey("~", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMajorTrill --
+//
+
+MenuInterface.prototype.toggleMajorTrill = function () {
+	processNotationKey("T", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleMinorTrill --
+//
+
+MenuInterface.prototype.toggleMinorTrill = function () {
+	processNotationKey("t", CursorNote);
+}
 
 
 
 
+//////////////////////////////
+//
+// MenuInterface::forceSlurAbove --
+//
+
+MenuInterface.prototype.forceSlurAbove = function () {
+	processNotationKey("a", CursorNote);
+}
 
 
 
+
+//////////////////////////////
+//
+// MenuInterface::forceSlurBelow --
+//
+
+MenuInterface.prototype.forceSlurBelow = function () {
+	processNotationKey("b", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::removeSlurOrientation --
+//
+
+MenuInterface.prototype.removeSlurOrientation = function () {
+	processNotationKey("c", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::deleteSlur --
+//
+
+MenuInterface.prototype.deleteSlur = function () {
+	processNotationKey("D", CursorNote);
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceBeamAbove --
+//
+
+MenuInterface.prototype.forceBeamAbove = function () {
+	processNotationKey("a", CursorNote);
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceBeamBelow --
+//
+
+MenuInterface.prototype.forceBeamBelow = function () {
+	processNotationKey("b", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::removeBeamOrientation --
+//
+
+MenuInterface.prototype.removeBeamOrientation = function () {
+	processNotationKey("c", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceTieAbove --
+//
+
+MenuInterface.prototype.forceTieAbove = function () {
+	processNotationKey("a", CursorNote);
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::forceTieBelow --
+//
+
+MenuInterface.prototype.forceTieBelow = function () {
+	processNotationKey("b", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::removeTieOrientation --
+//
+
+MenuInterface.prototype.removeTieOrientation = function () {
+	processNotationKey("c", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::breakBeamAfterNote --
+//
+
+MenuInterface.prototype.breakBeamAfterNote = function () {
+	processNotationKey("J", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::breakBeamBeforeNote --
+//
+
+MenuInterface.prototype.breakBeamBeforeNote = function () {
+	processNotationKey("L", CursorNote);
+}
 
 
 

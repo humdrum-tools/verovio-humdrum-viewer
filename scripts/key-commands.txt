@@ -13,14 +13,6 @@ p	toggle pedal start before	.
 P	toggle pedal stop after	.
 q	toggle grace-note style	.
 s	add slur to next note	/graphic/slurs
-t/T	toggle trill	.
-'	toggle staccato	.
-;	toggle fermata	.
-:	toggle arpeggio	.
-^	toggle accent	.
-shft-^	toggle marcato	.
-`	toggle staccatissimo	.
-~	toggle tenuto	.
 @	toggle mark	/graphic/marks
 &uarr;/&darr;	next/previous harmonic note	/graphic/pitch
 &larr;/&rarr;	next/previous melodic note	/graphic/pitch
@@ -34,10 +26,6 @@ y	make rest invisible	.
 
 <p><b> Slur editing commands </b></p>
 
-a	force slur above	.
-b	force slur below	.
-c	clear slur orientation	.
-D	delete slur	.
 &larr;	move slur start 1 note left	.
 &rarr;	slur start 1 note right	.
 #&larr;	slur start # notes left	.
@@ -47,19 +35,6 @@ D	delete slur	.
 <nobr># shft-&larr;</nobr>	slur end # notes left	.
 <nobr># shft-&rarr;</nobr>	slur end # notes right	.
 
-<p><b> Tie editing commands </b></p>
-
-a	force tie above	.
-b	force tie below	.
-c	clear tie orientation	.
-
-<p><b> Beam editing commands </b></p>
-
-a	force beam above	.
-b	force beam below	.
-c	clear beam orientation	.
-L	break beam before current note	.
-J	break beam after current note	.
 
 <p><b> Repertories </b> (<a target="_blank" href="http://doc.verovio.humdrum.org/repertory">more info</a>) </p>
 
