@@ -3,28 +3,43 @@
  * Stylings for top menu in navigation bar
  */
 
+nav.navbar {
+	background: transparent !important;
+	height: 10px;
+
+	padding-top: 10px;
+	margin-top: 10px;
+
+	padding-bottom: 6px;
+	margin-bottom: 10px;
+}
+
+#navbarNavDropdown {
+	background: transparent !important;
+}
+
+
 #primary-nav a.dropdown-toggle {
-	color: #888888 !important;
+	color: #cccccc !important;
 	margin-top: 5px;
 	padding: 3px 16px;
 }
 
 .w3-navbar {
-
 	overflow: visible !important;
 }
 
 .w3-navbar li:hover, .w3-navbar li a:hover {
-	background: none;
+	background: none !important;
 	color: white;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
-	background: none;
+	background: none !important;
 }
 
 .nav>li>a:hover {
-	color: white;
+/*	color: white; */
 }
 
 
@@ -100,6 +115,10 @@ div.menu-heading a:hover {
 	color: #aa3355;
 }
 
+table.menu, table.menu tr {
+	width: 100%;
+}
+
 table.menu tr:hover {
 	background: #f3f3f3;
 }
@@ -128,5 +147,65 @@ td.gh-cell {
 	width:100%; 
 	padding-right:4px;
 }
+
+/* Code for submenus */
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+	transform: rotate(-90deg);
+	position: absolute;
+	right: 6px;
+	top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+
+
+ul.dropdown-menu li {
+	width: 100%;
+}
+
+li.nav-item.dropdown > a {
+	margin-left: 15px;
+}
+
+
+/* end of submenu styling */
+
+
+a.dropdown-item.dropdown-toggle {
+	padding: 3px 16px;
+}
+
+li .dropdown-item.dropdown-toggle:hover {
+	color: #aa3355;
+	background: green;
+}
+
+
+span.dropdown-toggle {
+	padding-left: 10px;
+	margin-left: 16px;
+}
+
+span.dropdown-toggle::after {
+	display: inline-block;
+	margin-left: .255em;
+	vertical-align: .255em;
+	content: "";
+	border: 0;
+	width: 0;
+	height: 0;
+}
+
+
 
 

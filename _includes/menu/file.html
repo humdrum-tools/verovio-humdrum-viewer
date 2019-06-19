@@ -1,0 +1,66 @@
+<!-- 
+This is the contents of the "File" menu entry in the top menu.
+This file is included into menu/main.html
+-->
+
+<!-- 
+	vim: ts=2:nowrap
+<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+-->
+
+
+<span class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	File
+</span>
+
+<ul class="dropdown-menu">
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="saveTextEditorContents()">Download editor contents</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/commands/alt-s">alt-s</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="createPdf()">Create PDF</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/commands/alt-t">alt-T</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="createPdfPage()">Create PDF of current view</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/commands/alt-t">alt-t</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+
+</ul>
+
+

@@ -1,42 +1,39 @@
+<!--
+	vim: ts=3:nowrap
+-->
 
-<div class="w3-navbar w3-card-2 w3-slim topnav" id="topnav" style="position: fixed; top: 0px; z-index=200;">
-
-
+<div class="topnav" id="topnav" style="position: fixed; top: 0px; height:30px; z-index:400;">
 	<div style="overflow:auto;">
+
+
 		<div style="float:left; overflow:hidden;height:44px">
-<table id="header-table">
-	<tr>
-	<td>
-		<h1 id="vhv">Verovio Humdrum Viewer </h1>
-	</td>
-	<td width="100%">
-		<span id="title-info">
-			<span id="composer"></span>&nbsp;<span id="title"></span>
-		</span>
-	</td>
-	<td style="width:100%;">
-		<span id="search-help" onclick="toggleHelpMenu();"
-			class="info" data-hasqtip="1" aria-describedby="qtip-1">help</span>
-	</td>
-	<td>
-		<div xmlns="http://www.w3.org/1999/xhtml" class="btn-group">
-        		<button id="play-button" onclick="playCurrentMidi();" class="btn btn-sm btn-default" type="button"
-				style="background:#ccc; position:absolute; right:10; top:10; ">
-            			Play
-        		</button>
+			<table id="header-table">
+				<tr>
+					<td>
+						<h1 id="vhv">Verovio Humdrum Viewer </h1>
+					</td>
+					<td width="100%">
+						<span id="title-info">
+							<span id="composer"></span>&nbsp;<span id="title"></span>
+						</span>
+					</td>
+					<td style="width:100%;">
+						{% include help-button.html %}
+					</td>
+					<td>
+						{% include audio-buttons.html %}
+					</td>
+				</tr>
+			</table>
 		</div>
-		<div xmlns="http://www.w3.org/1999/xhtml" id="player"
-			style="z-index: 1; position: absolute; right:4; top:4; display: none;">
-		</div>
-	</td>
-	</tr>
-</table>
-		</div>
+
+
 	</div>
 
+</div>
 
-{% include navigator/main.html %}
-
+<div id="menubar" class="w3-navbar w3-card-2 w3-slim topnav" style="position: fixed; top: 25px; z-index=50;">
+{% include menu/main.html %}
 </div>
 
 

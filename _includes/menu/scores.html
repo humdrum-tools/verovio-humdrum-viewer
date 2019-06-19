@@ -1,0 +1,200 @@
+<!-- 
+This is the contents of the "Scores" menu entry in the top menu.
+This file is included into menu/main.html
+-->
+
+<!-- 
+	vim: ts=2:nowrap
+-->
+
+
+<span class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Scores
+</span>
+
+<ul class="dropdown-menu">
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('chorales')">Bach 370 chorales</span>
+				</td>
+				<td class="gh-cell"">
+					<span class="web">
+						<a target="_blank" href="https://chorales.sapp.org">website</a>
+					</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">
+						<a target="_blank" href="https://github.com/craigsapp/bach-370-chorales">GH</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span style="float:right;">
+						<span class="menu-item" onclick="loadRepertory('chorales', 'satb2gs')">
+							<i>on grand-staff</i>
+						</span>
+						<span class="menu-item" onclick="loadRepertory('chorales', 'transpose -k c | satb2gs')">
+							<i>transposed to C</i>
+						</span>
+					</span>
+				</td>
+				<td class="gh-cell"">
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('beethoven/sonatas')">Beethoven piano sonatas</span>
+				</td>
+				<td class="gh-cell"">
+					<span class="gh">
+						<a target="_blank" href="https://github.com/craigsapp/beethoven-piano-sonatas">GH</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('beethoven/quartets')">Beethoven string quartets</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">
+						<a target="_blank" href="https://github.com/craigsapp/beethoven-string-quartets">GH</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('chopin/mazurkas')">Chopin mazurkas</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">	
+						<a target="_blank" href="https://github.com/craigsapp/chopin-mazurkas">GH</a>
+					</span>	
+				</td>	
+			</tr>	
+		</table>	
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('hummel/preludes')">Hummel preludes, op. 67</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">	
+						<a target="_blank" href="https://github.com/craigsapp/hummel-preludes">GH</a>
+					</span>	
+				</td>	
+			</tr>	
+		</table>	
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('joplin')">Joplin</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">	
+						<a target="_blank" href="https://github.com/craigsapp/joplin-rags">GH</a>
+					</span>
+				</td>
+			</tr>	
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="loadRepertory('mozart/sonatas')">Mozart piano sonatas</span>
+				</td>
+				<td class="gh-cell">
+					<span class="gh">
+						<a target="_blank" href="https://github.com/craigsapp/mozart-piano-sonatas">GH</a>
+					</span>
+				</td>	
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<a class="dropdown-item dropdown-toggle" target="_blank" href="#">Harmonized songs</a>
+				</td>
+				<td class="shortcut-cell"">
+				</td>
+			</tr>
+		</table>
+		<ul class="dropdown-menu">
+			{% include menu/scores-harmonized-songs.html %}
+		</ul>
+	<li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<a class="dropdown-item dropdown-toggle" target="_blank" href="http://josquin.stanford.edu">Josquin Research Project</a>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="web">
+						<a target="_blank" href="http://josquin.stanford.edu">website</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<ul class="dropdown-menu">
+			{% include menu/scores-jrp.html %}
+		</ul>
+	<li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<a class="dropdown-item dropdown-toggle" target="_blank" href="https://www.tassomusic.org">Tasso in Music Edition</a>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="web">
+						<a target="_blank" href="http://www.tassomusic.org">website</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<ul class="dropdown-menu">
+			{% include menu/scores-tasso.html %}
+		</ul>
+	<li>
+
+</ul>
+
+
+

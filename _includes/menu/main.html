@@ -1,0 +1,65 @@
+<!-- this menu system requires including bootstrap 4:
+
+
+	vim: ts=2:nowrap
+-->
+
+<style>
+	<!-- {% include menu/menu.css %} -->
+</style>
+
+<script>
+	<!-- {% include menu/menu.js %} -->
+</script>
+
+<style>
+	{% include menu/bootstrap-4-hover-navbar.css %}
+</style>
+
+<script>
+	{% include menu/bootstrap-4-hover-navbar.js %}
+</script>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+
+			<li class="nav-item dropdown">
+				{% include menu/file.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/edit.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/view.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/analysis.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/scores.html %}
+			</li>
+
+			<li class="nav-item dropdown">
+				{% include menu/help.html %}
+			</li>
+
+
+<!--
+single-entry example:
+			<li id="nav-3"> <a href="/performers">Performers</a> </li>
+-->
+
+		</ul>
+	</div>
+</div>
+
+</nav>
