@@ -65,7 +65,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 430;
+var BasketVersion = 483;
 // Basket is no longer working since verovio.js is now over 5MB (maximum for localStorage)
 // console.log("VERSION", BasketVersion);
 
@@ -306,7 +306,8 @@ function processOptions() {
 		return;
 	}
 /* is this function needed anymore?  Now seems to be done
- * in DOMContentLoaded event listener
+ * in DOMContentLoaded event listener, but maybe it is
+ * needed whne a new score is loaded.
 	var list = CGI.k.split('');
 	for (var i=0; i<list.length; i++) {
 		var event = {};
@@ -532,6 +533,32 @@ function toggleFreeze() {
 
 function toggleInputArea(suppressZoom) {
 	InputVisible = !InputVisible;
+console.log("TOGGLING INPUT AREA: ", InputVisible);
+	var input = document.querySelector("#input");
+	if (InputVisible) {
+		if (LastInputWidth == 0) {
+			LastInputWidth = 400;
+		}
+		Splitter.setPositionX(LastInputWidth);
+	} else {
+		LastInputWidth = parseInt(input.style.width);
+		Splitter.setPositionX(0);
+	}
+	if (!suppressZoom) {
+		applyZoom();
+	}
+	EDITOR.resize();
+}
+
+
+
+//////////////////////////////
+//
+// redrawInputArea --
+//
+
+function redrawInputArea(suppressZoom) {
+console.log("REDRAWING INPUT AREA FOR STATE", InputVisible);
 	var input = document.querySelector("#input");
 	if (InputVisible) {
 		if (LastInputWidth == 0) {
@@ -686,6 +713,81 @@ function getReferenceRecords(contents) {
 }
 
 
+//////////////////////////////
+//
+// displayWorkNavigation --
+//
+
+function displayWorkNavigation(selector) {
+	if (!selector) {
+		selector = "#work-navigator";
+	}
+	contents = "";
+	element = document.querySelector(selector);
+	if (!element) {
+		console.log("Error: cannot find work navigator");
+		return;
+	}
+
+	if (FILEINFO["previous-work"]) {
+		contents += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+		contents += FILEINFO["previous-work"];
+		contents += "');\"";
+		contents += " title='previous work/movement (&#8679;+&#8592;)'";
+		contents += ">";
+		contents += "<span class='fas fa-arrow-circle-left'></span>";
+		contents += "</span>";
+	}
+
+	if (FILEINFO["previous-work"] &&
+		FILEINFO["next-work"] &&
+		(FILEINFO["has-index"] == "true")) {
+		contents += "&nbsp;";
+	}
+
+	if (FILEINFO["has-index"] == "true") {
+		contents += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
+		contents += FILEINFO["location"];
+		contents += "');\"";
+		contents += " title='repertory index (&#8679;+&#8593;)'";
+		contents += ">";
+		contents += "<span class='fas fa-arrow-circle-up'></span>";
+		contents += "</span>";
+	}
+
+	if (FILEINFO["previous-work"] &&
+			FILEINFO["next-work"] &&
+			(FILEINFO["has-index"] == "true")) {
+		contents += "&nbsp;";
+	}
+
+	if (FILEINFO["previous-work"] &&
+			FILEINFO["next-work"] &&
+			(FILEINFO["has-index"] != "true")) {
+		contents += "&nbsp;";
+	}
+
+	if (FILEINFO["next-work"]) {
+		contents += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
+		contents += FILEINFO["next-work"];
+		contents += "');\"";
+		contents += " title='next work/movement (&#8679;+&#8594;)'";
+		contents += ">";
+		contents += "<span class='fas fa-arrow-circle-right'></span>";
+		contents += "</span>";
+	}
+
+	if (FILEINFO["previous-work"] ||
+		FILEINFO["next-work"]) {
+		contents += "&nbsp;&nbsp;";
+	}
+
+	element.innerHTML = contents;
+
+}
+
+
+
 
 //////////////////////////////
 //
@@ -727,63 +829,16 @@ function displayFileTitle(contents) {
 
 	tarea = document.querySelector("#composer");
 	var pretitle = "";
-	if (FILEINFO["previous-work"]) {
-		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
-		pretitle += FILEINFO["previous-work"];
-		pretitle += "');\"";
-		pretitle += " title='previous work/movement (&#8679;+&#8592;)'";
-		pretitle += ">";
-		pretitle += "&#9664;";
-		pretitle += "</span>";
-	}
 
-	if (FILEINFO["previous-work"] &&
-		FILEINFO["next-work"] &&
-		(FILEINFO["has-index"] == "true")) {
-		pretitle += "&nbsp;";
-	}
 
-	if (FILEINFO["has-index"] == "true") {
-		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayIndex('"
-		pretitle += FILEINFO["location"];
-		pretitle += "');\"";
-		pretitle += " title='index (&#8679;+&#8593;)'";
-		pretitle += ">";
-		pretitle += "&#9650;";
-		pretitle += "</span>";
-	}
 
-	if (FILEINFO["previous-work"] &&
-			FILEINFO["next-work"] &&
-			(FILEINFO["has-index"] == "true")) {
-		pretitle += "&nbsp;";
-	}
-
-	if (FILEINFO["previous-work"] &&
-			FILEINFO["next-work"] &&
-			(FILEINFO["has-index"] != "true")) {
-		pretitle += "&nbsp;";
-	}
-
-	if (FILEINFO["next-work"]) {
-		pretitle += "<span style=\"cursor:pointer\" onclick=\"displayWork('"
-		pretitle += FILEINFO["next-work"];
-		pretitle += "');\"";
-		pretitle += " title='next work/movement (&#8679;+&#8594;)'";
-		pretitle += ">";
-		pretitle += "&#9658;";
-		pretitle += "</span>";
-	}
-
-	if (FILEINFO["previous-work"] ||
-		FILEINFO["next-work"]) {
-		pretitle += "&nbsp;&nbsp;";
-	}
 
 	if (tarea && !composer.match(/^\s*$/)) {
 		pretitle += composer + ", ";
 	}
 	tarea.innerHTML = pretitle;
+
+	displayWorkNavigation("#work-navigator");
 
 }
 
@@ -1043,6 +1098,7 @@ function loadKernScoresFile(obj, force) {
 		console.log("removed ", key);
 	}
 
+	redrawInputArea();
 	var expire = 172;
 	var info = basketSession.get(key);
 	// console.log("INFO", info);
@@ -1081,6 +1137,8 @@ function loadKernScoresFile(obj, force) {
 				} else {
 					console.log("Error retrieving", key);
 				}
+				redrawInputArea();
+// ggg
 			}, function() {
 				console.log("Error retrieving", key);
 			});
@@ -1096,6 +1154,7 @@ function loadKernScoresFile(obj, force) {
 				CGI.k = CGI.k.replace(/c/, "");
 				showCompiledFilterData();
 			}
+			redrawInputArea();
 		}
 	}
 
@@ -1757,11 +1816,12 @@ function	monitorNotationUpdating() {
 //
 
 function downloadWildWebMidi(url) {
+console.log("DOWNLOAD WILD WEB MIDI");
 	var url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
 		{url: url, expire: 26, unique: BasketVersion},
-		{url: url3, expire: 17, unique: BasketVersion}
+ 		{url: url3, expire: 17, unique: BasketVersion}
 	).then(function() { initializeWildWebMidi(); },
 		function() { console.log("There was an error loading script", url)
 	});
@@ -1775,6 +1835,7 @@ function downloadWildWebMidi(url) {
 //
 
 function initializeWildWebMidi() {
+console.log("INITIALIZING WILDWEBMIDI in main.js");
 	$("#player").midiPlayer({
 		color: null,
 		// color: "#c00",
@@ -2773,108 +2834,6 @@ function convertTokenToCsv(token) {
 
 //////////////////////////////
 //
-// prepareHelpMenu --
-//
-
-function prepareHelpMenu(selector) {
-	var request = new XMLHttpRequest();
-	request.open("GET", "/scripts/key-commands.txt");
-	request.addEventListener("load", function() {
-		fillInHelpContainer(selector, request.responseText);
-	});
-	request.send();
-}
-
-//////////////////////////////
-//
-// fillInHelpContainer -- Convert the text file with the help
-//    contents into a table shown in the help window.
-
-function fillInHelpContainer(selector, data) {
-	var lines = data.match(/[^\r\n]+/g);
-	var help = document.querySelector(selector);
-	if (!help) {
-		console.log("CANNOT FIND HELP SELECTOR", selector);
-		return;
-	}
-	var output = "";
-	output += '<table id="help-table">\n';
-// output += '<tr><td colspan="2">\n';
-// output += ' <b style="font-size:110%;">Keyboard commands</b>';
-// output += '</td></tr>\n';
-	var line;
-	var docbase = "http://doc.verovio.humdrum.org";
-	for (var i=0; i<lines.length; i++) {
-		line = lines[i];
-		var fields = line.split(/\t+/);
-		// var matches = line.match(/^\s*(.*)\s*\t\s*(.*)\s*$/);
-		if (fields.length > 1) {
-			var key  = fields[0];
-			var desc = fields[1];
-			if (fields.length > 2) {
-				var docurl = fields[2];
-			}
-			if (docurl === ".") {
-				docurl = "";
-			}
-
-			output += '<tr><td>'
-
-			output += "<b>";
-			output += '<span class="helpentry"';
-			output += " onclick='processKeyCommand(";
-			output += '{keyCode: "' + key + '".charCodeAt(0)}' + ");'";
-			output += '>';
-
-			if (docurl) {
-				output += "<a class='doclink' href='" + docbase + docurl + "' target='_doc'>";
-			}
-			output += key
-
-			if (docurl) {
-				output += "</a>";
-			}
-			output += '</span>';
-			output += "</b>";
-			output += '</td>';
-			output += '<td>' + desc + '</td></tr>';
-		} else if (!line.match(/^\s*$/)) {
-			output += '<tr><td colspan="2">';
-			output += line;
-			output += '</td></tr>\n';
-		}
-	}
-	output += '</table>\n';
-	help.innerHTML = output;
-}
-
-
-
-//////////////////////////////
-//
-// toggleHelpMenu --
-//
-
-function toggleHelpMenu(state) {
-	var help = document.querySelector("#help-container");
-	if (!help) {
-		return;
-	}
-	if (typeof state === 'undefined') {
-		state = help.style.display === 'none' ? 0 : 1;
-		state = !state;
-	}
-	if (state) {
-		help.style.display = 'block';
-	} else {
-		help.style.display = 'none';
-	}
-}
-
-
-
-//////////////////////////////
-//
 // showCompiledFilterData -- Run the Humdrum data through the vrvToolkit
 //      to extract the output from tool filtering.
 //
@@ -3325,6 +3284,7 @@ function clearContent() {
 //
 
 function playCurrentMidi() {
+console.log("PLAYING CURRENT MIDI From scripts/main.js");
 	if (CursorNote && CursorNote.id) {
 		var id = CursorNote.id;
 		vrv.getTimeForElement(id)

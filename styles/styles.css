@@ -1,4 +1,7 @@
 
+
+
+
 body.waiting * {
 	cursor: progress;
 }
@@ -248,7 +251,7 @@ div#input {
 
 div#splitter {
 	position: fixed;
-	top: 44px;
+	top: 65px;
 	left: 400px;
 	background: #fffcf1;
 	width: 4px;
@@ -474,3 +477,88 @@ body.invalid #output, body.invalid #splitter, body.invalid {
 span.ilink {
 	color: #01313f;
 }
+
+.mbutton {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.mbutton:hover {
+	background: #999 !important;
+	stroke: yellow;
+}
+
+.mbutton span.fas:hover {
+	color: gold;
+}
+
+.fas-play :hover {
+	color: gold !important;
+}
+
+.nav-play-button {
+	position: fixed;
+	top:0;
+	right: 45px;
+	float: left;
+	color: white;
+	opacity: 0.6;
+	background: #01313f;
+	margin-top: 2px;
+}
+
+
+.page-nav {
+	background: transparent;
+/*	opacity: 0.6; */
+	color: white;
+	margin-right: 8px;
+	white-space: nospace;
+}
+
+.page-nav table td {
+	cursor: pointer;
+}
+
+.page-nav table td:nth-child(2) {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.page-nav td: hover {
+	color: gold;
+}
+
+#work-navigator {
+	opacity: 0.6;
+	color: white;
+}
+
+#work-navigator span:hover {
+	color: gold;
+}
+
+div#index {
+	width: 80%;
+	min-width: 600px;
+	left-margin: auto;
+	right-margin: auto;
+	background: cornsilk;
+	opacity: 0.95;
+	border: 1px solid #000;
+	z-index: 9999;
+	padding-top: 20px;
+	margin-top: -20px;
+	padding-left: 50px;
+	padding-right: 50px;
+	overflow: scroll;
+}
+
+
+.dropdown-menu {
+	opacity: 0.95;
+}
+
+
+
+

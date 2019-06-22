@@ -15,6 +15,35 @@ This file is included into menu/main.html
 <ul class="dropdown-menu">
 
 	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.unfocusElement()">Unfocus note</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/note">esc</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Navigation</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-navigation.html %}
+		</ul>
+	</li>
+
+	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Pitch</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-pitch.html %}
+		</ul>
+	</li>
+
+	<li>
 		<a class="dropdown-item dropdown-toggle" href="#">Stems</b></a>
 		<ul class="dropdown-menu">
 			{% include menu/contextual-note-stem.html %}
@@ -43,6 +72,13 @@ This file is included into menu/main.html
 	</li>
 
 	<li>
+		<a class="dropdown-item dropdown-toggle" href="#">Slurs</b></a>
+		<ul class="dropdown-menu">
+			{% include menu/contextual-note-slur.html %}
+		</ul>
+	</li>
+
+	<li>
 		<table class="menu">
 			<tr>
 				<td>
@@ -66,6 +102,66 @@ This file is included into menu/main.html
 				<td class="shortcut-cell"">
 					<span class="shortcut">
 						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/beam">J</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.togglePedalDown()">Toggle pedal down before note</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/note">p</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.togglePedalUp()">Toggle pedal up after note</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/note">P</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.toggleGraceNoteStyle()">Toggle gracenote style</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/note">q</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.toggleAtMark()">Toggle @ mark</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/note">@</a>
 					</span>
 				</td>
 			</tr>

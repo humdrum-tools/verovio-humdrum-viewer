@@ -14,6 +14,21 @@ This file is included into menu/main.html
 
 <ul class="dropdown-menu">
 
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.unfocusElement()">Unfocus slur</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">esc</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
 
 	<li>
 		<table class="menu">
@@ -69,6 +84,81 @@ This file is included into menu/main.html
 				<td class="shortcut-cell"">
 					<span class="shortcut">
 						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">c</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.moveSlurStart(-1)">Move slur start left</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">&larr;</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.moveSlurStart(1)">Move slur start right</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">&rarr;</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.moveSlurEnd(-1)">Move slur end left</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">shift-&larr;</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.moveSlurEnd(1)">Move slur end right</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">shift-&rarr;</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</li>
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+					<span class="menu-item" onclick="MENU.moveSlurEnd(3)">Move slur end 3 notes right</span>
+				</td>
+				<td class="shortcut-cell"">
+					<span class="shortcut">
+						<a target="_blank" href="https://doc.verovio.humdrum.org/graphic/slur">3 shift-&rarr;</a>
 					</span>
 				</td>
 			</tr>

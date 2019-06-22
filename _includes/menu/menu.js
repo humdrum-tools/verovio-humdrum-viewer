@@ -108,6 +108,35 @@ MenuInterface.prototype.getContextualMenus = function () {
 // Regular interface commnds (no graphical commands):
 //
 
+
+//////////////////////////////
+//
+// MenuInterface::toggleOriginalClefs --
+//
+
+MenuInterface.prototype.toggleOriginalClefs = function () {
+	var event = {};
+	event.keyCode = OKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displaySvgData --
+//
+
+MenuInterface.prototype.displaySvgData = function () {
+	var event = {};
+	event.keyCode = GKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
 //////////////////////////////
 //
 // MenuInterface::loadRepertory --
@@ -1047,6 +1076,258 @@ MenuInterface.prototype.breakBeamAfterNote = function () {
 
 MenuInterface.prototype.breakBeamBeforeNote = function () {
 	processNotationKey("L", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::makeRestInvisible --
+//
+
+MenuInterface.prototype.makeRestInvisible = function () {
+	processNotationKey("y", CursorNote);
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::togglePedalDown --
+//
+
+MenuInterface.prototype.togglePedalDown = function () {
+	processNotationKey("p", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::togglePedalUp --
+//
+
+MenuInterface.prototype.togglePedalUp = function () {
+	processNotationKey("P", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::togglePedalUp --
+//
+
+MenuInterface.prototype.togglePedalUp = function () {
+	processNotationKey("P", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleGraceNoteStyle --
+//
+
+MenuInterface.prototype.toggleGraceNoteStyle = function () {
+	processNotationKey("q", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleAtMark --
+//
+
+MenuInterface.prototype.toggleAtMark = function () {
+	processNotationKey("@", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::addSlur --
+//
+
+MenuInterface.prototype.addSlur = function (number) {
+	if ((number < 10) && (number > 1)) {
+		var event = {};
+		event.keyCode = ZeroKey + number;
+		event.altKey = true;
+		processInterfaceKeyCommand(event);
+	}
+
+	processNotationKey("s", CursorNote);
+}
+
+
+//////////////////////////////
+//
+// MenuInterface::nextHarmonicNote --
+//
+
+MenuInterface.prototype.nextHarmonicNote = function () {
+	goUpHarmonically(CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::previousHarmonicNote --
+//
+
+MenuInterface.prototype.previousHarmonicNote = function () {
+	goDownHarmonically(CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::nextMelodicNote --
+//
+
+MenuInterface.prototype.nextMelodicNote = function () {
+	goToNextNoteOrRest(CursorNote.id);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::previousMelodicNote --
+//
+
+MenuInterface.prototype.previousMelodicNote = function () {
+	goToPreviousNoteOrRest(CursorNote.id);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::pitchDownStep --
+//
+
+MenuInterface.prototype.pitchDownStep = function (number) {
+	if ((number < 10) && (number > 1)) {
+		var event = {};
+		event.keyCode = ZeroKey + number;
+		event.altKey = true;
+		processInterfaceKeyCommand(event);
+	}
+	processNotationKey("transpose-down-step", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::pitchUpStep --
+//
+
+MenuInterface.prototype.pitchUpStep = function (number) {
+	if ((number < 10) && (number > 1)) {
+		var event = {};
+		event.keyCode = ZeroKey + number;
+		event.altKey = true;
+		processInterfaceKeyCommand(event);
+	}
+	processNotationKey("transpose-up-step", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::pitchUpOctave --
+//
+
+MenuInterface.prototype.pitchUpOctave = function (number) {
+	if ((number < 10) && (number > 1)) {
+		var event = {};
+		event.keyCode = ZeroKey + number;
+		event.altKey = true;
+		processInterfaceKeyCommand(event);
+	}
+	processNotationKey("transpose-up-octave", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::pitchDownOctave --
+//
+
+MenuInterface.prototype.pitchDownOctave = function (number) {
+	if ((number < 10) && (number > 1)) {
+		var event = {};
+		event.keyCode = ZeroKey + number;
+		event.altKey = true;
+		processInterfaceKeyCommand(event);
+	}
+	processNotationKey("transpose-down-octave", CursorNote);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::moveSlurStart --
+//
+
+MenuInterface.prototype.moveSlurStart = function (number) {
+	if (number < 0) {
+		if ((number < 10) && (number > 1)) {
+			number = -number;
+			var event = {};
+			event.keyCode = ZeroKey + number;
+			event.altKey = true;
+			processInterfaceKeyCommand(event);
+		}
+		processNotationKey("leftEndMoveBack", CursorNote);
+	} else {
+		if ((number < 10) && (number > 1)) {
+			var event = {};
+			event.keyCode = ZeroKey + number;
+			event.altKey = true;
+			processInterfaceKeyCommand(event);
+		}
+		processNotationKey("leftEndMoveForward", CursorNote);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::moveSlurEnd --
+//
+
+MenuInterface.prototype.moveSlurEnd = function (number) {
+	if (number < 0) {
+		number = -number;
+		if ((number < 10) && (number > 1)) {
+			var event = {};
+			event.keyCode = ZeroKey + number;
+			event.altKey = true;
+			processInterfaceKeyCommand(event);
+		}
+		processNotationKey("rightEndMoveBack", CursorNote);
+	} else {
+		if ((number < 10) && (number > 1)) {
+			var event = {};
+			event.keyCode = ZeroKey + number;
+			event.altKey = true;
+			processInterfaceKeyCommand(event);
+		}
+		processNotationKey("rightEndMoveForward", CursorNote);
+	}
 }
 
 

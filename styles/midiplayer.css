@@ -1,112 +1,55 @@
 
-
 #midiPlayer_div  {
-	height		:	36px;
-	background	:	#999;
-	opacity         :       0.70;
+	height:     36px;
+	background: #999;
+	opacity:    0.70;
 }
 
 #midiPlayer_bar  {
-	height		:	12px;
-	width		:	250px;
-	background	:	#ccc;
-	cursor		:	pointer;
-	display		:	inline-block;
+	height:            12px;
+	width:             250px;
+	background:        #ccc;
+	cursor:            pointer;
+	display:           inline-block;
 }
 
 #midiPlayer_progress {
-	background	:	#555;
-	margin		:	0;
-	width		:	0;
-	height		:	100%;
+	background:        #555;
+	margin:            0;
+	width:             0;
+	height:            100%;
 }
 
 #midiPlayer_playingTime {
-	width		:	45px;
-	margin		:	8px;
-	font-size	:	16px;
-	text-align	:	right;
-	font-family	:	arial;
-	display		:	inline-block;
+	width:             45px;
+	margin:            8px;
+	font-size:         16px;
+	text-align:        right;
+	font-family:       arial;
+	display:           inline-block;
 }
 
 #midiPlayer_totalTime {
-	width		:	40px;
-	text-align	:	right;
-	margin		:	4px;
-	font-size	:	16px;
-	font-family	:	arial;
-	display		:	inline-block;
+	width:             40px;
+	text-align:        right;
+	margin:            4px;
+	font-size:         16px;
+	font-family:       arial;
+	display:           inline-block;
 }
 
 #midiPlayer_div a.icon {
-	cursor		 :	pointer;
-	background-color :	#eee;
-	display		 :	none;
-	vertical-align   :      center;
+	cursor:            pointer;
+	vertical-align:    center;
 }
 
-#midiPlayer_div a.icon	:hover,
+#midiPlayer_div a.icon: hover {
+	color: green !important;
 
-#midiPlayer_div a.icon	:hover :after,
-
-#midiPlayer_div a.icon	:hover :before {
-	background-color	:	#fff;
 }
 
-#midiPlayer_div a.icon  {
-	border-radius	: 100%;
-	margin-left     : 10px;
-	margin-right    : 3px;
-	height		: 25px;
-	width		: 25px;
-	vertical-align  : middle;
+#midiPlayer_div a.play : hover {
+	color: hotpink !important;
 }
-
-
-/* STOP ******************************************************************/
-
-#midiPlayer_div a.stop :after {
-	background	: #ccc;
-	border-radius	: 0%;
-}
-
-#midiPlayer_div a.stop :hover :after {
-	background	:	#ccc;
-}
-
-#midiPlayer_div a.stop :before {
-	border		:	none;
-}
-
-/* PLAY ******************************************************************/
-
-#midiPlayer_div a.play	:after,
-#midiPlayer_div a.play	:before,
-#midiPlayer_div a.play	:hover :after,
-#midiPlayer_div a.play	:hover :before {
-	background	:	none;
-}
-
-#midiPlayer_div a.play	:after {
-	border-bottom	:	8px solid transparent;
-	border-left	:	13px solid #ccc;
-	border-right	:	13px solid transparent;
-	border-top	:	8px solid transparent;
-	height		:	0;
-	left		:	8px;
-	top		:	5px;
-	width		:	0;
-}
-
-
-#midiPlayer_div a.play	:before {
-	border		:	none;
-}
-
-
-/* PLAY ******************************************************************/
-
-
 
 

@@ -9,21 +9,23 @@ LASTLINE = -1;
 // play_midi --
 //
 
-var DELAY = 100;
+var DELAY = 600;
 
 function play_midi(starttime) {
 	starttime = starttime ? starttime : 0;
 	if (starttime == 0) {
-		DELAY = 100;
+		DELAY = 600;
 	} else {
-		DELAY = 700;
+		DELAY = 600;
 	}
-console.log("DELAY IS SET TO ", DELAY);
 
 	vrv.renderToMidi()
 	.then(function (base64midi) {
 		var song = 'data:audio/midi;base64,' + base64midi;
 		$("#play-button").hide();
+		$("#midiPlayer_play").show();
+		$("#midiPlayer_stop").show();
+		$("#midiPlayer_pause").show();
 		$("#player").show();
 		$("#player").midiPlayer.play(song, starttime);
 		PLAY = true;
@@ -39,6 +41,7 @@ console.log("DELAY IS SET TO ", DELAY);
 //
 
 var midiUpdate = function (time) {
+console.log("MIDI UPDATE ", time);
 	var vrvTime = Math.max(0, time - DELAY);
 	vrv.getElementsAtTime(vrvTime)
 	.then(function (elementsattime) {
@@ -51,9 +54,9 @@ var midiUpdate = function (time) {
 			if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
 				ids.forEach(function (noteid) {
 						if ($.inArray(noteid, elementsattime.notes) == -1) {
-						//$("#" + noteid ).attr("fill", "#000");
-							//$("#" + noteid ).attr("stroke", "#000");
-						// $("#" + noteid ).removeClassSVG("highlighted");
+						// $("#" + noteid ).attr("fill", "#000");
+						// $("#" + noteid ).attr("stroke", "#000");
+						// $("#" + noteid ).removeClassSVG("highlight");
 
 						var element = document.querySelector("#" + noteid);
 						if (element) {
@@ -98,7 +101,7 @@ var midiUpdate = function (time) {
 
 						// $("#" + noteid ).attr("fill", "#c00");
 						// $("#" + noteid ).attr("stroke", "#c00");;
-						// $("#" + noteid ).addClassSVG("highlighted");
+						// $("#" + noteid ).addClassSVG("highlight");
 
 						var element = document.querySelector("#" + noteid);
 						if (element) {
@@ -123,16 +126,34 @@ var midiUpdate = function (time) {
 }
 
 
+
 //////////////////////////////
 //
-// midiStop --
+// midiStop -- Callback for WildWestMidi when stopping MIDI playback.
 //
 
 var midiStop = function () {
+console.log("ENTERING MIDI STOP");
 	ids.forEach(function (noteid) {
 		// $("#" + noteid ).attr("fill", "#000");
 		// $("#" + noteid ).attr("stroke", "#000");
-		$("#" + noteid ).removeClassSVG("highlighted");
+		// .removeClassSVG is not working:
+		// $("#" + noteid ).removeClassSVG("highlight");
+
+		var element = document.querySelector("#" + noteid);
+console.log("CLEARING NOTE HIGHLIGHT FOR ", noteid, element);
+		if (element) {
+			var classes = element.getAttribute("class");
+			var classlist = classes.split(" ");
+			var outclass = "";
+			for (var i=0; i<classlist.length; i++) {
+				if (classlist[i] == "highlight") {
+					continue;
+				}
+				outclass += " " + classlist[i];
+			}
+			element.setAttribute("class", outclass);
+		}
 	});
 	$("#player").hide();
 	$("#play-button").show();

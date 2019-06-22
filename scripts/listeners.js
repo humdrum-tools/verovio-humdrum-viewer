@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	setupAceEditor("input");
 	allowTabs();
 	setupDropArea();
-   prepareHelpMenu('#help-container');
 
 	if (CGI.k) {
 		if (CGI.k.match(/y/)) {
@@ -726,9 +725,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case SlashKey:          // toggle help menu
+		case SlashKey:          // toggle menu display (to be implemented)
 			if (event.shiftKey) {
-				toggleHelpMenu();
 				event.preventDefault();
 			}
 			break;
