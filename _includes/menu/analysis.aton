@@ -1,0 +1,23 @@
+@@ This is the contents of the "Analysis" menu entry in the top menu.
+@@ This file is included into menu/menu.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Dissonance labels
+@ACTION:		MENU.applyFilter('dissonant --color')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@EN:			dissonant
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/filter/dissonant
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+

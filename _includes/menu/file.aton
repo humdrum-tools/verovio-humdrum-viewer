@@ -1,0 +1,138 @@
+@@ This is the contents of the "File" menu entry in the top menu.
+@@ This file is included into menu/menu.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Download editor contents
+@ACTION:		MENU.saveTextEditorContents()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-s
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-s
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Create PDF
+@ACTION:		MENU.createPdf()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-T
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-T
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Create PDF of current view
+@ACTION:		MENU.createPdfPage()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-t
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-t
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Reload data from source
+@ACTION:		MENU.reloadFromSource()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-r
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-r
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Display MEI data
+@ACTION:		MENU.displayMeiData()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-m
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-m
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Display Humdrum data
+@ACTION:		MENU.displayHumdrumData()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-h
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-h
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Display SVG image text
+@ACTION:		MENU.displaySvgData()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-g
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-g
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to local buffer
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			link
+@EN:			info
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/interface/buffers
+@@END: LINK
+@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/file-save-buffer.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load local buffer
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@EN:			
+@@BEGIN: LINK
+@EN:			
+@@END: LINK
+@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/file-load-buffer.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+

@@ -1,0 +1,69 @@
+
+@@BEGIN: MENU
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 File
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/file.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 View
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/view.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 Edit
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/edit.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 Navigation
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/navigation.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 Analysis
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/analysis.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 Scores
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/scores.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:		 Help
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/help.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+
+@@END: MENU
+

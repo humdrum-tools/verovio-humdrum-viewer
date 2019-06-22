@@ -1,0 +1,134 @@
+@@ This is the contents of the "Save to buffer" submenu entry in the File menu.
+@@ This file is included into menu/file.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 1
+@ACTION:		MENU.saveToBuffer(1)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			1 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 2
+@ACTION:		MENU.saveToBuffer(2)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			2 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 3
+@ACTION:		MENU.saveToBuffer(3)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			3 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 4
+@ACTION:		MENU.saveToBuffer(4)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			4 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 5
+@ACTION:		MENU.saveToBuffer(5)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			5 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 6
+@ACTION:		MENU.saveToBuffer(6)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			6 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 7
+@ACTION:		MENU.saveToBuffer(7)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			7 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 8
+@ACTION:		MENU.saveToBuffer(8)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			8 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Save to buffer 9
+@ACTION:		MENU.saveToBuffer(9)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			9 alt-S
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-S
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+

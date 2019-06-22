@@ -1,0 +1,149 @@
+@@ This is the contents of the "Load buffer" submenu entry in the File menu.
+@@ This file is included into menu/file.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 1
+@ACTION:		MENU.loadFromBuffer(1)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			1 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 2
+@ACTION:		MENU.loadFromBuffer(2)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			2 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 3
+@ACTION:		MENU.loadFromBuffer(3)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			3 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 4
+@ACTION:		MENU.loadFromBuffer(4)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			4 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 5
+@ACTION:		MENU.loadFromBuffer(5)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			5 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 6
+@ACTION:		MENU.loadFromBuffer(6)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			6 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 7
+@ACTION:		MENU.loadFromBuffer(7)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			7 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 8
+@ACTION:		MENU.loadFromBuffer(8)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			8 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from buffer 9
+@ACTION:		MENU.loadFromBuffer(9)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			9 alt-R
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-R
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Load from autosave buffer
+@ACTION:		MENU.loadFromBuffer(0)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@EN:			
+@@BEGIN: LINK
+@EN:			
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+

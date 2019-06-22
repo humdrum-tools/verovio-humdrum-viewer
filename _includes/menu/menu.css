@@ -83,15 +83,6 @@ span.shortcut a:hover, span.filter a:hover {
 }
 
 
-span.gh:before, span.web:before {
-	content: "(";
-	white-space: nowrap;
-}
-span.gh:after, span.web:after {
-	content: ")";
-	white-space: nowrap;
-}
-
 span.gh a, span.web a {
 	display: inline;
 	padding: 0;
@@ -210,6 +201,5 @@ span.dropdown-toggle::after {
 li.contextual {
 	display: none;
 }
-
 
 

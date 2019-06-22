@@ -8,10 +8,26 @@ function MenuInterface() {
 	this.contextualMenus = {};
 }
 
+
 document.addEventListener("DOMContentLoaded", function() {
+	processMenuAton();
 	MENU = new MenuInterface();
 	MENU.initialize();
 });
+
+
+
+function processMenuAton() {
+	var element = document.querySelector("script#aton-menu-data");
+	if (!element) {
+		console.log("Warning: cannot find element script#aton-menu-data");
+		return;
+	}
+	var aton = new ATON();
+	var jdata = aton.parse(element.textContent).MENU;
+	console.log("DATA TO CREATE MENU", jdata);
+	// Use handlebars to generate HTML code for menu.
+}
 
 
 MenuInterface.prototype.initialize = function () {
@@ -1349,6 +1365,7 @@ MenuInterface.prototype.adjustNotationScale = function (number) {
 
 	displayNotation();
 }
+
 
 
 

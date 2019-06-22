@@ -1,0 +1,105 @@
+@@ This is the contents of the "Navigation" menu entry in the top menu.
+@@ This file is included into menu/menu.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			First page
+@ACTION:		MENU.goToFirstPage()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-home
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-home
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Last page
+@ACTION:		MENU.goToLastPage()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-end
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-end
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Previous page
+@ACTION:		MENU.goToPreviousPage()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-&larr;
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-left
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Next page
+@ACTION:		MENU.goToNextPage()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			alt-&rarr;
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/alt-right
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Next work/movement
+@ACTION:		MENU.goToNextWork()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			shift-&rarr;
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/shift-right
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Previous work/movement
+@ACTION:		MENU.goToPreviousWork()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			shift-&larr;
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/shift-left
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@EN:			Play/pause MIDI performance
+@ACTION:		MENU.toggleMidiPlayback()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@EN:			space
+@@BEGIN: LINK
+@EN:			https://doc.verovio.humdrum.org/commands/space
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
