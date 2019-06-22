@@ -1332,3 +1332,23 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 
 
 
+
+
+//////////////////////////////
+//
+// MenuInterface::adjustNotationScale -- add or subtract the input value, not going below 5 or above 200.
+//
+
+MenuInterface.prototype.adjustNotationScale = function (number) {
+	SCALE = SCALE + number;
+	if (SCALE < 5) {
+		SCALE = 5;
+	} else if (SCALE > 200) {
+		SCALE = 200;
+	}
+
+	displayNotation();
+}
+
+
+

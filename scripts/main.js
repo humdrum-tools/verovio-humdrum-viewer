@@ -18,6 +18,7 @@ var OPTIONS = {}; // used for debugging display options.
 
 // verovio variables for a movement:
 var vrv;
+var SCALE = 40;
 var FILEINFO = {};
 var EDITOR;
 var dummyEDITOR;
@@ -372,7 +373,7 @@ function humdrumToSvgOptions() {
 		pageMarginTop     : 20,
 		pageMarginBottom  : 20,
 		pageWidth         : 2500,
-		scale             : 40,
+		scale             : SCALE,
 		noFooter          : 1,
 		noHeader          : 1,
 		breaks            : "auto",
@@ -400,8 +401,8 @@ function humdrumToSvgOptions() {
 		// output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
 		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
 		// jQuery $window.innerHeight() not working properly (in Chrome).
-		output.pageHeight = (window.innerHeight - $("#topnav").outerHeight()) / ZOOM - 50;
-		output.pageWidth = (window.innerWidth - tw) / ZOOM - 100;
+		output.pageHeight = (window.innerHeight - $("#topnav").outerHeight()) / (ZOOM * SCALE / 40) - 50;
+		output.pageWidth = (window.innerWidth - tw) / (ZOOM * SCALE / 40 ) - 100;
 	}
 	if (CGI.tasso) {
 		output.spacingNonLinear = 0.65;
@@ -3308,6 +3309,7 @@ function goToPreviousNoteOrRest(currentid) {
 	var current = document.querySelector("#" + currentid);
 	if (!current) {
 		console.log("CANNOT FIND ITEM ", currentid);
+		return;
 	}
 	var location = getStaffAndLayerNumbers(current.id);
 	var matches = current.className.baseVal.match(/qon-([^\s]+)/);
@@ -3326,6 +3328,7 @@ function goToPreviousNoteOrRest(currentid) {
 	if (!alist) {
 		return;
 	}
+	unhighlightCurrentNote(current);
 	if (alist.length == 1) {
 		highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest");
 	} else if (alist.length == 0) {
@@ -3396,6 +3399,7 @@ function goToNextNoteOrRest(currentid) {
 	if (!alist) {
 		return;
 	}
+	unhighlightCurrentNote(current);
 
 	if (alist.length == 1) {
 		highlightIdInEditor(alist[0].id, "goToNextNoteOrRest");
@@ -3723,11 +3727,34 @@ function moveHarmonically(current, direction) {
 		return;
 	}
 	var startid = current.id;
+	unhighlightCurrentNote(current);
 	var nextid = getNextHarmonicNote(startid, direction)
 	if (!nextid) {
 		return;
 	}
 	highlightIdInEditor(nextid, "moveHarmonically");
+}
+
+
+
+//////////////////////////////
+//
+// unhighlightCurrentNote --
+//
+
+function unhighlightCurrentNote(element) {
+	if (element) {
+		var classes = element.getAttribute("class");
+		var classlist = classes.split(" ");
+		var outclass = "";
+		for (var i=0; i<classlist.length; i++) {
+			if (classlist[i] == "highlight") {
+				continue;
+			}
+			outclass += " " + classlist[i];
+		}
+		element.setAttribute("class", outclass);
+	}
 }
 
 
