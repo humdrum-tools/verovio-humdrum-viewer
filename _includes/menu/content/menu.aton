@@ -248,37 +248,37 @@
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		 Help
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
+@AR:			مساعدة
+@BE:			Дапамажыце
+@CA:			Ajuda
+@DE:			Hilfe
+@DK:			Hjælp
+@EL:			Βοήθεια
+@EN:			Help
+@ES:			Ayuda
+@ET:			Abi
+@EU:			Laguntza
+@FI:			Auta
+@FR:			Aide
+@HE:			עזרה
+@HI:			मदद
+@ID:			Membantu
+@IT:			Aiuto
+@JA:			助けて
+@KO:			도움
+@LT:			Pagalba
+@LV:			Palīdzība
+@NL:			Helpen
+@NO:			Hjelp
 @PL:			Pomoc
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@PT:			Socorro
+@RU:			Помогите
+@SK:			Pomoc
+@SV:			Hjälp
+@TR:			Yardım
+@UK:			Довідка
+@VI:			Giúp
+@ZH:			救命
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/help.aton %}
