@@ -7,16 +7,16 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@FORCE:			EN
-@DEFAULT:		English
+@FORCE:			BE
+@DEFAULT:		Belarusian
 @AR:
-@BE:
+@BE:			Беларуская
 @CA:
-@DE:			Englisch
+@DE:			
 @DK:
 @EL:
-@EN:			English
-@ES:			Inglés
+@EN:			
+@ES:			
 @ET:
 @EU:
 @FI:
@@ -24,14 +24,14 @@
 @HE:
 @HI:
 @ID:
-@IT:
+@IT:			
 @JA:
 @KO:
 @LT:
 @LV:
 @NL:
 @NO:
-@PL:			Angielski
+@PL:			
 @PT:
 @RU:
 @SK:
@@ -40,7 +40,85 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.setLanguage('EN')
+@ACTION:		MENU.setLanguage('BE')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			CA
+@DEFAULT:		Catalan
+@AR:
+@BE:			
+@CA:			Català
+@DE:			
+@DK:
+@EL:
+@EN:			
+@ES:			
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('CA')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			DK
+@DEFAULT:		Danish
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			Dansk
+@EL:
+@EN:			
+@ES:			
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('DK')
 @@END: TEXT
 @@END: ENTRY
 
@@ -63,14 +141,14 @@
 @HE:
 @HI:
 @ID:
-@IT:
+@IT:			Tedesco
 @JA:
 @KO:
 @LT:
 @LV:
 @NL:
 @NO:
-@PL:			niemiecki
+@PL:			Niemiecki
 @PT:
 @RU:
 @SK:
@@ -85,16 +163,16 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@FORCE:			PL
-@DEFAULT:		Polish
+@FORCE:			EL
+@DEFAULT:		Greek
 @AR:
-@BE:
-@CA:
-@DE:			Polnisch
-@DK:
-@EL:
-@EN:			Polish
-@ES:			polaco
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			Ελληνικά
+@EN:			
+@ES:			
 @ET:
 @EU:
 @FI:
@@ -102,14 +180,14 @@
 @HE:
 @HI:
 @ID:
-@IT:
+@IT:			
 @JA:
 @KO:
 @LT:
 @LV:
 @NL:
 @NO:
-@PL:			Polski
+@PL:			
 @PT:
 @RU:
 @SK:
@@ -118,7 +196,46 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.setLanguage('PL')
+@ACTION:		MENU.setLanguage('EL')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			EN
+@DEFAULT:		English
+@AR:
+@BE:
+@CA:
+@DE:			Englisch
+@DK:
+@EL:
+@EN:			English
+@ES:			Inglés
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			Inglese
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			Angielski
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('EN')
 @@END: TEXT
 @@END: ENTRY
 
@@ -141,7 +258,7 @@
 @HE:
 @HI:
 @ID:
-@IT:
+@IT:			Spagnolo
 @JA:
 @KO:
 @LT:
@@ -158,6 +275,355 @@
 @VI:
 @ZH:
 @ACTION:		MENU.setLanguage('ES')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			EU
+@DEFAULT:		Basque
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			
+@EN:			
+@ES:			
+@ET:
+@EU:			Euskara
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('EU')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			FR
+@DEFAULT:		French
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			
+@EN:			
+@ES:			
+@ET:
+@EU:			
+@FI:
+@FR:			Français
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('FR')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			KO
+@DEFAULT:		Korean
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			
+@EN:			
+@ES:			
+@ET:
+@EU:			
+@FI:
+@FR:			
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:			한국어
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('KO')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			IT
+@DEFAULT:		Italian
+@AR:
+@BE:
+@CA:
+@DE:			Italienisch
+@DK:
+@EL:
+@EN:			Italian
+@ES:			Italiano
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			Italiano
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			Włoski
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('IT')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			JA
+@DEFAULT:		Japanese
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			
+@EN:			
+@ES:			
+@ET:
+@EU:			
+@FI:
+@FR:			
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:			日本語
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('JA')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			PL
+@DEFAULT:		Polish
+@AR:
+@BE:
+@CA:
+@DE:			Polnisch
+@DK:
+@EL:
+@EN:			Polish
+@ES:			polaco
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			Polacco
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			Polski
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('PL')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@FORCE:			FI
+@DEFAULT:		Finnish
+@AR:
+@BE:			
+@CA:			
+@DE:			
+@DK:			
+@EL:			
+@EN:			
+@ES:			
+@ET:
+@EU:			
+@FI:			Suomi
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:			
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.setLanguage('FI')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Save language preference
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.saveCurrentLanguagePreference()
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Clear language preference
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.clearLanguagePreference()
 @@END: TEXT
 @@END: ENTRY
 

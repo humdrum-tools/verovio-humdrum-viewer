@@ -1437,3 +1437,28 @@ MenuInterface.prototype.setLanguage = function (lang) {
 }
 
 
+
+//////////////////////////////
+//
+// MenuInterface::saveCurrentLanguagePreference --
+//
+
+MenuInterface.prototype.saveCurrentLanguagePreference = function () {
+	localStorage["LANGUAGE"] = LANGUAGE;
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::clearLanguagePreference --
+//
+
+MenuInterface.prototype.clearLanguagePreference = function () {
+	delete localStorage["LANGUAGE"];
+}
+
+
+
+
+

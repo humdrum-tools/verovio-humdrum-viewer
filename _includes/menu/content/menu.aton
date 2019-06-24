@@ -3,38 +3,38 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 File
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@DEFAULT:		File
+@AR:			ملف
+@BE:			файл
+@CA:			Dossier
+@DE:			Datei
+@DK:			Fil
+@EL:			Αρχείο
+@EN:			File
+@ES:			Archivo
+@ET:			Fail
+@EU:			Fitxategia
+@FI:			Tiedosto
+@FR:			Fichier
+@HE:			קוֹבֶץ
+@HI:			फ़ाइल
+@ID:			Mengajukan
+@IT:			File
+@JA:			ファイル
+@KO:			파일
+@LT:			Byla
+@LV:			Fails
+@NL:			Dossier
+@NO:			Fil
+@PL:			Pilk
+@PT:			Arquivo
+@RU:			файл
+@SK:			Súbor
+@SV:			Fil
+@TR:			Dosya
+@UK:			файл
+@VI:			Tập tin
+@ZH:			文件
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/file.aton %}
@@ -43,38 +43,38 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 View
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@DEFAULT:		View
+@AR:			رأي
+@BE:			Выгляд
+@CA:			Vista
+@DE:			Aussicht
+@DK:			Udsigt
+@EL:			Θέα
+@EN:			View
+@ES:			Ver
+@ET:			Vaade
+@EU:			Ikuspegi
+@FI:			Näkymä
+@FR:			Vue
+@HE:			נוף
+@HI:			राय
+@ID:			Melihat
+@IT:			Vista
+@JA:			見る
+@KO:			전망
+@LT:			Vaizdas
+@LV:			Skats
+@NL:			Uitzicht
+@NO:			Utsikt
+@PL:			Widok
+@PT:			Visão
+@RU:			Посмотреть
+@SK:			Vyhliadka
+@SV:			Se
+@TR:			Görünüm
+@UK:			вид
+@VI:			Lượt xem
+@ZH:			視圖
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/view.aton %}
@@ -83,38 +83,38 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 Edit
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@DEFAULT:		Edit
+@AR:			تصحيح
+@BE:			Рэдагаваць
+@CA:			Editar
+@DE:			Bearbeiten
+@DK:			Redigere
+@EL:			Επεξεργασία
+@EN:			Edi
+@ES:			Editar
+@ET:			Muuta
+@EU:			Editatu
+@FI:			Muokata
+@FR:			Modifier
+@HE:			לַעֲרוֹך
+@HI:			संपादित करें
+@ID:			Edit
+@IT:			Modifica
+@JA:			編集
+@KO:			편집하다
+@LT:			Redaguoti
+@LV:			Ediģēt
+@NL:			Bewerk
+@NO:			Redigere
+@PL:			Edytować
+@PT:			Editar
+@RU:			Редактировать
+@SK:			Editovať
+@SV:			Redigera
+@TR:			Düzenlemek
+@UK:			Редагувати
+@VI:			Chỉnh sửa
+@ZH:			編輯
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/edit.aton %}
@@ -127,7 +127,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 Scores
+@DEFAULT:		Scores
 @AR:
 @BE:
 @CA:
@@ -167,37 +167,37 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 Analysis
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
+@DEFAULT:		Analysis
+@AR:			تحليل
+@BE:			аналіз
+@CA:			Anàlisi
+@DE:			Analyse
+@DK:			Analyse
+@EL:			Ανάλυση
+@EN:			Analysis
+@ES:			Análisis
+@ET:			Analüüs
+@EU:			Azterketa
+@FI:			Analyysi
+@FR:			Analyse
+@HE:			אָנָלִיזָה
+@HI:			विश्लेषण
+@ID:			Analisis
+@IT:			Analisi
+@JA:			分析
+@KO:			분석
+@LT:			Analizė
+@LV:			Analīze
+@NL:			Analyse
+@NO:			Analyse
+@PL:			Analiza
+@PT:			Análise
+@RU:			Анализ
+@SK:			Analýza
+@SV:			Analys
+@TR:			Analiz
+@UK:			Аналіз
+@VI:			Phân tích
 @ZH:
 @@END: TEXT
 @@BEGIN: SUBMENU
@@ -207,38 +207,38 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 Navigation
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@DEFAULT:		Navigation
+@AR:			التنقل
+@BE:			Рух
+@CA:			Navegació
+@DE:			Navigation
+@DK:			Navigation
+@EL:			Πλοήγηση
+@EN:			Navigation
+@ES:			Navegación
+@ET:			Navigatsioon
+@EU:			Nabigazioa
+@FI:			Suunnistus
+@FR:			Navigation
+@HE:			ניווט
+@HI:			पथ प्रदर्शन
+@ID:			Navigasi
+@IT:			Navigazione
+@JA:			ナビゲーション
+@KO:			항해
+@LT:			Navigacija
+@LV:			Navigācija
+@NL:			Navigatie
+@NO:			Navigasjon
+@PL:			Nawigacja
+@PT:			Navegação
+@RU:			Навигация
+@SK:			Navigácia
+@SV:			Navigering
+@TR:			Navigasyon
+@UK:			Навігація
+@VI:			Dẫn đường
+@ZH:			導航
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/navigation.aton %}
@@ -247,7 +247,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		 Help
+@DEFAULT:		Help
 @AR:			مساعدة
 @BE:			Дапамажыце
 @CA:			Ajuda
