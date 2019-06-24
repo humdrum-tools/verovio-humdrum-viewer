@@ -211,3 +211,38 @@ a.menu-link:hover {
 table.menu tr:hover a.menu-link {
 	color: black;
 }
+
+#language-icon {
+	font-size: 150%;
+
+
+}
+
+.dropdown-menu {
+	opacity: 0.95;
+}
+
+
+
+
+@media only screen and (max-width: 750px) {
+
+	button.navbar-toggler {
+		font-size: 70%;
+		margin-top: -11px;
+		margin-left: 3px;
+	}
+
+	span.menu-name.nav-link.dropdown-toggle, span.menu-item, table.menu td {
+		color:      black;
+		background: white;
+		opacity:    0.95;
+	}
+
+	span.menu-name.nav-link.dropdown-toggle:hover, span.menu-item:hover {
+		color:      #aa3355;
+	}
+}
+
+
+

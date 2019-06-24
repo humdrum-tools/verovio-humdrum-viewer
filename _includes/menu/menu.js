@@ -11,7 +11,22 @@ function MenuInterface() {
 }
 
 
+function setInitialLanguage() {
+	if (localStorage["LANGUAGE"]) {
+		LANGUAGE = localStorage["LANGUAGE"];
+	} else {
+		var lang = navigator.language.replace(/-.*/, "").toUpperCase();
+		if (lang.length = 2) {
+			LANGUAGE = lang;
+		}
+	}
+	console.log("LANGUAGE SET TO ", LANGUAGE);
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
+	setInitialLanguage();
 	processMenuAton();
 	MENU = new MenuInterface();
 	MENU.initialize();
@@ -35,7 +50,7 @@ function processMenuAton() {
 	var tsource = document.querySelector("#top-level-menu-template").textContent;
 	var menuTemplate = Handlebars.compile(tsource);
 	var output = menuTemplate(MENUDATA);
-	var newmenuelement = document.querySelector("#handlebars-menu");
+	var newmenuelement = document.querySelector("#handlebars-nav");
 	if (newmenuelement) {
 		newmenuelement.outerHTML = output;
 		var ne = document.querySelector("#handlebars-nav");
@@ -1399,6 +1414,7 @@ MenuInterface.prototype.adjustNotationScale = function (number) {
 
 	displayNotation();
 }
+
 
 
 //////////////////////////////

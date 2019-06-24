@@ -80,12 +80,12 @@
 	min-height:20px
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 750px) {
     .btco-hover-menu .show > .dropdown-toggle::after{
         transform: rotate(-90deg);
     }
 }
-@media only screen and (min-width: 991px) {
+@media only screen and (min-width: 750px) {
 
     .btco-hover-menu .collapse ul li{position:relative;}
     .btco-hover-menu .collapse ul li:hover> ul{display:block}

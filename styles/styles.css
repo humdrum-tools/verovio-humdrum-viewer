@@ -106,21 +106,37 @@ svg:not(:root) {
 #header-table td {
 	height: 44px;
 	padding-top: 2px;
+	margin-top: -5px;
 	padding-right: 15px;
+}
+
+#work-navigator, #title-info {
+	padding-bottom: 5px;
+	display: inline-block;
+	white-space: nowrap;
+}
+
+#title-info {
+	width:       100%;
+	color:       #f8f5f0;
+	font-family: Palatino, Times-Roman, serif;
+	font-size:   132%;
+	margin-top: -30px !important;
+	white-space: nowrap;
 }
 
 
 #vhv {
-	color:          #888;
-	font-size:      110%;
-	letter-spacing: -1px;
-	margin-top: 	11px;
-	white-space:    nowrap;
-	word-spacing:   -3px;
+	color:               #888;
+	font-size:           110%;
+	margin-top: 	     2px;
+	white-space:         nowrap;
+	word-spacing:        -3px;
+	letter-spacing:      -1px;
 	-moz-user-select:    none;
-	-webkit-user-select:    none;
-	-ms-user-select:    none;
-	user-select:    none;
+	-webkit-user-select: none;
+	-ms-user-select:     none;
+	user-select:         none;
 }
 
 
@@ -152,18 +168,6 @@ div#dropArea {
 	visibility: hidden;
 }
 
-
-#title-info {
-	width:       100%;
-	color:       #f8f5f0;
-	font-family: Palatino, Times-Roman, serif;
-	position:    relative;
-	font-size:   130%;
-	top:         2px;
-	padding:     0;
-	margin:      0;
-	white-space: nowrap;
-}
 
 
 #composer {
@@ -553,12 +557,6 @@ div#index {
 	padding-right: 50px;
 	overflow: scroll;
 }
-
-
-.dropdown-menu {
-	opacity: 0.95;
-}
-
 
 
 

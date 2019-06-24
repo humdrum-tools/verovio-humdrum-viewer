@@ -13,7 +13,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul style="width:100%" class="navbar-nav">
+		<ul style="white-space:nospace; width:100%" class="navbar-nav">
 
 			{{#ENTRY}}
 				{{{printMainMenuEntry this}}}
@@ -259,6 +259,9 @@ Handlebars.registerHelper("languageText", function(text) {
 		return new Handlebars.SafeString(text);
 	} else if (text && text.DEFAULT) {
 		var language = LANGUAGE;
+		if (text.FORCE) {
+			language = text.FORCE;
+		}
 		if (!language) {
 			language = "DEFAULT";
 		}
