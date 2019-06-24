@@ -3,6 +3,8 @@
 //
 
 var MENU = { };
+var MENUDATA = { };
+var LANGUAGE = "DEFAULT";
 
 function MenuInterface() { 
 	this.contextualMenus = {};
@@ -24,10 +26,44 @@ function processMenuAton() {
 		return;
 	}
 	var aton = new ATON();
-	var jdata = aton.parse(element.textContent).MENU;
-	console.log("DATA TO CREATE MENU", jdata);
+	MENUDATA = aton.parse(element.textContent).MENU;
+	adjustMenu(MENUDATA);
+	
+	console.log("DATA TO CREATE MENU", MENUDATA);
+
 	// Use handlebars to generate HTML code for menu.
+	var tsource = document.querySelector("#top-level-menu-template").textContent;
+	var menuTemplate = Handlebars.compile(tsource);
+	var output = menuTemplate(MENUDATA);
+	var newmenuelement = document.querySelector("#handlebars-menu");
+	if (newmenuelement) {
+		newmenuelement.outerHTML = output;
+		var ne = document.querySelector("#handlebars-nav");
+		console.log("MENU HTML CODE:", ne);
+	}
 }
+
+
+
+//////////////////////////////
+//
+// adjustMenu --
+//
+
+function adjustMenu (object) {
+	for (var property in object) {
+		if (object.hasOwnProperty(property)) {
+			if (property === "RIGHT_TEXT") {
+				if (!Array.isArray(object[property])) {
+					object[property] = [ object[property] ];
+				}
+			} else if (typeof object[property] == "object") {
+				adjustMenu(object[property]);
+			}
+		}
+	}
+}
+
 
 
 MenuInterface.prototype.initialize = function () {
@@ -1348,8 +1384,6 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 
 
 
-
-
 //////////////////////////////
 //
 // MenuInterface::adjustNotationScale -- add or subtract the input value, not going below 5 or above 200.
@@ -1367,5 +1401,23 @@ MenuInterface.prototype.adjustNotationScale = function (number) {
 }
 
 
+//////////////////////////////
+//
+// MenuInterface::setLanguage --
+//
+
+MenuInterface.prototype.setLanguage = function (lang) {
+	LANGUAGE = lang;
+
+	// Use handlebars to generate HTML code for menu.
+	var tsource = document.querySelector("#top-level-menu-template").textContent;
+	var menuTemplate = Handlebars.compile(tsource);
+	var output = menuTemplate(MENUDATA);
+	var newmenuelement = document.querySelector("#handlebars-nav");
+	if (newmenuelement) {
+		newmenuelement.outerHTML = output;
+	}
+	console.log("USING LANGAUGE", lang);
+}
 
 

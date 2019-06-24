@@ -1,0 +1,81 @@
+@@ This file contains common phrases used in the menu system.
+@@ This file is included into menu/content/menu.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@ This phrase is used in pop-up text for the website icon (in the Scores menu)
+@DEFAULT:		view repertory website
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:			view repertory website
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@ This phrase is used in pop-up text for the link to a Github repository (in the Scores menu)
+@DEFAULT:		Github repository
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:			Github repository
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: ENTRY
+
+
+

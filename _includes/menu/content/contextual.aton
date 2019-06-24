@@ -1,0 +1,209 @@
+
+
+@@BEGIN: ENTRY
+@TYPE:			contextual
+@@BEGIN: TEXT
+@DEFAULT:		Beam
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/contextual-beam.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@TYPE:			contextual
+@@BEGIN: TEXT
+@DEFAULT:		Note
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/contextual-note.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@TYPE:			contextual
+@@BEGIN: TEXT
+@DEFAULT:		Rest
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/contextual-rest.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@TYPE:			contextual
+@@BEGIN: TEXT
+@DEFAULT:		Slur
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/contextual-slur.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@TYPE:			contextual
+@@BEGIN: TEXT
+@DEFAULT:		Tie
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/contextual-tie.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+
+

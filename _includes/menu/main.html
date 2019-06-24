@@ -1,7 +1,5 @@
 <!-- this menu system requires including bootstrap 4:
-
-
-	vim: ts=2:nowrap
+	vim: ts=3:nowrap
 -->
 
 <style>
@@ -20,80 +18,8 @@
 	{% include menu/bootstrap-4-hover-navbar.js %}
 </script>
 
+{% include menu/templates.html %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul style="width:100%" class="navbar-nav">
-
-			<li class="nav-item dropdown">
-				{% include menu/file.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/view.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/edit.html %}
-			</li>
-
-			<li class="nav-item dropdown contextual">
-				{% include menu/contextual-beam.html %}
-			</li>
-
-			<li class="nav-item dropdown contextual">
-				{% include menu/contextual-note.html %}
-			</li>
-
-			<li class="nav-item dropdown contextual">
-				{% include menu/contextual-rest.html %}
-			</li>
-
-			<li class="nav-item dropdown contextual">
-				{% include menu/contextual-slur.html %}
-			</li>
-
-			<li class="nav-item dropdown contextual">
-				{% include menu/contextual-tie.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/navigation.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/scores.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/analysis.html %}
-			</li>
-
-			<li class="nav-item dropdown">
-				{% include menu/help.html %}
-			</li>
+<div id="handlebars-menu"></div>
 
 
-<!--
-single-entry example:
-			<li id="nav-3"> <a href="/performers">Performers</a> </li>
--->
-
-		</ul>
-
-<div class="page-nav" style="float:right; z-index:2000;">
-		<table><tr>
-			<td onclick="MENU.goToPreviousPage()"> <div title="Previous page" style="opacity:0.6; font-size:150%" class="fas fa-arrow-left"></div></td>
-    	<td onclick="MENU.goToFirstPage()">    <div title="First page"    style="opacity:0.6; font-size:125%" class="fas fa-file-alt"></div></td>
-    	<td onclick="MENU.goToNextPage()">     <div title="Next page"     style="opacity:0.6; font-size:150%" class="fas fa-arrow-right"></div></td>
-			</tr></table>
-</div>
-
-	</div>
-</div>
-
-
-</nav>

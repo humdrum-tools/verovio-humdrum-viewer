@@ -1,0 +1,333 @@
+<!-- HANDLEBARS TEMPLATES -------------------------------------- -->
+<!--
+	vim: ts=3 ft=javascript
+-->
+
+<!-- TOP-LEVEL-MENU-TEMPLATE ------------------------------------------------------- -->
+
+{% raw %}
+<script id="top-level-menu-template" type="text/x-handlebars-template">
+
+<nav id="handlebars-nav" class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul style="width:100%" class="navbar-nav">
+
+			{{#ENTRY}}
+				{{{printMainMenuEntry this}}}
+			{{/ENTRY}}
+
+<!--
+single-entry example:
+			<li id="nav-3"> <a href="/performers">Performers</a> </li>
+-->
+
+		</ul>
+
+<div class="page-nav" style="float:right; z-index:2000;">
+		<table><tr>
+		<td onclick="MENU.goToPreviousPage()"> <div title="Previous page" style="opacity:0.6; font-size:150%" class="fas fa-arrow-left"></div></td>
+    	<td onclick="MENU.goToFirstPage()">    <div title="First page"    style="opacity:0.6; font-size:125%" class="fas fa-file-alt"></div></td>
+    	<td onclick="MENU.goToNextPage()">     <div title="Next page"     style="opacity:0.6; font-size:150%" class="fas fa-arrow-right"></div></td>
+		</tr></table>
+</div>
+
+	</div>
+</div>
+
+
+</nav>
+</script>
+{% endraw %}
+
+<!-- SECOND-LEVEL-MENU-TEMPLATE ------------------------------------------------------- -->
+
+{% raw %}
+<script id="second-level-menu-template" type="text/x-handlebars-template">
+
+<span class="menu-name nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	{{{languageText TEXT}}}
+</span>
+
+<ul class="dropdown-menu">
+
+	{{{printObject "INPUT TO SUBMENU" this}}}
+
+
+	{{#if SUBMENU}}
+		{{#ifArray SUBMENU.ENTRY}}
+			{{#each SUBMENU.ENTRY}}
+				{{{printMenuItem this}}}
+			{{/each}}
+		{{/ifArray}}
+	{{/if}}
+</ul>
+
+</script>
+{% endraw %}
+
+<!-- MENU-ITEM-TEMPLATE ------------------------------------------------------- -->
+
+{% raw %}
+<script id="menu-item-template" type="text/x-handlebars-template">
+
+	<li>
+		<table class="menu">
+			<tr>
+				<td>
+
+{{{printObject "PRINTING A MENU ITEM" this}}}
+					{{#if TEXT}}
+						{{#if SUBMENU}}
+							<a class=" dropdown-item dropdown-toggle " href="#"
+						{{else}}
+							<span class="menu-item"
+						{{/if}}
+						{{#if TEXT.ACTION}} onclick="{{{TEXT.ACTION}}}"
+						{{else}}
+							{{#if TEXT.LINK }}
+								onclick="MENU.openUrl('{{{languageText TEXT.LINK}}}', 'doc')"
+							{{/if}}
+						{{/if}}>
+						{{{languageText TEXT}}}
+						{{#if SUBMENU}}
+							</a>
+						{{else}}
+							</span>
+						{{/if}}
+					{{/if}}
+				</td>
+				{{#each RIGHT_TEXT}}
+
+					{{#ifEquals TYPE "shortcut"}}
+					<td class="shortcut-cell"">
+						<span class="shortcut">
+							{{#if LINK}}
+								<a target="_blank" href="{{{languageText LINK}}}">
+							{{/if}}
+							{{{languageText this}}}
+							{{#if LINK}}
+								</a>
+							{{/if}}
+						</span>
+					</td>
+					{{/ifEquals}}
+
+					{{#ifEquals TYPE "link"}}
+					<td class="shortcut-cell"">
+						<span class="documentation">
+							{{#if LINK}}
+								<a target="_blank" class="menu-link" href="{{{languageText LINK}}}">
+							{{/if}}
+							{{{languageText this}}}
+							{{#if LINK}}
+								</a>
+							{{/if}}
+						</span>
+					</td>
+					{{/ifEquals}}
+
+					{{#ifEquals TYPE "filter"}}
+					<td class="shortcut-cell"">
+						<span class="filter">
+							{{#if LINK}}
+								<a target="_blank" href="{{{languageText LINK}}}">
+							{{/if}}
+							{{{languageText this}}}
+							{{#if LINK}}
+								</a>
+							{{/if}}
+						</span>
+					</td>
+					{{/ifEquals}}
+
+					{{#ifEquals TYPE "github"}}
+						<td class="gh-cell"">
+							<span class="gh">
+								{{#if LINK}}
+									<a target="_blank" href="{{{languageText LINK}}}">
+								{{/if}}
+								<i title="Github repository" class="fas fa-cloud"></i>
+								{{#if LINK}}
+									</a>
+								{{/if}}
+							</span>
+						</td>
+					{{/ifEquals}}
+
+					{{#ifEquals TYPE "website"}}
+						<td class="gh-cell"">
+							<span class="web">
+								{{#if LINK}}
+									<a target="_blank" href="{{{languageText LINK}}}">
+								{{/if}}
+								<i title="View reperotry website" class="fas fa-desktop"></i>
+								{{#if LINK}}
+									</a>
+								{{/if}}
+							</span>
+						</td>
+					{{/ifEquals}}
+
+				{{/each}}
+
+			</tr>
+		</table>
+
+		{{#SUBMENU}}
+			<ul class="dropdown-menu">
+				{{{printMenuItem this}}}
+			</ul>
+		{{/SUBMENU}}
+
+	</li>
+
+</script>
+{% endraw %}
+
+<script>
+//
+// Handlebars helper functions
+//
+
+//////////////////////////////
+//
+// printMainMenuEntry Handlebars helper  -- 
+//
+
+Handlebars.registerHelper("printMainMenuEntry", function(entry) {
+	var output = "";
+	output += '<li class="nav-item dropdown';
+	if (entry.TYPE && entry.TYPE.match(/contextual/)) {
+		output += ' contextual';
+	}
+	output += '">\n';
+
+	var tsource = document.querySelector("#second-level-menu-template").textContent;
+	var menuTemplate = Handlebars.compile(tsource);
+	output += menuTemplate(entry);
+
+	output += "</li>\n";
+	return new Handlebars.SafeString(output);
+});
+
+
+
+//////////////////////////////
+//
+// printMenuItem Handlebars helper  -- 
+//
+
+Handlebars.registerHelper("printMenuItem", function(entry) {
+	var output = "";
+	if (entry.ENTRY) {
+		if (Array.isArray(entry.ENTRY)) {
+			var listing = entry.ENTRY;
+			for (var i=0; i<listing.length; i++) {
+				output += generateMenuItem(listing[i]);
+			}
+		} else {
+			output = generateMenuItem(entry.ENTRY);
+		}
+	} else {
+		output = generateMenuItem(entry);
+	}
+	return new Handlebars.SafeString(output);
+});
+
+
+function generateMenuItem(entry) {
+	var tsource = document.querySelector("#menu-item-template").textContent;
+	var menuTemplate = Handlebars.compile(tsource);
+	return menuTemplate(entry);
+}
+
+
+
+
+
+//////////////////////////////
+//
+// languageText Handlebars helper  -- 
+//
+
+Handlebars.registerHelper("languageText", function(text) {
+	var output;
+	if (typeof text === "string") {
+		return new Handlebars.SafeString(text);
+	} else if (text && text.DEFAULT) {
+		var language = LANGUAGE;
+		if (!language) {
+			language = "DEFAULT";
+		}
+		var translation = text[language];
+		if (!translation) {
+			translation = text["DEFAULT"];
+		}
+		return new Handlebars.SafeString(translation);
+	}
+
+	return new Handlebars.SafeString("ERROR");
+});
+
+
+
+//////////////////////////////
+//
+// ifEquals Handlebars helper --
+//
+
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+
+
+//////////////////////////////
+//
+// ifArray Handlebars helper --
+//
+
+Handlebars.registerHelper('ifArray', function(object, options) {
+    return (Array.isArray(object)) ? options.fn(this) : options.inverse(this);
+});
+
+
+
+
+//////////////////////////////
+//
+// arrayify Handlebars helper --
+//
+
+Handlebars.registerHelper('arrayify', function(value)  {
+	if (Array.isArray(value)) {
+		return value;
+	} else {
+		return [vaule];
+	}
+});
+
+
+
+//////////////////////////////
+//
+// printObject
+//
+
+Handlebars.registerHelper('printObject', function(message, object)  {
+	return new Handlebars.SafeString("");
+	console.log("MESSAGE:", message, "OBJECT:", object);
+});
+
+</script>
+
+
+
+
+</script>
+
+
+

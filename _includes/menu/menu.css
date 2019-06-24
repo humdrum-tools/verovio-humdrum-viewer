@@ -203,3 +203,11 @@ li.contextual {
 }
 
 
+a.menu-link:hover {
+	color: #aa3355 !important;
+}
+
+
+table.menu tr:hover a.menu-link {
+	color: black;
+}
