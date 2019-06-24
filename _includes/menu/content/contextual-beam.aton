@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Odznacz belkę nuty
 @PT:
 @RU:
 @SK:
@@ -66,7 +66,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  esc
 @PT:
 @RU:
 @SK:
@@ -99,7 +99,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  https://doc.verovio.humdrum.org/graphic/beam
 @PT:
 @RU:
 @SK:
@@ -137,7 +137,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Wymuś belkę u góry
 @PT:
 @RU:
 @SK:
@@ -173,7 +173,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  a
 @PT:
 @RU:
 @SK:
@@ -206,7 +206,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  https://doc.verovio.humdrum.org/graphic/beam
 @PT:
 @RU:
 @SK:
@@ -244,7 +244,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Wymuś belkę na dole
 @PT:
 @RU:
 @SK:
@@ -280,7 +280,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  b
 @PT:
 @RU:
 @SK:
@@ -313,7 +313,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  https://doc.verovio.humdrum.org/graphic/beam
 @PT:
 @RU:
 @SK:
@@ -351,7 +351,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Wyczyść kierunek belki
 @PT:
 @RU:
 @SK:
@@ -387,7 +387,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  c
 @PT:
 @RU:
 @SK:
@@ -420,7 +420,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  https://doc.verovio.humdrum.org/graphic/beam
 @PT:
 @RU:
 @SK:
