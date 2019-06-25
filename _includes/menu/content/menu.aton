@@ -5,7 +5,7 @@
 @@BEGIN: TEXT
 @DEFAULT:		File
 @AR:			ملف
-@BE:			файл
+@BE:			Файл
 @CA:			Dossier
 @DE:			Datei
 @DK:			Fil
@@ -28,11 +28,11 @@
 @NO:			Fil
 @PL:			Pilk
 @PT:			Arquivo
-@RU:			файл
+@RU:			Файл
 @SK:			Súbor
 @SV:			Fil
 @TR:			Dosya
-@UK:			файл
+@UK:			Файл
 @VI:			Tập tin
 @ZH:			文件
 @@END: TEXT
@@ -169,7 +169,7 @@
 @@BEGIN: TEXT
 @DEFAULT:		Analysis
 @AR:			تحليل
-@BE:			аналіз
+@BE:			Аналіз
 @CA:			Anàlisi
 @DE:			Analyse
 @DK:			Analyse
