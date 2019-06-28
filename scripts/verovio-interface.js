@@ -236,9 +236,7 @@ vrvInterface.prototype.getMEI = function (page) {
 //
 
 vrvInterface.prototype.renderToMidi = function () {
-console.log("GOING TO RENDER MIDI in verovio-interface.js");
 	var value = this.execute("renderToMidi", arguments);
-console.log("RENDER TO MIDI in verovio-interface.js result:", value);
 	return value;
 };
 

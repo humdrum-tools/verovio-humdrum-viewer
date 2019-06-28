@@ -66,7 +66,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 483;
+var BasketVersion = 504;
 // Basket is no longer working since verovio.js is now over 5MB (maximum for localStorage)
 // console.log("VERSION", BasketVersion);
 
@@ -534,7 +534,6 @@ function toggleFreeze() {
 
 function toggleInputArea(suppressZoom) {
 	InputVisible = !InputVisible;
-console.log("TOGGLING INPUT AREA: ", InputVisible);
 	var input = document.querySelector("#input");
 	if (InputVisible) {
 		if (LastInputWidth == 0) {
@@ -559,7 +558,6 @@ console.log("TOGGLING INPUT AREA: ", InputVisible);
 //
 
 function redrawInputArea(suppressZoom) {
-console.log("REDRAWING INPUT AREA FOR STATE", InputVisible);
 	var input = document.querySelector("#input");
 	if (InputVisible) {
 		if (LastInputWidth == 0) {
@@ -1817,7 +1815,6 @@ function	monitorNotationUpdating() {
 //
 
 function downloadWildWebMidi(url) {
-console.log("DOWNLOAD WILD WEB MIDI");
 	var url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
@@ -1836,7 +1833,6 @@ console.log("DOWNLOAD WILD WEB MIDI");
 //
 
 function initializeWildWebMidi() {
-console.log("INITIALIZING WILDWEBMIDI in main.js");
 	$("#player").midiPlayer({
 		color: null,
 		// color: "#c00",
@@ -3285,7 +3281,6 @@ function clearContent() {
 //
 
 function playCurrentMidi() {
-console.log("PLAYING CURRENT MIDI From scripts/main.js");
 	if (CursorNote && CursorNote.id) {
 		var id = CursorNote.id;
 		vrv.getTimeForElement(id)

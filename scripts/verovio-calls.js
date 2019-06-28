@@ -205,7 +205,6 @@ function verovioCalls() {
 
 	this.renderToMidi = function () {
 		var midi64 = this.vrvToolkit.renderToMIDI();
-console.log("MIDI 64 data in verovio-calls:", midi64);
 		return midi64;
 	};
 

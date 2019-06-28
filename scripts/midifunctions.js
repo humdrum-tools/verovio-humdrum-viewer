@@ -41,7 +41,6 @@ function play_midi(starttime) {
 //
 
 var midiUpdate = function (time) {
-console.log("MIDI UPDATE ", time);
 	var vrvTime = Math.max(0, time - DELAY);
 	vrv.getElementsAtTime(vrvTime)
 	.then(function (elementsattime) {
@@ -133,7 +132,6 @@ console.log("MIDI UPDATE ", time);
 //
 
 var midiStop = function () {
-console.log("ENTERING MIDI STOP");
 	ids.forEach(function (noteid) {
 		// $("#" + noteid ).attr("fill", "#000");
 		// $("#" + noteid ).attr("stroke", "#000");
@@ -141,7 +139,6 @@ console.log("ENTERING MIDI STOP");
 		// $("#" + noteid ).removeClassSVG("highlight");
 
 		var element = document.querySelector("#" + noteid);
-console.log("CLEARING NOTE HIGHLIGHT FOR ", noteid, element);
 		if (element) {
 			var classes = element.getAttribute("class");
 			var classlist = classes.split(" ");

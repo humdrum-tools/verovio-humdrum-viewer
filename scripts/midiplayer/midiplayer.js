@@ -246,14 +246,14 @@ function convertDataURIToBinary(dataURI) {
     return array;
 }
 
-function convertFile(file, data) {
+function convertFile(file, data, millisec) {
     midiPlayer_midiName = file;
     midiPlayer_input = null;
     console.log('open ', midiPlayer_midiName);
     MidiPlayer['FS'].writeFile(midiPlayer_midiName, data, {
         encoding: 'binary'
     });
-    play();
+    play(millisec);
 }
 
 function pause() {
@@ -265,7 +265,16 @@ function pause() {
     midiPlayer_pause.style.display = 'none';
 }
 
-function play() {
+function play(millisec) {
+    if (millisec) {
+        var samples = millisec * SAMPLE_RATE / 1000;
+        samples = samples - 1000;
+        if (samples < 0) {
+           samples = 0;
+        }
+        midiPlayer_currentSamples = samples;
+        // midiPlayer_currentSamples = Math.min(midiPlayer_totalSamples, samples);
+	 }
     if (circularBuffer) {
         circularBuffer.reset();
     }
@@ -355,7 +364,7 @@ function runConversion() {
         // update rate should not be less than 10 milliseconds
         options.updateRate = Math.max(options.updateRate, 10);
         
-        $.fn.midiPlayer.play = function (song) {
+        $.fn.midiPlayer.play = function (song, millisec) {
             if (midiPlayer_isLoaded == false) {
                 midiPlayer_input = song;
             }
@@ -364,10 +373,10 @@ function runConversion() {
                 if (midiPlayer_totalSamples > 0) {
                     stop();
                     // a timeout is necessary because otherwise writing to the disk is not done
-                    setTimeout(function() {convertFile("player.midi", byteArray);}, 200);
+                    setTimeout(function() {convertFile("player.midi", byteArray);}, 200, millisec);
                 }
                 else {
-                    convertFile("player.midi", byteArray);
+                    convertFile("player.midi", byteArray, millisec);
                 }
             }
         };
