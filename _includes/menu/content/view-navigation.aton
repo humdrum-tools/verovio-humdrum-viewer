@@ -1,5 +1,5 @@
-@@ This is the contents of the "Navigation" menu entry in the top menu.
-@@ This file is included into menu/content/menu.aton
+@@ This is the contents of the "View->Navigation" menu entry in the top menu.
+@@ This file is included into menu/content/view.aton
 @@
 @@ vim: ts=8:nowrap
 @@
