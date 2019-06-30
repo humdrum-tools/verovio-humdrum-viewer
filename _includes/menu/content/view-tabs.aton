@@ -1,5 +1,5 @@
-@@ This is the contents of the "Edit" menu entry in the top menu.
-@@ This file is included into menu/content/menu.aton
+@@ This is the contents of the "View->Tabs" menu entry in the top menu.
+@@ This file is included into menu/content/view.aton
 @@
 @@ vim: ts=8:nowrap
 @@
@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Clear text editor
+@DEFAULT:		Auto tab width
 @AR:
 @BE:
 @CA:
@@ -39,11 +39,11 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.clearEditorContents()
+@ACTION:		MENU.fitTabSizeToData()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-e
+@TYPE:			
+@DEFAULT:		
 @AR:
 @BE:
 @CA:
@@ -76,7 +76,7 @@
 @VI:
 @ZH:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-e
+@DEFAULT:		
 @AR:
 @BE:
 @CA:
@@ -114,7 +114,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Compile embedded filters
+@DEFAULT:		Increase tab width
 @AR:
 @BE:
 @CA:
@@ -146,11 +146,11 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.compileEmbeddedFilters()
+@ACTION:		MENU.increaseTabSize()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-c
+@DEFAULT:		alt-&gt;
 @AR:
 @BE:
 @CA:
@@ -183,7 +183,7 @@
 @VI:
 @ZH:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-c
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-greater
 @AR:
 @BE:
 @CA:
@@ -221,7 +221,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Remove non-kern spines
+@DEFAULT:		Decrease tab width
 @AR:
 @BE:
 @CA:
@@ -253,13 +253,120 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.applyFilter('extract -i kern')
+@ACTION:		MENU.decreaseTabSize()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		alt-&lt;
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-lesser
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Add spacing tabs
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
+@ACTION:		MENU.applyFilter('tabber')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		extract -ikern
+@DEFAULT:		tabber
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/tabber
 @AR:
 @BE:
 @CA:
@@ -297,7 +404,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Beams
+@DEFAULT:		Remove spacing tabs
 @AR:
 @BE:
 @CA:
@@ -329,43 +436,13 @@
 @UK:
 @VI:
 @ZH:
+@ACTION:		MENU.applyFilter('tabber -r')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@TYPE:			filter
+@DEFAULT:		tabber -r
 @@BEGIN: LINK
-@DEFAULT:		
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/tabber
 @AR:
 @BE:
 @CA:
@@ -399,336 +476,6 @@
 @ZH:
 @@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/edit-beams.aton %}
-@@END: SUBMENU
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Data
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@BEGIN: LINK
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: LINK
-@@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/edit-line.aton %}
-@@END: SUBMENU
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Stems
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@BEGIN: LINK
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: LINK
-@@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/edit-stems.aton %}
-@@END: SUBMENU
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Text
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@BEGIN: LINK
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
-@@END: LINK
-@@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/edit-text.aton %}
-@@END: SUBMENU
 @@END: ENTRY
 
 

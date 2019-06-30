@@ -127,41 +127,41 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Scores
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@DEFAULT:		Navigation
+@AR:			التنقل
+@BE:			Рух
+@CA:			Navegació
+@DE:			Navigation
+@DK:			Navigation
+@EL:			Πλοήγηση
+@EN:			Navigation
+@ES:			Navegación
+@ET:			Navigatsioon
+@EU:			Nabigazioa
+@FI:			Suunnistus
+@FR:			Navigation
+@HE:			ניווט
+@HI:			पथ प्रदर्शन
+@ID:			Navigasi
+@IT:			Navigazione
+@JA:			ナビゲーション
+@KO:			항해
+@LT:			Navigacija
+@LV:			Navigācija
+@NL:			Navigatie
+@NO:			Navigasjon
+@PL:			Nawigacja
+@PT:			Navegação
+@RU:			Навигация
+@SK:			Navigácia
+@SV:			Navigering
+@TR:			Navigasyon
+@UK:			Навігація
+@VI:			Dẫn đường
+@ZH:			導航
 @@END: TEXT
 @@BEGIN: SUBMENU
-{% include menu/content/scores.aton %}
+{% include menu/content/navigation.aton %}
 @@END: SUBMENU
 @@END: ENTRY
 
@@ -207,41 +207,41 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Navigation
-@AR:			التنقل
-@BE:			Рух
-@CA:			Navegació
-@DE:			Navigation
-@DK:			Navigation
-@EL:			Πλοήγηση
-@EN:			Navigation
-@ES:			Navegación
-@ET:			Navigatsioon
-@EU:			Nabigazioa
-@FI:			Suunnistus
-@FR:			Navigation
-@HE:			ניווט
-@HI:			पथ प्रदर्शन
-@ID:			Navigasi
-@IT:			Navigazione
-@JA:			ナビゲーション
-@KO:			항해
-@LT:			Navigacija
-@LV:			Navigācija
-@NL:			Navigatie
-@NO:			Navigasjon
-@PL:			Nawigacja
-@PT:			Navegação
-@RU:			Навигация
-@SK:			Navigácia
-@SV:			Navigering
-@TR:			Navigasyon
-@UK:			Навігація
-@VI:			Dẫn đường
-@ZH:			導航
+@DEFAULT:		Scores
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH:
 @@END: TEXT
 @@BEGIN: SUBMENU
-{% include menu/content/navigation.aton %}
+{% include menu/content/scores.aton %}
 @@END: SUBMENU
 @@END: ENTRY
 

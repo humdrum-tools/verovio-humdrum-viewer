@@ -535,7 +535,8 @@ function deleteDirectionMarker(id, line, field, number, category) {
 
 //////////////////////////////
 //
-// createEmptyLine -- Create a null local comment line.
+// createEmptyLine -- Create a null local comment line.  See addNullLine()
+//    which can probably replace this function.
 //
 
 function createEmptyLine(line) {
@@ -545,16 +546,19 @@ function createEmptyLine(line) {
 	}
 
 	var text = EDITOR.session.getLine(line - 1);
-	var count = 1;
-	var i;
-	for (i=0; i<text.length; i++) {
-		if (text[i] == "\t") {
-			count++;
-		}
+	var output = "";
+	if (text[0] == '\t') {
+		output += '\t';
+	} else {
+		output += '!';
 	}
-	var output = "!";
-	for (i=1; i<count; i++) {
-		output += "\t!";
+	var i;
+	for (i=1; i<text.length; i++) {
+		if (text[i] == '\t') {
+			output += '\t';
+		} else if ((text[i] != '\t') && (text[i-1] == '\t')) {
+			output += '!';
+		}
 	}
 	output += "\n" + text;
 
@@ -1427,6 +1431,7 @@ function setStemAboveMarker(id, line, field) {
 function setStemBelowMarker(id, line, field) {
 	console.log("STEM BELOW", line, field, id);
 	var token = getEditorContents(line, field);
+	console.log("TOKEN EXTRACTED IS", token);
 
 	if ((token === ".") || (token[0] == "!") || (token[0] == "*")) {
 		return;
@@ -2269,15 +2274,11 @@ function togglePedalStart(id, line, field) {
 		HIGHLIGHTQUERY = newid;
 		return;
 	}
-	var fields = text.split("\t");
-	for (var i=0; i<fields.length; i++) {
-		// inserting in the first column, but maybe should be
-		// the first **kern dataspine...
-		fields[i] = "*";
-	}
-	fields[0] = "*ped";
-	console.log("ADDING START PEDAL LINE");
-	var newline = fields.join("\t") + "\n";
+
+	// inserting in the first column, but should more
+	// correctly be the first **kern dataspine...
+	var newline = createNullLine("*", text);
+	newline = newline.replace(/^(\t*)\*(\t*)/, "$1*ped$2");
 	EDITOR.session.insert({row:line-1, column:0}, newline);
 	newid = id.replace(/L\d+/, "L" + (line+1));
   	console.log("OLDID", id, "NEWID", newid);
@@ -2294,7 +2295,6 @@ function togglePedalStart(id, line, field) {
 //
 
 function togglePedalEnd(id, line, field) {
-	console.log("PEDAL END TOGGLE", line);
 	var text = EDITOR.session.getLine(line-1);
 	if (text.match(/^!/)) {
 		return;
@@ -2317,19 +2317,11 @@ function togglePedalEnd(id, line, field) {
 		HIGHLIGHTQUERY = newid;
 		return;
 	}
-	var fields = text.split("\t");
-	for (var i=0; i<fields.length; i++) {
-		// inserting in the first column, but maybe should be
-		// the first **kern dataspine...
-		fields[i] = "*";
-	}
-	fields[0] = "*Xped";
 
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	console.log("ADDING END PEDAL LINE");
-	var newline = fields.join("\t") + "\n";
-	//var oldline = EDITOR.session.getLine(line);
+	var newline = createNullLine("*", text);
+	newline = newline.replace(/^(\t*)\*(\t*)/, "$1*Xped$2");
 	EDITOR.session.replace(new Range(line, 0, line, 0), newline);
 	newid = id;
   	console.log("OLDID", id, "NEWID", newid);
@@ -2479,20 +2471,48 @@ function setEditorContents(line, field, token, id, dontredraw) {
 		FreezeRendering = true;
 	}
 
+	var i;
 	var linecontent = EDITOR.session.getLine(line-1);
 	var range = new Range(line-1, 0, line-1, linecontent.length);
 
-	var components = linecontent.split("\t");
+	var components = linecontent.split(/\t+/);
 	components[field-1] = token;
-	linecontent = components.join("\t");
+	
+	// count tabs between fields
+	var tabs = [];
+	for (i=0; i<components.length + 1; i++) {
+		tabs[i] = "";
+	}
+	var pos = 0;
+	if (linecontent[0] != '\t') {
+		pos++;
+	}
+	for (i=1; i<linecontent.length; i++) {
+		if (linecontent[i] == '\t') {
+			tabs[pos] += '\t';
+		} else if ((linecontent[i] != '\t') && (linecontent[i-1] == '\t')) {
+			pos++;
+		}
+	}
+
+	var newlinecontent = "";
+	for (i=0; i<tabs.length; i++) {
+		newlinecontent += tabs[i];
+		if (components[i]) {
+			newlinecontent += components[i];
+		}
+	}
+
+	// newlinecontent = components.join("\t");
 
 	var column = 0;
-	for (var i=0; i<field-1; i++) {
+	for (i=0; i<field-1; i++) {
 		column += components[i].length;
+		column += tabs[i].length;
 	}
 	EDITINGID = id;
 
-	EDITOR.session.replace(range, linecontent);
+	EDITOR.session.replace(range, newlinecontent);
 	EDITOR.gotoLine(line, column+1);
 
 	RestoreCursorNote = id;
@@ -2520,7 +2540,9 @@ function getEditorContents(line, field) {
 		for (i=0; i<linecontent.length; i++) {
 			col++;
 			if (linecontent[i] == '\t') {
-				tabcount++;
+				if ((i > 0) && (linecontent[i-1] != '\t')) {
+					tabcount++;
+				}
 			}
 			if (tabcount == field - 1) {
 				break;
@@ -2630,6 +2652,31 @@ function addDataLineAboveCurrentPosition() {
 }
 
 
+//////////////////////////////
+//
+// createNullLine --
+//
+
+function createNullLine(token, textline) {
+	var newline = "";
+	if (textline[0] == '\t') {
+		newline += '\t';
+	} else {
+		newline += token;
+	}
+	var i;
+	for (i=1; i<textline.length; i++) {
+		if (textline[i] == '\t') {
+			newline += '\t';
+		} else if ((textline[i] != '\t') && (textline[i-1] == '\t')) {
+			newline += token;
+		}
+	}
+	newline += "\n";
+	return newline;
+}
+
+
 
 //////////////////////////////
 //
@@ -2658,16 +2705,8 @@ function addNullLine(token, row) {
 		// can't add spines before exclusive interpretation
 		return;
 	}
-	var tokens = currentline.split(/\t/);
-	var tcount = tokens.length;
-	var newline = "";
-	for (var i=0; i<tcount; i++) {
-		newline += token;
-		if (i < tcount - 1) {
-			newline += "\t";
-		}
-	}
-	newline += "\n";
+
+	var newline = createNullLine(token, currentline);
 	EDITOR.session.insert({row:row, column:0}, newline);
 }
 

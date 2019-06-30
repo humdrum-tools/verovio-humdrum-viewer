@@ -6,12 +6,12 @@
 
 
 @@BEGIN: ENTRY
-@@ NEED to force entries into list
+@@ Need to force list
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Dissonance labels
+@DEFAULT:		Renaissance dissonance analysis
 @AR:
 @BE:
 @CA:
@@ -34,7 +34,7 @@
 @LV:
 @NL:
 @NO:
-@PL:  Oznaczanie dysonansów
+@PL:
 @PT:
 @RU:
 @SK:
@@ -43,11 +43,10 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.applyFilter('dissonant --color')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			filter
-@DEFAULT:		dissonant
+@TYPE:			
+@DEFAULT:		
 @AR:
 @BE:
 @CA:
@@ -70,7 +69,7 @@
 @LV:
 @NL:
 @NO:
-@PL:  dysonans
+@PL:
 @PT:
 @RU:
 @SK:
@@ -80,7 +79,7 @@
 @VI:
 @ZH:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
+@DEFAULT:		
 @AR:
 @BE:
 @CA:
@@ -103,7 +102,7 @@
 @LV:
 @NL:
 @NO:
-@PL: https://doc.verovio.humdrum.org/filters/dissonant
+@PL:
 @PT:
 @RU:
 @SK:
@@ -114,6 +113,9 @@
 @ZH:
 @@END: LINK
 @@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/analysis-dissonant.aton %}
+@@END: SUBMENU
 @@END: ENTRY
 
 

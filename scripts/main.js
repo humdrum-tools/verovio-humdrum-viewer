@@ -66,7 +66,7 @@ var RestoreCursorNote;
 
 // Increment BasketVersion when the verovio toolkit is updated, or
 // the Midi player software or soundfont is updated.
-var BasketVersion = 504;
+var BasketVersion = 531;
 // Basket is no longer working since verovio.js is now over 5MB (maximum for localStorage)
 // console.log("VERSION", BasketVersion);
 
@@ -1948,6 +1948,7 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id, source) {
+console.log("HIGHLIGHTING ID IN EDITOR", id , source);
 	if (!id) {
 		// no element (off of page or outside of musical range
 		console.log("NO ID so not changing to another element");
@@ -1972,9 +1973,11 @@ function highlightIdInEditor(id, source) {
 	if (field > 1) {
 		var tabcount = 0;
 		for (i=0; i<linecontent.length; i++) {
-			col += 1
+			col++;
 			if (linecontent[i] == '\t') {
-				tabcount++;
+				if ((i > 0) && (linecontent[i-1] != '\t')) {
+					tabcount++;
+				}
 			}
 			if (tabcount == field - 1) {
 				break;
@@ -2008,6 +2011,7 @@ function highlightIdInEditor(id, source) {
 			searchstring += linecontent[col2];
 		}
 	}
+console.log("ROW", row, "COL", col);
 
 	CursorNote = document.querySelector("#" + id);
 	MENU.showCursorNoteMenu(CursorNote);
@@ -2272,6 +2276,7 @@ function markItem(item, line) {
 			}
 			outclass += " " + classlist[i];
 		}
+		outclass = outclass.replace(/^\s+/, "");
 		CursorNote.setAttribute("class", outclass);
 
 	}
@@ -2319,7 +2324,8 @@ function getFieldAndSubtoken(text, column) {
 	var subspine = 0;
 	var i;
 	for (i=0; i<column; i++) {
-		if (text[i] == '\t') {
+		// deal with tab at start of line?
+		if ((i > 0) && (text[i] == '\t') && (text[i-1] != '\t')) {
 			field++;
 			subspine = 0;
 		} else if (text[i] == ' ') {
@@ -2797,6 +2803,7 @@ function convertLineToCsv(line) {
 	if (line.match(/^!!/)) {
 		return line;
 	}
+	// Using \t rather than \t to preserve tabs
 	var tokens = line.split(/\t/);
 	var output = "";
 	for (var i=0; i<tokens.length; i++) {

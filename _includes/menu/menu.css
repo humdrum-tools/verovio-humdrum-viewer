@@ -65,6 +65,10 @@ span.gh, span.web {
 	cursor: pointer;
 }
 
+.shortcut-cell a {
+	cursor: help;
+}
+
 span.shortcut {
 	display: block;
 	font-style: italic;

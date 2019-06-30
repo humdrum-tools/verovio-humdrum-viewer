@@ -360,9 +360,11 @@ MenuInterface.prototype.decreaseNotationSpacing = function () {
 //
 
 MenuInterface.prototype.applyFilter = function (text) {
+console.log("FILTER TO APPLY", text);
 	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 	var options = humdrumToSvgOptions();
 	var data = contents + "\n!!!filter: " + text + "\n";
+console.log("DATA", options, data);
 	vrv.filterData(options, data, "humdrum")
 	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
@@ -373,7 +375,14 @@ MenuInterface.prototype.applyFilter = function (text) {
 				break;
 			}
 		}
-		newdata = lines.join("\n").replace(/\s+$/g, "");
+		newdata = "";
+		for (var i=0; i<lines.length; i++) {
+			if (lines[i] === "") {
+				continue;
+			}
+			newdata += lines[i] + "\n";
+		}
+console.log("FINAL NEWDATA", newdata);
 		EDITOR.setValue(newdata, -1);
 	});
 }

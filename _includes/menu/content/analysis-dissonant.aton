@@ -1,13 +1,17 @@
-@@ This is the contents of the "Edit->Stems" menu entry in the top menu.
-@@ This file is included into menu/content/edit.aton
+@@ This is the contents of the "Analysis->Dissonant" menu entry in the top menu.
+@@ This file is included into menu/content/menu.aton
 @@
 @@ vim: ts=8:nowrap
 @@
 
 
 @@BEGIN: ENTRY
+@@ NEED to force entries into list
+@@END: ENTRY
+
+@@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Add note stems
+@DEFAULT:		Dissonance labels
 @AR:
 @BE:
 @CA:
@@ -30,7 +34,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Oznaczanie dysonansów
 @PT:
 @RU:
 @SK:
@@ -39,13 +43,13 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.applyFilter('autostem')
+@ACTION:		MENU.applyFilter('extract -i kern | dissonant')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		autostem
+@DEFAULT:		dissonant
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
 @AR:
 @BE:
 @CA:
@@ -83,7 +87,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Remove note stems
+@DEFAULT:		Color dissonant notes by meteric position
 @AR:
 @BE:
 @CA:
@@ -106,7 +110,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL:  Oznaczanie dysonansów
 @PT:
 @RU:
 @SK:
@@ -115,13 +119,13 @@
 @UK:
 @VI:
 @ZH:
-@ACTION:		MENU.applyFilter('autostem -r')
+@ACTION:		MENU.applyFilter('extract -i kern | dissonant --color')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		autoste -r
+@DEFAULT:		dissonant --color
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
 @AR:
 @BE:
 @CA:
