@@ -89,7 +89,12 @@ table.index-list {
 
 .ilink {
 	cursor: pointer;
-	color: 333388;
+	color: #333388;
+}
+
+.ilink:hover {
+	cursor: pointer;
+	color: #883333;
 }
 
 
@@ -274,6 +279,7 @@ div#splitter {
 div#index {
 	position: relative;
 	visibility: hidden;
+	color: #888;
 	display: none;
 	top: 44;
 	left: 0;
