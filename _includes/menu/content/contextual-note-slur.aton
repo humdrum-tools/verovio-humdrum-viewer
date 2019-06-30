@@ -38,7 +38,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.addSlur(1)
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -74,7 +75,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -107,7 +109,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

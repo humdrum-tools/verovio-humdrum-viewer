@@ -34,7 +34,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/contextual-beam.aton %}
@@ -75,7 +76,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/contextual-note.aton %}
@@ -116,7 +118,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/contextual-rest.aton %}
@@ -157,7 +160,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/contextual-slur.aton %}
@@ -198,7 +202,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/contextual-tie.aton %}

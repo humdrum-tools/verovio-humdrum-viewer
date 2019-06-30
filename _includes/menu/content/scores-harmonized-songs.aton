@@ -38,7 +38,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('liederschatz1')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -81,7 +82,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: RIGHT_TEXT
 @@BEGIN: RIGHT_TEXT
 @ACTION: 		MENU.loadRepertory('liederschatz1', 'extract -k1-2')
@@ -116,7 +118,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: RIGHT_TEXT
 @@END: ENTRY
 

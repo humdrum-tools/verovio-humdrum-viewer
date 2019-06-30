@@ -37,7 +37,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.nextMelodicNote()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -73,7 +74,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/pitch
 @AR:
@@ -106,7 +108,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -144,7 +147,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.previousMelodicNote()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -180,7 +184,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/pitch
 @AR:
@@ -213,7 +218,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -251,7 +257,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.nextHarmonicNote()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -287,7 +294,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/pitch
 @AR:
@@ -320,7 +328,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -358,7 +367,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.previousHarmonicNote()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -394,7 +404,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/pitch
 @AR:
@@ -427,7 +438,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

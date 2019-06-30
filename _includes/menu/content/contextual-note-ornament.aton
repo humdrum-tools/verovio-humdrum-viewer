@@ -37,7 +37,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMinorTrill()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -73,7 +74,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -106,7 +108,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -144,7 +147,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMajorTrill()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -180,7 +184,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -213,7 +218,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -251,7 +257,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMinorLowerMordent()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -287,7 +294,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -320,7 +328,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -358,7 +367,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMajorLowerMordent()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -394,7 +404,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -427,7 +438,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -465,7 +477,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMinorUpperMordent()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -501,7 +514,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -534,7 +548,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -572,7 +587,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.toggleMajorUpperMordent()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -608,7 +624,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/note
 @AR:
@@ -641,7 +658,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

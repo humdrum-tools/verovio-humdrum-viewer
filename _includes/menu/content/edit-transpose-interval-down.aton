@@ -1,5 +1,5 @@
-@@ This is the contents of the "Score" menu entry in the top menu.
-@@ This file is included into menu/content/menu.aton
+@@ This is the contents of the "Edit->Transpose (by key)" menu entry in the top
+@@ menu.  This file is included into menu/content/edit-transpose-key.aton
 @@
 @@ vim: ts=8:nowrap
 @@
@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Bach 370 chorales
+@DEFAULT:		Down a minor second
 @AR:
 @BE:
 @CA:
@@ -40,596 +40,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('chorales')
+@ACTION:		MENU.applyFilter('transpose -t -m2')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			website
-@LINK: 			https://chorales.sapp.org
-@@END: RIGHT_TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/bach-370-chorales
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: RIGHT_TEXT
-@ACTION: 		MENU.loadRepertory('chorales', 'satb2gs')
-@DEFAULT:		<i>on grand-staff</i>
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@@END: RIGHT_TEXT
-@@BEGIN: RIGHT_TEXT
-@ACTION: 		MENU.loadRepertory('chorales', 'transpose -k c | satb2gs')
-@DEFAULT:		transposed to C
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		&nbsp;&nbsp;&nbsp; 75 chorales w/ harm. analyses
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('BachChoralesAnalyzed')
-@@END: TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Beethoven piano sonatas
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('beethoven/sonatas')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/beethoven-piano-sonatas
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Beethoven string quartets
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('beethoven/quartets')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/beethoven-string-quartets
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Chopin mazurkas
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('chopin/mazurkas')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/chopin-mazurkas
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Hummel preludes, op. 67
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('hummel/preludes')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/hummel-preludes
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Joplin
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('joplin')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/joplin-rags
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Mozart piano sonatas
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('mozart/sonatas')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/mozart-piano-sonatas
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Mozart, 100 Contradances, K<sup>6</sup> Anh. C30.01
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('mozart/sonatas')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@DEFAULT:		<i>measures</i>
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('users/craig/dice/mozart/cda/measures')
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Harmonized songs
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t -m2
 @@BEGIN: LINK
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/scores-harmonized-songs.aton %}
-@@END: SUBMENU
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Josquin Rsearch Project
+@DEFAULT:		Down a major second
 @AR:
 @BE:
 @CA:
@@ -662,24 +86,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -M2')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			website
-@LINK:			http://josquin.stanford.edu
+@TYPE:			filter
+@DEFAULT:		transpose -t -M2
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			http://github.com/josquin-research-project/jrp-scores
-@@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/scores-jrp.aton %}
-@@END: SUBMENU
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Tasso Music Edition
+@DEFAULT:		Down a minor third
 @AR:
 @BE:
 @CA:
@@ -712,18 +132,475 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -m3')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			website
-@LINK:			http://www.tassomusic.org
+@TYPE:			filter
+@DEFAULT:		transpose -t -m3
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
 @@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a major third
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -M3')
+@@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			http://github.com/TassoInMusicProject/tasso-scores
+@TYPE:			filter
+@DEFAULT:		transpose -t -M3
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/scores-tasso.aton %}
-@@END: SUBMENU
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a perfect fourth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -P4')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -P4
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down an augmented fourth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -A4')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -A4
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down an diminished fifth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -d5')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -d5
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a perfect fifth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -P5')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -P5
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a minor sixth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -m6')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -m6
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a major sixth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -M6')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -M6
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a minor seventh
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -m7')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -m7
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a major seventh
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -M7')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -M7
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Down a perfect octave
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t -P8')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t -P8
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
 @@END: ENTRY
 
 

@@ -38,7 +38,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.unfocusElement()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -74,7 +75,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/rest
 @AR:
@@ -107,7 +109,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -145,7 +148,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
@@ -180,7 +184,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
 @AR:
@@ -213,7 +218,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -254,7 +260,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.makeRestInvisible()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -290,7 +297,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/graphic/rest
 @AR:
@@ -323,7 +331,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

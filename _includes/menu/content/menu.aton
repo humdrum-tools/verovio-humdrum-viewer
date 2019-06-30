@@ -31,10 +31,12 @@
 @RU:			Файл
 @SK:			Súbor
 @SV:			Fil
+@TA:			கோப்பு
 @TR:			Dosya
 @UK:			Файл
 @VI:			Tập tin
-@ZH:			文件
+@ZH-simplified:		文件
+@ZH-traditional:	文件
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/file.aton %}
@@ -71,10 +73,12 @@
 @RU:			Посмотреть
 @SK:			Vyhliadka
 @SV:			Se
+@TA:			காண்க
 @TR:			Görünüm
 @UK:			вид
 @VI:			Lượt xem
-@ZH:			視圖
+@ZH-simplified:		视图
+@ZH-traditional:	視圖
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/view.aton %}
@@ -111,10 +115,12 @@
 @RU:			Редактировать
 @SK:			Editovať
 @SV:			Redigera
+@TA:			தொகு
 @TR:			Düzenlemek
 @UK:			Редагувати
 @VI:			Chỉnh sửa
-@ZH:			編輯
+@ZH-simplified:		编辑
+@ZH-traditional:	編輯
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/edit.aton %}
@@ -155,10 +161,12 @@
 @RU:			Анализ
 @SK:			Analýza
 @SV:			Analys
+@TA:			பகுப்பாய்வு
 @TR:			Analiz
 @UK:			Аналіз
 @VI:			Phân tích
-@ZH:
+@ZH-simplified:		分析
+@ZH-traditional:	分析
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/analysis.aton %}
@@ -168,37 +176,39 @@
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Scores
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
+@AR:			ذخيرة
+@BE:			Рэпертуар
+@CA:			Repertori
+@DE:			Repertoire
+@DK:			Repertoire
+@EL:			Ρεπερτόριο
+@EN:			Scores
+@ES:			Repertorio
+@ET:			Repertuaar
+@EU:			Errepertorio
+@FI:			Skaala
+@FR:			Répertoire
+@HE:			רפרטואר
+@HI:			प्रदर्शनों की सूची
+@ID:			Perbendaharaan
+@IT:			Repertorio
+@JA:			レパートリー
+@KO:			레퍼토리
+@LT:			Repertuaras
+@LV:			Repertuārs
+@NL:			Repertoire
+@NO:			Repertoaret
 @PL:			Repertuar
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH:
+@PT:			Repertório
+@RU:			Репертуар
+@SK:			Repertoár
+@SV:			Repertoar
+@TA:			பலகலை
+@TR:			Repertuar
+@UK:			Репертуар
+@VI:			tiết mục
+@ZH-simplified:		剧目
+@ZH-traditional:	劇目
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/scores.aton %}
@@ -235,10 +245,12 @@
 @RU:			Помогите
 @SK:			Pomoc
 @SV:			Hjälp
+@TA:			உதவி
 @TR:			Yardım
 @UK:			Довідка
 @VI:			Giúp
-@ZH:			救命
+@ZH-simplified:		救命
+@ZH-traditional:	救命
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/help.aton %}
@@ -278,7 +290,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/language.aton %}

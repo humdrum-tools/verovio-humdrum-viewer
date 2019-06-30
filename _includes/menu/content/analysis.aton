@@ -42,7 +42,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
@@ -77,7 +78,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
 @AR:
@@ -110,7 +112,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU

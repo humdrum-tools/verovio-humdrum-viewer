@@ -38,7 +38,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org
 @AR:
@@ -71,7 +72,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -109,7 +111,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/interface/getting_started
 @AR:
@@ -142,7 +145,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -180,7 +184,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/humdrum/getting_started
 @AR:
@@ -213,7 +218,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -251,7 +257,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: TEXT
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/repertory
@@ -285,7 +292,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: ENTRY
 
@@ -322,7 +330,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/filters
 @AR:
@@ -355,7 +364,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -393,7 +403,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/options
 @AR:
@@ -426,7 +437,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY

@@ -37,7 +37,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Duf')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -79,7 +80,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Ock')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -121,7 +123,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Jap')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -163,7 +166,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Bus')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -205,7 +209,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Jos')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -248,7 +253,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: RIGHT_TEXT
 @@BEGIN: RIGHT_TEXT
 @ACTION: 		MENU.loadRepertory('jrp/Job')
@@ -283,7 +289,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
@@ -320,7 +327,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Rue')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -362,7 +370,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Obr')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -404,7 +413,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('jrp/Ort')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT

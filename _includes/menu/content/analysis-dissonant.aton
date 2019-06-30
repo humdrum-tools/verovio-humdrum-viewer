@@ -42,7 +42,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.applyFilter('extract -i kern | dissonant')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -80,7 +81,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -118,7 +120,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.applyFilter('extract -i kern | dissonant --color')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -156,7 +159,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

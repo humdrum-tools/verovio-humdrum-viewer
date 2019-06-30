@@ -1,12 +1,13 @@
-@@ This is the contents of the "View->Navigation" menu entry in the top menu.
-@@ This file is included into menu/content/view.aton
+@@ This is the contents of the "Edit->Transpose (by key)" menu entry in the top
+@@ menu.  This file is included into menu/content/edit-transpose-key.aton
 @@
 @@ vim: ts=8:nowrap
 @@
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		First page
+@DEFAULT:		Up a minor second
 @AR:
 @BE:
 @CA:
@@ -39,84 +40,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToFirstPage()
+@ACTION:		MENU.applyFilter('transpose -t m2')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-home
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t m2
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-home
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Last page
+@DEFAULT:		Up a major second
 @AR:
 @BE:
 @CA:
@@ -149,84 +86,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToLastPage()
+@ACTION:		MENU.applyFilter('transpose -t M2')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-end
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t M2
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-end
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Previous page
+@DEFAULT:		Up a minor third
 @AR:
 @BE:
 @CA:
@@ -259,84 +132,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToPreviousPage()
+@ACTION:		MENU.applyFilter('transpose -t m3')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-&larr;
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t m3
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-left
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Next page
+@DEFAULT:		Up a major third
 @AR:
 @BE:
 @CA:
@@ -369,84 +178,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToNextPage()
+@ACTION:		MENU.applyFilter('transpose -t M3')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-&rarr;
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t M3
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-right
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Next work/movement
+@DEFAULT:		Up a perfect fourth
 @AR:
 @BE:
 @CA:
@@ -479,84 +224,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToNextWork()
+@ACTION:		MENU.applyFilter('transpose -t P4')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		shift-&rarr;
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t P4
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/shift-right
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Previous work/movement
+@DEFAULT:		Up an augmented fourth
 @AR:
 @BE:
 @CA:
@@ -589,84 +270,20 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.goToPreviousWork()
+@ACTION:		MENU.applyFilter('transpose -t A4')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		shift-&larr;
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t A4
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/shift-left
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Play/pause MIDI performance
+@DEFAULT:		Up a diminished fifth
 @AR:
 @BE:
 @CA:
@@ -699,79 +316,292 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.toggleMidiPlayback()
+@ACTION:		MENU.applyFilter('transpose -t d5')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		space
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		transpose -t d5
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/space
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a perfect fifth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t P5')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t P5
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a minor sixth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t m6')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t m6
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a major sixth
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t M6')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t M6
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a minor seventh
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t m7')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t m7
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a major seventh
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t M7')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t M7
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Up a perfect octave
+@AR:
+@BE:
+@CA:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('transpose -t P8')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		transpose -t P8
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
 
 

@@ -37,7 +37,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Trm')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -79,7 +80,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tsg')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -121,7 +123,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tam')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -163,7 +166,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tec')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -205,7 +209,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tri')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -247,7 +252,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tbv')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -289,7 +295,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Trt')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
@@ -331,7 +338,8 @@
 @TR:
 @UK:
 @VI:
-@ZH:
+@ZH-simplified:
+@ZH-traditional:
 @ACTION:		MENU.loadRepertory('tmp/Tco')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
