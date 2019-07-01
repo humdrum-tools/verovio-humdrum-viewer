@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do C
 @PT:
 @RU:
 @SK:
@@ -76,7 +76,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do Cis
 @PT:
 @RU:
 @SK:
@@ -122,7 +122,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do Des
 @PT:
 @RU:
 @SK:
@@ -168,7 +168,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do D
 @PT:
 @RU:
 @SK:
@@ -214,7 +214,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do Es
 @PT:
 @RU:
 @SK:
@@ -260,7 +260,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do E
 @PT:
 @RU:
 @SK:
@@ -274,7 +274,7 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		transpose -k e-
+@DEFAULT:		transpose -k e
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
 @@END: LINK
@@ -306,7 +306,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do F
 @PT:
 @RU:
 @SK:
@@ -352,7 +352,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do Fis
 @PT:
 @RU:
 @SK:
@@ -398,7 +398,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do G
 @PT:
 @RU:
 @SK:
@@ -444,7 +444,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do As
 @PT:
 @RU:
 @SK:
@@ -490,7 +490,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do A
 @PT:
 @RU:
 @SK:
@@ -536,7 +536,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do B
 @PT:
 @RU:
 @SK:
@@ -582,7 +582,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tonika do H
 @PT:
 @RU:
 @SK:
