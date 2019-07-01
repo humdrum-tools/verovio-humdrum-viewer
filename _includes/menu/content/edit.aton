@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Wyczyść edytor tekstowy
 @PT:
 @RU:
 @SK:
@@ -140,7 +140,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Kompiluj filtry
 @PT:
 @RU:
 @SK:
@@ -250,7 +250,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Wyświetl tylko spiny kern
 @PT:
 @RU:
 @SK:
@@ -328,7 +328,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Belkowanie
 @PT:
 @RU:
 @SK:
@@ -440,7 +440,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Humdrum (??)
 @PT:
 @RU:
 @SK:
@@ -552,7 +552,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: 
 @PT:
 @RU:
 @SK:
@@ -664,7 +664,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tekst słowny
 @PT:
 @RU:
 @SK:
@@ -776,7 +776,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Transponuj do tonacji (jeśli określona w kodowaniu)
 @PT:
 @RU:
 @SK:
@@ -888,7 +888,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Transponuj w górę o interwał
 @PT:
 @RU:
 @SK:
@@ -1000,7 +1000,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Transponuj w dół o interwał
 @PT:
 @RU:
 @SK:
