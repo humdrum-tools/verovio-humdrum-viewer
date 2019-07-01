@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Dodaj linię komentarza (nad kursorem)
 @PT:
 @RU:
 @SK:
@@ -140,7 +140,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Dodaj linię interpretacji (nad kursorem)
 @PT:
 @RU:
 @SK:
@@ -250,7 +250,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Dodaj linię pustych tokenów (nad kursorem)
 @PT:
 @RU:
 @SK:
