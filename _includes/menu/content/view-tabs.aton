@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Automatyczna szerokość tabulatorów
 @PT:
 @RU:
 @SK:
@@ -140,7 +140,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Zwiększ szerokość tabulatorów
 @PT:
 @RU:
 @SK:
@@ -250,7 +250,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Zmniejsz szerokość tabulatorów
 @PT:
 @RU:
 @SK:
@@ -360,7 +360,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Dodaj tabulatory wyrównujące
 @PT:
 @RU:
 @SK:
@@ -438,7 +438,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Usuń tabulatory wyrównujące
 @PT:
 @RU:
 @SK:
