@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż/ukryj tekst
 @PT:
 @RU:
 @SK:
@@ -140,7 +140,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż skan źródła (jeśli jest)
 @PT:
 @RU:
 @SK:
@@ -362,7 +362,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Partytura
 @PT:
 @RU:
 @SK:
@@ -474,7 +474,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tabulatory
 @PT:
 @RU:
 @SK:
@@ -586,7 +586,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Włącz/Wyłącz kolorowanie warstw
 @PT:
 @RU:
 @SK:
@@ -696,7 +696,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż/Ukryj logo VHV
 @PT:
 @RU:
 @SK:
@@ -806,7 +806,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Humdrum jako TSV/CSV
 @PT:
 @RU:
 @SK:
@@ -916,7 +916,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Edytor w trybie domyślnym/vi
 @PT:
 @RU:
 @SK:
@@ -1026,7 +1026,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Zablokuj/Odblokuj generowanie partytury
 @PT:
 @RU:
 @SK:
@@ -1136,7 +1136,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Wyświetl orygnalne klucze
 @PT:
 @RU:
 @SK:

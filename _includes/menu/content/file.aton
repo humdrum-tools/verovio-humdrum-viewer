@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pobierz tekst z edytora
 @PT:
 @RU:
 @SK:
@@ -140,7 +140,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pobierz PDF
 @PT:
 @RU:
 @SK:
@@ -250,7 +250,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pobierz aktualny widok PDF
 @PT:
 @RU:
 @SK:
@@ -360,7 +360,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Ponownie wczytaj plik źródłowy
 @PT:
 @RU:
 @SK:
@@ -470,7 +470,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż kodowanie MEI
 @PT:
 @RU:
 @SK:
@@ -580,7 +580,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż kodowanie Humdrum
 @PT:
 @RU:
 @SK:
@@ -690,7 +690,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Pokaż tekst SVG
 @PT:
 @RU:
 @SK:
@@ -800,7 +800,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Zapisz w buforze
 @PT:
 @RU:
 @SK:
@@ -912,7 +912,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Ładuj z bufora
 @PT:
 @RU:
 @SK:
