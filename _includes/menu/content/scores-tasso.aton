@@ -39,7 +39,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Trm')
+@ACTION:		MENU.loadRepertory('tasso/Trm')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -82,7 +82,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tsg')
+@ACTION:		MENU.loadRepertory('tasso/Tsg')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -125,7 +125,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tam')
+@ACTION:		MENU.loadRepertory('tasso/Tam')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -168,7 +168,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tec')
+@ACTION:		MENU.loadRepertory('tasso/Tec')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -211,7 +211,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tri')
+@ACTION:		MENU.loadRepertory('tasso/Tri')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -254,7 +254,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tbv')
+@ACTION:		MENU.loadRepertory('tasso/Tbv')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -297,7 +297,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Trt')
+@ACTION:		MENU.loadRepertory('tasso/Trt')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
@@ -340,7 +340,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('tmp/Tco')
+@ACTION:		MENU.loadRepertory('tasso/Tco')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
