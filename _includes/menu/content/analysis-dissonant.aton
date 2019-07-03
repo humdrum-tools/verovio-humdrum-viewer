@@ -15,6 +15,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -34,7 +35,7 @@
 @LV:
 @NL:
 @NO:
-@PL:  Oznaczanie dysonansów
+@PL:			Oznaczanie dysonansów
 @PT:
 @RU:
 @SK:
@@ -51,36 +52,6 @@
 @DEFAULT:		dissonant
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL: Wyróżnij dysonanse w różnych pozycjach metrycznych
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -93,6 +64,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -112,7 +84,7 @@
 @LV:
 @NL:
 @NO:
-@PL:  Metryczne wyróżnienie 
+@PL:			Wyróżnij dysonanse w różnych pozycjach metrycznych
 @PT:
 @RU:
 @SK:
@@ -129,38 +101,6 @@
 @DEFAULT:		dissonant --color
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

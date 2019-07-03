@@ -15,6 +15,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -34,7 +35,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Analiza dysonansów renesansowych
+@PL:			Analiza dysonansów renesansowych
 @PT:
 @RU:
 @SK:
@@ -48,72 +49,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU

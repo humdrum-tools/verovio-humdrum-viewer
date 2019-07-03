@@ -11,6 +11,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -30,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Wyczyść edytor tekstowy
+@PL:			Wyczyść edytor tekstowy
 @PT:
 @RU:
 @SK:
@@ -48,6 +49,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -79,38 +81,6 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-e
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -121,6 +91,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -140,7 +111,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Kompiluj filtry
+@PL:			Kompiluj filtry
 @PT:
 @RU:
 @SK:
@@ -158,6 +129,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -189,38 +161,6 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-c
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -231,6 +171,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -250,7 +191,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Wyświetl tylko spiny kern
+@PL:			Wyświetl tylko spiny kern
 @PT:
 @RU:
 @SK:
@@ -267,38 +208,6 @@
 @DEFAULT:		extract -ikern
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -309,6 +218,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -328,7 +238,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Belkowanie
+@PL:			Belkowanie
 @PT:
 @RU:
 @SK:
@@ -342,72 +252,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -421,6 +267,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -440,7 +287,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Humdrum (??)
+@PL:
 @PT:
 @RU:
 @SK:
@@ -454,72 +301,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -533,6 +316,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -566,72 +350,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -645,6 +365,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -664,7 +385,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Tekst słowny
+@PL:			Tekst słowny
 @PT:
 @RU:
 @SK:
@@ -678,72 +399,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -757,6 +414,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -776,7 +434,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Transponuj do tonacji (jeśli określona w kodowaniu)
+@PL:			Transponuj do tonacji (jeśli określona w kodowaniu)
 @PT:
 @RU:
 @SK:
@@ -790,72 +448,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -869,6 +463,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -888,7 +483,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Transponuj w górę o interwał
+@PL:			Transponuj w górę o interwał
 @PT:
 @RU:
 @SK:
@@ -902,72 +497,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -981,6 +512,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -1000,7 +532,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Transponuj w dół o interwał
+@PL:			Transponuj w dół o interwał
 @PT:
 @RU:
 @SK:
@@ -1014,72 +546,8 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU

@@ -11,6 +11,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -30,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Dodaj linię komentarza (nad kursorem)
+@PL:			Dodaj linię komentarza (nad kursorem)
 @PT:
 @RU:
 @SK:
@@ -48,6 +49,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -79,38 +81,6 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/command/alt-L
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -121,6 +91,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -140,7 +111,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Dodaj linię interpretacji (nad kursorem)
+@PL:			Dodaj linię interpretacji (nad kursorem)
 @PT:
 @RU:
 @SK:
@@ -158,6 +129,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -189,38 +161,6 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/command/alt-I
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -231,6 +171,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -250,7 +191,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Dodaj linię pustych tokenów (nad kursorem)
+@PL:			Dodaj linię pustych tokenów (nad kursorem)
 @PT:
 @RU:
 @SK:
@@ -268,6 +209,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -299,41 +241,8 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/command/alt-D
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
-
 
 

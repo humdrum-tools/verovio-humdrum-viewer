@@ -267,7 +267,17 @@ Handlebars.registerHelper("languageText", function(text) {
 		}
 		var translation = text[language];
 		if (!translation) {
-			translation = text["DEFAULT"];
+			var entry = DICTIONARY[text["DEFAULT"]];
+			if (entry) {
+				var newtrans = entry[language];
+				if (!newtrans) {
+					translation = text["DEFAULT"];
+				} else {
+					translation = newtrans;
+				}
+			} else {
+				translation = text["DEFAULT"];
+			}
 		}
 		return new Handlebars.SafeString(translation);
 	}

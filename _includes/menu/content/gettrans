@@ -1,0 +1,76 @@
+#!/usr/bin/perl
+
+use strict;
+use Getopt::Long;
+
+# $COLUMNSPACE is the text which separates each column of parameters.
+my $language = "EN";
+my $fileQ = 0;
+my $instructionsQ = 0;
+Getopt::Long::Configure("bundling");
+GetOptions (
+   'l|language=s' => \$language,
+	'I|no-instructions' => \$instructionsQ, 
+   'F|no-file' => \$fileQ
+);
+$language = uc($language);
+$instructionsQ = !$instructionsQ;
+$fileQ = !$fileQ;
+
+my @languages = split(/\s*[,:;]+\s*/, $language);
+#print "LANGUAGES ARE: ", join(" ", @languages), "\n";
+
+if ($instructionsQ) {
+print <<"EOT";
+# Fill in the lines starting with @languages: with the translation of the phrase
+# on the line immediately above starting with \@PHRASE:.
+#
+# If there is no translation or the translation is the same as the PHRASE, then
+# do not entry any text on the @languages: line underneath it.
+
+EOT
+}
+
+my @files = @ARGV;
+
+if (@files == 0) {
+	die "Usage: $0 -l langauge files(s)\n"
+}
+
+foreach my $file (@files) {
+	extractTranslations($file, @languages);
+}
+
+
+sub extractTranslations {
+	my ($file, @langs) = @_;
+	if ($fileQ) {
+		print "\n############################## MENU:\t$file\n\n";
+	}
+	open (FILE, $file) or die "Cannot read $file\.";
+	my @contents = <FILE>;
+	close FILE;
+	my $default;
+	my $lastprint = 0;
+	my $defaultline = -1;
+	for (my $i=0; $i<@contents; $i++) {
+		if ($contents[$i] =~ /^\@DEFAULT:\s*(.*)\s*$/) {
+			$default = $1;
+			$defaultline = $i;
+		}
+		for (my $j=0; $j<@langs; $j++) {
+			if ($contents[$i] =~ /^\@$langs[$j]:\s*(.*)\s*$/) {
+				if ($lastprint != $defaultline) {
+					print "\n\@PHRASE:\t$default\n";
+					$lastprint = $defaultline;
+				}
+				print "\@$langs[$j]:\t\t$1\n";
+			}
+		}
+	}
+}
+
+
+
+
+

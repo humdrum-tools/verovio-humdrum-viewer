@@ -11,6 +11,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -30,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o sekundę małą
+@PL:			W dół o sekundę małą
 @PT:
 @RU:
 @SK:
@@ -57,6 +58,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -76,7 +78,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o sekundę wielką
+@PL:			W dół o sekundę wielką
 @PT:
 @RU:
 @SK:
@@ -103,6 +105,8 @@
 @AR:
 @BE:
 @CA:
+@CS:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -122,7 +126,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o tercję małą
+@PL:			W dół o tercję małą
 @PT:
 @RU:
 @SK:
@@ -149,6 +153,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -168,7 +173,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o tercję wielką
+@PL:			W dół o tercję wielką
 @PT:
 @RU:
 @SK:
@@ -195,6 +200,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -214,7 +220,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o kwartę czystą
+@PL:			W dół o kwartę czystą
 @PT:
 @RU:
 @SK:
@@ -241,6 +247,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -260,7 +267,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o kwartę zwiększoną
+@PL:			W dół o kwartę zwiększoną
 @PT:
 @RU:
 @SK:
@@ -287,6 +294,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -306,7 +314,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o kwintę zmniejszoną
+@PL:			W dół o kwintę zmniejszoną
 @PT:
 @RU:
 @SK:
@@ -333,6 +341,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -352,7 +361,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o kwintę czystą
+@PL:			W dół o kwintę czystą
 @PT:
 @RU:
 @SK:
@@ -379,6 +388,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -398,7 +408,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o sekstę małą
+@PL:			W dół o sekstę małą
 @PT:
 @RU:
 @SK:
@@ -425,6 +435,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -444,7 +455,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o sekstę wielką
+@PL:			W dół o sekstę wielką
 @PT:
 @RU:
 @SK:
@@ -471,6 +482,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -490,7 +502,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o septymę małą
+@PL:			W dół o septymę małą
 @PT:
 @RU:
 @SK:
@@ -517,6 +529,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -536,7 +549,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o septymę wielką
+@PL:			W dół o septymę wielką
 @PT:
 @RU:
 @SK:
@@ -563,6 +576,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -582,7 +596,7 @@
 @LV:
 @NL:
 @NO:
-@PL: W dół o oktawę czystą
+@PL:			W dół o oktawę czystą
 @PT:
 @RU:
 @SK:

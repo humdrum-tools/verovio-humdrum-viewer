@@ -10,37 +10,6 @@
 @FORCE:			AR
 @DEFAULT:		Arabic
 @AR:			اللغة العربية
-@BE:			
-@CA:
-@DE:			
-@DK:
-@EL:
-@EN:			
-@ES:			
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('AR')
 @@END: TEXT
 @@END: ENTRY
@@ -49,38 +18,7 @@
 @@BEGIN: TEXT
 @FORCE:			BE
 @DEFAULT:		Belarusian
-@AR:
 @BE:			Беларуская
-@CA:
-@DE:			
-@DK:
-@EL:
-@EN:			
-@ES:			
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('BE')
 @@END: TEXT
 @@END: ENTRY
@@ -89,38 +27,7 @@
 @@BEGIN: TEXT
 @FORCE:			CA
 @DEFAULT:		Catalan
-@AR:
-@BE:			
 @CA:			Català
-@DE:			
-@DK:
-@EL:
-@EN:			
-@ES:			
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('CA')
 @@END: TEXT
 @@END: ENTRY
@@ -129,38 +36,7 @@
 @@BEGIN: TEXT
 @FORCE:			DK
 @DEFAULT:		Danish
-@AR:
-@BE:			
-@CA:			
-@DE:			
 @DK:			Dansk
-@EL:
-@EN:			
-@ES:			
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('DK')
 @@END: TEXT
 @@END: ENTRY
@@ -169,38 +45,7 @@
 @@BEGIN: TEXT
 @FORCE:			DE
 @DEFAULT:		German
-@AR:
-@BE:
-@CA:
 @DE:			Deutsch
-@DK:
-@EL:
-@EN:			German
-@ES:			Alemán
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			Tedesco
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			Niemiecki
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('DE')
 @@END: TEXT
 @@END: ENTRY
@@ -209,38 +54,7 @@
 @@BEGIN: TEXT
 @FORCE:			EL
 @DEFAULT:		Greek
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
 @EL:			Ελληνικά
-@EN:			
-@ES:			
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('EL')
 @@END: TEXT
 @@END: ENTRY
@@ -249,38 +63,7 @@
 @@BEGIN: TEXT
 @FORCE:			EN
 @DEFAULT:		English
-@AR:
-@BE:
-@CA:
-@DE:			Englisch
-@DK:
-@EL:
 @EN:			English
-@ES:			Inglés
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			Inglese
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			Angielski
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('EN')
 @@END: TEXT
 @@END: ENTRY
@@ -289,39 +72,7 @@
 @@BEGIN: TEXT
 @FORCE:			ES
 @DEFAULT:		Spanish
-@AR:
-@BE:
-@CA:
-@DE:			Spanisch
-@DK:
-@EL:
-@EN:			Spanish
 @ES:			Español
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			Spagnolo
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			Hiszpański
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.setLanguage('ES')
 @@END: TEXT
 @@END: ENTRY
 
@@ -329,38 +80,7 @@
 @@BEGIN: TEXT
 @FORCE:			EU
 @DEFAULT:		Basque
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
 @EU:			Euskara
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('EU')
 @@END: TEXT
 @@END: ENTRY
@@ -369,38 +89,7 @@
 @@BEGIN: TEXT
 @FORCE:			FR
 @DEFAULT:		French
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
 @FR:			Français
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('FR')
 @@END: TEXT
 @@END: ENTRY
@@ -409,38 +98,7 @@
 @@BEGIN: TEXT
 @FORCE:			KO
 @DEFAULT:		Korean
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
-@FR:			
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
 @KO:			한국어
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('KO')
 @@END: TEXT
 @@END: ENTRY
@@ -449,39 +107,7 @@
 @@BEGIN: TEXT
 @FORCE:			HE
 @DEFAULT:		Hebrew
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
-@FR:
 @HE:			עברית
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TA:			
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('HE')
 @@END: TEXT
 @@END: ENTRY
@@ -490,39 +116,7 @@
 @@BEGIN: TEXT
 @FORCE:			HI
 @DEFAULT:		Hindi
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
-@FR:
-@HE:
 @HI:			हिंदी
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TA:			
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('HI')
 @@END: TEXT
 @@END: ENTRY
@@ -531,38 +125,7 @@
 @@BEGIN: TEXT
 @FORCE:			IT
 @DEFAULT:		Italian
-@AR:
-@BE:
-@CA:
-@DE:			Italienisch
-@DK:
-@EL:
-@EN:			Italian
-@ES:			Italiano
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
 @IT:			Italiano
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			Włoski
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('IT')
 @@END: TEXT
 @@END: ENTRY
@@ -571,38 +134,7 @@
 @@BEGIN: TEXT
 @FORCE:			JA
 @DEFAULT:		Japanese
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
-@FR:			
-@HE:
-@HI:
-@ID:
-@IT:			
 @JA:			日本語
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('JA')
 @@END: TEXT
 @@END: ENTRY
@@ -611,38 +143,7 @@
 @@BEGIN: TEXT
 @FORCE:			PL
 @DEFAULT:		Polish
-@AR:
-@BE:
-@CA:
-@DE:			Polnisch
-@DK:
-@EL:
-@EN:			Polish
-@ES:			polaco
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			Polacco
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
 @PL:			Polski
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('PL')
 @@END: TEXT
 @@END: ENTRY
@@ -651,39 +152,7 @@
 @@BEGIN: TEXT
 @FORCE:			TA
 @DEFAULT:		Tamil
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
 @TA:			தமிழ்
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('TA')
 @@END: TEXT
 @@END: ENTRY
@@ -692,38 +161,7 @@
 @@BEGIN: TEXT
 @FORCE:			ZH-simplified
 @DEFAULT:		Chinese (simplified characters)
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:			
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
 @ZH-simplified:		中文（简体字）
-@ZH-traditional:
 @ACTION:		MENU.setLanguage('ZH-simplified')
 @@END: TEXT
 @@END: ENTRY
@@ -732,37 +170,6 @@
 @@BEGIN: TEXT
 @FORCE:			ZH-traditional
 @DEFAULT:		Chinese (traditional characters)
-@AR:
-@BE:			
-@CA:			
-@DE:			
-@DK:			
-@EL:			
-@EN:			
-@ES:			
-@ET:
-@EU:			
-@FI:			
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:			
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:		
 @ZH-traditional:	中文（繁體字）
 @ACTION:		MENU.setLanguage('ZH-traditional')
 @@END: TEXT
@@ -774,6 +181,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -813,6 +221,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:

@@ -11,6 +11,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -30,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Belkowanie według metrum
+@PL:			Belkowanie według metrum
 @PT:
 @RU:
 @SK:
@@ -47,38 +48,6 @@
 @DEFAULT:		autobeam
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/autobeam
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -89,6 +58,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -108,7 +78,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Usuń belkowanie
+@PL:			Usuń belkowanie
 @PT:
 @RU:
 @SK:
@@ -125,38 +95,6 @@
 @DEFAULT:		autobeam -r
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/autobeam
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

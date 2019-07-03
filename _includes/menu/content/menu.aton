@@ -1,3 +1,7 @@
+@@ This is the contents of the main menu heading in the top menu.
+@@
+@@ vim: ts=8:nowrap
+@@
 
 @@BEGIN: MENU
 
@@ -7,6 +11,7 @@
 @AR:			ملف
 @BE:			Файл
 @CA:			Dossier
+@CS:
 @DE:			Datei
 @DK:			Fil
 @EL:			Αρχείο
@@ -49,6 +54,7 @@
 @AR:			رأي
 @BE:			Выгляд
 @CA:			Vista
+@CS:
 @DE:			Aussicht
 @DK:			Udsigt
 @EL:			Θέα
@@ -91,6 +97,7 @@
 @AR:			تصحيح
 @BE:			Рэдагаваць
 @CA:			Editar
+@CS:
 @DE:			Bearbeiten
 @DK:			Redigere
 @EL:			Επεξεργασία
@@ -137,6 +144,7 @@
 @AR:			تحليل
 @BE:			Аналіз
 @CA:			Anàlisi
+@CS:
 @DE:			Analyse
 @DK:			Analyse
 @EL:			Ανάλυση
@@ -179,6 +187,7 @@
 @AR:			ذخيرة
 @BE:			Рэпертуар
 @CA:			Repertori
+@CS:
 @DE:			Repertoire
 @DK:			Repertoire
 @EL:			Ρεπερτόριο
@@ -221,6 +230,7 @@
 @AR:			مساعدة
 @BE:			Дапамажыце
 @CA:			Ajuda
+@CS:
 @DE:			Hilfe
 @DK:			Hjælp
 @EL:			Βοήθεια
@@ -260,38 +270,6 @@
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		 <span id="language-icon" class="fas fa-language"></span>
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @@END: TEXT
 @@BEGIN: SUBMENU
 {% include menu/content/language.aton %}

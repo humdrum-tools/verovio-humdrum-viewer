@@ -11,6 +11,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -30,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL: 370 chorałów Bacha
+@PL:			370 chorałów Bacha
 @PT:
 @RU:
 @SK:
@@ -60,6 +61,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -97,6 +99,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -136,6 +139,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -155,7 +159,7 @@
 @LV:
 @NL:
 @NO:
-@PL: &nbsp;&nbsp;&nbsp; Analiza harmoniczna 75 Chorałów Bacha
+@PL:			&nbsp;&nbsp;&nbsp; Analiza harmoniczna 75 Chorałów Bacha
 @PT:
 @RU:
 @SK:
@@ -176,6 +180,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -195,7 +200,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Sonaty fortepianowe Beethovena
+@PL:			Sonaty fortepianowe Beethovena
 @PT:
 @RU:
 @SK:
@@ -220,6 +225,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -239,7 +245,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Kwartety smyczkowe Beethovena
+@PL:			Kwartety smyczkowe Beethovena
 @PT:
 @RU:
 @SK:
@@ -264,6 +270,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -283,7 +290,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Mazurki Chopina
+@PL:			Mazurki Chopina
 @PT:
 @RU:
 @SK:
@@ -309,6 +316,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -328,7 +336,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Hummel, Preludia op. 67
+@PL:			Hummel, Preludia op. 67
 @PT:
 @RU:
 @SK:
@@ -353,6 +361,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -397,6 +406,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -416,7 +426,7 @@
 @LV:
 @NL:
 @NO:
-@PL: Sonaty fortepianowe Mozarta
+@PL:			Sonaty fortepianowe Mozarta
 @PT:
 @RU:
 @SK:
@@ -441,6 +451,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -478,6 +489,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -518,6 +530,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -552,74 +565,9 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		
-@AR:
-@BE:
-@CA:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
@@ -633,6 +581,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:
@@ -683,6 +632,7 @@
 @AR:
 @BE:
 @CA:
+@CS:
 @DE:
 @DK:
 @EL:

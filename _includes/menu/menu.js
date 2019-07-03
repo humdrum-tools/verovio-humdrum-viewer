@@ -5,6 +5,7 @@
 var MENU = { };
 var MENUDATA = { };
 var LANGUAGE = "DEFAULT";
+var DICTIONARY = {};
 
 function MenuInterface() { 
 	this.contextualMenus = {};
@@ -45,6 +46,13 @@ function processMenuAton() {
 	adjustMenu(MENUDATA);
 	
 	console.log("DATA TO CREATE MENU", MENUDATA);
+	DICTIONARY = {};
+	var MD = MENUDATA.DICTIONARY.ENTRY;
+	for (var i=0; i<MD.length; i++) {
+			DICTIONARY[MD[i].DEFAULT] = MD[i];
+	}
+	console.log("DICTIONARY", DICTIONARY);
+	console.log("D", DICTIONARY["https://doc.verovio.humdrum.org"]);
 
 	// Use handlebars to generate HTML code for menu.
 	var tsource = document.querySelector("#top-level-menu-template").textContent;
