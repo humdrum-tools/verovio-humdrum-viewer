@@ -19,7 +19,7 @@ function play_midi(starttime) {
 		DELAY = 600;
 	}
 
-	vrv.renderToMidi()
+	vrvWorker.renderToMidi()
 	.then(function (base64midi) {
 		var song = 'data:audio/midi;base64,' + base64midi;
 		$("#play-button").hide();
@@ -42,12 +42,12 @@ function play_midi(starttime) {
 
 var midiUpdate = function (time) {
 	var vrvTime = Math.max(0, time - DELAY);
-	vrv.getElementsAtTime(vrvTime)
+	vrvWorker.getElementsAtTime(vrvTime)
 	.then(function (elementsattime) {
 		var matches;
 		if (elementsattime.page > 0) {
-			if (elementsattime.page != vrv.page) {
-				vrv.page = elementsattime.page;
+			if (elementsattime.page != vrvWorker.page) {
+				vrvWorker.page = elementsattime.page;
 				loadPage();
 			}
 			if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {

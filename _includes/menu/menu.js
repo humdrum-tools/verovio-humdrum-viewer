@@ -21,7 +21,6 @@ function setInitialLanguage() {
 			LANGUAGE = lang;
 		}
 	}
-	console.log("LANGUAGE SET TO ", LANGUAGE);
 }
 
 
@@ -45,14 +44,11 @@ function processMenuAton() {
 	MENUDATA = aton.parse(element.textContent).MENU;
 	adjustMenu(MENUDATA);
 	
-	console.log("DATA TO CREATE MENU", MENUDATA);
 	DICTIONARY = {};
 	var MD = MENUDATA.DICTIONARY.ENTRY;
 	for (var i=0; i<MD.length; i++) {
 			DICTIONARY[MD[i].DEFAULT] = MD[i];
 	}
-	console.log("DICTIONARY", DICTIONARY);
-	console.log("D", DICTIONARY["https://doc.verovio.humdrum.org"]);
 
 	// Use handlebars to generate HTML code for menu.
 	var tsource = document.querySelector("#top-level-menu-template").textContent;
@@ -62,7 +58,6 @@ function processMenuAton() {
 	if (newmenuelement) {
 		newmenuelement.outerHTML = output;
 		var ne = document.querySelector("#handlebars-nav");
-		console.log("MENU HTML CODE:", ne);
 	}
 }
 
@@ -368,11 +363,9 @@ MenuInterface.prototype.decreaseNotationSpacing = function () {
 //
 
 MenuInterface.prototype.applyFilter = function (text) {
-console.log("FILTER TO APPLY", text);
 	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 	var options = humdrumToSvgOptions();
 	var data = contents + "\n!!!filter: " + text + "\n";
-console.log("DATA", options, data);
 	vrv.filterData(options, data, "humdrum")
 	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
@@ -390,7 +383,6 @@ console.log("DATA", options, data);
 			}
 			newdata += lines[i] + "\n";
 		}
-console.log("FINAL NEWDATA", newdata);
 		EDITOR.setValue(newdata, -1);
 	});
 }
@@ -1450,7 +1442,6 @@ MenuInterface.prototype.setLanguage = function (lang) {
 	if (newmenuelement) {
 		newmenuelement.outerHTML = output;
 	}
-	console.log("USING LANGAUGE", lang);
 }
 
 

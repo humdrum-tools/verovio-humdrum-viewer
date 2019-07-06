@@ -17,7 +17,7 @@ var OPTIONS = {}; // used for debugging display options.
 // var hmdindex = new HMDIndex(turl);
 
 // verovio variables for a movement:
-var vrv;
+var vrvWorker;
 var SCALE = 40;
 var FILEINFO = {};
 var EDITOR;
@@ -221,7 +221,7 @@ var Splitter = new SPLITTER();
 //
 
 function displayNotation(page, force, restoreid) {
-	if (!vrv.initialized || (FreezeRendering && !force)) {
+	if (!vrvWorker.initialized || (FreezeRendering && !force)) {
 		return;
 	};
 
@@ -239,7 +239,7 @@ function displayNotation(page, force, restoreid) {
 	};
 
 	OPTIONS = options;
-	vrv.displayNotation(options, data, page, force)
+	vrvWorker.displayNotation(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
 		if (data.charAt(0) == "<") {
@@ -521,7 +521,7 @@ function toggleFreeze() {
 	FreezeRendering = !FreezeRendering;
 	document.querySelector('body').classList.toggle("frozen");
 	if (!FreezeRendering) {
-		vrv.displayNotation();
+		vrvWorker.displayNotation();
 	}
 }
 
@@ -852,7 +852,7 @@ function displayWork(file) {
 	if (!file) {
 		return;
 	}
-	vrv.page = 1;
+	vrvWorker.page = 1;
 	CGI.file = file;
 	delete CGI.mm;
 	delete CGI.kInitialized;
@@ -1120,14 +1120,14 @@ function loadKernScoresFile(obj, force) {
 							if (textdata.match(/^\s*$/)) {
 								textdata = "!!!ONB: No data content\n";
 							}
-							displayScoreTextInEditor(atob(jinfo.content), vrv.page);
+							displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
 						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);
 						}
 					} catch(err) {
 						console.log("Error downloading", key, "Error:", err);
-						displayScoreTextInEditor(info.data, vrv.page);
+						displayScoreTextInEditor(info.data, vrvWorker.page);
 						if (CGI.k.match(/c/)) {
 							CGI.k = CGI.k.replace(/c/, "");
 							showCompiledFilterData();
@@ -1148,7 +1148,7 @@ function loadKernScoresFile(obj, force) {
 				processInfo(jinfo, obj, false, false);
 			}
 		} catch(err) {
-			displayScoreTextInEditor(info.data, vrv.page);
+			displayScoreTextInEditor(info.data, vrvWorker.page);
 			if (CGI.k.match(/c/)) {
 				CGI.k = CGI.k.replace(/c/, "");
 				showCompiledFilterData();
@@ -1282,7 +1282,7 @@ function processInfo(info, obj, nextwork, prevwork) {
 
 	// var inputarea = document.querySelector("#input");
 	// inputarea.value = score;
-	displayScoreTextInEditor(score, vrv.page);
+	displayScoreTextInEditor(score, vrvWorker.page);
 
 	obj.next = false;
 	obj.previous = false;
@@ -1369,8 +1369,8 @@ function downloadKernScoresFile(file, measures, page) {
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
-	vrv.page = 1;
-	page = page || vrv.page;
+	vrvWorker.page = 1;
+	page = page || vrvWorker.page;
 	var options;
 	var humdrumQ = false;
 
@@ -1403,10 +1403,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 
 	if (options && !humdrumQ) {
 		if ((options.format == "musicxml") || (options.format == "musicxml-hum")) {
-			vrv.filterData(options, text, "humdrum")
+			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {
-			vrv.filterData(options, text, "humdrum")
+			vrvWorker.filterData(options, text, "humdrum")
 			.then(function(newtext) {
 				var freezeBackup = FreezeRendering;
 				if (FreezeRendering == false) {
@@ -1455,24 +1455,24 @@ function applyZoom() {
 		return;
 	}
 
-	if (vrv.page !== 1) {
+	if (vrvWorker.page !== 1) {
 		measure = $("#output .measure").attr("id");
 	}
 
 	var options = humdrumToSvgOptions(),
-	redo = (vrv.HEIGHT != options.pageHeight) || (vrv.WIDTH != options.pageWidth);
+	redo = (vrvWorker.HEIGHT != options.pageHeight) || (vrvWorker.WIDTH != options.pageWidth);
 
 	if (redo) {
 		stop();
-		vrv.HEIGHT = options.pageHeight;
-		vrv.WIDTH = options.pageWidth;
+		vrvWorker.HEIGHT = options.pageHeight;
+		vrvWorker.WIDTH = options.pageWidth;
 	};
 
 	OPTIONS = options;
 
-	vrv.redoLayout(options, redo, measure)
+	vrvWorker.redoLayout(options, redo, measure)
 	.then(function() {
-		loadPage(vrv.page);
+		loadPage(vrvWorker.page);
 	});
 }
 
@@ -1484,10 +1484,10 @@ function applyZoom() {
 //
 
 function loadPage(page) {
-	page = page || vrv.page;
+	page = page || vrvWorker.page;
 	$("#overlay").hide().css("cursor", "auto");
 	$("#jump_text").val(page);
-	vrv.renderPage(page)
+	vrvWorker.renderPage(page)
 	.then(function(svg) {
 		$("#output").html(svg);
 		// adjustPageHeight();
@@ -1538,9 +1538,9 @@ return;
 //
 
 function gotoPreviousPage() {
-	vrv.gotoPage(vrv.page - 1)
+	vrvWorker.gotoPage(vrvWorker.page - 1)
 	.then(function() {
-		loadPage(vrv.page);
+		loadPage(vrvWorker.page);
 	});
 }
 
@@ -1552,9 +1552,9 @@ function gotoPreviousPage() {
 //
 
 function gotoNextPage() {
-	vrv.gotoPage(vrv.page + 1)
+	vrvWorker.gotoPage(vrvWorker.page + 1)
 	.then(function() {
-		loadPage(vrv.page);
+		loadPage(vrvWorker.page);
 	});
 }
 
@@ -1566,9 +1566,9 @@ function gotoNextPage() {
 //
 
 function gotoLastPage() {
-	vrv.gotoPage(0)
+	vrvWorker.gotoPage(0)
 	.then(function() {
-		loadPage(vrv.page);
+		loadPage(vrvWorker.page);
 	});
 }
 
@@ -1580,9 +1580,9 @@ function gotoLastPage() {
 //
 
 function gotoFirstPage() {
-	vrv.gotoPage(1)
+	vrvWorker.gotoPage(1)
 	.then(function() {
-		loadPage(vrv.page);
+		loadPage(vrvWorker.page);
 	});
 }
 
@@ -1595,8 +1595,8 @@ function gotoFirstPage() {
 
 function showBufferedHumdrumData() {
 	if (!BufferedHumdrumFile.match(/^\s*$/)) {
-		var page = vrv.page;
-		displayScoreTextInEditor(BufferedHumdrumFile, vrv.page);
+		var page = vrvWorker.page;
+		displayScoreTextInEditor(BufferedHumdrumFile, vrvWorker.page);
 		BufferedHumdrumFile = "";
 	}
 }
@@ -1612,7 +1612,7 @@ function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
 	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrv.filterData(options, data, "mei")
+	vrvWorker.filterData(options, data, "mei")
 	.then(showMei);
 }
 
@@ -1631,7 +1631,7 @@ function showMei(meidata) {
 	if (BufferedHumdrumFile.match(/^\s*$/)) {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
-	displayScoreTextInEditor(meidata, vrv.page);
+	displayScoreTextInEditor(meidata, vrvWorker.page);
 
 	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 	// var postfix = "</textarea>";
@@ -1656,7 +1656,7 @@ function showMei(meidata) {
 //
 
 function displayMei() {
-	vrv.getMEI()
+	vrvWorker.getMEI()
 	.then(showMei);
 }
 
@@ -1671,7 +1671,7 @@ function displaySvg() {
 	if (ShowingIndex) {
 		return;
 	}
-	vrv.renderPage(vrv.page)
+	vrvWorker.renderPage(vrvWorker.page)
 	.then(function(data) {
 		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 		var postfix = "</textarea>";
@@ -1749,7 +1749,7 @@ function reloadData() {
 //
 
 function downloadVerovioToolkit(use_worker) {
-	vrv = new vrvInterface(use_worker, initializeVerovioToolkit);
+	vrvWorker = new vrvInterface(use_worker, initializeVerovioToolkit);
 };
 
 
@@ -2845,7 +2845,7 @@ function convertTokenToCsv(token) {
 function showCompiledFilterData() {
 	var options = humdrumToSvgOptions();
 	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrv.filterData(options, data, "humdrum")
+	vrvWorker.filterData(options, data, "humdrum")
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		EDITOR.setValue(newdata, -1);
@@ -3290,7 +3290,7 @@ function clearContent() {
 function playCurrentMidi() {
 	if (CursorNote && CursorNote.id) {
 		var id = CursorNote.id;
-		vrv.getTimeForElement(id)
+		vrvWorker.getTimeForElement(id)
 		.then(function(time) {
 			play_midi(time);
 		});
@@ -3335,18 +3335,18 @@ function goToPreviousNoteOrRest(currentid) {
 		highlightIdInEditor(alist[0].id, "goToPreviousNoteOrRest");
 	} else if (alist.length == 0) {
 		// gotoNextPage();
-		if (vrv.page == 1) {
+		if (vrvWorker.page == 1) {
 			// at first page, so don't do anything.
 			console.log("AT FIRST PAGE, so not continuing further");
 			return;
 		}
-		vrv.gotoPage(vrv.page - 1)
+		vrvWorker.gotoPage(vrvWorker.page - 1)
 		.then(function(obj) {
-			// loadPage(vrv.page);
-			var page = obj.page || vrv.page;
+			// loadPage(vrvWorker.page);
+			var page = obj.page || vrvWorker.page;
 			$("#overlay").hide().css("cursor", "auto");
 			$("#jump_text").val(page);
-			vrv.renderPage(page)
+			vrvWorker.renderPage(page)
 			.then(function(svg) {
 				$("#output").html(svg);
 				// adjustPageHeight();
@@ -3408,18 +3408,18 @@ function goToNextNoteOrRest(currentid) {
 	} else if (alist.length == 0) {
 		// console.log("NO ELEMENT FOUND (ON NEXT PAGE?)");
 		// gotoNextPage();
-		if ((vrv.pageCount > 0) && (vrv.pageCount == vrv.page)) {
+		if ((vrvWorker.pageCount > 0) && (vrvWorker.pageCount == vrvWorker.page)) {
 			// at last page, so don't do anything.
 			// console.log("AT LAST PAGE, so not continuing further");
 			return;
 		}
-		vrv.gotoPage(vrv.page + 1)
+		vrvWorker.gotoPage(vrvWorker.page + 1)
 		.then(function(obj) {
-			// loadPage(vrv.page);
-			var page = obj.page || vrv.page;
+			// loadPage(vrvWorker.page);
+			var page = obj.page || vrvWorker.page;
 			$("#overlay").hide().css("cursor", "auto");
 			$("#jump_text").val(page);
-			vrv.renderPage(page)
+			vrvWorker.renderPage(page)
 			.then(function(svg) {
 				$("#output").html(svg);
 				// adjustPageHeight();
