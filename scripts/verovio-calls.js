@@ -78,10 +78,10 @@ function verovioCalls() {
 
 	//////////////////////////////
 	//
-	// verovioCalls.displayNotation --
+	// verovioCalls.renderData --
 	//
 
-	this.displayNotation = function (opts, data, page, force) {
+	this.renderData = function (opts, data, page, force) {
 		if (!force) this.validate(data);
 		page = page || this.page;
 		cleanopts = cleanOptions(data, opts);
@@ -155,7 +155,7 @@ function verovioCalls() {
 		data = data += "\n!!!verovio-parameter-group: pdf\n";
 		cleanopts = cleanOptions(data, opts);
 
-		svglist.push(this.displayNotation(cleanopts, data));
+		svglist.push(this.renderData(cleanopts, data));
 		for (var i = 2; i <= this.pageCount; i++) {
 			svglist.push(this.renderPage(i));
 		}

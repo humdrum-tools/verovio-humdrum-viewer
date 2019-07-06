@@ -239,7 +239,7 @@ function displayNotation(page, force, restoreid) {
 	};
 
 	OPTIONS = options;
-	vrvWorker.displayNotation(options, data, page, force)
+	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
 		if (data.charAt(0) == "<") {
@@ -521,7 +521,7 @@ function toggleFreeze() {
 	FreezeRendering = !FreezeRendering;
 	document.querySelector('body').classList.toggle("frozen");
 	if (!FreezeRendering) {
-		vrvWorker.displayNotation();
+		vrvWorker.renderData();
 	}
 }
 

@@ -1,10 +1,15 @@
 ---
 vim: ts=3
 ---
+//
+// This is the Web Worker interface for the verovio toolkit.  These functions are
+// interfaced through the verovio-calls.js functions.
+//
+
 
 //////////////////////////////
 //
-// vrvInterface --
+// vrvInterface::vrvInterface --
 //
 
 function vrvInterface(use_worker, onReady) {
@@ -22,13 +27,13 @@ function vrvInterface(use_worker, onReady) {
 	} else {
 		this.createDefaultInterface(onReady);
 	};
-};
+}
 
 
 
 //////////////////////////////
 //
-// createWorkerInterface --
+// vrvInterface::createWorkerInterface --
 //
 
 vrvInterface.prototype.createWorkerInterface = function (onReady) {
@@ -52,9 +57,9 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 					} else {
 						vrv.promises[vrv.resolvedIdx].deferred.reject();
 					};
-					if (vrv.promises[vrv.resolvedIdx].method === "displayNotation") {
-						vrv.displayNotationPending--;
-						if (vrv.displayNotationPending === 0) vrv.handleWaitingDisplayNotation();
+					if (vrv.promises[vrv.resolvedIdx].method === "renderData") {
+						vrv.renderDataPending--;
+						if (vrv.renderDataPending === 0) vrv.handleWaitingRenderData();
 					};
 					delete vrv.promises[vrv.resolvedIdx];
 					vrv.resolvedIdx++;
@@ -66,8 +71,8 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 	this.promises = {};
 	this.promiseIdx = 0;
 	this.resolvedIdx = 0;
-	this.displayNotationPending = 0;
-	this.displayNotationWaiting = null;
+	this.renderDataPending = 0;
+	this.renderDataWaiting = null;
 
 	this.worker = new Worker("scripts/verovio-worker.js");
 	this.worker.addEventListener("message", handleEvent);
@@ -77,7 +82,7 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 
 //////////////////////////////
 //
-// createDefaultInterface --
+// vrvInterface::createDefaultInterface --
 //
 
 vrvInterface.prototype.createDefaultInterface = function (onReady) {
@@ -133,7 +138,7 @@ vrvInterface.prototype.createDefaultInterface = function (onReady) {
 
 //////////////////////////////
 //
-// checkInitialized --
+// vrvInterface::checkInitialized --
 //
 
 vrvInterface.prototype.checkInitialized = function () {
@@ -144,7 +149,7 @@ vrvInterface.prototype.checkInitialized = function () {
 
 //////////////////////////////
 //
-// filterData --
+// vrvInterface::filterData --
 //
 
 vrvInterface.prototype.filterData = function (opts, data, type) {
@@ -156,20 +161,20 @@ vrvInterface.prototype.filterData = function (opts, data, type) {
 
 //////////////////////////////
 //
-// displayNotation --
+// vrvInterface::renderData --
 //
 
-vrvInterface.prototype.displayNotation = function (opts, data, page) {
-	// console.log("%cvrvInterface.displayNotation", "color: #aa8800; font-weight: bold");
+vrvInterface.prototype.renderData = function (opts, data, page) {
+	// console.log("%cvrvInterface.renderData", "color: #aa8800; font-weight: bold");
 	this.options = opts;
-	return this.execute("displayNotation", arguments);
+	return this.execute("renderData", arguments);
 };
 
 
 
 //////////////////////////////
 //
-// redoLayout --
+// vrvInterface::redoLayout --
 //
 
 vrvInterface.prototype.redoLayout = function (opts, redo, measure) {
@@ -182,7 +187,7 @@ vrvInterface.prototype.redoLayout = function (opts, redo, measure) {
 
 //////////////////////////////
 //
-// renderPage --
+// vrvInterface::renderPage --
 //
 
 vrvInterface.prototype.renderPage = function (page) {
@@ -193,7 +198,7 @@ vrvInterface.prototype.renderPage = function (page) {
 
 //////////////////////////////
 //
-// renderAllPages --
+// vrvInterface::renderAllPages --
 //
 
 vrvInterface.prototype.renderAllPages = function (data, opts) {
@@ -204,7 +209,7 @@ vrvInterface.prototype.renderAllPages = function (data, opts) {
 
 //////////////////////////////
 //
-// gotoPage --
+// vrvInterface::gotoPage --
 //
 
 vrvInterface.prototype.gotoPage = function (page) {
@@ -221,7 +226,7 @@ vrvInterface.prototype.gotoPage = function (page) {
 
 //////////////////////////////
 //
-// getMEI --
+// vrvInterface::getMEI --
 //
 
 vrvInterface.prototype.getMEI = function (page) {
@@ -232,7 +237,7 @@ vrvInterface.prototype.getMEI = function (page) {
 
 //////////////////////////////
 //
-// renderToMidi --
+// vrvInterface::renderToMidi --
 //
 
 vrvInterface.prototype.renderToMidi = function () {
@@ -244,7 +249,7 @@ vrvInterface.prototype.renderToMidi = function () {
 
 //////////////////////////////
 //
-// getElementsAtTime --
+// vrvInterface::getElementsAtTime --
 //
 
 vrvInterface.prototype.getElementsAtTime = function (vrvTime) {
@@ -255,7 +260,7 @@ vrvInterface.prototype.getElementsAtTime = function (vrvTime) {
 
 //////////////////////////////
 //
-// getTimeForElement --
+// vrvInterface::getTimeForElement --
 //
 
 vrvInterface.prototype.getTimeForElement = function (id) {
@@ -266,7 +271,7 @@ vrvInterface.prototype.getTimeForElement = function (id) {
 
 //////////////////////////////
 //
-// execute --
+// vrvInterface::execute --
 //
 
 vrvInterface.prototype.execute = function (method, args) {
@@ -274,10 +279,10 @@ vrvInterface.prototype.execute = function (method, args) {
 	if (this.usingWorker) {
 		var arr = Array.prototype.slice.call(args);
 		switch(method) {
-			case "displayNotation":
-				return vrv.postDisplayNotation(method, arr);
+			case "renderData":
+				return vrv.postRenderData(method, arr);
 			default:
-				vrv.handleWaitingDisplayNotation();
+				vrv.handleWaitingRenderData();
 				return vrv.post(method, arr);
 		};
 	} else {
@@ -296,16 +301,16 @@ vrvInterface.prototype.execute = function (method, args) {
 
 //////////////////////////////
 //
-// handleWaitingDisplayNotation --
+// vrvInterface::handleWaitingRenderData --
 //
 
-vrvInterface.prototype.handleWaitingDisplayNotation = function () {
-	if (this.displayNotationWaiting) {
-		this.postDeferredMessage("displayNotation",
-				this.displayNotationWaiting.args,
-				this.displayNotationWaiting.deferred);
-		this.displayNotationWaiting = null;
-		this.displayNotationPending++;
+vrvInterface.prototype.handleWaitingRenderData = function () {
+	if (this.renderDataWaiting) {
+		this.postDeferredMessage("renderData",
+				this.renderDataWaiting.args,
+				this.renderDataWaiting.deferred);
+		this.renderDataWaiting = null;
+		this.renderDataPending++;
 	};
 };
 
@@ -313,22 +318,22 @@ vrvInterface.prototype.handleWaitingDisplayNotation = function () {
 
 //////////////////////////////
 //
-// postDisplayNotation --
+// vrvInterface::postRenderData --
 //
 
-vrvInterface.prototype.postDisplayNotation = function (method, args) {
-	if (this.displayNotationPending > 0) {
+vrvInterface.prototype.postRenderData = function (method, args) {
+	if (this.renderDataPending > 0) {
 
-		if (!this.displayNotationWaiting) {
-			this.displayNotationWaiting = {
+		if (!this.renderDataWaiting) {
+			this.renderDataWaiting = {
 				deferred: new RSVP.defer(),
 			};
 		};
-		this.displayNotationWaiting.args = args;
-		return this.displayNotationWaiting.deferred.promise;
+		this.renderDataWaiting.args = args;
+		return this.renderDataWaiting.deferred.promise;
 	} else {
-		this.displayNotationPending++;
-		this.displayNotationWaiting = null;
+		this.renderDataPending++;
+		this.renderDataWaiting = null;
 		return this.post(method, args);
 	};
 };
@@ -337,7 +342,7 @@ vrvInterface.prototype.postDisplayNotation = function (method, args) {
 
 //////////////////////////////
 //
-// post --
+// vrvInterface::post --
 //
 
 vrvInterface.prototype.post = function (method, args) {
@@ -348,7 +353,7 @@ vrvInterface.prototype.post = function (method, args) {
 
 //////////////////////////////
 //
-// postDeferredMessage --
+// vrvInterface::postDeferredMessage --
 //
 
 vrvInterface.prototype.postDeferredMessage = function (method, args, deferred) {
@@ -364,5 +369,6 @@ vrvInterface.prototype.postDeferredMessage = function (method, args, deferred) {
 	this.promiseIdx++;
 	return deferred.promise;
 };
+
 
 
