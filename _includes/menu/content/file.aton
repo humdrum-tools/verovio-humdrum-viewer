@@ -87,7 +87,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Create PDF
+@DEFAULT:		Create PDF of entire work/movement
 @AR:
 @BE:
 @CA:
@@ -167,7 +167,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Create PDF of current view
+@DEFAULT:		Create PDF of visible music
 @AR:
 @BE:
 @CA:
