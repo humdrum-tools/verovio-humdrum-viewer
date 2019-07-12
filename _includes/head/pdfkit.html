@@ -193,7 +193,7 @@ function generatePdfSnapshot(format, orientation) {
 //
 
 function generatePdfFull(format, orientation) {
-	var oldOptions = vrv.options;
+	var oldOptions = vrvWorker.options;
 	// need to explicitly disable mmOutput = 1 set by the printing process.
 	oldOptions.mmOutput = 0;
 console.log("GOT HERE XXX");
@@ -270,7 +270,7 @@ console.log("GOT HERE XXX");
 
 	RSVP.hash({
 		fonts: loadPdfFonts(pdf),
-		svglist: vrv.renderAllPages(scoredata, vrvOptions)
+		svglist: vrvWorker.renderAllPages(scoredata, vrvOptions)
 	})
 	.then(function(data) {
 		for (var i=0; i < data.svglist.length; i++) {
@@ -285,10 +285,10 @@ console.log("GOT HERE XXX");
 	.finally(function() {
 		// restore the old layout for the VHV  webpage:
 		var force = false;
-		var page = vrv.page;
+		var page = vrvWorker.page;
 		var cleanoldoptions = cleanOptions2(scoredata, oldOptions);
-		vrv.redoLayout(oldOptions, true);
-		vrv.options = oldOptions;
+		vrvWorker.redoLayout(oldOptions, true);
+		vrvWorker.options = oldOptions;
 	});
 }
 
