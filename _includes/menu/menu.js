@@ -366,7 +366,7 @@ MenuInterface.prototype.applyFilter = function (text) {
 	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 	var options = humdrumToSvgOptions();
 	var data = contents + "\n!!!filter: " + text + "\n";
-	vrv.filterData(options, data, "humdrum")
+	vrvWorker.filterData(options, data, "humdrum")
 	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		var lines = newdata.match(/[^\r\n]+/g);

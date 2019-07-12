@@ -74,7 +74,7 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 	this.renderDataPending = 0;
 	this.renderDataWaiting = null;
 
-	this.worker = new Worker("scripts/verovio-worker.js");
+	this.worker = new Worker("/scripts/verovio-worker.js");
 	this.worker.addEventListener("message", handleEvent);
 };
 
