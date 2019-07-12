@@ -118,6 +118,10 @@ table.menu tr:hover {
 	background: #f3f3f3;
 }
 
+ul.dropdown-menu li {
+	background: #dbebf0;
+}
+
 table.menu td:first-child {
 	width: 100%;
 }

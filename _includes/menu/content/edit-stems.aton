@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Add note stems
+@DEFAULT:		Add note stem directions
 @AR:
 @BE:
 @CA:
@@ -54,7 +54,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Remove note stems
+@DEFAULT:		Remove note stem directions
 @AR:
 @BE:
 @CA:
@@ -92,7 +92,7 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		autoste -r
+@DEFAULT:		autostem -r
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
 @@END: LINK
