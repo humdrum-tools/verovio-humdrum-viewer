@@ -1594,5 +1594,41 @@ MenuInterface.prototype.clearLanguagePreference = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::increaseTextFontSize --
+//
+
+MenuInterface.prototype.increaseTextFontSize = function () {
+	INPUT_FONT_SIZE *= 1.05;
+	if (INPUT_FONT_SIZE > 3.0) {
+		INPUT_FONT_SIZE = 3.0;
+	}
+	var element = document.querySelector("#input");
+	if (!element) {
+		return;
+	}
+	element.style.fontSize = INPUT_FONT_SIZE + "rem";
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::decreaseTextFontSize --
+//
+
+MenuInterface.prototype.decreaseTextFontSize = function () {
+	INPUT_FONT_SIZE *= 0.95;
+	if (INPUT_FONT_SIZE < 0.25) {
+		INPUT_FONT_SIZE = 0.25;
+	}
+	var element = document.querySelector("#input");
+	if (!element) {
+		return;
+	}
+	element.style.fontSize = INPUT_FONT_SIZE + "rem";
+}
+
 
 
