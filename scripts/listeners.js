@@ -126,11 +126,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 //////////////////////////////
 //
 // keydown event listener -- Notation editor listener.
 //
-
 
 function processNotationKeyCommand(event) {
 	if (!event.preventDefault) {

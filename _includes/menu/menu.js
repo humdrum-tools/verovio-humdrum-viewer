@@ -359,6 +359,133 @@ MenuInterface.prototype.decreaseNotationSpacing = function () {
 
 //////////////////////////////
 //
+// MenuInterface::decreaseStaffSpacing --
+//
+
+MenuInterface.prototype.decreaseStaffSpacing = function () {
+	SPACING_STAFF -= 1;
+	if (SPACING_STAFF < 0) {
+		SPACING_STAFF = 0;
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::increaseStaffSpacing --
+//
+
+MenuInterface.prototype.increaseStaffSpacing = function () {
+	SPACING_STAFF += 1;
+	if (SPACING_STAFF > 24) {
+		SPACING_STAFF = 24;
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::decreaseSystemSpacing --
+//
+
+MenuInterface.prototype.decreaseSystemSpacing = function () {
+	SPACING_SYSTEM -= 1;
+	if (SPACING_SYSTEM < 0) {
+		SPACING_SYSTEM = 0;
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::increaseSystemSpacing --
+//
+
+MenuInterface.prototype.increaseSystemSpacing = function () {
+	SPACING_SYSTEM += 1;
+	if (SPACING_SYSTEM > 12) {
+		SPACING_SYSTEM = 12;
+	}
+	displayNotation();
+}
+
+
+
+
+//////////////////////////////
+//
+// MenuInterface::decreaseLyricSize --
+//
+
+MenuInterface.prototype.decreaseLyricSize = function () {
+	LYRIC_SIZE -= 0.25;
+	if (LYRIC_SIZE < 2.0) {
+		LYRIC_SIZE = 2.0;
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::increaseLyricSize --
+//
+
+MenuInterface.prototype.increaseLyricSize = function () {
+	LYRIC_SIZE += 0.25;
+	if (LYRIC_SIZE > 8.0) {
+		LYRIC_SIZE = 8.0;
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::useLeipzigFont --
+//
+
+MenuInterface.prototype.useLeipzigFont = function () {
+	FONT = "Leipzig";
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::useBravuraFont --
+//
+
+MenuInterface.prototype.useBravuraFont = function () {
+	FONT = "Bravura";
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::useGootvilleFont --
+//
+
+MenuInterface.prototype.useGootvilleFont = function () {
+	FONT = "Gootville";
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
 // MenuInterface::applyFilter --
 //
 

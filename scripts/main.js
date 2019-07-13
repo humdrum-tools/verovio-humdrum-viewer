@@ -18,7 +18,15 @@ var OPTIONS = {}; // used for debugging display options.
 
 // verovio variables for a movement:
 var vrvWorker;
+
+// verovio-related options:
+// Primarily set in menu system and used in humdrumToSvgOptions().
 var SCALE = 40;
+var SPACING_STAFF = 8;
+var SPACING_SYSTEM = 3;
+var LYRIC_SIZE = 4.5;
+var FONT = "Leipzig";
+
 var FILEINFO = {};
 var EDITOR;
 var dummyEDITOR;
@@ -379,11 +387,14 @@ function humdrumToSvgOptions() {
 		breaks            : "auto",
 		spacingNonLinear	: 0.6,
 		spacingLinear		: 0.25,
+		spacingStaff      : SPACING_STAFF,
+		spacingSystem     : SPACING_SYSTEM,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
 		leftMarginClef		: 1.50,
 		humType           : 1,
-		font              : "Leipzig"
+		lyricSize         : LYRIC_SIZE,
+		font              : FONT
 
 	}
 	if (OriginalClef) {
