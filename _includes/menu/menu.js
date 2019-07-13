@@ -122,7 +122,6 @@ MenuInterface.prototype.showContextualMenu = function (name) {
 
 
 MenuInterface.prototype.showCursorNoteMenu = function (element) {
-	console.log("OBJECT", element);
 	if (!element) {
 		this.hideContextualMenus();
 		return;
