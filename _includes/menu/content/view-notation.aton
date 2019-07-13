@@ -449,7 +449,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Increase lyric text size
+@DEFAULT:		Increase text size
 @AR:
 @BE:
 @CA:
@@ -496,7 +496,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Decrease lyric text size
+@DEFAULT:		Decrease text size
 @AR:
 @BE:
 @CA:
