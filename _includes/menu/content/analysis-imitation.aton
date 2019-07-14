@@ -1,0 +1,111 @@
+@@ This is the contents of the "Analysis->Dissonant" menu entry in the top menu.
+@@ This file is included into menu/content/menu.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@ NEED to force entries into list
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Identify diatonic imitation between monophonic parts
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('imitation')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		imitation
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/imitation
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Ignore duration when identifying imitation
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('imitation -D')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		imitation -D
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/imitation
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+
