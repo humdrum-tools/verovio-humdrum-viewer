@@ -1,4 +1,4 @@
-@@ This is the contents of the "Analysis" menu entry in the top menu.
+@@ This is the contents of the "Analysis->Dissonant" menu entry in the top menu.
 @@ This file is included into menu/content/menu.aton
 @@
 @@ vim: ts=8:nowrap
@@ -6,12 +6,12 @@
 
 
 @@BEGIN: ENTRY
-@@ Need to force list
+@@ NEED to force entries into list
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Rhythm analysis
+@DEFAULT:		Composite metric levels
 @AR:
 @BE:
 @CA:
@@ -45,22 +45,22 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
+@ACTION:		MENU.applyFilter('metlev -caxe cdata')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
+@TYPE:			filter
+@DEFAULT:		metlev -caxe cdata
 @@BEGIN: LINK
-@DEFAULT:		
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/metlev
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/analysis-rhythm.aton %}
-@@END: SUBMENU
 @@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Renaissance dissonance analysis
+@DEFAULT:		Metric levels for each part
 @AR:
 @BE:
 @CA:
@@ -84,7 +84,7 @@
 @LV:
 @NL:
 @NO:
-@PL:			Analiza dysonansów renesansowych
+@PL:
 @PT:
 @RU:
 @SK:
@@ -94,18 +94,17 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
+@ACTION:		MENU.applyFilter('metlev')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
+@TYPE:			filter
+@DEFAULT:		metlev
 @@BEGIN: LINK
-@DEFAULT:		
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/metlev
+@ZH-simplified:
+@ZH-traditional:
 @@END: LINK
 @@END: RIGHT_TEXT
-@@BEGIN: SUBMENU
-{% include menu/content/analysis-dissonant.aton %}
-@@END: SUBMENU
 @@END: ENTRY
-
 
 
