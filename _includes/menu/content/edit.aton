@@ -167,53 +167,6 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Remove non-kern spines
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			Wyświetl tylko spiny kern
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.applyFilter('extract -i kern')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			filter
-@DEFAULT:		extract -ikern
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
 @DEFAULT:		Beams
 @AR:
 @BE:
