@@ -31,7 +31,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Sortuj dźwięki od najwyższego
 @PT:
 @RU:
 @SK:
@@ -78,7 +78,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Sortuj dźwięki od najniższego
 @PT:
 @RU:
 @SK:
@@ -125,7 +125,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tylko pierwszy dźwięk akordu
 @PT:
 @RU:
 @SK:
@@ -172,7 +172,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Tylko ostatni dźwięk akordu
 @PT:
 @RU:
 @SK:
@@ -219,7 +219,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Najwyższy dźwięk akordu
 @PT:
 @RU:
 @SK:
@@ -266,7 +266,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Najniższy dźwięk akordu
 @PT:
 @RU:
 @SK:
@@ -313,7 +313,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Uprość akordy
 @PT:
 @RU:
 @SK:
@@ -360,7 +360,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Rozwiń akordy
 @PT:
 @RU:
 @SK:
@@ -407,7 +407,7 @@
 @LV:
 @NL:
 @NO:
-@PL:
+@PL: Bas/melodia (dla notacji fortepianowej)
 @PT:
 @RU:
 @SK:
