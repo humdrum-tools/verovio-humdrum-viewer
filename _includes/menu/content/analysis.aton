@@ -11,7 +11,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Imitation analysis
+@DEFAULT:		Imitation
 @AR:
 @BE:
 @CA:
@@ -60,7 +60,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Renaissance dissonance analysis
+@DEFAULT:		Renaissance dissonance labels
 @AR:
 @BE:
 @CA:
@@ -109,7 +109,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Rhythm analysis
+@DEFAULT:		Rhythm
 @AR:
 @BE:
 @CA:
