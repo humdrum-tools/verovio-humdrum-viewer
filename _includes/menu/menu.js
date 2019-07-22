@@ -1656,6 +1656,35 @@ MenuInterface.prototype.lineBreaksOn = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::singlePageView --
+//
+
+MenuInterface.prototype.singlePageView = function () {
+	PAGED = false;
+	var element = document.querySelector(".page-nav > table");
+	if (element) {
+		element.style.display = "none";
+	}
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::multiPageView --
+//
+
+MenuInterface.prototype.multiPageView = function () {
+	PAGED = true;
+	var element = document.querySelector(".page-nav > table");
+	if (element) {
+		element.style.display = "block";
+	}
+	displayNotation();
+}
 
 
 

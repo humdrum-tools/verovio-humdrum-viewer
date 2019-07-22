@@ -449,7 +449,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Ignore encoded line breaks.
+@DEFAULT:		Ignore encoded line breaks
 @AR:
 @BE:
 @CA:
@@ -496,7 +496,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Display with encoded line breaks.
+@DEFAULT:		Display with encoded line breaks
 @AR:
 @BE:
 @CA:

@@ -27,6 +27,7 @@ var SPACING_SYSTEM = 3;
 var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "encoded"
+var PAGED = true;
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -90,7 +91,6 @@ var BufferedHumdrumFile = "";
 var Range = function() { console.log("Range is undefined"); }
 
 var ids   = [];
-var PAGED = true;
 var ZOOM  = 0.4;
 var PLAY  = false;
 var PAUSE = false;
@@ -407,7 +407,7 @@ function humdrumToSvgOptions() {
 		// out of the persistent object:
 		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
-	if (PAGED) {
+	if (PAGED && !BREAKS) {
 		var tw = $("#input").outerWidth();
 		if ($("#input").css("display") == "none") {
 			tw = 0;
@@ -416,6 +416,12 @@ function humdrumToSvgOptions() {
 		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
 		// jQuery $window.innerHeight() not working properly (in Chrome).
 		output.pageHeight = (window.innerHeight - $("#topnav").outerHeight()) / (ZOOM * SCALE / 40) - 50;
+		output.pageWidth = (window.innerWidth - tw) / (ZOOM * SCALE / 40 ) - 100;
+	} else {
+		var tw = $("#input").outerWidth();
+		if ($("#input").css("display") == "none") {
+			tw = 0;
+		}
 		output.pageWidth = (window.innerWidth - tw) / (ZOOM * SCALE / 40 ) - 100;
 	}
 	if (CGI.tasso) {
