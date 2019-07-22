@@ -568,5 +568,8 @@ div#index {
 	overflow: scroll;
 }
 
+#output svg g.dir.problem tspan.rend tspan.text tspan.text.p {
+  font-family: "FontAwesome";
+}
 
 

@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	window.addEventListener("keydown", processNotationKeyCommand, true);
 	window.addEventListener("keydown", processInterfaceKeyCommand);
 
+	observeSvgContent();
 });
 
 
