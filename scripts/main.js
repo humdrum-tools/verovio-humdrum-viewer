@@ -26,6 +26,7 @@ var SPACING_STAFF = 8;
 var SPACING_SYSTEM = 3;
 var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
+var BREAKS = false;   // false = "auto", true = "encoded"
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -375,30 +376,29 @@ function processOptions() {
 
 function humdrumToSvgOptions() {
 	var output = {
-
-		format            : "auto",
-		adjustPageHeight  : 1,
-		pageHeight        : 60000,
-		pageMarginLeft    : 20,
-		pageMarginRight   : 20,
-		pageMarginTop     : 20,
-		pageMarginBottom  : 20,
-		pageWidth         : 2500,
-		scale             : SCALE,
-		noFooter          : 1,
-		noHeader          : 1,
-		breaks            : "auto",
-		spacingNonLinear	: 0.6,
-		spacingLinear		: 0.25,
-		spacingStaff      : SPACING_STAFF,
-		spacingSystem     : SPACING_SYSTEM,
-		barLineWidth		: 0.12,
-		staffLineWidth		: 0.12,
-		leftMarginClef		: 1.50,
-		humType           : 1,
-		lyricSize         : LYRIC_SIZE,
-		font              : FONT
-
+		adjustPageHeight     : 1,
+		barLineWidth         : 0.12,
+		breaks               : (BREAKS ? "encoded" : "auto"),
+		font                 : FONT,
+		format               : "auto",
+		humType              : 1,
+		leftMarginClef       : 1.50,
+		lyricSize            : LYRIC_SIZE,
+		minLastJustification : 0.5,
+		noFooter             : 1,
+		noHeader             : 1,
+		pageHeight           : 60000,
+		pageMarginBottom     : 20,
+		pageMarginLeft       : 20,
+		pageMarginRight      : 20,
+		pageMarginTop        : 20,
+		pageWidth            : 2500,
+		scale                : SCALE,
+		spacingLinear        : 0.25,
+		spacingNonLinear     : 0.6,
+		spacingStaff         : SPACING_STAFF,
+		spacingSystem        : SPACING_SYSTEM,
+		staffLineWidth       : 0.12
 	}
 	if (OriginalClef) {
 		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";

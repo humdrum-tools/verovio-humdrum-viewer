@@ -1632,3 +1632,30 @@ MenuInterface.prototype.decreaseTextFontSize = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::lineBreaksOff --
+//
+
+MenuInterface.prototype.lineBreaksOff = function () {
+	BREAKS = false;
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::lineBreaksOn --
+//
+
+MenuInterface.prototype.lineBreaksOn = function () {
+	BREAKS = true;
+	displayNotation();
+}
+
+
+
+
+
+
