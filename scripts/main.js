@@ -1519,6 +1519,7 @@ function loadPage(page) {
 
 function resizeImage(image) {
 return; /* not needed anymore */
+/*
 	var ww = window.innerWidth;
 	var tw = $("#input").outerWidth();
 
@@ -1542,6 +1543,7 @@ return;
 	$(image).height(newheight);
 	$(image.parentNode).height(newheight);
 	$(image.parentNode).width(newwidth);
+*/
 }
 
 

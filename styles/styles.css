@@ -299,6 +299,10 @@ div#index {
 	z-index: 2;
 }
 
+#output {
+	overflow-y: scroll !important;
+}
+
 #input {
 	font-size: 1rem;
 	width: 400px;
