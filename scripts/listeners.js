@@ -654,15 +654,19 @@ function processInterfaceKeyCommand(event) {
 
 		case SpaceKey:          // start/pause MIDI playback
 			if (!PLAY) {
-				playCurrentMidi();
-				PLAY = true;
-				PAUSE = false;
-			} else if (PAUSE) {
-				playCurrentMidi();
-				PAUSE = !PAUSE;
+				if (PAUSE) {
+					play();
+					PLAY = true;
+					PAUSE = false;
+				} else {
+					playCurrentMidi();
+					PLAY = true;
+					PAUSE = false;
+				}
 			} else {
+				PLAY = false;
+				PAUSE = true;
 				pause();
-				PAUSE = !PAUSE;
 			}
 			event.preventDefault();
 			break;
