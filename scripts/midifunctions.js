@@ -35,12 +35,15 @@ function play_midi(starttime) {
 
 
 
+
 //////////////////////////////
 //
 // midiUpdate --
 //
 
+var ids = [];
 var midiUpdate = function (time) {
+
 	var vrvTime = Math.max(0, time - DELAY);
 	vrvWorker.getElementsAtTime(vrvTime)
 	.then(function (elementsattime) {
@@ -59,7 +62,8 @@ var midiUpdate = function (time) {
 
 						var element = document.querySelector("#" + noteid);
 						if (element) {
-							var classes = element.getAttribute("class");
+							element.classList.remove("highlight");
+							/*var classes = element.getAttribute("class");
 							var classlist = classes.split(" ");
 							var outclass = "";
 							for (var i=0; i<classlist.length; i++) {
@@ -68,7 +72,7 @@ var midiUpdate = function (time) {
 								}
 								outclass += " " + classlist[i];
 							}
-							element.setAttribute("class", outclass);
+							element.setAttribute("class", outclass);*/
 						}
 
 					}
@@ -85,11 +89,14 @@ var midiUpdate = function (time) {
 					}
 				}
 	*/
+				var scrollParent = document.querySelector("#output"),
+						parentRect = scrollParent.getBoundingClientRect(),
+						scrolled = false,
+						margin = 1/3;
 				ids.forEach(function (noteid) {
-					if ($.inArray(noteid, elementsattime.notes) != -1) {
 						// console.log("NoteID", noteid);
 
-						if (matches = noteid.match(/-L(\d+)/)) {
+/*						if (matches = noteid.match(/-L(\d+)/)) {
 							var line = parseInt(matches[1]);
 	// console.log("LASTLINE = ", LASTLINE, "line =", line);
 							if ((line != LASTLINE) && (line > LASTLINE)) {
@@ -97,13 +104,15 @@ var midiUpdate = function (time) {
 								LASTLINE = line;
 							}
 						}
-
+*/
 						// $("#" + noteid ).attr("fill", "#c00");
 						// $("#" + noteid ).attr("stroke", "#c00");;
 						// $("#" + noteid ).addClassSVG("highlight");
 
 						var element = document.querySelector("#" + noteid);
 						if (element) {
+							element.classList.add("highlight");
+							/*
 							var classes = element.getAttribute("class");
 							var classlist = classes.split(" ");
 							var outclass = "";
@@ -114,15 +123,29 @@ var midiUpdate = function (time) {
 								outclass += " " + classlist[i];
 							}
 							outclass += " highlight";
-							element.setAttribute("class", outclass);
+							element.setAttribute("class", outclass);*/
+							if (!scrolled) {
+								var system = element.closest(".system"),
+										rect;
+								if (system) {
+										rect = system.getBoundingClientRect();
+										if (rect.top < parentRect.top) {
+											scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - rect.top) - rect.height * margin;
+											scrolled = true;
+										} else if (rect.bottom  > parentRect.bottom) {
+											scrollParent.scrollTop = scrollParent.scrollTop + (rect.bottom - parentRect.bottom) + rect.height * margin;
+											scrolled = true;
+										};
+								};
+							};
 						}
 
-					}
 				});
 			}
 		}
 	});
 }
+
 
 
 

@@ -301,6 +301,7 @@ div#index {
 
 #output {
 	overflow-y: scroll !important;
+	scroll-behavior: smooth;
 }
 
 #input {
