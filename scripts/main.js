@@ -27,7 +27,7 @@ var SPACING_SYSTEM = 3;
 var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "encoded"
-var PAGED = true;
+var PAGED = false;
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);

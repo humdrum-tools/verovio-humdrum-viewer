@@ -814,11 +814,17 @@ MenuInterface.prototype.goToLastPage = function () {
 // MenuInterface::goToFirstPage --
 //
 
-MenuInterface.prototype.goToFirstPage = function () {
-	var event = {};
-	event.keyCode = HomeKey;
-	event.altKey = true;
-	processInterfaceKeyCommand(event);
+MenuInterface.prototype.goToFirstPage = function (event) {
+	if (event && event.shiftKey) {
+		// if the shift key is pressed while clicking on
+		// first-page icon, then switch to single-page mode.
+		MenuInterface.prototype.singlePageView();
+		return;
+	}
+	var newevent = {};
+	newevent.keyCode = HomeKey;
+	newevent.altKey = true;
+	processInterfaceKeyCommand(newevent);
 }
 
 
@@ -1663,9 +1669,13 @@ MenuInterface.prototype.lineBreaksOn = function () {
 
 MenuInterface.prototype.singlePageView = function () {
 	PAGED = false;
-	var element = document.querySelector(".page-nav > table");
+	var element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "none";
+	}
+	var element2 = document.querySelector("#multi-page");
+	if (element2) {
+		element2.style.display = "block";
 	}
 	displayNotation();
 }
@@ -1679,9 +1689,13 @@ MenuInterface.prototype.singlePageView = function () {
 
 MenuInterface.prototype.multiPageView = function () {
 	PAGED = true;
-	var element = document.querySelector(".page-nav > table");
+	var element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "block";
+	}
+	var element2 = document.querySelector("#multi-page");
+	if (element2) {
+		element2.style.display = "none";
 	}
 	displayNotation();
 }

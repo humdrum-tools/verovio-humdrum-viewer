@@ -167,7 +167,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Create PDF of visible music
+@DEFAULT:		Create PDF of current page
 @AR:
 @BE:
 @CA:
