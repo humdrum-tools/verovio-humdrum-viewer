@@ -63,32 +63,20 @@ var midiUpdate = function (time) {
 						var element = document.querySelector("#" + noteid);
 						if (element) {
 							element.classList.remove("highlight");
-							/*var classes = element.getAttribute("class");
-							var classlist = classes.split(" ");
-							var outclass = "";
-							for (var i=0; i<classlist.length; i++) {
-								if (classlist[i] == "highlight") {
-									continue;
-								}
-								outclass += " " + classlist[i];
-							}
-							element.setAttribute("class", outclass);*/
 						}
 
 					}
 				});
 				ids = elementsattime.notes;
-	/*
-				for (var i=0; i<ids.length; i++) {
-					if (matches = ids[i].match(/-L(\d+)/)) {
-						var line = matches[1];
-						if (line != LASTLINE) {
-							showIdInEditor(ids[i]);
-							LASTLINE = line;
-						}
-					}
-				}
-	*/
+				// for (var i=0; i<ids.length; i++) {
+				// 	if (matches = ids[i].match(/-L(\d+)/)) {
+				// 		var line = matches[1];
+				// 		if (line != LASTLINE) {
+				// 			showIdInEditor(ids[i]);
+				// 			LASTLINE = line;
+				// 		}
+				// 	}
+				// }
 				var scrollParent = document.querySelector("#output"),
 						parentRect = scrollParent.getBoundingClientRect(),
 						scrolled = false,
@@ -96,15 +84,15 @@ var midiUpdate = function (time) {
 				ids.forEach(function (noteid) {
 						// console.log("NoteID", noteid);
 
-/*						if (matches = noteid.match(/-L(\d+)/)) {
+						if (matches = noteid.match(/-L(\d+)/)) {
 							var line = parseInt(matches[1]);
-	// console.log("LASTLINE = ", LASTLINE, "line =", line);
+							// console.log("LASTLINE = ", LASTLINE, "line =", line);
 							if ((line != LASTLINE) && (line > LASTLINE)) {
 								showIdInEditor(noteid);
 								LASTLINE = line;
 							}
 						}
-*/
+
 						// $("#" + noteid ).attr("fill", "#c00");
 						// $("#" + noteid ).attr("stroke", "#c00");;
 						// $("#" + noteid ).addClassSVG("highlight");
