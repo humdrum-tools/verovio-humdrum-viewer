@@ -181,13 +181,13 @@ div#dropArea {
 
 
 #topnav {
-	z-index: 200;
+	z-index: 20;
 	position: relative;
 }
 
 
 .topnav {
-	z-index: 200;
+	z-index: 20;
 	position: relative;
 	font-size: 17px;
 	background-color: #01313f;
