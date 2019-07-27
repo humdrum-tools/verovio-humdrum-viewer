@@ -541,7 +541,7 @@ function toggleFreeze() {
 	FreezeRendering = !FreezeRendering;
 	document.querySelector('body').classList.toggle("frozen");
 	if (!FreezeRendering) {
-		vrvWorker.renderData();
+		displayNotation();
 	}
 }
 
