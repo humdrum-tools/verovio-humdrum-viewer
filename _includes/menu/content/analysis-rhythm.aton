@@ -108,3 +108,150 @@
 @@END: ENTRY
 
 
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Composite rhythm
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('composite -b')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		composite -b
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Composite rhythm staff placed above system
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('composite -ab')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		composite -ab
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Composite rhythm staff placed below system
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('composite -pb')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		composite -pb
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
