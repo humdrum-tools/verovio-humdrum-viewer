@@ -1,5 +1,7 @@
 //
 // menu.js -- functions to interface with the top menu.
+// 
+// vim: ts=3
 //
 
 var MENU = { };
@@ -1698,6 +1700,218 @@ MenuInterface.prototype.multiPageView = function () {
 		element2.style.display = "none";
 	}
 	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::startSplit --
+//
+
+MenuInterface.prototype.startSplit = function (count) {
+	if (!count) {
+		count = 32;
+	}
+	MenuInterface.prototype.removeSplits();
+	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	var position = EDITOR.getCursorPosition();
+	var output;
+	var counter = 0;
+	var adjust = 0;
+	var change = 0;
+	var i;
+	for (i=0; i<lines.length; i++) {
+		if (lines[i].match(/^=/)) {
+			counter++;
+			if (counter == count) {
+				lines[i] = "!!ignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (!change) {
+		return;
+	}
+	var output = "";
+	for (i=0; i<lines.length; i++) {
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::nextSplit --
+//
+
+MenuInterface.prototype.nextSplit = function (count) {
+	if (!count) {
+		count = 32;
+	}
+	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	var position = EDITOR.getCursorPosition();
+	if (lines.length == 0) {
+		return;
+	}
+	var i;
+	var adjust = 0;
+	var changed = 0;
+	var startpos = -1;
+	var counter = 0;
+	for (i=1; i<lines.length; i++) {
+		if (lines[i] === "!!Xignore") {
+			lines[i] = "XXX DELETE XXX";
+			changed = 1;
+			continue;
+		} else if (lines[i] === "!!ignore") {
+			lines[i] = "!!Xignore";
+			changed = 1;
+			startpos = i;
+			break;
+		}
+	}
+	if (!changed) {
+		return;
+	}
+	// mark count measures later with !!ignore
+	for (i=startpos + 1; i<lines.length; i++) {
+		if (lines[i].match(/^=/)) {
+			counter++;
+			if (counter == count) {
+				lines[i] = "!!ignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (lines[0] !== "!!ignore") {
+		lines[0] = "!!ignore\n" + lines[0];
+		adjust++;
+	}
+	var output = "";
+	for (i=0; i<lines.length; i++) {
+		if (lines[i] === "XXX DELETE XXX") {
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::previousSplit --
+//
+
+MenuInterface.prototype.previousSplit = function (count) {
+	if (!count) {
+		count = 32;
+	}
+	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	var position = EDITOR.getCursorPosition();
+	if (lines.length == 0) {
+		return;
+	}
+	var i;
+	var adjust = 0;
+	var changed = 0;
+	var startpos = -1;
+	var counter = 0;
+	for (i=1; i<lines.length; i++) {
+		if (lines[i] === "!!Xignore") {
+			lines[i] = "!!ignore";
+			changed = 1;
+			startpos = i;
+		} else if (lines[i] === "!!ignore") {
+			lines[i] = "XXX DELETE XXX";
+		}
+	}
+	if (!changed) {
+		return;
+	}
+
+	// mark count measures later with !!ignore
+	for (i=startpos - 2; i>0; i--) {
+		if (lines[i].match(/^=/)) {
+			counter++;
+			if (counter == count - 1) {
+				lines[i] = "!!Xignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (lines[0] !== "!!ignore") {
+		lines[0] = "!!ignore\n" + lines[0];
+		adjust++;
+	}
+	var output = "";
+	for (i=0; i<lines.length; i++) {
+		if (lines[i] === "XXX DELETE XXX") {
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::removeSplits --
+//
+
+MenuInterface.prototype.removeSplits = function () {
+	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	var output = "";
+	var position = EDITOR.getCursorPosition();
+	var row = position.row;
+	var col = position.column;
+	var change = 0;
+	for (var i=0; i<lines.length; i++) {
+		if (lines[i] === "!!ignore") {
+			if (i < row) {
+				row--;
+			}
+			change++;
+			continue;
+		}
+		if (lines[i] === "!!Xignore") {
+			if (i < row) {
+				row--;
+			}
+			change++;
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	if (change) {
+		EDITOR.setValue(output, -1);
+		position.row = row;
+		EDITOR.moveCursorToPosition(position);
+	}
 }
 
 
