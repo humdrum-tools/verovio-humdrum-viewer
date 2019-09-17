@@ -166,7 +166,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/dissonant
 @AR:
 @BE:
 @CA:
@@ -428,7 +428,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autobeam
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
 @AR:
 @BE:
 @CA:
@@ -576,7 +576,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autostem
 @AR:
 @BE:
 @CA:
@@ -613,7 +613,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/extract
 @AR:
 @BE:
 @CA:
@@ -1205,7 +1205,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:	https://doc.verovio.humdrum.org/filters
+@DEFAULT:	https://doc.verovio.humdrum.org/filter
 @AR:
 @BE:
 @CA:
@@ -1613,7 +1613,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/tabber
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/tabber
 @AR:
 @BE:
 @CA:
@@ -1909,7 +1909,7 @@
 @@END: ENTRY
 
 @@BEGIN: ENTRY
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @AR:
 @BE:
 @CA:

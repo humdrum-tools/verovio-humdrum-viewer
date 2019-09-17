@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		autostem
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autostem
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -94,7 +94,7 @@
 @TYPE:			filter
 @DEFAULT:		autostem -r
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autostem
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autostem
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

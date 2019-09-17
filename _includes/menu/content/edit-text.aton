@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		extract -s 1-$,0 -n text
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/extract
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -94,7 +94,7 @@
 @TYPE:			filter
 @DEFAULT:		extract -Itext
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/extract
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/extract
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

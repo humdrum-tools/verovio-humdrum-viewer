@@ -254,7 +254,7 @@
 @TYPE:			filter
 @DEFAULT:		tabber
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/tabber
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/tabber
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -301,7 +301,7 @@
 @TYPE:			filter
 @DEFAULT:		tabber -r
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/tabber
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/tabber
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

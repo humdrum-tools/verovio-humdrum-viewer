@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t m2
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -94,7 +94,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t M2
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -141,7 +141,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t m3
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -188,7 +188,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t M3
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -235,7 +235,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t P4
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -282,7 +282,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t A4
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -329,7 +329,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t d5
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -376,7 +376,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t P5
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -423,7 +423,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t m6
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -470,7 +470,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t M6
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -517,7 +517,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t m7
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -564,7 +564,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t M7
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -611,7 +611,7 @@
 @TYPE:			filter
 @DEFAULT:		transpose -t P8
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/transpose
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/transpose
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

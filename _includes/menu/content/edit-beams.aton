@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		autobeam
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autobeam
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -94,7 +94,7 @@
 @TYPE:			filter
 @DEFAULT:		autobeam -r
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/autobeam
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

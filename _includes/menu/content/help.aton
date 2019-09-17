@@ -210,7 +210,7 @@
 @ZH-simplified:
 @ZH-traditional:
 @@BEGIN: LINK
-@DEFAULT:	https://doc.verovio.humdrum.org/filters
+@DEFAULT:	https://doc.verovio.humdrum.org/filter
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY

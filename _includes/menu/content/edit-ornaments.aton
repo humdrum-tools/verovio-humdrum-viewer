@@ -51,7 +51,7 @@
 @TYPE:			filter
 @DEFAULT:		trillspell
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/trillspell
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/trillspell
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

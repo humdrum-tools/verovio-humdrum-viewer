@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -d
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -94,7 +94,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -u
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -141,7 +141,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -f
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -188,7 +188,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -l
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -235,7 +235,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -d | chord -f
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -282,7 +282,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -u | chord -f
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -329,7 +329,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -m
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -376,7 +376,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -M
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -423,7 +423,7 @@
 @TYPE:			filter
 @DEFAULT:		chord -u | chord -fs1 | chord -ls2
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/chord
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/chord
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

@@ -51,7 +51,7 @@
 @TYPE:			filter
 @DEFAULT:		dissonant
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/dissonant
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -100,7 +100,7 @@
 @TYPE:			filter
 @DEFAULT:		dissonant --color
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/dissonant
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/dissonant
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

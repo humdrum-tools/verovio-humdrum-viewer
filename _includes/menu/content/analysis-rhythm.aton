@@ -51,7 +51,7 @@
 @TYPE:			filter
 @DEFAULT:		metlev -caxe cdata
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/metlev
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/metlev
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -100,7 +100,7 @@
 @TYPE:			filter
 @DEFAULT:		metlev
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/metlev
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/metlev
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -150,7 +150,7 @@
 @TYPE:			filter
 @DEFAULT:		composite -b
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -199,7 +199,7 @@
 @TYPE:			filter
 @DEFAULT:		composite -ab
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -248,7 +248,7 @@
 @TYPE:			filter
 @DEFAULT:		composite -pb
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/composite
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK

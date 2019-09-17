@@ -47,7 +47,7 @@
 @TYPE:			filter
 @DEFAULT:		melisma
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/melisma
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -96,7 +96,7 @@
 @TYPE:			filter
 @DEFAULT:		melisma -m 3
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/melisma
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -145,7 +145,7 @@
 @TYPE:			filter
 @DEFAULT:		melisma -m 4
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/melisma
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -194,7 +194,57 @@
 @TYPE:			filter
 @DEFAULT:		melisma -m 5
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filters/melisma
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Display note counts for each syllable
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('melisma -r')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		melisma -r
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
