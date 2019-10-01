@@ -3,7 +3,7 @@
 // Creation Date:  Mon Jun 27 04:31:26 PDT 2016
 // Last Modified:  Mon Jun 27 04:31:29 PDT 2016
 // Filename:       drop.js
-// Web Address:    http://verovio.humdrum.org/scripts/drop.js
+// Web Address:    https://verovio.humdrum.org/scripts/drop.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //

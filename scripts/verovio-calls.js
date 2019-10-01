@@ -12,6 +12,11 @@ function verovioCalls() {
 
 	this.validate = function (data) {
 		if (data.charAt(0) == "<") {
+			// Some sort of XML data, so do not validate
+			return true;
+		}
+		if (data.substring(0, 2000).match("Group memberships:")) {
+			//  MuseData, so do not validate
 			return true;
 		}
 		var error = false,
@@ -42,6 +47,12 @@ function verovioCalls() {
 		var newdata;
 		var checkdata = true;
 		if (type !== "humdrum") {
+			checkdata = false;
+		}
+		if (opts.format === "musedata") {
+			checkdata = false;
+		}
+		if (opts.format === "musedata-hum") {
 			checkdata = false;
 		}
 		if (opts.format === "musicxml") {

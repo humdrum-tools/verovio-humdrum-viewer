@@ -3,7 +3,7 @@
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
 // Last Modified:  Thu Aug 25 13:16:42 CEST 2016
 // Filename:       main.js
-// Web Address:    http://verovio.humdrum.org/scripts/main.js
+// Web Address:    https://verovio.humdrum.org/scripts/main.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3
 //
@@ -46,6 +46,14 @@ var EditorModes = {
 		}
 	},
 	xml: {
+		vim: {
+			theme: "ace/theme/solarized_dark"
+		},
+		ace: {
+			theme: "ace/theme/solarized_light"
+		}
+	},
+	musedata: {
 		vim: {
 			theme: "ace/theme/solarized_dark"
 		},
@@ -249,14 +257,21 @@ function displayNotation(page, force, restoreid) {
 	if (data.match(/CUT[[]/)) {
 		options.format = "esac";
 	};
-
+	if (data.match(/Group memberships:/)) {
+		options.format = "musedata";
+	};
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
 		if (data.charAt(0) == "<") {
 			ishumdrum = false;
+		} else if (data.match(/CUT[[]/)) {
+			ishumdrum = false;
+		} else if (data.match(/Group memberships:/)) {
+			ishumdrum = false;
 		}
+		
 		var output = document.querySelector("#output");
 		output.innerHTML = svg;
 		if (ishumdrum) {
@@ -470,6 +485,12 @@ function humdrumToHumdrumOptions() {
 function musicxmlToHumdrumOptions() {
 	return {
 		format            : "musicxml-hum"
+	}
+}
+
+function musedataToHumdrumOptions() {
+	return {
+		format            : "musedata-hum"
 	}
 }
 
@@ -944,7 +965,7 @@ function GetCgiParameters() {
 //
 
 function loadIndexFile(location) {
-	var url = "http://kern.humdrum.org/data?l=" + location;
+	var url = "https://kern.humdrum.org/data?l=" + location;
 	url += "&format=index";
 
 	console.log("Loading index", url);
@@ -1189,7 +1210,7 @@ function loadKernScoresFile(obj, force) {
 function getTassoUrl(file, measures) {
 	var filename = file.replace(/\.krn$/, "");;
 
-	var url = "http://josquin.stanford.edu/cgi-bin/tasso?&file=" + filename;
+	var url = "https://josquin.stanford.edu/cgi-bin/tasso?&file=" + filename;
 	url += "&a=humdrum";
 
 	var key = filename;
@@ -1255,12 +1276,12 @@ function kernScoresUrl(file, measures) {
 
 	var url;
 	if (jrp) {
-		url = "http://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
+		url = "https://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
 		url += "&a=humdrum";
 	} else if (github) {
 		url = "https://raw.githubusercontent.com/" + user + "/" + repository + "/master/" + filename;
 	} else {
-		url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+		url = "https://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 		url += "&format=info-json";
 	}
 
@@ -1346,10 +1367,10 @@ function downloadKernScoresFile(file, measures, page) {
 	}
 	var url;
 	if (jrp) {
-		url = "http://josquin.stanford.edu/data?id=" + location;
+		url = "https://josquin.stanford.edu/data?id=" + location;
 		url += "&a=humdrum";
 	} else {
-		url = "http://kern.humdrum.org/data?l=" + location + "&file=" + filename;
+		url = "https://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 		if (measures) {
 			url += "&mm=" + measures;
 		}
@@ -1394,6 +1415,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	var options;
 	var humdrumQ = false;
 
+
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
@@ -1404,6 +1426,14 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			// options = musicxmlToMeiOptions();
 		} else {
 			options = musicxmlToHumdrumOptions();
+		}
+	} else if (text.slice(0, 2000).match(/Group memberships:/)) {
+		// this is MuseData data, so first convert into Humdrum
+		// before displaying in the editor.
+		if (EditorMode == "xml") {
+			options = musedataToHumdrumOptions();
+		} else {
+			options = musedataToHumdrumOptions();
 		}
 	} else if (text.slice(0, 1000).match(/<mei/)) {
 		// this is MEI data, so first convert into Humdrum
@@ -1422,7 +1452,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	}
 
 	if (options && !humdrumQ) {
-		if ((options.format == "musicxml") || (options.format == "musicxml-hum")) {
+		if ((options.format == "musedata") || (options.format == "musedata-hum")) {
+			vrvWorker.filterData(options, text, "humdrum")
+			.then(showMei);
+		} else if ((options.format == "musicxml") || (options.format == "musicxml-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {
@@ -1616,11 +1649,48 @@ function gotoFirstPage() {
 //
 
 function showBufferedHumdrumData() {
-	if (!BufferedHumdrumFile.match(/^\s*$/)) {
-		var page = vrvWorker.page;
-		displayScoreTextInEditor(BufferedHumdrumFile, vrvWorker.page);
-		BufferedHumdrumFile = "";
+	var oldmode = EditorMode;
+	if (oldmode == "musedata") {
+		EditorMode = "humdrum";
+		displayHumdrum();
+	} else {
+		EditorMode = "humdrum";
+		if (!BufferedHumdrumFile.match(/^\s*$/)) {
+			var page = vrvWorker.page;
+			displayScoreTextInEditor(BufferedHumdrumFile, vrvWorker.page);
+			BufferedHumdrumFile = "";
+		}
 	}
+}
+
+
+
+//////////////////////////////
+//
+// displayHumdrum --
+//
+
+function displayHumdrum() {
+	var options = humdrumToSvgOptions();
+	var data = EDITOR.getValue().replace(/^\s+/, "");
+	vrvWorker.filterData(options, data, "humdrum")
+	.then(showHumdrum);
+}
+
+
+
+//////////////////////////////
+//
+// showHumdrum --
+//
+
+var MuseDataBuffer = "";
+function showHumdrum(humdrumdata) {
+	if (EditorMode == "musedata") {
+		// could implement a key to return to MuseData contents
+		MuseDataBuffer = EDITOR.getValue();
+	}
+	EDITOR.setValue(humdrumdata, -1);
 }
 
 
@@ -1654,20 +1724,6 @@ function showMei(meidata) {
 		BufferedHumdrumFile = EDITOR.getValue();
 	}
 	displayScoreTextInEditor(meidata, vrvWorker.page);
-
-	// var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
-	// var postfix = "</textarea>";
-	// var w = window.open("about:blank", "MEI transcoding", 'width=600,height=800,resizeable,scrollabars,location=false');
-	// w.document.write(prefix + data + postfix);
-	// w.document.close();
-	// function checkTitle() {
-	// 	if (w.document) {
-	// 		w.document.title = "MEI transcoding";
-	// 	} else {
-	// 		setTimeout(checkTitle, 40);
-	// 	}
-	// }
-	// checkTitle();
 }
 
 
@@ -1730,7 +1786,7 @@ function displayPdf() {
 		return;
 	}
 
-	var url = "http://kern.humdrum.org/data?l=" + FILEINFO["location"];
+	var url = "https://kern.humdrum.org/data?l=" + FILEINFO["location"];
 	url += "&file=" + FILEINFO["file"];
 	url += "&format=pdf";
 
@@ -1826,6 +1882,7 @@ function initializeVerovioToolkit() {
 //
 
 function	monitorNotationUpdating() {
+	updateEditorMode();
 	displayNotation();
 }
 
@@ -1970,7 +2027,6 @@ function humdrumDataIntoView(event) {
 //
 
 function highlightIdInEditor(id, source) {
-console.log("HIGHLIGHTING ID IN EDITOR", id , source);
 	if (!id) {
 		// no element (off of page or outside of musical range
 		console.log("NO ID so not changing to another element");
@@ -2033,7 +2089,6 @@ console.log("HIGHLIGHTING ID IN EDITOR", id , source);
 			searchstring += linecontent[col2];
 		}
 	}
-console.log("ROW", row, "COL", col);
 
 	CursorNote = document.querySelector("#" + id);
 	MENU.showCursorNoteMenu(CursorNote);
@@ -2056,7 +2111,7 @@ console.log("ROW", row, "COL", col);
 //   https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
 //
 // ACE Grammar editor:
-// http://foo123.github.io/examples/ace-grammar
+// https://foo123.github.io/examples/ace-grammar
 //
 
 function setupAceEditor(idtag) {
@@ -2446,7 +2501,7 @@ function setupSplitter() {
 //
 //  Base64 encode/decode: Fixs problems with atob and btoa with UTF-8 encoded text.
 //
-//  http://www.webtoolkit.info
+//  https://www.webtoolkit.info
 //
 
 var Base64 = {
@@ -2611,8 +2666,13 @@ function displayScoreTextInEditor(text, page) {
 //
 
 function getMode(text) {
+	if (!text) {
+		return "humdrum";
+	}
 	if (text.match(/^\s*</)) {
 		return "xml";
+	} else if (text.substring(0, 2000).match(/Group memberships:/)) {
+		return "musedata";
 	} else {
 		return "humdrum";
 	}
@@ -3951,3 +4011,18 @@ function observeSvgContent() {
 	observer.observe(content, { childList: true, subtree: true });
 }
 
+
+
+//////////////////////////////
+//
+// updateEditorMode -- Automatically detect the type of data and change edit mode:
+//
+
+function updateEditorMode() {
+	var xmod = getMode(EDITOR.getValue().substring(0, 2000));
+	if (xmod !== EditorMode) {
+		EditorMode = xmod;
+		setEditorModeAndKeyboard();
+		console.log("Changing to", xmod, "mode.");
+	}
+}

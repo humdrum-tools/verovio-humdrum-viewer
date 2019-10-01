@@ -6,7 +6,7 @@ permalink: /scripts/listeners.js
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
 // Last Modified:  Thu Aug 18 21:03:35 CEST 2016
 // Filename:       listeners.js
-// Web Address:    http://flashcards.sapp.org/listeners.js
+// Web Address:    https://verovio.humdrum.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //
@@ -19,6 +19,7 @@ permalink: /scripts/listeners.js
 //
 
 document.addEventListener("DOMContentLoaded", function() {
+	// EditorMode = "humdrum";
 	EditorMode = "humdrum";
 	setEditorModeAndKeyboard();
 
@@ -768,6 +769,9 @@ window.addEventListener("beforeunload", function (event) {
 
 setInterval(function() { localStorage.setItem("SAVE0", EDITOR.getValue()); }, 60000);
 
+
+// needed for startup, but not afterwards, so adjust later:
+setInterval(function() { updateEditorMode(); }, 1000);
 
 
 

@@ -17,10 +17,10 @@
   * FileSaver.js
   * A saveAs() FileSaver implementation.
   *
-  * By Eli Grey, http://eligrey.com
+  * By Eli Grey, https://eligrey.com
   *
   * License : https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md (MIT)
-  * source  : http://purl.eligrey.com/github/FileSaver.js
+  * source  : https://purl.eligrey.com/github/FileSaver.js
   */
   // The one and only way of getting global scope in all environments
   // https://stackoverflow.com/q/3277182/1008999

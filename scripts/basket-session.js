@@ -1,7 +1,7 @@
 /*!
 * basket-session.js
 * v0.5.2 - 2015-02-07
-* http://addyosmani.github.com/basket.js
+* https://addyosmani.github.com/basket.js
 * (c) Addy Osmani;  License
 * Created by: Addy Osmani, Sindre Sorhus, Andrée Hansson, Mat Scales
 * Contributors: Ironsjp, Mathias Bynens, Rick Waldron, Felipe Morais

@@ -3,7 +3,7 @@
 // Creation Date:  Thu Jun 21 16:07:56 PDT 2018
 // Last Modified:  Thu Jun 21 16:08:01 PDT 2018
 // Filename:       hmdindex.js
-// Web Address:    http://verovio.humdrum.org/scripts/hmdindex.js
+// Web Address:    https://verovio.humdrum.org/scripts/hmdindex.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //
