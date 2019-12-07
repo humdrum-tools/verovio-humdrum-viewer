@@ -439,30 +439,42 @@ span.helpentry {
 /* Analytic phrase markers */
 
 .phraseStart {
+/*
 	color: green;
 	fill: green;
 	stroke: green;
+*/
 }
 .phraseStart [stroke] {
+/*
 	stroke: green;
+*/
 }
 
 .phraseStop {
+/*
 	color: blue;
 	fill: blue;
 	stroke: blue;
+*/
 }
 .phraseStop [stroke] {
+/*
 	stroke: blue;
+*/
 }
 
 .phraseStart.phraseStop {
+/*
 	color: orange;
 	fill: orange;
 	stroke: orange;
+*/
 }
 .phraseStart.phraseStop [stroke] {
+/*
 	stroke: orange;
+*/
 }
 
 .ace_gutter, .ace-scroller {
