@@ -1,0 +1,54 @@
+@@ This is the contents of the "Edit->Input formatting" menu entry in the top menu.
+@@ This file is included into menu/content/edit.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Tassoize
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('tassoize')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		tassoize
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/tassoize
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
