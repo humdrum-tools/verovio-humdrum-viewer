@@ -1202,7 +1202,6 @@ function loadKernScoresFile(obj, force) {
 					console.log("Error retrieving", key);
 				}
 				redrawInputArea();
-// ggg
 			}, function() {
 				console.log("Error retrieving", key);
 			});
@@ -1214,7 +1213,7 @@ function loadKernScoresFile(obj, force) {
 			}
 		} catch(err) {
 			displayScoreTextInEditor(info.data, vrvWorker.page);
-			if (CGI.k.match(/c/)) {
+			if (CGI.k && CGI.k.match(/c/)) {
 				CGI.k = CGI.k.replace(/c/, "");
 				showCompiledFilterData();
 			}
@@ -1276,7 +1275,6 @@ function getBitbucketUrl(file, measures) {
 	url += repository;
 	url += "/raw/master/";
 	url += pathandfile;
-console.log("BITBUCKET URL IS", url);
 
 	var key = pathandfile;
 

@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	}
 
-	if (CGI.file || CGI.tasso || CGI.jrp) {
+	if (CGI.file || CGI.tasso || CGI.jrp || CGI.bb || CGI.bitbucket || CGI.gh || CGI.github) {
 		loadKernScoresFile(
 			{
 				file: CGI.file,
