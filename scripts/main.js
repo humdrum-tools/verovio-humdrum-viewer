@@ -1257,7 +1257,6 @@ function getTassoUrl(file, measures) {
 //
 
 function getBitbucketUrl(file, measures) {
-console.log("LOADING BITBUCKET DATA", file);
 	file = file.replace(/^(bb|bitbucket):/, "");
 
 	var username = "";
