@@ -1088,7 +1088,6 @@ var COUNTER = 0;
 //
 
 function loadKernScoresFile(obj, force) {
-
 	var file        = obj.file;
 	var measures    = obj.measures;
 	var page        = obj.page;
@@ -1114,6 +1113,18 @@ function loadKernScoresFile(obj, force) {
 		if (file.match(/^https?:/)) {
 			url = file;
 			key = file;
+		} else if (file.match(/^bb:/)) {
+			ret = getBitbucketUrl(file, measures);
+			if (ret) {
+				url = ret.url;
+				key = ret.key;
+			}
+		} else if (file.match(/^bitbucket:/)) {
+			ret = getBitbucketUrl(file, measures);
+			if (ret) {
+				url = ret.url;
+				key = ret.key;
+			}
 		} else {
 			ret = kernScoresUrl(file, measures);
 			if (ret) {
@@ -1127,10 +1138,23 @@ function loadKernScoresFile(obj, force) {
 			url = ret.url;
 			key = ret.key;
 		}
+	} else if (obj.bb) {
+		ret = getBitbucketUrl(obj.bb, measures);
+		if (ret) {
+			url = ret.url;
+			key = ret.key;
+		}
+	} else if (obj.bitbucket) {
+		ret = getBitbucketUrl(obj.bitbucket, measures);
+		if (ret) {
+			url = ret.url;
+			key = ret.key;
+		}
 	}
 
 	if (!key) {
-		return;
+		key = "DATA";
+		// return;
 	}
 
 	if (force) {
@@ -1218,6 +1242,44 @@ function getTassoUrl(file, measures) {
 		url += "&mm=" + measures;
 		key += "&mm=" + measures;
 	}
+
+	return {url: url, key: key};
+}
+
+
+
+//////////////////////////////
+//
+// getBitbucketUrl --
+// 
+// http://verovio.humdrum.org/?file=bitbucket:musedata/beethoven/bhl/qrtet/op18no5/stage2/01/03
+// https://bitbucket.org/musedata/beethoven/raw/master/bhl/qrtet/op18no5/stage2/01/03
+//
+
+function getBitbucketUrl(file, measures) {
+console.log("LOADING BITBUCKET DATA", file);
+	file = file.replace(/^(bb|bitbucket):/, "");
+
+	var username = "";
+	var repository = "";
+	var pathandfile = "";
+	var url = "";
+
+	url = "https://bitbucket.org/";
+	matches = file.match("^\/?([^\/]+)\/([^\/]+)\/(.*)");
+	if (matches) {
+		username    = matches[1];
+		repository  = matches[2];
+		pathandfile = matches[3];
+	}
+	url += username;
+	url += "/";
+	url += repository;
+	url += "/raw/master/";
+	url += pathandfile;
+console.log("BITBUCKET URL IS", url);
+
+	var key = pathandfile;
 
 	return {url: url, key: key};
 }
@@ -1354,22 +1416,41 @@ function downloadKernScoresFile(file, measures, page) {
 	var filename;
 	var matches;
 	var jrp = false;
+	var bitbucket = false;
+	var github = false;
 
 	matches = file.match(/^jrp:(.*)/);
 	if (matches) {
 		jrp = true;
 		file = matches[1];
 	}
-
-	if (matches = file.match(/(.*)\/([^\/]+)/)) {
-		location = matches[1];
-		filename = matches[2];
+	else { 
+		matches = file.match(/^(bitbucket|bb):(.*)/);
+		if (matches) {
+			bitbucket = true;
+			file = matches[1];
+		} else {
+			matches = file.match(/^(github|gh):(.*)/);
+			if (matches) {
+				bitbucket = true;
+				file = matches[1];
+			}
+		}
 	}
+
 	var url;
 	if (jrp) {
+		if (matches = file.match(/(.*)\/([^\/]+)/)) {
+			location = matches[1];
+			filename = matches[2];
+		}
 		url = "https://josquin.stanford.edu/data?id=" + location;
 		url += "&a=humdrum";
 	} else {
+		if (matches = file.match(/(.*)\/([^\/]+)/)) {
+			location = matches[1];
+			filename = matches[2];
+		}
 		url = "https://kern.humdrum.org/data?l=" + location + "&file=" + filename;
 		if (measures) {
 			url += "&mm=" + measures;
@@ -1798,7 +1879,7 @@ function displayPdf() {
 
 //////////////////////////////
 //
-// reloadData --
+// reloadData -- Expand later to work with other input URIs.
 //
 
 function reloadData() {

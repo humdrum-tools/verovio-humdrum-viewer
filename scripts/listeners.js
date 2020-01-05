@@ -88,6 +88,10 @@ document.addEventListener("DOMContentLoaded", function() {
 				file: CGI.file,
 				tasso: CGI.tasso,
 				jrp: CGI.jrp,
+				bitbucket: CGI.bitbucket,
+				bb: CGI.bb,
+				github: CGI.github,
+				gh: CGI.gh,
 				measures: CGI.mm,
 				next: true,
 				previous: true
