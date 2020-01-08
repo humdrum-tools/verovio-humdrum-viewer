@@ -1651,11 +1651,12 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	var options;
 	var humdrumQ = false;
 
+	var mode = getMode(text);
 
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// this is MusicXML data, so first convert into Humdrum
 		// before displaying in the editor.
-		if (EditorMode == "xml") {
+		if (mode == "xml") {
 			options = musicxmlToHumdrumOptions();
 			// Incorrect identification of xml editor mode when loading a
 			// large Sibelius MusicXML file for some reason.
@@ -1666,7 +1667,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	} else if (text.slice(0, 2000).match(/Group memberships:/)) {
 		// this is MuseData data, so first convert into Humdrum
 		// before displaying in the editor.
-		if (EditorMode == "xml") {
+		if (mode == "xml") {
 			options = musedataToHumdrumOptions();
 		} else {
 			options = musedataToHumdrumOptions();
@@ -1674,7 +1675,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	} else if (text.slice(0, 1000).match(/<mei/)) {
 		// this is MEI data, so first convert into Humdrum
 		// before displaying in the editor.
-		if (EditorMode == "xml") {
+		if (mode == "xml") {
 			options = meiToMeiOptions();
 		} else {
 			options = meiToHumdrumOptions();
@@ -1702,7 +1703,12 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 					FreezeRendering = true;
 				}
 				if (CGI.filter) {
-					EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+					if (mode == "musedata") {
+						EDITOR.setValue("@@@filter: " + CGI.filter + "\n" + newtext, -1);
+					} else {
+						// fix following for XML formats (maybe embed filter in comment for MusicXML).
+						EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+					}
 				} else {
 					EDITOR.setValue(newtext, -1);
 				}
@@ -1719,7 +1725,12 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			FreezeRendering = true;
 		}
 		if (CGI.filter) {
-			EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + text, -1);
+			if (mode == "musedata") {
+				EDITOR.setValue("@@@filter: " + CGI.filter + "\n" + text, -1);
+			} else {
+				// fix following for XML formats (maybe embed filter in comment for MusicXML).
+				EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+			}
 		} else {
 			EDITOR.setValue(text, -1);
 		}
@@ -2875,11 +2886,15 @@ var Base64 = {
 //
 
 function displayScoreTextInEditor(text, page) {
+	var mode = getMode(text);
 	if (CGI.filter) {
-		text = "!!!filter: " + CGI.filter + "\n" + text;
+		if (mode == "musedata") {
+			text = "@@@filter: " + CGI.filter + "\n" + text;
+		} else {
+			text = "!!!filter: " + CGI.filter + "\n" + text;
+		}
 	}
 
-	var mode = getMode(text);
 	if (mode != EditorMode) {
 		EditorMode = mode;
 		setEditorModeAndKeyboard();
