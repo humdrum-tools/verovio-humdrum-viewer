@@ -1177,8 +1177,8 @@ function loadKernScoresFile(obj, force) {
 	var info = basketSession.get(keys[0]);
 	// var info = null;
 	// console.log("INFO", info)
-	
-	if (obj && (obj.bb || obj.bitbucket)) {
+
+	if (obj && obj.file && (obj.file.match(/musedata/))) {
 		// console.log("Going to download", key);
 		basketSession.require(...requires).then(function() {
 			var infos = [];
@@ -1387,7 +1387,7 @@ function getTassoUrl(file, measures) {
 //////////////////////////////
 //
 // getBitbucketUrl --
-// 
+//
 // http://verovio.humdrum.org/?file=bitbucket:musedata/beethoven/bhl/qrtet/op18no5/stage2/01/03
 // https://bitbucket.org/musedata/beethoven/raw/master/bhl/qrtet/op18no5/stage2/01/03
 //
@@ -1558,7 +1558,7 @@ function downloadKernScoresFile(file, measures, page) {
 		jrp = true;
 		file = matches[1];
 	}
-	else { 
+	else {
 		matches = file.match(/^(bitbucket|bb):(.*)/);
 		if (matches) {
 			bitbucket = true;
@@ -4197,7 +4197,7 @@ function turnOffAllHighlights() {
 
 //////////////////////////////
 //
-// hideRepertoryIndex -- 
+// hideRepertoryIndex --
 //
 
 function hideRepertoryIndex() {
