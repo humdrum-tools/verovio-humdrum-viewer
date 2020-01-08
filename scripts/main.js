@@ -271,7 +271,7 @@ function displayNotation(page, force, restoreid) {
 		} else if (data.match(/Group memberships:/)) {
 			ishumdrum = false;
 		}
-		
+
 		var output = document.querySelector("#output");
 		output.innerHTML = svg;
 		if (ishumdrum) {
@@ -1157,17 +1157,91 @@ function loadKernScoresFile(obj, force) {
 		// return;
 	}
 
+	var requires = getRequires(url, key);
+
+	var keys = commaDuplicate(key);
+
 	if (force) {
-		basketSession.remove(key);
-		console.log("removed ", key);
+		for (var i=0; i<keys.length; i++) {
+			basketSession.remove(key[i]);
+			console.log("removed ", key[i]);
+		}
 	}
 
 	redrawInputArea();
-	var expire = 172;
-	var info = basketSession.get(key);
-	// console.log("INFO", info);
+
+	var expire = 142;
+
 	var jinfo;
-	if (!info) {
+
+	var info = basketSession.get(keys[0]);
+	// var info = null;
+	// console.log("INFO", info)
+	
+	if (obj && (obj.bb || obj.bitbucket)) {
+		// console.log("Going to download", key);
+		basketSession.require(...requires).then(function() {
+			var infos = [];
+			for (var j=0; j<keys.length; j++) {
+				infos[j] = basketSession.get(keys[j]);
+			}
+			var data = "";
+			var filenames = commaDuplicate(key);
+			for (j=0; j<infos.length; j++) {
+				// print file header
+				data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+				//mm = key.match(/([^\/]+)\/([^\/]+)\s*$/);
+				//if (mm) {
+				//	// filename = mm[1] + "/" + base;
+				//	filename = filenames[j];
+				//} else {
+				//	filename = "unknown";
+				//}
+				filename = infos[j].url;
+				data += "@filename==" + filename + "\n";
+				data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+				var oinfo = infos[j];
+				data += oinfo.data;
+				data += "/eof\n";
+			}
+			data += "//\n"; // end-of-transmission marker for MuseData stage2 multipart file.
+			displayScoreTextInEditor(data, vrvWorker.page);
+
+			if (infos.length > 1) {
+				// console.log("GOING TO ADD MULTIPLE FILES TO EDITOR", infos);
+			} else if (infos.length == 1) {
+				info = basketSession.get(key);
+				console.log("INFO = ", info);
+				if (info) {
+					try {
+						jinfo = JSON.parse(info.data);
+						if (force) {
+							var textdata = atob(jinfo.content);
+							if (textdata.match(/^\s*$/)) {
+								textdata = "!!!ONB: No data content\n";
+							}
+							displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
+						}
+						if (getnext) {
+							processInfo(jinfo, obj, false, false);
+						}
+					} catch(err) {
+						console.log("Error downloading", key, "Error:", err);
+						displayScoreTextInEditor(info.data, vrvWorker.page);
+						if (CGI.k.match(/c/)) {
+							CGI.k = CGI.k.replace(/c/, "");
+							showCompiledFilterData();
+						}
+					}
+				} else {
+					console.log("Error retrieving", key);
+				}
+				redrawInputArea();
+			}
+		}, function() {
+			console.log("Error retrieving", key);
+		});
+	} else if (!info) {
 		// console.log("Going to download", key);
 		basketSession.require(
 			{	url: url,
@@ -1220,7 +1294,70 @@ function loadKernScoresFile(obj, force) {
 			redrawInputArea();
 		}
 	}
+}
 
+
+
+//////////////////////////////
+//
+// getRequires -- Convert a comma-construct for URL into a list of files to download.
+//
+
+function getRequires(url, key) {
+	var expire = 172;
+	var listing;
+	if (!key.match(/,/)) {
+		listing = [{
+			url: url,
+			key: key,
+			expire: expire,
+			execute: false
+		}];
+		return listing;
+	}
+
+	// Input represents multiple files, such as
+	// https://verovio.humdrum.org?bb=musedata/beethoven/bhl/qrtet/op18no5/stage2/01/03,04
+	// should expand to two files:
+	// https://verovio.humdrum.org?bb=musedata/beethoven/bhl/qrtet/op18no5/stage2/01/03
+	// https://verovio.humdrum.org?bb=musedata/beethoven/bhl/qrtet/op18no5/stage2/01/04
+
+	var urls = commaDuplicate(url);
+	var keys = commaDuplicate(key);
+
+	listing = [];
+	for (var i=0; i<urls.length; i++) {
+		listing.push({
+			url: urls[i],
+			key: keys[i],
+			expire: expire,
+			execute: false
+		});
+	}
+	return listing;
+}
+
+
+
+//////////////////////////////
+//
+// commaDuplicate --
+//
+
+function commaDuplicate(value) {
+	var pieces = value.split(/\s*,\s*/);
+	var first = pieces[0];
+	var matches = first.match(/^(.*\/)([^\/]+)/);
+	if (!matches) {
+		return value;
+	}
+	var base = matches[1];
+	pieces[0] = matches[2];
+	var output = [];
+	for (var i=0; i<pieces.length; i++) {
+		output.push(base + pieces[i]);
+	}
+	return output;;
 }
 
 
@@ -1435,6 +1572,7 @@ function downloadKernScoresFile(file, measures, page) {
 		}
 	}
 
+
 	var url;
 	if (jrp) {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
@@ -1458,6 +1596,12 @@ function downloadKernScoresFile(file, measures, page) {
 		SAVEFILENAME = filename;
 		console.log("SAVEFILENAME - ", SAVEFILENAME);
 	}
+
+	if (bitbucket && url.match(/,/)) {
+		downloadMultipleFiles(url);
+		return;
+	}
+
 	console.log("DATA URL", url);
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
@@ -1475,13 +1619,27 @@ function downloadKernScoresFile(file, measures, page) {
 				showCompiledFilterData();
 			}
 		}
+
 	});
 	request.send();
 }
 
 
 
-//////////////////////
+/////////////////////////////
+//
+// downloadMultipleFiles -- Currently assumes to be MuseData.
+//
+
+function downloadMultipleFiles(url) {
+	console.log("DOWNLOADING MULTIPLE FILES", url);
+
+}
+
+
+
+
+//////////////////////////////
 //
 // replaceEditorContentWithHumdrumFile -- If the editor contents is
 //    MusicXML, then convert to Humdrum and display in the editor.
@@ -2201,7 +2359,7 @@ function setupAceEditor(idtag) {
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
-	
+
 	// See this webpage to turn of certain ace editor shortcuts:
    // https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js
 
