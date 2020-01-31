@@ -4238,25 +4238,35 @@ function hideRepertoryIndex() {
 function observeSvgContent() {
 	var content = document.querySelector("#output");
 	var callback = function(mList, observer) {
-			var svg = content.querySelector("svg");
-			if (svg) {
-				spans = svg.querySelectorAll("g.dir.problem tspan.rend tspan.text tspan.text");
-				for(var i = 0; i < spans.length; i++) {
-					var s = spans[i];
-					if (s.innerHTML === "P") {
-						s.innerHTML = "&#xf071;"; // /!\
-						s.classList.add("p");
-					};
-				};
-			};
+		var svg = content.querySelector("svg");
+		if (svg) {
 
-			for (var mu in mList) {
-			 if (svg && svg.isSameNode(mList[mu].target)) {
-				 //remove busy class if svg changed
-				 document.body.classList.remove("busy");
-			 };
-			};
-		};
+			spans = svg.querySelectorAll("g.dir.problem tspan.rend tspan.text tspan.text");
+			for (i=0; i<spans.length; i++) {
+				var s = spans[i];
+				if (s.innerHTML === "P") {
+					s.innerHTML = "&#xf071;";
+					s.classList.add("p");
+				}
+			}
+
+			spans = svg.querySelectorAll("g.dir.sic tspan.rend tspan.text tspan.text");
+			for (i=0; i<spans.length; i++) {
+				var s = spans[i];
+				if (s.innerHTML === "S") {
+					s.innerHTML = "&#xf071;";
+					s.classList.add("s");
+				}
+			}
+		}
+
+		for (var mu in mList) {
+			if (svg && svg.isSameNode(mList[mu].target)) {
+				//remove busy class if svg changed
+				document.body.classList.remove("busy");
+			}
+		}
+	}
 	var observer = new MutationObserver(callback);
 
 	observer.observe(content, { childList: true, subtree: true });
