@@ -4230,6 +4230,7 @@ function hideRepertoryIndex() {
 }
 
 
+
 //////////////////////////////
 //
 // observeSVGContent --
@@ -4237,27 +4238,32 @@ function hideRepertoryIndex() {
 
 function observeSvgContent() {
 	var content = document.querySelector("#output");
+	var i;
+	var s;
 	var callback = function(mList, observer) {
 		var svg = content.querySelector("svg");
 		if (svg) {
 
+			// Mark encoding problem messages with red caution symbol.
 			spans = svg.querySelectorAll("g.dir.problem tspan.rend tspan.text tspan.text");
 			for (i=0; i<spans.length; i++) {
-				var s = spans[i];
+				s = spans[i];
 				if (s.innerHTML === "P") {
 					s.innerHTML = "&#xf071;";
 					s.classList.add("p");
 				}
 			}
 
+			// Mark encoding problem messages with green caution symbol.
 			spans = svg.querySelectorAll("g.dir.sic tspan.rend tspan.text tspan.text");
 			for (i=0; i<spans.length; i++) {
-				var s = spans[i];
+				s = spans[i];
 				if (s.innerHTML === "S") {
 					s.innerHTML = "&#xf071;";
 					s.classList.add("s");
 				}
 			}
+
 		}
 
 		for (var mu in mList) {
