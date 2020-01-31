@@ -2247,7 +2247,6 @@ function toggleMordent(mtype, id, line, field, subfield) {
 //
 // togglePedalStart -- Inserting before LO:TX is a problem
 //
-//
 
 function togglePedalStart(id, line, field) {
 	console.log("PEDAL START TOGGLE", line);
