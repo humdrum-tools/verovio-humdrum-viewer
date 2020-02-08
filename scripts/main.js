@@ -3271,6 +3271,89 @@ function insertDirectionRdfs() {
 }
 
 
+//////////////////////////////
+//
+// saveSvgData --
+//
+
+function saveSvgData() {
+	if (ShowingIndex) {
+		return;
+	}
+	vrvWorker.renderPage(vrvWorker.page)
+	.then(function(data) {
+		var filename = SAVEFILENAME;
+		var size = EDITOR.session.getLength();
+		var matches;
+		var line;
+		for (var i=0; i<size; i++) {
+			line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
+				filename = matches[1];
+			}
+		}
+		filename = filename.replace(/\.[^.]+/, ".svg");
+		if (!filename.match(/svg$/)) {
+			filename += ".svg";
+		}
+
+		var blob = new Blob([data], {type: 'text/plain'});
+		saveAs(blob, filename);
+
+	});
+}
+
+
+
+//////////////////////////////
+//
+// downloadEditorContentsInHtml --
+//
+
+function downloadEditorContentsInHtml() {
+	var filename = SAVEFILENAME;
+	var size = EDITOR.session.getLength();
+	var matches;
+	var line;
+	for (var i=0; i<size; i++) {
+		line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
+			filename = matches[1];
+		}
+	}
+	filename = filename.replace(/\.[^.]+/, ".html");
+	if (!filename.match(/html$/)) {
+		filename += ".html";
+	}
+
+	var text = EDITOR.session.getValue();
+	var output = '<html>\n';
+	output += '<head>\n';
+	output += '<title>My Score</title>\n';
+	output += '<script src="https://plugin.humdrum.org/scripts/humdrum-notation-plugin-worker.js"></script>\n';
+	output += '</head>\n';
+	output += '<body>\n';
+	output += '<script>\n';
+	output += '   displayHumdrum({\n';
+	output += '      source: "my-score",\n';
+	output += '      autoResize: "true",\n';
+	output += '      header: "true"\n';
+	output += '   });\n';
+	output += '<!-- See https://plugin.humdrum.org/#options for more display options -->\n';
+	output += '</script>\n';
+	output += '\n';
+	output += '<script type="text/x-humdrum" id="my-score">\n';
+	output += text;
+	output += '</script>\n';
+	output += '\n';
+	output += '</body>\n';
+	output += '</html>\n';
+	// var blob = new Blob([output], {type: 'text/plain;charset=utf-8'});
+	var blob = new Blob([output], {type: 'text/plain'});
+	saveAs(blob, filename);
+}
+
+
 
 //////////////////////////////
 //
@@ -3279,6 +3362,7 @@ function insertDirectionRdfs() {
 //
 
 function saveEditorContents() {
+
 	var filename = SAVEFILENAME;
 	var size = EDITOR.session.getLength();
 	var matches;
@@ -3295,6 +3379,7 @@ function saveEditorContents() {
 	// var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
 	var blob = new Blob([text], {type: 'text/plain'});
 	saveAs(blob, filename);
+
 }
 
 

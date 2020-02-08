@@ -491,9 +491,10 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case GKey:          // show SVG text in separate window
+		case GKey:          // Save current view to SVG image
 			if (event.altKey) {
-				displaySvg();
+				// displaySvg();
+				saveSvgData();
 				event.preventDefault();
 			}
 			break;

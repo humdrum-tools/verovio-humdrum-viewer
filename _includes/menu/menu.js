@@ -196,10 +196,25 @@ MenuInterface.prototype.toggleOriginalClefs = function () {
 
 //////////////////////////////
 //
-// MenuInterface::displaySvgData --
+// MenuInterface::displaySvgData --  This is now obsolete (the
+//   SVG image will be saved to a file in the Downloads folder.
 //
 
 MenuInterface.prototype.displaySvgData = function () {
+	var event = {};
+	event.keyCode = GKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::saveSvgData --
+//
+
+MenuInterface.prototype.saveSvgData = function () {
 	var event = {};
 	event.keyCode = GKey;
 	event.altKey = true;
@@ -240,6 +255,17 @@ MenuInterface.prototype.saveTextEditorContents = function () {
 	event.keyCode = SKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::saveHtmlContents --
+//
+
+MenuInterface.prototype.saveHtmlContents = function () {
+	downloadEditorContentsInHtml();
 }
 
 
