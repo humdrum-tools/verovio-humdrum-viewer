@@ -255,10 +255,10 @@ function displayNotation(page, force, restoreid) {
 	};
 	var options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
-		options.format = "esac";
+		options.from = "esac";
 	};
 	if (data.match(/Group memberships:/)) {
-		options.format = "musedata";
+		options.from = "musedata";
 	};
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
@@ -371,7 +371,7 @@ function processOptions() {
 // S = string
 //
 // border #           == border around SVG image (default 50)
-// format S           == input format (darms, mei, pae, xml)
+// from S             == input data from (darms, mei, pae, xml)
 // pageHeight #       == height of page (default 2970)
 // pageWidth #        == width of page (default 2100)
 // scale #            == scaling percent for image
@@ -395,7 +395,7 @@ function humdrumToSvgOptions() {
 		barLineWidth         : 0.12,
 		breaks               : (BREAKS ? "encoded" : "auto"),
 		font                 : FONT,
-		format               : "auto",
+		from                 : "auto",
 		humType              : 1,
 		leftMarginClef       : 1.50,
 		lyricSize            : LYRIC_SIZE,
@@ -455,7 +455,7 @@ function humdrumToSvgOptions() {
 function humdrumToMeiOptions() {
 	return {
 
-		format            : "humdrum",
+		from              : "humdrum",
 		adjustPageHeight  : 1,
 		pageHeight        : 8000,
 		pageMarginLeft    : 20,
@@ -478,25 +478,25 @@ function humdrumToMeiOptions() {
 
 function humdrumToHumdrumOptions() {
 	return {
-		format            : "humdrum"
+		from              : "humdrum"
 	}
 }
 
 function musicxmlToHumdrumOptions() {
 	return {
-		format            : "musicxml-hum"
+		from              : "musicxml-hum"
 	}
 }
 
 function musedataToHumdrumOptions() {
 	return {
-		format            : "musedata-hum"
+		from              : "musedata-hum"
 	}
 }
 
 function musicxmlToMeiOptions() {
 	return {
-		format            : "musicxml",
+		from              : "musicxml",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -504,7 +504,7 @@ function musicxmlToMeiOptions() {
 
 function meiToMeiOptions() {
 	return {
-		format            : "mei",
+		from              : "mei",
 		allPages          : 1,
 		breaks            : "encoded"
 	}
@@ -512,7 +512,7 @@ function meiToMeiOptions() {
 
 function meiToHumdrumOptions() {
 	return {
-		format            : "mei-hum",
+		from              : "mei-hum",
 		allPages          : 1,
 		breaks            : "auto"
 	}
@@ -520,7 +520,7 @@ function meiToHumdrumOptions() {
 
 function esacToHumdrumOptions() {
 	return {
-		format            : "esac"
+		from              : "esac"
 	}
 }
 
@@ -1689,10 +1689,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	}
 
 	if (options && !humdrumQ) {
-		if ((options.format == "musedata") || (options.format == "musedata-hum")) {
+		if ((options.from == "musedata") || (options.from == "musedata-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
-		} else if ((options.format == "musicxml") || (options.format == "musicxml-hum")) {
+		} else if ((options.from == "musicxml") || (options.from == "musicxml-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {
