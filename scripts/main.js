@@ -376,6 +376,7 @@ function processOptions() {
 // pageWidth #        == width of page (default 2100)
 // scale #            == scaling percent for image
 // adjustPageHeight B == crop the page height to content
+// adjustPageWidth  B == crop the page width to content
 // evenNoteSpacing B  == space notes evenly and close regardless of durations
 // font S             == Bravura, Gootville, (default Leipzig)
 // ignoreLayout       == ignore any encoded layout and recalulate
@@ -392,6 +393,7 @@ function processOptions() {
 function humdrumToSvgOptions() {
 	var output = {
 		adjustPageHeight     : 1,
+		adjustPageWidth      : 1,
 		barLineWidth         : 0.12,
 		breaks               : (BREAKS ? "encoded" : "auto"),
 		font                 : FONT,
@@ -403,10 +405,10 @@ function humdrumToSvgOptions() {
 		footer               : "none",
 		header               : "none",
 		pageHeight           : 60000,
-		pageMarginBottom     : 20,
-		pageMarginLeft       : 20,
-		pageMarginRight      : 20,
-		pageMarginTop        : 20,
+		pageMarginBottom     : 15,
+		pageMarginLeft       : 15,
+		pageMarginRight      : 15,
+		pageMarginTop        : 15,
 		pageWidth            : 2500,
 		scale                : SCALE,
 		spacingLinear        : 0.25,
