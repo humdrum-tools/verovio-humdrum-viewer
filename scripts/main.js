@@ -459,6 +459,7 @@ function humdrumToMeiOptions() {
 
 		from              : "humdrum",
 		adjustPageHeight  : 1,
+		adjustPageWidth   : 1,
 		pageHeight        : 8000,
 		pageMarginLeft    : 20,
 		pageMarginRight   : 20,
