@@ -85,6 +85,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Insert interpretation line (above cursor)
@@ -164,6 +165,7 @@
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -245,6 +247,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Remove null lines
@@ -284,46 +287,14 @@
 @ACTION:		MENU.applyFilter('rid -glid')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:
-@DEFAULT:
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		rid -glid
 @@BEGIN: LINK
-@DEFAULT:
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -364,46 +335,14 @@
 @ACTION:		MENU.applyFilter('rid -d')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:
-@DEFAULT:
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		rid -d
 @@BEGIN: LINK
-@DEFAULT:
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -444,46 +383,14 @@
 @ACTION:		MENU.applyFilter('rid -i')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:
-@DEFAULT:
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		rid -i
 @@BEGIN: LINK
-@DEFAULT:
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -524,43 +431,10 @@
 @ACTION:		MENU.applyFilter('rid -l')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:
-@DEFAULT:
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
+@TYPE:			filter
+@DEFAULT:		rid -l
 @@BEGIN: LINK
-@DEFAULT:
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
