@@ -393,7 +393,7 @@ function processOptions() {
 function humdrumToSvgOptions() {
 	var output = {
 		adjustPageHeight     : 1,
-		adjustPageWidth      : 1,
+		// adjustPageWidth      : 1,
 		barLineWidth         : 0.12,
 		breaks               : (BREAKS ? "encoded" : "auto"),
 		font                 : FONT,
@@ -459,7 +459,7 @@ function humdrumToMeiOptions() {
 
 		from              : "humdrum",
 		adjustPageHeight  : 1,
-		adjustPageWidth   : 1,
+		// adjustPageWidth   : 1,
 		pageHeight        : 8000,
 		pageMarginLeft    : 20,
 		pageMarginRight   : 20,
@@ -3283,7 +3283,18 @@ function saveSvgData() {
 	if (ShowingIndex) {
 		return;
 	}
-	vrvWorker.renderPage(vrvWorker.page)
+
+	var options = OPTIONS;
+	options.adjustPageWidth = 1;
+	var data = EDITOR.getValue().replace(/^\s+/, "");
+	if (data.match(/^\s*$/)) {
+		return;
+	};
+	var page = vrvWorker.page;
+	var force = true;
+
+	// vrvWorker.renderPage(vrvWorker.page)
+	vrvWorker.renderData(options, data, page, force)
 	.then(function(data) {
 		var filename = SAVEFILENAME;
 		var size = EDITOR.session.getLength();
