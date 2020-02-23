@@ -3314,6 +3314,9 @@ function saveSvgData() {
 		var blob = new Blob([data], {type: 'text/plain'});
 		saveAs(blob, filename);
 
+		// Redraw without adjustPageWidth on.
+	   options.adjustPageWidth = 0;
+		vrvWorker.renderData(options, data, page, force)
 	});
 }
 
