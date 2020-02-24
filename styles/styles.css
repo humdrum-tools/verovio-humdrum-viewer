@@ -46,6 +46,7 @@ g[id^="slur-"]:hover,
 g[id^="fermata-"]:hover,
 g[id^="rest-"]:hover {
 	fill: orange;
+	filter: url(#hover-shadow);
 }
 
 g[id^="bline-"]:hover [stroke],
@@ -64,6 +65,7 @@ g[id^="fermta-"]:hover [stroke],
 g[id^="rest-"]:hover [stroke] {
 	stroke: orange;
 	stroke-width: 50px;
+	filter: url(#hover-shadow);
 }
 
 
@@ -392,6 +394,7 @@ span.info {
 	color: #c00;
 	fill: #c00;
 	stroke: #c00;
+	filter: url(#highlight-shadow);
 }
 .highlight [stroke] {
 	stroke: #c00;

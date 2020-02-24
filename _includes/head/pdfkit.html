@@ -196,7 +196,6 @@ function generatePdfFull(format, orientation) {
 	var oldOptions = vrvWorker.options;
 	// need to explicitly disable mmOutput = 1 set by the printing process.
 	oldOptions.mmOutput = 0;
-console.log("GOT HERE XXX");
 
 	$('html').css('cursor', 'wait');
 	var format = format ? format : "letter";
