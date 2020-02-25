@@ -839,6 +839,22 @@ function addSlur(id, line, field) {
 		displayNotation(null, null, newid);
 	}
 	InterfaceSingleNumber = 1;
+
+	// for some reason the highlighting is lost on the note,
+	// so add it back:
+	// wait for worker to finish redrawing?
+	setTimeout(function() {
+		var element = document.querySelector("svg g#" + id);
+		if (element) {
+			var classname = element.getAttribute("class");
+			if (!classname.match(/\bhighlight\b/)) {
+				classname += " highlight";
+				element.setAttribute("class", classname);
+			}
+			CursorNote = element;
+		}
+	}, 300);
+
 }
 
 

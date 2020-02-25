@@ -2273,10 +2273,37 @@ function humdrumDataIntoView(event) {
 
 //////////////////////////////
 //
+// unhighlightAllElements --
+//
+
+function unhighlightAllElements() {
+	var hilights = document.querySelectorAll("svg .highlight");
+	for (var i=0; i<hilights.length; i++) {
+		var classes = CursorNote.getAttribute("class");
+		var classlist = classes.split(" ");
+		var outclass = "";
+		for (var i=0; i<classlist.length; i++) {
+			if (classlist[i] == "highlight") {
+				continue;
+			}
+			outclass += " " + classlist[i];
+		}
+		outclass = outclass.replace(/^\s+/, "");
+		CursorNote.setAttribute("class", outclass);
+	}
+}
+
+
+
+//////////////////////////////
+//
 // highlightIdInEditor --
 //
 
 function highlightIdInEditor(id, source) {
+
+	unhighlightAllElements(id);
+
 	if (!id) {
 		// no element (off of page or outside of musical range
 		console.log("NO ID so not changing to another element");
