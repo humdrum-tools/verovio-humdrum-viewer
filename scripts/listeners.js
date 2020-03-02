@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	setEditorModeAndKeyboard();
 
 	CGI = GetCgiParameters();
-console.log("CGI", CGI);
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	if (CGI.k) {
