@@ -120,6 +120,7 @@ console.log("CGI", CGI);
 	var body = document.querySelector("body");
 	body.addEventListener("click", function(event) {
 		// console.log("SINGLE CLICK", event);
+		turnOffAllHighlights();
 		dataIntoView(event);
 	});
 	body.addEventListener("dblclick", function(event) {

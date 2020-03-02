@@ -2343,6 +2343,7 @@ function highlightIdInEditor(id, source) {
 	CursorNote = document.querySelector("#" + id);
 	MENU.showCursorNoteMenu(CursorNote);
 	EDITOR.gotoLine(row, col);
+	EDITOR.renderer.scrollCursorIntoView({row: row-1, column: col}, 0.5);
 }
 
 
