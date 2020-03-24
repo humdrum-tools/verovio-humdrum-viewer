@@ -13,11 +13,39 @@ For more information about web workers:
 {% endcomment %}
 
 
+
+self.methods = null;
+
+/////////////////////////////
+//
+// WASM installation variable:
+//
+
+self.Module = {
+    onRuntimeInitialized: function() {
+			methods = new verovioCalls();
+			methods.vrvToolkit = new verovio.toolkit();
+			console.log(`Verovio (WASM) ${methods.vrvToolkit.getVersion()} loaded`);
+		postMessage({method: "ready"});
+		// postMessage(["loaded", false, {}]);
+		}
+};
+
+//
+// WASM
+//
+//////////////////////////////
+
+
 {% if site.local == "true" %}
-	importScripts('local/verovio-toolkit.js');
+	// importScripts('local/verovio-toolkit.js');
+	importScripts('local/verovio-toolkit-asm.js');
 {% else %}
-	importScripts("https://verovio-script.humdrum.org/scripts/verovio-toolkit.js");
+	// importScripts("https://verovio-script.humdrum.org/scripts/verovio-toolkit.js");
+	importScripts("https://verovio-script.humdrum.org/scripts/verovio-toolkit-wasm.js");
 {% endif %}
+
+
 importScripts("ace/humdrumValidator.js");
 importScripts("verovio-calls.js");
 
@@ -67,9 +95,9 @@ addEventListener("message", function(oEvent) {
 });
 
 
-methods = new verovioCalls();
-methods.vrvToolkit = new verovio.toolkit();
-
-postMessage({method: "ready"});
+// non-wasm:
+// methods = new verovioCalls();
+// methods.vrvToolkit = new verovio.toolkit();
+// postMessage({method: "ready"});
 
 
