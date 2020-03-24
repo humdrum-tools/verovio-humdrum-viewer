@@ -79,7 +79,7 @@ function verovioCalls() {
 				newdata = this.vrvToolkit.getHumdrum();
 				break;
 			case "mei":
-				newdata = this.vrvToolkit.getMEI(0, 1);
+				newdata = this.vrvToolkit.getMEI({});
 				break;
 		};
 		return newdata;
@@ -203,7 +203,8 @@ function verovioCalls() {
 	//
 
 	this.getMEI = function () {
-		var meidata = this.vrvToolkit.getMEI(0, 1);
+		// var meidata = this.vrvToolkit.getMEI(0, 1);
+		var meidata = this.vrvToolkit.getMEI({});
 		return meidata;
 	};
 
