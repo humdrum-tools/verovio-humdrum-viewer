@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: poland.krn
+splash: tasso.krn
 ---
 
 <div id="output"></div>
