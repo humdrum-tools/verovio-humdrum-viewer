@@ -2210,29 +2210,43 @@ function	dataIntoView(event) {
 
 function xmlDataIntoView(event) {
 	var target = event.target;
+	var id = target.id;
 	var matches;
+	var regex;
+	var range;
+	var searchstring;
+
 	while (target) {
 		if (!target.id) {
 			target = target.parentNode;
 			continue;
 		}
 		var id = target.id;
-		if (!id.match(/-L\d+F\d+/)) {
+		// if (!id.match(/-L\d+F\d+/)) {
+		if (!id) {
 			target = target.parentNode;
 			continue;
 		}
-
+		if (!id.match(/-L\d+F\d+/)) {
+			// find non-humdrum ID.
+			searchstring = 'xml:id="' + target.id + '"';
+			regex = new RegExp(searchstring);
+			range = EDITOR.find(regex, {
+				wrap: true,
+				caseSensitive: true,
+				wholeWord: true
+			});
+			break;
+		}
 		// still need to verify if inside of svg element in the first place.
-		var searchstring = 'xml:id="' + target.id + '"';
-		var regex = new RegExp(searchstring);
-		var range = EDITOR.find(regex, {
+		searchstring = 'xml:id="' + target.id + '"';
+		regex = new RegExp(searchstring);
+		range = EDITOR.find(regex, {
 			wrap: true,
 			caseSensitive: true,
 			wholeWord: true
 		});
-
-		console.log("FOUND ID AT", range);
-		break; // assume that the first id found is valid.
+		break; // assume that the first formatted id found is valid.
 	}
 }
 
