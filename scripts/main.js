@@ -1436,6 +1436,7 @@ function kernScoresUrl(file, measures) {
 	var matches;
 	var jrp = false;
 	var github = false;
+	var nifc = false;
 
 	if (matches = file.match(/^(j|jrp):\/?\/?(.*)/)) {
 		jrp = true;
@@ -1445,12 +1446,17 @@ function kernScoresUrl(file, measures) {
 		user = matches[2];
 		repository = matches[3];
 		file = matches[4];
+	} else if (matches = file.match(/^nifc:\/?\/?(.*)/i)) {
+		nifc = true;
+		file = matches[1];
 	}
 
 	if (jrp) {
 		filename = file;
 		location = "";
 	} else if (github) {
+		filename = file;
+	} else if (nifc) {
 		filename = file;
 	} else {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
@@ -1477,6 +1483,8 @@ function kernScoresUrl(file, measures) {
 	if (jrp) {
 		url = "https://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
 		url += "&a=humdrum";
+	} else if (nifc) {
+		url = "https://humdrum.nifc.pl/" + filename;
 	} else if (github) {
 		url = "https://raw.githubusercontent.com/" + user + "/" + repository + "/master/" + filename;
 	} else {
@@ -1549,32 +1557,39 @@ function processInfo(info, obj, nextwork, prevwork) {
 //
 
 function downloadKernScoresFile(file, measures, page) {
+console.log("DOWNLOADING", file, measures, page);
 	var location;
 	var filename;
 	var matches;
 	var jrp = false;
 	var bitbucket = false;
 	var github = false;
+	var nifc = false;
 
-	matches = file.match(/^jrp:(.*)/);
+	matches = file.match(/^jrp:(.*)/i);
 	if (matches) {
 		jrp = true;
 		file = matches[1];
-	}
-	else {
-		matches = file.match(/^(bitbucket|bb):(.*)/);
+	} else {
+		matches = file.match(/^(?:bitbucket|bb):(.*)/i);
 		if (matches) {
 			bitbucket = true;
 			file = matches[1];
 		} else {
-			matches = file.match(/^(github|gh):(.*)/);
+			matches = file.match(/^(?:github|gh):(.*)/i);
 			if (matches) {
 				bitbucket = true;
 				file = matches[1];
+			} else {
+				matches = file.match(/^nifc:(.*)/i);
+				if (matches) {
+					nifc = true;
+					file = matches[1];
+console.log("DOING NIFC URL", file);
+				}
 			}
 		}
 	}
-
 
 	var url;
 	if (jrp) {
@@ -1584,6 +1599,9 @@ function downloadKernScoresFile(file, measures, page) {
 		}
 		url = "https://josquin.stanford.edu/data?id=" + location;
 		url += "&a=humdrum";
+	} else if (nifc) {
+		file = file.replace(/^\/+/, "");
+		url = "https://humdrum.nifc.pl/" + file; 
 	} else {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
 			location = matches[1];

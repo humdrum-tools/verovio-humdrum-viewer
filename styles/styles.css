@@ -99,6 +99,10 @@ table.index-list {
 	color: #883333;
 }
 
+svg {
+	overflow: visible !important;
+	padding-top: 30px;
+}
 
 svg:not(:root) {
 	overflow: inherit;
