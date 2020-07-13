@@ -408,7 +408,7 @@ function humdrumToSvgOptions() {
 		pageMarginBottom     : 20,
 		pageMarginLeft       : 20,
 		pageMarginRight      : 20,
-		pageMarginTop        : 0,
+		pageMarginTop        : 100,
 		pageWidth            : 2500,
 		scale                : SCALE,
 		spacingLinear        : 0.25,
