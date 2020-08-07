@@ -3757,6 +3757,30 @@ function toggleLayerColoring() {
 
 //////////////////////////////
 //
+// toggleAppoggiaturaColoring -- turn appoggiatura color highlighting on/off.
+//
+
+function toggleAppoggiaturaColoring() {
+	var sylesheet;
+	stylesheet = document.querySelector("#appoggiatura-color-stylesheet");
+	if (stylesheet) {
+		var parentElement = stylesheet.parentNode;
+		parentElement.removeChild(stylesheet);
+		return;
+	}
+	stylesheet = document.createElement('style');
+	var text = "";
+	text += "g.appoggiatura-start { fill: limegreen; }";
+	text += "g.appoggiatura-stop { fill: forestgreen; }";
+	stylesheet.innerHTML = text;
+	stylesheet.id = "appoggiatura-color-stylesheet";
+	document.body.appendChild(stylesheet);
+}
+
+
+
+//////////////////////////////
+//
 // clearContent --
 //
 

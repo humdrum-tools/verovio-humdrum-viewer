@@ -560,6 +560,17 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+		case QKey:          // toggle coloring of appoggiaturas
+			if (event.altKey) {
+				if (event.shiftKey) {
+					// do nothing
+				} else {
+					toggleAppoggiaturaColoring();
+				}
+				event.preventDefault();
+			}
+			break;
+
 		case RKey:          // reload Humdrum data from server
 			if (event.altKey) {
 				if (event.shiftKey) {
@@ -680,7 +691,7 @@ function processInterfaceKeyCommand(event) {
 
 		case CommaKey:          // toggle TSV/CSV display of Humdrum data
 		                        // decrease tab size in editor
-			// See UKey for relocation of comma-command for 
+			// See UKey for relocation of comma-command for
 			// (related to non-US keyboard layout)
 			if (event.shiftKey) {
 				decreaseTab();
