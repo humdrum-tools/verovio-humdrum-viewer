@@ -704,7 +704,7 @@
 @LV:
 @NL:
 @NO:
-@PL:			370 chorałów Bacha
+@PL:			
 @PT:
 @RU:
 @SK:
@@ -715,7 +715,7 @@
 @ZH-simplified:
 @ZH-traditional:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('rds')
+@ACTION:		MENU.loadRepertory('github:polyrhythm-project/rds-scores')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			website

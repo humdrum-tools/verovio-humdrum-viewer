@@ -137,7 +137,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.forceBeamAbove()
+@ACTION:		MENU.forceBeamBelow()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
