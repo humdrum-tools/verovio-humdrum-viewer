@@ -14,7 +14,7 @@ var CGI = {};
 var OPTIONS = {}; // used for debugging display options.
 
 // var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
-// var hmdindex = new HMDIndex(turl);
+var HMDINDEX = null;
 
 // verovio variables for a movement:
 var vrvWorker;
@@ -893,11 +893,13 @@ function displayFileTitle(contents) {
 //
 
 function displayWork(file) {
+console.log("DISPLAY WORK", file);
 	if (!file) {
 		return;
 	}
 	vrvWorker.page = 1;
 	CGI.file = file;
+console.log("CGI FILE", CGI.file);
 	delete CGI.mm;
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
@@ -961,6 +963,30 @@ function GetCgiParameters() {
 }
 
 
+///////////////////////////////
+//
+// loadHmdIndexFile --
+//
+
+function loadHmdIndexFile(location) {
+	console.log("LOADING HMD INDEX FILE : ", location);
+
+	var request = new XMLHttpRequest();
+	request.open("GET", url);
+	request.addEventListener("load", function() {
+		if (request.status == 200) {
+			var INDEX = request.responseText;
+			HMDINDEX = new HMDIndex(info.data);
+console.log("CREATED HMD INDEX = ", HMDINDEX);
+			// console.log("INDEX= ", INDEX);
+			$('html').css('cursor', 'auto');
+			displayHmdIndexFinally(HMDINDEX, location);
+		}
+	});
+	request.send();
+}
+
+
 
 ///////////////////////////////
 //
@@ -968,6 +994,10 @@ function GetCgiParameters() {
 //
 
 function loadIndexFile(location) {
+	if (location.match(/index.hmd$/)) {
+		loadHmdIndexFile(location);
+		return;
+	}
 	var url = "https://kern.humdrum.org/data?l=" + location;
 	url += "&format=index";
 
@@ -978,6 +1008,7 @@ function loadIndexFile(location) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			var INDEX = request.responseText;
+console.log("INDEX = ", INDEX);
 			// console.log("INDEX= ", INDEX);
 			$('html').css('cursor', 'auto');
 			displayIndexFinally(INDEX, location);
@@ -1082,6 +1113,28 @@ function displayIndexFinally(index, location) {
 	indexelem.style.display = "block";
 }
 
+//////////////////////////////
+//
+// displayHmdIndexFinally --
+//
+
+function displayHmdIndexFinally(hmdindex, location) {
+console.log("DISPLAYING HMD INDEX FINALLY", hmdindex, location);
+	ShowingIndex = true;
+
+	IndexSupressOfInput = true;
+	if (InputVisible == true) {
+		UndoHide = true;
+		ApplyZoom = true;
+		// hideInputArea(true);
+	}
+
+	var indexelem = document.querySelector("#index");
+	indexelem.innerHTML = hmdindex.generateHTML();;
+	indexelem.style.visibility = "visible";
+	indexelem.style.display = "block";
+}
+
 
 var COUNTER = 0;
 
@@ -1096,6 +1149,7 @@ function loadKernScoresFile(obj, force) {
 	var page        = obj.page;
 	var getnext     = obj.next;
 	var getprevious = obj.previous;
+console.log("=== LOADING KERN SCORE", obj);
 
 	if (measures) {
 		var getnext     = false;
@@ -1128,6 +1182,13 @@ function loadKernScoresFile(obj, force) {
 				url = ret.url;
 				key = ret.key;
 			}
+		} else if (file.match(/^github:/)) {
+			ret = getGithubUrl(file, measures);
+console.log("GItHUR URL " , ret);
+			if (ret) {
+				url = ret.url;
+				key = ret.key;
+			}
 		} else {
 			ret = kernScoresUrl(file, measures);
 			if (ret) {
@@ -1143,6 +1204,12 @@ function loadKernScoresFile(obj, force) {
 		}
 	} else if (obj.bb) {
 		ret = getBitbucketUrl(obj.bb, measures);
+		if (ret) {
+			url = ret.url;
+			key = ret.key;
+		}
+	} else if (obj.github) {
+		ret = getGithubUrl(obj.bb, measures);
 		if (ret) {
 			url = ret.url;
 			key = ret.key;
@@ -1245,6 +1312,7 @@ function loadKernScoresFile(obj, force) {
 			console.log("Error retrieving", key);
 		});
 	} else if (!info) {
+console.log("NO INFO");
 		// console.log("Going to download", key);
 		basketSession.require(
 			{	url: url,
@@ -1253,8 +1321,13 @@ function loadKernScoresFile(obj, force) {
 				execute: false
 			}
 		).then(function() {
-				info = basketSession.get(key);
-				if (info) {
+			info = basketSession.get(key);
+			if (info) {
+				if (info.url.match(/\/index.hmd$/)) {
+					HMDINDEX = new HMDIndex(info.data);
+console.log("GOT HERE XXX HMDINDEX=", HMDINDEX);
+					displayHmdIndexFinally(HMDINDEX);
+				} else {
 					try {
 						jinfo = JSON.parse(info.data);
 						if (force) {
@@ -1275,13 +1348,14 @@ function loadKernScoresFile(obj, force) {
 							showCompiledFilterData();
 						}
 					}
-				} else {
-					console.log("Error retrieving", key);
 				}
-				redrawInputArea();
-			}, function() {
-				console.log("Error retrieving", key);
-			});
+			} else {
+				console.log("Error1 retrieving", key);
+			}
+			redrawInputArea();
+		}, function() {
+			console.log("Error2 retrieving", key);
+		});
 	} else {
 		try {
 			jinfo = JSON.parse(info.data);
@@ -1385,6 +1459,48 @@ function getTassoUrl(file, measures) {
 	return {url: url, key: key};
 }
 
+
+//////////////////////////////
+//
+// getGithubUrl --
+//
+// http://verovio.humdrum.org/?file=github:polyrhythm-project/rds-scores
+// https://bitbucket.org/musedata/beethoven/raw/master/bhl/qrtet/op18no5/stage2/01/03
+//
+
+function getGithubUrl(file, measures) {
+	file = file.replace(/^github:\/*/, "");
+
+console.log("ORIGINAL FILE", file);
+
+	var username = "";
+	var repository = "";
+	var pathandfile = "";
+	var url = "";
+
+	url = "https://raw.githubusercontent.com/";
+	matches = file.match("^\/*([^\/]+)\/([^\/]+)\/?(.*)");
+	if (matches) {
+		username    = matches[1];
+		repository  = matches[2];
+		pathandfile = matches[3];
+	}
+	url += username;
+	url += "/";
+	url += repository;
+	url += "/master/";
+	if (!pathandfile) {
+		url += "index.hmd";
+	} else {
+		url += pathandfile;
+	}
+
+	var key = pathandfile;
+
+	var obj = {url: url, key: key};
+console.log("GITHUB:", obj);
+	return obj;
+}
 
 
 //////////////////////////////
@@ -2047,6 +2163,18 @@ function displaySvg() {
 //
 
 function displayPdf() {
+	// If a humdrum file has a line starting with 
+	//     !!!URL-pdf: (https?://[^\s]*)
+	// then load that file.
+	var loaded = false;
+	if (EditorMode === "humdrum") {
+		var loaded = displayHumdrumPdf();
+	}
+
+	if (loaded) {
+		return;
+	}
+
 	if (!FILEINFO["has-pdf"]) {
 		return;
 	}
@@ -2058,10 +2186,84 @@ function displayPdf() {
 	url += "&file=" + FILEINFO["file"];
 	url += "&format=pdf";
 
-	var wpdf = window.open(url, "Scanned score",
-			'width=600,height=800,resizeable,scrollabars,location=false');
+	var features = "left=0";
+	features += ",width=" + screen.width;
+	features += ",height=" + parseInt(screen.height / 3);
+	features += ",resizeable";
+	features += ",scrollbars";
+	features += ",location=false";
+
+	var wpdf = window.open(url, "Scanned score", features);
+	if (window.focus) {
+		wpdf.focus();
+	}
+
 }
 
+
+//////////////////////////////
+//
+// displayHumdrumPdf --
+//         !!!URL-pdf: (https?://[^\s]*)
+// If there is a number in the keyboard buffer:
+//         !!!URL-pdf[1-9]: (https?://[^\s]*)
+// Return value: false if not loaded from reference record
+//
+// Reference: https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf
+//
+
+function displayHumdrumPdf() {
+	if (EditorMode !== "humdrum") {
+		return 0;
+	}
+	var data = EDITOR.getValue().split(/\r?\n/);
+	var url = "";
+	var urls = [];
+
+	var query;
+	if (InterfaceSingleNumber > 1) {
+		query = '^!!!URL' + InterfaceSingleNumber + '-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+	} else {
+		query = '^!!!URL1?-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+	}
+	var rex = new RegExp(query);
+
+	for (var i=data.length-1; i>=0; i--) {
+		var line = data[i];
+		if (line.match(/^!!!URL[0-9]*-pdf:\s*(?:ftp|http?):\/\//)) {
+			urls.push(line);
+		}
+		var matches = line.match(rex);
+		if (matches) {
+			url = matches[1];
+			break;
+		}
+	}
+	
+	// if the URL is empty but the urls array is not, then
+	// select the last url (which is the first URL entry 
+	// in the file.
+	// console.log("URLs:", urls);
+
+	if (url) {
+		console.log("Loading URL", url);
+		var features = "left=0";
+		features += ",top=" + parseInt(screen.height * 2 / 3);
+		features += ",width=" + screen.width;
+		features += ",height=" + parseInt(screen.height / 3);
+		features += ",resizeable";
+		features += ",scrollbars";
+		features += ",location=false";
+		var wpdf = window.open(url, "Scanned score", features);
+		if (window.focus) {
+			wpdf.focus();
+		}
+		return 1;
+	} else{
+		return 0;
+	}
+
+}
 
 
 //////////////////////////////
@@ -2079,6 +2281,7 @@ function reloadData() {
 		basket += "&mm=" + CGI.mm;
 	}
 	sessionStorage.removeItem(basket);
+console.log("LOADKERNSCORESFILE", CGI.file);
 	loadKernScoresFile({
 			file: CGI.file,
 			measures: CGI.mm,
