@@ -155,8 +155,6 @@ HMDIndex.prototype.parse = function(contents) {
 
 	this.sortEntries();
 
-	console.log("PARSED", this);
-	console.log("HTML", this.generateHTML());
 	return this;
 };
 

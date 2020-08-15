@@ -28,14 +28,14 @@ single-entry example:
 
 <div class="page-nav" id="multi-page" style="margin-right:38px;">
 		<table><tr>
-		<td onclick="MENU.multiPageView()"> <div title="Multi-page mode" style="opacity:0.6; font-size:150%" class="fas fa-map"></div></td>
+		<td onclick="MENU.multiPageView()"> <div title="Click for multi-page mode" style="opacity:0.6; font-size:150%" class="fas fa-map"></div></td>
 		</tr></table>
 </div>
 <div id="page-nav" class="page-nav" style="display:none; float:right; z-index:10;">
 		<table><tr>
-		<td onclick="MENU.goToPreviousPage()"> <div title="Previous page" style="opacity:0.6; font-size:150%" class="fas fa-arrow-left"></div></td>
-    	<td onclick="MENU.goToFirstPage(event)">    <div title="First page"    style="opacity:0.6; font-size:125%" class="fas fa-file-alt"></div></td>
-    	<td onclick="MENU.goToNextPage()">     <div title="Next page"     style="opacity:0.6; font-size:150%" class="fas fa-arrow-right"></div></td>
+		<td onclick="previousPageClick(event)"> <div title="Previous page (shift-click for first page)" style="opacity:0.6; font-size:150%" class="fas fa-arrow-left"></div></td>
+    	<td onclick="MENU.singlePageView()">    <div title="Click for single-page mode"    style="opacity:0.6; font-size:125%" class="fas fa-file-alt"></div></td>
+    	<td onclick="nextPageClick(event)">     <div title="Next page (shift-click for last page)"     style="opacity:0.6; font-size:150%" class="fas fa-arrow-right"></div></td>
 		</tr></table>
 </div>
 

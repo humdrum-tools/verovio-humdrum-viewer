@@ -828,8 +828,10 @@ MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 // MenuInterface::goToLastPage --
 //
 
-MenuInterface.prototype.goToLastPage = function () {
-	var event = {};
+MenuInterface.prototype.goToLastPage = function (event) {
+	if (!event) {
+		event = {};
+	}
 	event.keyCode = EndKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -843,16 +845,12 @@ MenuInterface.prototype.goToLastPage = function () {
 //
 
 MenuInterface.prototype.goToFirstPage = function (event) {
-	if (event && event.shiftKey) {
-		// if the shift key is pressed while clicking on
-		// first-page icon, then switch to single-page mode.
-		MenuInterface.prototype.singlePageView();
-		return;
+	if (!event) {
+		event = {};
 	}
-	var newevent = {};
-	newevent.keyCode = HomeKey;
-	newevent.altKey = true;
-	processInterfaceKeyCommand(newevent);
+	event.keyCode = HomeKey;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
 }
 
 
@@ -862,8 +860,10 @@ MenuInterface.prototype.goToFirstPage = function (event) {
 // MenuInterface::goPreviousWork --
 //
 
-MenuInterface.prototype.goToPreviousWork = function () {
-	var event = {};
+MenuInterface.prototype.goToPreviousWork = function (event) {
+	if (!event) {
+		event = {};
+	}
 	event.keyCode = LeftKey;
 	event.altKey = true;
 	event.shiftKey = true;
@@ -892,8 +892,10 @@ MenuInterface.prototype.goToNextWork = function () {
 // MenuInterface::goToNextPage --
 //
 
-MenuInterface.prototype.goToNextPage = function () {
-	var event = {};
+MenuInterface.prototype.goToNextPage = function (event) {
+	if (!event) {
+		event = {};
+	}
 	event.keyCode = RightKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -906,8 +908,10 @@ MenuInterface.prototype.goToNextPage = function () {
 // MenuInterface::goToPreviousPage --
 //
 
-MenuInterface.prototype.goToPreviousPage = function () {
-	var event = {};
+MenuInterface.prototype.goToPreviousPage = function (event) {
+	if (!event) {
+		event = {};
+	}
 	event.keyCode = LeftKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);

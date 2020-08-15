@@ -4683,3 +4683,47 @@ function updateEditorMode() {
 		console.log("Changing to", xmod, "mode.");
 	}
 }
+
+
+
+//////////////////////////////
+//
+// nextPageClick -- this is a click event for the next page.  If the shift key is
+//     pressed, go to the last page instead of the next page.
+//
+
+function nextPageClick(event) {
+	if (!event) {
+		MENU.goToNextPage(event)
+	}
+	if (event.shiftKey) {
+		MENU.goToLastPage(event)
+	} else {
+		MENU.goToNextPage(event)
+	}
+}
+
+
+
+//////////////////////////////
+//
+// previousPageClick -- this is a click event for the previous page.
+//     If the shift key is pressed, go to the last page instead of
+//     the next page.
+//
+
+function previousPageClick(event) {
+	if (!event) {
+		MENU.goToPreviousPage(event)
+	}
+	if (event.shiftKey) {
+		MENU.goToFirstPage(event)
+	} else {
+		MENU.goToPreviousPage(event)
+	}
+}
+
+
+
+
+
