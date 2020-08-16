@@ -1184,7 +1184,6 @@ console.log("=== LOADING KERN SCORE", obj);
 			}
 		} else if (file.match(/^github:/)) {
 			ret = getGithubUrl(file, measures);
-console.log("GItHUR URL " , ret);
 			if (ret) {
 				url = ret.url;
 				key = ret.key;
@@ -2184,86 +2183,190 @@ function displayPdf() {
 
 	var url = "https://kern.humdrum.org/data?l=" + FILEINFO["location"];
 	url += "&file=" + FILEINFO["file"];
-	url += "&format=pdf";
+	url += "&format=pdf&#view=FitH";
 
-	var features = "left=0";
-	features += ",width=" + screen.width;
-	features += ",height=" + parseInt(screen.height / 3);
-	features += ",resizeable";
-	features += ",scrollbars";
-	features += ",location=false";
-
-	var wpdf = window.open(url, "Scanned score", features);
-	if (window.focus) {
-		wpdf.focus();
-	}
-
+	openPdfAtBottomThirdOfScreen(url);
 }
+
 
 
 //////////////////////////////
 //
 // displayHumdrumPdf --
+//
 //         !!!URL-pdf: (https?://[^\s]*)
 // If there is a number in the keyboard buffer:
 //         !!!URL-pdf[1-9]: (https?://[^\s]*)
 // Return value: false if not loaded from reference record
 //
-// Reference: https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf
 //
 
 function displayHumdrumPdf() {
-	if (EditorMode !== "humdrum") {
-		return 0;
-	}
-	var data = EDITOR.getValue().split(/\r?\n/);
+	var urllist = getPdfUrlList();
+console.log("URLLIST", urllist);
+
 	var url = "";
-	var urls = [];
-
-	var query;
+	var i;
 	if (InterfaceSingleNumber > 1) {
-		query = '^!!!URL' + InterfaceSingleNumber + '-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+		for (i=0; i<urllist.length; i++) {
+			if (urllist[i].number == InterfaceSingleNumber) {
+				url = urllist[i].url;
+				break;
+			}
+		}
 	} else {
-		query = '^!!!URL1?-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+		for (i=0; i<urllist.length; i++) {
+			if (urllist[i].number <= 1) {
+				url = urllist[i].url;
+				break;
+			}
+		}
 	}
-	var rex = new RegExp(query);
 
-	for (var i=data.length-1; i>=0; i--) {
-		var line = data[i];
-		if (line.match(/^!!!URL[0-9]*-pdf:\s*(?:ftp|http?):\/\//)) {
-			urls.push(line);
-		}
-		var matches = line.match(rex);
-		if (matches) {
-			url = matches[1];
-			break;
-		}
-	}
-	
 	// if the URL is empty but the urls array is not, then
 	// select the last url (which is the first URL entry 
 	// in the file.
 	// console.log("URLs:", urls);
 
 	if (url) {
-		console.log("Loading URL", url);
-		var features = "left=0";
-		features += ",top=" + parseInt(screen.height * 2 / 3);
-		features += ",width=" + screen.width;
-		features += ",height=" + parseInt(screen.height / 3);
-		features += ",resizeable";
-		features += ",scrollbars";
-		features += ",location=false";
-		var wpdf = window.open(url, "Scanned score", features);
-		if (window.focus) {
-			wpdf.focus();
-		}
+		openPdfAtBottomThirdOfScreen(url);
 		return 1;
 	} else{
 		return 0;
 	}
-
 }
+
+
+//////////////////////////////
+//
+// getPdfUrlList --
+//
+
+function getPdfUrlList() {
+	if (EditorMode !== "humdrum") {
+		// can't handle MEI mode yet
+		return 0;
+	}
+	var data = EDITOR.getValue().split(/\r?\n/);
+	var refrecords = {};
+	var output = [];
+	var title = "";
+
+	var query;
+	query = '^!!!URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+	query += "\\s+(.*)\\s*$";
+	var rex = new RegExp(query);
+
+	var references = [];
+
+	for (var i=0; i<data.length; i++) {
+		var line = data[i];
+		var matches = line.match(rex);
+		if (matches) {
+			var obj = {};
+			if (!matches[1]) {
+				obj.number = -1;
+			} else {
+				obj.number = parseInt(matches[1]);
+			}
+			obj.url = matches[2];
+			obj.title = matches[3];
+			output.push(obj);
+		} 
+
+		var matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
+		if (matches) {
+			obj = {};
+			obj.key = matches[1];
+			obj.value = matches[2];
+		}
+		
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// openPdfAtBottomThirdOfScreen --
+//
+// Reference: https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf
+//
+
+function openPdfAtBottomThirdOfScreen(url, keepfocus) {
+	if (!url) {
+		return;
+	}
+
+	console.log("Loading URL", url);
+	var features = "left=0";
+	features += ",top=" + parseInt(screen.height * 2 / 3);
+	features += ",width=" + screen.width;
+	features += ",height=" + parseInt(screen.height / 3);
+	features += ",resizeable";
+	features += ",scrollbars";
+	features += ",location=false";
+	var wpdf = window.open(url, "", features);
+
+	if (!keepfocus) {
+		if (window.focus) {
+			wpdf.focus();
+		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// buildPdfIconListInMenu -- Read !!!URL-pdf: reference records and
+//    create icons for each one at the top right of the VHV window.
+//    If there are no embedded URLs, then display the one from index.hmd
+//    if there is a PDF available from kernScores.
+//
+
+function buildPdfIconListInMenu() {
+	var container = document.querySelector("#pdf-urls");
+	if (!container) {
+		return;
+	}
+
+	var urllist = getPdfUrlList();
+
+	var output = "";
+	if (urllist.length > 0) {
+		for (var i=0; i<urllist.length; i++) {
+			output += makePdfIcon(urllist[i].url, urllist[i].title);
+		}
+	} else {
+		if (FILEINFO && FILEINFO["has-pdf"] && (FILEINFO["has-pdf"] === "true")) {
+			var url = "https://kern.humdrum.org/data?l=" + FILEINFO["location"];
+			url += "&file=" + FILEINFO["file"];
+			url += "&format=pdf&#view=FitH";
+			output += makePdfIcon(url, "Source edition");
+		}
+	}
+
+	container.innerHTML = output;
+}
+
+
+
+//////////////////////////////
+//
+// makePdfIcon --
+//
+
+function makePdfIcon(url, title) {
+	title = title.replace(/"/g, "'");
+	var output = "<div title=\"" + title + "\" ";
+	output += "style='cursor:pointer; margin-right:10px; opacity:0.6; font-size:100%' ";
+	output += "onclick='openPdfAtBottomThirdOfScreen(\"" + url + "\")' ";
+	output += "class='fas fa-file-pdf-o'></div>";
+	return output;
+}
+
 
 
 //////////////////////////////

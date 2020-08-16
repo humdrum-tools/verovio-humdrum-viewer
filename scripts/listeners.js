@@ -13,6 +13,8 @@ permalink: /scripts/listeners.js
 // Description:   Event listeners and related code for index.html.
 //
 
+var PDFLISTINTERVAL = null;
+
 //////////////////////////////
 //
 // DomContentLoaded event listener -- Display the sample data.
@@ -130,6 +132,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	window.addEventListener("keydown", processInterfaceKeyCommand);
 
 	observeSvgContent();
+
+	PDFLISTINTERVAL = setInterval(function() {
+		buildPdfIconListInMenu();
+	}, 3000);
 });
 
 
