@@ -893,13 +893,11 @@ function displayFileTitle(contents) {
 //
 
 function displayWork(file) {
-console.log("DISPLAY WORK", file);
 	if (!file) {
 		return;
 	}
 	vrvWorker.page = 1;
 	CGI.file = file;
-console.log("CGI FILE", CGI.file);
 	delete CGI.mm;
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
@@ -2203,7 +2201,6 @@ function displayPdf() {
 
 function displayHumdrumPdf() {
 	var urllist = getPdfUrlList();
-console.log("URLLIST", urllist);
 
 	var url = "";
 	var i;
@@ -2259,7 +2256,8 @@ function getPdfUrlList() {
 
 	var references = [];
 
-	for (var i=0; i<data.length; i++) {
+	var i;
+	for (i=0; i<data.length; i++) {
 		var line = data[i];
 		var matches = line.match(rex);
 		if (matches) {
@@ -2279,10 +2277,64 @@ function getPdfUrlList() {
 			obj = {};
 			obj.key = matches[1];
 			obj.value = matches[2];
+			if (!refrecords[obj.key]) {
+				refrecords[obj.key] = [];
+			}
+			refrecords[obj.key].push(obj);
 		}
-		
 	}
+
+	for (var i=0; i<output.length; i++) {
+		output[i].title = templateExpansion(output[i].title, refrecords);
+	}
+
 	return output;
+}
+
+
+
+//////////////////////////////
+//
+// templateExpansion --
+//
+
+function templateExpansion(title, records) {
+	var matches = title.match(/@{(.*?)}/);
+	if (!matches) {
+		return title;
+	}
+
+	var replacement = getReferenceValue(matches[1], records);
+	var rex = new RegExp("@{" + matches[1] + "}", "g");
+	title = title.replace(rex, replacement);
+
+	matches = title.match(/@{(.*?)}/);
+	while (matches) {
+		replacement = getReferenceValue(matches[1], records);
+		rex = new RegExp("@{" + matches[1] + "}", "g");
+		title = title.replace(rex, replacement);
+		
+		matches = title.match(/@{(.*?)}/);
+	}
+
+	return title;
+}
+
+
+
+//////////////////////////////
+//
+// getReferenceValue -- return the (first) reference record
+//    value for the given key.
+//
+
+function getReferenceValue(key, records) {
+	var entry  = records[key];
+	if (!entry) {
+		return "";
+	}
+
+	return entry[0].value;
 }
 
 
@@ -4825,8 +4877,6 @@ function previousPageClick(event) {
 		MENU.goToPreviousPage(event)
 	}
 }
-
-
 
 
 
