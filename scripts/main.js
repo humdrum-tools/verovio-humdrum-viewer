@@ -1147,6 +1147,7 @@ function loadKernScoresFile(obj, force) {
 	var page        = obj.page;
 	var getnext     = obj.next;
 	var getprevious = obj.previous;
+
 console.log("=== LOADING KERN SCORE", obj);
 
 	if (measures) {
@@ -2427,22 +2428,33 @@ function makePdfIcon(url, title) {
 //
 
 function reloadData() {
-	if (!CGI || !CGI.file) {
-		return;
+
+	// delete all sessionStorage keys starting with "basket-"
+	for (var key in sessionStorage) {
+		if (sessionStorage.hasOwnProperty(key) && /^basket-/.test(key)) {
+			console.log("DELETING", key);
+			delete sessionStorage[key];
+		}
 	}
 
-	var basket = "basket-" + CGI.file;
-	if (CGI.mm) {
-		basket += "&mm=" + CGI.mm;
-	}
-	sessionStorage.removeItem(basket);
-console.log("LOADKERNSCORESFILE", CGI.file);
-	loadKernScoresFile({
-			file: CGI.file,
+	if (CGI && CGI.file) {
+		// Reload from URL file parameter if this method was used.
+		// (Don't know if a different work was loaded differently, however).
+		var basket = "basket-" + CGI.file;
+		if (CGI.mm) {
+			basket += "&mm=" + CGI.mm;
+		}
+		sessionStorage.removeItem(basket);
+		loadKernScoresFile({
+			file:     CGI.file,
 			measures: CGI.mm,
 			previous: false,
-			next: false
+			next:     false
 		}, true);
+	} else {
+		// (assume) reload a repertory score
+		console.log("Don't know what to reload");
+	}
 }
 
 
