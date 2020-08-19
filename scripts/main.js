@@ -4919,7 +4919,7 @@ function toggleLineBreaks() {
 	if (BREAKS) {
 		output += '<span title="Click for automatic line breaks" class="fas fa-align-justify"></span>';
 	} else {
-		output += '<span title="Click for embedded line breaks" class="fas fa-align-center"></span>';
+		output += '<span title="Click to use embedded line breaks (if any)" class="fas fa-align-center"></span>';
 	}
 	element.innerHTML = output;
 

@@ -38,6 +38,12 @@ single-entry example:
 <div class="page-nav" style="white-space:nowrap;" id="toolbar">
 	<span class="page-nav" style="white-space:nowrap;" id="pdf-urls">
 	</span>
+	<span class="page=nav" id="decrease-tab-icon" onclick="decreaseTab()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
+		<div title="Decrease tab size (alt-<)" class='fas fa-outdent'></div>
+	</span>
+	<span class="page=nav" id="increase-tab-icon" onclick="increaseTab()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
+		<div title="Increase tab size (alt->)" class='fas fa-indent'></div>
+	</span>
 	<span class="page=nav" id="notation-smaller-icon" onclick="MENU.adjustNotationScale(-3)" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
 		<div title="Make notation smaller" class='fas fa-minus-square'></div>
 	</span>
@@ -45,7 +51,7 @@ single-entry example:
 		<div title="Make notation larger" class='fas fa-plus-square'></div>
 	</span>
 	<span class="page=nav" id="line-break-icon" onclick="toggleLineBreaks()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
-		<div title="Click for embedded line breaks" class='fas fa-align-center'></div>
+		<div title="Click to use embedded line breaks (if any)" class='fas fa-align-center'></div>
 	</span>
 </div>
 
