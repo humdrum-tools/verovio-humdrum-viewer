@@ -3847,7 +3847,8 @@ function saveEditorContents() {
 
 function saveEditorContentsLocally() {
 	key = "SAVE" + InterfaceSingleNumber;
-	localStorage.setItem(key, EDITOR.getValue());
+	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	localStorage.setItem(key, encodedcontents);
 	InterfaceSingleNumber = 1;
 }
 
@@ -3860,11 +3861,13 @@ function saveEditorContentsLocally() {
 
 function restoreEditorContentsLocally() {
 	// save current contents to 0th buffer
-	localStorage.setItem("SAVE0", EDITOR.getValue());
+	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	localStorage.setItem("SAVE0", encodedcontents);
 	// reset interval timer of buffer 0 autosave here...
 
 	key = "SAVE" + InterfaceSingleNumber;
-	EDITOR.setValue(localStorage.getItem(key), -1);
+	var decodedcontents = decodeURIComponent(localStorage.getItem(key));
+	EDITOR.setValue(decodedcontents, -1);
 	InterfaceSingleNumber = 1;
 }
 
