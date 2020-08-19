@@ -42,14 +42,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	var ctime = (new Date).getTime();
 	var otime = localStorage.getItem("AUTOSAVE_DATE");
 	var dur = ctime - otime;
-	var autosave = localStorage.getItem("AUTOSAVE");
+	var encodedcontents = localStorage.getItem("AUTOSAVE");
+	var autosave = decodeURIComponent(encodedcontents);
 	if (!autosave) {
 		autosave = "";
 	}
 	if ((!autosave.match(/^\s*$/)) && (dur < 60000)) {
 		var input = document.querySelector("#input");
 		if (input) {
-			input.innerHTML = autosave;
+			input.textContent = autosave;
 		}
 	}
 
@@ -778,7 +779,8 @@ function processInterfaceKeyCommand(event) {
 //
 
 window.addEventListener("beforeunload", function (event) {
-	localStorage.setItem("AUTOSAVE", EDITOR.getValue());
+	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	localStorage.setItem("AUTOSAVE", encodedcontents);
 	localStorage.setItem("AUTOSAVE_DATE", (new Date).getTime());
 });
 
