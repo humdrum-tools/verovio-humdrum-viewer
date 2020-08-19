@@ -1676,8 +1676,8 @@ MenuInterface.prototype.decreaseTextFontSize = function () {
 //
 
 MenuInterface.prototype.lineBreaksOff = function () {
-	BREAKS = false;
-	displayNotation();
+	BREAKS = true;
+	toggleLineBreaks();
 }
 
 
@@ -1688,8 +1688,8 @@ MenuInterface.prototype.lineBreaksOff = function () {
 //
 
 MenuInterface.prototype.lineBreaksOn = function () {
-	BREAKS = true;
-	displayNotation();
+	BREAKS = false;
+	toggleLineBreaks();
 }
 
 

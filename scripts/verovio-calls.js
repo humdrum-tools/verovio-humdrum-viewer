@@ -127,7 +127,7 @@ function verovioCalls() {
 	this.redoLayout = function (opts, redo, measure) {
 			if (redo) {
 				this.vrvToolkit.setOptions(opts);
-				this.vrvToolkit.redoLayout();
+				this.vrvToolkit.renderToSvg(this.page, opts);
 				this.pageCount = this.vrvToolkit.getPageCount();
 			};
 			this.page = 1;

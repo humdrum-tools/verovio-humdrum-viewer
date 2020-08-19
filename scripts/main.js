@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Thu Aug 25 13:16:42 CEST 2016
+// Last Modified:  Tue Aug 18 09:49:23 PDT 2020
 // Filename:       main.js
 // Web Address:    https://verovio.humdrum.org/scripts/main.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -242,6 +242,7 @@ var Splitter = new SPLITTER();
 
 function displayNotation(page, force, restoreid) {
 	if (!vrvWorker.initialized || (FreezeRendering && !force)) {
+		console.log("Ignoring displayNotation request: not initialized or frozen");
 		return;
 	};
 
@@ -249,7 +250,7 @@ function displayNotation(page, force, restoreid) {
 	// var inputarea = document.querySelector("#input");
 	// var data = inputarea.value;
 
-	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
 		return;
 	};
@@ -589,7 +590,8 @@ function toggleInputArea(suppressZoom) {
 		Splitter.setPositionX(0);
 	}
 	if (!suppressZoom) {
-		applyZoom();
+		displayNotation();
+		// applyZoom();
 	}
 	EDITOR.resize();
 }
@@ -1310,7 +1312,6 @@ console.log("=== LOADING KERN SCORE", obj);
 			console.log("Error retrieving", key);
 		});
 	} else if (!info) {
-console.log("NO INFO");
 		// console.log("Going to download", key);
 		basketSession.require(
 			{	url: url,
@@ -1883,32 +1884,28 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 //
 
 function applyZoom() {
-	var measure = 0;
+	// var measure = 0;
 
 	var testing = document.querySelector("#output svg");
 	if (!testing) {
+		console.log("NO OUTPUT SVG LOCATION");
 		return;
 	}
 
-	if (vrvWorker.page !== 1) {
-		measure = $("#output .measure").attr("id");
-	}
+	// if (vrvWorker.page !== 1) {
+	// 	measure = $("#output .measure").attr("id");
+	// }
 
-	var options = humdrumToSvgOptions(),
-	redo = (vrvWorker.HEIGHT != options.pageHeight) || (vrvWorker.WIDTH != options.pageWidth);
-
-	if (redo) {
-		stop();
-		vrvWorker.HEIGHT = options.pageHeight;
-		vrvWorker.WIDTH = options.pageWidth;
-	};
-
+	var options = humdrumToSvgOptions();
 	OPTIONS = options;
+	stop();
+	vrvWorker.HEIGHT = options.pageHeight;
+	vrvWorker.WIDTH = options.pageWidth;
 
-	vrvWorker.redoLayout(options, redo, measure)
-	.then(function() {
-		loadPage(vrvWorker.page);
-	});
+	vrvWorker.redoLayout(options, 1, vrvWorker.page)
+		.then(function() {
+			loadPage(vrvWorker.page);
+		});
 }
 
 
@@ -1926,7 +1923,7 @@ function loadPage(page) {
 	.then(function(svg) {
 		$("#output").html(svg);
 		// adjustPageHeight();
-		resizeImage();
+		// resizeImage();
 	});
 }
 
@@ -2054,8 +2051,7 @@ function showBufferedHumdrumData() {
 
 function displayHumdrum() {
 	var options = humdrumToSvgOptions();
-	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrvWorker.filterData(options, data, "humdrum")
+	vrvWorker.filterData(options, getTextFromEditor(), "humdrum")
 	.then(showHumdrum);
 }
 
@@ -2085,11 +2081,23 @@ function showHumdrum(humdrumdata) {
 function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
-	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrvWorker.filterData(options, data, "mei")
+	vrvWorker.filterData(options, getTextFromEditor(), "mei")
 	.then(showMei);
 }
 
+
+
+//////////////////////////////
+//
+// getTextFromEditor -- return the content of the text editor,
+//    removing any leading space (which will cause confusion in
+//    the verovio auto-format detection algorithm).  Trailing
+//    space is not removed.
+//
+
+function getTextFromEditor() {
+	return EDITOR.getValue().replace(/^\s+/, "");
+}
 
 
 //////////////////////////////
@@ -2493,7 +2501,8 @@ function initializeVerovioToolkit() {
 		console.log("Warning: Editor not setup yet");
 	}
 
-	$(window).resize(function() { applyZoom(); });
+	// $(window).resize(function() { applyZoom(); });
+	$(window).resize(function() { displayNotation(); });
 
 	$("#input").mouseup(function () {
 		var $this = $(this);
@@ -3434,7 +3443,7 @@ function toggleHumdrumCsvTsv() {
 		// not editing Humdrum data
 		return;
 	}
-	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var data = getTextFromEditor()
 	var lines = data.split("\n");
 	for (var i=0; i<lines.length; i++) {
 		if (lines[i].match(/^\*\*/)) {
@@ -3611,8 +3620,7 @@ function convertTokenToCsv(token) {
 
 function showCompiledFilterData() {
 	var options = humdrumToSvgOptions();
-	var data = EDITOR.getValue().replace(/^\s+/, "");
-	vrvWorker.filterData(options, data, "humdrum")
+	vrvWorker.filterData(options, getTextFromEditor(), "humdrum")
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		EDITOR.setValue(newdata, -1);
@@ -3717,7 +3725,7 @@ function saveSvgData() {
 
 	var options = OPTIONS;
 	options.adjustPageWidth = 1;
-	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
 		return;
 	};
@@ -4240,7 +4248,7 @@ function goToPreviousNoteOrRest(currentid) {
 			.then(function(svg) {
 				$("#output").html(svg);
 				// adjustPageHeight();
-				resizeImage();
+				// resizeImage();
 			})
 			.then(function() {
 				alist = getOnClassElements(offclass);
@@ -4313,7 +4321,7 @@ function goToNextNoteOrRest(currentid) {
 			.then(function(svg) {
 				$("#output").html(svg);
 				// adjustPageHeight();
-				resizeImage();
+				// resizeImage();
 			})
 			.then(function() {
 				alist = getOnClassElements(onclass);
@@ -4889,6 +4897,32 @@ function previousPageClick(event) {
 		MENU.goToPreviousPage(event)
 	}
 }
+
+
+
+///////////////////////////////
+//
+// toggleLineBreaks --
+//
+
+function toggleLineBreaks() {
+	BREAKS = !BREAKS;
+	var element = document.querySelector("#line-break-icon");
+	if (!element) {
+		console.log("Warning: cannot find line-break icon");
+		return;
+	}
+	var output = "";
+	if (BREAKS) {
+		output += '<span title="Click for automatic line breaks" class="fas fa-align-justify"></span>';
+	} else {
+		output += '<span title="Click for embedded line breaks" class="fas fa-align-center"></span>';
+	}
+	element.innerHTML = output;
+
+	displayNotation();
+}
+
 
 
 

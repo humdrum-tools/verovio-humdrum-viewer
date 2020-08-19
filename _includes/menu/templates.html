@@ -25,8 +25,23 @@ single-entry example:
 -->
 
 		</ul>
-
 <div class="page-nav" style="white-space:nowrap;" id="pdf-urls"></div>
+
+<!-- ==== toolbar ============================================================ -->
+<style>
+
+.page-nav:hover, .page-nav div:hover {
+	opacity: 0.95 !important;
+}
+
+</style>
+<div class="page-nav" style="white-space:nowrap;" id="toolbar">
+	<div class="page=nav" id="line-break-icon" onclick="toggleLineBreaks()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
+		<div title="Click for embedded line breaks" class='fas fa-align-center'></div>
+	</div>
+</div>
+
+<!-- ==== page navigation ==================================================== -->
 <div class="page-nav" id="multi-page" style="margin-right:38px;">
 		<table><tr>
 		<td onclick="MENU.multiPageView()"> <div title="Click for multi-page mode" style="opacity:0.6; font-size:150%" class="fas fa-map"></div></td>
