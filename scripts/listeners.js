@@ -653,7 +653,7 @@ function processInterfaceKeyCommand(event) {
 		case YKey:          // show/hide text editor
 			if (event.altKey) {
 				if (!ShowingIndex) {
-					toggleInputArea();
+					toggleTextVisibility();
 				}
 				event.preventDefault();
 			}

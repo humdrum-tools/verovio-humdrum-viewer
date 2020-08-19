@@ -574,10 +574,10 @@ function toggleFreeze() {
 
 //////////////////////////////
 //
-// toggleInputArea --
+// toggleTextVisibility --
 //
 
-function toggleInputArea(suppressZoom) {
+function toggleTextVisibility(suppressZoom) {
 	InputVisible = !InputVisible;
 	var input = document.querySelector("#input");
 	if (InputVisible) {
@@ -594,6 +594,16 @@ function toggleInputArea(suppressZoom) {
 		// applyZoom();
 	}
 	EDITOR.resize();
+	var velement = document.querySelector("#text-visibility-icon");
+	var output;
+	if (velement) {
+		if (InputVisible) {
+			output = "<div title='Hide text editor (alt-y)' class='fas fa-eye'></div>";
+		} else {
+			output = "<div title='Show text editor (alt-y)' class='fas fa-eye-slash'></div>";
+		}
+		velement.innerHTML = output;
+	}
 }
 
 

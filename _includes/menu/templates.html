@@ -35,8 +35,10 @@ single-entry example:
 }
 
 </style>
-<div class="page-nav" style="white-space:nowrap;" id="toolbar">
-	<span class="page-nav" style="white-space:nowrap;" id="pdf-urls">
+<div class="page-nav" style="white-space:nowrap; user-select:none;" id="toolbar">
+	<span class="page-nav" style="white-space:nowrap;" id="pdf-urls"></span>
+	<span class="page=nav" id="text-visibility-icon" onclick="toggleTextVisibility()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
+		<div title="Hide text editor (alt-y)" class='fas fa-eye'></div>
 	</span>
 	<span class="page=nav" id="decrease-tab-icon" onclick="decreaseTab()" style="white-space:nowrap; opacity:0.6; cursor:pointer;">
 		<div title="Decrease tab size (alt-<)" class='fas fa-outdent'></div>
