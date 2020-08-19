@@ -2422,7 +2422,7 @@ function buildPdfIconListInMenu() {
 function makePdfIcon(url, title) {
 	title = title.replace(/"/g, "'");
 	var output = "<div title=\"" + title + "\" ";
-	output += "style='cursor:pointer; margin-right:10px; opacity:0.6; font-size:100%' ";
+	output += "style='cursor:pointer; margin-left:5px; margin-right:0px !important; opacity:0.6; font-size:100%' ";
 	output += "onclick='openPdfAtBottomThirdOfScreen(\"" + url + "\")' ";
 	output += "class='fas fa-file-pdf-o'></div>";
 	return output;
