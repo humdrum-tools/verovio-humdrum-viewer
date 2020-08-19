@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	if (CGI.k) {
 		if (CGI.k.match(/y/)) {
-			toggleInputArea(true);
+			toggleTextVisibility(true);
 		}
 		if (CGI.k.match(/b/)) {
 			toggleVhvTitle();
