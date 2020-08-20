@@ -979,13 +979,14 @@ function GetCgiParameters() {
 //
 
 function loadHmdIndexFile(location) {
-	console.log("LOADING HMD INDEX FILE : ", location);
+	console.log("LOADING HMD INDEX FILE : ", location, "====================================");
 
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			var INDEX = request.responseText;
+console.log("INFO>DATA: ================", info.data);
 			HMDINDEX = new HMDIndex(info.data);
 console.log("CREATED HMD INDEX = ", HMDINDEX);
 			// console.log("INDEX= ", INDEX);
@@ -1123,13 +1124,21 @@ function displayIndexFinally(index, location) {
 	indexelem.style.display = "block";
 }
 
+
+
 //////////////////////////////
 //
 // displayHmdIndexFinally --
 //
 
-function displayHmdIndexFinally(hmdindex, location) {
-console.log("DISPLAYING HMD INDEX FINALLY", hmdindex, location);
+function displayHmdIndexFinally(hmdindex, source) {
+	if (!hmdindex.parameters.hmdindexurl) {
+		hmdindex.parameters.hmdindexurl = source;
+	}
+	if (hmdindex.parameters.hmdindexurl && !hmdindex.parameters.baseurl) {
+		var baseurl = hmdindex.parameters.hmdindexurl.replace(/\/index.hmd$/, "");
+		hmdindex.parameters.baseurl = baseurl;
+	}
 	ShowingIndex = true;
 
 	IndexSupressOfInput = true;
@@ -1333,9 +1342,11 @@ console.log("=== LOADING KERN SCORE", obj);
 			info = basketSession.get(key);
 			if (info) {
 				if (info.url.match(/\/index.hmd$/)) {
+console.log("999999999999999 FILE = ", file);
 					HMDINDEX = new HMDIndex(info.data);
+					HMDINDEX.parameters.githubbase = file;
 console.log("GOT HERE XXX HMDINDEX=", HMDINDEX);
-					displayHmdIndexFinally(HMDINDEX);
+					displayHmdIndexFinally(HMDINDEX, url);
 				} else {
 					try {
 						jinfo = JSON.parse(info.data);

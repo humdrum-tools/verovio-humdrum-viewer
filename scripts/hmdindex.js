@@ -293,8 +293,19 @@ HMDIndex.prototype.addEntry = function(object) {
 // HMDIndex.prototype.generateHTML --
 //
 
+HMDIndex.prototype.generatHtml = HMDIndex.prototype.generateHTML;
+
 HMDIndex.prototype.generateHTML = function() {
+console.log("OBJECT HMD", this);
+
+	var urlbase = "";
+	if (this.parameters) {
+		urlbase = this.parameters.github;
+	}
+
 	var output = "";
+	output += "<table class='index-list'>\n";
+
 	for (var i=0; i<this.items.length; i++) {
 		var skey = this.items[i].sortkey;
 		if (this.groupedItems[skey] === true) {
@@ -307,6 +318,10 @@ HMDIndex.prototype.generateHTML = function() {
 		}
 		// print DUMMY item
 	}
+
+	output += "</table>\n";
+
+console.log("GENERATEHTML OUTPUT", output);
 	return output;
 }
 
@@ -319,12 +334,39 @@ HMDIndex.prototype.generateHTML = function() {
 
 HMDIndex.prototype.generateFileHTML = function(entry) {
 	var output = "";
-	output += "<div class='entry'>\n";
-	output += entry.description;
-console.log("ENTRY", entry);
-	output += "</div>\n";
+	output += "<tr>";
+	output += "<td>";
+
+	var description = entry.description;
+	var matches = description.match(/(.*)<link>(.*?)<\/link>(.*)/);
+	var prefix = "";
+	var postfix = "";
+	if (matches) {
+		prefix = matches[1];
+		postfix = matches[3];
+		description = matches[2];
+	}
+	if (description.match(/^\s*$/)) {
+		description = entry.file.basename;
+	}
+	
+	output += prefix;
+	output += "<span class='ilink'";
+	output += " onclick='displayWork(\"";
+	output += this.parameters.githubbase;
+	output += '/';
+	output += entry.file.fullname;
+	output += '");';
+	output += "'>";
+	output += description;
+	output += "</span>";
+	output += postfix;
+
+	output += "</td>";
+	output += "</tr>\n";
+
 	return output;
-};
+}
 
 
 
