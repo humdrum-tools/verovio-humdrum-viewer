@@ -538,7 +538,7 @@ span.ilink {
 }
 
 
-.page-nav {
+.nav-icon {
 	background: transparent;
 /*	opacity: 0.6; */
 	color: white;
@@ -546,16 +546,16 @@ span.ilink {
 	white-space: nospace;
 }
 
-.page-nav table td {
+.nav-icon table td {
 	cursor: pointer;
 }
 
-.page-nav table td:nth-child(2) {
+.nav-icon table td:nth-child(2) {
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
-.page-nav td: hover {
+.nav-icon td: hover {
 	color: gold;
 }
 

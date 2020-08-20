@@ -598,9 +598,9 @@ function toggleTextVisibility(suppressZoom) {
 	var output;
 	if (velement) {
 		if (InputVisible) {
-			output = "<div title='Hide text editor (alt-y)' class='fas fa-eye'></div>";
+			output = "<div title='Hide text editor (alt-y)' class='nav-icon fas fa-eye'></div>";
 		} else {
-			output = "<div title='Show text editor (alt-y)' class='fas fa-eye-slash'></div>";
+			output = "<div title='Show text editor (alt-y)' class='nav-icon fas fa-eye-slash'></div>";
 		}
 		velement.innerHTML = output;
 	}
@@ -790,7 +790,7 @@ function displayWorkNavigation(selector) {
 		contents += "');\"";
 		contents += " title='previous work/movement (&#8679;+&#8592;)'";
 		contents += ">";
-		contents += "<span class='fas fa-arrow-circle-left'></span>";
+		contents += "<span class='nav-icon fas fa-arrow-circle-left'></span>";
 		contents += "</span>";
 	}
 
@@ -806,7 +806,7 @@ function displayWorkNavigation(selector) {
 		contents += "');\"";
 		contents += " title='repertory index (&#8679;+&#8593;)'";
 		contents += ">";
-		contents += "<span class='fas fa-arrow-circle-up'></span>";
+		contents += "<span class='nav-icon fas fa-arrow-circle-up'></span>";
 		contents += "</span>";
 	}
 
@@ -828,7 +828,7 @@ function displayWorkNavigation(selector) {
 		contents += "');\"";
 		contents += " title='next work/movement (&#8679;+&#8594;)'";
 		contents += ">";
-		contents += "<span class='fas fa-arrow-circle-right'></span>";
+		contents += "<span class='nav-icon fas fa-arrow-circle-right'></span>";
 		contents += "</span>";
 	}
 
@@ -2432,9 +2432,9 @@ function buildPdfIconListInMenu() {
 function makePdfIcon(url, title) {
 	title = title.replace(/"/g, "'");
 	var output = "<div title=\"" + title + "\" ";
-	output += "style='cursor:pointer; margin-left:5px; margin-right:0px !important; opacity:0.6; font-size:100%' ";
+	output += "style='margin-left:10px !important; margin-right:0px !important; font-size:100%' ";
 	output += "onclick='openPdfAtBottomThirdOfScreen(\"" + url + "\")' ";
-	output += "class='fas fa-file-pdf-o'></div>";
+	output += "class='nav-icon fas fa-file-pdf-o'></div>";
 	return output;
 }
 
