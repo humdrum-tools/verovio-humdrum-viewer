@@ -1972,3 +1972,16 @@ MenuInterface.prototype.undo = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::chooseToolbarMenu --
+//
+
+MenuInterface.prototype.chooseToolbarMenu = function () {
+	chooseToolbarMenu();
+}
+
+
+
+
+

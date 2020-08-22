@@ -560,6 +560,7 @@ function processInterfaceKeyCommand(event) {
 				if (event.shiftKey) {
 					toggleNavigationToolbar();
 				} else {
+					chooseToolbarMenu();
 				}
 				event.preventDefault();
 			}

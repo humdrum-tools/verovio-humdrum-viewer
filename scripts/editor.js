@@ -14,7 +14,7 @@
 // certain commands, suh as slurs, which indicates the number
 // of notes to include under the slur.  Or "2" for double-flats/
 // sharps, or for the transposing interval when changing pitch.
-var InterfaceSingleNumber = 1;
+var InterfaceSingleNumber = 0;
 
 //////////////////////////////
 //
@@ -742,6 +742,10 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 	}
 	var i = line - 2; // -1 for 0-index and -1 for line after
 	var counter = 0;
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
 
 	while (i > 0) {
 		var text = EDITOR.session.getLine(i);
@@ -753,7 +757,7 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != InterfaceSingleNumber) {
+		if (counter != target) {
 			i--;
 			continue;
 		}
@@ -780,7 +784,7 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 }
 
 
@@ -799,6 +803,11 @@ function addSlur(id, line, field) {
 	var counter = 0;
 	var size = EDITOR.session.getLength();
 
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+
 	while (i < size) {
 		var text = EDITOR.session.getLine(i);
 		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
@@ -809,7 +818,7 @@ function addSlur(id, line, field) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != InterfaceSingleNumber) {
+		if (counter != target) {
 			i++;
 			continue;
 		}
@@ -838,7 +847,7 @@ function addSlur(id, line, field) {
 	if (!FreezeRendering) {
 		displayNotation(null, null, newid);
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 
 	// for some reason the highlighting is lost on the note,
 	// so add it back:
@@ -1049,6 +1058,10 @@ function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
 	var i = parseInt(line); // -1 for 0-index and +1 for line after
 	var counter = 0;
 	var size = EDITOR.session.getLength();
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
 
 	while (i < size) {
 		var text = EDITOR.session.getLine(i);
@@ -1060,7 +1073,7 @@ function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != InterfaceSingleNumber) {
+		if (counter != target) {
 			i++;
 			continue;
 		}
@@ -1089,7 +1102,7 @@ function leftEndMoveForward(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 }
 
 
@@ -1109,6 +1122,11 @@ function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
 	var counter = 0;
 	var size = EDITOR.session.getLength();
 
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+
 	while (i < size) {
 		var text = EDITOR.session.getLine(i);
 		if (text.match(/^\*/) || text.match(/^=/) || text.match(/^!/) || (text === "")) {
@@ -1119,7 +1137,7 @@ function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != InterfaceSingleNumber) {
+		if (counter != target) {
 			i++;
 			continue;
 		}
@@ -1153,7 +1171,7 @@ function rightEndMoveForward(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 }
 
 
@@ -1171,6 +1189,10 @@ function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
 	}
 	var i = parseInt(line2) - 2; // -1 for 0-index and -1 for line after
 	var counter = 0;
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
 
 	while (i >= 0) {
 		var text = EDITOR.session.getLine(i);
@@ -1182,7 +1204,7 @@ function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
 		if (token2.match(/[A-G]/i)) {
 			counter++;
 		}
-		if (counter != InterfaceSingleNumber) {
+		if (counter != target) {
 			i--;
 			continue;
 		}
@@ -1216,7 +1238,7 @@ function rightEndMoveBack(id, line, field, number, line2, field2, number2) {
 	FreezeRendering = freezeBackup;
 	displayNotation();
 
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 }
 
 
@@ -1523,14 +1545,18 @@ function transposeNote(id, line, field, subfield, amount)  {
 	var token = getEditorContents(line, field);
 
 	amount = parseInt(amount);
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
 
-	if (InterfaceSingleNumber > 1) {
+	if (target > 1) {
 		if (amount > 0) {
-			amount = InterfaceSingleNumber - 1;
+			amount = target - 1;
 		} else {
-			amount = -InterfaceSingleNumber + 1;
+			amount = -target + 1;
 		}
-		InterfaceSingleNumber = 1;
+		InterfaceSingleNumber = 0;
 	}
 
 	if (subfield) {
@@ -1666,7 +1692,7 @@ function toggleSharp(id, line, field, subfield) {
 			// remove double-sharp
 			newtoken = token.replace(/#+i?/, "");
 		}
-		InterfaceSingleNumber = 1;
+		InterfaceSingleNumber = 0;
 	} else {
 		if (token.match("##") || !token.match("#")) {
 			// add sharp
@@ -1727,7 +1753,7 @@ function toggleFlat(id, line, field, subfield) {
 			// remove flat
 			newtoken = token.replace(/-+i?/, "");
 		}
-		InterfaceSingleNumber = 1;
+		InterfaceSingleNumber = 0;
 	} else {
 		if (token.match("--") || !token.match("-")) {
 			// add flat
@@ -1874,7 +1900,11 @@ function toggleStaccato(id, line, field) {
 	var i = line;
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	while ((line < maxline) && (counter < InterfaceSingleNumber)) {
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	while ((line < maxline) && (counter < target)) {
 		var token = getEditorContents(line, field);
 		if (token.match(/^\*/) || token.match(/^=/) || token.match(/^!/) || (token === "")) {
 			line++;
@@ -1908,7 +1938,7 @@ function toggleStaccato(id, line, field) {
 			line++;
 		}
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 	FreezeRendering = freezeBackup;
 	displayNotation();
 }
@@ -1926,7 +1956,11 @@ function toggleAccent(id, line, field) {
 	var i = line;
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	while ((line < maxline) && (counter < InterfaceSingleNumber)) {
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	while ((line < maxline) && (counter < target)) {
 		var token = getEditorContents(line, field);
 		if (token.match(/^\*/) || token.match(/^=/) || token.match(/^!/) || (token === "")) {
 			line++;
@@ -1962,7 +1996,7 @@ function toggleAccent(id, line, field) {
 		}
 
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 	FreezeRendering = freezeBackup;
 	displayNotation();
 }
@@ -1980,7 +2014,11 @@ function toggleMarcato(id, line, field) {
 	var i = line;
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	while ((line < maxline) && (counter < InterfaceSingleNumber)) {
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	while ((line < maxline) && (counter < target)) {
 		var token = getEditorContents(line, field);
 		if (token.match(/^\*/) || token.match(/^=/) || token.match(/^!/) || (token === "")) {
 			line++;
@@ -2016,7 +2054,7 @@ function toggleMarcato(id, line, field) {
 		}
 
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 	FreezeRendering = freezeBackup;
 	displayNotation();
 }
@@ -2034,7 +2072,11 @@ function toggleTenuto(id, line, field) {
 	var i = line;
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	while ((line < maxline) && (counter < InterfaceSingleNumber)) {
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	while ((line < maxline) && (counter < target)) {
 		var token = getEditorContents(line, field);
 		if (token.match(/^\*/) || token.match(/^=/) || token.match(/^!/) || (token === "")) {
 			line++;
@@ -2070,7 +2112,7 @@ function toggleTenuto(id, line, field) {
 		}
 
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 	FreezeRendering = freezeBackup;
 	displayNotation();
 }
@@ -2088,7 +2130,11 @@ function toggleStaccatissimo(id, line, field) {
 	var i = line;
 	var freezeBackup = FreezeRendering;
 	FreezeRendering = true;
-	while ((line < maxline) && (counter < InterfaceSingleNumber)) {
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	while ((line < maxline) && (counter < target)) {
 		var token = getEditorContents(line, field);
 		if (token.match(/^\*/) || token.match(/^=/) || token.match(/^!/) || (token === "")) {
 			line++;
@@ -2124,7 +2170,7 @@ function toggleStaccatissimo(id, line, field) {
 		}
 
 	}
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 	FreezeRendering = freezeBackup;
 	displayNotation();
 }
