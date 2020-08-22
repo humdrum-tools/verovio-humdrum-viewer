@@ -1595,6 +1595,7 @@ MenuInterface.prototype.adjustNotationScale = function (number) {
 	} else if (SCALE > 200) {
 		SCALE = 200;
 	}
+	localStorage.SCALE = SCALE;
 
 	displayNotation();
 }
@@ -1658,6 +1659,7 @@ MenuInterface.prototype.increaseTextFontSize = function () {
 		return;
 	}
 	element.style.fontSize = INPUT_FONT_SIZE + "rem";
+	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
 }
 
 
@@ -1677,6 +1679,7 @@ MenuInterface.prototype.decreaseTextFontSize = function () {
 		return;
 	}
 	element.style.fontSize = INPUT_FONT_SIZE + "rem";
+	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
 }
 
 

@@ -21,6 +21,12 @@ var PDFLISTINTERVAL = null;
 //
 
 document.addEventListener("DOMContentLoaded", function() {
+	loadEditorFontSizes();
+	var inputElement = document.querySelector("#input");
+	if (inputElement) {
+			inputElement.style.fontSize = INPUT_FONT_SIZE + "rem";
+	}
+
 	// EditorMode = "humdrum";
 	EditorMode = "humdrum";
 	setEditorModeAndKeyboard();
