@@ -4191,6 +4191,7 @@ function clearContent() {
 	var data = EDITOR.getValue();
 	if (data.match(/^\s*$/)) {
 		EDITOR.setValue(ERASED_DATA, -1);
+		displayFileTitle(ERASED_DATA);
 	} else {
 		ERASED_DATA = data;
 		EDITOR.setValue("", -1);
@@ -4198,6 +4199,7 @@ function clearContent() {
 		if (output) {
 			output.innerHTML = "";
 		}
+		displayFileTitle("");
 	}
 }
 
