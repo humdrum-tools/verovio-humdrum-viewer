@@ -5008,3 +5008,22 @@ function loadEditorFontSizes() {
 
 
 
+//////////////////////////////
+//
+// gotoToolbarMenu -- show a particular toolbar menu:
+//
+
+function gotoToolbarMenu(number) {
+	var id = "toolbar-" + number;
+	var elements = document.querySelectorAll("[id^=toolbar-]");
+	for (var i=0; i<elements.length; i++) {
+		if (elements[i].id === id) {
+			elements[i].style.display = "block";
+		} else {
+			elements[i].style.display = "none";
+		}
+	}
+}
+
+
+

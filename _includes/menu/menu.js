@@ -1960,3 +1960,15 @@ MenuInterface.prototype.removeSplits = function () {
 
 
 
+
+//////////////////////////////
+//
+// MenuInterface::undo --
+//
+
+MenuInterface.prototype.undo = function () {
+	EDITOR.undo();
+}
+
+
+

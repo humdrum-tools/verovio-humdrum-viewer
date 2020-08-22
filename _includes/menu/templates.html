@@ -44,6 +44,31 @@ single-entry example:
 	cursor: pointer;
 }
 
+[id^=save-],
+[id^=load-]
+{
+	font-size: 75%;
+}
+
+
+[id^=save-].filled .fa-stack-2x
+{
+	color: red;
+}
+
+[id^=load-].filled .fa-stack-2x
+{
+	color: limegreen;
+}
+
+
+[id^=save-] .fa-stack-1x,
+[id^=load-] .fa-stack-1x
+{
+	color: #01313f;
+
+}
+
 .nav-icon:hover
 {
 	opacity: 0.95 !important;
@@ -51,34 +76,78 @@ single-entry example:
 
 </style>
 <div class="nav-icon-group" id="toolbar">
-	<span class="nav-icon-group" style="margin-right: 5px;" id="pdf-urls"></span>
-	<span id="text-visibility-icon" onclick="toggleTextVisibility()">
-		<div title="Hide text editor (alt-y)" class='nav-icon fas fa-eye'></div>
-	</span>
-	<span id="text-erase-icon" onclick="MENU.clearEditorContents()">
-		<div title="Clear editor contents (alt-e)" class='nav-icon fas fa-eraser'></div>
-	</span>
-	<span id="text-smaller-icon" onclick="MENU.decreaseTextFontSize()">
-		<div title="Make text smaller" class='nav-icon fas fa-minus-circle'></div>
-	</span>
-	<span id="text-larger-icon" onclick="MENU.increaseTextFontSize()">
-		<div title="Make text larger" class='nav-icon fas fa-plus-circle'></div>
-	</span>
-	<span id="decrease-tab-icon" onclick="decreaseTab()">
-		<div title="Decrease tab size (alt-<)" class='nav-icon fas fa-outdent'></div>
-	</span>
-	<span id="increase-tab-icon" onclick="increaseTab()">
-		<div title="Increase tab size (alt->)" class='nav-icon fas fa-indent'></div>
-	</span>
-	<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(-3)">
-		<div title="Make notation smaller" class='nav-icon fas fa-minus-square'></div>
-	</span>
-	<span id="notation-larger-icon" onclick="MENU.adjustNotationScale(3)">
-		<div title="Make notation larger" class='nav-icon fas fa-plus-square'></div>
-	</span>
-	<span id="line-break-icon" onclick="toggleLineBreaks()">
-		<div title="Click to use embedded line breaks (if any)" class='nav-icon fas fa-align-center'></div>
-	</span>
+	<!-- General view/edit toolbar ============================================ -->
+	<div class="nav-icon-group" id="toolbar-1">
+		<span class="nav-icon-group" style="margin-right: 5px;" id="pdf-urls"></span>
+		<span id="text-visibility-icon" onclick="toggleTextVisibility()">
+			<div title="Hide text editor (alt-y)" class='nav-icon fas fa-eye'></div>
+		</span>
+		<span id="text-erase-icon" onclick="MENU.clearEditorContents()">
+			<div title="Clear editor contents (alt-e)" class='nav-icon fas fa-eraser'></div>
+		</span>
+		<span id="text-undo-icon" onclick="MENU.undo()">
+			<div title="Undo last change (ctrl-z)" class='nav-icon fas fa-undo'></div>
+		</span>
+		<span id="text-smaller-icon" onclick="MENU.decreaseTextFontSize()">
+			<div title="Make text smaller" class='nav-icon fas fa-minus-circle'></div>
+		</span>
+		<span id="text-larger-icon" onclick="MENU.increaseTextFontSize()">
+			<div title="Make text larger" class='nav-icon fas fa-plus-circle'></div>
+		</span>
+		<span id="decrease-tab-icon" onclick="decreaseTab()">
+			<div title="Decrease tab size (alt-<)" class='nav-icon fas fa-outdent'></div>
+		</span>
+		<span id="increase-tab-icon" onclick="increaseTab()">
+			<div title="Increase tab size (alt->)" class='nav-icon fas fa-indent'></div>
+		</span>
+		<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(-3)">
+			<div title="Make notation smaller" class='nav-icon fas fa-minus-square'></div>
+		</span>
+		<span id="notation-larger-icon" onclick="MENU.adjustNotationScale(3)">
+			<div title="Make notation larger" class='nav-icon fas fa-plus-square'></div>
+		</span>
+		<span id="line-break-icon" onclick="toggleLineBreaks()">
+			<div title="Click to use embedded line breaks (if any)" class='nav-icon fas fa-align-center'></div>
+		</span>
+		<span id="line-break-icon" onclick="gotoToolbarMenu(2)">
+			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		</span>
+	</div>
+
+	<!-- Buffer save toolbar ================================================== -->
+	<div class="nav-icon-group" id="toolbar-2" style="display:none;">
+		<span style="font-style: italic" class="nav-icon">Save</span>
+		<span id="save-1" onclick="MENU.saveToBuffer(1)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">1</strong></span>
+		<span id="save-2" onclick="MENU.saveToBuffer(2)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">2</strong></span>
+		<span id="save-3" onclick="MENU.saveToBuffer(3)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">3</strong></span>
+		<span id="save-4" onclick="MENU.saveToBuffer(4)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">4</strong></span>
+		<span id="save-5" onclick="MENU.saveToBuffer(5)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">5</strong></span>
+		<span id="save-6" onclick="MENU.saveToBuffer(6)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">6</strong></span>
+		<span id="save-7" onclick="MENU.saveToBuffer(7)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">7</strong></span>
+		<span id="save-8" onclick="MENU.saveToBuffer(8)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">8</strong></span>
+		<span id="save-9" onclick="MENU.saveToBuffer(9)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">9</strong></span>
+		<span id="line-break-icon" onclick="gotoToolbarMenu(3)">
+			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		</span>
+	</div>
+
+	<!-- Buffer load toolbar ================================================== -->
+	<div class="nav-icon-group" id="toolbar-3" style="display:none;">
+		<span style="font-style: italic" class="nav-icon">Load</span>
+		<span id="load-1" onclick="MENU.loadFromBuffer(1)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">1</strong></span>
+		<span id="load-2" onclick="MENU.loadFromBuffer(2)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">2</strong></span>
+		<span id="load-3" onclick="MENU.loadFromBuffer(3)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">3</strong></span>
+		<span id="load-4" onclick="MENU.loadFromBuffer(4)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">4</strong></span>
+		<span id="load-5" onclick="MENU.loadFromBuffer(5)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">5</strong></span>
+		<span id="load-6" onclick="MENU.loadFromBuffer(6)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">6</strong></span>
+		<span id="load-7" onclick="MENU.loadFromBuffer(7)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">7</strong></span>
+		<span id="load-8" onclick="MENU.loadFromBuffer(8)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">8</strong></span>
+		<span id="load-9" onclick="MENU.loadFromBuffer(9)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">9</strong></span>
+		<span id="line-break-icon" onclick="gotoToolbarMenu(1)">
+			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		</span>
+	</div>
+
 </div>
 
 <!-- ==== page navigation ==================================================== -->
