@@ -558,9 +558,8 @@ function processInterfaceKeyCommand(event) {
 	 	case NKey:          // toggle display of navigation toolbar
 			if (event.altKey) {
 				if (event.shiftKey) {
-					// do nothing for now
-				} else {
 					toggleNavigationToolbar();
+				} else {
 				}
 				event.preventDefault();
 			}
