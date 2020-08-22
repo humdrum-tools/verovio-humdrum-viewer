@@ -546,7 +546,7 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-n
+@DEFAULT:		alt-N
 @AR:
 @BE:
 @CA:
