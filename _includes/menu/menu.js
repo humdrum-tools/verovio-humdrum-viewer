@@ -604,6 +604,17 @@ MenuInterface.prototype.toggleDataDisplay = function () {
 
 //////////////////////////////
 //
+// MenuInterface::toggleToolbarDisplay --
+//
+
+MenuInterface.prototype.toggleToolbarDisplay = function () {
+	toggleNavigationToolbar();
+}
+
+
+
+//////////////////////////////
+//
 // MenuInterface::toggleLogoDisplay --
 //
 

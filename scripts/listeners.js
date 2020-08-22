@@ -549,6 +549,17 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
+	 	case NKey:          // toggle display of navigation toolbar
+			if (event.altKey) {
+				if (event.shiftKey) {
+					// do nothing for now
+				} else {
+					toggleNavigationToolbar();
+				}
+				event.preventDefault();
+			}
+			break;
+
 		case OKey:          // toggle display of *oclef data
 			if (event.altKey) {
 				OriginalClef = !OriginalClef;
