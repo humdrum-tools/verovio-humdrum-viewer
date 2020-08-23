@@ -60,6 +60,7 @@ function processMenuAton() {
 	if (newmenuelement) {
 		newmenuelement.outerHTML = output;
 		var ne = document.querySelector("#handlebars-nav");
+		prepareBufferStates();
 	}
 }
 

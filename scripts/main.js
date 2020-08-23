@@ -3839,7 +3839,6 @@ function downloadEditorContentsInHtml() {
 //
 
 function saveEditorContents() {
-
 	var filename = SAVEFILENAME;
 	var size = EDITOR.session.getLength();
 	var matches;
@@ -3867,11 +3866,125 @@ function saveEditorContents() {
 //
 
 function saveEditorContentsLocally() {
-	key = "SAVE" + InterfaceSingleNumber;
-	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	key = "SAVE" + target;
+	var value = EDITOR.getValue();
+	var filled = false;
+	var encodedcontents = "";
+	if (value.match(/^\s*$/)) {
+		encodedcontents = "";
+		filled = false;
+	} else {
+		encodedcontents = encodeURIComponent(value);
+		filled = true;
+	}
 	localStorage.setItem(key, encodedcontents);
-	InterfaceSingleNumber = 1;
+	var telement = document.querySelector("#title-info");
+	var title = "";
+	if (telement) {
+		title = telement.textContent.replace(/^\s+/, "").replace(/\s+$/, "");
+	}
+	localStorage.setItem(key + "-TITLE", title);
+
+	var selement = document.querySelector("#save-" + target);
+	if (selement) {
+		selement.title = title;
+		if (filled) {
+			selement.classList.add("filled");
+		} else {
+			selement.classList.remove("filled");
+		}
+	}
+
+	var lelement = document.querySelector("#load-" + target);
+	if (lelement) {
+		lelement.title = title;
+		if (filled) {
+			lelement.classList.add("filled");
+		} else {
+			lelement.classList.remove("filled");
+		}
+	}
+
+	InterfaceSingleNumber = 0;
 }
+
+
+//////////////////////////////
+//
+// prepareBufferStates --
+//
+
+function prepareBufferStates() {
+	var saves = document.querySelectorAll("[id^=save-]");
+	var loads = document.querySelectorAll("[id^=load-]");
+	var i;
+	var id;
+	var num = 0;
+	var value;
+	var matches;
+	var skey;
+	var lkey;
+	var tkey;
+
+	for (i=0; i<saves.length; i++) {
+		id = saves[i].id;
+		matches = id.match(/save-(\d+)/);
+		if (matches) {
+			num = parseInt(matches[1]);
+		} else {
+			continue;
+		}
+		if (num < 1) {
+			continue;
+		}
+		skey = "SAVE" + num;
+		if (localStorage.hasOwnProperty(skey)) {
+			value = localStorage[skey];
+			if (value) {
+				saves[i].classList.add("filled");
+				tkey = "SAVE" + num + "-TITLE";
+				if (localStorage.hasOwnProperty(tkey)) {
+					title = localStorage[tkey];
+					if (title) {
+						saves[i].title = title;
+					}
+				}
+			}
+		}
+	}
+
+	for (i=0; i<loads.length; i++) {
+		id = loads[i].id;
+		matches = id.match(/load-(\d+)/);
+		if (matches) {
+			num = parseInt(matches[1]);
+		} else {
+			continue;
+		}
+		if (num < 1) {
+			continue;
+		}
+		skey = "SAVE" + num;
+		if (localStorage.hasOwnProperty(skey)) {
+			value = localStorage[skey];
+			if (value) {
+				loads[i].classList.add("filled");
+				tkey = "SAVE" + num + "-TITLE";
+				if (localStorage.hasOwnProperty(tkey)) {
+					title = localStorage[tkey];
+					if (title) {
+						loads[i].title = title;
+					}
+				}
+			}
+		}
+	}
+}
+
 
 
 
@@ -3886,10 +3999,14 @@ function restoreEditorContentsLocally() {
 	localStorage.setItem("SAVE0", encodedcontents);
 	// reset interval timer of buffer 0 autosave here...
 
-	key = "SAVE" + InterfaceSingleNumber;
+	var target = InterfaceSingleNumber;
+	if (!target) {
+		target = 1;
+	}
+	key = "SAVE" + target;
 	var decodedcontents = decodeURIComponent(localStorage.getItem(key));
 	EDITOR.setValue(decodedcontents, -1);
-	InterfaceSingleNumber = 1;
+	InterfaceSingleNumber = 0;
 }
 
 
