@@ -519,11 +519,11 @@ span.ilink {
 }
 
 .mbutton span.fas:hover {
-	color: gold;
+	color: white;
 }
 
 .fas-play :hover {
-	color: gold !important;
+	color: white !important;
 }
 
 .nav-play-button {
@@ -556,7 +556,7 @@ span.ilink {
 }
 
 .nav-icon td: hover {
-	color: gold;
+	color: white;
 }
 
 #work-navigator {
@@ -565,7 +565,7 @@ span.ilink {
 }
 
 #work-navigator span:hover {
-	color: gold;
+	color: white;
 }
 
 div#index {
