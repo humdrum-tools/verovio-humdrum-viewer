@@ -4004,6 +4004,10 @@ function restoreEditorContentsLocally() {
 		target = 1;
 	}
 	key = "SAVE" + target;
+	var contents = localStorage.getItem(key);
+	if (!contents) {
+		return;
+	}
 	var decodedcontents = decodeURIComponent(localStorage.getItem(key));
 	EDITOR.setValue(decodedcontents, -1);
 	InterfaceSingleNumber = 0;
