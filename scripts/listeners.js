@@ -75,6 +75,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (CGI.k.match(/N/)) {
 			HIDEINITIALTOOLBAR = true;
 		}
+
+		if (CGI.size) {
+			SCALE = getScaleFromPercentSize(CGI.size);
+		} else if (CGI.sz) {
+			SCALE = getScaleFromPercentSize(CGI.sz);
+		}
+
 		var wcount = 0;
 		for (var i=0; i<CGI.k.length; i++) {
 			if (CGI.k.charAt(i) === "w") {
