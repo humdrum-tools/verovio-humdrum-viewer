@@ -5154,7 +5154,12 @@ function gotoToolbarMenu(number) {
 //    (presuming that the toolbars are in numeric order)
 //
 
-function chooseToolbarMenu() {
+function chooseToolbarMenu(menunum) {
+	if (menunum === null) {
+		menunum = InterfaceSingleNumber;
+		InterfaceSingleNumber = 0;
+	}
+
 	var elements = document.querySelectorAll("[id^=toolbar-]");
 	var eactive;
 	var activeindex = -1;
@@ -5169,9 +5174,9 @@ function chooseToolbarMenu() {
 	}
 
 	var nextindex = -1;
-	if (InterfaceSingleNumber > 0) {
+	if (menunum > 0) {
 		// a specific toolbar menu is desired
-		nextindex = InterfaceSingleNumber - 1;
+		nextindex = menunum - 1;
 		if (nextindex >= elements.length) {
 			nextindex = elements.length - 1;
 		}

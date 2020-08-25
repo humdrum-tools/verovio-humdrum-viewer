@@ -15,6 +15,7 @@ permalink: /scripts/listeners.js
 
 var PDFLISTINTERVAL = null;
 var HIDEINITIALTOOLBAR = false;
+var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
 
 //////////////////////////////
 //
@@ -64,6 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	setupAceEditor("input");
 	allowTabs();
 	setupDropArea();
+
+	if (CGI.toolbar) {
+		TOOLBAR = CGI.toolbar;
+	} else if (CGI.tb) {
+		TOOLBAR = CGI.tb;
+	}
 
 	if (CGI.k) {
 		if (CGI.k.match(/y/)) {

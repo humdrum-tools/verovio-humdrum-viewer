@@ -65,6 +65,14 @@ function processMenuAton() {
 			toggleNavigationToolbar();
 		}
 	}
+	if (TOOLBAR) {
+		if (TOOLBAR.match(/save/i)) {
+			chooseToolbarMenu(2);
+		} else if (TOOLBAR.match(/load/i)) {
+			chooseToolbarMenu(4);
+		}
+		// toolbar menu 1 is otherwise the default
+	}
 }
 
 
