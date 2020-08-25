@@ -61,6 +61,9 @@ function processMenuAton() {
 		newmenuelement.outerHTML = output;
 		var ne = document.querySelector("#handlebars-nav");
 		prepareBufferStates();
+		if (HIDEINITIALTOOLBAR) {
+			toggleNavigationToolbar();
+		}
 	}
 }
 

@@ -14,6 +14,7 @@ permalink: /scripts/listeners.js
 //
 
 var PDFLISTINTERVAL = null;
+var HIDEINITIALTOOLBAR = false;
 
 //////////////////////////////
 //
@@ -70,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if (CGI.k.match(/b/)) {
 			toggleVhvTitle();
+		}
+		if (CGI.k.match(/N/)) {
+			HIDEINITIALTOOLBAR = true;
 		}
 		var wcount = 0;
 		for (var i=0; i<CGI.k.length; i++) {
