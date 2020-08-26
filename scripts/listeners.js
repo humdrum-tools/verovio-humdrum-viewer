@@ -16,6 +16,7 @@ permalink: /scripts/listeners.js
 var PDFLISTINTERVAL = null;
 var HIDEINITIALTOOLBAR = false;
 var HIDEMENUANDTOOLBAR = false;
+var HIDEMENU = false;
 var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
 
 //////////////////////////////
@@ -85,6 +86,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if (CGI.k.match(/E/)) {
 			HIDEMENUANDTOOLBAR = true;
+		}
+		if (CGI.k.match(/d/)) {
+			HIDEMENU = true;
 		}
 
 		if (CGI.size) {
@@ -505,6 +509,9 @@ function processInterfaceKeyCommand(event) {
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addDataLineAboveCurrentPosition();
+					event.preventDefault();
+				} else {
+					toggleMenuDisplay();
 					event.preventDefault();
 				}
 			}
