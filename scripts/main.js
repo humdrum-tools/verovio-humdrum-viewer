@@ -630,6 +630,19 @@ function matchToolbarVisibilityIconToState() {
 		}
 		velement.innerHTML = output;
 	}
+
+	var texticons = document.querySelectorAll(".text-only");
+	var i;
+	if (InputVisible) {
+		for (i=0; i<texticons.length; i++) {
+			texticons[i].style.display = "inline-block";
+		}
+	} else {
+		for (i=0; i<texticons.length; i++) {
+			texticons[i].style.display = "none";
+		}
+	}
+
 }
 
 
