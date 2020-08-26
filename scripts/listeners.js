@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		TOOLBAR = CGI.tb;
 	}
 
+	if (CGI.size) {
+		SCALE = getScaleFromPercentSize(CGI.size);
+	} else if (CGI.sz) {
+		SCALE = getScaleFromPercentSize(CGI.sz);
+	}
+
 	if (CGI.k) {
 		if (CGI.k.match(/y/)) {
 			toggleTextVisibility(true);
@@ -89,12 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if (CGI.k.match(/d/)) {
 			HIDEMENU = true;
-		}
-
-		if (CGI.size) {
-			SCALE = getScaleFromPercentSize(CGI.size);
-		} else if (CGI.sz) {
-			SCALE = getScaleFromPercentSize(CGI.sz);
 		}
 
 		var wcount = 0;
