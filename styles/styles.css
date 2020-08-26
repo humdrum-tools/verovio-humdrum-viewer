@@ -597,4 +597,30 @@ div#index {
 }
 
 
+#navbarNavDropdown {
+	white-space: nowrap;
+}
+
+button.navbar-toggler {
+	font-size: 13px;
+	margin-top: -16px;
+}
+
+span.navbar-toggler-icon.collapsed {
+	font-size: 15px;
+}
+
+
+.nav-link {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+span.dropdown-toggle {
+	margin-left: 15px;
+}
+
+
+
+
 
