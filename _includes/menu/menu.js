@@ -70,6 +70,10 @@ function processMenuAton() {
 		if (HIDEMENU) {
 			toggleMenuDisplay();
 		}
+		if (!InputVisible) {
+			// Or do it all of the time.
+			matchToolbarVisibilityIconToState();
+		}
 	}
 	if (TOOLBAR) {
 		if (TOOLBAR.match(/save/i)) {

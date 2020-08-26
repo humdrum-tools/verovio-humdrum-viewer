@@ -608,13 +608,25 @@ function toggleTextVisibility(suppressZoom) {
 		// applyZoom();
 	}
 	EDITOR.resize();
+	matchToolbarVisibilityIconToState();
+}
+
+
+
+//////////////////////////////
+//
+// matchToolbarVisibilityIconToState -- Needed as a separate function
+//     since the menu is created after the k=y URL parameter is set.
+//
+
+function matchToolbarVisibilityIconToState() {
 	var velement = document.querySelector("#text-visibility-icon");
 	var output;
 	if (velement) {
 		if (InputVisible) {
-			output = "<div title='Hide text editor (alt-y)' class='nav-icon fas fa-eye'></div>";
+			output = "<div title='Click to hide text editor (alt-y)' class='nav-icon fas fa-eye'></div>";
 		} else {
-			output = "<div title='Show text editor (alt-y)' class='nav-icon fas fa-eye-slash'></div>";
+			output = "<div title='Click to show text editor (alt-y)' class='nav-icon fas fa-eye-slash'></div>";
 		}
 		velement.innerHTML = output;
 	}
@@ -5324,10 +5336,8 @@ function loadBuffer(number, event) {
 //
 
 function toggleMenuAndToolbarDisplay() {
-console.log("TOGGLING MENU AND TOOLBAR DISPLAY");
 	var melement = document.querySelector("#menubar");
 	if (!melement) {
-console.log("COULD NOT FIND MENUBAR");
 		return;
 	}
 	var ielement = document.querySelector("#input");
@@ -5366,4 +5376,6 @@ function toggleMenuDisplay() {
 		element.style["font-size"] = "17px";
 	}
 }
+
+
 
