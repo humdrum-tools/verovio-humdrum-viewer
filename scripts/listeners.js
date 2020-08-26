@@ -15,6 +15,7 @@ permalink: /scripts/listeners.js
 
 var PDFLISTINTERVAL = null;
 var HIDEINITIALTOOLBAR = false;
+var HIDEMENUANDTOOLBAR = false;
 var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
 
 //////////////////////////////
@@ -81,6 +82,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if (CGI.k.match(/N/)) {
 			HIDEINITIALTOOLBAR = true;
+		}
+		if (CGI.k.match(/E/)) {
+			HIDEMENUANDTOOLBAR = true;
 		}
 
 		if (CGI.size) {
@@ -480,6 +484,8 @@ function processInterfaceKeyCommand(event) {
 	}
 
 	switch (event.keyCode) {
+		case AKey:          // UNUSED
+			break;
 
 		case BKey:          // toggle display of banner
 			if (event.altKey) {
@@ -504,10 +510,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case EKey:          // erase text editor contents
+		case EKey:          // erase text editor contents or Tooggle display of menu with shift key.
 			if (event.altKey) {
-				clearContent();
-				event.preventDefault();
+				if (event.shiftKey) {
+					toggleMenuAndToolbarDisplay();
+				} else {
+					clearContent();
+					event.preventDefault();
+				}
 			}
 			break;
 
@@ -546,6 +556,12 @@ function processInterfaceKeyCommand(event) {
 					event.preventDefault();
 				}
 			}
+			break;
+
+		case JKey:          // UNUSED
+			break;
+
+		case KKey:          // UNUSED
 			break;
 
 		case LKey:          // toggle color of staff layers
@@ -683,6 +699,9 @@ function processInterfaceKeyCommand(event) {
 				event.preventDefault();
 				displayNotation();
 			}
+			break;
+
+		case XKey:          // UNUSED
 			break;
 
 		case YKey:          // show/hide text editor

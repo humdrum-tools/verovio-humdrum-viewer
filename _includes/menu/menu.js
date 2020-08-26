@@ -64,6 +64,9 @@ function processMenuAton() {
 		if (HIDEINITIALTOOLBAR) {
 			toggleNavigationToolbar();
 		}
+		if (HIDEMENUANDTOOLBAR) {
+			toggleMenuAndToolbarDisplay();
+		}
 	}
 	if (TOOLBAR) {
 		if (TOOLBAR.match(/save/i)) {
