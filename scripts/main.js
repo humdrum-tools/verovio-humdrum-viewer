@@ -568,6 +568,20 @@ function toggleFreeze() {
 	if (!FreezeRendering) {
 		displayNotation();
 	}
+
+	var felement = document.querySelector("#text-freeze-icon");
+	var output = "";
+	if (felement) {
+		if (FreezeRendering) {
+			// display is frozen so show lock icon
+			output = "<div title='Click to unfreeze notation (alt-f)' class='nav-icon fas fa-lock'></div>";
+		} else {
+			// display is not frozen so show unlock icon
+			output = "<div title='Click to freeze notation (alt-f)' class='nav-icon fas fa-unlock'></div>";
+		}
+		felement.innerHTML = output;
+	}
+
 }
 
 
