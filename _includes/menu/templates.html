@@ -153,6 +153,32 @@ single-entry example:
 		<span id="load-7" onclick="loadBuffer(7, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">7</strong></span>
 		<span id="load-8" onclick="loadBuffer(8, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">8</strong></span>
 		<span id="load-9" onclick="loadBuffer(9, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">9</strong></span>
+		<span id="line-break-icon" onclick="gotoToolbarMenu(4)">
+			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		</span>
+	</div>
+
+	<!-- Music search toolbar ================================================= -->
+	<style>
+		input#search-pitch, input#search-interval, input#search-rhythm {
+			width: 80px;
+			font-size: 15px;
+			background: #ddd;
+			border-radius: 3px;
+			border: 0;
+		}
+		input:focus {
+	    outline-width: 0;
+		}
+	</style>
+	<div class="nav-icon-group" id="toolbar-4" style="display:none;">
+		<span style="font-style: italic" class="nav-icon">Search</span>
+		<span id="search-group">
+			<input id="search-pitch"    oninput="doMusicSearch()" type="text" placeholder="pitch">
+			<input id="search-interval" oninput="doMusicSearch()" type="text" placeholder="interval">
+			<input id="search-rhythm"   oninput="doMusicSearch()" type="text" placeholder="rhythm">
+		</span>
+		<div title="Search help" onclick="showSearchHelp()" class='nav-icon fas fa-question-circle'></div>
 		<span id="line-break-icon" onclick="gotoToolbarMenu(1)">
 			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
 		</span>

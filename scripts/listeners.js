@@ -18,6 +18,11 @@ var HIDEINITIALTOOLBAR = false;
 var HIDEMENUANDTOOLBAR = false;
 var HIDEMENU = false;
 var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
+var SEARCHOBSERVER = null;
+var LASTTOOLBAR = 1;
+if (localStorage.LASTTOOLBAR) {
+	LASTTOOLBAR = parseInt(localStorage.LASTTOOLBAR);
+}
 
 //////////////////////////////
 //

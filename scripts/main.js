@@ -28,6 +28,7 @@ var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "encoded"
 var PAGED = false;
+var SEARCHFILTER = "";
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -261,6 +262,9 @@ function displayNotation(page, force, restoreid) {
 	if (data.match(/Group memberships:/)) {
 		options.from = "musedata";
 	};
+	if (SEARCHFILTER) {
+		data += "\n" + SEARCHFILTER;
+	}
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
@@ -5183,6 +5187,8 @@ function gotoToolbarMenu(number) {
 			elements[i].style.display = "none";
 		}
 	}
+	LASTTOOLBAR = number;
+	localStorage.LASTTOOLBAR = LASTTOOLBAR;
 }
 
 
@@ -5228,6 +5234,9 @@ function chooseToolbarMenu(menunum) {
 
 	elements[activeindex].style.display = "none";
 	elements[nextindex].style.display   = "block";
+
+	LASTTOOLBAR = nextindex;
+	localStorage.LASTTOOLBAR = LASTTOOLBAR;
 }
 
 
@@ -5390,5 +5399,62 @@ function toggleMenuDisplay() {
 	}
 }
 
+
+
+//////////////////////////////
+//
+// doMusicSearch --
+//
+
+function doMusicSearch() {
+	var esearch   = document.querySelector("#search-group");
+	if (!esearch) {
+		return;
+	}
+	var epitch    = esearch.querySelector("#search-pitch");
+	var einterval = esearch.querySelector("#search-interval");
+	var erhythm   = esearch.querySelector("#search-rhythm");
+
+	var pitch = epitch.value.replace(/["']/g, "");;
+	var interval = einterval.value.replace(/["']/g, "");;
+	var rhythm = erhythm.value.replace(/["']/g, "");;
+
+	if (pitch.match(/^\s*$/) && interval.match(/^\s*$/) && rhythm.match(/^\s*$/)) {
+		if (SEARCHFILTER) {
+			SEARCHFILTER = "";
+			displayNotation();
+		} else {
+			// no previous search filter, so do not do anything
+		}
+		return;
+	}
+
+	var output = "!!!filter: msearch";
+	if (!pitch.match(/^\s*$/)) {
+		output += " -p '" + pitch + "'";
+	}
+	if (!interval.match(/^\s*$/)) {
+		output += " -i '" + interval + "'";
+	}
+	if (!rhythm.match(/^\s*$/)) {
+		output += " -r '" + rhythm + "'";
+	}
+	
+	// console.log("SEARCH:", output);
+	SEARCHFILTER = output;
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// showSearchHelp --
+//
+
+function showSearchHelp() {
+	var help = window.open("https://doc.verovio.humdrum.org/interface/search", "search");
+	help.focus();
+}
 
 
