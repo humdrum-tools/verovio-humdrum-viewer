@@ -5429,15 +5429,6 @@ function doMusicSearch() {
 		return;
 	}
 
-	if (pitch.match(/^\s*bach\s*$/i)) {
-		// Special search for the pitch sequence BACH.
-		// H means B-natural in German, B means B-flat
-		// The pitch search normally searches diatonically,
-		// so also give the natural qualifications for
-		// A and C (An and Cn for A-natural and C-natural).
-		pitch = "b-ancnbn";
-	}
-
 	SEARCHFILTER = buildSearchQueryFilter({
 		pitch:    pitch,
 		interval: interval,
@@ -5453,6 +5444,15 @@ function buildSearchQueryFilter(parameters) {
 	var pitch    = parameters.pitch    || "";
 	var interval = parameters.interval || "";
 	var rhythm   = parameters.rhythm   || "";
+
+	if (pitch.match(/^\s*bach\s*$/i)) {
+		// Special search for the pitch sequence BACH.
+		// H means B-natural in German, B means B-flat
+		// The pitch search normally searches diatonically,
+		// so also give the natural qualifications for
+		// A and C (An and Cn for A-natural and C-natural).
+		pitch = "b-ancnbn";
+	}
 
 	var output = "!!!filter: msearch";
 	if (!pitch.match(/^\s*$/)) {
