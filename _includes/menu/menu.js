@@ -67,6 +67,7 @@ function processMenuAton() {
 		if (HIDEMENUANDTOOLBAR) {
 			toggleMenuAndToolbarDisplay();
 		}
+		fillSearchFieldsFromCgi();
 		if (HIDEMENU) {
 			toggleMenuDisplay();
 		}
@@ -88,6 +89,45 @@ function processMenuAton() {
 			// load toolbar from last visit
 			chooseToolbarMenu(LASTTOOLBAR);
 	}
+}
+
+
+
+//////////////////////////////
+//
+// fillSearchFieldsFromCgi --
+//
+
+function fillSearchFieldsFromCgi() {
+	var esearch = document.querySelector("#search-group");
+	if (!esearch) {
+		return;
+	}
+
+	if (!PQUERY.match(/^\s*$/)) {
+		var epitch = esearch.querySelector("#search-pitch");
+		if (epitch) {
+			epitch.value = PQUERY;
+		}
+	}
+
+	if (!IQUERY.match(/^\s*$/)) {
+		var ipitch = esearch.querySelector("#search-interval");
+		if (ipitch) {
+			ipitch.value = IQUERY;
+		}
+	}
+
+	if (!RQUERY.match(/^\s*$/)) {
+		var rpitch = esearch.querySelector("#search-rhythm");
+		if (rpitch) {
+			rpitch.value = RQUERY;
+		}
+	}
+
+	// the SEARCHFILTER variable does not need to be built
+	// because that was done in scripts/listeners.js when
+	// DOMContentLoaded event was triggered.
 }
 
 

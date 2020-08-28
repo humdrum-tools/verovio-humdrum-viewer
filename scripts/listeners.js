@@ -18,11 +18,17 @@ var HIDEINITIALTOOLBAR = false;
 var HIDEMENUANDTOOLBAR = false;
 var HIDEMENU = false;
 var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
-var SEARCHOBSERVER = null;
 var LASTTOOLBAR = 1;
 if (localStorage.LASTTOOLBAR) {
 	LASTTOOLBAR = parseInt(localStorage.LASTTOOLBAR);
 }
+var PQUERY = "";
+var IQUERY = "";
+var RQUERY = "";
+// The search toolbar is currently the 4th one.  This variable
+// will need to be updated if that changes...
+var SEARCHTOOLBAR = 4;
+
 
 //////////////////////////////
 //
@@ -43,6 +49,31 @@ document.addEventListener("DOMContentLoaded", function() {
 	CGI = GetCgiParameters();
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
+	// Set up any music searching parameters from CGI.
+	// If there are any, then set the search toolbar to be visible,
+	// overriding any previous toolbar state from the previous session.
+	if (CGI.p) {
+		PQUERY = CGI.p || "";
+		LASTTOOLBAR = SEARCHTOOLBAR;
+	}
+	if (CGI.i) {
+		IQUERY = CGI.i || "";
+		LASTTOOLBAR = SEARCHTOOLBAR;
+	}
+	if (CGI.r) {
+		RQUERY = CGI.r || "";
+		LASTTOOLBAR = SEARCHTOOLBAR;
+	}
+	
+	if (!PQUERY.match(/^\s*$/) || !IQUERY.match(/^\s*$/) || !RQUERY.match(/^\s*$/)) {
+		// Set up the search for initial display of music.  The searches will be
+		// loaded into the search toolbar as well.
+		SEARCHFILTER = buildSearchQueryFilter({
+			pitch:    PQUERY,
+			interval: IQUERY,
+			rhythm:   RQUERY
+		});
+	}
 	if (CGI.k) {
 		if (CGI.k.match(/e/)) {
 			var input = document.querySelector("#input");
