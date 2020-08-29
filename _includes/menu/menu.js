@@ -84,8 +84,12 @@ function processMenuAton() {
 			chooseToolbarMenu(3);
 		} else if (TOOLBAR.match(/search/i)) {
 			chooseToolbarMenu(4);
+		} else if (TOOLBAR.match(/filter/i)) {
+			chooseToolbarMenu(5);
+		} else {
+			// toolbar menu 1 is otherwise the default
+			chooseToolbarMenu(1);
 		}
-		// toolbar menu 1 is otherwise the default
 	} else if (LASTTOOLBAR) {
 			// load toolbar from last visit
 			chooseToolbarMenu(LASTTOOLBAR);
