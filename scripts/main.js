@@ -29,6 +29,7 @@ var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "encoded"
 var PAGED = false;
 var SEARCHFILTER = "";
+var GLOBALFILTER = "";
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -263,7 +264,10 @@ function displayNotation(page, force, restoreid) {
 		options.from = "musedata";
 	};
 	if (SEARCHFILTER) {
-		data += "\n" + SEARCHFILTER;
+		data += "\n" + SEARCHFILTER + "\n";
+	}
+	if (GLOBALFILTER) {
+		data += "\n!!!filter: " + GLOBALFILTER + "\n";
 	}
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
@@ -1534,8 +1538,6 @@ function getTassoUrl(file, measures) {
 function getGithubUrl(file, measures) {
 	file = file.replace(/^github:\/*/, "");
 
-console.log("ORIGINAL FILE", file);
-
 	var username = "";
 	var repository = "";
 	var pathandfile = "";
@@ -2162,6 +2164,33 @@ function displayMeiNoType() {
 function getTextFromEditor() {
 	return EDITOR.getValue().replace(/^\s+/, "");
 }
+
+
+
+//////////////////////////////
+//
+// getTextFromEditorWithGlobalFilter -- Same as getTextFromEditor(), 
+//    but with global filter added.
+//
+
+function getTextFromEditorWithGlobalFilter() {
+	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var mode = getMode(data);
+	if (GLOBALFILTER) {
+		if (mode === "musedata") {
+			data += "\n@@@filter: " + GLOBALFILTER + "\n";
+		} else if (mode === "humdrum") {
+			data += "\n!!!filter: " + GLOBALFILTER + "\n";
+		} else {
+			// This will not really be useful, however, since 
+			// MusicXML data get converted directly to MEI
+			// when it is in the text editor.
+			data += "\n<!-- !!!filter: " + GLOBALFILTER + " -->\n";
+		}
+	}
+	return data;
+}
+
 
 
 //////////////////////////////
@@ -3394,13 +3423,16 @@ var Base64 = {
 
 function displayScoreTextInEditor(text, page) {
 	var mode = getMode(text);
-	if (CGI.filter) {
-		if (mode == "musedata") {
-			text = "@@@filter: " + CGI.filter + "\n" + text;
-		} else {
-			text = "!!!filter: " + CGI.filter + "\n" + text;
-		}
-	}
+
+	// filter is now placed in input#filter rather than
+	// prefixed to text in edtior.
+	//if (CGI.filter) {
+	//	if (mode == "musedata") {
+	//		text = "@@@filter: " + CGI.filter + "\n" + text;
+	//	} else {
+	//		text = "!!!filter: " + CGI.filter + "\n" + text;
+	//	}
+	//}
 
 	if (mode != EditorMode) {
 		EditorMode = mode;
@@ -3684,7 +3716,7 @@ function convertTokenToCsv(token) {
 
 function showCompiledFilterData() {
 	var options = humdrumToSvgOptions();
-	vrvWorker.filterData(options, getTextFromEditor(), "humdrum")
+	vrvWorker.filterData(options, getTextFromEditorWithGlobalFilter(), "humdrum")
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		EDITOR.setValue(newdata, -1);
@@ -5474,8 +5506,133 @@ function buildSearchQueryFilter(parameters) {
 //
 
 function showSearchHelp() {
-	var help = window.open("https://doc.verovio.humdrum.org/interface/search", "search");
+	var help = window.open("https://doc.verovio.humdrum.org/interface/search", "documentation");
 	help.focus();
 }
+
+
+
+
+//////////////////////////////
+//
+// showFilterHelp --
+//
+
+function showFilterHelp() {
+	var help = window.open("https://doc.verovio.humdrum.org/filter", "documentation");
+	help.focus();
+}
+
+
+
+//////////////////////////////
+//
+// compileGlobalFilter -- Save contents of input#filter to GLOBALFILTER,
+//     then get compiled data returned from verovio.  This will also
+//     compile any filters emebedded in the data along with the global
+//     filter.  Any active searches will also be compiled (which will add
+//     marks to matches notes in the score.  Turn off filter icon if it
+//     is active, but keep the filter in input#filter.
+//
+
+function compileGlobalFilter() {
+	console.log("COMPILING FILTERS");
+	var efilter = document.querySelector("input#filter");
+	if (!efilter) {
+		console.log("CANNOT FIND FILTER");
+		return;
+	}
+	var ficon = document.querySelector(".filter-icon");
+	if (ficon) {
+		ficon.classList.remove("active");
+	}
+	var ftext = efilter.value;
+	if (ftext.match(/^\s*$/)) {
+		// nothing to do
+	} else{
+		GLOBALFILTER = ftext;
+	}
+	showCompiledFilterData();
+	GLOBALFILTER = "";
+}
+
+
+
+//////////////////////////////
+//
+// applyGlobalFilter --  Save contents of input#filter to GLOBALFILTER,
+//    and then apply notation.  After apllying the global filter,
+//    activate the filter icon in the filter toolbar.
+//
+
+function applyGlobalFilter() {
+	var ficon = document.querySelector(".filter-icon");
+	if (!ficon) {
+		console.log("SOMETHING STRANGE HAPPENED: missing filter icon");
+		return;
+	}
+
+	if (ficon.classList.contains("active")) {
+		// The filter is already active, so deactivate it.
+		ficon.classList.remove("active");
+		GLOBALFILTER = "";
+		displayNotation();
+		return;
+	}
+
+	console.log("APPLYING GLOBAL FILTER");
+	var efilter = document.querySelector("input#filter");
+	if (!efilter) {
+		console.log("CANNOT FIND FILTER");
+		return;
+	}
+
+	var ftext = efilter.value;
+	if (ftext.match(/^\s*$/)) {
+		// nothing to do.
+		return;
+	}
+	GLOBALFILTER = ftext;
+	displayNotation();
+	ficon.classList.add("active");
+}
+
+
+
+//////////////////////////////
+//
+// updateFilterState --  Deactivate the filter if changed.  Need to press the filter
+//    button to reapply.
+//
+
+function updateFilterState(event) {
+	console.log("EVENT", event);
+	var ficon = document.querySelector(".filter-icon");
+	if (ficon) {
+		ficon.classList.remove("active");
+		if (GLOBALFILTER) {
+			GLOBALFILTER = "";
+			displayNotation();
+		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// checkForFilterActivate -- Monitor filter input area for an entry key.  If detect, then
+//     activate the filter.
+//
+
+function checkForFilterActivate(event) {
+	console.log("EVENT", event)
+	if (event.shiftKey && event.key === "Enter") {
+		compileGlobalFilter();
+	} else if (event.key === "Enter") {
+		applyGlobalFilter();
+	}
+}
+
 
 

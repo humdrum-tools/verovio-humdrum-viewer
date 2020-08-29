@@ -153,6 +153,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	}
 
+	if (CGI.filter) {
+		GLOBALFILTER = CGI.filter;
+	}
+
 	if (CGI.file || CGI.tasso || CGI.jrp || CGI.bb || CGI.bitbucket || CGI.gh || CGI.github) {
 		loadKernScoresFile(
 			{

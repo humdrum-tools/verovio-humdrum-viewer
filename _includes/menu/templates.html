@@ -167,6 +167,9 @@ single-entry example:
 			border-radius: 3px;
 			border: 0;
 		}
+		input[type="text"]::placeholder {  
+			text-align: center; 
+		} 
 		input:focus {
 	    outline-width: 0;
 		}
@@ -179,10 +182,40 @@ single-entry example:
 			<input id="search-rhythm"   oninput="doMusicSearch()" type="text" spellcheck="false" placeholder="rhythm">
 		</span>
 		<div title="Search help" onclick="showSearchHelp()" class='nav-icon fas fa-question-circle'></div>
+		<span id="line-break-icon" onclick="gotoToolbarMenu(5)">
+			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		</span>
+	</div>
+
+
+	<!-- Filtering toolbar ================================================= -->
+	<style>
+		input#filter {
+			width:          270px;
+			font-size:      15px;
+			background:     #ddd;
+			border-radius:  3px;
+			border:         0;
+		}
+		.filter-icon.active {
+			color: yellow;
+			opacity: 0.9;
+		}
+		input:focus {
+	    outline-width: 0;
+		}
+	</style>
+	<div class="nav-icon-group" id="toolbar-5" style="display:none;">
+		<input id="filter"  onkeyup="checkForFilterActivate(event)" oninput="updateFilterState(event)" type="text" spellcheck="false" placeholder="filter">
+		<div title="Apply filter" onclick="applyGlobalFilter()" class='filter-icon nav-icon fa fa-filter'></div>
+		<div title="Compile filter (alt-c)" onclick="compileGlobalFilter()" class='nav-icon fa fa-plus'></div>
+		<div title="About filters" onclick="showFilterHelp()" class='nav-icon fas fa-question-circle'></div>
 		<span id="line-break-icon" onclick="gotoToolbarMenu(1)">
 			<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
 		</span>
 	</div>
+
+
 
 </div>
 

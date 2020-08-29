@@ -68,6 +68,7 @@ function processMenuAton() {
 			toggleMenuAndToolbarDisplay();
 		}
 		fillSearchFieldsFromCgi();
+		fillFilterFieldFromCgi();
 		if (HIDEMENU) {
 			toggleMenuDisplay();
 		}
@@ -89,6 +90,26 @@ function processMenuAton() {
 			// load toolbar from last visit
 			chooseToolbarMenu(LASTTOOLBAR);
 	}
+}
+
+
+
+//////////////////////////////
+//
+// fillFilterFieldFromCgi --
+//
+
+function fillFilterFieldFromCgi() {
+	if (!GLOBALFILTER) {
+		// nothing to do
+		return;
+	}
+	var efilter = document.querySelector("input#filter");
+	if (!efilter) {
+		return;
+	}
+	efilter.value = GLOBALFILTER;
+	applyGlobalFilter();
 }
 
 
