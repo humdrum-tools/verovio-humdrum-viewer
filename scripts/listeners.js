@@ -524,6 +524,13 @@ function processInterfaceKeyCommand(event) {
 	}
 
 	if (event.metaKey) {
+		// usually ignore metaKey unless 0:
+		if (event.keyCode == ZeroKey) {
+			MENU.resetTextFontSize();
+			SCALE = 40;
+			displayNotation();
+			// not preventingDefault so that web browser can reset size as well.
+		}
 		return;
 	}
 

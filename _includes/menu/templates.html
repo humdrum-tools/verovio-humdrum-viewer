@@ -89,10 +89,10 @@ single-entry example:
 		<span class="text-only" id="text-undo-icon" onclick="MENU.undo()">
 			<div title="Undo last change (ctrl-z)" class='nav-icon fas fa-undo'></div>
 		</span>
-		<span class="text-only" id="text-smaller-icon" onclick="MENU.decreaseTextFontSize()">
+		<span class="text-only" id="text-smaller-icon" onclick="MENU.decreaseTextFontSize(event)">
 			<div title="Make text smaller" class='nav-icon fas fa-minus-circle'></div>
 		</span>
-		<span class="text-only" id="text-larger-icon" onclick="MENU.increaseTextFontSize()">
+		<span class="text-only" id="text-larger-icon" onclick="MENU.increaseTextFontSize(event)">
 			<div title="Make text larger" class='nav-icon fas fa-plus-circle'></div>
 		</span>
 		<span class="text-only" id="decrease-tab-icon" onclick="decreaseTab()">
@@ -110,10 +110,10 @@ single-entry example:
 		<span id="text-freeze-icon" onclick="toggleFreeze()">
 			<div title="Click to freeze notation (alt-f)" class='nav-icon fas fa-unlock'></div>
 		</span>
-		<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(-3)">
+		<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(0.95, event)">
 			<div title="Make notation smaller" class='nav-icon fas fa-minus-square'></div>
 		</span>
-		<span id="notation-larger-icon" onclick="MENU.adjustNotationScale(3)">
+		<span id="notation-larger-icon" onclick="MENU.adjustNotationScale(1.05, event)">
 			<div title="Make notation larger" class='nav-icon fas fa-plus-square'></div>
 		</span>
 		<span id="line-break-icon" onclick="toggleLineBreaks()">

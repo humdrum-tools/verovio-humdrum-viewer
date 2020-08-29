@@ -1680,12 +1680,16 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 // MenuInterface::adjustNotationScale -- add or subtract the input value, not going below 15 or above 500.
 //
 
-MenuInterface.prototype.adjustNotationScale = function (number) {
-	SCALE = SCALE + number;
-	if (SCALE < 15) {
-		SCALE = 15;
-	} else if (SCALE > 500) {
-		SCALE = 500;
+MenuInterface.prototype.adjustNotationScale = function (number, event) {
+	if (event.shiftKey) {
+		SCALE = 40;
+	} else {
+		SCALE = parseInt(SCALE * number + 0.5);
+		if (SCALE < 15) {
+			SCALE = 15;
+		} else if (SCALE > 500) {
+			SCALE = 500;
+		}
 	}
 	localStorage.SCALE = SCALE;
 
@@ -1741,10 +1745,14 @@ MenuInterface.prototype.clearLanguagePreference = function () {
 // MenuInterface::increaseTextFontSize --
 //
 
-MenuInterface.prototype.increaseTextFontSize = function () {
-	INPUT_FONT_SIZE *= 1.05;
-	if (INPUT_FONT_SIZE > 3.0) {
-		INPUT_FONT_SIZE = 3.0;
+MenuInterface.prototype.increaseTextFontSize = function (event) {
+	if (event.shiftKey) {
+		INPUT_FONT_SIZE = 1.0;
+	} else {
+		INPUT_FONT_SIZE *= 1.05;
+		if (INPUT_FONT_SIZE > 3.0) {
+			INPUT_FONT_SIZE = 3.0;
+		}
 	}
 	var element = document.querySelector("#input");
 	if (!element) {
@@ -1756,15 +1764,35 @@ MenuInterface.prototype.increaseTextFontSize = function () {
 
 
 
+////////////////////
+//
+// MenuInterface::resetTextFontSize --
+//
+
+MenuInterface.prototype.resetTextFontSize = function (event) {
+	INPUT_FONT_SIZE = 1.0;
+	var element = document.querySelector("#input");
+	if (!element) {
+		return;
+	}
+	element.style.fontSize = INPUT_FONT_SIZE + "rem";
+	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
+}
+
+
 //////////////////////////////
 //
 // MenuInterface::decreaseTextFontSize --
 //
 
-MenuInterface.prototype.decreaseTextFontSize = function () {
-	INPUT_FONT_SIZE *= 0.95;
-	if (INPUT_FONT_SIZE < 0.25) {
-		INPUT_FONT_SIZE = 0.25;
+MenuInterface.prototype.decreaseTextFontSize = function (event) {
+	if (event.shiftKey) {
+		INPUT_FONT_SIZE = 1.0;
+	} else {
+		INPUT_FONT_SIZE *= 0.95;
+		if (INPUT_FONT_SIZE < 0.25) {
+			INPUT_FONT_SIZE = 0.25;
+		}
 	}
 	var element = document.querySelector("#input");
 	if (!element) {
