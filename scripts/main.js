@@ -5243,6 +5243,8 @@ function gotoNextToolbar(number, event) {
 			} else {
 				newnum = number - 1;
 			}
+		} else if (event.altKey) {
+			newnum = 1;
 		} else {
 			newnum = number + 1;
 		}
