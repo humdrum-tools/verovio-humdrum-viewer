@@ -2415,7 +2415,7 @@ function templateExpansion(title, records) {
 		replacement = getReferenceValue(matches[1], records);
 		rex = new RegExp("@{" + matches[1] + "}", "g");
 		title = title.replace(rex, replacement);
-		
+
 		matches = title.match(/@{(.*?)}/);
 	}
 
@@ -5220,6 +5220,52 @@ function gotoToolbarMenu(number) {
 		}
 	}
 	LASTTOOLBAR = number;
+	localStorage.LASTTOOLBAR = LASTTOOLBAR;
+}
+
+
+
+
+//////////////////////////////
+//
+// gotoNextToolbar -- go to the next toolbar.  number is the current
+//    toolbar (indexed from 1).  If the event has shiftKey then go
+//    to the previous toolbar.
+//
+
+function gotoNextToolbar(number, event) {
+	var elements = document.querySelectorAll("[id^=toolbar-]");
+	var newnum;
+	if (event) { 
+		if (event.shiftKey) {
+			if (event.altKey) {
+				newnum = 1;
+			} else {
+				newnum = number - 1;
+			}
+		} else {
+			newnum = number + 1;
+		}
+	} else {
+		newnum = number + 1;
+	}
+	if (newnum < 1) {
+		newnum = elements.length;
+	} else if (newnum > elements.length) {
+		newnum = 1;
+	}
+
+	var id = "toolbar-" + newnum;
+
+	for (var i=0; i<elements.length; i++) {
+		if (elements[i].id === id) {
+			elements[i].style.display = "block";
+		} else {
+			elements[i].style.display = "none";
+		}
+	}
+
+	LASTTOOLBAR = newnum;
 	localStorage.LASTTOOLBAR = LASTTOOLBAR;
 }
 
