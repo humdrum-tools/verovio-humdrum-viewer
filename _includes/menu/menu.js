@@ -53,13 +53,20 @@ function processMenuAton() {
 	}
 
 	// Use handlebars to generate HTML code for menu.
-	var tsource = document.querySelector("#top-level-menu-template").textContent;
+
+	var tsource = document.querySelector("#template-menu").textContent;
 	var menuTemplate = Handlebars.compile(tsource);
 	var output = menuTemplate(MENUDATA);
-	var newmenuelement = document.querySelector("#handlebars-nav");
-	if (newmenuelement) {
-		newmenuelement.outerHTML = output;
-		var ne = document.querySelector("#handlebars-nav");
+	var newmenuelement = document.querySelector("#menu-div");
+
+	var tsource2 = document.querySelector("#template-toolbar").textContent;
+	var toolbarTemplate = Handlebars.compile(tsource2);
+	var output2 = toolbarTemplate("");
+	var toolbarelement = document.querySelector("#toolbar");
+
+	if (newmenuelement && toolbarelement) {
+		newmenuelement.innerHTML = output;
+		toolbarelement.innerHTML = output2;
 		prepareBufferStates();
 		if (HIDEINITIALTOOLBAR) {
 			toggleNavigationToolbar();
@@ -1707,10 +1714,10 @@ MenuInterface.prototype.setLanguage = function (lang) {
 	LANGUAGE = lang;
 
 	// Use handlebars to generate HTML code for menu.
-	var tsource = document.querySelector("#top-level-menu-template").textContent;
+	var tsource = document.querySelector("#template-menu").textContent;
 	var menuTemplate = Handlebars.compile(tsource);
 	var output = menuTemplate(MENUDATA);
-	var newmenuelement = document.querySelector("#handlebars-nav");
+	var newmenuelement = document.querySelector("#menu-div");
 	if (newmenuelement) {
 		newmenuelement.outerHTML = output;
 	}

@@ -2,17 +2,14 @@
 	vim: ts=3:nowrap
 -->
 
-<div class="topnav" id="topnav" style="position: fixed; top: 0px; height:30px; z-index:200;">
+<div class="topnav" id="topnav" style="position: fixed; top: 0px; height:30px; z-index:0;">
 	<div style="overflow:auto;">
-
-
 		<div style="white-space:nowrap; overflow:hidden; height:44px">
 			<table id="header-table">
 				<tr>
 					<td>
 						<h1 id="vhv">Verovio Humdrum Viewer </h1>
 					</td>
-
 					<td width="100%">
 						<span id="work-navigator">
 						</span>
@@ -20,7 +17,7 @@
 							<span id="composer"></span>&nbsp;<span id="title"></span>
 						</span>
 					</td>
-					<td>
+					<td style="z-index:1;">
 						{% include audio-buttons.html %}
 					</td>
 				</tr>

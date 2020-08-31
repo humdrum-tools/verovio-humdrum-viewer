@@ -2,7 +2,11 @@
 	vim: ts=3:nowrap
 -->
 
-<nav id="handlebars-nav" style="height:45px; class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
+<nav id="handlebars-nav" style="z-index:0;" class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
+	<nav style="margin-top:-16px; width:100%; padding-top:35px; z-index:0;" id="handlebars-nav" class="navbar navbar-expand-md navbar-dark bg-dark btco-hover-menu">
+		<div style="width:100%;" id="menu-div"></div>
+		<div style="z-index:0; display: flex; padding-top: 2px; white-space: nowrap !important;" class="nav-icon-group" id="toolbar"></div>
+	</nav>
 </nav>
 
 <style>
@@ -21,6 +25,11 @@
 	{% include menu/bootstrap-4-hover-navbar.js %}
 </script>
 
-{% include menu/templates.html %}
+
+{% include menu/styles-toolbar.html %}
+
+{% include menu/template-menu.html %}
+
+{% include menu/template-toolbar.html %}
 
 

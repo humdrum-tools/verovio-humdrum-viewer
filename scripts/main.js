@@ -1066,9 +1066,7 @@ function loadHmdIndexFile(location) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			var INDEX = request.responseText;
-console.log("INFO>DATA: ================", info.data);
 			HMDINDEX = new HMDIndex(info.data);
-console.log("CREATED HMD INDEX = ", HMDINDEX);
 			// console.log("INDEX= ", INDEX);
 			$('html').css('cursor', 'auto');
 			displayHmdIndexFinally(HMDINDEX, location);
@@ -1099,7 +1097,6 @@ function loadIndexFile(location) {
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
 			var INDEX = request.responseText;
-console.log("INDEX = ", INDEX);
 			// console.log("INDEX= ", INDEX);
 			$('html').css('cursor', 'auto');
 			displayIndexFinally(INDEX, location);
@@ -1248,8 +1245,6 @@ function loadKernScoresFile(obj, force) {
 	var page        = obj.page;
 	var getnext     = obj.next;
 	var getprevious = obj.previous;
-
-console.log("=== LOADING KERN SCORE", obj);
 
 	if (measures) {
 		var getnext     = false;
@@ -1422,10 +1417,8 @@ console.log("=== LOADING KERN SCORE", obj);
 			info = basketSession.get(key);
 			if (info) {
 				if (info.url.match(/\/index.hmd$/)) {
-console.log("999999999999999 FILE = ", file);
 					HMDINDEX = new HMDIndex(info.data);
 					HMDINDEX.parameters.githubbase = file;
-console.log("GOT HERE XXX HMDINDEX=", HMDINDEX);
 					displayHmdIndexFinally(HMDINDEX, url);
 				} else {
 					try {
@@ -1596,7 +1589,6 @@ function getGithubUrl(file, measures) {
 	var key = pathandfile;
 
 	var obj = {url: url, key: key};
-console.log("GITHUB:", obj);
 	return obj;
 }
 
@@ -1771,7 +1763,6 @@ function processInfo(info, obj, nextwork, prevwork) {
 //
 
 function downloadKernScoresFile(file, measures, page) {
-console.log("DOWNLOADING", file, measures, page);
 	var location;
 	var filename;
 	var matches;
@@ -1799,7 +1790,6 @@ console.log("DOWNLOADING", file, measures, page);
 				if (matches) {
 					nifc = true;
 					file = matches[1];
-console.log("DOING NIFC URL", file);
 				}
 			}
 		}
@@ -2053,7 +2043,6 @@ return; /* not needed anymore */
 	}
 	console.log("ZOOM", ZOOM);
 
-console.log("++++++++", "NEWHEIGHT=", newheight, "NEWWIDTH=", newwidth);
 return;
 
 	$(image).width(newwidth);
@@ -5250,7 +5239,8 @@ function loadEditorFontSizes() {
 
 function gotoToolbarMenu(number) {
 	var id = "toolbar-" + number;
-	var elements = document.querySelectorAll("[id^=toolbar-]");
+	var etoolbar = document.querySelector("#toolbar");
+	var elements = toolbar.querySelectorAll("[id^=toolbar-]");
 	for (var i=0; i<elements.length; i++) {
 		if (elements[i].id === id) {
 			elements[i].style.display = "block";
