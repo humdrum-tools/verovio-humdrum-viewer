@@ -26,7 +26,7 @@ var SPACING_STAFF = 8;
 var SPACING_SYSTEM = 3;
 var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
-var BREAKS = false;   // false = "auto", true = "encoded"
+var BREAKS = false;   // false = "auto", true = "line"
 var PAGED = false;
 var SEARCHFILTER = "";
 var GLOBALFILTER = "";
@@ -404,7 +404,7 @@ function humdrumToSvgOptions() {
 		adjustPageHeight     : 1,
 		// adjustPageWidth      : 1,
 		barLineWidth         : 0.12,
-		breaks               : (BREAKS ? "encoded" : "auto"),
+		breaks               : (BREAKS ? "line" : "auto"),
 		font                 : FONT,
 		from                 : "auto",
 		humType              : 1,
@@ -433,7 +433,7 @@ function humdrumToSvgOptions() {
 		// out of the persistent object:
 		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
-	if (PAGED && !BREAKS) {
+	if (PAGED && BREAKS) {
 		var tw = $("#input").outerWidth();
 		if ($("#input").css("display") == "none") {
 			tw = 0;
