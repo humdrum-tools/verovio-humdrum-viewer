@@ -2781,6 +2781,9 @@ function humdrumDataIntoView(event) {
 //
 
 function unhighlightAllElements() {
+	if (!CursorNote) {
+		return;
+	}
 	var hilights = document.querySelectorAll("svg .highlight");
 	for (var i=0; i<hilights.length; i++) {
 		var classes = CursorNote.getAttribute("class");
