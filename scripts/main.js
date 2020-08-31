@@ -324,6 +324,39 @@ function displayNotation(page, force, restoreid) {
 		// the notation has been updated.
 		//setCursorNote (null, "displayNotation");
 		//highlightNoteInScore();
+
+		if (SEARCHFILTER) {
+			// extract the filtered Humdrum data from verovio, and
+			// pull out the match count from the data and report
+			// search toolbar
+			vrvWorker.getHumdrum()
+			.then(function(humdrumdata) {
+				console.log("HUMDRUM DATA", humdrumdata);
+				var data = humdrumdata.match(/[^\r\n]+/g);
+				var count = 0;
+				var matches;
+				for (var i=data.length - 1; i > 0; i--) {
+					matches = data[i].match(/^!!@MATCHES:\s*(\d+)/);
+					if (matches) {
+						count = parseInt(matches[1]);
+						break;
+					}
+				}
+				console.log("COUNT", count);
+				var eresults = document.querySelector("#search-results");
+				if (eresults) {
+					var output = "";
+					if (count == 0) {
+						output = "0 matches";
+					} else if (count == 1) {
+						output = "1 match";
+					} else {
+						output = count + " matches";
+					}
+					eresults.innerHTML = output;
+				}
+			});
+		}
 	});
 
 }
@@ -5507,6 +5540,7 @@ function doMusicSearch() {
 
 	if (pitch.match(/^\s*$/) && interval.match(/^\s*$/) && rhythm.match(/^\s*$/)) {
 		if (SEARCHFILTER) {
+			clearMatchInfo();
 			SEARCHFILTER = "";
 			displayNotation();
 		} else {
@@ -5686,6 +5720,22 @@ function checkForFilterActivate(event) {
 	} else if (event.key === "Enter") {
 		applyGlobalFilter();
 	}
+}
+
+
+
+//////////////////////////////
+//
+// clearMatchInfo -- if there is no queries in the search toolbar,
+//    then clear any old search results.
+//
+
+function clearMatchInfo() {
+	var esearch = document.querySelector("#search-results");
+	if (!esearch) {
+		return;
+	}
+	esearch.innerHTML = "Search";
 }
 
 
