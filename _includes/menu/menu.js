@@ -1719,7 +1719,7 @@ MenuInterface.prototype.setLanguage = function (lang) {
 	var output = menuTemplate(MENUDATA);
 	var newmenuelement = document.querySelector("#menu-div");
 	if (newmenuelement) {
-		newmenuelement.outerHTML = output;
+		newmenuelement.innerHTML = output;
 	}
 }
 
