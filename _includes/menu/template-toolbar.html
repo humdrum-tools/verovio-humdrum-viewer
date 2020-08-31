@@ -118,7 +118,7 @@
 <div class="nav-icon-group" id="toolbar-5" style="display:none;">
 	<input id="filter"  onkeyup="checkForFilterActivate(event)" oninput="updateFilterState(event)" type="text" spellcheck="false" placeholder="filter">
 	<div title="Apply filter" onclick="applyGlobalFilter()" class='filter-icon nav-icon fa fa-filter'></div>
-	<div title="Compile filter (alt-c)" onclick="compileGlobalFilter()" class='nav-icon fa fa-plus'></div>
+	<div id="filter-compile" title="Compile filter (alt-c)" onclick="compileGlobalFilter()" class='nav-icon fa fa-plus'></div>
 	<div title="About filters" onclick="showFilterHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(5, event)">
 		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>

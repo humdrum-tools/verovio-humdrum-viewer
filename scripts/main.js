@@ -247,6 +247,11 @@ function displayNotation(page, force, restoreid) {
 		console.log("Ignoring displayNotation request: not initialized or frozen");
 		return;
 	};
+   if (COMPILEFILTERAUTOMATIC) {
+		COMPILEFILTERAUTOMATIC = false;
+		compileGlobalFilter();
+		return;
+	}
 
 	// if input area is a <textarea>, then use .value to access contnets:
 	// var inputarea = document.querySelector("#input");
@@ -3745,6 +3750,10 @@ function showCompiledFilterData() {
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
 		EDITOR.setValue(newdata, -1);
+		var ebutton = document.querySelector("#filter-compile");
+		if (ebutton) {
+			ebutton.classList.remove("active");
+		}
 	});
 }
 
@@ -5309,6 +5318,11 @@ function gotoNextToolbar(number, event) {
 //
 
 function chooseToolbarMenu(menunum) {
+	if (menunum === "main")   { menunum = 1; }
+	if (menunum === "save")   { menunum = 2; }
+	if (menunum === "load")   { menunum = 3; }
+	if (menunum === "search") { menunum = 4; }
+	if (menunum === "filter") { menunum = 5; }
 	if (!menunum) {
 		menunum = InterfaceSingleNumber;
 		InterfaceSingleNumber = 0;
@@ -5597,7 +5611,7 @@ function showSearchHelp() {
 //
 
 function showFilterHelp() {
-	var help = window.open("https://doc.verovio.humdrum.org/filter", "documentation");
+	var help = window.open("https://doc.verovio.humdrum.org/filter/examples", "documentation");
 	help.focus();
 }
 
@@ -5614,7 +5628,6 @@ function showFilterHelp() {
 //
 
 function compileGlobalFilter() {
-	console.log("COMPILING FILTERS");
 	var efilter = document.querySelector("input#filter");
 	if (!efilter) {
 		console.log("CANNOT FIND FILTER");
@@ -5679,8 +5692,8 @@ function applyGlobalFilter() {
 
 //////////////////////////////
 //
-// updateFilterState --  Deactivate the filter if changed.  Need to press the filter
-//    button to reapply.
+// updateFilterState --  Deactivate the filter if changed.
+//    Need to press the button to reapply.
 //
 
 function updateFilterState(event) {
@@ -5699,8 +5712,8 @@ function updateFilterState(event) {
 
 //////////////////////////////
 //
-// checkForFilterActivate -- Monitor filter input area for an entry key.  If detect, then
-//     activate the filter.
+// checkForFilterActivate -- Monitor filter input area for an entry key.
+//     If detected then activate the filter.
 //
 
 function checkForFilterActivate(event) {

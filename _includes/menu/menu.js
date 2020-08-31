@@ -8,6 +8,7 @@ var MENU = { };
 var MENUDATA = { };
 var LANGUAGE = "DEFAULT";
 var DICTIONARY = {};
+var COMPILEFILTERAUTOMATIC = false;
 
 function MenuInterface() { 
 	this.contextualMenus = {};
@@ -86,13 +87,13 @@ function processMenuAton() {
 	}
 	if (TOOLBAR) {
 		if (TOOLBAR.match(/save/i)) {
-			chooseToolbarMenu(2);
+			chooseToolbarMenu("save");
 		} else if (TOOLBAR.match(/load/i)) {
-			chooseToolbarMenu(3);
+			chooseToolbarMenu("load");
 		} else if (TOOLBAR.match(/search/i)) {
-			chooseToolbarMenu(4);
+			chooseToolbarMenu("search");
 		} else if (TOOLBAR.match(/filter/i)) {
-			chooseToolbarMenu(5);
+			chooseToolbarMenu("filter");
 		} else {
 			// toolbar menu 1 is otherwise the default
 			chooseToolbarMenu(1);
@@ -121,6 +122,14 @@ function fillFilterFieldFromCgi() {
 	}
 	efilter.value = GLOBALFILTER;
 	applyGlobalFilter();
+	chooseToolbarMenu("filter");
+	// A different function will try to override this, so force
+	// it back to the filter toolbar:
+	TOOLBAR = "filter";
+	if (CGI.k && CGI.k.match(/c/)) {
+		COMPILEFILTERAUTOMATIC = true;
+console.log("SETTINGING DELAYED COMPILE TO TRUE");
+	}
 }
 
 
