@@ -5189,7 +5189,7 @@ function toggleNavigationToolbar() {
 	if (state !== "none") {
 		element.style.display = "none";
 	} else {
-		element.style.display = "block";
+		element.style.display = "flex";
 	}
 }
 
