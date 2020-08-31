@@ -5319,7 +5319,7 @@ function gotoNextToolbar(number, event) {
 //
 
 function chooseToolbarMenu(menunum) {
-	if (menunum === null) {
+	if (!menunum) {
 		menunum = InterfaceSingleNumber;
 		InterfaceSingleNumber = 0;
 	}
