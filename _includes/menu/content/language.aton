@@ -73,6 +73,7 @@
 @FORCE:			ES
 @DEFAULT:		Spanish
 @ES:			Español
+@ACTION:		MENU.setLanguage('ES')
 @@END: TEXT
 @@END: ENTRY
 
