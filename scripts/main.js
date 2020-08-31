@@ -5076,6 +5076,9 @@ function observeSvgContent() {
 //
 
 function updateEditorMode() {
+	if (!EDITOR) {
+		return;
+	}
 	var xmod = getMode(EDITOR.getValue().substring(0, 2000));
 	if (xmod !== EditorMode) {
 		EditorMode = xmod;

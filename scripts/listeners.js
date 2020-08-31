@@ -528,6 +528,7 @@ function processInterfaceKeyCommand(event) {
 		if (event.keyCode == ZeroKey) {
 			MENU.resetTextFontSize();
 			SCALE = 40;
+			localStorage.SCALE = SCALE;
 			displayNotation();
 			// not preventingDefault so that web browser can reset size as well.
 		}
