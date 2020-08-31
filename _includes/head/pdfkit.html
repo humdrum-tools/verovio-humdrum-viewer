@@ -202,7 +202,9 @@ function generatePdfFull(format, orientation) {
 	var orientation = orientation ? orientation : "portrait";
 
 	var width = 2159;
-	var height = 2794;
+	// var height = 2794;
+	var height = 2920;
+
 	if (format === "A4") {
 		width = 2100;
 		height = 2970;
@@ -245,24 +247,25 @@ function generatePdfFull(format, orientation) {
 	width  /= scale / 100;
 
 	var vrvOptions = {
-		pageHeight        : height,
-		pageWidth         : width,
-		pageMarginLeft    : 50,
-		pageMarginRight   : 50,
-		pageMarginTop     : 50,
-		pageMarginBottom  : 50,
-		scale             : scale,
-		spacingSystem     : 2,
-		adjustPageHeight  : 0,
-		breaks            : "auto",
-		mmOutput          : 1,
-		header            : "auto",
-		footer            : "none",
-		barLineWidth		: 0.12,
-		staffLineWidth		: 0.12,
-		font              : "Leipzig"
+		pageHeight             : height,
+		pageWidth              : width,
+		pageMarginLeft         : 50,
+		pageMarginRight        : 50,
+		pageMarginTop          : 200,
+		pageMarginBottom       : 50,
+		scale                  : scale,
+		spacingSystem          : 2,
+		adjustPageHeight       : 0,
+		breaks                 : "auto",
+		mmOutput               : 1,
+		justifyIncludeLastPage : 1,
+		justifySystemsOnly     : 1,
+		header                 : "auto",
+		footer                 : "none",
+		barLineWidth           : 0.12,
+		staffLineWidth         : 0.12,
+		font                   : "Leipzig"
 	}
-
 
 	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
 	vrvOptions = cleanOptions2(scoredata, vrvOptions);
