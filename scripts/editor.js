@@ -2683,7 +2683,7 @@ function toggleMarkedNote(id, line, field, subfield) {
 //
 
 function addLocalCommentLineAboveCurrentPosition() {
-	addNullLine("!");
+	addNullLine("!", "**blank");
 }
 
 
@@ -2696,7 +2696,7 @@ function addLocalCommentLineAboveCurrentPosition() {
 //
 
 function addInterpretationLineAboveCurrentPosition() {
-	addNullLine("*");
+	addNullLine("*", "**blank");
 }
 
 
@@ -2709,7 +2709,7 @@ function addInterpretationLineAboveCurrentPosition() {
 //
 
 function addDataLineAboveCurrentPosition() {
-	addNullLine(".");
+	addNullLine(".", "**dynam");
 }
 
 
@@ -2742,12 +2742,17 @@ function createNullLine(token, textline) {
 //////////////////////////////
 //
 // addNullLine -- Add a line of tokens based on how many tokens
-//    the given line has.
+//    the given line has.  However, if the current line is an
+//    exclusive interpretation, then instead add a **dynam column
+//    on the right side of the cursor's column.
 //
 
-function addNullLine(token, row) {
+function addNullLine(token, exinterp, row) {
 	if (!token) {
 		token = ".";
+	}
+	if (!exinterp) {
+		exinterp = "**blank";
 	}
 	if (!row) {
 		var location = EDITOR.getCursorPosition();
@@ -2764,11 +2769,85 @@ function addNullLine(token, row) {
 	}
 	if (currentline.match(/^\*\*/)) {
 		// can't add spines before exclusive interpretation
+		// so instead add a **dynam spine on the right of the
+		// cursor's current column.
+		addSpineToRight(exinterp, currentline, location);
 		return;
 	}
 
 	var newline = createNullLine(token, currentline);
 	EDITOR.session.insert({row:row, column:0}, newline);
+}
+
+
+
+//////////////////////////////
+//
+// addSpineToRight --  Add an extra spine to the immediate
+//    right of a given spine (must be done at an exinterp line).
+//
+
+function addSpineToRight(exinterp, currentline, location) {
+	console.log("EXINTERP", exinterp, "CURRENTLINE", currentline, "LOCATION", location);
+	var column = location.column;
+
+	// calculate spine number at current location
+	var scount = 0;
+	var i;
+	var state = 0;
+	for (i=0; i<location.column + 1; i++) {
+		if (currentline[i] == '\t') {
+			if (state == 1) {
+				state = 0;
+			}
+		} else {
+			if (state == 0) {
+				state = 1;
+				scount++;
+			}
+		}
+	}
+
+	// count the total number of spines:
+	var tcount = 0;
+	state = 0;
+	for (i=0; i<currentline.length; i++) {
+		if (currentline[i] == '\t') {
+			if (state == 1) {
+				state = 0;
+			}
+		} else {
+			if (state == 0) {
+				state = 1;
+				tcount++;
+			}
+		}
+	}
+
+	console.log("   SPINE NUMBER IS ", scount, "TOTAL", tcount);
+	var filter = "extract -s ";
+	if (scount == 1) {
+		if (tcount == 1) {
+			filter += "1,0";
+		} else if (tcount == 2) {
+			filter += "1,0,2";
+		} else {
+			filter += "1,0,2-$";
+		}
+	} else {
+		filter += "1-" + scount + ",0";
+		if (scount == tcount) {
+			// do nothing
+		} else if (scount + 1 == tcount) {
+			filter += "," + tcount;
+		} else {
+			filter += "," + (scount+1) + "-$";
+		}
+	}
+	if (exinterp !== "**blank") {
+		filter += " -n " + exinterp;
+	}
+	MENU.applyFilter(filter);
 }
 
 
