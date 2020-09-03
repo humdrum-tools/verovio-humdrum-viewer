@@ -471,7 +471,7 @@ function humdrumToSvgOptions() {
 		// out of the persistent object:
 		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
-	if (PAGED && BREAKS) {
+	if (PAGED) {
 		var tw = $("#input").outerWidth();
 		if ($("#input").css("display") == "none") {
 			tw = 0;
