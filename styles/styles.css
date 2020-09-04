@@ -104,6 +104,10 @@ svg:not(:root) {
 }
 
 
+#header-table {
+	margin-top: -5px; /* needed to avoid obscuring letters in title such as g, y, and j. */
+}
+
 #header-table td:first-child {
 	padding-left: 10px;
 }
