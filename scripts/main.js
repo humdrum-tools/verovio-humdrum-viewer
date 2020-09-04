@@ -3754,6 +3754,7 @@ function showCompiledFilterData() {
 		if (ebutton) {
 			ebutton.classList.remove("active");
 		}
+		hideFilterLinkIcon();
 	});
 }
 
@@ -5651,6 +5652,7 @@ function compileGlobalFilter() {
 	if (ficon) {
 		ficon.classList.remove("active");
 	}
+	hideFilterLinkIcon();
 	var ftext = efilter.value;
 	if (ftext.match(/^\s*$/)) {
 		// nothing to do
@@ -5700,6 +5702,7 @@ function applyGlobalFilter() {
 	GLOBALFILTER = ftext;
 	displayNotation();
 	ficon.classList.add("active");
+	showFilterLinkIcon();
 }
 
 
@@ -5715,6 +5718,7 @@ function updateFilterState(event) {
 	var ficon = document.querySelector(".filter-icon");
 	if (ficon) {
 		ficon.classList.remove("active");
+		hideFilterLinkIcon();
 		if (GLOBALFILTER) {
 			GLOBALFILTER = "";
 			displayNotation();
@@ -5754,6 +5758,97 @@ function clearMatchInfo() {
 	}
 	esearch.innerHTML = "Search";
 }
+
+
+//////////////////////////////
+//
+// copyFilterUrl -- Copy URL with filter if there is a repertory work
+//    present in the text editor (although it will not be checked for any
+//    possible modifications).  This function gets the GLOBALFILTER parameter
+//    and adds it in the "filter" URL parameter.  A repertory work is
+//    identify if the FILEINFO object is defined and not empty, and
+//    FILEINFO.location and FILEINFO.file are present and non-empty.
+//
+
+function copyFilterUrl() {
+	if (!GLOBALFILTER) {
+		console.log("GLOBALFILTER IS EMPTY:", GLOBALFILTER);
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO) {
+		console.log("NO REPERTORY FILE TO WORK WITH");
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO.location) {
+		console.log("NO LOCATION FOR REPERTORY FILE");
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO.file) {
+		console.log("NO FILENAME FOR REPERTORY FILE");
+		copyToClipboard("");
+		return;
+	}
+	// Assuming data is accessed through https://, may
+	// need to be adjusted if through http://
+	var link = "https://verovio.humdrum.org/?file=";
+	var file = FILEINFO.location
+	file += "/";
+	file += FILEINFO.file;
+	link += encodeURIComponent(file);
+	link += "&filter=";
+	link += encodeURIComponent(GLOBALFILTER);
+	link = link.replace(/%2f/gi, "/");
+	copyToClipboard(link);
+}
+
+
+
+//////////////////////////////
+//
+// showFilterLinkIcon -- Show the filter link icon.
+//
+
+function showFilterLinkIcon() {
+	var element = document.querySelector("#filter-link");
+	if (element) {
+		element.style.display = "inline-block";
+	}
+}
+
+
+
+//////////////////////////////
+//
+// hideFilterLinkIcon -- Make sure that the filter link icon is hidden.
+//
+
+function hideFilterLinkIcon() {
+	var element = document.querySelector("#filter-link");
+	if (element) {
+		element.style.display = "none";
+	}
+}
+
+
+
+//////////////////////////////
+//
+// copyToClipboard --
+//
+
+function copyToClipboard(string) {
+	console.log("Copying", string, "to clipboard");
+	var element = document.createElement("textarea");
+	element.value = string;
+	document.body.appendChild(element);
+	element.select();
+	document.execCommand("copy");
+	document.body.removeChild(element);
+};
+
 
 
 
