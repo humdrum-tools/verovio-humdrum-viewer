@@ -5487,17 +5487,20 @@ function toggleMenuAndToolbarDisplay() {
 	}
 	var ielement = document.querySelector("#input");
 	var oelement = document.querySelector("#output");
+	var selement = document.querySelector("#splitter");
 
 	if (melement.style.display != "none") {
 		// hide display of menu and toolbar
 		ielement.style.top = "30px";
 		oelement.style.top = "30px";
 		melement.style.display = "none";
+		selement.style.top = "30px";
 
 	} else {
 		// show menu and toolbar
 		ielement.style.top = "64px";
 		oelement.style.top = "64px";
+		selement.style.top = "64px";
 		melement.style.display = "block";
 	}
 }
