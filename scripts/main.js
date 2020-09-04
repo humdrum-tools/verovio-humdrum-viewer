@@ -29,6 +29,7 @@ var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "line"
 var PAGED = false;
 var SEARCHFILTER = "";
+var SEARCHFILTEROBJ = {};
 var GLOBALFILTER = "";
 
 // menu interaction variables:
@@ -247,7 +248,7 @@ function displayNotation(page, force, restoreid) {
 		console.log("Ignoring displayNotation request: not initialized or frozen");
 		return;
 	};
-   if (COMPILEFILTERAUTOMATIC) {
+	if (COMPILEFILTERAUTOMATIC) {
 		COMPILEFILTERAUTOMATIC = false;
 		compileGlobalFilter();
 		return;
@@ -336,7 +337,6 @@ function displayNotation(page, force, restoreid) {
 			// search toolbar
 			vrvWorker.getHumdrum()
 			.then(function(humdrumdata) {
-				console.log("HUMDRUM DATA", humdrumdata);
 				var data = humdrumdata.match(/[^\r\n]+/g);
 				var count = 0;
 				var matches;
@@ -359,6 +359,7 @@ function displayNotation(page, force, restoreid) {
 						output = count + " matches";
 					}
 					eresults.innerHTML = output;
+					showSearchLinkIcon();
 				}
 			});
 		}
@@ -1810,7 +1811,7 @@ function downloadKernScoresFile(file, measures, page) {
 		url += "&a=humdrum";
 	} else if (nifc) {
 		file = file.replace(/^\/+/, "");
-		url = "https://humdrum.nifc.pl/" + file; 
+		url = "https://humdrum.nifc.pl/" + file;
 	} else {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
 			location = matches[1];
@@ -2196,7 +2197,7 @@ function getTextFromEditor() {
 
 //////////////////////////////
 //
-// getTextFromEditorWithGlobalFilter -- Same as getTextFromEditor(), 
+// getTextFromEditorWithGlobalFilter -- Same as getTextFromEditor(),
 //    but with global filter added.
 //
 
@@ -2209,7 +2210,7 @@ function getTextFromEditorWithGlobalFilter() {
 		} else if (mode === "humdrum") {
 			data += "\n!!!filter: " + GLOBALFILTER + "\n";
 		} else {
-			// This will not really be useful, however, since 
+			// This will not really be useful, however, since
 			// MusicXML data get converted directly to MEI
 			// when it is in the text editor.
 			data += "\n<!-- !!!filter: " + GLOBALFILTER + " -->\n";
@@ -2289,7 +2290,7 @@ function displaySvg() {
 //
 
 function displayPdf() {
-	// If a humdrum file has a line starting with 
+	// If a humdrum file has a line starting with
 	//     !!!URL-pdf: (https?://[^\s]*)
 	// then load that file.
 	var loaded = false;
@@ -2350,7 +2351,7 @@ function displayHumdrumPdf() {
 	}
 
 	// if the URL is empty but the urls array is not, then
-	// select the last url (which is the first URL entry 
+	// select the last url (which is the first URL entry
 	// in the file.
 	// console.log("URLs:", urls);
 
@@ -2399,7 +2400,7 @@ function getPdfUrlList() {
 			obj.url = matches[2];
 			obj.title = matches[3];
 			output.push(obj);
-		} 
+		}
 
 		var matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
 		if (matches) {
@@ -2665,7 +2666,7 @@ function downloadWildWebMidi(url) {
 
 	basket.require(
 		{url: url, expire: 26, unique: BasketVersion},
- 		{url: url3, expire: 17, unique: BasketVersion}
+		{url: url3, expire: 17, unique: BasketVersion}
 	).then(function() { initializeWildWebMidi(); },
 		function() { console.log("There was an error loading script", url)
 	});
@@ -2938,7 +2939,7 @@ function setupAceEditor(idtag) {
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
 
 	// See this webpage to turn of certain ace editor shortcuts:
-   // https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js
+	// https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js
 
 	// These are eating alt-l and alt-shift-l in VHV on linux:
 	EDITOR.commands.removeCommand("fold", true);
@@ -3885,7 +3886,7 @@ function saveSvgData() {
 		saveAs(blob, filename);
 
 		// Redraw without adjustPageWidth on.
-	   options.adjustPageWidth = 0;
+		options.adjustPageWidth = 0;
 		vrvWorker.renderData(options, data, page, force)
 	});
 }
@@ -5275,7 +5276,7 @@ function gotoToolbarMenu(number) {
 function gotoNextToolbar(number, event) {
 	var elements = document.querySelectorAll("[id^=toolbar-]");
 	var newnum;
-	if (event) { 
+	if (event) {
 		if (event.shiftKey) {
 			if (event.altKey) {
 				newnum = 1;
@@ -5550,18 +5551,22 @@ function doMusicSearch() {
 		if (SEARCHFILTER) {
 			clearMatchInfo();
 			SEARCHFILTER = "";
+			SEARCHFILTEROBJ = {};
 			displayNotation();
+			hideSearchLinkIcon();
 		} else {
 			// no previous search filter, so do not do anything
 		}
 		return;
 	}
 
-	SEARCHFILTER = buildSearchQueryFilter({
-		pitch:    pitch,
+	SEARCHFILTEROBJ = {
+		pitch: pitch,
 		interval: interval,
-		rhythm:   rhythm
-	});;
+		rhythm: rhythm
+	};
+	SEARCHFILTER = buildSearchQueryFilter(SEARCHFILTEROBJ);
+	showSearchLinkIcon();
 
 	displayNotation();
 }
@@ -5757,6 +5762,7 @@ function clearMatchInfo() {
 		return;
 	}
 	esearch.innerHTML = "Search";
+	hideSearchLinkIcon();
 }
 
 
@@ -5808,6 +5814,73 @@ function copyFilterUrl() {
 
 //////////////////////////////
 //
+// copySearchUrl -- Copy URL with search if there is a repertory work
+//    present in the text editor (although it will not be checked for any
+//    possible modifications).  This function gets the SEARCHFILTEROBJ parameter
+//    and adds it to URL parameters.  A repertory work is
+//    identify if the FILEINFO object is defined and not empty, and
+//    FILEINFO.location and FILEINFO.file are present and non-empty.
+//
+// SEARCHFILTEROBJ.pitch    = p parameter
+// SEARCHFILTEROBJ.interval = i parameter
+// SEARCHFILTEROBJ.rhythm   = r parameter
+//
+
+function copySearchUrl() {
+	if (!SEARCHFILTEROBJ) {
+		console.log("SEARCHFILTEROBJ IS EMPTY:", SEARCHFILTEROBJ);
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO) {
+		console.log("NO REPERTORY FILE TO WORK WITH");
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO.location) {
+		console.log("NO LOCATION FOR REPERTORY FILE");
+		copyToClipboard("");
+		return;
+	}
+	if (!FILEINFO.file) {
+		console.log("NO FILENAME FOR REPERTORY FILE");
+		copyToClipboard("");
+		return;
+	}
+	var pitch    = SEARCHFILTEROBJ.pitch    || "";
+	var interval = SEARCHFILTEROBJ.interval || "";
+	var rhythm   = SEARCHFILTEROBJ.rhythm   || "";
+	if (!pitch && !interval && !rhythm) {
+		console.log("NO SEARCH PRESENT pitch:", pitch, "rhythm:", rhythm, "interval:", interval);
+		copyToClipboard("");
+		return;
+	}
+
+	// Assuming data is accessed through https://, may
+	// need to be adjusted if through http://
+	var link = "https://verovio.humdrum.org/?file=";
+	var file = FILEINFO.location
+	file += "/";
+	file += FILEINFO.file;
+	link += encodeURIComponent(file);
+	if (pitch) {
+		link += "&p=" + encodeURIComponent(pitch);
+	}
+	if (interval) {
+		link += "&i=" + encodeURIComponent(interval);
+	}
+	if (rhythm) {
+		link += "&r=" + encodeURIComponent(rhythm);
+	}
+	link = link.replace(/%2f/gi, "/");
+	console.log("COPYING SEARCH URL", link, "TO CLIPBOARD");
+	copyToClipboard(link);
+}
+
+
+
+//////////////////////////////
+//
 // showFilterLinkIcon -- Show the filter link icon.
 //
 
@@ -5827,6 +5900,34 @@ function showFilterLinkIcon() {
 
 function hideFilterLinkIcon() {
 	var element = document.querySelector("#filter-link");
+	if (element) {
+		element.style.display = "none";
+	}
+}
+
+
+
+//////////////////////////////
+//
+// showSearchLinkIcon -- Show the search link icon.
+//
+
+function showSearchLinkIcon() {
+	var element = document.querySelector("#search-link");
+	if (element) {
+		element.style.display = "inline-block";
+	}
+}
+
+
+
+//////////////////////////////
+//
+// hideSearchLinkIcon -- Make sure that the search link icon is hidden.
+//
+
+function hideSearchLinkIcon() {
+	var element = document.querySelector("#search-link");
 	if (element) {
 		element.style.display = "none";
 	}
