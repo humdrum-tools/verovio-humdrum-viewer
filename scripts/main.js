@@ -28,6 +28,7 @@ var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "line"
 var PAGED = false;
+var SEARCHCHORDDIRECTION = "chord -d";  // search top note
 var SEARCHFILTER = "";
 var SEARCHFILTEROBJ = {};
 var GLOBALFILTER = "";
@@ -270,15 +271,19 @@ function displayNotation(page, force, restoreid) {
 	if (data.match(/Group memberships:/)) {
 		options.from = "musedata";
 	};
+	if (GLOBALFILTER) {
+		data += "\n!!!filter: " + GLOBALFILTER + "\n";
+	}
 	if (SEARCHFILTER) {
-		data += "\n" + SEARCHFILTER;
+		data += "\n!!!filter: ";
+		if (SEARCHCHORDDIRECTION) {
+			data += SEARCHCHORDDIRECTION + " | ";
+		}
+		data += SEARCHFILTER;
 		if (BRIEFSEARCHVIEW) {
 			data += " | " + BRIEFSEARCHVIEW;
 		}
 		data += "\n";
-	}
-	if (GLOBALFILTER) {
-		data += "\n!!!filter: " + GLOBALFILTER + "\n";
 	}
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
@@ -634,6 +639,31 @@ function toggleFreeze() {
 		felement.innerHTML = output;
 	}
 
+}
+
+
+
+//////////////////////////////
+//
+// toggleChordSearchDirection --
+//
+
+function toggleChordSearchDirection() {
+	var helement = document.querySelector("#search-chord");
+	if (!helement) {
+		console.log("CANNOT FIND HAND ICONS");
+		return;
+	}
+	var output = "";
+	if (SEARCHCHORDDIRECTION === "chord -d") {
+		SEARCHCHORDDIRECTION = "chord -u";
+		output = '<div title="Melodically searching lowest note of chord" class="nav-icon fa fa-hand-o-down"></div>';
+	} else{
+		SEARCHCHORDDIRECTION = "chord -d";
+		output = '<div title="Melodically searching highest note of chord" class="nav-icon fa fa-hand-o-up"></div>';
+	}
+	helement.innerHTML = output;
+	displayNotation();
 }
 
 
@@ -5617,7 +5647,8 @@ function buildSearchQueryFilter(parameters) {
 		pitch = "b-ancnbn";
 	}
 
-	var output = "!!!filter: msearch";
+	// var output = "!!!filter: msearch";
+	var output = "msearch";
 	if (!pitch.match(/^\s*$/)) {
 		output += " -p '" + pitch + "'";
 	}
