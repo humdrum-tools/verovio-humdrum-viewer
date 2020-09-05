@@ -31,6 +31,7 @@ var PAGED = false;
 var SEARCHFILTER = "";
 var SEARCHFILTEROBJ = {};
 var GLOBALFILTER = "";
+var BRIEFSEARCHVIEW = "";  // Do not show only measures with search matches.
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -270,7 +271,11 @@ function displayNotation(page, force, restoreid) {
 		options.from = "musedata";
 	};
 	if (SEARCHFILTER) {
-		data += "\n" + SEARCHFILTER + "\n";
+		data += "\n" + SEARCHFILTER;
+		if (BRIEFSEARCHVIEW) {
+			data += " | " + BRIEFSEARCHVIEW;
+		}
+		data += "\n";
 	}
 	if (GLOBALFILTER) {
 		data += "\n!!!filter: " + GLOBALFILTER + "\n";
@@ -629,6 +634,31 @@ function toggleFreeze() {
 		felement.innerHTML = output;
 	}
 
+}
+
+
+
+//////////////////////////////
+//
+// toggleSearchView --
+//
+
+function toggleSearchView() {
+	var selement = document.querySelector("#search-zoom");
+	if (!selement) {
+		console.log("CANNOT FIND SEARCH VIEW ICON");
+		return;
+	}
+	var output = "";
+	if (BRIEFSEARCHVIEW) {
+		BRIEFSEARCHVIEW = "";
+		output = '<div title="Show only measures with matches" class="nav-icon fa fa-search-minus"></div>';
+	} else {
+		BRIEFSEARCHVIEW = "myank -d --marks";
+		output = '<div title="Show entire score with matches" class="nav-icon fa fa-search-plus"></div>';
+	}
+	selement.innerHTML = output;
+	displayNotation();
 }
 
 
