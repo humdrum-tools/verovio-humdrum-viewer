@@ -5692,7 +5692,7 @@ function showToolbarHelp() {
 //
 
 function showFilterHelp() {
-	var help = window.open("https://doc.verovio.humdrum.org/filter/examples", "documentation");
+	var help = window.open("https://doc.verovio.humdrum.org/filter", "documentation");
 	help.focus();
 }
 
