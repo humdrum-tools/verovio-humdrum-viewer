@@ -5420,7 +5420,7 @@ function chooseToolbarMenu(menunum) {
 	elements[activeindex].style.display = "none";
 	elements[nextindex].style.display   = "block";
 
-	LASTTOOLBAR = nextindex;
+	LASTTOOLBAR = nextindex + 1;
 	localStorage.LASTTOOLBAR = LASTTOOLBAR;
 }
 
