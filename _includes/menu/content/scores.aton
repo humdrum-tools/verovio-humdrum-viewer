@@ -176,6 +176,51 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
+@DEFAULT:		Bach WTC fugues
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('github:humdrum-tools/bach-wtc-fugues')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/humdrum-tools/bach-wtc-fugues
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
 @DEFAULT:		Beethoven piano sonatas
 @AR:
 @BE:
