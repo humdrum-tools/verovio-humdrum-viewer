@@ -321,7 +321,6 @@ console.log("OBJECT HMD", this);
 
 	output += "</table>\n";
 
-console.log("GENERATEHTML OUTPUT", output);
 	return output;
 }
 
@@ -332,7 +331,7 @@ console.log("GENERATEHTML OUTPUT", output);
 // HMDIndex.prototype.generateFileHTML --
 //
 
-HMDIndex.prototype.generateFileHTML = function(entry) {
+HMDIndex.prototype.generateFileHTML = function(entry, indent) {
 	var output = "";
 	output += "<tr>";
 	output += "<td>";
@@ -350,6 +349,9 @@ HMDIndex.prototype.generateFileHTML = function(entry) {
 		description = entry.file.basename;
 	}
 	
+	if (indent) {
+		output += "<span class='indenter'></span>";
+	}
 	output += prefix;
 	output += "<span class='ilink'";
 	output += " onclick='displayWork(\"";
@@ -377,13 +379,16 @@ HMDIndex.prototype.generateFileHTML = function(entry) {
 
 HMDIndex.prototype.generateGroupHTML = function(entry) {
 	var output = "";
-	output += "<div class='group'>\n";
+	// output += "<div class='group'>\n";
+	output += "<tr><td class='igroup'>\n";
 	output += entry.description;
+	output += "</td></tr>\n";
+	var indent = 1;
 	for (var i=0; i<entry.group.length; i++) {
 		var fileentry = this.sortIndex[entry.group[i]];
-		output += this.generateFileHTML(fileentry);
+		output += this.generateFileHTML(fileentry, indent);
 	}
-	output += "</div>\n";
+	// output += "</div>\n";
 	return output;
 };
 

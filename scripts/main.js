@@ -22,8 +22,8 @@ var vrvWorker;
 // verovio-related options:
 // Primarily set in menu system and used in humdrumToSvgOptions().
 var SCALE = 40;
-var SPACING_STAFF = 8;
-var SPACING_SYSTEM = 3;
+var SPACING_STAFF = 12;
+var SPACING_SYSTEM = 18;
 var LYRIC_SIZE = 4.5;
 var FONT = "Leipzig";
 var BREAKS = false;   // false = "auto", true = "line"
@@ -286,6 +286,7 @@ function displayNotation(page, force, restoreid) {
 		data += "\n";
 	}
 	OPTIONS = options;
+console.log("RENDER DATA OPTIONS SET TO", options);
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
@@ -1472,7 +1473,7 @@ function loadKernScoresFile(obj, force) {
 			console.log("Error retrieving", key);
 		});
 	} else if (!info) {
-		// console.log("Going to download", key);
+		console.log("Going to download", key);
 		basketSession.require(
 			{	url: url,
 				key: key,
