@@ -136,6 +136,20 @@
 
 
 
+<!-- Spreadsheet toolbar ================================================= -->
+
+<div class="nav-icon-group" id="toolbar-6" style="display:none;">
+	<input id="macroid"  type="text" spellcheck="false" placeholder="Spreadsheet macro ID">
+	<div title="Upload data to spreadsheet" onclick="uploadDataToSpreadsheet()" class='nav-icon fa fa-cloud-upload'></div>
+	<div title="Download data from spreadsheet" onclick="downloadDataFromSpreadsheet()" class='nav-icon fa fa-cloud-download'></div>
+	<div title="About spreadsheets" onclick="showSpreadsheetHelp()" class='nav-icon fas fa-question-circle'></div>
+	<span id="line-break-icon" onclick="gotoNextToolbar(6, event)">
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+	</span>
+</div>
+
+
+
 <!-- ==== page navigation ==================================================== -->
 
 <div class="multipage" id="multi-page" style="margin-left:12px; margin-right:40px !important;">

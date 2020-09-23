@@ -5686,6 +5686,67 @@ function showToolbarHelp() {
 }
 
 
+//////////////////////////////
+//
+// uploadDataToSpreadsheet --
+//
+
+function uploadDataToSpreadsheet() {
+	var selement = document.querySelector("#macroid");
+	if (!selement) {
+		return;
+	}
+	var id = selement.value;
+	if (!id) {
+		return;
+	}
+
+   var data = EDITOR.getValue(); // Presuming Humdrum data for now.  Maybe check later.
+   var url = "https://script.google.com/macros/s/" + id + "/exec";
+   var request = new XMLHttpRequest;
+   var formdata = new FormData();
+   formdata.append("humdrum", data);
+   request.open("POST", url);
+   request.send(formdata);
+   request.addEventListener("readystatechange", function (event) {
+      console.log("ONREADYSTATECHANGE", event);
+      if (request.readyState == XMLHttpRequest.DONE) {
+         console.log("DONE WITH POST");
+      } else {
+         console.log("READYSTATE: ", request.readyState);
+      }
+   });
+}
+
+
+
+//////////////////////////////
+//
+// downloadDataFromSpreadsheet --
+//
+
+function downloadDataFromSpreadsheet() {
+	var selement = document.querySelector("#macroid");
+	if (!selement) {
+		return;
+	}
+	var id = selement.value;
+	if (!id) {
+		return;
+	}
+
+   var url = "https://script.google.com/macros/s/" + id + "/exec";
+   var request = new XMLHttpRequest;
+   request.open("GET", url);
+console.log("GETTING DATA FROM", url);
+   request.addEventListener("load", function (event) {
+		console.log("RECEIVED DATA", request.responseText);
+		EDITOR.setValue(request.responseText);
+   });
+	request.send();
+}
+
+
 
 //////////////////////////////
 //
@@ -5696,6 +5757,14 @@ function showFilterHelp() {
 	var help = window.open("https://doc.verovio.humdrum.org/filter", "documentation");
 	help.focus();
 }
+
+
+
+function showSpreadsheetHelp() {
+	var help = window.open("https://doc.verovio.humdrum.org/interface/toolbar/spreadsheet", "documentation");
+	help.focus();
+}
+
 
 
 
