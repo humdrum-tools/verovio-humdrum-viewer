@@ -5700,7 +5700,6 @@ function uploadDataToSpreadsheet() {
 	if (!id) {
 		return;
 	}
-
    var data = EDITOR.getValue(); // Presuming Humdrum data for now.  Maybe check later.
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
@@ -5738,7 +5737,6 @@ function downloadDataFromSpreadsheet() {
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
    request.open("GET", url);
-console.log("GETTING DATA FROM", url);
    request.addEventListener("load", function (event) {
 		console.log("RECEIVED DATA", request.responseText);
 		EDITOR.setValue(request.responseText);
