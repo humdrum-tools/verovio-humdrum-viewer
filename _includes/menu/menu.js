@@ -77,6 +77,7 @@ function processMenuAton() {
 		}
 		fillSearchFieldsFromCgi();
 		fillFilterFieldFromCgi();
+		fillSpreadsheetId();
 		if (HIDEMENU) {
 			toggleMenuDisplay();
 		}
@@ -130,6 +131,24 @@ function fillFilterFieldFromCgi() {
 		COMPILEFILTERAUTOMATIC = true;
 console.log("SETTINGING DELAYED COMPILE TO TRUE");
 	}
+}
+
+
+
+//////////////////////////////
+//
+// fillSpreadsheetId --
+//
+
+function fillSpreadsheetId() {
+	if (!SPREADSHEETID) {
+		return;
+	}
+	var element = document.querySelector("input#scriptid");
+	if (!element) {
+		return;
+	}
+	element.value = SPREADSHEETID;
 }
 
 

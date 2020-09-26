@@ -33,6 +33,12 @@ var SEARCHFILTER = "";
 var SEARCHFILTEROBJ = {};
 var GLOBALFILTER = "";
 var BRIEFSEARCHVIEW = "";  // Do not show only measures with search matches.
+var SPREADSHEETID = "";
+
+if (localStorage.SPREADSHEETID) {
+	SPREADSHEETID = localStorage.SPREADSHEETID;
+}
+
 
 // menu interaction variables:
 var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the default);
@@ -286,7 +292,6 @@ function displayNotation(page, force, restoreid) {
 		data += "\n";
 	}
 	OPTIONS = options;
-console.log("RENDER DATA OPTIONS SET TO", options);
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		var ishumdrum = true;
@@ -5686,20 +5691,45 @@ function showToolbarHelp() {
 }
 
 
+
+//////////////////////////////
+//
+// getSpreadsheetID -- Extract ID from URL if present and also
+//    store ID in localStorage for use in a later session.
+//
+
+function getSpreadSheetID(value) {
+	var matches = value.match(/([^\/]+)\/exec/);
+	if (matches) {
+		value = matches[1];
+	}
+	if (value.match(/^\s*$/)) {
+		value = "";
+	}
+	SPREADSHEETID = value;
+	localStorage.SPREADSHEETID = SPREADSHEETID;
+	return value;
+}
+
+
+
 //////////////////////////////
 //
 // uploadDataToSpreadsheet --
 //
 
 function uploadDataToSpreadsheet() {
-	var selement = document.querySelector("#macroid");
+	var selement = document.querySelector("#scriptid");
 	if (!selement) {
 		return;
 	}
-	var id = selement.value;
+	var id = getSpreadSheetID(selement.value);
 	if (!id) {
 		return;
 	}
+	setTimeout(function () {
+		document.body.classList.add("waiting");
+	}, 0);
    var data = EDITOR.getValue(); // Presuming Humdrum data for now.  Maybe check later.
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
@@ -5707,14 +5737,19 @@ function uploadDataToSpreadsheet() {
    formdata.append("humdrum", data);
    request.open("POST", url);
    request.send(formdata);
-   request.addEventListener("readystatechange", function (event) {
-      console.log("ONREADYSTATECHANGE", event);
-      if (request.readyState == XMLHttpRequest.DONE) {
-         console.log("DONE WITH POST");
-      } else {
-         console.log("READYSTATE: ", request.readyState);
-      }
-   });
+	request.addEventListener("load", function (event) {
+		setTimeout(function () {
+			document.body.classList.remove("waiting");
+		}, 10);
+	});
+   // request.addEventListener("readystatechange", function (event) {
+   //    console.log("ONREADYSTATECHANGE", event);
+   //    if (request.readyState == XMLHttpRequest.DONE) {
+   //       console.log("FINISH STATUS:", request.readyState, request.textContent);
+   //    } else {
+   //       // console.log("STATUS: ", request.readyState);
+   //    }
+   // });
 }
 
 
@@ -5725,7 +5760,7 @@ function uploadDataToSpreadsheet() {
 //
 
 function downloadDataFromSpreadsheet() {
-	var selement = document.querySelector("#macroid");
+	var selement = document.querySelector("#scriptid");
 	if (!selement) {
 		return;
 	}
@@ -5733,13 +5768,18 @@ function downloadDataFromSpreadsheet() {
 	if (!id) {
 		return;
 	}
+	setTimeout(function () {
+		document.body.classList.add("waiting");
+	}, 0);
 
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
    request.open("GET", url);
    request.addEventListener("load", function (event) {
-		console.log("RECEIVED DATA", request.responseText);
-		EDITOR.setValue(request.responseText);
+		EDITOR.setValue(request.responseText, -1);
+		setTimeout(function () {
+			document.body.classList.remove("waiting");
+		}, 10);
    });
 	request.send();
 }
