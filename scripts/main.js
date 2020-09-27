@@ -5710,7 +5710,7 @@ function getSpreadsheetScriptId(value) {
 	if (value.match(/^\s*$/)) {
 		value = "";
 	}
-	matches = value.match(/^([^|]*)/);
+	matches = value.match(/^\s*([^|\s]*)/);
 	if (matches) {
 		value = matches[1];
 	}
@@ -5735,7 +5735,7 @@ function getSpreadsheetId(value) {
 	if (value.match(/^\s*$/)) {
 		value = "";
 	}
-	matches = value.match(/(.*)\|(.*)/);
+	matches = value.match(/^\s*(.*)[|\s]+(.*)\s*$/);
 	if (matches) {
 		value = matches[2];
 	}
