@@ -33,8 +33,12 @@ var SEARCHFILTER = "";
 var SEARCHFILTEROBJ = {};
 var GLOBALFILTER = "";
 var BRIEFSEARCHVIEW = "";  // Do not show only measures with search matches.
+var SPREADSHEETSCRIPTID = "";
 var SPREADSHEETID = "";
 
+if (localStorage.SPREADSHEETSCRIPTID) {
+	SPREADSHEETSCRIPTID = localStorage.SPREADSHEETSCRIPTID;
+}
 if (localStorage.SPREADSHEETID) {
 	SPREADSHEETID = localStorage.SPREADSHEETID;
 }
@@ -5694,11 +5698,11 @@ function showToolbarHelp() {
 
 //////////////////////////////
 //
-// getSpreadsheetID -- Extract ID from URL if present and also
+// getSpreadsheetScriptId -- Extract ID from URL if present and also
 //    store ID in localStorage for use in a later session.
 //
 
-function getSpreadSheetID(value) {
+function getSpreadsheetScriptId(value) {
 	var matches = value.match(/([^\/]+)\/exec/);
 	if (matches) {
 		value = matches[1];
@@ -5706,9 +5710,120 @@ function getSpreadSheetID(value) {
 	if (value.match(/^\s*$/)) {
 		value = "";
 	}
+	matches = value.match(/^([^|]*)/);
+	if (matches) {
+		value = matches[1];
+	}
+	SPREADSHEETSCRIPTID = value;
+	localStorage.SPREADSHEETSCRIPTID = SPREADSHEETSCRIPTID;
+	return value;
+}
+
+
+
+//////////////////////////////
+//
+// getSpreadsheetId -- A spreadsheed ID may be added
+//   after a | character in the spreadsheet script ID box.
+//
+
+function getSpreadsheetId(value) {
+	var matches = value.match(/([^\/]+)\/exec/);
+	if (matches) {
+		value = matches[1];
+	}
+	if (value.match(/^\s*$/)) {
+		value = "";
+	}
+	matches = value.match(/(.*)\|(.*)/);
+	if (matches) {
+		value = matches[2];
+	}
 	SPREADSHEETID = value;
 	localStorage.SPREADSHEETID = SPREADSHEETID;
 	return value;
+}
+
+
+
+//////////////////////////////
+//
+// fillSpreadsheetId -- This is run after creating the toolbar.
+//    The spreasdsheet information from localStorage is inserted
+//    into the Spreadsheet script ID box.
+//
+
+function fillSpreadsheetId() {
+	var value = "";
+	if (SPREADSHEETSCRIPTID) {
+		value = SPREADSHEETSCRIPTID;
+	}
+	if (SPREADSHEETID) {
+		value += "|" + SPREADSHEETID;
+	}
+	var selement = document.querySelector("#scriptid");
+	if (!selement) {
+		return;
+	}
+	selement.value = value;
+	showSpreadsheetIconState();
+}
+
+
+
+//////////////////////////////
+//
+// openSpreadsheet --
+//
+
+function openSpreadsheet() {
+	var selement = document.querySelector("#scriptid");
+	if (!selement) {
+		return;
+	}
+	var id = getSpreadsheetId(selement.value);
+	if (!id) {
+		if (SPREADSHEETID) {
+			id = SPREADSHEETID;
+		}
+	}
+	if (!id) {
+		return;
+	}
+	var url = "https://docs.google.com/spreadsheets/d/";
+	url += id;
+	window.open(url, "spreasheet");
+}
+
+
+
+//////////////////////////////
+//
+// showSpreadsheetIconState --
+//
+
+function showSpreadsheetIconState() {
+	var selement = document.querySelector("#scriptid");
+	if (!selement) {
+		return;
+	}
+	var scriptid = getSpreadsheetScriptId(selement.value);
+	var sheetid = getSpreadsheetId(selement.value);
+
+	SPREADSHEETSCRIPTID = scriptid;
+	SPREADSHEETID = sheetid;
+	localStorage.SPREADSHEETSCRIPTID = scriptid;
+	localStorage.SPREADSHEETID = sheetid;
+
+	var sheetelement = document.querySelector("#sheetid");
+	if (!sheetelement) {
+		return;
+	}
+	if (!sheetid) {
+		sheetelement.style.display = "none";
+	} else {
+		sheetelement.style.display = "inline-block";
+	}
 }
 
 
@@ -5723,10 +5838,11 @@ function uploadDataToSpreadsheet() {
 	if (!selement) {
 		return;
 	}
-	var id = getSpreadSheetID(selement.value);
+	var id = getSpreadsheetScriptId(selement.value);
 	if (!id) {
 		return;
 	}
+	showSpreadsheetIconState();
 	setTimeout(function () {
 		document.body.classList.add("waiting");
 	}, 0);
@@ -5768,6 +5884,7 @@ function downloadDataFromSpreadsheet() {
 	if (!id) {
 		return;
 	}
+	showSpreadsheetIconState();
 	setTimeout(function () {
 		document.body.classList.add("waiting");
 	}, 0);
@@ -5798,11 +5915,15 @@ function showFilterHelp() {
 
 
 
+//////////////////////////////
+//
+// showFilterHelp --
+//
+
 function showSpreadsheetHelp() {
 	var help = window.open("https://doc.verovio.humdrum.org/interface/toolbar/spreadsheet", "documentation");
 	help.focus();
 }
-
 
 
 

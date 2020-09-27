@@ -77,7 +77,6 @@ function processMenuAton() {
 		}
 		fillSearchFieldsFromCgi();
 		fillFilterFieldFromCgi();
-		fillSpreadsheetId();
 		if (HIDEMENU) {
 			toggleMenuDisplay();
 		}
@@ -103,6 +102,7 @@ function processMenuAton() {
 			// load toolbar from last visit
 			chooseToolbarMenu(LASTTOOLBAR);
 	}
+	fillSpreadsheetId();
 }
 
 
@@ -129,7 +129,6 @@ function fillFilterFieldFromCgi() {
 	TOOLBAR = "filter";
 	if (CGI.k && CGI.k.match(/c/)) {
 		COMPILEFILTERAUTOMATIC = true;
-console.log("SETTINGING DELAYED COMPILE TO TRUE");
 	}
 }
 
@@ -140,15 +139,19 @@ console.log("SETTINGING DELAYED COMPILE TO TRUE");
 // fillSpreadsheetId --
 //
 
-function fillSpreadsheetId() {
-	if (!SPREADSHEETID) {
+function fillSpreadsheetScriptId() {
+	if (!SPREADSHEETSCRIPTID) {
 		return;
 	}
 	var element = document.querySelector("input#scriptid");
 	if (!element) {
 		return;
 	}
-	element.value = SPREADSHEETID;
+	var value = SPREADSHEETSCRIPTID;
+	if (SPREADSHEETID) {
+		value += "|" + SPREADSHEETID;
+	}
+	element.value = value;
 }
 
 
