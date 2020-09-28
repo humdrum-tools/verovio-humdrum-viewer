@@ -5880,7 +5880,7 @@ function downloadDataFromSpreadsheet() {
 	if (!selement) {
 		return;
 	}
-	var id = selement.value;
+	var id = getSpreadsheetScriptId(selement.value);
 	if (!id) {
 		return;
 	}
