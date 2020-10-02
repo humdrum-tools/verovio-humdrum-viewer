@@ -473,7 +473,7 @@ function humdrumToSvgOptions() {
 		footer               : "none",
 		header               : "none",
 		pageHeight           : 60000,
-		pageMarginBottom     : 20,
+		pageMarginBottom     : 40,
 		pageMarginLeft       : 20,
 		pageMarginRight      : 20,
 		pageMarginTop        : 100,
