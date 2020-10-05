@@ -296,9 +296,6 @@ function displayNotation(page, force, restoreid) {
 		data += "\n";
 	}
 
-	// temporary fix for issue https://github.com/rism-ch/verovio/issues/1690
-	data += "!!!filter: autostem\n";
-
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
