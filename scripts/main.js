@@ -484,7 +484,8 @@ function humdrumToSvgOptions() {
 		spacingNonLinear     : 0.6,
 		spacingStaff         : SPACING_STAFF,
 		spacingSystem        : SPACING_SYSTEM,
-		staffLineWidth       : 0.12
+		staffLineWidth       : 0.12,
+		outputIndent         : 1
 	}
 	if (OriginalClef) {
 		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
@@ -525,7 +526,6 @@ function humdrumToSvgOptions() {
 
 function humdrumToMeiOptions() {
 	return {
-
 		from              : "humdrum",
 		adjustPageHeight  : 1,
 		// adjustPageWidth   : 1,
@@ -543,8 +543,8 @@ function humdrumToMeiOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
-		font              : "Leipzig"
-
+		font              : "Leipzig",
+		outputIndent      : 1
 	}
 }
 
