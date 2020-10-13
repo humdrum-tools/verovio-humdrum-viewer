@@ -5835,6 +5835,13 @@ function showSpreadsheetIconState() {
 //
 
 function uploadDataToSpreadsheet() {
+	setTimeout(function () {
+		document.body.classList.add("waiting");
+	}, 0);
+	MENU.applyFilter("tabber", EDITOR.getValue(), uploadDataToSpreadsheet2);
+}
+
+function uploadDataToSpreadsheet2(data) {
 	var selement = document.querySelector("#scriptid");
 	if (!selement) {
 		return;
@@ -5844,10 +5851,6 @@ function uploadDataToSpreadsheet() {
 		return;
 	}
 	showSpreadsheetIconState();
-	setTimeout(function () {
-		document.body.classList.add("waiting");
-	}, 0);
-   var data = EDITOR.getValue(); // Presuming Humdrum data for now.  Maybe check later.
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
    var formdata = new FormData();
@@ -5859,14 +5862,6 @@ function uploadDataToSpreadsheet() {
 			document.body.classList.remove("waiting");
 		}, 10);
 	});
-   // request.addEventListener("readystatechange", function (event) {
-   //    console.log("ONREADYSTATECHANGE", event);
-   //    if (request.readyState == XMLHttpRequest.DONE) {
-   //       console.log("FINISH STATUS:", request.readyState, request.textContent);
-   //    } else {
-   //       // console.log("STATUS: ", request.readyState);
-   //    }
-   // });
 }
 
 
@@ -5894,12 +5889,31 @@ function downloadDataFromSpreadsheet() {
    var request = new XMLHttpRequest;
    request.open("GET", url);
    request.addEventListener("load", function (event) {
-		EDITOR.setValue(request.responseText, -1);
+		storeSpreadsheetDataInEditor(request.responseText);
 		setTimeout(function () {
 			document.body.classList.remove("waiting");
 		}, 10);
    });
 	request.send();
+}
+
+
+
+function storeSpreadsheetDataInEditor(data) {
+	// first check to see if the current contents has any double tabs,
+	// and if not, collapse tabs in data.
+	var contents = EDITOR.getValue();
+	if (!contents.match(/\t\t/)) {
+		// collapse tabs
+		MENU.applyFilter("tabber -r", data, storeSpreadsheetDataInEditor2);
+	} else {
+		// preserve presumed expanded tab data.
+		EDITOR.setValue(data, -1);
+	}
+}
+
+function storeSpreadsheetDataInEditor2(data) {
+	EDITOR.setValue(data, -1);
 }
 
 

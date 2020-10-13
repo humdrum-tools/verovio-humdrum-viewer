@@ -646,10 +646,17 @@ MenuInterface.prototype.useGootvilleFont = function () {
 // MenuInterface::applyFilter --
 //
 
-MenuInterface.prototype.applyFilter = function (text) {
-	var contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
+MenuInterface.prototype.applyFilter = function (filter, data, callback) {
+	var contents = "";
+	var editor = 0;
+	if (!data) {
+		contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
+		editor = 1;
+	} else {
+		contents = data.replace(/^\s+|\s+$/g, "");;
+	}
 	var options = humdrumToSvgOptions();
-	var data = contents + "\n!!!filter: " + text + "\n";
+	var data = contents + "\n!!!filter: " + filter + "\n";
 	vrvWorker.filterData(options, data, "humdrum")
 	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
@@ -667,7 +674,12 @@ MenuInterface.prototype.applyFilter = function (text) {
 			}
 			newdata += lines[i] + "\n";
 		}
-		EDITOR.setValue(newdata, -1);
+		if (editor) {
+			EDITOR.setValue(newdata, -1);
+		}
+		if (callback) {
+			callback(newdata);
+		}
 	});
 }
 
