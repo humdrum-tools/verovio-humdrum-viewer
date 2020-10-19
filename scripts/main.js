@@ -6283,4 +6283,23 @@ function copyToClipboard(string) {
 
 
 
+//////////////////////////////
+//
+// inSvgImage -- Used to prevent processing clicks in the text
+//      editor for the click event listener used in the SVG image.
+//      Returns true if the node is inside of an SVG image, or 
+//      false otherwise.
+//
+
+function inSvgImage(node) {
+	var current = node;
+	while (current) {
+		if (current.nodeName === "svg") {
+			return true;
+		}
+		current = current.parentNode;
+	}
+	return false;
+}
+
 
