@@ -246,30 +246,44 @@ function generatePdfFull(format, orientation) {
 		$('html').css('cursor', 'auto');
 	});
 
-	var scale = 110;
+	var scale = 95;
 	height /= scale / 100;
 	width  /= scale / 100;
 
+	// var spacingBraceGroup   = 12;
+	// var spacingBracketGroup = 12;
+	var spacingStaff        = 10;
+	var spacingSystem       = 14;
+	var pageMarginTop       = 100;
+	var pageMarginBottom    = 100;
+	var pageMarginLeft      = 50;
+	var pageMarginRight     = 50;
+
 	var vrvOptions = {
-		pageHeight             : height,
+		pageHeight             : height - pageMarginTop,
 		pageWidth              : width,
-		pageMarginLeft         : 50,
-		pageMarginRight        : 50,
-		pageMarginTop          : 200,
-		pageMarginBottom       : 50,
+		pageMarginLeft         : pageMarginLeft,
+		pageMarginRight        : pageMarginRight,
+		pageMarginTop          : pageMarginTop,
+		pageMarginBottom       : pageMarginBottom,
+		spacingSystem          : spacingSystem,
+		spacingStaff           : spacingStaff,
 		scale                  : scale,
-		spacingSystem          : 2,
 		adjustPageHeight       : 0,
+		justifyVertically      : 1,
 		breaks                 : "auto",
 		mmOutput               : 1,
 		// justifyIncludeLastPage : 1, // no longer a verovio option?
 		// justifySystemsOnly     : 1, // no longer a verovio option?
 		header                 : "auto",
-		footer                 : "none",
+		footer                 : "encoded",
+		usePgFooterForAll      : 1,
 		barLineWidth           : 0.12,
 		staffLineWidth         : 0.12,
 		font                   : "Leipzig"
 	}
+
+	console.log("PRINTING OPTOINS", vrvOptions);
 
 	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
 	vrvOptions = cleanOptions2(scoredata, vrvOptions);
