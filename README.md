@@ -6,7 +6,7 @@ the [verovio](http://verovio.org) typesetting engine for generating graphical no
 [ace text editor](https://ace.c9.io) for editing the score text, and
 [humlib](http://humlib.humdrum.org) for digital score processing in the Humdrum file syntax.
 
-* [Documenation for VHV](http://doc.verovio.humdrum.org)
+* [Documentation for VHV](http://doc.verovio.humdrum.org)
 * [Maintenance documentation for VHV](http://doc.verovio.humdrum.org/maintenance/newpage)
 * [Presentation of VHV at the Music Encoding Conference, Tours, France 2017](http://bit.ly/mec2017-vhv)
 
