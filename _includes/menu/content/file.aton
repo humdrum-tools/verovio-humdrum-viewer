@@ -167,7 +167,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save score embedded in a webpage
+@DEFAULT:		Save score as HTML
 @AR:
 @BE:
 @CA:
