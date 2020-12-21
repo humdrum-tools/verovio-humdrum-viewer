@@ -167,7 +167,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save score as HTML
+@DEFAULT:		Save as HTML webpage
 @AR:
 @BE:
 @CA:
@@ -247,7 +247,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save PDF of entire work/movement
+@DEFAULT:		Save as PDF
 @AR:
 @BE:
 @CA:
