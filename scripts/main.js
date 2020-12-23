@@ -6303,3 +6303,16 @@ function inSvgImage(node) {
 }
 
 
+//////////////////////////////
+//
+// dataHasLineBreaks --
+//
+
+function dataHasLineBreaks(data) {
+	if (!data) {
+		data = EDITOR.getValue();
+	}
+}
+
+
+

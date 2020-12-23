@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save editor contents
+@DEFAULT:		Save TEXT
 @AR:
 @BE:
 @CA:
@@ -85,165 +85,6 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Save current view to SVG image
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL: 
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.saveSvgData()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-g
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-g
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Save as HTML webpage
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.saveHtmlContents()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:	
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -325,9 +166,10 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save PDF of current view
+@DEFAULT:		Save view as PDF
 @AR:
 @BE:
 @CA:
@@ -405,9 +247,10 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Reload data from source
+@DEFAULT:		Save view as SVG
 @AR:
 @BE:
 @CA:
@@ -431,7 +274,7 @@
 @LV:
 @NL:
 @NO:
-@PL:			Ponownie wczytaj plik źródłowy
+@PL: 
 @PT:
 @RU:
 @SK:
@@ -441,11 +284,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.reloadFromSource()
+@ACTION:		MENU.saveSvgData()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-r
+@DEFAULT:		alt-g
 @AR:
 @BE:
 @CA:
@@ -480,10 +323,92 @@
 @ZH-simplified:
 @ZH-traditional:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-r
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-g
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Save as HTML
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.saveHtmlContents()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:	
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -565,6 +490,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Display Humdrum data
@@ -644,6 +570,7 @@
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -727,6 +654,7 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Load local buffer
@@ -776,4 +704,84 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Reload data from source
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			Ponownie wczytaj plik źródłowy
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.reloadFromSource()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		alt-r
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-r
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
 
