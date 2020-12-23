@@ -475,6 +475,7 @@ function humdrumToSvgOptions() {
 		font                 : FONT,
 		from                 : "auto",
 		humType              : 1,
+		justifyVertically    : 0,
 		leftMarginClef       : 1.50,
 		lyricSize            : LYRIC_SIZE,
 		minLastJustification : 0.5,
@@ -495,11 +496,12 @@ function humdrumToSvgOptions() {
 		outputIndent         : 1
 	}
 	if (OriginalClef) {
-		output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
+		// now done with modori filter.
+		// output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
 	} else {
 		// the xpath query may need to be cleared
 		// out of the persistent object:
-		output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
+		// output.appXPathQuery = "./rdg[contains(@label, 'asiuahetlkj')]";
 	}
 	if (PAGED) {
 		var tw = $("#input").outerWidth();
