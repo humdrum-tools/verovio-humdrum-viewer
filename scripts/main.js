@@ -569,7 +569,6 @@ function musedataToHumdrumOptions() {
 function musicxmlToMeiOptions() {
 	return {
 		from              : "musicxml",
-		allPages          : 1,
 		breaks            : "auto"
 	}
 }
@@ -577,7 +576,6 @@ function musicxmlToMeiOptions() {
 function meiToMeiOptions() {
 	return {
 		from              : "mei",
-		allPages          : 1,
 		breaks            : "encoded"
 	}
 }
@@ -585,7 +583,6 @@ function meiToMeiOptions() {
 function meiToHumdrumOptions() {
 	return {
 		from              : "mei-hum",
-		allPages          : 1,
 		breaks            : "auto"
 	}
 }
