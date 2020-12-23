@@ -2153,5 +2153,16 @@ MenuInterface.prototype.chooseToolbarMenu = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::convertToHumdrum --
+//
+
+MenuInterface.prototype.convertToHumdrum = function () {
+	replaceEditorContentWithHumdrumFile(contents);
+}
+
+
+
 
 

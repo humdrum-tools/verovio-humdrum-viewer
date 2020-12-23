@@ -1,16 +1,22 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Mon Jun 27 04:31:26 PDT 2016
-// Last Modified:  Mon Jun 27 04:31:29 PDT 2016
+// Last Modified:  Tue Dec 22 20:58:43 PST 2020
 // Filename:       drop.js
 // Web Address:    https://verovio.humdrum.org/scripts/drop.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //
-// Description:   Event listeners for drag/drop of Humdum files onto page.
+// Description:   Event listeners for drag/drop of Humdrum files onto page.
 //
 
 var DROPAREA = "";
+
+
+//////////////////////////////
+//
+// setupDropArea --
+//
 
 function setupDropArea(target) {
 	if (!target) {
@@ -32,12 +38,24 @@ function setupDropArea(target) {
 }
 
 
+//////////////////////////////
+//
+// showDropArea --
+//
+
 function showDropArea(droparea) {
 	if (!droparea) {
 	  droparea = DROPAREA;
 	}
 	droparea.style.visibility = "visible";
 }
+
+
+
+//////////////////////////////
+//
+// hideDropArea --
+//
 
 function hideDropArea(droparea) {
 	if (!droparea) {
@@ -46,6 +64,13 @@ function hideDropArea(droparea) {
 	droparea.style.visibility = "hidden";
 }
 
+
+
+//////////////////////////////
+//
+// allowDrag --
+//
+
 function allowDrag(event) {
 	if (true) {  // Test that the item being dragged is a valid one
 		event.dataTransfer.dropEffect = 'copy';
@@ -53,9 +78,14 @@ function allowDrag(event) {
 	}
 }
 
+
+//////////////////////////////
+//
+// handleDrop --
+//
+
 function handleDrop(event) {
 	event.preventDefault();
-
 	$('html').css('cursor', 'wait');
 	hideDropArea();
 	var file;
@@ -68,18 +98,32 @@ function handleDrop(event) {
 
 		var reader = new FileReader();
 
-		reader.onload = function (event) {
-			var contents = reader.result;
-			replaceEditorContentWithHumdrumFile(contents, 1);
-		};
-
 		// reader.readAsDataURL(file); // loads MIME64 version of file
 		// reader.readAsBinaryString(file);
 		// file has to be read as Text with UTF-8 encoding
 		// in order that files with UTF-8 characters are read
 		// properly:
 		reader.readAsText(file, 'UTF-8');
-		break;   // only reading the first file if more than one.
+
+		var myevent = event;
+
+		reader.onload = function (event) {
+			var contents = reader.result;
+			if (myevent.shiftKey) {
+				replaceEditorContentWithHumdrumFile(contents);
+			} else {
+				EDITOR.setValue(contents, -1);
+			}
+
+			$('html').css('cursor', 'auto');
+		};
+
+		// Only reading the first file if more than one.
+		// Maybe allow multiple files, but then the order
+		// might be undefined.  Alternatively allow a method
+		// of appending a data file to the end of the text (such
+		// as if the control key is held down when drag-and-dropping.
+		break;
 	}
 }
 

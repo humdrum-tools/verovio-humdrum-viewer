@@ -257,7 +257,7 @@ var Splitter = new SPLITTER();
 
 function displayNotation(page, force, restoreid) {
 	if (!vrvWorker.initialized || (FreezeRendering && !force)) {
-		console.log("Ignoring displayNotation request: not initialized or frozen");
+		// console.log("Ignoring displayNotation request: not initialized or frozen");
 		return;
 	};
 	if (COMPILEFILTERAUTOMATIC) {
@@ -271,7 +271,14 @@ function displayNotation(page, force, restoreid) {
 	// var data = inputarea.value;
 
 	var data = getTextFromEditor();
+	if (!data) {
+		// This could be a transient state of the text editor before
+		// new contents is added.
+		// console.log("Editor contents is empty");
+		return;
+	}
 	if (data.match(/^\s*$/)) {
+		console.log("Editor contents is empty (2)");
 		return;
 	};
 	var options = humdrumToSvgOptions();
@@ -1945,49 +1952,40 @@ function downloadMultipleFiles(url) {
 //
 
 function replaceEditorContentWithHumdrumFile(text, page) {
+	if (!text) {
+		text = EDITOR.getValue();
+	}
+	if (!text) {
+		console.log("No content to convert to Humdrum");
+		return;
+	}
+
 	vrvWorker.page = 1;
 	page = page || vrvWorker.page;
-	var options;
+	var options = null;
 	var humdrumQ = false;
 
 	var mode = getMode(text);
 
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
-		// this is MusicXML data, so first convert into Humdrum
-		// before displaying in the editor.
-		if (mode == "xml") {
-			options = musicxmlToHumdrumOptions();
-			// Incorrect identification of xml editor mode when loading a
-			// large Sibelius MusicXML file for some reason.
-			// options = musicxmlToMeiOptions();
-		} else {
-			options = musicxmlToHumdrumOptions();
-		}
+		// MusicXML data
+		options = musicxmlToHumdrumOptions();
 	} else if (text.slice(0, 2000).match(/Group memberships:/)) {
-		// this is MuseData data, so first convert into Humdrum
-		// before displaying in the editor.
-		if (mode == "xml") {
-			options = musedataToHumdrumOptions();
-		} else {
-			options = musedataToHumdrumOptions();
-		}
+		// MuseData data
+		options = musedataToHumdrumOptions();
 	} else if (text.slice(0, 1000).match(/<mei/)) {
-		// this is MEI data, so first convert into Humdrum
-		// before displaying in the editor.
-		if (mode == "xml") {
-			options = meiToMeiOptions();
-		} else {
-			options = meiToHumdrumOptions();
-		}
+		// this is MEI data
+		options = meiToHumdrumOptions();
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
-		// this is EsAC data, so first convert into Humdrum
-		// before displaying in the editor.
+		// EsAC data
 		options = esacToHumdrumOptions();
 	} else {
-		humdrumQ = true;
+		// don't know what it is, but probably Humdrum
+		alert("Cannot convert data to Humdrum");
+		return;
 	}
 
-	if (options && !humdrumQ) {
+	if (options) {
 		if ((options.from == "musedata") || (options.from == "musedata-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
@@ -2016,7 +2014,9 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 			});
 
 		}
-	} else {
+	} 
+
+/* else {
 		// -1 is to unselect the inserted text and move cursor to
 		// start of inserted text.
 		var freezeBackup = FreezeRendering;
@@ -2037,6 +2037,8 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		// display the notation for the data:
 		displayNotation(page);
 	}
+*/
+
 }
 
 
@@ -2258,7 +2260,11 @@ function displayMeiNoType() {
 //
 
 function getTextFromEditor() {
-	return EDITOR.getValue().replace(/^\s+/, "");
+	var text = EDITOR.getValue();
+	if (!text) {
+		return "";
+	}
+	return text.replace(/^\s+/, "");
 }
 
 
@@ -2442,7 +2448,11 @@ function getPdfUrlList() {
 		// can't handle MEI mode yet
 		return 0;
 	}
-	var data = EDITOR.getValue().split(/\r?\n/);
+	var predata = EDITOR.getValue();
+	if (!predata) {
+		return;
+	}
+	var data = predata.split(/\r?\n/);
 	var refrecords = {};
 	var output = [];
 	var title = "";
@@ -3623,7 +3633,7 @@ function setEditorModeAndKeyboard() {
 		EDITOR.getSession().setMode("ace/mode/" + EditorMode);
 		// null to reset to default (ace) mode
 		EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
-	};
+	}
 };
 
 
@@ -5180,7 +5190,16 @@ function updateEditorMode() {
 	if (!EDITOR) {
 		return;
 	}
-	var xmod = getMode(EDITOR.getValue().substring(0, 2000));
+	var text = EDITOR.getValue();
+	if (!text) {
+		// This check is needed to prevent intermediate
+		// states when the editor has been cleared in preparation
+		// for new contents.
+		console.log("EDITOR IS EMPTY");
+		return;
+	}
+	var shorttext = text.substring(0, 2000);
+	var xmod = getMode(shorttext);
 	if (xmod !== EditorMode) {
 		EditorMode = xmod;
 		setEditorModeAndKeyboard();

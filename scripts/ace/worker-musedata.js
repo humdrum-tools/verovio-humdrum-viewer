@@ -11,7 +11,6 @@ if (window.require && window.define)
 if (!window.console) {
 	window.console = function() {
 		var msgs = Array.prototype.slice.call(arguments, 0);
-console.log("GOT HERE JJJ");
 		postMessage({type: "log", data: msgs});
 	};
 	window.console.error =
@@ -23,7 +22,6 @@ window.window = window;
 window.ace = window;
 
 window.onerror = function(message, file, line, col, err) {
-console.log("GOT HERE KKK");
 	postMessage({type: "error", data: {
 		message: message,
 		data: err.data,
@@ -177,7 +175,6 @@ window.initSender = function initSender() {
 		oop.implement(this, EventEmitter);
 
 		this.callback = function(data, callbackId) {
-console.log("GOT HERE AAA");
 				postMessage({
 					type: "call",
 					id: callbackId,
@@ -186,7 +183,6 @@ console.log("GOT HERE AAA");
 		};
 
 		this.emit = function(name, data) {
-console.log("GOT HERE BBB");
 				postMessage({
 					type: "event",
 					name: name,
