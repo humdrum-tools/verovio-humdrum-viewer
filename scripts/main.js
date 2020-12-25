@@ -6333,4 +6333,37 @@ function dataHasLineBreaks(data) {
 }
 
 
+//////////////////////////////
+//
+// getStaffCount -- Return the number of **kern or **mens spines in the data.
+//
+
+function getStaffCount(data) {
+	var output = 0;
+	var lines = data.split(/\r?\n/);
+	for (var i=0; i<lines.length; i++) {
+		if (!lines[i].match(/^\*\*/)) {
+			continue;
+		}
+		var tokens = lines[i].split(/\t+/);
+		var kcount = 0;
+		var mcount = 0;
+		for (var j=0; j<tokens.length; j++) {
+			if (tokens[j] === "**kern") {
+				kcount++;
+			} else if (tokens[j] === "**mens") {
+				mcount++;
+			}
+		}
+		// **kern and **mens are currently mutually exclusive
+		if (mcount > 0) {
+			kcount = 0;
+		}
+		output = mcount + kcount;
+		break;
+	}
+	return output;
+}
+
+
 

@@ -271,10 +271,11 @@ function generatePdfFull(format, orientation) {
 		scale                  : scale,
 		adjustPageHeight       : 0,
 		justifyVertically      : 1,
-		breaks                 : "auto",
+		breaks                 : (BREAKS ? "line" : "auto"),
 		mmOutput               : 1,
 		// justifyIncludeLastPage : 1, // no longer a verovio option?
-		// justifySystemsOnly     : 1, // no longer a verovio option?
+		// justifySystemOnly   : 1, // no longer a verovio option?
+		// justifySystemsOnly  : 1, // no longer a verovio option?
 		header                 : "auto",
 		footer                 : "encoded",
 		usePgFooterForAll      : 1,
@@ -286,6 +287,13 @@ function generatePdfFull(format, orientation) {
 	console.log("PRINTING OPTOINS", vrvOptions);
 
 	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
+
+	var staffcount = getStaffCount(scoredata);
+	if (staffcount == 2) {
+		//vrvOptions.justifySystemsOnly = 1;
+		//vrvOptions.justifyIncludeLastPage = 1;
+	}
+
 	vrvOptions = cleanOptions2(scoredata, vrvOptions);
 
 	RSVP.hash({
