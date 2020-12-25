@@ -2159,10 +2159,20 @@ MenuInterface.prototype.chooseToolbarMenu = function () {
 //
 
 MenuInterface.prototype.convertToHumdrum = function () {
-	replaceEditorContentWithHumdrumFile(contents);
+	replaceEditorContentWithHumdrumFile();
 }
 
 
+
+
+//////////////////////////////
+//
+// MenuInterface::trimTabsInEditor --
+//
+
+MenuInterface.prototype.trimTabsInEditor = function () {
+	trimTabsInEditor();
+}
 
 
 

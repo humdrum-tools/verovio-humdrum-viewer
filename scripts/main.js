@@ -6367,3 +6367,44 @@ function getStaffCount(data) {
 
 
 
+//////////////////////////////
+//
+// trimTabs --
+//
+
+function trimTabs(data) {
+	var lines = data.split(/\r?\n/);
+	var output = "";
+	for (var i=0; i<lines.length; i++) {
+		lines[i] = lines[i].replace(/\t+$/, "");
+		if (lines[i].match(/^\s*$/)) {
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// trimTabsInEditor -- remove trailing tabs on text lines in
+//    editor.  Also removes empty lines.
+//
+
+function trimTabsInEditor(text) {
+	if (!text) {
+		text = EDITOR.getValue();
+	}
+	if (!text) {
+		console.log("No content to convert to Humdrum");
+		return;
+	}
+	
+	var newtext = trimTabs(text);
+	EDITOR.setValue(newtext, -1);
+}
+
+
+
