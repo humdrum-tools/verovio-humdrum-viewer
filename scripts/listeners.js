@@ -74,6 +74,13 @@ document.addEventListener("DOMContentLoaded", function() {
 			rhythm:   RQUERY
 		});
 	}
+	if (CGI.t) {
+		if (!CGI.k) {
+			CGI.k = "e";
+		} else {
+			CGI.k += "e";
+		}
+	}
 	if (CGI.k) {
 		if (CGI.k.match(/e/)) {
 			var input = document.querySelector("#input");
@@ -150,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				displayMeiNoType();
 			}
 		}
-
 	}
 
 	if (CGI.filter) {
@@ -173,6 +179,21 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		);
 	} else {
+		if (CGI.t) {
+			var text = CGI.t;
+			if (text.match(/\*kern/)) {
+				// do nothing
+			} else if (text.match(/\*mens/)) {
+				// do nothing
+			} else if (text.match(/<xml/)) {
+				// do nothing
+			} else {
+				// presumably MIME data, so decode
+				// will have to deal with embedded UTF-8 probably.
+				text = atob(text);
+			}
+			EDITOR.setValue(text, -1);
+		}
 		displayNotation();
 	}
 
