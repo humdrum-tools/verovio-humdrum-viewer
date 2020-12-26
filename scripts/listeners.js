@@ -891,7 +891,7 @@ function processInterfaceKeyCommand(event) {
 //
 
 window.addEventListener("beforeunload", function (event) {
-	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	var encodedcontents = encodeURIComponent(getTextFromEditor());
 	localStorage.setItem("AUTOSAVE", encodedcontents);
 	localStorage.setItem("AUTOSAVE_DATE", (new Date).getTime());
 });
@@ -905,7 +905,7 @@ window.addEventListener("beforeunload", function (event) {
 //   within one minute after reloading the VHV website.
 //
 
-setInterval(function() { localStorage.setItem("SAVE0", EDITOR.getValue()); }, 60000);
+setInterval(function() { localStorage.setItem("SAVE0", getTextFromEditor()); }, 60000);
 
 
 // needed for startup, but not afterwards, so adjust later:

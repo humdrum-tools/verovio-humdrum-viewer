@@ -140,8 +140,8 @@
 
 <div class="nav-icon-group" id="toolbar-6" style="display:none;">
 	<input id="scriptid" title="Spreadsheet script ID" required type="text" spellcheck="false" placeholder="Spreadsheet script ID">
-	<div title="Upload data to spreadsheet" onclick="uploadDataToSpreadsheet()" class='nav-icon fa fa-cloud-upload'></div>
-	<div title="Download data from spreadsheet" onclick="downloadDataFromSpreadsheet()" class='nav-icon fa fa-cloud-download'></div>
+	<div title="Upload data to spreadsheet" onclick="uploadDataToSpreadsheet(event)" class='nav-icon fa fa-cloud-upload'></div>
+	<div title="Download data from spreadsheet" onclick="downloadDataFromSpreadsheet(event)" class='nav-icon fa fa-cloud-download'></div>
 	<div id="sheetid" style="display:none;" title="Open spreadsheet" onclick="openSpreadsheet()" class='nav-icon fa fa-file-text'></div>
 	<div title="About spreadsheets" onclick="showSpreadsheetHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(6, event)">

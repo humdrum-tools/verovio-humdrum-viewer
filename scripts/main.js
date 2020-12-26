@@ -1955,7 +1955,7 @@ function downloadMultipleFiles(url) {
 
 function replaceEditorContentWithHumdrumFile(text, page) {
 	if (!text) {
-		text = EDITOR.getValue();
+		text = getTextFromEditor();
 	}
 	if (!text) {
 		console.log("No content to convert to Humdrum");
@@ -2232,7 +2232,7 @@ var MuseDataBuffer = "";
 function showHumdrum(humdrumdata) {
 	if (EditorMode == "musedata") {
 		// could implement a key to return to MuseData contents
-		MuseDataBuffer = EDITOR.getValue();
+		MuseDataBuffer = getTextFromEditor();
 	}
 	EDITOR.setValue(humdrumdata, -1);
 }
@@ -2266,7 +2266,7 @@ function getTextFromEditor() {
 	if (!text) {
 		return "";
 	}
-	return text.replace(/^\s+/, "");
+	return text;
 }
 
 
@@ -2278,7 +2278,7 @@ function getTextFromEditor() {
 //
 
 function getTextFromEditorWithGlobalFilter() {
-	var data = EDITOR.getValue().replace(/^\s+/, "");
+	var data = getTextFromEditor().replace(/^\s+/, "");
 	var mode = getMode(data);
 	if (GLOBALFILTER) {
 		if (mode === "musedata") {
@@ -2308,7 +2308,7 @@ function showMei(meidata) {
 		return;
 	}
 	if (BufferedHumdrumFile.match(/^\s*$/)) {
-		BufferedHumdrumFile = EDITOR.getValue();
+		BufferedHumdrumFile = getTextFromEditor();
 	}
 	displayScoreTextInEditor(meidata, vrvWorker.page);
 }
@@ -2450,9 +2450,9 @@ function getPdfUrlList() {
 		// can't handle MEI mode yet
 		return 0;
 	}
-	var predata = EDITOR.getValue();
+	var predata = getTextFromEditor();
 	if (!predata) {
-		return;
+		return [];
 	}
 	var data = predata.split(/\r?\n/);
 	var refrecords = {};
@@ -4062,7 +4062,7 @@ function saveEditorContentsLocally() {
 		target = 1;
 	}
 	key = "SAVE" + target;
-	var value = EDITOR.getValue();
+	var value = getTextFromEditor();
 	var filled = false;
 	var encodedcontents = "";
 	if (value.match(/^\s*$/)) {
@@ -4186,7 +4186,7 @@ function prepareBufferStates() {
 
 function restoreEditorContentsLocally() {
 	// save current contents to 0th buffer
-	var encodedcontents = encodeURIComponent(EDITOR.getValue());
+	var encodedcontents = encodeURIComponent(getTextFromEditor());
 	localStorage.setItem("SAVE0", encodedcontents);
 	// reset interval timer of buffer 0 autosave here...
 
@@ -4500,7 +4500,7 @@ function toggleAppoggiaturaColoring() {
 
 var ERASED_DATA = "";
 function clearContent() {
-	var data = EDITOR.getValue();
+	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
 		EDITOR.setValue(ERASED_DATA, -1);
 		displayFileTitle(ERASED_DATA);
@@ -5192,12 +5192,12 @@ function updateEditorMode() {
 	if (!EDITOR) {
 		return;
 	}
-	var text = EDITOR.getValue();
+	var text = getTextFromEditor();
 	if (!text) {
 		// This check is needed to prevent intermediate
 		// states when the editor has been cleared in preparation
 		// for new contents.
-		console.log("EDITOR IS EMPTY");
+		// console.log("EDITOR IS EMPTY");
 		return;
 	}
 	var shorttext = text.substring(0, 2000);
@@ -5852,11 +5852,16 @@ function showSpreadsheetIconState() {
 // uploadDataToSpreadsheet --
 //
 
-function uploadDataToSpreadsheet() {
+function uploadDataToSpreadsheet(event) {
 	setTimeout(function () {
 		document.body.classList.add("waiting");
 	}, 0);
-	MENU.applyFilter("tabber", EDITOR.getValue(), uploadDataToSpreadsheet2);
+	if (event.shiftKey) {
+		// upload without passing through tabber filter.
+		uploadDataToSpreadsheet2(getTextFromEditor());
+	} else {
+		MENU.applyFilter("tabber", getTextFromEditor(), uploadDataToSpreadsheet2);
+	}
 }
 
 function uploadDataToSpreadsheet2(data) {
@@ -5889,7 +5894,7 @@ function uploadDataToSpreadsheet2(data) {
 // downloadDataFromSpreadsheet --
 //
 
-function downloadDataFromSpreadsheet() {
+function downloadDataFromSpreadsheet(event) {
 	var selement = document.querySelector("#scriptid");
 	if (!selement) {
 		return;
@@ -5906,8 +5911,9 @@ function downloadDataFromSpreadsheet() {
    var url = "https://script.google.com/macros/s/" + id + "/exec";
    var request = new XMLHttpRequest;
    request.open("GET", url);
+	var shiftkey = event.shiftKey;
    request.addEventListener("load", function (event) {
-		storeSpreadsheetDataInEditor(request.responseText);
+		storeSpreadsheetDataInEditor(request.responseText, shiftkey);
 		setTimeout(function () {
 			document.body.classList.remove("waiting");
 		}, 10);
@@ -5917,13 +5923,17 @@ function downloadDataFromSpreadsheet() {
 
 
 
-function storeSpreadsheetDataInEditor(data) {
+function storeSpreadsheetDataInEditor(data, shiftkey) {
 	// first check to see if the current contents has any double tabs,
 	// and if not, collapse tabs in data.
-	var contents = EDITOR.getValue();
+	var contents = getTextFromEditor();
 	if (!contents.match(/\t\t/)) {
 		// collapse tabs
-		MENU.applyFilter("tabber -r", data, storeSpreadsheetDataInEditor2);
+		if (shiftkey) {
+			storeSpreadsheetDataInEditor2(data);
+		} else {
+			MENU.applyFilter("tabber -r", data, storeSpreadsheetDataInEditor2);
+		}
 	} else {
 		// preserve presumed expanded tab data.
 		EDITOR.setValue(data, -1);
@@ -6328,8 +6338,9 @@ function inSvgImage(node) {
 
 function dataHasLineBreaks(data) {
 	if (!data) {
-		data = EDITOR.getValue();
+		data = getTextFromEditor();
 	}
+// do something here ggg
 }
 
 
@@ -6395,7 +6406,7 @@ function trimTabs(data) {
 
 function trimTabsInEditor(text) {
 	if (!text) {
-		text = EDITOR.getValue();
+		text = getTextFromEditor();
 	}
 	if (!text) {
 		console.log("No content to convert to Humdrum");
