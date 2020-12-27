@@ -1132,6 +1132,24 @@ function GetCgiParameters() {
 			output.mm = output.m;
 		}
 	}
+
+	// process aliases:
+	if (!CGI.t && CGI.text) {
+		CGI.t = CGI.text;
+	} else if (CGI.t && !CGI.text) {
+		CGI.text = CGI.t;
+	}
+	if (!CGI.f && CGI.file) {
+		CGI.f = CGI.file;
+	} else if (CGI.f && !CGI.file) {
+		CGI.file = CGI.f;
+	}
+	if (!CGI.F && CGI.filter) {
+		CGI.F = CGI.filter;
+	} else if (CGI.F && !CGI.filter) {
+		CGI.filter = CGI.F;
+	}
+
 	return output;
 }
 
