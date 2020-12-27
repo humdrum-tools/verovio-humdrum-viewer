@@ -995,6 +995,18 @@ function displayWorkNavigation(selector) {
 		contents += "</span>";
 	}
 
+	if (FILEINFO["has-index"] == "true") {
+		contents += '<span style="padding-left:3px; cursor:pointer" onclick="copyRepertoryUrl(\'';
+		contents += FILEINFO['location'];
+		contents += "/";
+		contents += FILEINFO['file'];
+		contents += '\')"';
+		contents += " title='copy link for work'";
+		contents += ">";
+		contents += "<span class='nav-icon fas fa-link'></span>";
+		contents += "</span>";
+	}
+
 	if (FILEINFO["previous-work"] ||
 		FILEINFO["next-work"]) {
 		contents += "&nbsp;&nbsp;";
@@ -1004,6 +1016,42 @@ function displayWorkNavigation(selector) {
 
 }
 
+
+
+//////////////////////////////
+//
+// copyRepertoryUrl --
+//
+
+function copyRepertoryUrl(file) {
+	var url = "https://verovio.humdrum.org";
+	var kstring = "";
+	if (!InputVisible) {
+		kstring += "ey";
+	}
+	url += "/?file=";
+	url += file;
+	if (kstring.length > 0) {
+		url += "&k=" + kstring;
+	}
+	if (GLOBALFILTER && (GLOBALFILTER.length > 0)) {
+		url += "&filter=";
+		url += encodeURIComponent(GLOBALFILTER);
+	}
+	if (PQUERY && (PQUERY.length > 0)) {
+		url += "&p=";
+		url += encodeURIComponent(PQUERY);
+	}
+	if (RQUERY && (RQUERY.length > 0)) {
+		url += "&r=";
+		url += encodeURIComponent(RQUERY);
+	}
+	if (IQUERY && (IQUERY.length > 0)) {
+		url += "&i=";
+		url += encodeURIComponent(IQUERY);
+	}
+	copyToClipboard(url);
+}
 
 
 
@@ -5680,6 +5728,9 @@ function doMusicSearch() {
 	var pitch = epitch.value.replace(/["']/g, "");;
 	var interval = einterval.value.replace(/["']/g, "");;
 	var rhythm = erhythm.value.replace(/["']/g, "");;
+	PQUERY = pitch;
+	RQUERY = rhythm;
+	IQUERY = interval;
 
 	if (pitch.match(/^\s*$/) && interval.match(/^\s*$/) && rhythm.match(/^\s*$/)) {
 		if (SEARCHFILTER) {
