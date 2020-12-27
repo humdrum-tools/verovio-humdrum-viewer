@@ -1038,7 +1038,7 @@ function copyRepertoryUrl(file) {
 	if (file) {
 		url += "/?file=";
 		url += file;
-		initialied = 1;
+		initialized = 1;
 	}
 
 	var kstring = "";
