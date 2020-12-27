@@ -1024,30 +1024,75 @@ function displayWorkNavigation(selector) {
 //
 
 function copyRepertoryUrl(file) {
+	if (!file) {
+		if (FILEINFO) {
+			file = FILEINFO.location;
+			file += "/";
+			file += FILEINFO.file;
+		}
+	}
+
 	var url = "https://verovio.humdrum.org";
+	var initialized = 0;
+
+	if (file) {
+		url += "/?file=";
+		url += file;
+		initialied = 1;
+	}
+
 	var kstring = "";
 	if (!InputVisible) {
 		kstring += "ey";
 	}
-	url += "/?file=";
-	url += file;
+
 	if (kstring.length > 0) {
-		url += "&k=" + kstring;
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "k=" + kstring;
 	}
 	if (GLOBALFILTER && (GLOBALFILTER.length > 0)) {
-		url += "&filter=";
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "filter=";
 		url += encodeURIComponent(GLOBALFILTER);
 	}
 	if (PQUERY && (PQUERY.length > 0)) {
-		url += "&p=";
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "p=";
 		url += encodeURIComponent(PQUERY);
 	}
 	if (RQUERY && (RQUERY.length > 0)) {
-		url += "&r=";
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "r=";
 		url += encodeURIComponent(RQUERY);
 	}
 	if (IQUERY && (IQUERY.length > 0)) {
-		url += "&i=";
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "i=";
 		url += encodeURIComponent(IQUERY);
 	}
 	copyToClipboard(url);
@@ -6396,7 +6441,7 @@ function hideSearchLinkIcon() {
 //
 
 function copyToClipboard(string) {
-	console.log("Copying", string, "to clipboard");
+	// console.log("Copying", string, "to clipboard");
 	var element = document.createElement("textarea");
 	element.value = string;
 	document.body.appendChild(element);
