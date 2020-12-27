@@ -1134,20 +1134,47 @@ function GetCgiParameters() {
 	}
 
 	// process aliases:
+
+	if (!CGI.k && CGI.keys) {
+		CGI.k = CGI.keys;
+	} else if (CGI.k && !CGI.keys) {
+		CGI.keys = CGI.k;
+	}
+
 	if (!CGI.t && CGI.text) {
 		CGI.t = CGI.text;
 	} else if (CGI.t && !CGI.text) {
 		CGI.text = CGI.t;
 	}
+
 	if (!CGI.f && CGI.file) {
 		CGI.f = CGI.file;
 	} else if (CGI.f && !CGI.file) {
 		CGI.file = CGI.f;
 	}
+
 	if (!CGI.F && CGI.filter) {
 		CGI.F = CGI.filter;
 	} else if (CGI.F && !CGI.filter) {
 		CGI.filter = CGI.F;
+	}
+
+	if (!CGI.p && CGI.pitch) {
+		CGI.p = CGI.pitch;
+	} else if (CGI.p && !CGI.pitch) {
+		CGI.pitch = CGI.p;
+	}
+
+	if (!CGI.r && CGI.rhythm) {
+		CGI.r = CGI.rhythm;
+	} else if (CGI.r && !CGI.rhythm) {
+		CGI.rhythm = CGI.r;
+	}
+
+	if (!CGI.i && CGI.interval) {
+		CGI.i = CGI.interval;
+	} else if (CGI.i && !CGI.interval) {
+		CGI.interval = CGI.i;
 	}
 
 	return output;
