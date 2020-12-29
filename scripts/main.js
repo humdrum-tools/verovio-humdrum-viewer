@@ -2417,7 +2417,11 @@ function showHumdrum(humdrumdata) {
 function displayMeiNoType() {
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
-	vrvWorker.filterData(options, getTextFromEditor(), "mei")
+	var text = getTextFromEditor();
+	if (GLOBALFILTER) {
+		text += "\n!!!filter: " + GLOBALFILTER + "\n";
+	}
+	vrvWorker.filterData(options, text, "mei")
 	.then(showMei);
 }
 
