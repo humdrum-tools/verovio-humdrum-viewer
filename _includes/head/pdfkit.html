@@ -284,7 +284,6 @@ function generatePdfFull(format, orientation) {
 		font                   : "Leipzig"
 	}
 
-	console.log("PRINTING OPTOINS", vrvOptions);
 
 	var scoredata = EDITOR.getValue().replace(/^\s+/, "");
 
@@ -294,7 +293,12 @@ function generatePdfFull(format, orientation) {
 		//vrvOptions.justifyIncludeLastPage = 1;
 	}
 
+	if (GLOBALFILTER) {
+		scoredata += "\n!!!filter: " + GLOBALFILTER + "\n";
+	}
+
 	vrvOptions = cleanOptions2(scoredata, vrvOptions);
+	console.log("PRINTING OPTIONS", vrvOptions);
 
 	RSVP.hash({
 		fonts: loadPdfFonts(pdf),
