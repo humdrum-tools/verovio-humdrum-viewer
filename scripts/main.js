@@ -4204,19 +4204,20 @@ function downloadEditorContentsInHtml() {
 //
 
 function saveEditorContents() {
-	var filename = SAVEFILENAME;
+	var filebase = getFilenameBase();
+	if (!filebase) {
+		filebase = "data";
+	}
+	var filename = filebase;
+	var extension = getFilenameExtension();
+	if (extension) {
+		filename += "." + extension;
+	}
 	var size = EDITOR.session.getLength();
 	var matches;
 	var line;
-	for (var i=0; i<size; i++) {
-		line = EDITOR.session.getLine(i);
-		if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
-			filename = matches[1];
-		}
 
-	}
-
-	var text = EDITOR.session.getValue();
+	var text = getTextFromEditor();
 	// var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
 	var blob = new Blob([text], {type: 'text/plain'});
 	saveAs(blob, filename);
@@ -6630,9 +6631,7 @@ function getFilenameBase(text) {
 	var output;
 	if (matches) {
 		output = matches[1];
-		console.log("FILENAME IDED AS ", output);
 		output = output.replace(/.*\//, "").replace(/\..*?$/, "");
-		console.log("FINAL FILENAME IDED AS ", output);
 		if (output.length > 0) {
 			return output;
 		}
@@ -6643,7 +6642,6 @@ function getFilenameBase(text) {
 		if (FILEINFO.file) {
 			output = FILEINFO.file;
 			output = output.replace(/.*\//, "").replace(/\..*?$/, "");
-			console.log("INFO FILENAME IDED AS ", output);
 			if (output.length > 0) {
 				return output;
 			}
@@ -6651,6 +6649,67 @@ function getFilenameBase(text) {
 	}
 	return "data";
 }
+
+
+
+//////////////////////////////
+//
+// getFilenameExtension --
+//
+
+function getFilenameExtension(text) {
+	if (!text) {
+		text = getTextFromEditor();
+	}
+	if (!text) {
+		return "txt";
+	}
+	var beginning = text.substring(0, 1000).replace(/^\s+/, "");
+	if (beginning.match(/<meiHead/)) {
+		return mei;
+	}
+	if (beginning.match(/<score-(part|time)wise/)) {
+		return musicxml;
+	}
+	if (beginning.match(/<opus/)) {
+		return musicxml;
+	}
+
+	var matches;
+	var ext;
+	var fullname;
+	if (beginning.match(/^[!*]/)) {
+		// Humdrum file.
+		matches = beginning.match(/^!!!!SEGMENT:\s*([^\s'"!*]+)/);
+		if (matches) {
+			fullname = matches[1];
+			if (fullname.match(/\./)) {
+				ext = fullname.replace(/.*\./, "");
+				if (ext && (ext.length > 0)) {
+					return ext;
+				}
+			}
+		}
+		if (FILEINFO) {
+			if (FILEINFO.file) {
+				fullname = FILEINFO.file.replace(/.*\//, "");
+				ext = fullname.replace(/.*\./, "");
+				if (ext && (ext.length > 0)) {
+					return ext;
+				}
+			}
+		}
+		return "krn";
+	}
+
+	if (beginning.match(/group memberships:/i)) {
+		// MuseData
+		return ".msd";
+	}
+
+	return "txt";
+}
+
 
 
 
