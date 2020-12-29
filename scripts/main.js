@@ -1280,8 +1280,6 @@ function GetCgiParameters() {
 //
 
 function loadHmdIndexFile(location) {
-	console.log("LOADING HMD INDEX FILE : ", location, "====================================");
-
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
 	request.addEventListener("load", function() {
@@ -1455,6 +1453,38 @@ function displayHmdIndexFinally(hmdindex, source) {
 
 var COUNTER = 0;
 
+
+//////////////////////////////
+//
+// applyUrlAliases --
+//
+//
+
+function applyUrlAliases(file) {
+	if (!file) {
+		return file;
+	}
+	var matches;
+
+	// Github web interface URL:
+	//    https://github.com/josquin-research-project/Ock/blob/master/Ock2002-Ave_Maria.krn
+	// Maps to the raw data associated with that page:
+	//    https://raw.githubusercontent.com/josquin-research-project/Ock/master/Ock2002-Ave_Maria.krn
+	matches = file.match(/https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/([^\/]+)\/(.*)/);
+	if (matches) {
+		var user = matches[1];
+		var repertory = matches[2];
+		var commit = matches[3];
+		var path = matches[4];
+		file = "https://raw.githubusercontent.com/" + user + "/" + repertory + "/";
+		file += commit + "/" + path;
+	}
+
+	return file;
+}
+
+
+
 //////////////////////////////
 //
 // loadKernScoresFile --
@@ -1466,6 +1496,8 @@ function loadKernScoresFile(obj, force) {
 	var page        = obj.page;
 	var getnext     = obj.next;
 	var getprevious = obj.previous;
+
+	file = applyUrlAliases(file);
 
 	if (measures) {
 		var getnext     = false;
