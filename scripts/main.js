@@ -6614,3 +6614,43 @@ function trimTabsInEditor(text) {
 
 
 
+//////////////////////////////
+//
+// getFilenameBase --
+//
+
+function getFilenameBase(text) {
+	if (!text) {
+		text = getTextFromEditor();
+	}
+	if (!text) {
+		return "";
+	}
+	var matches = text.match(/^!!!!SEGMENT:\s*([^\s'"!*]+)/);
+	var output;
+	if (matches) {
+		output = matches[1];
+		console.log("FILENAME IDED AS ", output);
+		output = output.replace(/.*\//, "").replace(/\..*?$/, "");
+		console.log("FINAL FILENAME IDED AS ", output);
+		if (output.length > 0) {
+			return output;
+		}
+	}
+	// In the data was loaded from a repertory file, then use that
+	// file as the filename base.
+	if (FILEINFO) {
+		if (FILEINFO.file) {
+			output = FILEINFO.file;
+			output = output.replace(/.*\//, "").replace(/\..*?$/, "");
+			console.log("INFO FILENAME IDED AS ", output);
+			if (output.length > 0) {
+				return output;
+			}
+		}
+	}
+	return "data";
+}
+
+
+

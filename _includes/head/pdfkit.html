@@ -171,9 +171,15 @@ function generatePdfSnapshot(format, orientation) {
 	var stream = pdf.pipe(blobStream());
 	stream.on('finish', function() {
 		var blob = stream.toBlob('application/pdf');
-		var pdfFilename;
-		if (SAVEFILENAME) {
-			pdfFilename = SAVEFILENAME.replace(/\.[^.]*$/, "") + "-snapshot.pdf";
+		var pdfFilebase = getFilenameBase();
+		var pdfFilename = pdfFilebase;
+		//if (SAVEFILENAME) {
+		//	pdfFilename = SAVEFILENAME.replace(/\.[^.]*$/, "") + "-snapshot.pdf";
+		//} else {
+		//	pdfFilename = "snapshot.pdf";
+		//}
+		if (pdfFilename) {
+			pdfFilename += "-snapshot.pdf";
 		} else {
 			pdfFilename = "snapshot.pdf";
 		}
@@ -232,15 +238,13 @@ function generatePdfFull(format, orientation) {
 	var stream = pdf.pipe(blobStream());
 	stream.on('finish', function() {
 		var blob = stream.toBlob('application/pdf');
-		var pdfFilename = "output.pdf";
-
-		var pdfFilename;
-		if (SAVEFILENAME) {
-			pdfFilename = SAVEFILENAME.replace(/\.[^.]*$/, "") + ".pdf";
+		var pdfFilebase = getFilenameBase();
+		var pdfFilename = pdfFilebase;
+		if (pdfFilename) {
+			pdfFilename += ".pdf";
 		} else {
-			pdfFilename = "output.pdf";
+			pdfFilename = "data.pdf";
 		}
-
 		saveAs(blob, pdfFilename);
 
 		$('html').css('cursor', 'auto');
