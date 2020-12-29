@@ -6225,7 +6225,6 @@ function applyGlobalFilter() {
 //
 
 function updateFilterState(event) {
-	console.log("EVENT", event);
 	var ficon = document.querySelector(".filter-icon");
 	if (ficon) {
 		ficon.classList.remove("active");
@@ -6422,6 +6421,25 @@ function hideFilterLinkIcon() {
 	var element = document.querySelector("#filter-link");
 	if (element) {
 		element.style.display = "none";
+	}
+	// also deactivate the filter in the toolbar
+	detachGlobalFilter();
+}
+
+
+
+//////////////////////////////
+//
+// detachGlobalFilter --
+//
+
+function detachGlobalFilter() {
+	var ficon = document.querySelector(".filter-icon");
+	if (ficon) {
+		ficon.classList.remove("active");
+		if (GLOBALFILTER) {
+			GLOBALFILTER = "";
+		}
 	}
 }
 
