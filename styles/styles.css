@@ -31,7 +31,6 @@ body {
 	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
-g[id^="bline-"]:hover,
 g[id^="clef-"]:hover,
 g[id^="ksig-"]:hover,
 g[id^="msig-"]:hover,
@@ -49,24 +48,12 @@ g[id^="rest-"]:hover {
 	filter: url(#hover-shadow);
 }
 
-g[id^="bline-"]:hover [stroke],
-g[id^="clef-"]:hover [stroke],
-g[id^="ksig-"]:hover [stroke],
-g[id^="msig-"]:hover [stroke],
-g[id^="note-"]:hover [stroke],
-g[id^="hairpin-"]:hover [stroke],
-g[id^="accid-"]:hover [stroke],
-g[id^="trill-"]:hover [stroke],
-g[id^="artic-"]:hover [stroke],
-g[id^="slur-"]:hover [stroke],
-g[id^="tie-"]:hover [stroke],
-g[id^="slur-"]:hover [stroke],
-g[id^="fermta-"]:hover [stroke],
-g[id^="rest-"]:hover [stroke] {
+/* Highlight barlines:
+g[id^="bline-"] path:hover
+{
 	stroke: orange;
-	stroke-width: 50px;
-	filter: url(#hover-shadow);
 }
+*/
 
 
 table.index-list {
