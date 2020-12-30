@@ -2434,11 +2434,20 @@ function displayMeiNoType() {
 //    the verovio auto-format detection algorithm).  Trailing
 //    space is not removed.
 //
+// Maybe use for UTF-8, but seems to be working without:
+//     btoa(unescape(encodeURIComponent(str))))
+//
 
 function getTextFromEditor() {
 	var text = EDITOR.getValue();
 	if (!text) {
 		return "";
+	}
+	// if the first 100 charcters are only spaces or [A-Za-z0-9/+=], the assume
+	// the text is MIME encoded, so decode before returning:
+	var starting = text.substring(0, 100);
+	if (starting.match(/^[\sA-Za-z0-9/+=]+$/)) {
+		text = atob(text);
 	}
 	return text;
 }

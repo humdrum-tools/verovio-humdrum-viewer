@@ -2176,3 +2176,39 @@ MenuInterface.prototype.trimTabsInEditor = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::mimeEncode --
+//
+
+MenuInterface.prototype.mimeEncode = function () {
+	var text = getTextFromEditor();
+	var lines = btoa(text).match(/.{1,80}/g);
+	var output = "";
+	for (var i=0; i<lines.length; i++) {
+		if (i < lines.length - 1) {
+			output += lines[i] + "\n";
+		} else {
+			output += lines[i].replace(/=/g, "") + "\n";
+		}
+	}
+	EDITOR.setValue(output, -1);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::mimeDecode --
+//
+
+MenuInterface.prototype.mimeDecode = function () {
+	var text = getTextFromEditor();
+	// text is already decoded by getTextFromEditor().
+	EDITOR.setValue(text, -1);
+}
+
+
+
+
+

@@ -785,3 +785,248 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Convert to Humdrum
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.convertToHumdrum()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			link
+@DEFAULT:		info
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		MIME encode
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.mimeEncode()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			link
+@DEFAULT:		info
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		MIME decode
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.mimeDecode()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			link
+@DEFAULT:		info
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+
