@@ -6666,13 +6666,13 @@ function getFilenameExtension(text) {
 	}
 	var beginning = text.substring(0, 1000).replace(/^\s+/, "");
 	if (beginning.match(/<meiHead/)) {
-		return mei;
+		return "mei";
 	}
 	if (beginning.match(/<score-(part|time)wise/)) {
-		return musicxml;
+		return "musicxml";
 	}
 	if (beginning.match(/<opus/)) {
-		return musicxml;
+		return "musicxml";
 	}
 
 	var matches;
