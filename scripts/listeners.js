@@ -563,9 +563,15 @@ function processInterfaceKeyCommand(event) {
 		case AKey:          // UNUSED
 			break;
 
-		case BKey:          // toggle display of banner
+		case BKey:
 			if (event.altKey) {
-				toggleVhvTitle();
+				if (event.shiftKey) {
+					// toggle display of toolbar
+					toggleNavigationToolbar();
+				} else {
+					// toggle display of banner
+					toggleVhvTitle();
+				}
 				event.preventDefault();
 			}
 			break;
@@ -671,7 +677,8 @@ function processInterfaceKeyCommand(event) {
 	 	case NKey:          // toggle display of navigation toolbar
 			if (event.altKey) {
 				if (event.shiftKey) {
-					toggleNavigationToolbar();
+					// toggleNavigationToolbar();
+					gotoPrevToolbarDelta();
 				} else {
 					chooseToolbarMenu();
 				}

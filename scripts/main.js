@@ -5546,6 +5546,60 @@ function gotoToolbarMenu(number) {
 //    to the previous toolbar.
 //
 
+function gotoNextToolbarDelta() {
+	var elements = document.querySelectorAll("[id^=toolbar-]");
+	var i;
+	var nextNumber = 0;
+	for (i=0; i<elements.length; i++) {
+		if (elements[i].style.display === "block") {
+			nextNumber = i + 1;
+			break;
+		}
+	}
+	nextNumber++;
+	if (nextNumber > elements.length) {
+		nextNumber = 1;
+	}
+	var id = "toolbar-" + nextNumber;
+	for (var i=0; i<elements.length; i++) {
+		if (elements[i].id === id) {
+			elements[i].style.display = "block";
+		} else {
+			elements[i].style.display = "none";
+		}
+	}
+	LASTTOOLBAR = nextNumber;
+	localStorage.LASTTOOLBAR = LASTTOOLBAR;
+}
+
+function gotoPrevToolbarDelta() {
+	var elements = document.querySelectorAll("[id^=toolbar-]");
+	var i;
+	var nextNumber = elements.length;
+	for (i=0; i<elements.length; i++) {
+		if (elements[i].style.display === "block") {
+			nextNumber = i;
+			break;
+		}
+	}
+	if (nextNumber < 1) {
+		nextNumber = elements.length;
+	}
+	var id = "toolbar-" + nextNumber;
+	for (var i=0; i<elements.length; i++) {
+		if (elements[i].id === id) {
+			elements[i].style.display = "block";
+		} else {
+			elements[i].style.display = "none";
+		}
+	}
+	LASTTOOLBAR = nextNumber;
+	localStorage.LASTTOOLBAR = LASTTOOLBAR;
+}
+
+
+
+
 function gotoNextToolbar(number, event) {
 	var elements = document.querySelectorAll("[id^=toolbar-]");
 	var newnum;
@@ -5571,7 +5625,6 @@ function gotoNextToolbar(number, event) {
 	}
 
 	var id = "toolbar-" + newnum;
-
 	for (var i=0; i<elements.length; i++) {
 		if (elements[i].id === id) {
 			elements[i].style.display = "block";
