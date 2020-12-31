@@ -797,6 +797,7 @@ function leftEndMoveBack(id, line, field, number, line2, field2, number2) {
 function addSlur(id, line, field) {
 	var token = getEditorContents(line, field);
 	var freezeBackup = FreezeRendering;
+	FreezeRendering = true;
 	addSlurStart(id, line, field, '(');
 
 	var i = parseInt(line); // -1 for 0-index and +1 for line after
