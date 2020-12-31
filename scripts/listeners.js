@@ -576,9 +576,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case CKey:          // compile filtered contents & display in text editor
+		case CKey:
 			if (event.altKey) {
-				showCompiledFilterData();
+				if (event.shiftKey) {
+					togglePlaceColoring();
+				} else {
+					// compile filtered contents & display in text editor
+					showCompiledFilterData();
+				}
 				event.preventDefault();
 			}
 			break;

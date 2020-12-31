@@ -4655,6 +4655,29 @@ function toggleLayerColoring() {
 
 //////////////////////////////
 //
+// togglePlaceColoring -- turn explicitly placed item highlighting on/off.
+//
+
+function togglePlaceColoring() {
+console.log("TOGLING PLACE");
+	var sylesheet;
+	stylesheet = document.querySelector("#placed-color-stylesheet");
+	if (stylesheet) {
+		var parentElement = stylesheet.parentNode;
+		parentElement.removeChild(stylesheet);
+		return;
+	}
+	stylesheet = document.createElement('style');
+	var text = "g.placed { fill: deeppink; } ";
+	stylesheet.innerHTML = text;
+	stylesheet.id = "placed-color-stylesheet";
+	document.body.appendChild(stylesheet);
+}
+
+
+
+//////////////////////////////
+//
 // toggleAppoggiaturaColoring -- turn appoggiatura color highlighting on/off.
 //
 
