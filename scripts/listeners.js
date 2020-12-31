@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (CGI.k.match(/b/)) {
 			toggleVhvTitle();
 		}
-		if (CGI.k.match(/N/)) {
+		if (CGI.k.match(/B/)) {
 			HIDEINITIALTOOLBAR = true;
 		}
 		if (CGI.k.match(/E/)) {
