@@ -4659,7 +4659,6 @@ function toggleLayerColoring() {
 //
 
 function togglePlaceColoring() {
-console.log("TOGLING PLACE");
 	var sylesheet;
 	stylesheet = document.querySelector("#placed-color-stylesheet");
 	if (stylesheet) {
@@ -4669,6 +4668,7 @@ console.log("TOGLING PLACE");
 	}
 	stylesheet = document.createElement('style');
 	var text = "g.placed { fill: deeppink; } ";
+	text += "g.placed path { stroke: deeppink; } ";
 	stylesheet.innerHTML = text;
 	stylesheet.id = "placed-color-stylesheet";
 	document.body.appendChild(stylesheet);
