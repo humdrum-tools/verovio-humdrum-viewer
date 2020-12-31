@@ -2225,7 +2225,7 @@ function applyZoom() {
 
 	var testing = document.querySelector("#output svg");
 	if (!testing) {
-		console.log("NO OUTPUT SVG LOCATION");
+		// console.log("NO OUTPUT SVG LOCATION");
 		return;
 	}
 
@@ -3612,7 +3612,6 @@ var Base64 = {
 			output = output +
 			this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
 			this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-
 		}
 
 		return output;
@@ -4118,12 +4117,21 @@ function saveSvgData() {
 		return;
 	}
 
-	var options = OPTIONS;
-	options.adjustPageWidth = 1;
+	var options = JSON.parse(JSON.stringify(OPTIONS));
+	console.log("SVG PRINTING OPTIONS", options);
 	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
 		return;
 	};
+
+	var humdrum = dataIsHumdrum(data);
+	if (humdrum && GLOBALFILTER) {
+		if (data.charAt[data.length-1] !== "\n") {
+			data += "\n";
+		}
+		data += "!!!filter: " + GLOBALFILTER + "\n";
+	}
+
 	var page = vrvWorker.page;
 	var force = true;
 
@@ -4162,22 +4170,19 @@ function saveSvgData() {
 //
 
 function downloadEditorContentsInHtml() {
-	var filename = SAVEFILENAME;
-	var size = EDITOR.session.getLength();
-	var matches;
-	var line;
-	for (var i=0; i<size; i++) {
-		line = EDITOR.session.getLine(i);
-		if (matches = line.match(/^!!!!SEGMENT:\s*([^\s].*)\s*$/)) {
-			filename = matches[1];
+	var filebase = getFilenameBase();
+	var ext = "html";
+	var filename = filebase + "." + ext;
+	var text = getTextFromEditor();
+
+	var humdrum = dataIsHumdrum(text);
+	if (humdrum && GLOBALFILTER) {
+		if (text.charAt[text.length-1] !== "\n") {
+			text += "\n";
 		}
-	}
-	filename = filename.replace(/\.[^.]+/, ".html");
-	if (!filename.match(/html$/)) {
-		filename += ".html";
+		text += "!!!filter: " + GLOBALFILTER + "\n";
 	}
 
-	var text = EDITOR.session.getValue();
 	var output = '<html>\n';
 	output += '<head>\n';
 	output += '<title>My Score</title>\n';
@@ -6793,6 +6798,23 @@ function getFilenameExtension(text) {
 	}
 
 	return "txt";
+}
+
+
+//////////////////////////////
+//
+// dataIsHumdrum --
+//
+
+function dataIsHumdrum(data) {
+	if (!data) {
+		data = getTextFromEditor();
+	}
+	if (data.match(/^\s*[!*]/)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 
