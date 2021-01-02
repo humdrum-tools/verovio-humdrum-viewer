@@ -1,6 +1,3 @@
----
-permalink: /scripts/listeners.js
----
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
@@ -108,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	setupAceEditor("input");
-	allowTabs();
 	setupDropArea();
 
 	if (CGI.toolbar) {
@@ -582,7 +578,7 @@ function processInterfaceKeyCommand(event) {
 					togglePlaceColoring();
 				} else {
 					// compile filtered contents & display in text editor
-					showCompiledFilterData();
+					compileFilters();
 				}
 				event.preventDefault();
 			}

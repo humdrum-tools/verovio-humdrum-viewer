@@ -1,12 +1,8 @@
----
-permalink: /scripts/timemap.js
----
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Fri Jun 23 08:11:13 CEST 2017
 // Last Modified:  Fri Jun 23 08:11:16 CEST 2017
-// Filename:       timemap.js
-// Web Address:    https://verovio.humdrum.org/scripts/timemap.js
+// Filename:       _includes/vhv-scripts/timemap.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
 // vim:            ts=3: ft=javascript
 //
