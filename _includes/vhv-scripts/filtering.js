@@ -59,6 +59,13 @@ function showCompiledFilterData(deleteline) {
 //
 
 function applyGlobalFilter() {
+	let xml = dataIsXml();
+	if (xml) {
+		// Could be done later in certain cases.
+		alert("Cannot apply filters to XML data");
+		return;
+	}
+
 	var ficon = document.querySelector(".filter-icon");
 	if (!ficon) {
 		console.log("SOMETHING STRANGE HAPPENED: missing filter icon");
