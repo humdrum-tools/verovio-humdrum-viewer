@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				// will have to deal with embedded UTF-8 probably.
 				text = atob(text);
 			}
-			EDITOR.setValue(text, -1);
+			setTextInEditor(text);
 		}
 		displayNotation();
 	}

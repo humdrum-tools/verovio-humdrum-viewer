@@ -47,12 +47,12 @@ function storeSpreadsheetDataInEditor(data, shiftkey) {
 		}
 	} else {
 		// preserve presumed expanded tab data.
-		EDITOR.setValue(data, -1);
+		setTextInEditor(data);
 	}
 }
 
 function storeSpreadsheetDataInEditor2(data) {
-	EDITOR.setValue(data, -1);
+	setTextInEditor(data);
 }
 
 

@@ -174,7 +174,7 @@ function trimTabsInEditor(text) {
 	}
 	
 	var newtext = trimTabs(text);
-	EDITOR.setValue(newtext, -1);
+	setTextInEditor(newtext);
 }
 
 

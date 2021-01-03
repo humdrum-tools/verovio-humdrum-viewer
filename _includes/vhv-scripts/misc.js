@@ -616,13 +616,16 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 				}
 				if (CGI.filter) {
 					if (mode == "musedata") {
-						EDITOR.setValue("@@@filter: " + CGI.filter + "\n" + newtext, -1);
+						setTextInEditor("@@@filter: " + CGI.filter + "\n" + newtext);
+					} else if (mode == "xml") {
+						// This may cause problems since the "<?xml" processor directive
+						// is now not at the start of the data.
+						setTextInEditor("<!-- !!!filter: " + CGI.filter + "\n" + newtext);
 					} else {
-						// fix following for XML formats (maybe embed filter in comment for MusicXML).
-						EDITOR.setValue("!!!filter: " + CGI.filter + "\n" + newtext, -1);
+						setTextInEditor("!!!filter: " + CGI.filter + "\n" + newtext);
 					}
 				} else {
-					EDITOR.setValue(newtext, -1);
+					setTextInEditor(newtext);
 				}
 				FreezeRendering = freezeBackup;
 				displayNotation(page);
@@ -823,25 +826,7 @@ function showHumdrum(humdrumdata) {
 		// could implement a key to return to MuseData contents
 		MuseDataBuffer = getTextFromEditor();
 	}
-	EDITOR.setValue(humdrumdata, -1);
-}
-
-
-
-//////////////////////////////
-//
-// displayMeiNoType --
-//
-
-function displayMeiNoType() {
-	var options = humdrumToSvgOptions();
-	options.humType = 0;
-	var text = getTextFromEditor();
-	if (GLOBALFILTER) {
-		text += "\n!!!filter: " + GLOBALFILTER + "\n";
-	}
-	vrvWorker.filterData(options, text, "mei")
-	.then(showMei);
+	setTextInEditor(humdrumdata);
 }
 
 
@@ -875,7 +860,14 @@ function getTextFromEditor() {
 
 //////////////////////////////
 //
-// setTextInEditor --
+// setTextInEditor -- Sets the text in the editor, remving the last
+//   newline in the file to prevent an empty line in the ace editor
+//   (the ace editor will add an empty line if the last line of
+//   data ends with a newline).  The cursor is moved to the start
+//   of the data, but the view is not moved to the start (this is needed
+//   for keeping a used filter in view when compiling filters, in
+//   particular).  Also the selection of the entire copied data
+//   is deselected.
 //
 
 function setTextInEditor(text) {
@@ -934,10 +926,13 @@ function getTextFromEditorWithGlobalFilter(data) {
 //
 
 function showMei(meidata) {
-	setEditorModeAndKeyboard();
 	if (ShowingIndex) {
 		return;
 	}
+	if (EditorMode != "xml") {
+		EditorMode = "xml";
+		setEditorModeAndKeyboard();
+	};
 	if (BufferedHumdrumFile.match(/^\s*$/)) {
 		BufferedHumdrumFile = getTextFromEditor();
 	}
@@ -948,12 +943,38 @@ function showMei(meidata) {
 
 //////////////////////////////
 //
+// displayMeiNoType --
+//
+
+function displayMeiNoType() {
+console.log("IN DISPLAYMEI NO TYPE");
+	var options = humdrumToSvgOptions();
+	options.humType = 0;
+	var text = getTextFromEditor();
+	if (GLOBALFILTER) {
+		text += "\n!!!filter: " + GLOBALFILTER + "\n";
+		detachGlobalFilter();
+	}
+	vrvWorker.filterData(options, text, "mei")
+	.then(function(meidata) {
+		detachGlobalFilter();
+		showMei(meidata);
+	});
+}
+
+
+//////////////////////////////
+//
 // displayMei --
 //
 
 function displayMei() {
+console.log("IN DISPLAYMEI");
 	vrvWorker.getMEI()
-	.then(showMei);
+	.then(function(meidata) {
+		detachGlobalFilter();
+		showMei(meidata);
+	});
 }
 
 
@@ -1246,15 +1267,6 @@ function reloadData() {
 }
 
 
-
-//////////////////////////////
-//
-// downloadVerovioToolkit --
-//
-
-function downloadVerovioToolkit(use_worker) {
-	vrvWorker = new vrvInterface(use_worker, initializeVerovioToolkit);
-};
 
 
 
@@ -1573,23 +1585,13 @@ function humdrumDataNoteIntoView(event) {
 function displayScoreTextInEditor(text, page) {
 	var mode = getMode(text);
 
-	// filter is now placed in input#filter rather than
-	// prefixed to text in edtior.
-	//if (CGI.filter) {
-	//	if (mode == "musedata") {
-	//		text = "@@@filter: " + CGI.filter + "\n" + text;
-	//	} else {
-	//		text = "!!!filter: " + CGI.filter + "\n" + text;
-	//	}
-	//}
-
 	if (mode != EditorMode) {
 		EditorMode = mode;
 		setEditorModeAndKeyboard();
 	};
 
 	// -1 is to unselect added text, and move cursor to start
-	EDITOR.setValue(text, -1);
+	setTextInEditor(text);
 
 	// update the notation display
 	displayNotation(page);
@@ -1645,41 +1647,6 @@ function showIdInEditor(id) {
 
 //////////////////////////////
 //
-// toggleEditorMode --
-//
-
-function toggleEditorMode() {
-//	if (KeyboardMode == "ace/keyboard/ace") {
-//		KeyboardMode  = "ace/keyboard/vim";
-//		EditorTheme   = "ace/theme/solarized_dark";
-	if (KeyboardMode == "ace") {
-		KeyboardMode  = "vim";
-	} else {
-		KeyboardMode  = "ace";
-	};
-	setEditorModeAndKeyboard();
-};
-
-
-
-//////////////////////////////
-//
-// setEditorModeAndKeyboard --
-//
-
-function setEditorModeAndKeyboard() {
-	if (EDITOR) {
-		EDITOR.setTheme(EditorModes[EditorMode][KeyboardMode].theme);
-		EDITOR.getSession().setMode("ace/mode/" + EditorMode);
-		// null to reset to default (ace) mode
-		EDITOR.setKeyboardHandler(KeyboardMode === "ace" ? null : "ace/keyboard/" + KeyboardMode);
-	}
-};
-
-
-
-//////////////////////////////
-//
 // toggleHumdrumCsvTsv --
 //
 
@@ -1694,10 +1661,10 @@ function toggleHumdrumCsvTsv() {
 		if (lines[i].match(/^\*\*/)) {
 			if (lines[i].match(/,/)) {
 				console.log("CONVERTING TO TSV");
-				EDITOR.setValue(convertDataToTsv(lines), -1);
+            setTextInEditor(convertDataToTsv(lines));
 			} else {
 				console.log("CONVERTING TO CSV");
-				EDITOR.setValue(convertDataToCsv(lines), -1);
+				setTextInEditor(convertDataToCsv(lines));
 			}
 			break;
 		}
@@ -1965,18 +1932,19 @@ function insertMarkedNoteRdf() {
 
 //////////////////////////////
 //
-// clearContent --
+// clearContent -- Used by the alt-e option or the erase button
+// in the main toolbar.
 //
 
 var ERASED_DATA = "";
 function clearContent() {
 	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
-		EDITOR.setValue(ERASED_DATA, -1);
+		setTextInEditor(ERASED_DATA);
 		displayFileTitle(ERASED_DATA);
 	} else {
 		ERASED_DATA = data;
-		EDITOR.setValue("", -1);
+		setTextInEditor("");
 		var output = document.querySelector("#output");
 		if (output) {
 			output.innerHTML = "";

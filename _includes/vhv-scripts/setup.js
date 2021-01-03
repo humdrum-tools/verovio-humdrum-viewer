@@ -1,4 +1,16 @@
 
+
+//////////////////////////////
+//
+// downloadVerovioToolkit --
+//
+
+function downloadVerovioToolkit(use_worker) {
+	vrvWorker = new vrvInterface(use_worker, initializeVerovioToolkit);
+};
+
+
+
 //////////////////////////////
 //
 // setupAceEditor --
@@ -214,7 +226,6 @@ function GetCgiParameters() {
 
 	return output;
 }
-
 
 
 

@@ -43,7 +43,7 @@ function showCompiledFilterData(deleteline) {
 	vrvWorker.filterData(options, text, "humdrum")
 	.then(function(newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
-		EDITOR.setValue(newdata, -1);
+		setTextInEditor(newdata);
 		deactivateFilterInToolbar();
 		removeLastLineInTextEditorIfMatches(deleteline);
 	});

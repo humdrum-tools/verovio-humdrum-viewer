@@ -85,7 +85,7 @@ function restoreEditorContentsLocally() {
 		return;
 	}
 	var decodedcontents = decodeURIComponent(localStorage.getItem(key));
-	EDITOR.setValue(decodedcontents, -1);
+	setTextInEditor(decodedcontents);
 	InterfaceSingleNumber = 0;
 }
 
