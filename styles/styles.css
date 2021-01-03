@@ -45,15 +45,17 @@ g[id^="slur-"]:hover,
 g[id^="fermata-"]:hover,
 g[id^="rest-"]:hover {
 	fill: orange;
+	stroke: orange;
 	filter: url(#hover-shadow);
 }
 
 /* Highlight barlines:
 g[id^="bline-"] path:hover
+*/
+g[id^="slur-"] path:hover
 {
 	stroke: orange;
 }
-*/
 
 
 table.index-list {
