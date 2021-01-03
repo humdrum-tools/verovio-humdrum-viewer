@@ -55,3 +55,149 @@ function toggleEditorMode() {
 
 
 
+//////////////////////////////
+//
+// showIdInEditor -- Highlight the current line of data being played,
+//     and center it.  But only do this if Humdrum data is being shown
+//     in the editor (MEI data is not time-ordered by notes, only by
+//     measure).
+//
+
+function showIdInEditor(id) {
+	if (EditorMode == "xml") {
+		return;
+	}
+	var matches = id.match(/-[^-]*L(\d+)/);
+	if (!matches) {
+		return;
+	}
+	var row = parseInt(matches[1]);
+	EDITOR.gotoLine(row, 0);
+	EDITOR.centerSelection();
+	// console.log("PLAYING ROW", row);
+}
+
+
+
+//////////////////////////////
+//
+// getMode -- return the Ace editor mode to display the data in:
+//    ace/mode/humdrum  == for Humdrum
+//    ace/mode/xml   == for XML data (i.e., MEI, or SVG)
+//
+
+function getMode(text) {
+	if (!text) {
+		return "humdrum";
+	}
+	if (text.match(/^\s*</)) {
+		return "xml";
+	} else if (text.substring(0, 2000).match(/Group memberships:/)) {
+		return "musedata";
+	} else {
+		return "humdrum";
+	}
+}
+
+
+
+//////////////////////////////
+//
+// dataIntoView -- When clicking on a note (or other itmes in SVG images later),
+//      go to the corresponding line in the editor.
+//
+
+function	dataIntoView(event) {
+	if (EditorMode == "xml") {
+		xmlDataIntoView(event);
+	} else {
+		humdrumDataIntoView(event);
+	}
+}
+
+
+
+//////////////////////////////
+//
+// xmlDataNoteIntoView --
+//
+
+function xmlDataNoteIntoView(event) {
+	var location = EDITOR.selection.getCursor();
+	var line = location.row;
+	if (EditorLine == line) {
+		// already highlighted (or close enough)
+		return;
+	}
+	// var column = location.column;
+	var text = EDITOR.session.getLine(line);
+	var matches = text.match(/xml:id="([^"]+)"/);
+	if (!matches) {
+		markItem(null, line);
+		return;
+	}
+	var id = matches[1];
+	var item;
+	if (Splitter.rightContent) {
+		// see: https://www.w3.org/TR/selectors
+		var item = Splitter.rightContent.querySelector("#" + id);
+		// console.log("ITEM", item);
+	}
+	markItem(item, line);
+}
+
+
+
+//////////////////////////////
+//
+// humdrumDataNoteIntoView --
+//
+
+function humdrumDataNoteIntoView(event) {
+	var location = EDITOR.selection.getCursor();
+	var line = location.row;
+	var column = location.column;
+	var text = EDITOR.session.getLine(line);
+	var fys = getFieldAndSubtoken(text, column);
+	var field = fys.field;
+	var subspine = fys.subspine;
+	var query = HIGHLIGHTQUERY;
+	HIGHLIGHTQUERY = "";
+	// the following code causes problems with note highlighting
+	// after another note was edited.
+	//	if (!query) {
+	//		query = EDITINGID;
+	//		HIGHLLIGHTQUERY = EDITINGID;
+	//		// EDITINGID = null;
+	//	}
+	if (!query) {
+		var query = "L" + (line+1) + "F" + field;
+		if (subspine > 0) {
+			query += "S" + subspine;
+		}
+	}
+	var item = 0;
+	if (Splitter.rightContent) {
+		// see: https://www.w3.org/TR/selectors
+		var items = Splitter.rightContent.querySelectorAll("g[id$='" +
+			query + "']");
+		if (items.length == 0) {
+			// cannot find (hidden rest for example)
+			return;
+		}
+		// give priority to items that possess qon/qoff classes.
+		for (var i=0; i<items.length; i++) {
+			if (items[i].className.baseVal.match(/qon/)) {
+				item = items[i];
+				break;
+			}
+		}
+		if (!item) {
+			item = items[items.length-1];
+		}
+		if (item.id.match(/^accid/)) {
+			item = items[items.length-2];
+		}
+	}
+	markItem(item);
+}

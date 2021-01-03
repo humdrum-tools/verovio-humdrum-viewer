@@ -264,3 +264,230 @@ function getFieldAndSubtoken(text, column) {
 	output.subspine = subspine;
 	return output;
 }
+
+
+
+//////////////////////////////
+//
+// insertMarkedNoteRdf -- If not present, insert marked note
+//     RDF marker in data; otherwise returns what chatacters should represent
+//     a marked note.
+//
+
+function insertMarkedNoteRdf() {
+	var limit = 20; // search only first and last 20 lines of data for RDF entries.
+	var editchar = "";
+	var matches;
+	var i;
+	var size = EDITOR.session.getLength();
+	for (i=size-1; i>=0; i--) {
+		if (size - i > limit) {
+			break;
+		}
+		var line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
+			editchar = matches[1];
+		}
+		if (editchar !== "") {
+			break;
+		}
+	}
+
+	if (editchar === "") {
+		for (i=0; i<size; i++) {
+			if (i > limit) {
+				break;
+			}
+			var line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
+				editchar = matches[1];
+			}
+			if (editchar !== "") {
+				break;
+			}
+		}
+	}
+
+	if (editchar !== "") {
+		return editchar;
+	}
+
+	var text  = "";
+
+	if (editchar === "") {
+		text     +=  "!!!RDF**kern: @ = marked note";
+		editchar = "@";
+	} else {
+		text     +=  "!!!RDF**kern: " + editchar + " = marked note";
+	}
+
+	// append markers to end of file.
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+	EDITOR.session.insert({
+			row: EDITOR.session.getLength(),
+			column: 0
+		},
+		"\n" + text);
+	FreezeRendering = freezeBackup;
+
+	return editchar;
+}
+
+
+
+//////////////////////////////
+//
+// insertDirectionRdfs -- If not present, insert above/below RDF markers
+//     in data; otherwise returns what chatacters should represent "above"
+//     and "below".  Typically ">" means "above" and "<" means "below".
+//     also can be used to check if "<" or ">" are already used for
+//     something else.
+//
+
+function insertDirectionRdfs() {
+	var limit = 20; // search only first and last 20 lines of data for RDF entries.
+	var abovechar = "";
+	var belowchar = "";
+	var matches;
+	var i;
+	var size = EDITOR.session.getLength();
+	for (i=size-1; i>=0; i--) {
+		if (size - i > limit) {
+			break;
+		}
+		var line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
+			abovechar = matches[1];
+		} else if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
+			belowchar = matches[1];
+		}
+		if ((abovechar !== "") && (belowchar !== "")) {
+			break;
+		}
+	}
+
+	if ((abovechar === "") || (belowchar === "")) {
+		for (i=0; i<size; i++) {
+			if (i > limit) {
+				break;
+			}
+			var line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
+				abovechar = matches[1];
+			} else if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
+				belowchar = matches[1];
+			}
+			if ((abovechar !== "") && (belowchar !== "")) {
+				break;
+			}
+		}
+	}
+
+	if ((abovechar !== "") && (belowchar !== "")) {
+		return [abovechar, belowchar];
+	}
+
+	var text  = "";
+
+	if (abovechar === "") {
+		text     +=  "!!!RDF**kern: > = above\n";
+		abovechar = ">";
+	} else {
+		text     +=  "!!!RDF**kern: " + abovechar + " = above\n";
+	}
+
+	if (belowchar === "") {
+		text     +=  "!!!RDF**kern: < = below";
+		belowchar = "<";
+	} else {
+		text     +=  "!!!RDF**kern: " + belowchar + " = below";
+	}
+
+	// append markers to end of file.
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+	EDITOR.session.insert({
+			row: EDITOR.session.getLength(),
+			column: 0
+		},
+		"\n" + text);
+	FreezeRendering = freezeBackup;
+
+	return [abovechar, belowchar];
+}
+
+
+
+//////////////////////////////
+//
+// insertEditorialAccidentalRdf -- If not present, insert editorial accidental
+//     RDF marker in data; otherwise returns what chatacters should represent
+//     an editorial accidental.
+//
+
+function insertEditorialAccidentalRdf() {
+	var limit = 20; // search only first and last 20 lines of data for RDF entries.
+	var editchar = "";
+	var matches;
+	var i;
+	var size = EDITOR.session.getLength();
+	for (i=size-1; i>=0; i--) {
+		if (size - i > limit) {
+			break;
+		}
+		var line = EDITOR.session.getLine(i);
+		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
+			editchar = matches[1];
+		}
+		if (editchar !== "") {
+			break;
+		}
+	}
+
+	if (editchar === "") {
+		for (i=0; i<size; i++) {
+			if (i > limit) {
+				break;
+			}
+			var line = EDITOR.session.getLine(i);
+			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
+				editchar = matches[1];
+			}
+			if (editchar !== "") {
+				break;
+			}
+		}
+	}
+
+	if (editchar !== "") {
+		return editchar;
+	}
+
+	var text  = "";
+
+	if (editchar === "") {
+		text     +=  "!!!RDF**kern: i = editorial accidental\n";
+		editchar = "i";
+	} else {
+		text     +=  "!!!RDF**kern: " + editchar + " = editorial accidental\n";
+	}
+
+	// append markers to end of file.
+	var freezeBackup = FreezeRendering;
+	if (FreezeRendering == false) {
+		FreezeRendering = true;
+	}
+	EDITOR.session.insert({
+			row: EDITOR.session.getLength(),
+			column: 0
+		},
+		"\n" + text);
+	FreezeRendering = freezeBackup;
+
+	return editchar;
+}

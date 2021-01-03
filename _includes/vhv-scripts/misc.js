@@ -159,6 +159,7 @@ function processOptions() {
 	if (!CGI.k) {
 		return;
 	}
+// do something here?
 }
 
 
@@ -292,8 +293,6 @@ function toggleVhvTitle() {
 		area.style.display = "none";
 	}
 }
-
-
 
 
 
@@ -872,9 +871,8 @@ function getTextFromEditor() {
 
 function setTextInEditor(text) {
 	if (!text) {
-		return;
-	}
-	if (text.charAt(text.length-1) === "\n") {
+		EDITOR.setValue("");
+	} else if (text.charAt(text.length-1) === "\n") {
 		// Get rid of #@%! empty line at end of text editor:
 		EDITOR.setValue(text.slice(0, -1), -1);
 	} else {
@@ -1476,109 +1474,6 @@ function humdrumDataIntoView(event) {
 
 //////////////////////////////
 //
-// highlightNoteInScore -- Called when the cursor has changed position
-//     int the editor.
-//
-
-function highlightNoteInScore(event) {
-	if (EditorMode == "xml") {
-		xmlDataNoteIntoView(event);
-	} else {
-		humdrumDataNoteIntoView(event);
-	}
-}
-
-
-
-//////////////////////////////
-//
-// xmlDataNoteIntoView --
-//
-
-function xmlDataNoteIntoView(event) {
-	var location = EDITOR.selection.getCursor();
-	var line = location.row;
-	if (EditorLine == line) {
-		// already highlighted (or close enough)
-		return;
-	}
-	// var column = location.column;
-	var text = EDITOR.session.getLine(line);
-	var matches = text.match(/xml:id="([^"]+)"/);
-	if (!matches) {
-		markItem(null, line);
-		return;
-	}
-	var id = matches[1];
-	var item;
-	if (Splitter.rightContent) {
-		// see: https://www.w3.org/TR/selectors
-		var item = Splitter.rightContent.querySelector("#" + id);
-		// console.log("ITEM", item);
-	}
-	markItem(item, line);
-}
-
-
-
-//////////////////////////////
-//
-// humdrumDataNoteIntoView --
-//
-
-function humdrumDataNoteIntoView(event) {
-	var location = EDITOR.selection.getCursor();
-	var line = location.row;
-	var column = location.column;
-	var text = EDITOR.session.getLine(line);
-	var fys = getFieldAndSubtoken(text, column);
-	var field = fys.field;
-	var subspine = fys.subspine;
-	var query = HIGHLIGHTQUERY;
-	HIGHLIGHTQUERY = "";
-	// the following code causes problems with note highlighting
-	// after another note was edited.
-	//	if (!query) {
-	//		query = EDITINGID;
-	//		HIGHLLIGHTQUERY = EDITINGID;
-	//		// EDITINGID = null;
-	//	}
-	if (!query) {
-		var query = "L" + (line+1) + "F" + field;
-		if (subspine > 0) {
-			query += "S" + subspine;
-		}
-	}
-	var item = 0;
-	if (Splitter.rightContent) {
-		// see: https://www.w3.org/TR/selectors
-		var items = Splitter.rightContent.querySelectorAll("g[id$='" +
-			query + "']");
-		if (items.length == 0) {
-			// cannot find (hidden rest for example)
-			return;
-		}
-		// give priority to items that possess qon/qoff classes.
-		for (var i=0; i<items.length; i++) {
-			if (items[i].className.baseVal.match(/qon/)) {
-				item = items[i];
-				break;
-			}
-		}
-		if (!item) {
-			item = items[items.length-1];
-		}
-		if (item.id.match(/^accid/)) {
-			item = items[items.length-2];
-		}
-	}
-	markItem(item);
-}
-
-
-
-//////////////////////////////
-//
 // displayScoreTextInEditor --
 //
 
@@ -1595,52 +1490,6 @@ function displayScoreTextInEditor(text, page) {
 
 	// update the notation display
 	displayNotation(page);
-}
-
-
-
-//////////////////////////////
-//
-// getMode -- return the Ace editor mode to display the data in:
-//    ace/mode/humdrum  == for Humdrum
-//    ace/mode/xml   == for XML data (i.e., MEI, or SVG)
-//
-
-function getMode(text) {
-	if (!text) {
-		return "humdrum";
-	}
-	if (text.match(/^\s*</)) {
-		return "xml";
-	} else if (text.substring(0, 2000).match(/Group memberships:/)) {
-		return "musedata";
-	} else {
-		return "humdrum";
-	}
-}
-
-
-
-//////////////////////////////
-//
-// showIdInEditor -- Highlight the current line of data being played,
-//     and center it.  But only do this if Humdrum data is being shown
-//     in the editor (MEI data is not time-ordered by notes, only by
-//     measure).
-//
-
-function showIdInEditor(id) {
-	if (EditorMode == "xml") {
-		return;
-	}
-	var matches = id.match(/-[^-]*L(\d+)/);
-	if (!matches) {
-		return;
-	}
-	var row = parseInt(matches[1]);
-	EDITOR.gotoLine(row, 0);
-	EDITOR.centerSelection();
-	// console.log("PLAYING ROW", row);
 }
 
 
@@ -1705,238 +1554,10 @@ function increaseTab() {
 
 //////////////////////////////
 //
-// insertDirectionRdfs -- If not present, insert above/below RDF markers
-//     in data; otherwise returns what chatacters should represent "above"
-//     and "below".  Typically ">" means "above" and "<" means "below".
-//     also can be used to check if "<" or ">" are already used for
-//     something else.
-//
-
-function insertDirectionRdfs() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var abovechar = "";
-	var belowchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
-	for (i=size-1; i>=0; i--) {
-		if (size - i > limit) {
-			break;
-		}
-		var line = EDITOR.session.getLine(i);
-		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
-			abovechar = matches[1];
-		} else if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
-			belowchar = matches[1];
-		}
-		if ((abovechar !== "") && (belowchar !== "")) {
-			break;
-		}
-	}
-
-	if ((abovechar === "") || (belowchar === "")) {
-		for (i=0; i<size; i++) {
-			if (i > limit) {
-				break;
-			}
-			var line = EDITOR.session.getLine(i);
-			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
-				abovechar = matches[1];
-			} else if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
-				belowchar = matches[1];
-			}
-			if ((abovechar !== "") && (belowchar !== "")) {
-				break;
-			}
-		}
-	}
-
-	if ((abovechar !== "") && (belowchar !== "")) {
-		return [abovechar, belowchar];
-	}
-
-	var text  = "";
-
-	if (abovechar === "") {
-		text     +=  "!!!RDF**kern: > = above\n";
-		abovechar = ">";
-	} else {
-		text     +=  "!!!RDF**kern: " + abovechar + " = above\n";
-	}
-
-	if (belowchar === "") {
-		text     +=  "!!!RDF**kern: < = below";
-		belowchar = "<";
-	} else {
-		text     +=  "!!!RDF**kern: " + belowchar + " = below";
-	}
-
-	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
-	if (FreezeRendering == false) {
-		FreezeRendering = true;
-	}
-	EDITOR.session.insert({
-			row: EDITOR.session.getLength(),
-			column: 0
-		},
-		"\n" + text);
-	FreezeRendering = freezeBackup;
-
-	return [abovechar, belowchar];
-}
-
-
-
-//////////////////////////////
-//
-// insertEditorialAccidentalRdf -- If not present, insert editorial accidental
-//     RDF marker in data; otherwise returns what chatacters should represent
-//     an editorial accidental.
-//
-
-function insertEditorialAccidentalRdf() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var editchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
-	for (i=size-1; i>=0; i--) {
-		if (size - i > limit) {
-			break;
-		}
-		var line = EDITOR.session.getLine(i);
-		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
-			editchar = matches[1];
-		}
-		if (editchar !== "") {
-			break;
-		}
-	}
-
-	if (editchar === "") {
-		for (i=0; i<size; i++) {
-			if (i > limit) {
-				break;
-			}
-			var line = EDITOR.session.getLine(i);
-			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
-				editchar = matches[1];
-			}
-			if (editchar !== "") {
-				break;
-			}
-		}
-	}
-
-	if (editchar !== "") {
-		return editchar;
-	}
-
-	var text  = "";
-
-	if (editchar === "") {
-		text     +=  "!!!RDF**kern: i = editorial accidental\n";
-		editchar = "i";
-	} else {
-		text     +=  "!!!RDF**kern: " + editchar + " = editorial accidental\n";
-	}
-
-	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
-	if (FreezeRendering == false) {
-		FreezeRendering = true;
-	}
-	EDITOR.session.insert({
-			row: EDITOR.session.getLength(),
-			column: 0
-		},
-		"\n" + text);
-	FreezeRendering = freezeBackup;
-
-	return editchar;
-}
-
-
-
-//////////////////////////////
-//
-// insertMarkedNoteRdf -- If not present, insert marked note
-//     RDF marker in data; otherwise returns what chatacters should represent
-//     a marked note.
-//
-
-function insertMarkedNoteRdf() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var editchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
-	for (i=size-1; i>=0; i--) {
-		if (size - i > limit) {
-			break;
-		}
-		var line = EDITOR.session.getLine(i);
-		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
-			editchar = matches[1];
-		}
-		if (editchar !== "") {
-			break;
-		}
-	}
-
-	if (editchar === "") {
-		for (i=0; i<size; i++) {
-			if (i > limit) {
-				break;
-			}
-			var line = EDITOR.session.getLine(i);
-			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
-				editchar = matches[1];
-			}
-			if (editchar !== "") {
-				break;
-			}
-		}
-	}
-
-	if (editchar !== "") {
-		return editchar;
-	}
-
-	var text  = "";
-
-	if (editchar === "") {
-		text     +=  "!!!RDF**kern: @ = marked note";
-		editchar = "@";
-	} else {
-		text     +=  "!!!RDF**kern: " + editchar + " = marked note";
-	}
-
-	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
-	if (FreezeRendering == false) {
-		FreezeRendering = true;
-	}
-	EDITOR.session.insert({
-			row: EDITOR.session.getLength(),
-			column: 0
-		},
-		"\n" + text);
-	FreezeRendering = freezeBackup;
-
-	return editchar;
-}
-
-
-
-//////////////////////////////
-//
 // clearContent -- Used by the alt-e option or the erase button
 // in the main toolbar.
 //
 
-var ERASED_DATA = "";
 function clearContent() {
 	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {

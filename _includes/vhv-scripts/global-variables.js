@@ -208,6 +208,8 @@ var BasketVersion = 531;
 
 var Actiontime = 0;
 
+var ERASED_DATA = "";
+
 // see https://github.com/ajaxorg/ace/wiki/Embedding-API
 // Use EditSession instead of BufferedHumdrumFile:
 var BufferedHumdrumFile = "";
