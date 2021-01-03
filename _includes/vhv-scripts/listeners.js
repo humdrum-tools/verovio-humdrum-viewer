@@ -186,7 +186,11 @@ document.addEventListener("DOMContentLoaded", function() {
 			} else {
 				// presumably MIME data, so decode
 				// will have to deal with embedded UTF-8 probably.
-				text = atob(text);
+				try {
+					text = atob(text);
+				} catch (err) {
+					// text is not MIME encoded
+				}
 			}
 			setTextInEditor(text);
 		}
@@ -588,11 +592,10 @@ function processInterfaceKeyCommand(event) {
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addDataLineAboveCurrentPosition();
-					event.preventDefault();
 				} else {
 					toggleMenuDisplay();
-					event.preventDefault();
 				}
+				event.preventDefault();
 			}
 			break;
 
@@ -602,8 +605,8 @@ function processInterfaceKeyCommand(event) {
 					toggleMenuAndToolbarDisplay();
 				} else {
 					clearContent();
-					event.preventDefault();
 				}
+				event.preventDefault();
 			}
 			break;
 
@@ -613,7 +616,7 @@ function processInterfaceKeyCommand(event) {
 					displayNotation(false, true);
 				} else {
 					toggleFreeze();
-				};
+				}
 				event.preventDefault();
 			}
 			break;
@@ -630,8 +633,8 @@ function processInterfaceKeyCommand(event) {
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					showBufferedHumdrumData();
+					event.preventDefault();
 				}
-				event.preventDefault();
 			}
 			break;
 

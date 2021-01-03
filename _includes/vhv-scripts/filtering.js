@@ -80,7 +80,6 @@ function applyGlobalFilter() {
 		return;
 	}
 
-	console.log("APPLYING GLOBAL FILTER");
 	var efilter = document.querySelector("input#filter");
 	if (!efilter) {
 		console.log("CANNOT FIND FILTER");

@@ -148,7 +148,11 @@ function loadKernScoresFile(obj, force) {
 					try {
 						jinfo = JSON.parse(info.data);
 						if (force) {
-							var textdata = atob(jinfo.content);
+							try {
+								var textdata = atob(jinfo.content);
+							} catch (err) {
+								// text is not MIME encoding.
+							}
 							if (textdata.match(/^\s*$/)) {
 								textdata = "!!!ONB: No data content\n";
 							}

@@ -103,6 +103,22 @@ function getMode(text) {
 
 //////////////////////////////
 //
+// highlightNoteInScore -- Called when the cursor has changed position
+//     int the editor.
+//
+
+function highlightNoteInScore(event) {
+	if (EditorMode == "xml") {
+		xmlDataNoteIntoView(event);
+	} else {
+		humdrumDataNoteIntoView(event);
+	}
+}
+
+
+
+//////////////////////////////
+//
 // dataIntoView -- When clicking on a note (or other itmes in SVG images later),
 //      go to the corresponding line in the editor.
 //
@@ -201,3 +217,5 @@ function humdrumDataNoteIntoView(event) {
 	}
 	markItem(item);
 }
+
+

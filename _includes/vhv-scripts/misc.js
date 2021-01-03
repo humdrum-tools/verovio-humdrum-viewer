@@ -846,11 +846,22 @@ function getTextFromEditor() {
 	if (!text) {
 		return "";
 	}
+	if (text.length < 5) {
+		// do not try to unmime if length less than 5 characters
+		return text;
+	}
 	// if the first 100 charcters are only spaces or [A-Za-z0-9/+=], the assume
 	// the text is MIME encoded, so decode before returning:
 	var starting = text.substring(0, 100);
-	if (starting.match(/^[\sA-Za-z0-9/+=]+$/)) {
-		text = atob(text);
+	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
+		try {
+			text = atob(text);
+		} catch (err) {
+			// console.log("text is not mime", text);
+			// It is still possible that the text is not
+			// MIME data, but it will still be decodeable
+			// into junk.
+		}
 	}
 	return text;
 }
@@ -870,6 +881,7 @@ function getTextFromEditor() {
 //
 
 function setTextInEditor(text) {
+console.log("GOT HERE AAA");
 	if (!text) {
 		EDITOR.setValue("");
 	} else if (text.charAt(text.length-1) === "\n") {
@@ -945,7 +957,6 @@ function showMei(meidata) {
 //
 
 function displayMeiNoType() {
-console.log("IN DISPLAYMEI NO TYPE");
 	var options = humdrumToSvgOptions();
 	options.humType = 0;
 	var text = getTextFromEditor();
@@ -967,7 +978,6 @@ console.log("IN DISPLAYMEI NO TYPE");
 //
 
 function displayMei() {
-console.log("IN DISPLAYMEI");
 	vrvWorker.getMEI()
 	.then(function(meidata) {
 		detachGlobalFilter();
