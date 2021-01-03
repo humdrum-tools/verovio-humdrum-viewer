@@ -13,9 +13,6 @@
 // Global variables for the VHV interface:
 {% include vhv-scripts/global-variables.js %}
 
-// Main event listener functions:
-{% include vhv-scripts/listeners.js %}
-
 // Initialization functions:
 {% include vhv-scripts/setup.js %}
 
@@ -79,6 +76,9 @@
 
 // Uncategorized files:
 {% include vhv-scripts/misc.js %}
+
+// Main event listener functions:
+{% include vhv-scripts/listeners.js %}
 
 
 
