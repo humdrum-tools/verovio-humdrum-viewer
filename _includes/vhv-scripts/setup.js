@@ -14,6 +14,8 @@ function downloadVerovioToolkit(use_worker) {
 //////////////////////////////
 //
 // setupAceEditor --
+//       https://en.wikipedia.org/wiki/Ace_(editor)
+//
 //  see: https://github.com/ajaxorg/ace/wiki/Embedding-API
 //
 // Folding:
@@ -37,6 +39,8 @@ function setupAceEditor(idtag) {
 	EDITOR.$blockScrolling = Infinity;
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
+
+   // EDITOR.cursorStyle: 'ace', // "ace"|"slim"|"smooth"|"wide"
 
 	// See this webpage to turn of certain ace editor shortcuts:
 	// https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js
@@ -73,7 +77,9 @@ function setupAceEditor(idtag) {
 		{ highlightNoteInScore(event)});
 
 	// Force the cursor to blink when blurred (unfocused):
-	EDITOR.renderer.$cursorLayer.showCursor()
+	// EDITOR.renderer.$cursorLayer.showCursor();
+	EDITOR.renderer.$cursorLayer.smoothBlinking = true;
+	EDITOR.renderer.$cursorLayer.setBlinking(true);
 
 	//EDITOR.commands.addCommand({
 	//	name: 'saveFile',
@@ -86,6 +92,60 @@ function setupAceEditor(idtag) {
 	//		alert("HI!", env, argc, request);
 	//	}
 	//});
+
+	var cursor = document.querySelector(".ace_content .ace_cursor-layer");
+	if (cursor) {
+		CURSOR_OBSERVER = new MutationObserver(customCursor);
+		CURSOR_OBSERVER.observe(cursor, {attributes: true});
+	}
+
+}
+
+
+//////////////////////////////
+//
+// Setup styling of blurred ace-editor cursor:
+//
+
+var CURSOR_OBSERVER;
+var CURSOR_DISPLAY;
+
+function customCursor() {
+	activeElement = document.activeElement.nodeName;
+	let cursor = EDITOR.renderer.$cursorLayer.cursor;
+	let cursorstate = null;
+
+	for (let i=0; i<cursor.classList.length; i++) {
+		if (cursor.classList[i] == "blurred") {
+			cursorstate = "blurred";
+			break;
+		}
+		if (cursor.classList[i] == "focused") {
+			cursorstate = "focused";
+			break;
+		}
+	}
+	if (activeElement === "TEXTAREA") {
+		if (cursorstate != "focused") {
+			if (!CURSOR_DISPLAY) {
+				CURSOR_DISPLAY = true;
+			}
+			// console.log("FOCUSING CURSOR");
+			cursor.classList.add("focused");
+			cursor.classList.remove("blurred");
+			EDITOR.renderer.$cursorLayer.setBlinking(true);
+			EDITOR.renderer.$cursorLayer.showCursor();
+		}
+	} else if (CURSOR_DISPLAY) {
+		if (cursorstate != "blurred") {
+			// console.log("BLURRING CURSOR");
+			cursor.classList.add("blurred");
+			cursor.classList.remove("focused");
+			EDITOR.renderer.$cursorLayer.showCursor();
+			EDITOR.renderer.$cursorLayer.setBlinking(true);
+		}
+
+	}
 }
 
 

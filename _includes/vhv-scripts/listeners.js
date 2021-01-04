@@ -233,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	PDFLISTINTERVAL = setInterval(function() {
 		buildPdfIconListInMenu();
 	}, 3000);
+
 });
 
 

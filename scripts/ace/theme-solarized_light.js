@@ -5,7 +5,7 @@ define("ace/theme/solarized_light", ["require", "exports", "module",
         ".ace-solarized-light .ace_gutter {background: #fbf1d3;color: #9191cf}\
 	.ace-solarized-light .ace_print-margin {width: 1px;background: #e8e8e8}\
 	.ace-solarized-light {background-color: #FDF6E3;color: #586E75}\
-	.ace-solarized-light .ace_cursor {color: #000000}\
+	.ace-solarized-light .ace_cursor {color: #FF0000}\
 	.ace-solarized-light .ace_marker-layer .ace_selection {background: rgba(7, 54, 67, 0.09)}\
 	.ace-solarized-light.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px #FDF6E3;}\
 	.ace-solarized-light .ace_marker-layer .ace_step {background: rgb(255, 255, 0)}\
