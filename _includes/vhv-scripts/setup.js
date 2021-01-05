@@ -99,7 +99,30 @@ function setupAceEditor(idtag) {
 		CURSOR_OBSERVER.observe(cursor, {attributes: true});
 	}
 
+	insertSplashMusic();
+
 }
+
+
+
+//////////////////////////////
+//
+// insertSplashMusic --
+//
+
+function insertSplashMusic() {
+	var splashElement = document.querySelector("#input-splash");
+	if (!splashElement) {
+		return;
+	}
+	text = EDITOR.getValue();
+	if (!text.match(/^\s*$/)) {
+		return;
+	}
+	var splash = splashElement.textContent;
+	setTexInEditor(spash);
+}
+
 
 
 //////////////////////////////

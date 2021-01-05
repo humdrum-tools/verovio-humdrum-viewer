@@ -242,7 +242,7 @@ font b {
 }
 
 
-div#input {
+#input {
 	z-index: 10;
 	position: fixed;
 	top: 44px;
@@ -313,6 +313,7 @@ div#index {
 }
 
 
+/*
 textarea#input {
 	-moz-tab-size: 15;
 	-ms-tab-size: 15;
@@ -324,6 +325,7 @@ textarea#input {
 	overflow-x: scroll;
 	/* overflow: -moz-scrollbars-vertical; */
 }
+*/
 
 /* Menu stylings */
 
