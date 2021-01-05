@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save TEXT
+@DEFAULT:		Save editor contents
 @AR:
 @BE:
 @CA:

@@ -1707,13 +1707,26 @@ define("ace/mode/humdrum_worker", [], function(require, exports, module) {
 // {% include_relative humdrumValidator.js %}
 
 		hum = this.doc.getAllLines().map(function(line) {
-		// [20190613: allow multiple tabs between spine fields]
-		return line.replace(/\r+$/, "").split(/\t+/);
-		// return line.replace(/\r+$/, "").split("\t");
+			// [20190613: allow multiple tabs between spine fields]
+			return line.replace(/\r+$/, "").split(/\t+/);
+			// return line.replace(/\r+$/, "").split("\t");
 		});
-		validateHumdrum_Process(hum, error, warning);
 
-		this.sender.emit("annotate", errors);
+		var startline = 0;
+		for (var i=0; i<hum.length; i++) {
+			if (hum[i][0].match(/^\s*$/)) {
+				startline++;
+				continue;
+			}
+			break;
+		}
+		if ((startline < hum.length) && (hum[startline][0].match(/^\s*<\?/))) {
+			// Do not try to validate if text seems to be XML data.
+			return;
+		} else {
+			validateHumdrum_Process(hum, error, warning);
+			this.sender.emit("annotate", errors);
+		}
 	};
 
   }).call(HumdrumWorker.prototype);

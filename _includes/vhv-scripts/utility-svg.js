@@ -700,8 +700,8 @@ function togglePlaceColoring() {
 		return;
 	}
 	stylesheet = document.createElement('style');
-	var text = "g.placed { fill: deeppink; } ";
-	text += "g.placed path { stroke: deeppink; } ";
+	var text = "g.placed { fill: orange; } ";
+	text += "g.placed path { stroke: orange; } ";
 	stylesheet.innerHTML = text;
 	stylesheet.id = "placed-color-stylesheet";
 	document.body.appendChild(stylesheet);

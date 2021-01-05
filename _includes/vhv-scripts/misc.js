@@ -788,9 +788,11 @@ function showBufferedHumdrumData() {
 	var oldmode = EditorMode;
 	if (oldmode == "musedata") {
 		EditorMode = "humdrum";
+		setEditorModeAndKeyboard();
 		displayHumdrum();
 	} else {
 		EditorMode = "humdrum";
+		setEditorModeAndKeyboard();
 		if (!BufferedHumdrumFile.match(/^\s*$/)) {
 			var page = vrvWorker.page;
 			displayScoreTextInEditor(BufferedHumdrumFile, vrvWorker.page);
@@ -939,10 +941,8 @@ function showMei(meidata) {
 	if (ShowingIndex) {
 		return;
 	}
-	if (EditorMode != "xml") {
-		EditorMode = "xml";
-		setEditorModeAndKeyboard();
-	};
+	EditorMode = "xml";
+	setEditorModeAndKeyboard();
 	if (BufferedHumdrumFile.match(/^\s*$/)) {
 		BufferedHumdrumFile = getTextFromEditor();
 	}
