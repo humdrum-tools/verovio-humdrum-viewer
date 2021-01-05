@@ -664,7 +664,7 @@ function displayIndexFinally(index, location) {
 			} else {
 				items[i].text += "</span>";
 			}
-			final += items[i].text;
+			final += cleanRepertoryEntryText(items[i].text);
 		}
 		final += "</td></tr>"
 	}
@@ -673,6 +673,18 @@ function displayIndexFinally(index, location) {
 	indexelem.innerHTML = final;
 	indexelem.style.visibility = "visible";
 	indexelem.style.display = "block";
+}
+
+
+
+//////////////////////////////
+//
+// cleanRepertoryEntryText --
+//
+
+function cleanRepertoryEntryText(text) {
+	text = text.replace(/-sharp/g, "&sharp;").replace(/-flat/g, "&flat;");
+	return text;
 }
 
 

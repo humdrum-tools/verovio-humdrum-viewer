@@ -33,7 +33,7 @@ HMDIndex.prototype.clear = function() {
 	// Humdrum reference records in the input Humdurm data.
 	this.parameters   = {};
 
-	// items == list of files, groups, or dummy lines stored
+	// items == list of files, groups, or dummy/dummy-vhv lines stored
 	// on data lines in the input Humdrum data.  These are 
 	// sorted by the sortkey field after loading the data.
 	this.items        = [];
@@ -143,7 +143,7 @@ HMDIndex.prototype.parse = function(contents) {
 			pdfname = data[index["pdf"]];
 		}
 		if (data[index["description"]]) {
-			description = data[index["description"]];
+			description = cleanTitle(data[index["description"]]);
 		}
 
 		this.addEntry({filename:filename, 
@@ -209,7 +209,7 @@ HMDIndex.prototype.addEntry = function(object) {
 	var sortkey     = object.sortkey;
 	var available   = object.available;
 	var pdfname     = object.pdfname;
-	var description = object.description;
+	var description = cleanTitle(object.description);
 
 	var matches;
 
@@ -325,6 +325,16 @@ console.log("OBJECT HMD", this);
 }
 
 
+//////////////////////////////
+//
+// HMDIndex.prototype.cleanTitle --
+//
+
+HMDIndex.prototype.cleanTitle = function(text) {
+	text = text.replace(/-sharp/g, "&sharp;").replace(/-flat/g, "&flat;");
+	return text;
+}
+
 
 //////////////////////////////
 //
@@ -336,7 +346,7 @@ HMDIndex.prototype.generateFileHTML = function(entry, indent) {
 	output += "<tr>";
 	output += "<td>";
 
-	var description = entry.description;
+	var description = cleanTitle(entry.description);
 	var matches = description.match(/(.*)<link>(.*?)<\/link>(.*)/);
 	var prefix = "";
 	var postfix = "";
@@ -381,7 +391,7 @@ HMDIndex.prototype.generateGroupHTML = function(entry) {
 	var output = "";
 	// output += "<div class='group'>\n";
 	output += "<tr><td class='igroup'>\n";
-	output += entry.description;
+	output += cleanTitle(entry.description);
 	output += "</td></tr>\n";
 	var indent = 1;
 	for (var i=0; i<entry.group.length; i++) {
