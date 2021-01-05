@@ -211,7 +211,7 @@
 @ZH-simplified:
 @ZH-traditional:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('github:humdrum-tools/bach-wtc-fugues')
+@ACTION:		MENU.loadRepertory('bach-wtc-fugues')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github

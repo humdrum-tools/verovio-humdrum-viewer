@@ -298,6 +298,43 @@ function toggleVhvTitle() {
 
 //////////////////////////////
 //
+// hideWorkNavigator --
+//
+
+function restoreWorkNavigator(selector) {
+	if (!selector) {
+		selector = "#work-navigator";
+	}
+	if (ERASED_WORK_NAVIGATOR.match(/^\s*$/)) {
+		return;
+	}
+	FILEINFO = ERASED_FILEINFO;
+	var element = document.querySelector(selector);
+	element.innerHTML = ERASED_WORK_NAVIGATOR;
+	ERASED_WORK_NAVIGATOR = "";
+}
+
+
+
+//////////////////////////////
+//
+// removeWorkNavigator --
+//
+
+function removeWorkNavigator(selector) {
+	if (!selector) {
+		selector = "#work-navigator";
+	}
+	var element = document.querySelector(selector);
+	ERASED_WORK_NAVIGATOR = element.innerHTML;
+	ERASED_FILEINFO = FILEINFO;
+	element.innerHTML = "";
+}
+
+
+
+//////////////////////////////
+//
 // displayWorkNavigation --
 //
 
@@ -821,7 +858,6 @@ function displayHumdrum() {
 // showHumdrum --
 //
 
-var MuseDataBuffer = "";
 function showHumdrum(humdrumdata) {
 	if (EditorMode == "musedata") {
 		// could implement a key to return to MuseData contents
@@ -883,7 +919,6 @@ function getTextFromEditor() {
 //
 
 function setTextInEditor(text) {
-console.log("GOT HERE AAA");
 	if (!text) {
 		EDITOR.setValue("");
 	} else if (text.charAt(text.length-1) === "\n") {
@@ -1571,16 +1606,24 @@ function increaseTab() {
 function clearContent() {
 	var data = getTextFromEditor();
 	if (data.match(/^\s*$/)) {
+		// restore the text (which may have accidentally been erased)
 		setTextInEditor(ERASED_DATA);
 		displayFileTitle(ERASED_DATA);
+		restoreWorkNavigator();
+		// The left/right arrows are still active for navigating to
+		// other works in the repertory.
 	} else {
+		// Erase the text, but store it in a buffer in case
+		// the user wants to recall it if the editor is still empty.
 		ERASED_DATA = data;
+		var element
 		setTextInEditor("");
 		var output = document.querySelector("#output");
 		if (output) {
 			output.innerHTML = "";
 		}
 		displayFileTitle("");
+		removeWorkNavigator();
 	}
 }
 

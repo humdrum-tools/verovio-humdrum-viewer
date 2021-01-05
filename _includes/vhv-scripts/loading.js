@@ -156,7 +156,11 @@ function loadKernScoresFile(obj, force) {
 							if (textdata.match(/^\s*$/)) {
 								textdata = "!!!ONB: No data content\n";
 							}
-							displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
+							try {
+								displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
+							} catch (err) {
+								displayScoreTextInEditor(jinfo.content, vrvWorker.page);
+							}
 						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);

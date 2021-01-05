@@ -63,6 +63,17 @@ var FONT           = "Leipzig";
 var BREAKS         = false;
 
 
+///////////////////////////////////////////////////////////
+//
+// Repertory variables --
+
+// ERASED_WORK_NAVIGATOR: HTML code for the navigator that can be restored
+// if alt-e is pressed twice.
+ERASED_WORK_NAVIGATOR = "";
+
+// ERASED_FILEINFO: data structure containing the currently displyed
+// work from a repertory.
+ERASED_FILEINFO = {};
 
 ///////////////////////////////////////////////////////////
 //
@@ -121,6 +132,13 @@ var INPUT_FONT_SIZE = 1.0;   // used to set font-size in #input (1.0rem is the d
 
 var FILEINFO = {};
 
+
+//////////////////////////////
+//
+// MuseData variables --
+//
+
+var MuseDataBuffer = "";
 
 
 //////////////////////////////
