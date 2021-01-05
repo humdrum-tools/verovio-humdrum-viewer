@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: tasso.krn
+splash: scarlatti.krn
 ---
 
 <div id="output"></div>
