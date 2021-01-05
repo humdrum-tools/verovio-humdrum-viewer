@@ -120,7 +120,7 @@ function insertSplashMusic() {
 		return;
 	}
 	var splash = splashElement.textContent;
-	setTexInEditor(spash);
+	setTextInEditor(splash);
 }
 
 
