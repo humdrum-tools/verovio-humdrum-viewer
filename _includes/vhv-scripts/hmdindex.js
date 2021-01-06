@@ -325,15 +325,16 @@ console.log("OBJECT HMD", this);
 }
 
 
+
 //////////////////////////////
 //
 // HMDIndex.prototype.cleanTitle --
 //
 
 HMDIndex.prototype.cleanTitle = function(text) {
-	text = text.replace(/-sharp/g, "&sharp;").replace(/-flat/g, "&flat;");
-	return text;
+	return cleanRepertoryEntryText(text);
 }
+
 
 
 //////////////////////////////

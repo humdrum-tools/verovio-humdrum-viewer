@@ -615,9 +615,9 @@ function displayIndexFinally(index, location) {
 	for (i=0; i<newlines.length; i++) {
 		data = newlines[i].split(/\t+/);
 		var entry = {};
-		entry.filename = data[1];
-		entry.text = data[2];
 		entry.sorter = data[0];
+		entry.filename = data[1];
+		entry.text = cleanRepertoryEntryText(data[2]);
 		items.push(entry);
 	}
 
@@ -629,6 +629,7 @@ function displayIndexFinally(index, location) {
 			continue;
 		}
 		items[i].text = items[i].text.replace(/\[?<a[^>]*wikipedia[^<]*.*?<\/a>\]?/gi, "");
+
 		final += "<tr><td>"
 
 		if (indents[items[i].sorter]) {
@@ -664,7 +665,7 @@ function displayIndexFinally(index, location) {
 			} else {
 				items[i].text += "</span>";
 			}
-			final += cleanRepertoryEntryText(items[i].text);
+			final += items[i].text;
 		}
 		final += "</td></tr>"
 	}
@@ -684,6 +685,20 @@ function displayIndexFinally(index, location) {
 
 function cleanRepertoryEntryText(text) {
 	text = text.replace(/-sharp/g, "&sharp;").replace(/-flat/g, "&flat;");
+	let matches = text.match(/@\{link:([^}]+)\}/);
+	if (matches) {
+		let link = matches[1];
+		let replacement = "";
+		if (link.match(/https?:\/\/.*wikipedia/)) {
+			replacement += '<a target="_blank" href="' + link + '">';
+			replacement += '<span style="float:right; font-size:60%" class="fa-stack fa-1x">\n';
+			replacement += '<i class="fas fa-square fa-stack-2x"></i>\n';
+			replacement += '<i class="fab fa-wikipedia-w fa-stack-1x fa-inverse"></i>\n';
+			replacement += '</span>\n';
+			replacement += '</a>\n';
+			text = text.replace(/@\{link:[^}]+\}/, replacement);
+		}
+	}
 	return text;
 }
 
