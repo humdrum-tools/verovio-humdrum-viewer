@@ -77,6 +77,9 @@
 // Uncategorized files:
 {% include vhv-scripts/misc.js %}
 
+// Measure highlighting:
+{% include vhv-scripts/highlight.js %}
+
 // Main event listener functions:
 {% include vhv-scripts/listeners.js %}
 

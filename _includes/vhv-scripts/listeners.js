@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	setEditorModeAndKeyboard();
 
 	CGI = GetCgiParameters();
+	setupHighlighting(CGI);
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	// Set up any music searching parameters from CGI.
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		RQUERY = CGI.r || "";
 		LASTTOOLBAR = SEARCHTOOLBAR;
 	}
-	
+
 	if (!PQUERY.match(/^\s*$/) || !IQUERY.match(/^\s*$/) || !RQUERY.match(/^\s*$/)) {
 		// Set up the search for initial display of music.  The searches will be
 		// loaded into the search toolbar as well.
@@ -196,6 +197,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		displayNotation();
 	}
+
+console.log("XCGI", CGI);
 
 	setupSplitter();
 
@@ -943,6 +946,19 @@ setInterval(function() { localStorage.setItem("SAVE0", getTextFromEditor()); }, 
 
 // needed for startup, but not afterwards, so adjust later:
 setInterval(function() { updateEditorMode(); }, 1000);
+
+
+
+//////////////////////////////
+//
+// verovioCallback -- Function that is run after SVG data is calcualted
+//     by verovio.
+//
+
+function verovioCallback(data) {
+	displayMeasureHighlighting();
+	checkForHashMeasureScroll();
+}
 
 
 

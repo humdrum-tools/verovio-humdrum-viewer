@@ -265,46 +265,74 @@ function GetCgiParameters() {
 
 	// process aliases:
 
-	if (!CGI.k && CGI.keys) {
-		CGI.k = CGI.keys;
-	} else if (CGI.k && !CGI.keys) {
-		CGI.keys = CGI.k;
+	if (!output.k && output.keys) {
+		output.k = output.keys;
+	} else if (output.k && !output.keys) {
+		output.keys = output.k;
 	}
 
-	if (!CGI.t && CGI.text) {
-		CGI.t = CGI.text;
-	} else if (CGI.t && !CGI.text) {
-		CGI.text = CGI.t;
+	if (!output.t && output.text) {
+		output.t = output.text;
+	} else if (output.t && !output.text) {
+		output.text = output.t;
 	}
 
-	if (!CGI.f && CGI.file) {
-		CGI.f = CGI.file;
-	} else if (CGI.f && !CGI.file) {
-		CGI.file = CGI.f;
+	if (!output.f && output.file) {
+		output.f = output.file;
+	} else if (output.f && !output.file) {
+		output.file = output.f;
 	}
 
-	if (!CGI.F && CGI.filter) {
-		CGI.F = CGI.filter;
-	} else if (CGI.F && !CGI.filter) {
-		CGI.filter = CGI.F;
+	if (!output.F && output.filter) {
+		output.F = output.filter;
+	} else if (output.F && !output.filter) {
+		output.filter = output.F;
 	}
 
-	if (!CGI.p && CGI.pitch) {
-		CGI.p = CGI.pitch;
-	} else if (CGI.p && !CGI.pitch) {
-		CGI.pitch = CGI.p;
+	if (!output.p && output.pitch) {
+		output.p = output.pitch;
+	} else if (output.p && !output.pitch) {
+		output.pitch = output.p;
 	}
 
-	if (!CGI.r && CGI.rhythm) {
-		CGI.r = CGI.rhythm;
-	} else if (CGI.r && !CGI.rhythm) {
-		CGI.rhythm = CGI.r;
+	if (!output.r && output.rhythm) {
+		outpuoutput.r = output.rhythm;
+	} else if (output.r && !output.rhythm) {
+		output.rhythm = output.r;
 	}
 
-	if (!CGI.i && CGI.interval) {
-		CGI.i = CGI.interval;
-	} else if (CGI.i && !CGI.interval) {
-		CGI.interval = CGI.i;
+	if (!output.i && output.interval) {
+		output.i = output.interval;
+	} else if (output.i && !output.interval) {
+		output.interval = output.i;
+	}
+
+	// store the URL anchor as a output parameter
+	let hash = location.hash.replace(/^#/, "");
+	let matches;
+
+	// store #m parameter
+	matches = hash.match(/m(?![a-z])(\d+.*)/);
+	if (matches) {
+		output.hash_m = matches[1];
+	}
+
+	// store #mm parameter
+	matches = hash.match(/mm(?![a-z])(\d+.*)/);
+	if (matches) {
+		output.hash_mm = matches[1];
+	}
+
+	// store #mh parameter
+	matches = hash.match(/mh(?![a-z])(\d+.*)/);
+	if (matches) {
+		output.hash_mh = matches[1];
+	}
+
+	// store #mmh parameter
+	matches = hash.match(/mmh(?![a-z])(\d+.*)/);
+	if (matches) {
+		output.hash_mmh = matches[1];
 	}
 
 	return output;

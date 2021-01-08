@@ -685,6 +685,7 @@ function displayIndexFinally(index, location) {
 
 function cleanRepertoryEntryText(text) {
 	text = text.replace(/-sharp/g, "&sharp;").replace(/-flat/g, "&flat;");
+	text = text.replace(/<not>.*?<\/not>/g, "");
 	let matches = text.match(/@\{link:([^}]+)\}/);
 	if (matches) {
 		let link = matches[1];

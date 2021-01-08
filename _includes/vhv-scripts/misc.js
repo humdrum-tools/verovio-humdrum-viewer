@@ -77,6 +77,7 @@ function displayNotation(page, force, restoreid) {
 			displayFileTitle(data);
 			if (!force) document.querySelector('body').classList.remove("invalid");
 		}
+		verovioCallback(svg);
 		return true;
 	})
 	.catch(function(message) {
@@ -700,6 +701,7 @@ function applyZoom() {
 	vrvWorker.redoLayout(options, 1, vrvWorker.page)
 		.then(function() {
 			loadPage(vrvWorker.page);
+console.log("GOT HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%XXX");
 		});
 }
 
@@ -717,6 +719,7 @@ function loadPage(page) {
 	vrvWorker.renderPage(page)
 	.then(function(svg) {
 		$("#output").html(svg);
+		verovioCallback(svg);
 		// adjustPageHeight();
 		// resizeImage();
 	});
@@ -1033,6 +1036,7 @@ function displaySvg() {
 	}
 	vrvWorker.renderPage(vrvWorker.page)
 	.then(function(data) {
+
 		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
 		var postfix = "</textarea>";
 		var w = window.open("about:blank", "SVG transcoding",
@@ -1050,6 +1054,8 @@ function displaySvg() {
 			}
 		}
 		checkTitle();
+
+		verovioCallback(data);
 	});
 }
 
