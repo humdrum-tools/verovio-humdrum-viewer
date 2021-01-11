@@ -1561,7 +1561,7 @@ function toggleHumdrumCsvTsv() {
 		if (lines[i].match(/^\*\*/)) {
 			if (lines[i].match(/,/)) {
 				console.log("CONVERTING TO TSV");
-            setTextInEditor(convertDataToTsv(lines));
+				setTextInEditor(convertDataToTsv(lines));
 			} else {
 				console.log("CONVERTING TO CSV");
 				setTextInEditor(convertDataToCsv(lines));

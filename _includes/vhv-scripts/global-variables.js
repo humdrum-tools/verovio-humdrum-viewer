@@ -18,14 +18,7 @@ var OPTIONS = {};
 var HMDINDEX = null;
 
 
-//////////////////////////////
-//
-// highlighting options --
-//
-
-MEASURE_HIGHLIGHTS = [];
-MEASURE_SCROLL = true;
-
+var SCROLL_HASH = true;
 
 ////////////////////////////////////////////////////////////
 //

@@ -19,16 +19,16 @@ function downloadDataFromSpreadsheet(event) {
 		document.body.classList.add("waiting");
 	}, 0);
 
-   var url = "https://script.google.com/macros/s/" + id + "/exec";
-   var request = new XMLHttpRequest;
-   request.open("GET", url);
+	var url = "https://script.google.com/macros/s/" + id + "/exec";
+	var request = new XMLHttpRequest;
+	request.open("GET", url);
 	var shiftkey = event.shiftKey;
-   request.addEventListener("load", function (event) {
+	request.addEventListener("load", function (event) {
 		storeSpreadsheetDataInEditor(request.responseText, shiftkey);
 		setTimeout(function () {
 			document.body.classList.remove("waiting");
 		}, 10);
-   });
+	});
 	request.send();
 }
 
@@ -84,12 +84,12 @@ function uploadDataToSpreadsheet2(data) {
 		return;
 	}
 	showSpreadsheetIconState();
-   var url = "https://script.google.com/macros/s/" + id + "/exec";
-   var request = new XMLHttpRequest;
-   var formdata = new FormData();
-   formdata.append("humdrum", data);
-   request.open("POST", url);
-   request.send(formdata);
+	var url = "https://script.google.com/macros/s/" + id + "/exec";
+	var request = new XMLHttpRequest;
+	var formdata = new FormData();
+	formdata.append("humdrum", data);
+	request.open("POST", url);
+	request.send(formdata);
 	request.addEventListener("load", function (event) {
 		setTimeout(function () {
 			document.body.classList.remove("waiting");

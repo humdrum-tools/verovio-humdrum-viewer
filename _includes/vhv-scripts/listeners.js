@@ -26,6 +26,13 @@ var RQUERY = "";
 // will need to be updated if that changes...
 var SEARCHTOOLBAR = 4;
 
+//////////////////////////////
+//
+// highlighting options --
+//
+
+MARKUP = new HnpMarkup();
+
 
 //////////////////////////////
 //
@@ -44,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	setEditorModeAndKeyboard();
 
 	CGI = GetCgiParameters();
-	setupHighlighting(CGI);
 	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	// Set up any music searching parameters from CGI.
@@ -197,8 +203,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		displayNotation();
 	}
-
-console.log("XCGI", CGI);
 
 	setupSplitter();
 
@@ -956,8 +960,9 @@ setInterval(function() { updateEditorMode(); }, 1000);
 //
 
 function verovioCallback(data) {
-	displayMeasureHighlighting();
-	checkForHashMeasureScroll();
+	console.log("SVG updated");
+	MARKUP.loadSvg("svg");
+	processMesaureHash();
 }
 
 

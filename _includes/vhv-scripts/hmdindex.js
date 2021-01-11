@@ -19,6 +19,7 @@
 function HMDIndex(contents) {
 	this.clear();
 	this.parse(contents);
+	return this;
 }
 
 
@@ -34,7 +35,7 @@ HMDIndex.prototype.clear = function() {
 	this.parameters   = {};
 
 	// items == list of files, groups, or dummy/dummy-vhv lines stored
-	// on data lines in the input Humdrum data.  These are 
+	// on data lines in the input Humdrum data.  These are
 	// sorted by the sortkey field after loading the data.
 	this.items        = [];
 
@@ -146,10 +147,10 @@ HMDIndex.prototype.parse = function(contents) {
 			description = cleanTitle(data[index["description"]]);
 		}
 
-		this.addEntry({filename:filename, 
-				sortkey:sortkey, 
-				available:available, 
-				pdfname:pdfname, 
+		this.addEntry({filename:filename,
+				sortkey:sortkey,
+				available:available,
+				pdfname:pdfname,
 				description:description});
 	}
 
@@ -276,9 +277,9 @@ HMDIndex.prototype.addEntry = function(object) {
 		}
 		obj.available = available;
 		obj.file = {
-			fullname:    filename, 
-			extension:   extension, 
-			directory:   directory, 
+			fullname:    filename,
+			extension:   extension,
+			directory:   directory,
 			basename:    basename
 		}
 	}

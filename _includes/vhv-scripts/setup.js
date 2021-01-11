@@ -40,7 +40,7 @@ function setupAceEditor(idtag) {
 	EDITOR.setAutoScrollEditorIntoView(true);
 	EDITOR.setBehavioursEnabled(false); // no auto-close of parentheses, quotes, etc.
 
-   // EDITOR.cursorStyle: 'ace', // "ace"|"slim"|"smooth"|"wide"
+	// EDITOR.cursorStyle: 'ace', // "ace"|"slim"|"smooth"|"wide"
 
 	// See this webpage to turn of certain ace editor shortcuts:
 	// https:github.com//ajaxorg/ace/blob/master/lib/ace/commands/default_commands.js

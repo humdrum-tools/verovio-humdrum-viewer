@@ -10,7 +10,7 @@
 //     compile any filters emebedded in the data along with the global
 //     filter.  Any active searches will also be compiled (which will add
 //     marks to matches notes in the score.  Turns off filter icon in toolbar
-//     if it is active, but keep the filter in input#filter. 
+//     if it is active, but keep the filter in input#filter.
 //
 
 function compileFilters() {
@@ -55,7 +55,7 @@ function showCompiledFilterData(deleteline) {
 //
 // applyGlobalFilter --  Save contents of input#filter to GLOBALFILTER,
 //    and then apply notation.  After apllying the global filter,
-//    activate the filter icon in the filter toolbar. 
+//    activate the filter icon in the filter toolbar.
 //
 
 function applyGlobalFilter() {

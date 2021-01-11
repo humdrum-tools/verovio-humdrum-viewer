@@ -46,7 +46,7 @@ function moveHarmonically(current, direction) {
 //
 // inSvgImage -- Used to prevent processing clicks in the text
 //      editor for the click event listener used in the SVG image.
-//      Returns true if the node is inside of an SVG image, or 
+//      Returns true if the node is inside of an SVG image, or
 //      false otherwise.
 //
 
