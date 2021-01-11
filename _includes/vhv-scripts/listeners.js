@@ -961,6 +961,12 @@ setInterval(function() { updateEditorMode(); }, 1000);
 
 function verovioCallback(data) {
 	console.log("SVG updated");
+	if (GOTOTOPOFNOTATION) {
+		let scroller = document.querySelector("#output");
+		if (scroller) {
+			scroller.scrollTo(0, 0);
+		}
+	}
 	MARKUP.loadSvg("svg");
 	processMesaureHash();
 }

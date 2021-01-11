@@ -564,6 +564,8 @@ function displayWork(file) {
 	if (!file) {
 		return;
 	}
+	clearCgiHash();
+	moveToTopOfNotation();
 	vrvWorker.page = 1;
 	CGI.file = file;
 	delete CGI.mm;
@@ -701,7 +703,6 @@ function applyZoom() {
 	vrvWorker.redoLayout(options, 1, vrvWorker.page)
 		.then(function() {
 			loadPage(vrvWorker.page);
-console.log("GOT HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%XXX");
 		});
 }
 
@@ -1611,6 +1612,8 @@ function increaseTab() {
 
 function clearContent() {
 	var data = getTextFromEditor();
+	clearCgiHash();
+	moveToTopOfNotation();
 	if (data.match(/^\s*$/)) {
 		// restore the text (which may have accidentally been erased)
 		setTextInEditor(ERASED_DATA);
@@ -1631,6 +1634,7 @@ function clearContent() {
 		displayFileTitle("");
 		removeWorkNavigator();
 	}
+	EDITOR.focus();
 }
 
 
@@ -1835,6 +1839,35 @@ function removeLastLineInTextEditorIfMatches(line) {
 
 	setTextInEditor(newtext);
 }
+
+
+
+//////////////////////////////
+//
+// clearCgiHash --
+//
+
+function clearCgiHash() {
+	for (let property in CGI) {
+		let matches;
+		matches = property.match(/^hash_/);
+		if (matches) {
+			delete CGI[property];
+		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// moveToTopOfNotation --
+//
+
+function moveToTopOfNotation() {
+	GOTOTOPOFNOTATION = true;
+}
+
 
 
 

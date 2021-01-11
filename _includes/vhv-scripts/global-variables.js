@@ -19,6 +19,7 @@ var HMDINDEX = null;
 
 
 var SCROLL_HASH = true;
+var GOTOTOPOFNOTATION = false;
 
 ////////////////////////////////////////////////////////////
 //
