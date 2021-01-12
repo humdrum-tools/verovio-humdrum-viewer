@@ -847,7 +847,7 @@
 @ZH-simplified:
 @ZH-traditional:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('polyrhythm')
+@ACTION:		MENU.loadRepertory('poly')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			website

@@ -93,6 +93,7 @@ function loadKernScoresFile(obj, force) {
 
 	var keys = commaDuplicate(key);
 
+force = 1;
 	if (force) {
 		for (var i=0; i<keys.length; i++) {
 			basketSession.remove(key[i]);

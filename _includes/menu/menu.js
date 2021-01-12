@@ -370,6 +370,7 @@ MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 	} else {
 		CGI.filter = "";
 	}
+console.log("LOADING KERNSCORES", options);
 	loadKernScoresFile(options);
 }
 
