@@ -812,7 +812,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Polyrhythm Project RDS
+@DEFAULT:		Polyrhythm Project
 @AR:
 @BE:
 @CA:
@@ -847,7 +847,7 @@
 @ZH-simplified:
 @ZH-traditional:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('github:polyrhythm-project/rds-scores')
+@ACTION:		MENU.loadRepertory('polyrhythm')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			website
