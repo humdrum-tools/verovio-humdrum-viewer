@@ -596,6 +596,7 @@ function displayIndexFinally(index, location) {
 		// hideInputArea(true);
 	}
 
+	var matches;
 	var lines = index.split(/\r?\n/);
 	var i;
 	var newlines = [];
@@ -606,6 +607,11 @@ function displayIndexFinally(index, location) {
 		}
 		data = lines[i].split(/\t+/);
 		if (data.length >= 3) {
+			if (matches = data[1].match(/(.*)HIDE$/)) {
+				// data[1] = matches[1];
+				data[2] = data[2].replace(/<hlstart>/g, "");
+				data[2] = data[2].replace(/<hlend>/g, "");
+			}
 			newline = data[1] + "\t" + data[0] + "\t" + data[2];
 			newlines.push(newline);
 		}
@@ -634,6 +640,8 @@ function displayIndexFinally(index, location) {
 
 		if (indents[items[i].sorter]) {
 			final += "<span class='indenter'></span>";
+		} else if (indents[items[i].sorter.replace(/HIDE$/, "")]) {
+			final += "<span class='indenter'></span>";
 		}
 
 		if (items[i].filename.match(/^@/)) {
@@ -646,6 +654,13 @@ function displayIndexFinally(index, location) {
 			for (var j=0; j<tindent.length; j++) {
 				indents[tindent[j]] = "true";
 			}
+		} else if (items[i].sorter.match(/HIDE$/)) {
+			var spantext = "";
+			spantext += location;
+			spantext += "/" + items[i].filename;
+			spantext += "');\">";
+			items[i].text = items[i].text.replace(/<hlstart>/, spantext);
+			final += items[i].text;
 		} else if (!items[i].text.match(/hlstart/)) {
 			final += "<span class='ilink' onclick=\"displayWork('";
 			final += location;
