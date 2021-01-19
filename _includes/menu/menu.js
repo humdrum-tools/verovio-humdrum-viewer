@@ -620,11 +620,23 @@ MenuInterface.prototype.useLeipzigFont = function () {
 
 //////////////////////////////
 //
-// MenuInterface::useLeland --
+// MenuInterface::useLelandFont --
 //
 
-MenuInterface.prototype.useLeland = function () {
+MenuInterface.prototype.useLelandFont = function () {
 	FONT = "Leland";
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::usePetalumaFont --
+//
+
+MenuInterface.prototype.usePetalumaFont = function () {
+	FONT = "Petaluma";
 	displayNotation();
 }
 
