@@ -1,0 +1,240 @@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Bravura
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.useBravuraFont()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Gootville
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.useGootvilleFont()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Leipzig
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.useLeipzigFont()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Leland
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.useLelandFont()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Petaluma
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.usePetalumaFont()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
