@@ -620,6 +620,18 @@ MenuInterface.prototype.useLeipzigFont = function () {
 
 //////////////////////////////
 //
+// MenuInterface::useLeland --
+//
+
+MenuInterface.prototype.useLeland = function () {
+	FONT = "Leland";
+	displayNotation();
+}
+
+
+
+//////////////////////////////
+//
 // MenuInterface::useBravuraFont --
 //
 

@@ -731,7 +731,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Use Leipzig music font
+@DEFAULT:		Use Leland music font
 @AR:
 @BE:
 @CA:
@@ -765,7 +765,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.useLeipzigFont()
+@ACTION:		MENU.useLelandFont()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
@@ -775,3 +775,6 @@
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
+
+

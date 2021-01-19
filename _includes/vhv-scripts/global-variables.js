@@ -56,7 +56,7 @@ var SPACING_SYSTEM = 18;
 var LYRIC_SIZE     = 4.5;
 
 // FONT: controls the musical font used by verovio to render notation.
-var FONT           = "Leipzig";
+var FONT           = "Leland";
 
 // BREAKS: controls whether or not verovio should use system/page breaks
 // encoded in the data or decide on its own line breaks.

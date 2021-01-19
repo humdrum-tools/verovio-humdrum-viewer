@@ -55,7 +55,7 @@ function getScaleFromPercentSize(string, baseScale) {
 // adjustPageHeight B == crop the page height to content
 // adjustPageWidth  B == crop the page width to content
 // evenNoteSpacing B  == space notes evenly and close regardless of durations
-// font S             == Bravura, Gootville, (default Leipzig)
+// font S             == Bravura, Gootville, Leland (default Leipzig)
 // ignoreLayout       == ignore any encoded layout and recalulate
 // noLayout B         == ignore any encoded layout and display single system
 // page #             == select page to engrave
@@ -153,7 +153,7 @@ function humdrumToMeiOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
-		font              : "Leipzig",
+		font              : "Leland",
 		outputIndent      : 1
 	}
 }
