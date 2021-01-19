@@ -153,7 +153,7 @@ function humdrumToMeiOptions() {
 		spacingLinear		: 0.25,
 		barLineWidth		: 0.12,
 		staffLineWidth		: 0.12,
-		font              : "Leland",
+		font              : FONT,
 		outputIndent      : 1
 	}
 }

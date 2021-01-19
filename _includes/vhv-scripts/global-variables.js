@@ -12,6 +12,10 @@ var CGI = {};
 // for the last call to the verovio toolkit.
 var OPTIONS = {};
 
+// PDFOPTIONS: debugging parameter to see what options were used
+// for the last call to the verovio toolkit when creating PDF files.
+var PDFOPTIONS = {};
+
 // var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
 
 // HMDINDEX: used to store a repertory index in the .hmd format.
@@ -55,7 +59,8 @@ var SPACING_SYSTEM = 18;
 // are in terms of diatonic steps (1/2 of the space between staff lines).
 var LYRIC_SIZE     = 4.5;
 
-// FONT: controls the musical font used by verovio to render notation.
+// FONT: controls the musical font used by verovio to render notation.  This is also
+// the font variable used to generate PDF files.
 var FONT           = "Leland";
 
 // BREAKS: controls whether or not verovio should use system/page breaks

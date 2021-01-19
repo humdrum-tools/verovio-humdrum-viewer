@@ -285,7 +285,7 @@ function generatePdfFull(format, orientation) {
 		usePgFooterForAll      : 1,
 		barLineWidth           : 0.12,
 		staffLineWidth         : 0.12,
-		font                   : "Leland"
+		font                   : FONT
 	}
 
 
@@ -303,6 +303,9 @@ function generatePdfFull(format, orientation) {
 
 	vrvOptions = cleanOptions2(scoredata, vrvOptions);
 	console.log("PRINTING OPTIONS", vrvOptions);
+
+	// store the options for debugging PDF files:
+	PDFOPTIONS = vrvOptions;
 
 	RSVP.hash({
 		fonts: loadPdfFonts(pdf),
