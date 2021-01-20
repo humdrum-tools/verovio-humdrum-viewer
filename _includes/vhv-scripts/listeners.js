@@ -19,6 +19,10 @@ var LASTTOOLBAR = 1;
 if (localStorage.LASTTOOLBAR) {
 	LASTTOOLBAR = parseInt(localStorage.LASTTOOLBAR);
 }
+if (localStorage.FONT) {
+	FONT = cleanFont(localStorage.FONT);
+
+}
 var PQUERY = "";
 var IQUERY = "";
 var RQUERY = "";
@@ -934,6 +938,7 @@ window.addEventListener("beforeunload", function (event) {
 	var encodedcontents = encodeURIComponent(getTextFromEditor());
 	localStorage.setItem("AUTOSAVE", encodedcontents);
 	localStorage.setItem("AUTOSAVE_DATE", (new Date).getTime());
+	localStorage.setItem("FONT", FONT);
 });
 
 

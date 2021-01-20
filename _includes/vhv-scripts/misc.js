@@ -1870,4 +1870,34 @@ function moveToTopOfNotation() {
 
 
 
+//////////////////////////////
+//
+// cleanFont -- 
+//
+
+function cleanFont(font) {
+	// make sure that the font name is not corrupted:
+	let found = 0;
+	if (font === "Bravura") {
+		found = 1;
+	}
+	if (font === "Gootville") {
+		found = 1;
+	}
+	if (font === "Leipzig") {
+		found = 1;
+	}
+	if (font === "Leland") {
+		found = 1;
+	}
+	if (font === "Petaluma") {
+		found = 1;
+	}
+	if (!found) {
+		font = "Leland";
+	}
+	return font;
+}
+
+
 
