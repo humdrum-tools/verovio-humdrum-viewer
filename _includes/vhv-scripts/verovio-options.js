@@ -72,7 +72,7 @@ function humdrumToSvgOptions() {
 		adjustPageHeight     : 1,
 		// adjustPageWidth      : 1,
 		barLineWidth         : 0.12,
-		breaks               : (BREAKS ? "line" : "auto"),
+		breaks               : (BREAKS ? "encoded" : "auto"),
 		font                 : FONT,
 		from                 : "auto",
 		humType              : 1,

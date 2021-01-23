@@ -1876,21 +1876,22 @@ function moveToTopOfNotation() {
 //
 
 function cleanFont(font) {
-	// make sure that the font name is not corrupted:
+	// Make sure that the font name is not corrupted:
 	let found = 0;
-	if (font === "Bravura") {
+	if (font.match(/bravura/i)) {
+		font = "Bravura";
 		found = 1;
-	}
-	if (font === "Gootville") {
+	} else if (font.match(/goo?tvil?e?/i)) {
+		font = "Gootville";
 		found = 1;
-	}
-	if (font === "Leipzig") {
+	} else if (font.match(/leipzig/i)) {
+		font = "Leipzig";
 		found = 1;
-	}
-	if (font === "Leland") {
+	} else if (font.match(/leland/i)) {
+		font = "Leland";
 		found = 1;
-	}
-	if (font === "Petaluma") {
+	} else if (font.match(/petaluma/i)) {
+		font = "Petaluma";
 		found = 1;
 	}
 	if (!found) {

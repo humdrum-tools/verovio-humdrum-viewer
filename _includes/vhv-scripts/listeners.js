@@ -99,6 +99,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			localStorage.setItem("AUTOSAVE_DATE", 0);
 		}
 	}
+	if (CGI.font) {
+		FONT = cleanFont(CGI.font);
+	}
 
 	var ctime = (new Date).getTime();
 	var otime = localStorage.getItem("AUTOSAVE_DATE");
