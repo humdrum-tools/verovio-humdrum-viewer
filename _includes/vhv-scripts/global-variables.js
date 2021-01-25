@@ -21,6 +21,8 @@ var PDFOPTIONS = {};
 // HMDINDEX: used to store a repertory index in the .hmd format.
 var HMDINDEX = null;
 
+// WKEY: window for displaying keyscape
+WKEY = null;
 
 var SCROLL_HASH = true;
 var GOTOTOPOFNOTATION = false;

@@ -398,6 +398,14 @@ function displayWorkNavigation(selector) {
 		contents += "</span>";
 	}
 
+	if (FILEINFO["file"]) {
+		contents += "<span style=\"padding-left:3px; cursor:pointer\" onclick=\"displayKeyscape();\"";
+		contents += " title='Keyscape'";
+		contents += ">";
+		contents += "<span class='nav-icon fa fa-key'></span>";
+		contents += "</span>";
+	}
+
 	if (FILEINFO["has-index"] == "true") {
 		contents += '<span style="padding-left:3px; cursor:pointer" onclick="copyRepertoryUrl(\'';
 		contents += FILEINFO['location'];
@@ -1094,6 +1102,68 @@ function displayPdf() {
 	openPdfAtBottomThirdOfScreen(url);
 }
 
+
+
+//////////////////////////////
+//
+// displayKeyscape --
+//
+
+function displayKeyscape() {
+	var fileinfo = FILEINFO;
+	if (!fileinfo) {
+		console.log("Error: no fileinfo");
+		return;
+	}
+	if (typeof fileinfo.file === "undefined") {
+		console.log("Error: filename not found");
+		return;
+	}
+	var file = fileinfo.file;
+	if (!file) {
+		console.log("Error: filename is empty");
+		return;
+	}
+	if (typeof fileinfo.location === "undefined") {
+		console.log("Error: location not found");
+		return;
+	}
+	var location = fileinfo.location;
+	if (!location) {
+		console.log("Error: location is empty");
+		return;
+	}
+
+	var url = "https://kern.humdrum.org/data?file=";
+	url += encodeURIComponent(file);
+	url += "&l=";
+	url += encodeURIComponent(location);
+	url += "&format=keyscape-html";
+	console.log("Keyscape URL is", url);
+
+	console.log("Loading Keyscape", url);
+	if (WKEY) {
+		WKEY.close();
+		WKEY = null;
+	}
+	
+	// https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window____features
+	let features = "";
+	// width and height are not the dimensions of the PNG image (600x461)
+	// features += "width=950";
+	// features += ", height=775";
+	features += "width=664";
+	features += ", height=511";
+	features += ", left=10";
+	features += ", top=10";
+	features += ", resizeable";
+	features += ", scrollbars";
+	features += ", toolbar=no";
+	features += ", location=0";
+	console.log("FEATURES", features);
+	WKEY = window.open(url, "", features);
+	WKEY.focus();
+}
 
 
 //////////////////////////////
