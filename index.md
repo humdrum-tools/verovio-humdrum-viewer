@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: grieg-op46n4.krn
+splash: gebet.krn
 ---
 
 <div id="output"></div>
