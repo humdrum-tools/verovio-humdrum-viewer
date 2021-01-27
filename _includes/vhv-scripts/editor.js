@@ -160,6 +160,7 @@ function processNotationKey(key, element) {
 		else if (key === "b")  { setSlurBelowMarker(id, line, field, number); }
 		else if (key === "c")  { deleteSlurDirectionMarker(id, line, field, number); }
 		else if (key === "D")  { deleteSlur(id, line, field, number, line2, field2, number2); }
+		else if (key === "delete") { deleteSlur(id, line, field, number, line2, field2, number2); }
 		else if (key === "f")  { flipSlurDirection(id, line, field, number); }
 		else if (key === "leftEndMoveBack")     { leftEndMoveBack(id, line, field, number, line2, field2, number2); }
 		else if (key === "leftEndMoveForward")  { leftEndMoveForward(id, line, field, number, line2, field2, number2); }

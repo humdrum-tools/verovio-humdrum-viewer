@@ -512,6 +512,12 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		case DeleteKey:
+		case BackKey:
+			processNotationKey("delete", CursorNote);
+			event.stopPropagation();
+			break;
+
 		case LeftKey:
 			if (CursorNote.id.match("slur-")) {
 				event.preventDefault();
