@@ -242,7 +242,7 @@ let ERASED_DATA = "";
 let BufferedHumdrumFile = "";
 let Range = function() { console.log("Range is undefined"); }
 
-let ids   = [];
+let IDS   = [];
 let ZOOM  = 0.4;
 let PLAY  = false;
 let PAUSE = false;
