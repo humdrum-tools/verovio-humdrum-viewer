@@ -272,7 +272,7 @@ function processNotationKeyCommand(event) {
 	}
 
 	//undo doesn't need CursorNote
-	if (event.keyCode === ZKey && (event.ctrlKey || event.metaKey)) {
+	if (event.code === ZKey && (event.ctrlKey || event.metaKey)) {
 		EDITOR.undo();
 		return;
 	};
@@ -284,7 +284,7 @@ function processNotationKeyCommand(event) {
 		return;
 	}
 
-	switch (event.keyCode) {
+	switch (event.code) {
 		case AKey:
 			processNotationKey("a", CursorNote);
 			break;
@@ -303,9 +303,14 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		// case EKey:
+
 		case FKey:
 			processNotationKey("f", CursorNote);
 			break;
+
+		// case GKey:
+		// case HKey:
 
 		case IKey:
 			processNotationKey("i", CursorNote);
@@ -316,6 +321,8 @@ function processNotationKeyCommand(event) {
 				processNotationKey("J", CursorNote);
 			}
 			break;
+
+		// case KKey:
 
 		case LKey:
 			if (event.shiftKey) {
@@ -331,6 +338,12 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
+		case NKey:
+			processNotationKey("n", CursorNote);
+			break;
+
+		// case OKey:
+
 		case PKey:
 			if (event.shiftKey) {
 				processNotationKey("P", CursorNote);
@@ -343,6 +356,8 @@ function processNotationKeyCommand(event) {
 			processNotationKey("q", CursorNote);
 			break;
 
+		// case RKey:
+
 		case SKey:
 			processNotationKey("s", CursorNote);
 			break;
@@ -354,6 +369,8 @@ function processNotationKeyCommand(event) {
 				processNotationKey("t", CursorNote);
 			}
 			break;
+
+		// case UKey:
 
 		case VKey:
 			if (CursorNote.id.match("note-")) {
@@ -376,6 +393,8 @@ function processNotationKeyCommand(event) {
 		case YKey:
 			processNotationKey("y", CursorNote);
 			break;
+
+		// case ZKey:
 
 		case OneKey:
 			processNotationKey("1", CursorNote);
@@ -431,10 +450,6 @@ function processNotationKeyCommand(event) {
 
 		case MinusKey:
 			processNotationKey("-", CursorNote);
-			break;
-
-		case NKey:
-			processNotationKey("n", CursorNote);
 			break;
 
 		case SingleQuoteKey:
@@ -564,7 +579,7 @@ function processInterfaceKeyCommand(event) {
 
 	if (event.metaKey) {
 		// usually ignore metaKey unless 0:
-		if (event.keyCode == ZeroKey) {
+		if (event.code == ZeroKey) {
 			MENU.resetTextFontSize();
 			SCALE = 40;
 			localStorage.SCALE = SCALE;
@@ -574,7 +589,7 @@ function processInterfaceKeyCommand(event) {
 		return;
 	}
 
-	switch (event.keyCode) {
+	switch (event.code) {
 		case AKey:          // UNUSED
 			break;
 
@@ -818,7 +833,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-/*		case ZKey:
+/*		case ZKey:  // use undo key from OS/browser
 			if (event.ctrlKey || event.metaKey) {
 				EDITOR.undo();
 			};
