@@ -673,12 +673,14 @@ function toggleLayerColoring() {
 	}
 	stylesheet = document.createElement('style');
 	var text = "";
-	text += "g[id^='layer-'][id*='N2'] { fill: #00cc00; }";
-	text += "g[id^='layer-'][id*='N3'] { fill: #cc00aa; }";
-	text += "g[id^='layer-'][id*='N4'] { fill: #0088cc; }";
-	text += "g[id^='layer-'][id*='N5'] { fill: #0000cc; }";
-	text += "g[id^='layer-'][id*='N6'] { fill: #cc0000; }";
-	text += "g[id^='layer-'][id*='N7'] { fill: #00cc00; }";
+	text += "g[id^='layer-'][id*='N2'] { fill: #00cc00; }\n";
+	text += "g[id^='layer-'][id*='N3'] { fill: #cc00aa; }\n";
+	text += "g[id^='layer-'][id*='N4'] { fill: #0088cc; }\n";
+	text += "g[id^='layer-'][id*='N5'] { fill: #0000cc; }\n";
+	text += "g[id^='layer-'][id*='N6'] { fill: #cc0000; }\n";
+	text += "g[id^='layer-'][id*='N7'] { fill: #00cc00; }\n";
+	// Disable highlighting of clefs in layers:
+	text += "g.clef { fill: black !important; }";
 	stylesheet.innerHTML = text;
 	stylesheet.id = "layer-color-stylesheet";
 	document.body.appendChild(stylesheet);
