@@ -158,7 +158,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Rhythm
+@DEFAULT:		Composite rhythm
 @AR:
 @BE:
 @CA:
@@ -201,7 +201,58 @@
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU
-{% include menu/content/analysis-rhythm.aton %}
+{% include menu/content/analysis-composite-rhythm.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Meter
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/analysis-meter.aton %}
 @@END: SUBMENU
 @@END: ENTRY
 

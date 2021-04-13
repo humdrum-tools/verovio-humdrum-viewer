@@ -11,105 +11,6 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Composite metric levels
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.applyFilter('metlev -caxe cdata')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			filter
-@DEFAULT:		metlev -caxe cdata
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filter/metlev
-@ZH-simplified:
-@ZH-traditional:
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Metric levels for each part
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.applyFilter('metlev')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			filter
-@DEFAULT:		metlev
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/filter/metlev
-@ZH-simplified:
-@ZH-traditional:
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
 @DEFAULT:		Composite rhythm
 @AR:
 @BE:
@@ -144,11 +45,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.applyFilter('composite -b')
+@ACTION:		MENU.applyFilter('composite')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		composite -b
+@DEFAULT:		composite
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
@@ -159,7 +60,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Composite rhythm staff placed above system
+@DEFAULT:		Composite rhythm (no groupings)
 @AR:
 @BE:
 @CA:
@@ -193,11 +94,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.applyFilter('composite -ab')
+@ACTION:		MENU.applyFilter('composite -G')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		composite -ab
+@DEFAULT:		composite -G
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
@@ -208,7 +109,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Composite rhythm staff placed below system
+@DEFAULT:		Composite rhythm (colored)
 @AR:
 @BE:
 @CA:
@@ -242,11 +143,60 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.applyFilter('composite -pb')
+@ACTION:		MENU.applyFilter('composite | colorgroups')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			filter
-@DEFAULT:		composite -pb
+@DEFAULT:		composite | colorgroups
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
+@ZH-simplified:
+@ZH-traditional:
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Composite rhythm (full + groups w/ color)
+@AR:
+@BE:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.applyFilter('composite | composite -G | colorgroups')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			filter
+@DEFAULT:		composite | composite -G | colorgroups
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
 @ZH-simplified:
