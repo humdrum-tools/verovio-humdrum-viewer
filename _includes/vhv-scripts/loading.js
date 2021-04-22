@@ -364,7 +364,7 @@ function kernScoresUrl(file, measures) {
 		user = matches[2];
 		repository = matches[3];
 		file = matches[4];
-	} else if (matches = file.match(/^nifc:\/?\/?(.*)/i)) {
+	} else if (matches = file.match(/^nifc:\/?\/?(?:krn)?(.*)/i)) {
 		nifc = true;
 		file = matches[1];
 	}
@@ -402,7 +402,7 @@ function kernScoresUrl(file, measures) {
 		url = "https://josquin.stanford.edu/cgi-bin/jrp?id=" + filename;
 		url += "&a=humdrum";
 	} else if (nifc) {
-		url = "https://humdrum.nifc.pl/" + filename;
+		url = "https://humdrum.nifc.pl/krn/" + filename;
 	} else if (github) {
 		url = "https://raw.githubusercontent.com/" + user + "/" + repository + "/master/" + filename;
 	} else {
@@ -472,7 +472,7 @@ function downloadKernScoresFile(file, measures, page) {
 		url += "&a=humdrum";
 	} else if (nifc) {
 		file = file.replace(/^\/+/, "");
-		url = "https://humdrum.nifc.pl/" + file;
+		url = "https://humdrum.nifc.pl/krn/" + file;
 	} else {
 		if (matches = file.match(/(.*)\/([^\/]+)/)) {
 			location = matches[1];
