@@ -1929,6 +1929,7 @@ MenuInterface.prototype.singlePageView = function () {
 //
 
 MenuInterface.prototype.multiPageView = function () {
+	return; // disabled until fix for issue https://github.com/rism-digital/verovio/issues/2034
 	PAGED = true;
 	var element = document.querySelector("#page-nav");
 	if (element) {
