@@ -48,7 +48,7 @@ function getScaleFromPercentSize(string, baseScale) {
 // S = string
 //
 // border #           == border around SVG image (default 50)
-// from S             == input data from (darms, mei, pae, xml)
+// inputFrom S        == input data from (darms, mei, pae, xml)
 // pageHeight #       == height of page (default 2970)
 // pageWidth #        == width of page (default 2100)
 // scale #            == scaling percent for image
@@ -74,7 +74,7 @@ function humdrumToSvgOptions() {
 		barLineWidth         : 0.12,
 		breaks               : (BREAKS ? "encoded" : "auto"),
 		font                 : FONT,
-		from                 : "auto",
+		inputFrom            : "auto",
 		humType              : 1,
 		justifyVertically    : 0,
 		leftMarginClef       : 1.50,
@@ -136,7 +136,7 @@ function humdrumToSvgOptions() {
 
 function humdrumToMeiOptions() {
 	return {
-		from              : "humdrum",
+		inputFrom         : "humdrum",
 		adjustPageHeight  : 1,
 		// adjustPageWidth   : 1,
 		pageHeight        : 8000,
@@ -160,46 +160,46 @@ function humdrumToMeiOptions() {
 
 function humdrumToHumdrumOptions() {
 	return {
-		from              : "humdrum"
+		inputFrom         : "humdrum"
 	}
 }
 
 function musicxmlToHumdrumOptions() {
 	return {
-		from              : "musicxml-hum"
+		inputFrom         : "musicxml-hum"
 	}
 }
 
 function musedataToHumdrumOptions() {
 	return {
-		from              : "musedata-hum"
+		inputFrom         : "musedata-hum"
 	}
 }
 
 function musicxmlToMeiOptions() {
 	return {
-		from              : "musicxml",
+		inputFrom         : "musicxml",
 		breaks            : "auto"
 	}
 }
 
 function meiToMeiOptions() {
 	return {
-		from              : "mei",
+		inputFrom         : "mei",
 		breaks            : "encoded"
 	}
 }
 
 function meiToHumdrumOptions() {
 	return {
-		from              : "mei-hum",
+		inputFrom         : "mei-hum",
 		breaks            : "auto"
 	}
 }
 
 function esacToHumdrumOptions() {
 	return {
-		from              : "esac"
+		inputFrom         : "esac"
 	}
 }
 

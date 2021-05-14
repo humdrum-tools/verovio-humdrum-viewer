@@ -34,10 +34,10 @@ function displayNotation(page, force, restoreid) {
 	};
 	var options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
-		options.from = "esac";
+		options.inputFrom = "esac";
 	};
 	if (data.match(/Group memberships:/)) {
-		options.from = "musedata";
+		options.inputFrom = "musedata";
 	};
 	if (GLOBALFILTER) {
 		data += "\n!!!filter: " + GLOBALFILTER + "\n";
@@ -648,10 +648,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	}
 
 	if (options) {
-		if ((options.from == "musedata") || (options.from == "musedata-hum")) {
+		if ((options.inputFrom == "musedata") || (options.inputFrom == "musedata-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
-		} else if ((options.from == "musicxml") || (options.from == "musicxml-hum")) {
+		} else if ((options.inputFrom == "musicxml") || (options.inputFrom == "musicxml-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
 		} else {
