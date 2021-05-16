@@ -65,6 +65,7 @@ function getScaleFromPercentSize(string, baseScale) {
 // spacingStaff #     == spacing above each staff (MEI vu)
 // spacigSystem #     == spacing above each system (MEI vu)
 // humType            == embedd extra type/class attributes
+// tupletNumHead      == display tuplets on note-head side of notes by default.
 //
 
 function humdrumToSvgOptions() {
@@ -76,6 +77,7 @@ function humdrumToSvgOptions() {
 		font                 : FONT,
 		inputFrom            : "auto",
 		humType              : 1,
+		tupletNumHead        : 0,
 		justifyVertically    : 0,
 		leftMarginClef       : 1.50,
 		lyricSize            : LYRIC_SIZE,
