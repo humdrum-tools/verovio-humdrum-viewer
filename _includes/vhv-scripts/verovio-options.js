@@ -1,4 +1,8 @@
 
+let VEROVIOOPTIONS = {% include verovio-options.json %};
+
+
+
 
 //////////////////////////////
 //
@@ -40,6 +44,33 @@ function getScaleFromPercentSize(string, baseScale) {
 
 //////////////////////////////
 //
+// getVerovioDefaultOptions --
+//
+
+function getVerovioDefaultOptions() {
+	let output = {};
+	if (!VEROVIOOPTIONS) {
+		return output;
+	}
+	var options = VEROVIOOPTIONS.OPTION;
+	for (let i=0; i<options.length; i++) {
+		if (typeof options[i].DEF !== "undefined") {
+			if (typeof (options[i].NAME !== "undefined")) {
+				if (typeof options[i].CLI_ONLY !== "undefined") {
+					if (options[i].CLI_ONLY !== "true") {
+						output[options[i].NAME] = options[i].DEF;
+					}
+				}
+			}
+		}
+	}
+	return output;
+}
+
+
+
+//////////////////////////////
+//
 // humdrumToSvgOptions --
 //
 // Verovio options:
@@ -69,35 +100,36 @@ function getScaleFromPercentSize(string, baseScale) {
 //
 
 function humdrumToSvgOptions() {
-	var output = {
-		adjustPageHeight     : 1,
-		// adjustPageWidth      : 1,
-		barLineWidth         : 0.12,
-		breaks               : (BREAKS ? "encoded" : "auto"),
-		font                 : FONT,
-		inputFrom            : "auto",
-		humType              : 1,
-		tupletNumHead        : 0,
-		justifyVertically    : 0,
-		leftMarginClef       : 1.50,
-		lyricSize            : LYRIC_SIZE,
-		minLastJustification : 0.5,
-		footer               : "none",
-		header               : "none",
-		pageHeight           : 60000,
-		pageMarginBottom     : 40,
-		pageMarginLeft       : 30,
-		pageMarginRight      : 20,
-		pageMarginTop        : 100,
-		pageWidth            : 2500,
-		scale                : SCALE,
-		spacingLinear        : 0.25,
-		spacingNonLinear     : 0.6,
-		spacingStaff         : SPACING_STAFF,
-		spacingSystem        : SPACING_SYSTEM,
-		staffLineWidth       : 0.12,
-		outputIndent         : 1
-	}
+	var output = getVerovioDefaultOptions();
+
+	output.adjustPageHeight     = 1;
+	// output.adjustPageWidth   = 1;
+	output.barLineWidth         = 0.12;
+	output.breaks               = (BREAKS ? "encoded" : "auto");
+	output.font                 = FONT;
+	output.inputFrom            = "auto";
+	output.humType              = 1;
+	output.tupletNumHead        = 0;
+	output.justifyVertically    = 0;
+	output.leftMarginClef       = 1.50;
+	output.lyricSize            = LYRIC_SIZE;
+	output.minLastJustification = 0.5;
+	output.footer               = "none";
+	output.header               = "none";
+	output.pageHeight           = 60000;
+	output.pageMarginBottom     = 40;
+	output.pageMarginLeft       = 30;
+	output.pageMarginRight      = 20;
+	output.pageMarginTop        = 100;
+	output.pageWidth            = 2500;
+	output.scale                = SCALE;
+	output.spacingLinear        = 0.25;
+	output.spacingNonLinear     = 0.6;
+	output.spacingStaff         = SPACING_STAFF;
+	output.spacingSystem        = SPACING_SYSTEM;
+	output.staffLineWidth       = 0.12;
+	output.outputIndent         = 1;
+
 	if (OriginalClef) {
 		// now done with modori filter.
 		// output.appXPathQuery = "./rdg[contains(@label, 'original-clef')]";
