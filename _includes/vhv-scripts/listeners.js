@@ -784,11 +784,11 @@ function processInterfaceKeyCommand(event) {
 			if (event.altKey) {
 				if (event.shiftKey) {
 					if (typeof generatePdfFull === "function") {
-						generatePdfFull();
+						generatePdfSnapshot();
 					}
 				} else {
 					if (typeof generatePdfSnapshot === "function") {
-						generatePdfSnapshot();
+						generatePdfFull();
 					}
 				}
 				event.preventDefault();

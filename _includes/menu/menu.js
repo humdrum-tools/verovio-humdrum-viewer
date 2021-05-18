@@ -317,7 +317,7 @@ MenuInterface.prototype.getContextualMenus = function () {
 
 MenuInterface.prototype.toggleOriginalClefs = function () {
 	var event = {};
-	event.keyCode = OKey;
+	event.code = OKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -332,7 +332,7 @@ MenuInterface.prototype.toggleOriginalClefs = function () {
 
 MenuInterface.prototype.displaySvgData = function () {
 	var event = {};
-	event.keyCode = GKey;
+	event.code = GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -346,7 +346,7 @@ MenuInterface.prototype.displaySvgData = function () {
 
 MenuInterface.prototype.saveSvgData = function () {
 	var event = {};
-	event.keyCode = GKey;
+	event.code = GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -370,7 +370,6 @@ MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 	} else {
 		CGI.filter = "";
 	}
-console.log("LOADING KERNSCORES", options);
 	loadKernScoresFile(options);
 }
 
@@ -383,7 +382,7 @@ console.log("LOADING KERNSCORES", options);
 
 MenuInterface.prototype.saveTextEditorContents = function () {
 	var event = {};
-	event.keyCode = SKey;
+	event.code = SKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -408,7 +407,7 @@ MenuInterface.prototype.saveHtmlContents = function () {
 
 MenuInterface.prototype.compileEmbeddedFilters = function () {
 	var event = {};
-	event.keyCode = CKey;
+	event.code = CKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -422,7 +421,7 @@ MenuInterface.prototype.compileEmbeddedFilters = function () {
 
 MenuInterface.prototype.clearEditorContents = function () {
 	var event = {};
-	event.keyCode = EKey;
+	event.code = EKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -436,7 +435,7 @@ MenuInterface.prototype.clearEditorContents = function () {
 
 MenuInterface.prototype.showSourceScan = function () {
 	var event = {};
-	event.keyCode = PKey;
+	event.code = PKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -450,9 +449,8 @@ MenuInterface.prototype.showSourceScan = function () {
 
 MenuInterface.prototype.createPdf = function () {
 	var event = {};
-	event.keyCode = TKey;
+	event.code = TKey;
 	event.altKey = true;
-	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 }
 
@@ -465,7 +463,7 @@ MenuInterface.prototype.createPdf = function () {
 
 MenuInterface.prototype.reloadFromSource = function () {
 	var event = {};
-	event.keyCode = RKey;
+	event.code = RKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -479,8 +477,9 @@ MenuInterface.prototype.reloadFromSource = function () {
 
 MenuInterface.prototype.createPdfPage = function () {
 	var event = {};
-	event.keyCode = TKey;
+	event.code = TKey;
 	event.altKey = true;
+	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 }
 
@@ -493,7 +492,7 @@ MenuInterface.prototype.createPdfPage = function () {
 
 MenuInterface.prototype.increaseNotationSpacing = function () {
 	var event = {};
-	event.keyCode = WKey;
+	event.code = WKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -507,7 +506,7 @@ MenuInterface.prototype.increaseNotationSpacing = function () {
 
 MenuInterface.prototype.decreaseNotationSpacing = function () {
 	var event = {};
-	event.keyCode = WKey;
+	event.code = WKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -717,7 +716,7 @@ MenuInterface.prototype.applyFilter = function (filter, data, callback) {
 
 MenuInterface.prototype.insertLocalCommentLine = function () {
 	var event = {};
-	event.keyCode = LKey;
+	event.code = LKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -732,7 +731,7 @@ MenuInterface.prototype.insertLocalCommentLine = function () {
 
 MenuInterface.prototype.insertNullDataLine = function () {
 	var event = {};
-	event.keyCode = DKey;
+	event.code = DKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -747,7 +746,7 @@ MenuInterface.prototype.insertNullDataLine = function () {
 
 MenuInterface.prototype.insertInterpretationLine = function () {
 	var event = {};
-	event.keyCode = IKey;
+	event.code = IKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -762,7 +761,7 @@ MenuInterface.prototype.insertInterpretationLine = function () {
 
 MenuInterface.prototype.toggleDataDisplay = function () {
 	var event = {};
-	event.keyCode = YKey;
+	event.code = YKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -787,7 +786,7 @@ MenuInterface.prototype.toggleToolbarDisplay = function () {
 
 MenuInterface.prototype.toggleLogoDisplay = function () {
 	var event = {};
-	event.keyCode = BKey;
+	event.code = BKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -801,7 +800,7 @@ MenuInterface.prototype.toggleLogoDisplay = function () {
 
 MenuInterface.prototype.toggleLayerHighlighting = function () {
 	var event = {};
-	event.keyCode = LKey;
+	event.code = LKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -815,7 +814,7 @@ MenuInterface.prototype.toggleLayerHighlighting = function () {
 
 MenuInterface.prototype.increaseTabSize = function () {
 	var event = {};
-	event.keyCode = DotKey;
+	event.code = DotKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -830,7 +829,7 @@ MenuInterface.prototype.increaseTabSize = function () {
 
 MenuInterface.prototype.decreaseTabSize = function () {
 	var event = {};
-	event.keyCode = CommaKey;
+	event.code = CommaKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -929,7 +928,7 @@ MenuInterface.prototype.toggleCsvTsv = function () {
 
 MenuInterface.prototype.toggleVimPlainTextMode = function () {
 	var event = {};
-	event.keyCode = VKey;
+	event.code = VKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -944,7 +943,7 @@ MenuInterface.prototype.toggleVimPlainTextMode = function () {
 
 MenuInterface.prototype.displayHumdrumData = function () {
 	var event = {};
-	event.keyCode = HKey;
+	event.code = HKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -958,7 +957,7 @@ MenuInterface.prototype.displayHumdrumData = function () {
 
 MenuInterface.prototype.displayMeiData = function () {
 	var event = {};
-	event.keyCode = MKey;
+	event.code = MKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -972,11 +971,11 @@ MenuInterface.prototype.displayMeiData = function () {
 
 MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	var event = {};
-	event.keyCode = ZeroKey + bufferNumber;
+	event.code = ZeroKey + bufferNumber;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 
-	event.keyCode = RKey;
+	event.code = RKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -990,11 +989,11 @@ MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 
 MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 	var event = {};
-	event.keyCode = ZeroKey + bufferNumber;
+	event.code = ZeroKey + bufferNumber;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 
-	event.keyCode = SKey;
+	event.code = SKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1010,7 +1009,7 @@ MenuInterface.prototype.goToLastPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.keyCode = EndKey;
+	event.code = EndKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1026,7 +1025,7 @@ MenuInterface.prototype.goToFirstPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.keyCode = HomeKey;
+	event.code = HomeKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1042,7 +1041,7 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.keyCode = LeftKey;
+	event.code = LeftKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -1057,7 +1056,7 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 
 MenuInterface.prototype.goToNextWork = function () {
 	var event = {};
-	event.keyCode = RightKey;
+	event.code = RightKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -1074,7 +1073,7 @@ MenuInterface.prototype.goToNextPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.keyCode = RightKey;
+	event.code = RightKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1090,7 +1089,7 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.keyCode = LeftKey;
+	event.code = LeftKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1104,7 +1103,7 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 
 MenuInterface.prototype.toggleMidiPlayback = function () {
 	var event = {};
-	event.keyCode = SpaceKey;
+	event.code = SpaceKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1118,7 +1117,7 @@ MenuInterface.prototype.toggleMidiPlayback = function () {
 
 MenuInterface.prototype.toggleNotationFreezing = function () {
 	var event = {};
-	event.keyCode = FKey;
+	event.code = FKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 }
@@ -1573,7 +1572,7 @@ MenuInterface.prototype.toggleAtMark = function () {
 MenuInterface.prototype.addSlur = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.keyCode = ZeroKey + number;
+		event.code = ZeroKey + number;
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1634,7 +1633,7 @@ MenuInterface.prototype.previousMelodicNote = function () {
 MenuInterface.prototype.pitchDownStep = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.keyCode = ZeroKey + number;
+		event.code = ZeroKey + number;
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1651,7 +1650,7 @@ MenuInterface.prototype.pitchDownStep = function (number) {
 MenuInterface.prototype.pitchUpStep = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.keyCode = ZeroKey + number;
+		event.code = ZeroKey + number;
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1668,7 +1667,7 @@ MenuInterface.prototype.pitchUpStep = function (number) {
 MenuInterface.prototype.pitchUpOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.keyCode = ZeroKey + number;
+		event.code = ZeroKey + number;
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1685,7 +1684,7 @@ MenuInterface.prototype.pitchUpOctave = function (number) {
 MenuInterface.prototype.pitchDownOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.keyCode = ZeroKey + number;
+		event.code = ZeroKey + number;
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1704,7 +1703,7 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 		if ((number < 10) && (number > 1)) {
 			number = -number;
 			var event = {};
-			event.keyCode = ZeroKey + number;
+			event.code = ZeroKey + number;
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1712,7 +1711,7 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 	} else {
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.keyCode = ZeroKey + number;
+			event.code = ZeroKey + number;
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1732,7 +1731,7 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 		number = -number;
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.keyCode = ZeroKey + number;
+			event.code = ZeroKey + number;
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1740,7 +1739,7 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 	} else {
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.keyCode = ZeroKey + number;
+			event.code = ZeroKey + number;
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}

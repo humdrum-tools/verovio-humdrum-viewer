@@ -126,7 +126,7 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-T
+@DEFAULT:		alt-t
 @AR:
 @BE:
 @CA:
@@ -207,7 +207,7 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-t
+@DEFAULT:		alt-T
 @AR:
 @BE:
 @CA:
