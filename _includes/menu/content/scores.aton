@@ -576,6 +576,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Mozart, 100 Contradances, K<sup>6</sup> Anh. C30.01
@@ -655,6 +656,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Scarlatti sonatas
@@ -700,6 +702,7 @@
 @LINK:			https://github.com/craigsapp/scarlatti-keyboard-sonatas
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -752,51 +755,6 @@
 @@END: SUBMENU
 @@END: ENTRY
 
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Barbershop quartets
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:		
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('osu/barbershop')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/humdrum-tools/barbershop
-@@END: RIGHT_TEXT
-@@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -849,6 +807,7 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Tasso in Music Edition
@@ -898,7 +857,6 @@
 {% include menu/content/scores-tasso.aton %}
 @@END: SUBMENU
 @@END: ENTRY
-
 
 
 @@BEGIN: ENTRY
