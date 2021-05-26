@@ -971,7 +971,21 @@ MenuInterface.prototype.displayMeiData = function () {
 
 MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	var event = {};
-	event.code = ZeroKey + bufferNumber;
+	switch (bufferNumber) {
+		case 0: event.code = ZeroKey;  break;
+		case 1: event.code = OneKey;   break;
+		case 2: event.code = TwoKey;   break;
+		case 3: event.code = ThreeKey; break;
+		case 4: event.code = FourKey;  break;
+		case 5: event.code = FiveKey;  break;
+		case 6: event.code = SixKey;   break;
+		case 7: event.code = SevenKey; break;
+		case 8: event.code = EightKey; break;
+		case 9: event.code = NineKey;  break;
+		default:
+			console.log("UNKNOWN BUFFER:", bufferNumber);
+			return;
+	}
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 
@@ -989,10 +1003,28 @@ MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 
 MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 	var event = {};
-	event.code = ZeroKey + bufferNumber;
+
+	// First store the buffer number in the number register:
+	switch (bufferNumber) {
+		case 0: event.code = ZeroKey;  break;
+		case 1: event.code = OneKey;   break;
+		case 2: event.code = TwoKey;   break;
+		case 3: event.code = ThreeKey; break;
+		case 4: event.code = FourKey;  break;
+		case 5: event.code = FiveKey;  break;
+		case 6: event.code = SixKey;   break;
+		case 7: event.code = SevenKey; break;
+		case 8: event.code = EightKey; break;
+		case 9: event.code = NineKey;  break;
+		default:
+			console.log("UNKNOWN BUFFER:", bufferNumber);
+			return;
+	}
+
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 
+	// Now run the save buffer command:
 	event.code = SKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -1572,7 +1604,24 @@ MenuInterface.prototype.toggleAtMark = function () {
 MenuInterface.prototype.addSlur = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.code = ZeroKey + number;
+
+		// First store the buffer number in the number register:
+		switch (bufferNumber) {
+			case 0: event.code = ZeroKey;  break;
+			case 1: event.code = OneKey;   break;
+			case 2: event.code = TwoKey;   break;
+			case 3: event.code = ThreeKey; break;
+			case 4: event.code = FourKey;  break;
+			case 5: event.code = FiveKey;  break;
+			case 6: event.code = SixKey;   break;
+			case 7: event.code = SevenKey; break;
+			case 8: event.code = EightKey; break;
+			case 9: event.code = NineKey;  break;
+			default:
+				console.log("UNKNOWN BUFFER:", bufferNumber);
+				return;
+		}
+
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1633,7 +1682,24 @@ MenuInterface.prototype.previousMelodicNote = function () {
 MenuInterface.prototype.pitchDownStep = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.code = ZeroKey + number;
+
+		// First store the buffer number in the number register:
+		switch (bufferNumber) {
+			case 0: event.code = ZeroKey;  break;
+			case 1: event.code = OneKey;   break;
+			case 2: event.code = TwoKey;   break;
+			case 3: event.code = ThreeKey; break;
+			case 4: event.code = FourKey;  break;
+			case 5: event.code = FiveKey;  break;
+			case 6: event.code = SixKey;   break;
+			case 7: event.code = SevenKey; break;
+			case 8: event.code = EightKey; break;
+			case 9: event.code = NineKey;  break;
+			default:
+				console.log("UNKNOWN BUFFER:", bufferNumber);
+				return;
+		}
+
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1650,7 +1716,24 @@ MenuInterface.prototype.pitchDownStep = function (number) {
 MenuInterface.prototype.pitchUpStep = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.code = ZeroKey + number;
+
+		// First store the buffer number in the number register:
+		switch (bufferNumber) {
+			case 0: event.code = ZeroKey;  break;
+			case 1: event.code = OneKey;   break;
+			case 2: event.code = TwoKey;   break;
+			case 3: event.code = ThreeKey; break;
+			case 4: event.code = FourKey;  break;
+			case 5: event.code = FiveKey;  break;
+			case 6: event.code = SixKey;   break;
+			case 7: event.code = SevenKey; break;
+			case 8: event.code = EightKey; break;
+			case 9: event.code = NineKey;  break;
+			default:
+				console.log("UNKNOWN BUFFER:", bufferNumber);
+				return;
+		}
+
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1667,7 +1750,24 @@ MenuInterface.prototype.pitchUpStep = function (number) {
 MenuInterface.prototype.pitchUpOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.code = ZeroKey + number;
+
+		// First store the buffer number in the number register:
+		switch (bufferNumber) {
+			case 0: event.code = ZeroKey;  break;
+			case 1: event.code = OneKey;   break;
+			case 2: event.code = TwoKey;   break;
+			case 3: event.code = ThreeKey; break;
+			case 4: event.code = FourKey;  break;
+			case 5: event.code = FiveKey;  break;
+			case 6: event.code = SixKey;   break;
+			case 7: event.code = SevenKey; break;
+			case 8: event.code = EightKey; break;
+			case 9: event.code = NineKey;  break;
+			default:
+				console.log("UNKNOWN BUFFER:", bufferNumber);
+				return;
+		}
+
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1684,7 +1784,24 @@ MenuInterface.prototype.pitchUpOctave = function (number) {
 MenuInterface.prototype.pitchDownOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
 		var event = {};
-		event.code = ZeroKey + number;
+
+		// First store the buffer number in the number register:
+		switch (bufferNumber) {
+			case 0: event.code = ZeroKey;  break;
+			case 1: event.code = OneKey;   break;
+			case 2: event.code = TwoKey;   break;
+			case 3: event.code = ThreeKey; break;
+			case 4: event.code = FourKey;  break;
+			case 5: event.code = FiveKey;  break;
+			case 6: event.code = SixKey;   break;
+			case 7: event.code = SevenKey; break;
+			case 8: event.code = EightKey; break;
+			case 9: event.code = NineKey;  break;
+			default:
+				console.log("UNKNOWN BUFFER:", bufferNumber);
+				return;
+		}
+
 		event.altKey = true;
 		processInterfaceKeyCommand(event);
 	}
@@ -1703,7 +1820,24 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 		if ((number < 10) && (number > 1)) {
 			number = -number;
 			var event = {};
-			event.code = ZeroKey + number;
+
+			// First store the buffer number in the number register:
+			switch (bufferNumber) {
+				case 0: event.code = ZeroKey;  break;
+				case 1: event.code = OneKey;   break;
+				case 2: event.code = TwoKey;   break;
+				case 3: event.code = ThreeKey; break;
+				case 4: event.code = FourKey;  break;
+				case 5: event.code = FiveKey;  break;
+				case 6: event.code = SixKey;   break;
+				case 7: event.code = SevenKey; break;
+				case 8: event.code = EightKey; break;
+				case 9: event.code = NineKey;  break;
+				default:
+					console.log("UNKNOWN BUFFER:", bufferNumber);
+					return;
+			}
+
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1711,7 +1845,24 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 	} else {
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.code = ZeroKey + number;
+
+			// First store the buffer number in the number register:
+			switch (bufferNumber) {
+				case 0: event.code = ZeroKey;  break;
+				case 1: event.code = OneKey;   break;
+				case 2: event.code = TwoKey;   break;
+				case 3: event.code = ThreeKey; break;
+				case 4: event.code = FourKey;  break;
+				case 5: event.code = FiveKey;  break;
+				case 6: event.code = SixKey;   break;
+				case 7: event.code = SevenKey; break;
+				case 8: event.code = EightKey; break;
+				case 9: event.code = NineKey;  break;
+				default:
+					console.log("UNKNOWN BUFFER:", bufferNumber);
+					return;
+			}
+
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1731,7 +1882,24 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 		number = -number;
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.code = ZeroKey + number;
+
+			// First store the buffer number in the number register:
+			switch (bufferNumber) {
+				case 0: event.code = ZeroKey;  break;
+				case 1: event.code = OneKey;   break;
+				case 2: event.code = TwoKey;   break;
+				case 3: event.code = ThreeKey; break;
+				case 4: event.code = FourKey;  break;
+				case 5: event.code = FiveKey;  break;
+				case 6: event.code = SixKey;   break;
+				case 7: event.code = SevenKey; break;
+				case 8: event.code = EightKey; break;
+				case 9: event.code = NineKey;  break;
+				default:
+					console.log("UNKNOWN BUFFER:", bufferNumber);
+					return;
+			}
+
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}
@@ -1739,7 +1907,24 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 	} else {
 		if ((number < 10) && (number > 1)) {
 			var event = {};
-			event.code = ZeroKey + number;
+
+			// First store the buffer number in the number register:
+			switch (bufferNumber) {
+				case 0: event.code = ZeroKey;  break;
+				case 1: event.code = OneKey;   break;
+				case 2: event.code = TwoKey;   break;
+				case 3: event.code = ThreeKey; break;
+				case 4: event.code = FourKey;  break;
+				case 5: event.code = FiveKey;  break;
+				case 6: event.code = SixKey;   break;
+				case 7: event.code = SevenKey; break;
+				case 8: event.code = EightKey; break;
+				case 9: event.code = NineKey;  break;
+				default:
+					console.log("UNKNOWN BUFFER:", bufferNumber);
+					return;
+			}
+
 			event.altKey = true;
 			processInterfaceKeyCommand(event);
 		}

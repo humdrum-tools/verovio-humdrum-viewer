@@ -657,7 +657,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case GKey:          // Save current view to SVG image
+		case GKey:          // save current view to SVG image
 			if (event.altKey) {
 				// displaySvg();
 				saveSvgData();
