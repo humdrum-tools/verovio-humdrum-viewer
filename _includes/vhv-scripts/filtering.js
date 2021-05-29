@@ -101,7 +101,7 @@ function applyGlobalFilter() {
 
 //////////////////////////////
 //
-// showFilterHelp --
+// showSpreadsheetHelp --
 //
 
 function showSpreadsheetHelp() {
@@ -225,8 +225,63 @@ function checkForFilterActivate(event) {
 //
 
 function showFilterHelp() {
-	var help = window.open("https://doc.verovio.humdrum.org/filter", "documentation");
+	let filterlist = {% include filter/filters.json %};
+	let filterindex = {};
+	for (let i=0; i<filterlist.length; i++) {
+		if (!filterlist[i]) {
+			continue;
+		}
+		filterindex[filterlist[i]] = 1;
+	}
+	let felement = document.querySelector("input#filter");
+	let ftext = "";
+	let command = "";
+	if (felement) {
+		ftext = felement.value;
+		fstart = felement.selectionStart;
+		ftext = getPipedRegion(ftext, fstart);
+		let matches = ftext.match(/^\s*([a-zA-Z0-9_-]+)/);
+		if (matches) {
+			if (filterindex[matches[1]]) {
+				command = matches[1];
+			}
+		}
+	}
+
+	let url = "https://doc.verovio.humdrum.org/filter";
+	if (command) {
+		url += "/" + command;
+	}
+
+	let help = window.open(url, "documentation");
 	help.focus();
+}
+
+
+
+//////////////////////////////
+//
+// getPipedRegion --
+//
+
+function getPipedRegion(ftext, fstart) {
+	if (!ftext) {
+		return "";
+	}
+	let pstart = -1;
+	let pend = -1;
+	for (let i=fstart; i>=0; i--) {
+		if (ftext.charAt(i) === "|") {
+			pstart = i+1;
+			break;
+		}
+	}
+	let text = ftext;
+	if (pstart >= 0) {
+		text = text.substring(pstart);
+	}
+	text = text.replace(/\|.*/, "");
+	return text;
 }
 
 
