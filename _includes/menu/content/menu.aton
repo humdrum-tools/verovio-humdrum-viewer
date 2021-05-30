@@ -29,7 +29,7 @@
 @KO:			파일
 @LT:			Byla
 @LV:			Fails
-@NL:			Dossier
+@NL:			Bestand
 @NO:			Fil
 @PL:			Plik
 @PT:			Arquivo
@@ -72,7 +72,7 @@
 @KO:			전망
 @LT:			Vaizdas
 @LV:			Skats
-@NL:			Uitzicht
+@NL:			Beeld
 @NO:			Utsikt
 @PL:			Widok
 @PT:			Visão
@@ -205,7 +205,7 @@
 @KO:			레퍼토리
 @LT:			Repertuaras
 @LV:			Repertuārs
-@NL:			Repertoire
+@NL:			Partituren
 @NO:			Repertoaret
 @PL:			Repertuar
 @PT:			Repertório
@@ -248,7 +248,7 @@
 @KO:			도움
 @LT:			Pagalba
 @LV:			Palīdzība
-@NL:			Helpen
+@NL:			Help
 @NO:			Hjelp
 @PL:			Pomoc
 @PT:			Socorro

@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toon notatie in groter formaat
 @NO:
 @PL:			Powiększ partyturę
 @PT:
@@ -76,7 +76,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toon notatie in kleiner formaat
 @NO:
 @PL:			Zmniejsz partyturę
 @PT:
@@ -123,7 +123,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Horizontale notatieafstand vergroten
 @NO:
 @PL:			Zwiększ odstępy między znakami
 @PT:
@@ -203,7 +203,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Horizontale notatieafstand verkleinen
 @NO:
 @PL:			Zmniejsz odstępy między znakami
 @PT:
@@ -283,7 +283,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Vergroot de verticale afstand tussen de notenbalken
 @NO:
 @PL:
 @PT:
@@ -330,7 +330,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verklein de verticale afstand tussen de notenbalken
 @NO:
 @PL:
 @PT:
@@ -377,7 +377,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Vergroot de verticale afstand tussen de systemen
 @NO:
 @PL:
 @PT:
@@ -424,7 +424,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verklein de verticale afstand tussen de systemen
 @NO:
 @PL:
 @PT:
@@ -471,7 +471,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Negeer gecodeerde regeleinden
 @NO:
 @PL:
 @PT:
@@ -518,7 +518,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Geef weer met gecodeerde regeleinden
 @NO:
 @PL:
 @PT:
@@ -565,7 +565,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Groter tekstformaat
 @NO:
 @PL:
 @PT:
@@ -612,7 +612,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Kleiner tekstformaat
 @NO:
 @PL:
 @PT:

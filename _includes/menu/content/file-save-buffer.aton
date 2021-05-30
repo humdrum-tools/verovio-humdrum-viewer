@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 1
 @NO:
 @PL:			Zapisz w buforze 1
 @PT:
@@ -109,7 +109,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 2
 @NO:
 @PL:			Zapisz w buforze 2
 @PT:
@@ -189,7 +189,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 3
 @NO:
 @PL:			Zapisz w buforze 3
 @PT:
@@ -269,7 +269,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 4
 @NO:
 @PL:			Zapisz w buforze 4
 @PT:
@@ -349,7 +349,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 5
 @NO:
 @PL:			Zapisz w buforze 5
 @PT:
@@ -429,7 +429,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 6
 @NO:
 @PL:			Zapisz w buforze 6
 @PT:
@@ -509,7 +509,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 7
 @NO:
 @PL:			Zapisz w buforze 7
 @PT:
@@ -589,7 +589,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 8
 @NO:
 @PL:			Zapisz w buforze 8
 @PT:
@@ -669,7 +669,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in buffer 9
 @NO:
 @PL:			Zapisz w buforze 9
 @PT:

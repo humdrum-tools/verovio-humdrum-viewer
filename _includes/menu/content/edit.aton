@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Wis tekstverwerker
 @NO:
 @PL:			Wyczyść edytor tekstowy
 @PT:
@@ -109,7 +109,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Maak laatste verandering ongedaan
 @NO:
 @PL:
 @PT:
@@ -189,7 +189,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Compileer ingesloten filters
 @NO:
 @PL:			Kompiluj filtry
 @PT:
@@ -269,7 +269,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder de laatste tabs
 @NO:
 @PL:
 @PT:
@@ -349,7 +349,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Waardestrepen
 @NO:
 @PL:			Belkowanie
 @PT:
@@ -398,7 +398,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Akkoorden
 @NO:
 @PL: Akordy
 @PT:
@@ -496,7 +496,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Versieringen
 @NO:
 @PL: Ozdobniki
 @PT:
@@ -545,7 +545,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Systeem
 @NO:
 @PL: System
 @PT:
@@ -594,7 +594,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Stokken
 @NO:
 @PL: 
 @PT:
@@ -643,7 +643,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Tekst
 @NO:
 @PL:			Tekst słowny
 @PT:
@@ -692,7 +692,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Transponeer op toonsoort (wanneer aanwezig in data)
 @NO:
 @PL:			Transponuj do tonacji (jeśli określona w kodowaniu)
 @PT:
@@ -741,7 +741,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Transponeer op interval omhoog
 @NO:
 @PL:			Transponuj w górę o interwał
 @PT:
@@ -790,7 +790,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Transponeer op interval omlaag
 @NO:
 @PL:			Transponuj w dół o interwał
 @PT:
@@ -839,7 +839,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Importeer formatering
 @NO:
 @PL:
 @PT:
@@ -889,7 +889,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Converteer naar Humdrum
 @NO:
 @PL:
 @PT:

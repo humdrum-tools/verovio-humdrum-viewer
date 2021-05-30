@@ -76,7 +76,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Plaats boog boven
 @NO:
 @PL:
 @PT:
@@ -123,7 +123,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Plaats boog onder
 @NO:
 @PL:
 @PT:
@@ -170,7 +170,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder boogrichting
 @NO:
 @PL:
 @PT:
@@ -217,7 +217,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder boog
 @NO:
 @PL:
 @PT:
@@ -264,7 +264,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verplaats boogbegin naar links
 @NO:
 @PL:
 @PT:
@@ -311,7 +311,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verplaats boogbegin naar rechts
 @NO:
 @PL:
 @PT:
@@ -358,7 +358,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verplaats boogeinde naar links
 @NO:
 @PL:
 @PT:
@@ -405,7 +405,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verplaats boogeinde naar rechts
 @NO:
 @PL:
 @PT:
@@ -452,7 +452,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verplaats boogeinde 3 noten naar rechts
 @NO:
 @PL:
 @PT:

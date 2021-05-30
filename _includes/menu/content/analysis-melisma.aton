@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Markeer melismas (twee noten of meer per lettergreep)
 @NO:
 @PL:
 @PT:
@@ -78,7 +78,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Markeer melismas (drie noten of meer per lettergreep)
 @NO:
 @PL:
 @PT:
@@ -127,7 +127,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Markeer melismas (vier noten of meer per lettergreep)
 @NO:
 @PL:
 @PT:
@@ -176,7 +176,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Markeer melismas (vijf noten of meer per syllabe)
 @NO:
 @PL:
 @PT:
@@ -226,7 +226,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toon het aantal noten voor elke lettergreep
 @NO:
 @PL:
 @PT:

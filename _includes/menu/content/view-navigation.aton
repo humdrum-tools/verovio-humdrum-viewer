@@ -28,7 +28,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Eerste pagina
 @NO:
 @PL:			Pierwsza strona
 @PT:
@@ -108,7 +108,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laatste pagina
 @NO:
 @PL:			Ostatnia strona
 @PT:
@@ -188,7 +188,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Vorige pagina
 @NO:
 @PL: Poprzednia strona
 @PT:
@@ -268,7 +268,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Volgende pagina
 @NO:
 @PL:			Następna strona
 @PT:
@@ -348,7 +348,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Volgende werk/deel
 @NO:
 @PL:			Następny utwór/część
 @PT:
@@ -430,7 +430,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Vorige werk/deel
 @NO:
 @PL:			Poprzedni utwór/część
 @PT:
@@ -510,7 +510,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Play/pause MIDI weergave
 @NO:
 @PL:			Odtwórz/zatrzymaj odtwarzanie MIDI
 @PT:

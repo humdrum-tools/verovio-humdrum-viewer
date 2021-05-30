@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla inhoud editor op
 @NO:
 @PL:			Pobierz tekst z edytora
 @PT:
@@ -110,7 +110,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op als PDF
 @NO:
 @PL:			Pobierz PDF
 @PT:
@@ -191,7 +191,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla view op als PDF
 @NO:
 @PL:			Pobierz aktualny widok PDF
 @PT:
@@ -272,7 +272,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla view op als SVG
 @NO:
 @PL: 
 @PT:
@@ -353,7 +353,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op als HTML
 @NO:
 @PL:
 @PT:
@@ -434,7 +434,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Geef MEI-data weer
 @NO:
 @PL:			Pokaż kodowanie MEI
 @PT:
@@ -515,7 +515,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Geef Humdrum-data weer
 @NO:
 @PL:			Pokaż kodowanie Humdrum
 @PT:
@@ -596,7 +596,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sla op in locale buffer
 @NO:
 @PL:			Zapisz w buforze
 @PT:
@@ -679,7 +679,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			laad locale buffer
 @NO:
 @PL:			Ładuj z bufora
 @PT:
@@ -729,7 +729,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Herlaad data uit bron
 @NO:
 @PL:			Ponownie wczytaj plik źródłowy
 @PT:
@@ -810,7 +810,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Converteer naar Humdrum
 @NO:
 @PL:
 @PT:

@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sorteer akkoorden hoogste noot eerst
 @NO:
 @PL: Sortuj dźwięki od najwyższego
 @PT:
@@ -76,7 +76,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Sorteer akkoorden laagste noot eerst
 @NO:
 @PL: Sortuj dźwięki od najniższego
 @PT:
@@ -123,7 +123,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Extraheer eerste noot in akkoord
 @NO:
 @PL: Tylko pierwszy dźwięk akordu
 @PT:
@@ -170,7 +170,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Extraheer laatste noot in akkoord
 @NO:
 @PL: Tylko ostatni dźwięk akordu
 @PT:
@@ -217,7 +217,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Hoogste noot in akkoord
 @NO:
 @PL: Najwyższy dźwięk akordu
 @PT:
@@ -264,7 +264,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laagste noot in het akkoord
 @NO:
 @PL: Najniższy dźwięk akordu
 @PT:
@@ -311,7 +311,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Comprimeer akkoorden
 @NO:
 @PL: Uprość akordy
 @PT:
@@ -358,7 +358,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Expandeer akkoorden
 @NO:
 @PL: Rozwiń akordy
 @PT:
@@ -405,7 +405,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Bas/melodie akkoordnoten (voor 2-balkige systemen)
 @NO:
 @PL: Bas/melodia (dla notacji fortepianowej)
 @PT:

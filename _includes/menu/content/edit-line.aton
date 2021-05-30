@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg plaatselijke commentaarregel in (boven de cursor)
 @NO:
 @PL:			Dodaj linię komentarza (nad kursorem)
 @PT:
@@ -110,7 +110,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg interpretatieregel in (boven de cursor)
 @NO:
 @PL:			Dodaj linię interpretacji (nad kursorem)
 @PT:
@@ -191,7 +191,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg een lege [null] dataregel in (boven de cursor)
 @NO:
 @PL:			Dodaj linię pustych tokenów (nad kursorem)
 @PT:
@@ -272,7 +272,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder lege [null] regels
 @NO:
 @PL:
 @PT:
@@ -320,7 +320,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder lege [null] dataregels
 @NO:
 @PL:
 @PT:
@@ -368,7 +368,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder lege [null] interpretatieregels
 @NO:
 @PL:
 @PT:
@@ -416,7 +416,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder lege [null] locale commentaarregels
 @NO:
 @PL:
 @PT:

@@ -1,0 +1,116 @@
+#!/usr/bin/perl
+
+use strict;
+use Getopt::Long;
+
+my $checkQ = 0;
+Getopt::Long::Configure("bundling");
+GetOptions (
+   'c|check' => \$checkQ
+);
+
+my $LANGUAGE = "";
+my @contents = <>;
+chomp @contents;
+
+my %TRANS;
+my $phrase;
+my $trans;
+for (my $i=0; $i<@contents; $i++) {
+	my $line = $contents[$i];
+	next if $line =~ /^\s*$/;
+	next if $line =~ /^\s*#/;
+	$line =~ s/^\s*//;
+	$line =~ s/\s+$//;
+	if ($line !~ /^\@/) {
+		print STDERR "Warning: skipping line $line\n";
+	}
+	if ($line =~ /^\@phrase:\s*(.*)\s*$/i) {
+		$phrase = $1;
+		next;
+	}
+	if ($line =~ /^\@([A-Z][A-Z]):\s*(.*)\s*/i) {
+		my $lang = $1;
+		$trans = $2;
+		next if $trans =~ /^\s*$/;
+		next if $phrase =~ /^\s*$/;
+		if ($LANGUAGE =~ /^\s*$/) {
+			$LANGUAGE = $lang;
+		} else {
+			die "LANGUAGES DO NOT MATCH $LANGUAGE and $lang\n" if $LANGUAGE ne $lang;
+		}
+		if ($TRANS{$phrase} && ($TRANS{$phrase} ne $trans)) {
+			print STDERR "Warning: replacing translation $TRANS{$phrase} with $trans for $phrase\n";
+		}
+		$TRANS{$phrase} = $trans;
+	}
+}
+
+
+if ($checkQ) {
+	my @keys = sort keys %TRANS;
+	for (my $i=0; $i<@keys; $i++) {
+		print "$keys[$i]\t<=>\t$TRANS{$keys[$i]}\n";
+	}
+	exit 0;
+}
+
+my @files = glob "*.aton";
+foreach my $file (@files) {
+	insertTranslations($file);
+}
+
+
+###########################################################################
+
+
+##############################
+##
+## insertTranslations --
+##
+
+sub insertTranslations {
+	my ($file) = @_;
+	open (FILE, $file) or die "Cannot open file $file\n";
+	my @contents = <FILE>;
+	chomp @contents;
+	close FILE;
+
+	my $default;
+	my $lang;
+	my $changed = 0;
+	for (my $i=0; $i<@contents; $i++) {
+		my $line = $contents[$i];
+		if ($line =~ /^\@DEFAULT:\s*(.*)\s*$/) {
+			$default = $1;
+			next;
+		}
+		if ($line =~ /^\@$LANGUAGE\s*:\s*(.*)\s*$/) {
+			my $oldterm = $1;
+			my $newterm = $TRANS{$default};
+			if ($oldterm eq "") {
+				if ($newterm !~ /^\s*$/) {
+					$changed++;
+					$contents[$i] = "\@$LANGUAGE:\t\t\t$newterm";
+				}
+				next;
+			} elsif ($oldterm eq $newterm) {
+				next;
+			} elsif ($newterm !~ /^\s*$/) {
+				$changed++;
+				$contents[$i] = "\@$LANGUAGE:\t\t\t$newterm";
+			}
+		}
+	}
+	return if !$changed;
+
+	open (FILE, ">$file") or die "Cannot write to file $file\n";
+	for (my $i=0; $i<@contents; $i++) {
+		print FILE $contents[$i], "\n";
+	}
+	close FILE;
+}
+
+
+
+

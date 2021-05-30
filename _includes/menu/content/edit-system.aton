@@ -28,7 +28,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verwijder niet-kern spines
 @NO:
 @PL:			Wyświetl tylko spiny kern
 @PT:
@@ -76,7 +76,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg notenbalk toe boven systeem
 @NO:
 @PL:
 @PT:
@@ -123,7 +123,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg notenbalk toe boven systeem met verborgen rusten
 @NO:
 @PL:
 @PT:
@@ -170,7 +170,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg notenbalk toe onder systeem
 @NO:
 @PL:
 @PT:
@@ -217,7 +217,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Voeg notenbalk toe onder systeem met verborgen rusten
 @NO:
 @PL:
 @PT:

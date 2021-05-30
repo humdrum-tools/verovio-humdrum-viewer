@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 1
 @NO:
 @PL:			Załaduj z bufora 1
 @PT:
@@ -109,7 +109,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 2
 @NO:
 @PL:			Załaduj z bufora 2
 @PT:
@@ -191,7 +191,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 3
 @NO:
 @PL:			Załaduj z bufora 3
 @PT:
@@ -271,7 +271,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 4
 @NO:
 @PL:			Załaduj z bufora 4
 @PT:
@@ -351,7 +351,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 5
 @NO:
 @PL:			Załaduj z bufora 5
 @PT:
@@ -431,7 +431,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 6
 @NO:
 @PL:			Załaduj z bufora 6
 @PT:
@@ -511,7 +511,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 7
 @NO:
 @PL:			Załaduj z bufora 7
 @PT:
@@ -591,7 +591,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 8
 @NO:
 @PL:			Załaduj z bufora 8
 @PT:
@@ -671,7 +671,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit buffer 9
 @NO:
 @PL:			Załaduj z bufora 9
 @PT:
@@ -751,7 +751,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Laad uit autosave buffer
 @NO:
 @PL:			Załaduj z bufora autozapisu
 @PT:
