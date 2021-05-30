@@ -41,7 +41,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.adjustNotationScale(3)
+@ACTION:		MENU.adjustNotationScale(event, 1.05)
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
@@ -88,7 +88,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.adjustNotationScale(-3)
+@ACTION:		MENU.adjustNotationScale(event, 0.95)
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			

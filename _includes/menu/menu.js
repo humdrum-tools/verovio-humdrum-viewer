@@ -1936,11 +1936,12 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 
 //////////////////////////////
 //
-// MenuInterface::adjustNotationScale -- add or subtract the input value, not going below 15 or above 500.
+// MenuInterface::adjustNotationScale -- add or subtract the input value,
+//     not going below 15 or above 500.
 //
 
-MenuInterface.prototype.adjustNotationScale = function (number, event) {
-	if (event.shiftKey) {
+MenuInterface.prototype.adjustNotationScale = function (event, number) {
+	if (event && event.shiftKey) {
 		SCALE = 40;
 	} else {
 		SCALE = parseInt(SCALE * number + 0.5);
