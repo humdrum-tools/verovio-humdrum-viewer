@@ -14,6 +14,16 @@
 //
 
 function compileFilters() {
+	let target = document.querySelector("input#filter");
+	let results = validateFilter(target, "Enter");
+	if (!results.status) {
+		event.target.classList.add("invalid");
+		alert(`Error: unknown filter ${results.filter}`);
+		return;
+	} else {
+		event.target.classList.remove("invalid");
+	}
+
 	let xml = dataIsXml();
 	if (xml) {
 		// Could be done later in certain cases.
@@ -59,6 +69,16 @@ function showCompiledFilterData(deleteline) {
 //
 
 function applyGlobalFilter() {
+	let target = document.querySelector("input#filter");
+	let results = validateFilter(target, "Enter");
+	if (!results.status) {
+		event.target.classList.add("invalid");
+		alert(`Error: unknown filter ${results.filter}`);
+		return;
+	} else {
+		event.target.classList.remove("invalid");
+	}
+
 	let xml = dataIsXml();
 	if (xml) {
 		// Could be done later in certain cases.
@@ -210,11 +230,81 @@ function copyFilterUrl() {
 //
 
 function checkForFilterActivate(event) {
+	let results = validateFilter(event, event.key);
+	if (!results.status) {
+		event.target.classList.add("invalid");
+		if (event.key === "Enter") {
+			alert(`Error: unknown filter ${results.filter}`);
+		}
+		return;
+	} else {
+		event.target.classList.remove("invalid");
+	}
+
 	if (event.shiftKey && event.key === "Enter") {
-		compileGlobalFilter();
+		compileFilters();
 	} else if (event.key === "Enter") {
 		applyGlobalFilter();
 	}
+}
+
+
+
+//////////////////////////////
+//
+// validateFilter --
+//
+
+function validateFilter(event, key) {
+	let target;
+	if (event && (typeof event.target !== "undefined")) {
+		target = event.target;
+	} else if (!event) {
+		target = document.querySelector("input#filter");
+	} else {
+		target = event;
+	}
+	if (!target) {
+		return {status:0, filter: "missing target"};
+	}
+	if (target.nodeName !== "INPUT") {
+		return {status:0, filter: "missing input target"};
+	}
+	let value = target.value;
+	console.log("VALUE", value);
+
+	let checkend = 0;
+	if (key == "Enter") {
+		checkend = 1;
+	}
+
+	if (!checkend) {
+		value = value.replace(/[a-zA-Z0-9_-]+$/, "");
+	}
+	let values = value.split(/\s*[|]+\s*/);
+	console.log("VALUES", values);
+
+	let filterindex = {};
+	for (let i=0; i<FILTERS.length; i++) {
+		if (!FILTERS[i]) {
+			continue;
+		}
+		filterindex[FILTERS[i]] = 1;
+	}
+
+	for (let i=0; i<values.length; i++) {
+		if (!values[i]) {
+			continue;
+		}
+		var term = values[i].replace(/^\s+/, "").replace(/\s.*/, "");
+		if (!term) {
+			continue;
+		}
+		if (!filterindex[term]) {
+			return {status:0, filter:term};
+		}
+	}
+	return {status:1, filter:""};
 }
 
 
@@ -225,14 +315,14 @@ function checkForFilterActivate(event) {
 //
 
 function showFilterHelp() {
-	let filterlist = {% include filter/filters.json %};
 	let filterindex = {};
-	for (let i=0; i<filterlist.length; i++) {
-		if (!filterlist[i]) {
+	for (let i=0; i<FILTERS.length; i++) {
+		if (!FILTERS[i]) {
 			continue;
 		}
-		filterindex[filterlist[i]] = 1;
+		filterindex[FILTERS[i]] = 1;
 	}
+
 	let felement = document.querySelector("input#filter");
 	let ftext = "";
 	let command = "";

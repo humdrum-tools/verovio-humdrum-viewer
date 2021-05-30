@@ -100,6 +100,9 @@ let SEARCHFILTEROBJ = {};
 let SEARCHFILTER    = "";
 let GLOBALFILTER    = "";
 
+let FILTERS = {% include filter/filters.json %};
+
+
 //////////////////////////////
 //
 // Music searching toolbar variables
