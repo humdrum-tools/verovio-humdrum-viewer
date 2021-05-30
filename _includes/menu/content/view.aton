@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Eén-pagina overzicht
 @NO:
 @PL:
 @PT:
@@ -76,7 +76,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Weergave van meerdere pagina's
 @NO:
 @PL:
 @PT:
@@ -172,7 +172,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Notatie
 @NO:
 @PL:			Partytura
 @PT:
@@ -270,7 +270,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verdeling
 @NO:
 @PL:
 @PT:
@@ -319,7 +319,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Muzieklettertype
 @NO:
 @PL:
 @PT:
@@ -417,7 +417,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle het kleuren van een laag
 @NO:
 @PL:			Włącz/Wyłącz kolorowanie warstw
 @PT:
@@ -579,7 +579,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Volgende werkbalkmenu weergeven
 @NO:
 @PL:
 @PT:
@@ -659,7 +659,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle zichtbaarheid werkbalk
 @NO:
 @PL:
 @PT:
@@ -739,7 +739,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Pauzeer/hervat het genereren van de notatie
 @NO:
 @PL:			Zablokuj/Odblokuj generowanie partytury
 @PT:
@@ -819,7 +819,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle de oorspronkelijke sleutels
 @NO:
 @PL:			Wyświetl orygnalne klucze
 @PT:
@@ -899,7 +899,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toon de bronscan (wanneer beschikbaar)
 @NO:
 @PL:			Pokaż skan źródła (jeśli jest)
 @PT:

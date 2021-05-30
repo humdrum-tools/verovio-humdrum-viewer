@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle weergave tekst
 @NO:
 @PL:			Pokaż/ukryj tekst
 @PT:
@@ -109,7 +109,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Vergroot tekstformaat
 @NO:
 @PL:
 @PT:
@@ -156,7 +156,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Verklein tekstformaat
 @NO:
 @PL:
 @PT:
@@ -203,7 +203,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle vi/eenvoudige teksteditor-modus
 @NO:
 @PL:			Edytor w trybie domyślnym/vi
 @PT:
@@ -283,7 +283,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle CSV/TSV Humdrum weergave
 @NO:
 @PL:			Humdrum jako TSV/CSV
 @PT:
