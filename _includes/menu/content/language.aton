@@ -142,6 +142,15 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
+@FORCE:			NL
+@DEFAULT:		Dutch
+@NL:			Nederlands
+@ACTION:		MENU.setLanguage('NL')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
 @FORCE:			PL
 @DEFAULT:		Polish
 @PL:			Polski
