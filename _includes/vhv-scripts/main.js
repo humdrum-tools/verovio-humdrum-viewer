@@ -83,5 +83,8 @@
 // Main event listener functions:
 {% include vhv-scripts/listeners.js %}
 
+// PDF file creating/downloading
+{% include vhv-scripts/pdf.js %}
+
 
 

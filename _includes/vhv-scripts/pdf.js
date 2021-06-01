@@ -1,25 +1,27 @@
-{% comment %}
-	Functions for saving SVG images to a PDF file.
-	See demo at:
-		http://pdfkit.org/demo/browser.html
+//
+//	Functions for saving SVG images to a PDF file.
+//	See demo at:
+//		http://pdfkit.org/demo/browser.html
+//
+//	vim: ts=3:ft=javascript
+//
+//
+//These external scripts are also needed to create PDF files (found
+//in the _include/head/main.html file:
+//
+//<xscript src="/scripts/pdfkit/blobstream.js" type="text/javascript"></xscript>
+//<xscript src="/scripts/pdfkit/pdfkit.js" type="text/javascript"></xscript>
+//<xscript src="/scripts/pdfkit/source.js" type="text/javascript"></xscript>
+//
+//Verovio text font not needed anymore (loaded as a base-64 string):
+//<xscript src="scripts/pdfkit/vrv-ttf.js" type="text/javascript"></xscript> 
+//
+//
+//	The saving process also needs FileSaver.js:
+//		https://github.com/eligrey/FileSaver.js
+//	but this is already included for saving editor contents.
+//
 
-	vim: ts=3:ft=javascript
-{% endcomment %}
-
-
-<script src="scripts/pdfkit/blobstream.js" type="text/javascript"></script>
-<script src="scripts/pdfkit/pdfkit.js" type="text/javascript"></script>
-<script src="scripts/pdfkit/source.js" type="text/javascript"></script>
-<!-- <script src="scripts/pdfkit/vrv-ttf.js" type="text/javascript"></script>  -->
-{% comment %}
-	The saving process also needs FileSaver.js:
-		https://github.com/eligrey/FileSaver.js
-	but this is already included for saving editor contents.
-{% endcomment %}
-
-
-
-<script>
 
 //////////////////////////////
 //
@@ -28,11 +30,11 @@
 
 function loadPdfFonts(pdf) {
 	return RSVP.all([
-		loadFontResource(pdf, 'Times', 'scripts/pdfkit/EBGaramond-Regular.ttf'),
-		loadFontResource(pdf, 'TimesItalic', 'scripts/pdfkit/EBGaramond-Italic.ttf'),
-		loadFontResource(pdf, 'TimesBold', 'scripts/pdfkit/EBGaramond-Bold.ttf'),
-		loadFontResource(pdf, 'TimesBoldItalic', 'scripts/pdfkit/EBGaramond-BoldItalic.ttf'),
-		loadFontResource(pdf, 'VerovioText', 'scripts/pdfkit/VerovioText-1.0.ttf'),
+		loadFontResource(pdf, 'Times', '/scripts/pdfkit/EBGaramond-Regular.ttf'),
+		loadFontResource(pdf, 'TimesItalic', '/scripts/pdfkit/EBGaramond-Italic.ttf'),
+		loadFontResource(pdf, 'TimesBold', '/scripts/pdfkit/EBGaramond-Bold.ttf'),
+		loadFontResource(pdf, 'TimesBoldItalic', '/scripts/pdfkit/EBGaramond-BoldItalic.ttf'),
+		loadFontResource(pdf, 'VerovioText', '/scripts/pdfkit/VerovioText-1.0.ttf'),
 	]);
 }
 
@@ -387,4 +389,5 @@ function cleanOptions2(content, options) {
 	return output;
 }
 
-</script>
+
+
