@@ -18,10 +18,10 @@ function displayNotation(page, force, restoreid) {
 	}
 
 	// if input area is a <textarea>, then use .value to access contnets:
-	// var inputarea = document.querySelector("#input");
-	// var data = inputarea.value;
+	// let inputarea = document.querySelector("#input");
+	// let data = inputarea.value;
 
-	var data = getTextFromEditor();
+	let data = getTextFromEditor();
 	if (!data) {
 		// This could be a transient state of the text editor before
 		// new contents is added.
@@ -32,7 +32,7 @@ function displayNotation(page, force, restoreid) {
 		console.log("Editor contents is empty (2)");
 		return;
 	};
-	var options = humdrumToSvgOptions();
+	let options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
 		options.inputFrom = "esac";
 	};
@@ -57,7 +57,7 @@ function displayNotation(page, force, restoreid) {
 	OPTIONS = options;
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
-		var ishumdrum = true;
+		let ishumdrum = true;
 		if (data.charAt(0) == "<") {
 			ishumdrum = false;
 		} else if (data.match(/CUT[[]/)) {
@@ -66,7 +66,7 @@ function displayNotation(page, force, restoreid) {
 			ishumdrum = false;
 		}
 
-		var output = document.querySelector("#output");
+		let output = document.querySelector("#output");
 		output.innerHTML = svg;
 		if (ishumdrum) {
 			if (restoreid) {
@@ -86,7 +86,7 @@ function displayNotation(page, force, restoreid) {
 		return false;
 	})
 	.finally(function() {
-		var indexelement = document.querySelector("#index");
+		let indexelement = document.querySelector("#index");
 		indexelement.style.visibility = "invisibile";
 		indexelement.style.display = "none";
 		if (UndoHide) {
@@ -117,10 +117,10 @@ function displayNotation(page, force, restoreid) {
 			// search toolbar
 			vrvWorker.getHumdrum()
 			.then(function(humdrumdata) {
-				var data = humdrumdata.match(/[^\r\n]+/g);
-				var count = 0;
-				var matches;
-				for (var i=data.length - 1; i > 0; i--) {
+				let data = humdrumdata.match(/[^\r\n]+/g);
+				let count = 0;
+				let matches;
+				for (let i=data.length - 1; i > 0; i--) {
 					matches = data[i].match(/^!!@MATCHES:\s*(\d+)/);
 					if (matches) {
 						count = parseInt(matches[1]);
@@ -128,9 +128,9 @@ function displayNotation(page, force, restoreid) {
 					}
 				}
 				console.log("COUNT", count);
-				var eresults = document.querySelector("#search-results");
+				let eresults = document.querySelector("#search-results");
 				if (eresults) {
-					var output = "";
+					let output = "";
 					if (count == 0) {
 						output = "0 matches";
 					} else if (count == 1) {
@@ -177,8 +177,8 @@ function toggleFreeze() {
 		displayNotation();
 	}
 
-	var felement = document.querySelector("#text-freeze-icon");
-	var output = "";
+	let felement = document.querySelector("#text-freeze-icon");
+	let output = "";
 	if (felement) {
 		if (FreezeRendering) {
 			// display is frozen so show lock icon
@@ -201,7 +201,7 @@ function toggleFreeze() {
 
 function toggleTextVisibility(suppressZoom) {
 	InputVisible = !InputVisible;
-	var input = document.querySelector("#input");
+	let input = document.querySelector("#input");
 	if (InputVisible) {
 		if (LastInputWidth == 0) {
 			LastInputWidth = 400;
@@ -227,7 +227,7 @@ function toggleTextVisibility(suppressZoom) {
 //
 
 function redrawInputArea(suppressZoom) {
-	var input = document.querySelector("#input");
+	let input = document.querySelector("#input");
 	if (InputVisible) {
 		if (LastInputWidth == 0) {
 			LastInputWidth = 400;
@@ -252,7 +252,7 @@ function redrawInputArea(suppressZoom) {
 
 function hideInputArea(suppressZoom) {
 	InputVisible = false;
-	var input = document.querySelector("#input");
+	let input = document.querySelector("#input");
 	LastInputWidth = parseInt(input.style.width);
 	Splitter.setPositionX(0);
 	if (!suppressZoom) {
@@ -285,7 +285,7 @@ function showInputArea(suppressZoom) {
 
 function toggleVhvTitle() {
 	VrvTitle = !VrvTitle;
-	var area = document.querySelector("#vhv");
+	let area = document.querySelector("#vhv");
 	if (VrvTitle) {
 		area.style.visibility = "visible";
 		area.style.display = "inline";
@@ -310,7 +310,7 @@ function restoreWorkNavigator(selector) {
 		return;
 	}
 	FILEINFO = ERASED_FILEINFO;
-	var element = document.querySelector(selector);
+	let element = document.querySelector(selector);
 	element.innerHTML = ERASED_WORK_NAVIGATOR;
 	ERASED_WORK_NAVIGATOR = "";
 }
@@ -326,7 +326,7 @@ function removeWorkNavigator(selector) {
 	if (!selector) {
 		selector = "#work-navigator";
 	}
-	var element = document.querySelector(selector);
+	let element = document.querySelector(selector);
 	ERASED_WORK_NAVIGATOR = element.innerHTML;
 	ERASED_FILEINFO = FILEINFO;
 	element.innerHTML = "";
@@ -443,8 +443,8 @@ function copyRepertoryUrl(file) {
 		}
 	}
 
-	var url = "https://verovio.humdrum.org";
-	var initialized = 0;
+	let url = "https://verovio.humdrum.org";
+	let initialized = 0;
 
 	if (file) {
 		url += "/?file=";
@@ -452,7 +452,7 @@ function copyRepertoryUrl(file) {
 		initialized = 1;
 	}
 
-	var kstring = "";
+	let kstring = "";
 	if (!InputVisible) {
 		kstring += "ey";
 	}
@@ -517,14 +517,14 @@ function copyRepertoryUrl(file) {
 //
 
 function displayFileTitle(contents) {
-	var references = getReferenceRecords(contents);
+	let references = getReferenceRecords(contents);
 
-	var lines = contents.split(/\r?\n/);
-	var title = "";
-	var number = "";
-	var composer = "";
-	var sct = "";
-	var matches;
+	let lines = contents.split(/\r?\n/);
+	let title = "";
+	let number = "";
+	let composer = "";
+	let sct = "";
+	let matches;
 
 	if (references["title"] && !references["title"].match(/^\s*$/)) {
 		title = references["title"];
@@ -543,14 +543,14 @@ function displayFileTitle(contents) {
 	title = title.replace(/-sharp/g, "&#9839;");
 	title = title.replace(/-flat/g, "&#9837;");
 
-	var tarea;
+	let tarea;
 	tarea = document.querySelector("#title");
 	if (tarea) {
 		tarea.innerHTML = title;
 	}
 
 	tarea = document.querySelector("#composer");
-	var pretitle = "";
+	let pretitle = "";
 
 	if (tarea && !composer.match(/^\s*$/)) {
 		pretitle += composer + ", ";
@@ -624,10 +624,10 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 
 	vrvWorker.page = 1;
 	page = page || vrvWorker.page;
-	var options = null;
-	var humdrumQ = false;
+	let options = null;
+	let humdrumQ = false;
 
-	var mode = getMode(text);
+	let mode = getMode(text);
 
 	if (text.slice(0, 1000).match(/<score-partwise/)) {
 		// MusicXML data
@@ -657,7 +657,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 		} else {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(function(newtext) {
-				var freezeBackup = FreezeRendering;
+				let freezeBackup = FreezeRendering;
 				if (FreezeRendering == false) {
 					FreezeRendering = true;
 				}
@@ -690,9 +690,9 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 //
 
 function applyZoom() {
-	// var measure = 0;
+	// let measure = 0;
 
-	var testing = document.querySelector("#output svg");
+	let testing = document.querySelector("#output svg");
 	if (!testing) {
 		// console.log("NO OUTPUT SVG LOCATION");
 		return;
@@ -702,7 +702,7 @@ function applyZoom() {
 	// 	measure = $("#output .measure").attr("id");
 	// }
 
-	var options = humdrumToSvgOptions();
+	let options = humdrumToSvgOptions();
 	OPTIONS = options;
 	stop();
 	vrvWorker.HEIGHT = options.pageHeight;
@@ -745,15 +745,15 @@ function loadPage(page) {
 function resizeImage(image) {
 return; /* not needed anymore */
 /*
-	var ww = window.innerWidth;
-	var tw = $("#input").outerWidth();
+	let ww = window.innerWidth;
+	let tw = $("#input").outerWidth();
 
-	// var newheight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
-	// var newwidth = (ww - tw) / ZOOM - 100;
-	var newheight = (window.innerHeight - $("#navbar").outerHeight());
-	var newwidth = (ww - tw);
+	// let newheight = (window.innerHeight - $("#navbar").outerHeight()) / ZOOM - 100;
+	// let newwidth = (ww - tw) / ZOOM - 100;
+	let newheight = (window.innerHeight - $("#navbar").outerHeight());
+	let newwidth = (ww - tw);
 
-	var image = document.querySelector("#output svg");
+	let image = document.querySelector("#output svg");
 	//console.log("OLD IMAGE HEIGHT", $(image).height());
 	console.log("OLD IMAGE WIDTH", $(image).width());
 	if (!image) {
@@ -834,7 +834,7 @@ function gotoFirstPage() {
 //
 
 function showBufferedHumdrumData() {
-	var oldmode = EditorMode;
+	let oldmode = EditorMode;
 	if (oldmode == "musedata") {
 		EditorMode = "humdrum";
 		setEditorModeAndKeyboard();
@@ -843,7 +843,7 @@ function showBufferedHumdrumData() {
 		EditorMode = "humdrum";
 		setEditorModeAndKeyboard();
 		if (!BufferedHumdrumFile.match(/^\s*$/)) {
-			var page = vrvWorker.page;
+			let page = vrvWorker.page;
 			displayScoreTextInEditor(BufferedHumdrumFile, vrvWorker.page);
 			BufferedHumdrumFile = "";
 		}
@@ -858,7 +858,7 @@ function showBufferedHumdrumData() {
 //
 
 function displayHumdrum() {
-	var options = humdrumToSvgOptions();
+	let options = humdrumToSvgOptions();
 	vrvWorker.filterData(options, getTextFromEditor(), "humdrum")
 	.then(showHumdrum);
 }
@@ -892,17 +892,18 @@ function showHumdrum(humdrumdata) {
 //
 
 function getTextFromEditor() {
-	var text = EDITOR.getValue();
+	let text = EDITOR.getValue();
 	if (!text) {
 		return "";
 	}
+	text = ensureTsv(text);
 	if (text.length < 5) {
 		// do not try to unmime if length less than 5 characters
 		return text;
 	}
 	// if the first 100 charcters are only spaces or [A-Za-z0-9/+=], the assume
 	// the text is MIME encoded, so decode before returning:
-	var starting = text.substring(0, 100);
+	let starting = text.substring(0, 100);
 	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
 		try {
 			text = atob(text);
@@ -914,6 +915,68 @@ function getTextFromEditor() {
 		}
 	}
 	return text;
+}
+
+
+
+//////////////////////////////
+//
+// getTextFromEditorNoCsvProcessing -- 
+//
+
+function getTextFromEditorNoCsvProcessing() {
+	let text = EDITOR.getValue();
+	if (!text) {
+		return "";
+	}
+	if (text.length < 5) {
+		// do not try to unmime if length less than 5 characters
+		return text;
+	}
+	// if the first 100 charcters are only spaces or [A-Za-z0-9/+=], the assume
+	// the text is MIME encoded, so decode before returning:
+	let starting = text.substring(0, 100);
+	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
+		try {
+			text = atob(text);
+		} catch (err) {
+			// console.log("text is not mime", text);
+			// It is still possible that the text is not
+			// MIME data, but it will still be decodeable
+			// into junk.
+		}
+	}
+	return text;
+}
+
+
+
+//////////////////////////////
+//
+// ensureTsv -- convert to TSV if in CSV format.
+//
+
+function ensureTsv(text) {
+	let lines = text.split("\n");
+	let commacount = 0;
+	let linecount = 0;
+	for (let i=0; i<lines.length; i++) {
+		if (lines[i].match(/^!!/)) {
+			continue;
+		}
+		linecount++;
+		if (lines[i].match(/,/)) {
+			commacount++;
+		}
+		if (linecount > 10) {
+			break;
+		}
+	}
+	if (linecount && (linecount == commacount)) {
+		return convertDataToTsv(lines);
+	} else {
+		return text;
+	}
 }
 
 
@@ -1004,9 +1067,9 @@ function showMei(meidata) {
 //
 
 function displayMeiNoType() {
-	var options = humdrumToSvgOptions();
+	let options = humdrumToSvgOptions();
 	options.humType = 0;
-	var text = getTextFromEditor();
+	let text = getTextFromEditor();
 	if (GLOBALFILTER) {
 		text += "\n!!!filter: " + GLOBALFILTER + "\n";
 		detachGlobalFilter();
@@ -1046,9 +1109,9 @@ function displaySvg() {
 	vrvWorker.renderPage(vrvWorker.page)
 	.then(function(data) {
 
-		var prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
-		var postfix = "</textarea>";
-		var w = window.open("about:blank", "SVG transcoding",
+		let prefix = "<textarea style='spellcheck=false; width:100%; height:100%;'>";
+		let postfix = "</textarea>";
+		let w = window.open("about:blank", "SVG transcoding",
 				'width=600,height=800,resizeable,scrollabars,location=false');
 		w.document.write(prefix + data + postfix);
 		w.document.close();
@@ -1079,9 +1142,9 @@ function displayPdf() {
 	// If a humdrum file has a line starting with
 	//     !!!URL-pdf: (https?://[^\s]*)
 	// then load that file.
-	var loaded = false;
+	let loaded = false;
 	if (EditorMode === "humdrum") {
-		var loaded = displayHumdrumPdf();
+		let loaded = displayHumdrumPdf();
 	}
 
 	if (loaded) {
@@ -1095,7 +1158,7 @@ function displayPdf() {
 		return;
 	}
 
-	var url = "https://kern.humdrum.org/data?l=" + FILEINFO["location"];
+	let url = "https://kern.humdrum.org/data?l=" + FILEINFO["location"];
 	url += "&file=" + FILEINFO["file"];
 	url += "&format=pdf&#view=FitH";
 
@@ -1110,7 +1173,7 @@ function displayPdf() {
 //
 
 function displayKeyscape() {
-	var fileinfo = FILEINFO;
+	let fileinfo = FILEINFO;
 	if (!fileinfo) {
 		console.log("Error: no fileinfo");
 		return;
@@ -1119,7 +1182,7 @@ function displayKeyscape() {
 		console.log("Error: filename not found");
 		return;
 	}
-	var file = fileinfo.file;
+	let file = fileinfo.file;
 	if (!file) {
 		console.log("Error: filename is empty");
 		return;
@@ -1128,13 +1191,13 @@ function displayKeyscape() {
 		console.log("Error: location not found");
 		return;
 	}
-	var location = fileinfo.location;
+	let location = fileinfo.location;
 	if (!location) {
 		console.log("Error: location is empty");
 		return;
 	}
 
-	var url = "https://kern.humdrum.org/data?file=";
+	let url = "https://kern.humdrum.org/data?file=";
 	url += encodeURIComponent(file);
 	url += "&l=";
 	url += encodeURIComponent(location);
@@ -1178,10 +1241,10 @@ function displayKeyscape() {
 //
 
 function displayHumdrumPdf() {
-	var urllist = getPdfUrlList();
+	let urllist = getPdfUrlList();
 
-	var url = "";
-	var i;
+	let url = "";
+	let i;
 	if (InterfaceSingleNumber > 1) {
 		for (i=0; i<urllist.length; i++) {
 			if (urllist[i].number == InterfaceSingleNumber) {
@@ -1222,28 +1285,28 @@ function getPdfUrlList() {
 		// can't handle MEI mode yet
 		return 0;
 	}
-	var predata = getTextFromEditor();
+	let predata = getTextFromEditor();
 	if (!predata) {
 		return [];
 	}
-	var data = predata.split(/\r?\n/);
-	var refrecords = {};
-	var output = [];
-	var title = "";
+	let data = predata.split(/\r?\n/);
+	let refrecords = {};
+	let output = [];
+	let title = "";
 
-	var query;
+	let query;
 	query = '^!!!URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
 	query += "\\s+(.*)\\s*$";
-	var rex = new RegExp(query);
+	let rex = new RegExp(query);
 
-	var references = [];
+	let references = [];
 
-	var i;
+	let i;
 	for (i=0; i<data.length; i++) {
-		var line = data[i];
-		var matches = line.match(rex);
+		let line = data[i];
+		let matches = line.match(rex);
 		if (matches) {
-			var obj = {};
+			let obj = {};
 			if (!matches[1]) {
 				obj.number = -1;
 			} else {
@@ -1254,7 +1317,7 @@ function getPdfUrlList() {
 			output.push(obj);
 		}
 
-		var matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
+		matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
 		if (matches) {
 			obj = {};
 			obj.key = matches[1];
@@ -1266,7 +1329,7 @@ function getPdfUrlList() {
 		}
 	}
 
-	for (var i=0; i<output.length; i++) {
+	for (let i=0; i<output.length; i++) {
 		output[i].title = templateExpansion(output[i].title, refrecords);
 	}
 
@@ -1281,13 +1344,13 @@ function getPdfUrlList() {
 //
 
 function templateExpansion(title, records) {
-	var matches = title.match(/@{(.*?)}/);
+	let matches = title.match(/@{(.*?)}/);
 	if (!matches) {
 		return title;
 	}
 
-	var replacement = getReferenceValue(matches[1], records);
-	var rex = new RegExp("@{" + matches[1] + "}", "g");
+	let replacement = getReferenceValue(matches[1], records);
+	let rex = new RegExp("@{" + matches[1] + "}", "g");
 	title = title.replace(rex, replacement);
 
 	matches = title.match(/@{(.*?)}/);
@@ -1311,7 +1374,7 @@ function templateExpansion(title, records) {
 //
 
 function getReferenceValue(key, records) {
-	var entry  = records[key];
+	let entry  = records[key];
 	if (!entry) {
 		return "";
 	}
@@ -1334,14 +1397,14 @@ function openPdfAtBottomThirdOfScreen(url, keepfocus) {
 	}
 
 	console.log("Loading URL", url);
-	var features = "left=0";
+	let features = "left=0";
 	features += ",top=" + parseInt(screen.height * 2 / 3);
 	features += ",width=" + screen.width;
 	features += ",height=" + parseInt(screen.height / 3);
 	features += ",resizeable";
 	features += ",scrollbars";
 	features += ",location=false";
-	var wpdf = window.open(url, "", features);
+	let wpdf = window.open(url, "", features);
 
 	if (!keepfocus) {
 		if (window.focus) {
@@ -1359,7 +1422,7 @@ function openPdfAtBottomThirdOfScreen(url, keepfocus) {
 
 function reloadData() {
 	// delete all sessionStorage keys starting with "basket-"
-	for (var key in sessionStorage) {
+	for (let key in sessionStorage) {
 		if (sessionStorage.hasOwnProperty(key) && /^basket-/.test(key)) {
 			console.log("DELETING", key);
 			delete sessionStorage[key];
@@ -1369,7 +1432,7 @@ function reloadData() {
 	if (CGI && CGI.file) {
 		// Reload from URL file parameter if this method was used.
 		// (Don't know if a different work was loaded differently, however).
-		var basket = "basket-" + CGI.file;
+		let basket = "basket-" + CGI.file;
 		if (CGI.mm) {
 			basket += "&mm=" + CGI.mm;
 		}
@@ -1398,7 +1461,7 @@ function reloadData() {
 function initializeVerovioToolkit() {
 	// console.log("Verovio toolkit being initialized.");
 
-	var inputarea = document.querySelector("#input");
+	let inputarea = document.querySelector("#input");
 
 	// now done with Ace editor callback:
 	// inputarea.addEventListener("keyup", function() {
@@ -1417,7 +1480,7 @@ function initializeVerovioToolkit() {
 	$(window).resize(function() { displayNotation(); });
 
 	$("#input").mouseup(function () {
-		var $this = $(this);
+		let $this = $(this);
 		if ($this.outerWidth() != $this.data('x') || $this.outerHeight() != $this.data('y')) {
 			applyZoom();
 		}
@@ -1453,7 +1516,7 @@ function	monitorNotationUpdating() {
 //
 
 function downloadWildWebMidi(url) {
-	var url3 = "scripts/midiplayer/midiplayer.js";
+	let url3 = "scripts/midiplayer/midiplayer.js";
 
 	basket.require(
 		{url: url, expire: 26, unique: BasketVersion},
@@ -1518,19 +1581,19 @@ function	dataIntoView(event) {
 //
 
 function xmlDataIntoView(event) {
-	var target = event.target;
-	var id = target.id;
-	var matches;
-	var regex;
-	var range;
-	var searchstring;
+	let target = event.target;
+	let id = target.id;
+	let matches;
+	let regex;
+	let range;
+	let searchstring;
 
 	while (target) {
 		if (!target.id) {
 			target = target.parentNode;
 			continue;
 		}
-		var id = target.id;
+		let id = target.id;
 		// if (!id.match(/-L\d+F\d+/)) {
 		if (!id) {
 			target = target.parentNode;
@@ -1569,13 +1632,13 @@ function xmlDataIntoView(event) {
 //
 
 function humdrumDataIntoView(event) {
-	var target;
+	let target;
 	if (typeof event === "string") {
 		target = document.querySelector("#" + event);
 	} else {
 		target = event.target;
 	}
-	var matches;
+	let matches;
 	while (target) {
 		if (!target.id) {
 			target = target.parentNode;
@@ -1600,7 +1663,7 @@ function humdrumDataIntoView(event) {
 //
 
 function displayScoreTextInEditor(text, page) {
-	var mode = getMode(text);
+	let mode = getMode(text);
 
 	if (mode != EditorMode) {
 		EditorMode = mode;
@@ -1622,13 +1685,14 @@ function displayScoreTextInEditor(text, page) {
 //
 
 function toggleHumdrumCsvTsv() {
+console.log("converting from CSV TO TSV");
 	if (EditorMode == "xml") {
 		// not editing Humdrum data
 		return;
 	}
-	var data = getTextFromEditor()
-	var lines = data.split("\n");
-	for (var i=0; i<lines.length; i++) {
+	let data = getTextFromEditorNoCsvProcessing()
+	let lines = data.split("\n");
+	for (let i=0; i<lines.length; i++) {
 		if (lines[i].match(/^\*\*/)) {
 			if (lines[i].match(/,/)) {
 				console.log("CONVERTING TO TSV");
@@ -1681,7 +1745,7 @@ function increaseTab() {
 //
 
 function clearContent() {
-	var data = getTextFromEditor();
+	let data = getTextFromEditorNoCsvProcessing();
 	clearCgiHash();
 	moveToTopOfNotation();
 	if (data.match(/^\s*$/)) {
@@ -1695,9 +1759,9 @@ function clearContent() {
 		// Erase the text, but store it in a buffer in case
 		// the user wants to recall it if the editor is still empty.
 		ERASED_DATA = data;
-		var element
+		let element
 		setTextInEditor("");
-		var output = document.querySelector("#output");
+		let output = document.querySelector("#output");
 		if (output) {
 			output.innerHTML = "";
 		}
@@ -1717,7 +1781,7 @@ function clearContent() {
 
 function playCurrentMidi() {
 	if (CursorNote && CursorNote.id) {
-		var id = CursorNote.id;
+		let id = CursorNote.id;
 		vrvWorker.getTimeForElement(id)
 		.then(function(time) {
 			play_midi(time);
@@ -1747,11 +1811,11 @@ function setCursorNote(item, location) {
 //
 
 function hideRepertoryIndex() {
-	var element = document.querySelector("#index");
+	let element = document.querySelector("#index");
 	if (element && (element.style.display != "none")) {
 		element.style.display = "none";
 		// element.style.visibility = "hidden";
-		var output = document.querySelector("#output");
+		let output = document.querySelector("#output");
 		if (output) {
 			console.log("FOCUSING ON OUTPUT");
 			output.focus();
@@ -1771,7 +1835,7 @@ function updateEditorMode() {
 	if (!EDITOR) {
 		return;
 	}
-	var text = getTextFromEditor();
+	let text = getTextFromEditor();
 	if (!text) {
 		// This check is needed to prevent intermediate
 		// states when the editor has been cleared in preparation
@@ -1779,8 +1843,8 @@ function updateEditorMode() {
 		// console.log("EDITOR IS EMPTY");
 		return;
 	}
-	var shorttext = text.substring(0, 2000);
-	var xmod = getMode(shorttext);
+	let shorttext = text.substring(0, 2000);
+	let xmod = getMode(shorttext);
 	if (xmod !== EditorMode) {
 		EditorMode = xmod;
 		setEditorModeAndKeyboard();
@@ -1836,7 +1900,7 @@ function previousPageClick(event) {
 
 function copyToClipboard(string) {
 	// console.log("Copying", string, "to clipboard");
-	var element = document.createElement("textarea");
+	let element = document.createElement("textarea");
 	element.value = string;
 	document.body.appendChild(element);
 	element.select();
