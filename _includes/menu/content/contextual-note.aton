@@ -29,7 +29,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Unfocus de noot
 @NO:
 @PL:
 @PT:
@@ -515,7 +515,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle 'pedaal in' vóór de noot
 @NO:
 @PL:
 @PT:
@@ -562,7 +562,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle 'pedaal los' ná de noot
 @NO:
 @PL:
 @PT:
@@ -609,7 +609,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Toggle stijl versieringsnoot
+@NL:			Toggle stijl v/d versieringsnoot
 @NO:
 @PL:
 @PT:
@@ -656,7 +656,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toggle de @-markering
 @NO:
 @PL:
 @PT:

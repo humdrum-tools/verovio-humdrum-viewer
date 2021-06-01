@@ -28,7 +28,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Rime instellingen
+@NL:			Rime-instellingen
 @NO:
 @PL:
 @PT:
@@ -72,7 +72,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Gerusalemme instellingen
+@NL:			Gerusalemme-instellingen
 @NO:
 @PL:
 @PT:
@@ -116,7 +116,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Aminta instellingen
+@NL:			Aminta-instellingen
 @NO:
 @PL:
 @PT:
@@ -160,7 +160,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Ecloghe instellingen
+@NL:			Ecloghe-instellingen
 @NO:
 @PL:
 @PT:
@@ -204,7 +204,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Rinaldo instellingen
+@NL:			Rinaldo-instellingen
 @NO:
 @PL:
 @PT:
@@ -248,7 +248,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Lagrima della Beata Vergine instellingen
+@NL:			Lagrima della Beata Vergine-instellingen
 @NO:
 @PL:
 @PT:
@@ -292,7 +292,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Re Torrismondo instellingen
+@NL:			Re Torrismondo-instellingen
 @NO:
 @PL:
 @PT:
@@ -314,7 +314,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Gerusalemme conquistata
+@DEFAULT:		Gerusalemme conquistata settings
 @AR:
 @BE:
 @CA:
@@ -336,7 +336,7 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Gerusalemme conquistata-instellingen
 @NO:
 @PL:
 @PT:
