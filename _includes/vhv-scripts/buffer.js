@@ -71,7 +71,7 @@ function saveBuffer(number, event) {
 
 function restoreEditorContentsLocally() {
 	// save current contents to 0th buffer
-	var encodedcontents = encodeURIComponent(getTextFromEditor());
+	var encodedcontents = encodeURIComponent(getTextFromEditorRaw());
 	localStorage.setItem("SAVE0", encodedcontents);
 	// reset interval timer of buffer 0 autosave here...
 
@@ -176,7 +176,7 @@ function saveEditorContentsLocally() {
 		target = 1;
 	}
 	key = "SAVE" + target;
-	var value = getTextFromEditor();
+	var value = getTextFromEditorRaw();
 	var filled = false;
 	var encodedcontents = "";
 	if (value.match(/^\s*$/)) {
