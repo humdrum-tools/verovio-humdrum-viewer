@@ -2393,7 +2393,7 @@ MenuInterface.prototype.trimTabsInEditor = function () {
 //
 
 MenuInterface.prototype.mimeEncode = function () {
-	var text = getTextFromEditor();
+	var text = getTextFromEditorNoProcessing();
 	var lines = btoa(text).match(/.{1,80}/g);
 	var output = "";
 	for (var i=0; i<lines.length; i++) {
@@ -2414,9 +2414,20 @@ MenuInterface.prototype.mimeEncode = function () {
 //
 
 MenuInterface.prototype.mimeDecode = function () {
-	var text = getTextFromEditor();
+	var text = getTextFromEditorNoProcessing();
 	// text is already decoded by getTextFromEditor().
 	EDITOR.setValue(text, -1);
+}
+
+
+
+//////////////////////////////
+//
+// MenuInterface::toggleCsvTsv --
+//
+
+MenuInterface.prototype.toggleCsvTsv = function () {
+	toggleHumdrumCsvTsv();
 }
 
 
