@@ -94,6 +94,8 @@ function getMode(text) {
 		return "xml";
 	} else if (text.substring(0, 2000).match(/Group memberships:/)) {
 		return "musedata";
+	} else if (text.substring(0, 2000).match(/^[A-Za-z0-9+\/\s]+$/)) {
+		return "mime";
 	} else {
 		return "humdrum";
 	}

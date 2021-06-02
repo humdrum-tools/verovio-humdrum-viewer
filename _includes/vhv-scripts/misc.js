@@ -921,6 +921,17 @@ function getTextFromEditor() {
 
 //////////////////////////////
 //
+// getTextFromEditorRaw -- 
+//
+
+function getTextFromEditorRaw() {
+	return EDITOR.getValue();
+}
+
+
+
+//////////////////////////////
+//
 // getTextFromEditorNoCsvProcessing -- 
 //
 
@@ -1835,7 +1846,7 @@ function updateEditorMode() {
 	if (!EDITOR) {
 		return;
 	}
-	let text = getTextFromEditor();
+	let text = getTextFromEditorRaw();
 	if (!text) {
 		// This check is needed to prevent intermediate
 		// states when the editor has been cleared in preparation

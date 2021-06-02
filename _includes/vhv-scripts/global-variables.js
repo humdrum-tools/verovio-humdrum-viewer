@@ -191,6 +191,14 @@ let EditorModes = {
 		ace: {
 			theme: "ace/theme/solarized_light"
 		}
+	},
+	mime: {
+		vim: {
+			theme: "ace/theme/solarized_dark"
+		},
+		ace: {
+			theme: "ace/theme/solarized_light"
+		}
 	}
 };
 
@@ -201,6 +209,7 @@ let EditorModes = {
 //     "humdrum"  for Humdrum data
 //     "xml"      for XML data (MEI and MusicXML)
 //     "musedata" for XML data (MEI and MusicXML)
+//     "mime"     for mime-encoded data
 let EditorMode = "humdrum";
 
 // KeyboardMode: controls if plain ace editor keybindings are used or vim key bindings.
