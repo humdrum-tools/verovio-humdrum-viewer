@@ -907,6 +907,7 @@ function getTextFromEditor() {
 	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
 		try {
 			text = atob(text);
+			text = ensureTsv(text);
 		} catch (err) {
 			// console.log("text is not mime", text);
 			// It is still possible that the text is not
