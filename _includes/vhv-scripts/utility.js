@@ -45,7 +45,7 @@ function getFilenameBase(text) {
 
 function getFilenameExtension(text) {
 	if (!text) {
-		text = getTextFromEditor();
+		text = getTextFromEditorRaw();
 	}
 	if (!text) {
 		return "txt";
@@ -59,6 +59,9 @@ function getFilenameExtension(text) {
 	}
 	if (beginning.match(/<opus/)) {
 		return "musicxml";
+	}
+	if (beginning.match(/^[A-Za-z0-9+\/\s]+$/)) {
+		return "mime";
 	}
 
 	var matches;
@@ -136,22 +139,24 @@ function dataIsXml(data) {
 
 
 
-
-
 //////////////////////////////
 //
-// trimTabs --
+// trimTabs -- also removes blank lines and tabs from inside of reference records.
 //
 
 function trimTabs(data) {
 	var lines = data.split(/\r?\n/);
 	var output = "";
 	for (var i=0; i<lines.length; i++) {
-		lines[i] = lines[i].replace(/\t+$/, "");
-		if (lines[i].match(/^\s*$/)) {
+		let line = lines[i].replace(/\t+$/, "");
+		if (line.match(/^\s*$/)) {
+			// ignoring blank lines
 			continue;
 		}
-		output += lines[i] + "\n";
+		if (line.match(/^!!![^\s]+:\t/)) {
+			line = line.replace(/\t/, " ");
+		}
+		output += line + "\n";
 	}
 	return output;
 }
