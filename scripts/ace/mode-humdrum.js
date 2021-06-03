@@ -66,19 +66,42 @@ var HumdrumHighlightRules = function() {
 		"start" : [{
 			token : "empty_line",
 			regex : "^$"
+
+		}, {
+			// discourage tabs within bibliographic entries:
+			token : ["bibliographic", "invalid.tab", "bibliographic"],
+			regex : /^(!!![^:]+:)(\t+)(.*)$/,
+			next : "start"
+
+		// discourage tabs at the end of non-spine lines:
+		}, {
+			token : ["filter", "invalid.tab"],
+			regex : /^(!!!?filter:.*?)(\s+)$/
+		}, {
+			token : ["filter.used", "invalid.tab"],
+			regex : /^(!!!?Xfilter:.*?)(\s+)$/
+		}, {
+			token : ["universal", "invalid.tab"],
+			regex : /^(!!!![^:]+:.*?)(\s+)$/,
+		}, {
+			token : ["bibliographic", "invalid.tab"],
+			regex : /^(!!![^:]+:.*?)(\s+)$/,
+			next : "start"
+
 		}, {
 			token : "filter",
-			regex : /^!!!?filter:.*/
+			regex : /^!!!?filter:.*?$/
 		}, {
 			token : "filter.used",
-			regex : /^!!!?Xfilter:.*/
+			regex : /^!!!?Xfilter:.*?/
 		}, {
 			token : "universal",
-			regex : /^!!!![^:]+:.*$/,
+			regex : /^!!!![^:]+:.*?$/,
 		}, {
 			token : "bibliographic",
-			regex : /^!!![^:]+:.*$/,
+			regex : /^!!![^:]+:.*?$/,
 			next : "start"
+
 		}, {
 			token : "comment.layout",
 			regex : /^!!?LO:.*$|^!\t!LO:.*$|^![^!].*\t!LO:.*$/,
@@ -139,14 +162,18 @@ var HumdrumHighlightRules = function() {
 			token : "comment",
 			regex : /![^\t]*/
 		}, {
-			token : ["invalid.space", "invalid.tab"],
-			regex : /( +)(\t\t+)/
+			//token : ["invalid.space", "invalid.tab"],
+			//regex : /( +)(\t\t+)/
+			token : "invalid.space",
+			regex : /( +)\t\t+/
 		}, {
 			token : ["invalid.space", "text"],
 			regex : /( +)(\t)/
 		}, {
-			token : ["invalid.tab", "invalid.space"],
-			regex : /(\t\t+)( +)/
+			token : "invalid.space",
+			// token : ["invalid.tab", "invalid.space"],
+			// regex : /(\t\t+)( +)/
+			regex : /\t\t+( +)/
 		}, {
 			token : ["text", "invalid.space"],
 			regex : /(\t)( +)/
@@ -155,7 +182,8 @@ var HumdrumHighlightRules = function() {
 			regex : /  +|^ | $/
 		}, {
 			token : "invalid.tab",
-			regex : /\t\t+|^\t|\t$/
+			// regex : /\t\t+|^\t|\t$/
+			regex : /^\t|\t$/
 		}, {
 			token : "invalid.space",
 			regex : /  +|^ | $/

@@ -39,7 +39,7 @@ define("ace/theme/humdrum_light",["require","exports","module","ace/lib/dom"],fu
 .ace-humdrum-light .ace_comment.ace_global {color: blue}
 .ace-humdrum-light .ace_comment.ace_layout {color: orange}
 .ace-humdrum-light .ace_barline {color: gray; background: rgba(0, 0, 0, 0.06)}
-/*  .ace-humdrum-light .ace_invalid.ace_tab {background-color: red} */
+.ace-humdrum-light .ace_invalid.ace_tab {background-color: red}
 .ace-humdrum-light .ace_invalid.ace_space {background-color: blue}
 .ace-humdrum-light .ace_kern.ace_note {color: black; font-weight:bold}
 .ace-humdrum-light .ace_kern.ace_other {color: brown}
