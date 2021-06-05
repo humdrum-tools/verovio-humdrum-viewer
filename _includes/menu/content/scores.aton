@@ -907,10 +907,6 @@
 @ACTION:		MENU.loadRepertory('poly')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			website
-@LINK: 			https://polyrhythm.humdrum.org
-@@END: RIGHT_TEXT
-@@BEGIN: RIGHT_TEXT
 @TYPE:			github
 @LINK:			https://github.com/polyrhythm-project/rds-scores
 @@END: RIGHT_TEXT
