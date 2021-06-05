@@ -349,6 +349,10 @@
 @ACTION:		MENU.loadRepertory('chopin-first-editions')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK: 			https://humdrum.nifc.pl
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
 @TYPE:			github
 @LINK:			https://github.com/pl-wnifc/humdrum-chopin-first-editions
 @@END: RIGHT_TEXT
