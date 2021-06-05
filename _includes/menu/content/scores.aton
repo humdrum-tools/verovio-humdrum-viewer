@@ -348,6 +348,10 @@
 @ZH-traditional:
 @ACTION:		MENU.loadRepertory('chopin-first-editions')
 @@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-chopin-first-editions
+@@END: RIGHT_TEXT
 @@END: ENTRY
 
 @@BEGIN: ENTRY
