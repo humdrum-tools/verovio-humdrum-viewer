@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: beethoven-moonlight3.krn
+splash: chopin-wiosna.krn
 ---
 
 <div id="output"></div>

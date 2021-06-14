@@ -1,0 +1,471 @@
+!!!!SEGMENT: 074-1c-LW-002.krn
+!!!COM: Chopin, Fryderyk
+!!!OTL: Spring. (Frühling.)
+!!!OPS: Op. 74
+!!!PTL: 17 | POLISH SONGS | BY | WITWICKI, ZALESKI, MICKIEWICZ, ETC, | FOR | A SOPRANO OR TENOR VOICE | WITH ACCOMPANIMENT FOR THE | Pianoforte
+!!!PPR: Stanley Lucas, Weber & Co.
+!!!PPP: London
+!!!NIFC-rismID: BRAK
+!!!NIFC-shelfmark: PL-Wbfc 6139/n
+!!!OMD: ANDANTINO. M.M. [quarter-dot] = 69.
+!!!system-decoration: (s1){(s2,s3)}
+**kern	**kern	**dynam	**kern	**text	**dynam
+*part2	*part2	*part2	*part1	*part1	*part1
+*staff3	*staff2	*	*staff1	*	*
+*	*I"PIANO.	*	*I"VOICE.	*	*
+*clefF4	*clefG2	*	*clefG2	*	*
+*k[b-e-]	*k[b-e-]	*	*k[b-e-]	*	*
+*g:	*g:	*	*g:	*	*
+*M6/8	*M6/8	*	*M6/8	*	*
+*MM103	*MM103	*	*MM103	*	*
+*	*	*	*	*	*
+=1	=1	=1	=1	=1	=1
+*^	*	*	*	*	*
+*	*	*	*	*	*^	*
+*clefG2	*clefG2	*	*	*	*	*	*
+!LO:TX:a:Bi:t=sempre legato.	!	!LO:TX:a:i:t=semplice.	!	!	!	!	!
+!	!	!	!LO:DY:a:rj	!	!	!	!
+*	*	*	*	*	*ij	*	*
+8B-L	2.G	4g	.	4g	Clear	Glänzt	.
+8d	.	.	.	.	.	.	.
+8gJ	.	8dd	.	8dd	on	auf	.
+8AL	.	4cc	.	4cc	ev'-	al-	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8dd	.	8dd	-ry	-len	.
+=2	=2	=2	=2	=2	=2	=2	=2
+8B-L	2.G	4.b-/	.	4.b-/	flow'-	Blü-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-ret	-then	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=3	=3	=3	=3	=3	=3	=3	=3
+8B-L	2.G	8.gL	<	(<8.gL	drops	Tröpf-	<
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	of	-chen	.
+8AL	.	8.ccL	.	(>8.ccL	dew	Thau	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	are	so	.
+.	.	.	[	.	.	.	[
+!!LO:LB:g=original
+=4	=4	=4	=4	=4	=4	=4	=4
+8B-L	2.G	4.b-/	>	4.b-/	glane-	hel-	>
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4a	]	4a	-ing,	-le,	]
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8r	.	8r	.	.	.
+=5	=5	=5	=5	=5	=5	=5	=5
+8B-L	2.G	4g	.	4g	Soft	sanf-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	8dd	.	8dd	the	-te	.
+8AL	.	4cc	.	4cc	breeze	Win-	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8dd	.	8dd	is	-de	.
+=6	=6	=6	=6	=6	=6	=6	=6
+8B-L	2.G	4.b-/	.	4.b-/	rust-	ko-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-ling,	-sen,	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=7	=7	=7	=7	=7	=7	=7	=7
+8B-L	2.G	8.gL	<	(<8.gL	gay	mur-	<
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	the	-melt	.
+8AL	.	8.ccL	.	(>8.ccL	brook-	leis’	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	-let	die	.
+.	.	.	[	.	.	.	[
+!!LO:LB:g=original
+=8	=8	=8	=8	=8	=8	=8	=8
+8B-L	4.G	4.b-/	>	4.b-/	danc-	Quel-	>
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8FL	4.F	4.a	.	4a	-ing;	-le;	.
+8e-	.	.	]	.	.	.	]]
+8fJ	.	.	.	8r	.	.	.
+=9	=9	=9	=9	=9	=9	=9	=9
+8dL	2.B-	4b-	.	4b-	O'er	durch	.
+8f	.	.	.	.	.	.	.
+8b-J	.	8ff	.	8ff	this	das	.
+8cL	.	4een	.	4een	vale	Thal	.
+8f	.	.	.	.	.	.	.
+8aJ	.	8ff	.	8ff	of	so	.
+=10	=10	=10	=10	=10	=10	=10	=10
+8dL	2.B-	4.dd	.	4.dd	bean-	rei-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc	-ty	-zend	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+=11	=11	=11	=11	=11	=11	=11	=11
+8dL	2.B-	8.b-L	<	(>8.b-L	glad-	schweift	<
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	-ly	so	.
+8cL	.	8.ee-L	.	(>8.ee-L	roves	gern	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	.	8ee-	the	der	.
+.	.	.	[	.	.	.	[
+!!LO:LB:g=original
+=12	=12	=12	=12	=12	=12	=12	=12
+8dL	2.B-	4.dd	>	(>4.dd	sight,	Blick,	>
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4cc)	.	.	.
+8f	.	.	]]	.	.	.	]]
+8aJ	.	.	.	8r	.	.	.
+=13	=13	=13	=13	=13	=13	=13	=13
+8dL	2.B-	4b-	.	4b-	All	Al-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	8ff	.	8ff	the	-les	.
+8cL	.	4een	.	4een	land	blüht	.
+8f	.	.	.	.	.	.	.
+8aJ	.	8ff	.	8ff	is	und	.
+=14	=14	=14	=14	=14	=14	=14	=14
+8dL	2.B-	4.dd	.	4.dd	glow-	duf-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc	-ing	-tet	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+=15	=15	=15	=15	=15	=15	=15	=15
+8dL	2.B-	8.b-L	<	(>8.b-L	as	wie	<
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	with	ein	.
+8cL	.	8.ee-L	.	(>8.ee-L	new	jun-	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	[	8ee-	de-	-ges	[
+!!LO:PB:g=original
+=16	=16	=16	=16	=16	=16	=16	=16
+8dL	4.B-	8dd	.	[>4.dd	-light;	Glück.	.
+8f	.	8r	.	.	.	.	.
+8b-J	.	8r	.	.	.	.	.
+8cL	4.A	[>4.dd^<	.	4dd]	.	.	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	8r	.	.	.
+=17	=17	=17	=17	=17	=17	=17	=17
+8B-L	2.G	4dd]	p	8dd	Far	Aus	.
+8d	.	.	.	8r	.	.	.
+8gJ	.	8dd	.	8dd	and	der	.
+8AL	.	4cc	.	8cc	near	Näh’	.
+8d	.	.	.	8r	.	.	.
+8f#XJ	.	8dd	.	8dd	a-	und	.
+=18	=18	=18	=18	=18	=18	=18	=18
+8B-L	2.G	4.b-/	.	4.b-/	-round	Fer-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	us	-ne	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=19	=19	=19	=19	=19	=19	=19	=19
+8B-L	2.G	8.gL	.	(<8.gL	bells	Heer	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	are	den-	.
+8AL	.	8.ccL	.	(>8.ccL	mu-	-glöck-	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	-sic	-lein	.
+!!LO:LB:g=original
+=20	=20	=20	=20	=20	=20	=20	=20
+8B-L	2.G	4.b-/	.	4.b-/	mak-	tö-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-ing,	-nen,	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=21	=21	=21	=21	=21	=21	=21	=21
+8B-L	2.G	4g	.	8g	Old	die	.
+8d	.	.	.	8r	.	.	.
+8gJ	.	8dd	.	8dd	for-	Schal-	.
+8AL	.	4cc	.	8cc	-got-	-mei	.
+8d	.	.	.	8r	.	.	.
+8f#XJ	.	8dd	.	8dd	-ten	er-	.
+=22	=22	=22	=22	=22	=22	=22	=22
+8B-L	2.G	4.b-/	.	4.b-/	year-	-we-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-nings	-cket	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=23	=23	=23	=23	=23	=23	=23	=23
+8B-L	2.G	8.gL	.	(<8.gL	with	träu-	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	their	-me-	.
+8AL	.	8.ccL	.	(>8.ccL	sound	-ri-	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	a-	-sches	.
+=24	=24	=24	=24	=24	=24	=24	=24
+8B-L	4.G	4.b-/	.	4.b-/	-wak-	Seh-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8FL	4.F	4.a^<	.	4.a	-ing;	-nen:	.
+8e-	.	.	.	.	.	.	.
+8fJ	.	.	.	.	.	.	.
+=25	=25	=25	=25	=25	=25	=25	=25
+8dL	2.B-	4b-	.	8b-	To	und	.
+8f	.	.	.	8r	.	.	.
+8b-J	.	8ff	.	8ff	my-	nun	.
+8cL	.	4een	.	8een	-self	sing’	.
+8f	.	.	.	8r	.	.	.
+8aJ	.	8ff	.	8ff	I	ich	.
+=26	=26	=26	=26	=26	=26	=26	=26
+8dL	2.B-	4.dd	.	4.dd	mur-	lei-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc	-mur	-se	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+=27	=27	=27	=27	=27	=27	=27	=27
+8dL	2.B-	8.b-L	.	(>8.b-L	sweet	mir	.
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	fa-	ein	.
+8cL	.	8.ee-L	.	(>8.ee-L	-mi-	al-	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	.	8ee-	-liar	-tes	.
+=28	=28	=28	=28	=28	=28	=28	=28
+8dL	2.B-	4.dd	.	(>4.dd	songs,...	Lied,....	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc)	.	.	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+!!LO:LB:g=original
+=29	=29	=29	=29	=29	=29	=29	=29
+8dL	2.B-	4b-	.	8b-	Thoughts	das	.
+8f	.	.	.	8r	.	.	.
+8b-J	.	8ff	.	8ff	of	aus	.
+8cL	.	4een	.	8een	days	schö-	.
+8f	.	.	.	8r	.	.	.
+8aJ	.	8ff	.	8ff	de-	-nen	.
+=30	=30	=30	=30	=30	=30	=30	=30
+8dL	2.B-	4.dd	.	4.dd	-part-	Ta-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc	-ed	-gen	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+=31	=31	=31	=31	=31	=31	=31	=31
+8dL	2.B-	8.b-L	.	(>8.b-L	bring-	durch	.
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	-ing	die	.
+8cL	.	8.ee-L	.	(>8.ee-L	back	See-	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	.	8ee-	in	-le	.
+=32	=32	=32	=32	=32	=32	=32	=32
+8dL	4.B-	8dd	.	[>4.dd	throngs;	zieht.	.
+8f	.	8r	.	.	.	.	.
+8b-J	.	8r	.	.	.	.	.
+8cL	4.A	[>4.dd^<	.	4dd]	.	.	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	8r	.	.	.
+=33	=33	=33	=33	=33	=33	=33	=33
+8B-L	2.G	4dd]	.	4dd	By	Und	.
+8d	.	.	.	.	.	.	.
+8gJ	.	8dd	.	8dd	this	es	.
+8AL	.	4cc	.	4cc	tink-	quillt	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8dd	.	8dd	-ling	die	.
+=34	=34	=34	=34	=34	=34	=34	=34
+8B-L	2.G	4.b-/	.	4.b-/	brook-	Thrä-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-let	-ne,	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=35	=35	=35	=35	=35	=35	=35	=35
+8B-L	2.G	8.gL	.	(<8.gL	fast	und	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	my	das	.
+8AL	.	8.ccL	.	(>8.ccL	tears	Bäch-	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	are	-lein	.
+=36	=36	=36	=36	=36	=36	=36	=36
+8B-L	2.G	4.b-/	.	4.b-/	spring-	klin-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4a	.	4a	-ing,	-get,	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8r	.	8r	.	.	.
+=37	=37	=37	=37	=37	=37	=37	=37
+8B-L	2.G	4g	.	4g	While	ü-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	8dd	.	8dd	the	-ber	.
+8AL	.	4cc	.	4cc	lark	mir	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	8dd	.	8dd	a-	die	.
+=38	=38	=38	=38	=38	=38	=38	=38
+8B-L	2.G	4.b-/	.	4.b-/	-bove	Ler-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	me	-che	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=39	=39	=39	=39	=39	=39	=39	=39
+8B-L	2.G	8.gL	.	(<8.gL	ju-	Ju-	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	-bi-	-bel-	.
+8AL	.	8.ccL	.	(>8.ccL	-lant	-lie-	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	is	-der	.
+=40	=40	=40	=40	=40	=40	=40	=40
+8B-L	4.G	4.b-/	.	4.b-/	sing-	sin-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8FL	4.F	4.a	.	4a	-ing:	-get;	.
+8e-	.	.	.	.	.	.	.
+8fJ	.	.	.	8r	.	.	.
+=41	=41	=41	=41	=41	=41	=41	=41
+8dL	2.B-	4b-	.	8b-	Soar	schwing’	.
+8f	.	.	.	8r	.	.	.
+8b-J	.	8ff	.	8ff	thou	dich	.
+8cL	.	4een	.	8een	up,	auf,	.
+8f	.	.	.	8r	.	.	.
+8aJ	.	8ff	.	8ff	bright	o	.
+=42	=42	=42	=42	=42	=42	=42	=42
+8dL	2.B-	4.dd	.	4.dd	songs-	Ler-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4.cc	-ter,	-che,	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	.	.	.	.
+=43	=43	=43	=43	=43	=43	=43	=43
+8dL	2.B-	8.b-L	.	(>8.b-L	high-	schwin-	.
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	-er,	-ge	.
+8cL	.	8.ee-L	.	(>8.ee-L	ev-	dich	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	.	8ee-	-er	em-	.
+=44	=44	=44	=44	=44	=44	=44	=44
+8dL	2.B-	4.dd	.	(>4.dd	high-	-por,......	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4.cc	.	4cc)	-er,	.	.
+8f	.	.	.	.	.	.	.
+8aJ	.	.	.	8r	.	.	.
+=45	=45	=45	=45	=45	=45	=45	=45
+8dL	2.B-	4b-	.	8b-	Till	im-	.
+8f	.	.	.	8r	.	.	.
+8b-J	.	8ff	.	8ff	thy	-mer	.
+8cL	.	4een	.	8een	notes	hoch	.
+8f	.	.	.	8r	.	.	.
+8aJ	.	8ff	.	8ff	are	und	.
+=46	=46	=46	=46	=46	=46	=46	=46
+8dL	2.B-	4.dd	.	4.dd	blend-	hö-	.
+8f	.	.	.	.	.	.	.
+8b-J	.	.	.	.	.	.	.
+8e-L	.	4cc	.	4cc	-ed	-her	.
+8f	.	.	.	.	.	.	.
+8aJ	.	8r	.	8r	.	.	.
+=47	=47	=47	=47	=47	=47	=47	=47
+8dL	2.B-	8.b-L	.	(>8.b-L	with	zu	.
+8f	.	.	.	.	.	.	.
+.	.	16cck	.	16ccJ)	.	.	.
+8b-J	.	8ddJ	.	8dd	the	der	.
+8cL	.	8.ee-L	.	(>8.ee-L	an-	En-	.
+8f	.	.	.	.	.	.	.
+.	.	16ffk	.	16ffJ)	.	.	.
+8aJ	.	8ee-J	.	8ee-	-gel	-gel	.
+=48	=48	=48	=48	=48	=48	=48	=48
+8dL	4.B-	8dd	.	[>4.dd	choir;	Chor.	.
+8f	.	8r	.	.	.	.	.
+8b-J	.	8r	.	.	.	.	.
+8cL	4.A	[>4.dd^<	.	4dd]	.	.	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	8r	.	.	.
+=49	=49	=49	=49	=49	=49	=49	=49
+8B-L	2.G	4dd]	.	8dd	Tell	Dort	.
+8d	.	.	.	8r	.	.	.
+8gJ	.	8dd	.	8dd	them	als	.
+8AL	.	4cc	.	8cc	that	ird-	.
+8d	.	.	.	8r	.	.	.
+8f#XJ	.	8dd	.	8dd	we	-scher	.
+=50	=50	=50	=50	=50	=50	=50	=50
+8B-L	2.G	4.b-/	.	4.b-/	bade	Bo-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	thee	-te	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=51	=51	=51	=51	=51	=51	=51	=51
+8B-L	2.G	8.gL	.	(<8.gL	bear	mögst	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	.	8b-/	from	du	.
+8AL	.	8.ccL	.	(>8.ccL	earth	Kun-	.
+8d	.	.	.	.	.	.	.
+.	.	16ddk	.	16ddJ)	.	.	.
+8f#XJ	.	8ccJ	.	8cc	a	-de	.
+=52	=52	=52	=52	=52	=52	=52	=52
+8B-L	2.G	4.b-/	.	4.b-/	greet-	ge-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-ing,	-ben:	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=53	=53	=53	=53	=53	=53	=53	=53
+8B-L	2.G	4g	.	8g	Say	wie	.
+8d	.	.	.	8r	.	.	.
+8gJ	.	8dd	.	8dd	how	so	.
+8AL	.	4cc	.	8cc	fair	schön	.
+8d	.	.	.	8r	.	.	.
+8f#XJ	.	8dd	.	8dd	is	der	.
+=54	=54	=54	=54	=54	=54	=54	=54
+8B-L	2.G	4.b-/	.	4.b-/	spring-	Früh-	.
+8d	.	.	.	.	.	.	.
+8gJ	.	.	.	.	.	.	.
+8cL	.	4.a	.	4.a	-time,	-ling,	.
+8d	.	.	.	.	.	.	.
+8f#XJ	.	.	.	.	.	.	.
+=55	=55	=55	=55	=55	=55	=55	=55
+!LO:TX:a:Bi:t=rall&colon; e	!	!	!	!LO:TX:a:Bi:t=rall&colon; e	!	!	!
+8B-L	2.G	8.gL	.	(<8.gL	but	wie	.
+8d	.	.	.	.	.	.	.
+.	.	16ak	.	16aJ)	.	.	.
+8gJ	.	8b-J	>	8b-	our	so	>
+8AL	.	4cc	.	8cc	life,	kurz	.
+8d	.	.	.	8r	.	.	.
+8f#XJ	.	8dd	.	8dd	how	das	.
+*v	*v	*	*	*	*	*	*
+=56	=56	=56	=56	=56	=56	=56
+!	!	!LO:DY:rj	!	!	!	!LO:DY:rj
+2.d 2.B- 2.G	(>4.g	pp	(>4.g	fleet-	Le-	pp
+.	4gg)	.	4gg)	-ing.	-ben.	.
+.	8r	.	8r	.	.	.
+==	==	==	==	==	==	==
+*-	*-	*-	*-	*-	*-	*-
+!!title: @{OTL}; @{OPS} @{ONM} publisher: @{PPR}
+!!!RDF**kern: > = above
+!!!RDF**kern: < = below
+!!!RDF**kern: N = linked
+!!!RDF**dynam: > = "dim:", fontstyle="bold-italic"
+!!!RDF**dynam: < = "cresc:", fontstyle="bold-italic"
+!!!ENC: Wojciech Jakubiak-Danek
+!!!END: 2020-02-10
+!!!EED: Emilia Ziętek
+!!!EST: 2020-02-24
+!!!rism-genre: Spring
+!!!rism-key: G minor
+!!!rism-opus: Op. 74, No. 2
+!!!rism-title: Spring in G minor Op. 74 No. 2
