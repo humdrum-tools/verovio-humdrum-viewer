@@ -77,10 +77,10 @@ var midiUpdate = function (time) {
 				// 		}
 				// 	}
 				// }
-				var scrollParent = document.querySelector("#output"),
-						parentRect = scrollParent.getBoundingClientRect(),
-						scrolled = false,
-						margin = 1/3;
+				var scrollParent = document.querySelector("#output");
+				var parentRect = scrollParent.getBoundingClientRect();
+				var scrolled = false;
+				var margin = 1/3;
 				ids.forEach(function (noteid) {
 						// console.log("NoteID", noteid);
 
@@ -113,19 +113,52 @@ var midiUpdate = function (time) {
 							outclass += " highlight";
 							element.setAttribute("class", outclass);*/
 							if (!scrolled) {
-								var system = element.closest(".system"),
-										rect;
+								let system = element.closest(".system");
+								let rect;
+								let nextsystem = system.nextElementSibling;
 								if (system) {
-										rect = system.getBoundingClientRect();
-										if (rect.top < parentRect.top) {
-											scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - rect.top) - rect.height * margin;
-											scrolled = true;
-										} else if (rect.bottom  > parentRect.bottom) {
-											scrollParent.scrollTop = scrollParent.scrollTop + (rect.bottom - parentRect.bottom) + rect.height * margin;
-											scrolled = true;
-										};
-								};
-							};
+									rect = system.getBoundingClientRect();
+									/* Cannot use in Firefox:
+									if (rect.top < parentRect.top) {
+										scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - rect.top) - rect.height * margin;
+										scrolled = true;
+									} else if (rect.bottom  > parentRect.bottom) {
+										scrollParent.scrollTop = scrollParent.scrollTop + (rect.bottom - parentRect.bottom) + rect.height * margin;
+										scrolled = true;
+									}
+									*/
+									let nextrect;
+									let recttop;
+									let rectbottom;
+									let rectheight;
+
+									// Also need to deal with systems that are taller than view area...
+
+									if (nextsystem) {
+										let nextnextsystem = nextsystem.nextElementSibling;
+										nextrect = nextsystem.getBoundingClientRect();
+										recttop = rect.top;
+										rectbottom = nextrect.top;
+										rectheight = rectbottom - recttop;
+									} else {
+										recttop = rect.top;
+										rectbottom = rect.bottom;
+										rectheight = rectbottom - recttop;
+									}
+
+									if (recttop < parentRect.top) {
+										// Scrolling backward in time:
+										// scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - recttop) - rectheight * margin;
+										scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - recttop) - rectheight * margin;
+										scrolled = true;
+									} else if (rectbottom  > parentRect.bottom) {
+										// Scrolling forward in time:
+										// scrollParent.scrollTop = scrollParent.scrollTop + (rectbottom - parentRect.bottom) + rectheight * margin;
+										scrollParent.scrollTop = scrollParent.scrollTop + (recttop - parentRect.top) - parentRect.height / 20;
+										scrolled = true;
+									}
+								}
+							}
 						}
 
 				});
