@@ -2715,6 +2715,18 @@ function addDataLineAboveCurrentPosition() {
 }
 
 
+
+//////////////////////////////
+//
+// addBarlineAboveCurrentPosition -- Add barline above the current
+//   line. Cursor keeps its position on the original line.
+//
+
+function addBarlineAboveCurrentPosition() {
+	addNullLine("=", "**blank");
+}
+
+
 //////////////////////////////
 //
 // createNullLine --

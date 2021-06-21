@@ -625,7 +625,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	vrvWorker.page = 1;
 	page = page || vrvWorker.page;
 	let options = null;
-	let humdrumQ = false;
+	let meiQ = false;
 
 	let mode = getMode(text);
 
@@ -638,6 +638,7 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 	} else if (text.slice(0, 1000).match(/<mei/)) {
 		// this is MEI data
 		options = meiToHumdrumOptions();
+		meiQ = true;
 	} else if (text.slice(0, 1000).match(/CUT[[]/)) {
 		// EsAC data
 		options = esacToHumdrumOptions();

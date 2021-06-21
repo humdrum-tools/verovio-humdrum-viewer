@@ -597,9 +597,6 @@ function processInterfaceKeyCommand(event) {
 
 	switch (event.code) {
 		case AKey:          // UNUSED
-			break;
-
-		case BKey:
 			if (event.altKey) {
 				if (event.shiftKey) {
 					// toggle display of toolbar
@@ -609,6 +606,15 @@ function processInterfaceKeyCommand(event) {
 					toggleVhvTitle();
 				}
 				event.preventDefault();
+			}
+			break;
+
+		case BKey:
+			if (event.altKey) {
+				if (event.shiftKey) {
+					addBarlineAboveCurrentPosition();
+					event.preventDefault();
+				}
 			}
 			break;
 

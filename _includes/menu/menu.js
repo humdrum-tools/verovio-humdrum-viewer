@@ -756,6 +756,21 @@ MenuInterface.prototype.insertInterpretationLine = function () {
 
 //////////////////////////////
 //
+// MenuInterface::insertBarline --
+//
+
+MenuInterface.prototype.insertBarline = function () {
+	var event = {};
+	event.code = BKey;
+	event.shiftKey = true;
+	event.altKey = true;
+	processInterfaceKeyCommand(event);
+}
+
+
+
+//////////////////////////////
+//
 // MenuInterface::toggleDataDisplay --
 //
 
