@@ -11,7 +11,7 @@
 	<span class="nav-icon-group" style="margin-right: 5px;" id="pdf-urls">
 	</span>
 	<span id="text-visibility-icon" onclick="toggleTextVisibility()">
-		<div title="Click to hide text editor (alt-y)" class='nav-icon fas fa-eye'></div>
+		<div title="Hide text editor (alt-y)" class='nav-icon fas fa-eye'></div>
 	</span>
 	<span class="text-only" id="text-erase-icon" onclick="MENU.clearEditorContents()">
 		<div title="Clear editor contents (alt-e)" class='nav-icon fas fa-eraser'></div>
@@ -38,7 +38,7 @@
 		<div title="Expand tabs to align spines" class='nav-icon fa fa-expand'></div>
 	</span>
 	<span id="text-freeze-icon" onclick="toggleFreeze()">
-		<div title="Click to freeze notation (alt-f)" class='nav-icon fas fa-unlock'></div>
+		<div title="Freeze notation (alt-f)" class='nav-icon fas fa-unlock'></div>
 	</span>
 	<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(event, 0.95)">
 		<div title="Make notation smaller" class='nav-icon fas fa-minus-square'></div>
@@ -47,7 +47,7 @@
 		<div title="Make notation larger" class='nav-icon fas fa-plus-square'></div>
 	</span>
 	<span id="line-break-icon" onclick="toggleLineBreaks()">
-		<div title="Click to use embedded line breaks (if any)" class='nav-icon fas fa-align-center'></div>
+		<div title="Use embedded line breaks (if any)" class='nav-icon fas fa-align-center'></div>
 	</span>
 	<div title="About the toolbar" onclick="showToolbarHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(1, event)">
@@ -157,7 +157,7 @@
 	<table>
 		<tr>
 			<td onclick="MENU.multiPageView()">
-				<div title="Click for multi-page mode" style="font-size:150%" class="nav-icon fas fa-map"></div>
+				<div title="Multi-page mode" style="font-size:150%" class="nav-icon fas fa-map"></div>
 			</td>
 		</tr>
 	</table>
@@ -169,7 +169,7 @@
 				<div title="Previous page (shift-click for first page)" style="font-size:150%" class="nav-icon fas fa-arrow-left"></div>
 			</td>
   			<td onclick="MENU.singlePageView()">
-				<div title="Click for single-page mode" style="font-size:125%" class="nav-icon fas fa-file-alt"></div>
+				<div title="Single-page mode" style="font-size:125%" class="nav-icon fas fa-file-alt"></div>
 			</td>
   			<td onclick="nextPageClick(event)">
 				<div title="Next page (shift-click for last page)" style="font-size:150%" class="nav-icon fas fa-arrow-right"></div>
