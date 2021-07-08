@@ -86,5 +86,8 @@
 // PDF file creating/downloading
 {% include vhv-scripts/pdf.js %}
 
+// MusicXML export
+{% include vhv-scripts/convertToMusicXmlAndSave.js %}
+
 
 

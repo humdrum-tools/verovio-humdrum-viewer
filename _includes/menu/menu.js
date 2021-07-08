@@ -2447,5 +2447,14 @@ MenuInterface.prototype.toggleCsvTsv = function () {
 
 
 
+//////////////////////////////
+//
+// MenuInterface::convertToMusicXmlAndSave --
+//
+
+MenuInterface.prototype.convertToMusicXmlAndSave = function () {
+	convertToMusicXmlAndSave();
+}
+
 
 
