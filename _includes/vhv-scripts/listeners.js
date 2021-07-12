@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	setEditorModeAndKeyboard();
 
 	CGI = GetCgiParameters();
-	downloadVerovioToolkit(true); //CGI.worker !== undefined);
 
 	// Set up any music searching parameters from CGI.
 	// If there are any, then set the search toolbar to be visible,

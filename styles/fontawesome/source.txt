@@ -1,0 +1,5 @@
+https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+https://use.fontawesome.com/releases/v5.9.0/css/all.css
+https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.woff2
+https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.woff
+https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf
