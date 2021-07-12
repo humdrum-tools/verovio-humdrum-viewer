@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+use strict;
+
+my $wget = `which wget`;
+my $curl = `which curl`;
+chomp $wget;
+chomp $curl;
+
+my @files = <>;
+chomp @files;
+
+foreach my $file (@files) {
+	my $base = $file;
+	$base =~ s/.*\///;
+	if ($wget !~ /^\s*$/) {
+		print "wget $file -O $base\n";
+		`wget $file -O $base`;
+	} elsif ($curl !~ /^\s*$/) {
+	} else {
+		die "Cannot find wget or curl command on your computer";
+	}
+}
+
