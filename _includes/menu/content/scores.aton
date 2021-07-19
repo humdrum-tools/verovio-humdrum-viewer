@@ -135,47 +135,6 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		&nbsp;&nbsp;&nbsp; 75 chorales w/ harm. analyses
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			&nbsp;&nbsp;&nbsp; Analiza harmoniczna 75 Chorałów Bacha
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('BachChoralesAnalyzed')
-@@END: TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
 @DEFAULT:		Bach WTC fugues
 @AR:
 @BE:
