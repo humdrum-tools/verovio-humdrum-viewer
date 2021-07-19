@@ -72,11 +72,11 @@ function applyGlobalFilter() {
 	let target = document.querySelector("input#filter");
 	let results = validateFilter(target, "Enter");
 	if (!results.status) {
-		event.target.classList.add("invalid");
+		target.classList.add("invalid");
 		alert(`Error: unknown filter ${results.filter}`);
 		return;
 	} else {
-		event.target.classList.remove("invalid");
+		target.classList.remove("invalid");
 	}
 
 	let xml = dataIsXml();
