@@ -2309,11 +2309,155 @@ function toggleMordent(mtype, id, line, field, subfield) {
 
 //////////////////////////////
 //
+// toggleLigatureStart --
+//
+
+function toggleLigatureStart(id, line, field) {
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line);
+	if (ptext.match(/^\*/) && ptext.match(/\*lig/)) {
+			// if there is an lig line don't add one
+			addline = false;
+	}
+	if (!addline) {
+		// Already a line with one or more *lig exists.  Toggle *lig on/off
+		// for given field and delete line if only contains * tokens.
+		let oldline = EDITOR.session.getLine(line);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		if (fields[field-1] === "*") {
+			fields[field-1] = "*lig";
+		} else {
+			fields[field-1] = "*";
+		}
+		let newline = fields.join("\t");
+		if (newline.match(/^[*\t]+$/)) {
+			// blank line so delete it
+			console.log("DELETING BLANK LINE");
+			EDITOR.session.replace(new Range(line-2, 0, line-1, 0), "");
+			newid = id.replace(/L\d+/, "L" + (line-1));
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		} else {
+			// update line
+			console.log("UPDATING LINE:", newline);
+			newline += "\n";
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), newline);
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		}
+	} else {
+		// Add an *lig on a line after the selected line at the given field.
+		let oldline = EDITOR.session.getLine(line-1);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		let fieldcount = fields.length;
+		let newline = "";
+		for (let i=0; i<fieldcount; i++) {
+			newline += "*";
+			if (i == field - 1) {
+				newline += "lig";
+			}
+			if (i < fieldcount - 1) {
+				newline += "\t";
+			}
+		}
+		newline += "\n";
+		EDITOR.session.insert({row:line-1, column:0}, newline);
+		newid = id.replace(/L\d+/, "L" + (line+1));
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleColorationStart --
+//
+
+function toggleColorationStart(id, line, field) {
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line);
+	if (ptext.match(/^\*/) && ptext.match(/\*col/)) {
+			// if there is an col line don't add one
+			addline = false;
+	}
+	if (!addline) {
+		// Already a line with one or more *col exists.  Toggle *col on/off
+		// for given field and delete line if only contains * tokens.
+		let oldline = EDITOR.session.getLine(line);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		if (fields[field-1] === "*") {
+			fields[field-1] = "*col";
+		} else {
+			fields[field-1] = "*";
+		}
+		let newline = fields.join("\t");
+		if (newline.match(/^[*\t]+$/)) {
+			// blank line so delete it
+			console.log("DELETING BLANK LINE");
+			EDITOR.session.replace(new Range(line-2, 0, line-1, 0), "");
+			newid = id.replace(/L\d+/, "L" + (line-1));
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		} else {
+			// update line
+			console.log("UPDATING LINE:", newline);
+			newline += "\n";
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), newline);
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		}
+	} else {
+		// Add an *col on a line after the selected line at the given field.
+		let oldline = EDITOR.session.getLine(line-1);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		let fieldcount = fields.length;
+		let newline = "";
+		for (let i=0; i<fieldcount; i++) {
+			newline += "*";
+			if (i == field - 1) {
+				newline += "col";
+			}
+			if (i < fieldcount - 1) {
+				newline += "\t";
+			}
+		}
+		newline += "\n";
+		EDITOR.session.insert({row:line-1, column:0}, newline);
+		newid = id.replace(/L\d+/, "L" + (line+1));
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+	}
+}
+
+
+
+//////////////////////////////
+//
 // togglePedalStart -- Inserting before LO:TX is a problem
+//
+// InterfaceSingleNumber == 4 => *Xlig toggle instead of *Xped
+// InterfaceSingleNumber == 5 => *Xcol toggle instead of *Xped
 //
 
 function togglePedalStart(id, line, field) {
-	console.log("PEDAL START TOGGLE", line);
+	if (InterfaceSingleNumber == 4) {
+		toggleLigatureStart(id, line, field);
+		InterfaceSingleNumber = 0;
+		return;
+	} else if (InterfaceSingleNumber == 5) {
+		toggleColorationStart(id, line, field);
+		InterfaceSingleNumber = 0;
+		return;
+	}
+
 	var text = EDITOR.session.getLine(line-1);
 	if (text.match(/^!/)) {
 		return;
@@ -2332,7 +2476,6 @@ function togglePedalStart(id, line, field) {
 		console.log("DELETING PEDAL START");
 		EDITOR.session.replace(new Range(line-2, 0, line-1, 0), "");
 		newid = id.replace(/L\d+/, "L" + (line-1));
-	console.log("OLDID", id, "NEWID", newid);
 		RestoreCursorNote = newid;
 		HIGHLIGHTQUERY = newid;
 		return;
@@ -2344,9 +2487,139 @@ function togglePedalStart(id, line, field) {
 	newline = newline.replace(/^(\t*)\*(\t*)/, "$1*ped$2");
 	EDITOR.session.insert({row:line-1, column:0}, newline);
 	newid = id.replace(/L\d+/, "L" + (line+1));
-  	console.log("OLDID", id, "NEWID", newid);
 	RestoreCursorNote = newid;
 	HIGHLIGHTQUERY = newid;
+}
+
+
+//////////////////////////////
+//
+// toggleColorationEnd --
+//
+
+function toggleColorationEnd(id, line, field) {
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line);
+	if (ptext.match(/^\*/) && ptext.match(/\*Xcol/)) {
+			// if there is an Xcol line don't add one
+			addline = false;
+	}
+	if (!addline) {
+		// Already a line with one or more *Xcol exists.  Toggle *Xcol on/off
+		// for given field and delete line if only contains * tokens.
+		let oldline = EDITOR.session.getLine(line);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		if (fields[field-1] === "*") {
+			fields[field-1] = "*Xcol";
+		} else {
+			fields[field-1] = "*";
+		}
+		let newline = fields.join("\t");
+		if (newline.match(/^[*\t]+$/)) {
+			// blank line so delete it
+			console.log("DELETING BLANK LINE");
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), "");
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		} else {
+			// update line
+			console.log("UPDATING LINE:", newline);
+			newline += "\n";
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), newline);
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		}
+	} else {
+		// Add an *Xcol on a line after the selected line at the given field.
+		let oldline = EDITOR.session.getLine(line-1);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		let fieldcount = fields.length;
+		let newline = "";
+		for (let i=0; i<fieldcount; i++) {
+			newline += "*";
+			if (i == field - 1) {
+				newline += "Xcol";
+			}
+			if (i < fieldcount - 1) {
+				newline += "\t";
+			}
+		}
+		newline += "\n";
+		EDITOR.session.replace(new Range(line, 0, line, 0), newline);
+		var newid = id;
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+	}
+}
+
+
+
+//////////////////////////////
+//
+// toggleLigatureEnd --
+//
+
+function toggleLigatureEnd(id, line, field) {
+	var addline = true;
+	var ptext = EDITOR.session.getLine(line);
+	if (ptext.match(/^\*/) && ptext.match(/\*Xlig/)) {
+			// if there is an Xlig line don't add one
+			addline = false;
+	}
+	if (!addline) {
+		// Already a line with one or more *Xlig exists.  Toggle *Xlig on/off
+		// for given field and delete line if only contains * tokens.
+		let oldline = EDITOR.session.getLine(line);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		if (fields[field-1] === "*") {
+			fields[field-1] = "*Xlig";
+		} else {
+			fields[field-1] = "*";
+		}
+		let newline = fields.join("\t");
+		if (newline.match(/^[*\t]+$/)) {
+			// blank line so delete it
+			console.log("DELETING BLANK LINE");
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), "");
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		} else {
+			// update line
+			console.log("UPDATING LINE:", newline);
+			newline += "\n";
+			EDITOR.session.replace(new Range(line, 0, line+1, 0), newline);
+			var newid = id;
+			RestoreCursorNote = newid;
+			HIGHLIGHTQUERY = newid;
+		}
+	} else {
+		// Add an *Xlig on a line after the selected line at the given field.
+		let oldline = EDITOR.session.getLine(line-1);
+		oldline = oldline.replace(/\t+$/, "").replace(/^\t+/, "");
+		let fields = oldline.split(/\t+/)
+		let fieldcount = fields.length;
+		let newline = "";
+		for (let i=0; i<fieldcount; i++) {
+			newline += "*";
+			if (i == field - 1) {
+				newline += "Xlig";
+			}
+			if (i < fieldcount - 1) {
+				newline += "\t";
+			}
+		}
+		newline += "\n";
+		EDITOR.session.replace(new Range(line, 0, line, 0), newline);
+		var newid = id;
+		RestoreCursorNote = newid;
+		HIGHLIGHTQUERY = newid;
+	}
 }
 
 
@@ -2354,10 +2627,22 @@ function togglePedalStart(id, line, field) {
 //////////////////////////////
 //
 // togglePedalEnd --
-//
+// 
+// InterfaceSingleNumber == 4 => *Xlig toggle instead of *Xped
+// InterfaceSingleNumber == 5 => *Xcol toggle instead of *Xped
 //
 
 function togglePedalEnd(id, line, field) {
+	if (InterfaceSingleNumber == 4) {
+		toggleLigatureEnd(id, line, field);
+		InterfaceSingleNumber = 0;
+		return;
+	} else if (InterfaceSingleNumber == 5) {
+		toggleColorationEnd(id, line, field);
+		InterfaceSingleNumber = 0;
+		return;
+	}
+
 	var text = EDITOR.session.getLine(line-1);
 	if (text.match(/^!/)) {
 		return;
@@ -2373,7 +2658,7 @@ function togglePedalEnd(id, line, field) {
 	var newid;
 	if (!addline) {
 		// delete existing pedal line
-		console.log("DELETING PEDAL END");
+		// console.log("DELETING PEDAL END");
 		EDITOR.session.replace(new Range(line, 0, line+1, 0), "");
 		newid = id;
 		RestoreCursorNote = newid;
@@ -2393,6 +2678,7 @@ function togglePedalEnd(id, line, field) {
 
 	FreezeRendering = freezeBackup;
 	displayNotation();
+
 }
 
 
