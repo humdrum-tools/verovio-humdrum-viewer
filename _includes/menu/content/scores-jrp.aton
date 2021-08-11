@@ -216,7 +216,7 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.loadRepertory('jrp/Gas')
+@ACTION:		MENU.loadRepertory('gaspar')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
