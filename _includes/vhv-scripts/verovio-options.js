@@ -105,7 +105,7 @@ function humdrumToSvgOptions() {
 	output.adjustPageHeight     = 1;
 	// output.adjustPageWidth   = 1;
 	output.barLineWidth         = 0.12;
-	output.breaks               = (BREAKS ? "encoded" : "auto");
+	output.breaks               = (BREAKS ? "line" : "auto");
 	output.font                 = FONT;
 	output.inputFrom            = "auto";
 	output.humType              = 1;

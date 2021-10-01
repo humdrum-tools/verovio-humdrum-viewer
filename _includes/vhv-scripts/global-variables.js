@@ -67,7 +67,7 @@ let FONT           = "Leland";
 
 // BREAKS: controls whether or not verovio should use system/page breaks
 // encoded in the data or decide on its own line breaks.
-//     false means use "auto" breaking method for verovio "breaks" option.
+//     false means use "line" breaking method for verovio "breaks" option.
 //     true means use "encoded" breaking method for verovio "breaks" option.
 let BREAKS         = false;
 

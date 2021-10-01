@@ -277,7 +277,8 @@ function generatePdfFull(format, orientation) {
 		scale                  : scale,
 		adjustPageHeight       : 0,
 		justifyVertically      : 1,
-		breaks                 : (BREAKS ? "encoded" : "auto"),
+		// use breaks: "encoded" for including page breaks
+		breaks                 : (BREAKS ? "line" : "auto"),
 		mmOutput               : 1,
 		// justifyIncludeLastPage : 1, // no longer a verovio option?
 		// justifySystemOnly   : 1, // no longer a verovio option?

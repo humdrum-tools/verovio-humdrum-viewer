@@ -5,4 +5,5 @@ _site
 Gemfile.lock
 wildwebmidi-old.data
 scripts/midiplayer/old
+scripts/local/verovio-toolkit*
 .old
