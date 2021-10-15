@@ -592,11 +592,6 @@ div#index {
   font-family: "FontAwesome";
 }
 
-#output svg g.dir.sic tspan.rend tspan.text tspan.text.s {
-  font-family: "FontAwesome";
-}
-
-
 #navbarNavDropdown {
 	white-space: nowrap;
 }
