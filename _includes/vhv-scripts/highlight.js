@@ -293,7 +293,7 @@ HnpSvg.prototype.loadSvg = function (svg) {
 	this.element = svg;
 
 	// Create a list of systems in the SVG image:
-	let systems = svg.querySelectorAll('g[id^="system-"].system');
+	let systems = svg.querySelectorAll('g.system');
 	if (!systems) {
 		console.warn("Warning: no systems in SVG image");
 		return false;
