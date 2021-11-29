@@ -1,1 +1,11 @@
-cp ../../../verovio-script/scripts/verovio-toolkit-wasm.js .
+#!/usr/bin/perl
+
+use strict;
+
+my $date = `date +"%Y%m%d"`;
+chomp $date;
+
+`cp ../../../verovio-script/scripts/verovio-toolkit-wasm.js .`;
+
+
+
