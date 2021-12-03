@@ -23,6 +23,7 @@ if (localStorage.FONT) {
 	FONT = cleanFont(localStorage.FONT);
 
 }
+var INITIALMEI = false;  // used to show MEI conversion on load
 var PQUERY = "";
 var IQUERY = "";
 var RQUERY = "";
@@ -141,6 +142,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		if (CGI.k.match(/B/)) {
 			HIDEINITIALTOOLBAR = true;
+		}
+		if (CGI.k.match(/m/)) {
+console.error("INITIALMEI = true");
+				toggleTextVisibility(true);
+				INITIALMEI = true;
+				// displayMeiNoType();
 		}
 		if (CGI.k.match(/E/)) {
 			HIDEMENUANDTOOLBAR = true;
@@ -1006,6 +1013,17 @@ function verovioCallback(data) {
 	}
 	MARKUP.loadSvg("svg");
 	processMesaureHash();
+
+	// When first loading VHV, if the "m" keyboard shortcut
+	// is given in CGI.k, then convert the score in the text
+	// editor to MEI:
+	if (INITIALMEI) {
+		EditorMode = "xml";
+		displayMeiNoType();
+		toggleTextVisibility(true);
+		INITIALMEI = false;
+	}
+
 }
 
 

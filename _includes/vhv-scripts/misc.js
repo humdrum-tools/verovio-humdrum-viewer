@@ -1686,7 +1686,6 @@ function displayScoreTextInEditor(text, page) {
 	// -1 is to unselect added text, and move cursor to start
 	setTextInEditor(text);
 
-	// update the notation display
 	displayNotation(page);
 }
 
