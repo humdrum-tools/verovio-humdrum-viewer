@@ -50,7 +50,7 @@ function processClickForIiif(event) {
 		return;
 	}
 	// zero-index line and field
-	let info = getIiifInfo(humdrum, line-1, field-1);
+	let info = getIiifBase(humdrum, line-1, field-1);
 	// console.log("IIIF info", info);
 	if (!info.xywh) {
 		return;
@@ -72,7 +72,7 @@ function processClickForIiif(event) {
 
 	if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey) {
 		// Any modifier key will cause display of full page instead of system.
-		let infourl = info.infourl;
+		let infourl = `%{info.iiifbase}/info.json`;;
 		let url = `${info.iiifbase}/full/,${scheight}/0/default.jpg`;
 		options += `,top=0`;
 		options += `,left=0`;
