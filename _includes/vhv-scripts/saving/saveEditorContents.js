@@ -1,7 +1,4 @@
 
-
-
-
 //////////////////////////////
 //
 // saveEditorContents -- Save the editor contents to a file on the local disk.

@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Mon Dec  6 01:10:36 CET 2021
+// Last Modified:  Mon Dec  6 13:00:55 CET 2021
 // Filename:       _includes/vhv-scripts/main.html
 // Web Address:    https://verovio.humdrum.org/scripts/main.js
 // Syntax:         JavaScript 1.8/ECMAScript 5/6
@@ -15,11 +15,24 @@
 // also related to the load/save toolbar:
 {% include vhv-scripts/buffer/main.js %}
 
+// Functions related to filtering and also related
+// to the filter toolbar:
+{% include vhv-scripts/filtering/main.js %}
+
 // IIIF image interaction
 {% include vhv-scripts/iiif/main.js %}
 
-// PDF file creating/downloading
-{% include vhv-scripts/pdf/main.js %}
+// Functions related to loading files:
+{% include vhv-scripts/loading/main.js %}
+
+// Functions related to the menu (see also _includes/menu):
+{% include vhv-scripts/menu/main.js %}
+
+// MusicXML related functions
+{% include vhv-scripts/musicxml/main.js %}
+
+// Functions related to saving files:
+{% include vhv-scripts/saving/main.js %}
 
 // Functions for musical searching, and also
 // related to search toolbar:
@@ -50,20 +63,6 @@
 // Functions related to repertory indexes:
 {% include vhv-scripts/hmdindex.js %}
 
-// Functions related to filtering and also related
-// to the filter toolbar:
-{% include vhv-scripts/filtering.js %}
-
-// Functions related to saving files:
-{% include vhv-scripts/saving.js %}
-
-// Functions related to loading files:
-{% include vhv-scripts/loading.js %}
-
-// Functions related to the menu
-// (see also _includes/menu):
-{% include vhv-scripts/menu.js %}
-
 // General functions, mostly for text
 // processing:
 {% include vhv-scripts/utility.js %}
@@ -92,9 +91,6 @@
 
 // Main event listener functions:
 {% include vhv-scripts/listeners.js %}
-
-// MusicXML export
-{% include vhv-scripts/convertToMusicXmlAndSave.js %}
 
 
 
