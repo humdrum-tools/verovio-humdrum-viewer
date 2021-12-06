@@ -15,15 +15,12 @@
 {% endcomment %}
 
 function processClickForIiif(event) {
-console.warn("ENTERING processClickForIiif", event);
 	let path = buildPath(event.target);
 	if (!path) {
 		return;
 	}
-console.warn("PATH", path);
 	// assuming the text editor contains Humdrum data:
 	let humdrum = getTextFromEditor();
-console.warn("HUMDRUMD DATA", humdrum.substring(0, 120));
 
 	let line = -1;
 	let field = -1;
@@ -73,8 +70,8 @@ console.warn("HUMDRUMD DATA", humdrum.substring(0, 120));
 	let scwidth = parseInt(window.screen.width);
 	let scheight = parseInt(window.screen.height);
 
-	if (event.shiftKey) {
-		// display full page
+	if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey) {
+		// Any modifier key will cause display of full page instead of system.
 		let infourl = info.infourl;
 		let url = `${info.iiifbase}/full/,${scheight}/0/default.jpg`;
 		options += `,top=0`;
