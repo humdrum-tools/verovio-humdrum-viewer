@@ -30,7 +30,7 @@
 {% include vhv-scripts/timemap/main.js %}
 
 // Functions related to the toolbar:
-{% include vhv-scripts/toolbar.js %}
+{% include vhv-scripts/toolbar/main.js %}
 
 
 
