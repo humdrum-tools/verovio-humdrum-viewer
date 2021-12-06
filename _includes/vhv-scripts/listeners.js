@@ -240,13 +240,10 @@ console.error("INITIALMEI = true");
 		if (inSvgImage(event.target)) {
 		   dataIntoView(event);
 		}
-		if (event.altKey || event.shiftKey || event.metaKey) {
-			// try to display an IIIF image
-			processClickForIiif(event);
-		}
 	});
 	body.addEventListener("dblclick", function(event) {
-		console.log("DOUBLE CLICK");
+		// console.log("DOUBLE CLICK");
+		processClickForIiif(event);
 	});
 
 	window.addEventListener("keydown", processNotationKeyCommand, true);
