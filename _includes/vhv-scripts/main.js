@@ -15,6 +15,9 @@
 // also related to the load/save toolbar:
 {% include vhv-scripts/buffer/main.js %}
 
+// IIIF image interaction
+{% include vhv-scripts/iiif/main.js %}
+
 // PDF file creating/downloading
 {% include vhv-scripts/pdf/main.js %}
 

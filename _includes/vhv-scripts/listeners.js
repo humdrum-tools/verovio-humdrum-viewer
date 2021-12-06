@@ -240,6 +240,10 @@ console.error("INITIALMEI = true");
 		if (inSvgImage(event.target)) {
 		   dataIntoView(event);
 		}
+		if (event.altKey) {
+			// try to display an IIIF image
+			processClickForIiif(event);
+		}
 	});
 	body.addEventListener("dblclick", function(event) {
 		console.log("DOUBLE CLICK");
@@ -252,6 +256,7 @@ console.error("INITIALMEI = true");
 
 	PDFLISTINTERVAL = setInterval(function() {
 		buildPdfIconListInMenu();
+		buildScanIconListInMenu();
 	}, 3000);
 
 });

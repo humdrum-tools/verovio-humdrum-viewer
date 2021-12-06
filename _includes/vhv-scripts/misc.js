@@ -1288,6 +1288,7 @@ function displayHumdrumPdf() {
 }
 
 
+
 //////////////////////////////
 //
 // getPdfUrlList --
@@ -1316,6 +1317,9 @@ function getPdfUrlList() {
 
 	let i;
 	for (i=0; i<data.length; i++) {
+		if (data[i].charAt(0) != '!') {
+			continue;
+		}
 		let line = data[i];
 		let matches = line.match(rex);
 		if (matches) {
@@ -1327,6 +1331,79 @@ function getPdfUrlList() {
 			}
 			obj.url = matches[2];
 			obj.title = matches[3];
+			output.push(obj);
+		}
+
+		matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
+		if (matches) {
+			obj = {};
+			obj.key = matches[1];
+			obj.value = matches[2];
+			if (!refrecords[obj.key]) {
+				refrecords[obj.key] = [];
+			}
+			refrecords[obj.key].push(obj);
+		}
+	}
+
+	for (let i=0; i<output.length; i++) {
+		output[i].title = templateExpansion(output[i].title, refrecords);
+	}
+
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// getScanUrlList --
+//
+
+function getScanUrlList() {
+	if (EditorMode !== "humdrum") {
+		// can't handle MEI mode yet
+		return 0;
+	}
+	let predata = getTextFromEditor();
+	if (!predata) {
+		return [];
+	}
+	let data = predata.split(/\r?\n/);
+	let refrecords = {};
+	let output = [];
+	let title = "";
+
+	let query;
+	query = '^!!!URL(\\d*)-scan:\\s*((?:ftp|https?)://[^\\s]+)';
+	// query += "\\s+(.*)\\s*$";
+	let rex = new RegExp(query);
+
+	let references = [];
+
+	let i;
+	for (i=0; i<data.length; i++) {
+		if (data[i].charAt(0) != '!') {
+			continue;
+		}
+		let line = data[i];
+		let matches = line.match(rex);
+		if (matches) {
+			let obj = {};
+			if (!matches[1]) {
+				obj.number = 0;
+			} else {
+				obj.number = parseInt(matches[1]);
+			}
+			obj.url = matches[2];
+			
+			matches = data[i].match(/^!!!URL[^:]*:\s*[^\s]+\s+(.*)\s*$/);
+			if (matches) {
+				obj.title = matches[1];
+			} else {
+				obj.title = "";
+			}
+
 			output.push(obj);
 		}
 
