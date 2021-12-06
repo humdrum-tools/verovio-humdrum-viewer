@@ -240,7 +240,7 @@ console.error("INITIALMEI = true");
 		if (inSvgImage(event.target)) {
 		   dataIntoView(event);
 		}
-		if (event.altKey) {
+		if (event.altKey || event.shiftKey || event.metaKey) {
 			// try to display an IIIF image
 			processClickForIiif(event);
 		}
