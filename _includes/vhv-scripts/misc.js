@@ -17,6 +17,12 @@ function displayNotation(page, force, restoreid) {
 		return;
 	}
 
+	if (FILEINFO && FILEINFO.location && FILEINFO.file) {
+		let file = `${FILEINFO.location}/${FILEINFO.file}`;
+		let url = getRepertoryUrlWithFilters(file);
+		window.history.pushState(null, null, url);
+	}
+
 	// if input area is a <textarea>, then use .value to access contnets:
 	// let inputarea = document.querySelector("#input");
 	// let data = inputarea.value;
@@ -427,14 +433,23 @@ function displayWorkNavigation(selector) {
 
 }
 
-
-
 //////////////////////////////
 //
 // copyRepertoryUrl --
 //
 
 function copyRepertoryUrl(file) {
+	let url = getRepertoryUrlWithFilters(file);
+	copyToClipboard(url);
+}
+
+
+//////////////////////////////
+//
+// getRepertoryUrlWithFilters --
+//
+
+function getRepertoryUrlWithFilters(file) {
 	if (!file) {
 		if (FILEINFO) {
 			file = FILEINFO.location;
@@ -443,7 +458,7 @@ function copyRepertoryUrl(file) {
 		}
 	}
 
-	let url = "https://verovio.humdrum.org";
+	let url = window.location.origin;
 	let initialized = 0;
 
 	if (file) {
@@ -506,7 +521,7 @@ function copyRepertoryUrl(file) {
 		url += "i=";
 		url += encodeURIComponent(IQUERY);
 	}
-	copyToClipboard(url);
+	return url;
 }
 
 
@@ -572,6 +587,10 @@ function displayWork(file) {
 	if (!file) {
 		return;
 	}
+
+	let url = getRepertoryUrlWithFilters(file);
+	window.history.pushState(null, null, url);
+
 	clearCgiHash();
 	moveToTopOfNotation();
 	vrvWorker.page = 1;
@@ -1774,7 +1793,6 @@ function displayScoreTextInEditor(text, page) {
 //
 
 function toggleHumdrumCsvTsv() {
-console.log("converting from CSV TO TSV");
 	if (EditorMode == "xml") {
 		// not editing Humdrum data
 		return;

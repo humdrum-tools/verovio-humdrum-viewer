@@ -8,6 +8,7 @@
 //
 
 function applyGlobalFilter() {
+
 	let target = document.querySelector("input#filter");
 	let results = validateFilter(target, "Enter");
 	if (!results.status) {
