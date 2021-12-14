@@ -15,9 +15,11 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/iiif/buildPath.js           %}
-{% include vhv-scripts/iiif/getIiifBase.js         %}
-{% include vhv-scripts/iiif/processClickForIiif.js %}
-
+{% include vhv-scripts/iiif/buildPath.js              %}
+{% include vhv-scripts/iiif/getIiifBase.js            %}
+{% include vhv-scripts/iiif/getIiifBoundingBoxInfo.js %}
+{% include vhv-scripts/iiif/getIiifManifestInfo.js    %}
+{% include vhv-scripts/iiif/iiifCallback.js           %}
+{% include vhv-scripts/iiif/processClickForIiif.js    %}
 
 

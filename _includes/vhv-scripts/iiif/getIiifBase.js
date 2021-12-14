@@ -2,58 +2,48 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Dec  4 16:55:37 CET 2021
-// Last Modified: Mon Dec  6 14:58:50 CET 2021
-// Filename:      _includes/vhv-scripts/iiif/getIiifBase.js
-// Included in:   _includes/vhv-scripts/iiif/main.js
+// Last Modified: Mon Dec  6 14:27:45 CET 2021
+// Filename:      _includes/iiif/getIiifBase.js
+// Used by:       
+// Included in:   _includes/iiif/main.html
 // Syntax:        ECMAScript 6
 // vim:           ts=3:nowrap
 //
-// Description:   Check the element path for a mouse click and 
-//                process any IIIF that is active on the current
-//                click path.
+// Description:   Find the IIIF base, either as a separate line, or
+//                indirectly through a manifest.
 //
 {% endcomment %}
 
-function getIiifBase(humdrum, line, field) {
-	let lines = humdrum.split(/\r?\n/);
-	let output = {};
-	output.xywh = "0,0,0,0";
-	output.tag = "";
-	output.iiifbase = "";
+function getIiifBase(info, event, callback) {
+	let label = info.label;
+	if (!label) {
+		return "";
+	}
+	let humdrum = info.humdrum;
+	if (!humdrum) {
+		return "";
+	}
 
-	// Currently requiring no spine splits or merges.
-	for (let i=line-1; i>=0; i--) {
-		if (!lines[i].match(/^\*/)) {
-			continue;
-		}
-		let fields = lines[i].split(/\t+/);
-		let matches = fields[field].match(/^\*xywh:(.*)$/);
-		if (matches) {
-			output.xywh = matches[1];
-		}
-		matches = fields[field].match(/^\*iiif:([^:]+)/);
-		if (matches) {
-			output.tag = matches[1];
-			break;
-		}
-	}
-	if (output.tag === "") {
-		return;
-	}
+	info.iiifbase = "";
+
+	// First search for line in the format:
+	//     !!!IIIF-{label}: {iiifbase}
 	
-	// Also get the IIIF base URL from references records.
-	// (most likely at end of file, so searching backwards):
-	let skey = `^!!!IIIF-${output.tag}:\\s*([^\\s]+)`;
+	// Most likely at end of file, so searching backwards.
+	// Could also limit to outer regions of file and not search
+	// inside data region.
+	let skey = `^!!!IIIF-${label}:\\s*([^\\s]+)`;
 	let regex = new RegExp(skey);
-	for (let i=lines.length - 1; i>=0; i--) {
-		let matches = lines[i].match(regex);
+	for (let i=humdrum.length - 1; i>=0; i--) {
+		let matches = humdrum[i].match(regex);
 		if (matches) {
-			output.iiifbase = matches[1];
-			break;
+			info.iiifbase = matches[1];
+			callback(event, info);
+			return;
 		}
 	}
 
-	return output;
+	getIiifManifestInfo(info, event, callback);
 }
 
 

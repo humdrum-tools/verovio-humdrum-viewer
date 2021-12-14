@@ -21,6 +21,9 @@ let PDFOPTIONS = {};
 // HMDINDEX: used to store a repertory index in the .hmd format.
 let HMDINDEX = null;
 
+// IIIF_MANIFEST: used to store:
+let IIIF_MANIFEST = {};
+
 // WKEY: window for displaying keyscape
 WKEY = null;
 

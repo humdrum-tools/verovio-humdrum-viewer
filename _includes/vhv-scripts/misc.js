@@ -1866,6 +1866,7 @@ function clearContent() {
 		// Erase the text, but store it in a buffer in case
 		// the user wants to recall it if the editor is still empty.
 		ERASED_DATA = data;
+		ERASED_URL = window.location.href;
 		let element
 		setTextInEditor("");
 		let output = document.querySelector("#output");
