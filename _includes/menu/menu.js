@@ -4,11 +4,11 @@
 // vim: ts=3
 //
 
-var MENU = { };
-var MENUDATA = { };
-var LANGUAGE = "DEFAULT";
-var DICTIONARY = {};
-var COMPILEFILTERAUTOMATIC = false;
+let MENU = new MenuInterface();
+let MENUDATA = { };
+let LANGUAGE = "DEFAULT";
+let DICTIONARY = {};
+let COMPILEFILTERAUTOMATIC = false;
 
 function MenuInterface() { 
 	this.contextualMenus = {};
@@ -19,7 +19,7 @@ function setInitialLanguage() {
 	if (localStorage["LANGUAGE"]) {
 		LANGUAGE = localStorage["LANGUAGE"];
 	} else {
-		var lang = navigator.language.replace(/-.*/, "").toUpperCase();
+		let lang = navigator.language.replace(/-.*/, "").toUpperCase();
 		if (lang.length = 2) {
 			LANGUAGE = lang;
 		}
@@ -31,42 +31,42 @@ function setInitialLanguage() {
 document.addEventListener("DOMContentLoaded", function() {
 	setInitialLanguage();
 	processMenuAton();
-	MENU = new MenuInterface();
 	MENU.initialize();
 });
 
 
 
 function processMenuAton() {
-	var element = document.querySelector("script#aton-menu-data");
+	let element = document.querySelector("script#aton-menu-data");
 	if (!element) {
 		console.log("Warning: cannot find element script#aton-menu-data");
 		return;
 	}
-	var aton = new ATON();
+	let aton = new ATON();
 	MENUDATA = aton.parse(element.textContent).MENU;
 	adjustMenu(MENUDATA);
 	
 	DICTIONARY = {};
-	var MD = MENUDATA.DICTIONARY.ENTRY;
-	for (var i=0; i<MD.length; i++) {
+	let MD = MENUDATA.DICTIONARY.ENTRY;
+	for (let i=0; i<MD.length; i++) {
 			DICTIONARY[MD[i].DEFAULT] = MD[i];
 	}
 
 	// Use handlebars to generate HTML code for menu.
 
-	var tsource = document.querySelector("#template-menu").textContent;
-	var menuTemplate = Handlebars.compile(tsource);
-	var output = menuTemplate(MENUDATA);
-	var newmenuelement = document.querySelector("#menu-div");
+	let tsource = document.querySelector("#template-menu").textContent;
+	let menuTemplate = Handlebars.compile(tsource);
+	let output = menuTemplate(MENUDATA);
+	let newmenuelement = document.querySelector("#menu-div");
 
-	var tsource2 = document.querySelector("#template-toolbar").textContent;
-	var toolbarTemplate = Handlebars.compile(tsource2);
-	var output2 = toolbarTemplate("");
-	var toolbarelement = document.querySelector("#toolbar");
+	let tsource2 = document.querySelector("#template-toolbar").textContent;
+	let toolbarTemplate = Handlebars.compile(tsource2);
+	let output2 = toolbarTemplate("");
+	let toolbarelement = document.querySelector("#toolbar");
 
 	if (newmenuelement && toolbarelement) {
 		newmenuelement.innerHTML = output;
+		MENU.highlightOptions();
 		toolbarelement.innerHTML = output2;
 		prepareBufferStates();
 		if (HIDEINITIALTOOLBAR) {
@@ -117,7 +117,7 @@ function fillFilterFieldFromCgi() {
 		// nothing to do
 		return;
 	}
-	var efilter = document.querySelector("input#filter");
+	let efilter = document.querySelector("input#filter");
 	if (!efilter) {
 		return;
 	}
@@ -143,11 +143,11 @@ function fillSpreadsheetScriptId() {
 	if (!SPREADSHEETSCRIPTID) {
 		return;
 	}
-	var element = document.querySelector("input#scriptid");
+	let element = document.querySelector("input#scriptid");
 	if (!element) {
 		return;
 	}
-	var value = SPREADSHEETSCRIPTID;
+	let value = SPREADSHEETSCRIPTID;
 	if (SPREADSHEETID) {
 		value += "|" + SPREADSHEETID;
 	}
@@ -162,33 +162,33 @@ function fillSpreadsheetScriptId() {
 //
 
 function fillSearchFieldsFromCgi() {
-	var esearch = document.querySelector("#search-group");
+	let esearch = document.querySelector("#search-group");
 	if (!esearch) {
 		return;
 	}
 
 	if (!PQUERY.match(/^\s*$/)) {
-		var epitch = esearch.querySelector("#search-pitch");
+		let epitch = esearch.querySelector("#search-pitch");
 		if (epitch) {
 			epitch.value = PQUERY;
 		}
 	}
 
 	if (!IQUERY.match(/^\s*$/)) {
-		var ipitch = esearch.querySelector("#search-interval");
+		let ipitch = esearch.querySelector("#search-interval");
 		if (ipitch) {
 			ipitch.value = IQUERY;
 		}
 	}
 
 	if (!RQUERY.match(/^\s*$/)) {
-		var rpitch = esearch.querySelector("#search-rhythm");
+		let rpitch = esearch.querySelector("#search-rhythm");
 		if (rpitch) {
 			rpitch.value = RQUERY;
 		}
 	}
 
-	// the SEARCHFILTER variable does not need to be built
+	// the SEARCHFILTER let does not need to be built
 	// because that was done in scripts/listeners.js when
 	// DOMContentLoaded event was triggered.
 }
@@ -201,7 +201,7 @@ function fillSearchFieldsFromCgi() {
 //
 
 function adjustMenu (object) {
-	for (var property in object) {
+	for (let property in object) {
 		if (object.hasOwnProperty(property)) {
 			if (property === "RIGHT_TEXT") {
 				if (!Array.isArray(object[property])) {
@@ -218,38 +218,41 @@ function adjustMenu (object) {
 
 MenuInterface.prototype.initialize = function () {
 	this.contextualMenus = this.getContextualMenus();
-}
+};
+
 
 
 MenuInterface.prototype.hideContextualMenus = function () {
-	var keys = Object.keys(this.contextualMenus);
-	for (var i=0; i<keys.length; i++) {
+	let keys = Object.keys(this.contextualMenus);
+	for (let i=0; i<keys.length; i++) {
 		this.contextualMenus[keys[i]].style.display = "none";
 	}
-}
+};
+
 
 
 MenuInterface.prototype.hideMenus = function (name) {
 	this.hideContextualMenu();
-}
+};
+
 
 
 MenuInterface.prototype.showMenu = function (name) {
 	this.showContextualMenu(name);
-}
+};
+
 
 
 MenuInterface.prototype.showContextualMenu = function (name) {
-	var keys = Object.keys(this.contextualMenus);
-	for (var i=0; i<keys.length; i++) {
+	let keys = Object.keys(this.contextualMenus);
+	for (let i=0; i<keys.length; i++) {
 		if (name === keys[i]) {
 			this.contextualMenus[keys[i]].style.display = "block";
 		} else {
 			this.contextualMenus[keys[i]].style.display = "none";
 		}
 	}
-}
-
+};
 
 
 
@@ -258,20 +261,20 @@ MenuInterface.prototype.showCursorNoteMenu = function (element) {
 		this.hideContextualMenus();
 		return;
 	}
-	var id = element.id;
+	let id = element.id;
 	if (!id) {
 		this.hideContextualMenus();
 		return;
 	}
-	var matches = id.match(/^([A-Z]+)-/i);
+	let matches = id.match(/^([A-Z]+)-/i);
 	if (!matches) {
 		this.hideContextualMenus();
 		return;
 	}
-	var name = matches[1];
+	let name = matches[1];
 	name = name.charAt(0).toUpperCase() + name.slice(1);
 	this.showContextualMenu(name);
-}
+};
 
 
 
@@ -281,26 +284,26 @@ MenuInterface.prototype.showCursorNoteMenu = function (element) {
 //
 
 MenuInterface.prototype.getContextualMenus = function () {
-	var output = {};
-	var element = document.querySelector("#navbarNavDropdown");
+	let output = {};
+	let element = document.querySelector("#navbarNavDropdown");
 	if (!element) {
 		return output;
 	}
-	var items = element.querySelectorAll("li.contextual");
+	let items = element.querySelectorAll("li.contextual");
 	if (!items) {
 		return output;
 	}
-	for (var i=0; i<items.length; i++) {
-		var nameelement = items[i].querySelector(".menu-name");
+	for (let i=0; i<items.length; i++) {
+		let nameelement = items[i].querySelector(".menu-name");
 		if (!nameelement) {
 			continue;
 		}
-		var name = nameelement.textContent.trim();
+		let name = nameelement.textContent.trim();
 		output[name] = items[i];
 	}
 
 	return output;
-}
+};
 
 
 
@@ -316,11 +319,11 @@ MenuInterface.prototype.getContextualMenus = function () {
 //
 
 MenuInterface.prototype.toggleOriginalClefs = function () {
-	var event = {};
+	let event = {};
 	event.code = OKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -331,11 +334,11 @@ MenuInterface.prototype.toggleOriginalClefs = function () {
 //
 
 MenuInterface.prototype.displaySvgData = function () {
-	var event = {};
+	let event = {};
 	event.code = GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -345,11 +348,11 @@ MenuInterface.prototype.displaySvgData = function () {
 //
 
 MenuInterface.prototype.saveSvgData = function () {
-	var event = {};
+	let event = {};
 	event.code = GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -359,7 +362,7 @@ MenuInterface.prototype.saveSvgData = function () {
 //
 
 MenuInterface.prototype.loadRepertory = function (repertory, filter) {
-	var options = {
+	let options = {
 			file: repertory,
 			next: true,
 			previous: true
@@ -371,7 +374,7 @@ MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 		CGI.filter = "";
 	}
 	loadKernScoresFile(options);
-}
+};
 
 
 
@@ -381,11 +384,11 @@ MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 //
 
 MenuInterface.prototype.saveTextEditorContents = function () {
-	var event = {};
+	let event = {};
 	event.code = SKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -396,7 +399,7 @@ MenuInterface.prototype.saveTextEditorContents = function () {
 
 MenuInterface.prototype.saveHtmlContents = function () {
 	downloadEditorContentsInHtml();
-}
+};
 
 
 
@@ -406,11 +409,11 @@ MenuInterface.prototype.saveHtmlContents = function () {
 //
 
 MenuInterface.prototype.compileEmbeddedFilters = function () {
-	var event = {};
+	let event = {};
 	event.code = CKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -420,11 +423,11 @@ MenuInterface.prototype.compileEmbeddedFilters = function () {
 //
 
 MenuInterface.prototype.clearEditorContents = function () {
-	var event = {};
+	let event = {};
 	event.code = EKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -434,11 +437,11 @@ MenuInterface.prototype.clearEditorContents = function () {
 //
 
 MenuInterface.prototype.showSourceScan = function () {
-	var event = {};
+	let event = {};
 	event.code = PKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -448,11 +451,11 @@ MenuInterface.prototype.showSourceScan = function () {
 //
 
 MenuInterface.prototype.createPdf = function () {
-	var event = {};
+	let event = {};
 	event.code = TKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -462,11 +465,11 @@ MenuInterface.prototype.createPdf = function () {
 //
 
 MenuInterface.prototype.reloadFromSource = function () {
-	var event = {};
+	let event = {};
 	event.code = RKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -476,12 +479,12 @@ MenuInterface.prototype.reloadFromSource = function () {
 //
 
 MenuInterface.prototype.createPdfPage = function () {
-	var event = {};
+	let event = {};
 	event.code = TKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -491,11 +494,11 @@ MenuInterface.prototype.createPdfPage = function () {
 //
 
 MenuInterface.prototype.increaseNotationSpacing = function () {
-	var event = {};
+	let event = {};
 	event.code = WKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -505,12 +508,12 @@ MenuInterface.prototype.increaseNotationSpacing = function () {
 //
 
 MenuInterface.prototype.decreaseNotationSpacing = function () {
-	var event = {};
+	let event = {};
 	event.code = WKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -525,7 +528,7 @@ MenuInterface.prototype.decreaseStaffSpacing = function () {
 		SPACING_STAFF = 0;
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -540,7 +543,7 @@ MenuInterface.prototype.increaseStaffSpacing = function () {
 		SPACING_STAFF = 24;
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -555,7 +558,7 @@ MenuInterface.prototype.decreaseSystemSpacing = function () {
 		SPACING_SYSTEM = 0;
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -570,8 +573,7 @@ MenuInterface.prototype.increaseSystemSpacing = function () {
 		SPACING_SYSTEM = 12;
 	}
 	displayNotation();
-}
-
+};
 
 
 
@@ -586,7 +588,7 @@ MenuInterface.prototype.decreaseLyricSize = function () {
 		LYRIC_SIZE = 2.0;
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -601,7 +603,7 @@ MenuInterface.prototype.increaseLyricSize = function () {
 		LYRIC_SIZE = 8.0;
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -613,7 +615,7 @@ MenuInterface.prototype.increaseLyricSize = function () {
 MenuInterface.prototype.useLeipzigFont = function () {
 	FONT = "Leipzig";
 	displayNotation();
-}
+};
 
 
 
@@ -625,7 +627,7 @@ MenuInterface.prototype.useLeipzigFont = function () {
 MenuInterface.prototype.useLelandFont = function () {
 	FONT = "Leland";
 	displayNotation();
-}
+};
 
 
 
@@ -637,7 +639,7 @@ MenuInterface.prototype.useLelandFont = function () {
 MenuInterface.prototype.usePetalumaFont = function () {
 	FONT = "Petaluma";
 	displayNotation();
-}
+};
 
 
 
@@ -649,7 +651,7 @@ MenuInterface.prototype.usePetalumaFont = function () {
 MenuInterface.prototype.useBravuraFont = function () {
 	FONT = "Bravura";
 	displayNotation();
-}
+};
 
 
 
@@ -661,7 +663,7 @@ MenuInterface.prototype.useBravuraFont = function () {
 MenuInterface.prototype.useGootvilleFont = function () {
 	FONT = "Gootville";
 	displayNotation();
-}
+};
 
 
 
@@ -671,28 +673,28 @@ MenuInterface.prototype.useGootvilleFont = function () {
 //
 
 MenuInterface.prototype.applyFilter = function (filter, data, callback) {
-	var contents = "";
-	var editor = 0;
+	let contents = "";
+	let editor = 0;
 	if (!data) {
 		contents = EDITOR.getValue().replace(/^\s+|\s+$/g, "");
 		editor = 1;
 	} else {
 		contents = data.replace(/^\s+|\s+$/g, "");;
 	}
-	var options = humdrumToSvgOptions();
-	var data = contents + "\n!!!filter: " + filter + "\n";
+	let options = humdrumToSvgOptions();
+	data = contents + "\n!!!filter: " + filter + "\n";
 	vrvWorker.filterData(options, data, "humdrum")
 	.then(function (newdata) {
 		newdata = newdata.replace(/\s+$/m, "");
-		var lines = newdata.match(/[^\r\n]+/g);
-		for (var i=lines.length-1; i>=0; i--) {
+		let lines = newdata.match(/[^\r\n]+/g);
+		for (let i=lines.length-1; i>=0; i--) {
 			if (lines[i].match(/^!!!Xfilter:/)) {
 				lines[i] = "";
 				break;
 			}
 		}
 		newdata = "";
-		for (var i=0; i<lines.length; i++) {
+		for (let i=0; i<lines.length; i++) {
 			if (lines[i] === "") {
 				continue;
 			}
@@ -705,7 +707,7 @@ MenuInterface.prototype.applyFilter = function (filter, data, callback) {
 			callback(newdata);
 		}
 	});
-}
+};
 
 
 
@@ -715,12 +717,12 @@ MenuInterface.prototype.applyFilter = function (filter, data, callback) {
 //
 
 MenuInterface.prototype.insertLocalCommentLine = function () {
-	var event = {};
+	let event = {};
 	event.code = LKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -730,12 +732,12 @@ MenuInterface.prototype.insertLocalCommentLine = function () {
 //
 
 MenuInterface.prototype.insertNullDataLine = function () {
-	var event = {};
+	let event = {};
 	event.code = DKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -745,12 +747,12 @@ MenuInterface.prototype.insertNullDataLine = function () {
 //
 
 MenuInterface.prototype.insertInterpretationLine = function () {
-	var event = {};
+	let event = {};
 	event.code = IKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -760,12 +762,12 @@ MenuInterface.prototype.insertInterpretationLine = function () {
 //
 
 MenuInterface.prototype.insertBarline = function () {
-	var event = {};
+	let event = {};
 	event.code = BKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -775,11 +777,11 @@ MenuInterface.prototype.insertBarline = function () {
 //
 
 MenuInterface.prototype.toggleDataDisplay = function () {
-	var event = {};
+	let event = {};
 	event.code = YKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -790,7 +792,7 @@ MenuInterface.prototype.toggleDataDisplay = function () {
 
 MenuInterface.prototype.toggleToolbarDisplay = function () {
 	toggleNavigationToolbar();
-}
+};
 
 
 
@@ -800,11 +802,11 @@ MenuInterface.prototype.toggleToolbarDisplay = function () {
 //
 
 MenuInterface.prototype.toggleLogoDisplay = function () {
-	var event = {};
+	let event = {};
 	event.code = BKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -814,11 +816,11 @@ MenuInterface.prototype.toggleLogoDisplay = function () {
 //
 
 MenuInterface.prototype.toggleLayerHighlighting = function () {
-	var event = {};
+	let event = {};
 	event.code = LKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -828,12 +830,12 @@ MenuInterface.prototype.toggleLayerHighlighting = function () {
 //
 
 MenuInterface.prototype.increaseTabSize = function () {
-	var event = {};
+	let event = {};
 	event.code = DotKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -843,12 +845,12 @@ MenuInterface.prototype.increaseTabSize = function () {
 //
 
 MenuInterface.prototype.decreaseTabSize = function () {
-	var event = {};
+	let event = {};
 	event.code = CommaKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 //////////////////////////////
@@ -857,9 +859,9 @@ MenuInterface.prototype.decreaseTabSize = function () {
 //
 
 MenuInterface.prototype.fitTabSizeToData = function () {
-	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
-	var max = 4;
-	for (var i=0; i<lines.length; i++) {
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let max = 4;
+	for (let i=0; i<lines.length; i++) {
 		if (lines[i].match(/^\s*$/)) {
 			continue;
 		}
@@ -868,8 +870,8 @@ MenuInterface.prototype.fitTabSizeToData = function () {
 			// due to embedded layout commands.
 			continue;
 		}
-		var line = lines[i].split("\t");
-		for (var j=0; j<line.length; j++) {
+		let line = lines[i].split("\t");
+		for (let j=0; j<line.length; j++) {
 			if (line[j].length > 25) {
 				// ignore very long tokens
 				continue;
@@ -885,7 +887,7 @@ MenuInterface.prototype.fitTabSizeToData = function () {
 	}
 	TABSIZE = max;
 	EDITOR.getSession().setTabSize(TABSIZE);
-}
+};
 
 
 
@@ -899,7 +901,7 @@ MenuInterface.prototype.openUrl = function (url, target) {
 		target = "_blank";
 	}
 	window.open(url, target);
-}
+};
 
 
 
@@ -912,7 +914,7 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
   if (!$(this).next().hasClass('show')) {
     $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
   }
-  var $subMenu = $(this).next(".dropdown-menu");
+  let $subMenu = $(this).next(".dropdown-menu");
   $subMenu.toggleClass('show');
 
 
@@ -932,7 +934,7 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
 
 MenuInterface.prototype.toggleCsvTsv = function () {
 	toggleHumdrumCsvTsv();
-}
+};
 
 
 
@@ -942,11 +944,11 @@ MenuInterface.prototype.toggleCsvTsv = function () {
 //
 
 MenuInterface.prototype.toggleVimPlainTextMode = function () {
-	var event = {};
+	let event = {};
 	event.code = VKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -957,11 +959,11 @@ MenuInterface.prototype.toggleVimPlainTextMode = function () {
 //
 
 MenuInterface.prototype.displayHumdrumData = function () {
-	var event = {};
+	let event = {};
 	event.code = HKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -971,11 +973,11 @@ MenuInterface.prototype.displayHumdrumData = function () {
 //
 
 MenuInterface.prototype.displayMeiData = function () {
-	var event = {};
+	let event = {};
 	event.code = MKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -985,7 +987,7 @@ MenuInterface.prototype.displayMeiData = function () {
 //
 
 MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
-	var event = {};
+	let event = {};
 	switch (bufferNumber) {
 		case 0: event.code = ZeroKey;  break;
 		case 1: event.code = OneKey;   break;
@@ -1007,7 +1009,7 @@ MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	event.code = RKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1017,7 +1019,7 @@ MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 //
 
 MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
-	var event = {};
+	let event = {};
 
 	// First store the buffer number in the number register:
 	switch (bufferNumber) {
@@ -1043,7 +1045,7 @@ MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 	event.code = SKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1059,7 +1061,7 @@ MenuInterface.prototype.goToLastPage = function (event) {
 	event.code = EndKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1075,7 +1077,7 @@ MenuInterface.prototype.goToFirstPage = function (event) {
 	event.code = HomeKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1092,7 +1094,7 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1102,12 +1104,12 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 //
 
 MenuInterface.prototype.goToNextWork = function () {
-	var event = {};
+	let event = {};
 	event.code = RightKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1123,7 +1125,7 @@ MenuInterface.prototype.goToNextPage = function (event) {
 	event.code = RightKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1139,7 +1141,7 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 	event.code = LeftKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1149,11 +1151,11 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 //
 
 MenuInterface.prototype.toggleMidiPlayback = function () {
-	var event = {};
+	let event = {};
 	event.code = SpaceKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 
@@ -1163,11 +1165,11 @@ MenuInterface.prototype.toggleMidiPlayback = function () {
 //
 
 MenuInterface.prototype.toggleNotationFreezing = function () {
-	var event = {};
+	let event = {};
 	event.code = FKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
-}
+};
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1184,7 +1186,7 @@ MenuInterface.prototype.toggleNotationFreezing = function () {
 
 MenuInterface.prototype.forceNoteStemUp = function () {
 	processNotationKey("a", CursorNote);
-}
+};
 
 
 
@@ -1195,7 +1197,7 @@ MenuInterface.prototype.forceNoteStemUp = function () {
 
 MenuInterface.prototype.forceNoteStemDown = function () {
 	processNotationKey("b", CursorNote);
-}
+};
 
 
 
@@ -1206,7 +1208,7 @@ MenuInterface.prototype.forceNoteStemDown = function () {
 
 MenuInterface.prototype.removeStemDirection = function () {
 	processNotationKey("c", CursorNote);
-}
+};
 
 
 
@@ -1217,7 +1219,7 @@ MenuInterface.prototype.removeStemDirection = function () {
 
 MenuInterface.prototype.toggleEditorialAccidental = function () {
 	processNotationKey("i", CursorNote);
-}
+};
 
 
 
@@ -1228,7 +1230,8 @@ MenuInterface.prototype.toggleEditorialAccidental = function () {
 
 MenuInterface.prototype.toggleNaturalAccidental = function () {
 	processNotationKey("n", CursorNote);
-}
+};
+
 
 
 //////////////////////////////
@@ -1238,7 +1241,7 @@ MenuInterface.prototype.toggleNaturalAccidental = function () {
 
 MenuInterface.prototype.toggleSharpAccidental = function () {
 	processNotationKey("#", CursorNote);
-}
+};
 
 
 
@@ -1249,7 +1252,7 @@ MenuInterface.prototype.toggleSharpAccidental = function () {
 
 MenuInterface.prototype.toggleFlatAccidental = function () {
 	processNotationKey("-", CursorNote);
-}
+};
 
 
 
@@ -1260,7 +1263,7 @@ MenuInterface.prototype.toggleFlatAccidental = function () {
 
 MenuInterface.prototype.toggleForcedDisplay = function () {
 	processNotationKey("X", CursorNote);
-}
+};
 
 
 
@@ -1271,7 +1274,7 @@ MenuInterface.prototype.toggleForcedDisplay = function () {
 
 MenuInterface.prototype.toggleStaccato = function () {
 	processNotationKey("'", CursorNote);
-}
+};
 
 
 
@@ -1282,7 +1285,7 @@ MenuInterface.prototype.toggleStaccato = function () {
 
 MenuInterface.prototype.toggleMinorLowerMordent = function () {
 	processNotationKey("m", CursorNote);
-}
+};
 
 
 
@@ -1293,7 +1296,7 @@ MenuInterface.prototype.toggleMinorLowerMordent = function () {
 
 MenuInterface.prototype.toggleMajorLowerMordent = function () {
 	processNotationKey("M", CursorNote);
-}
+};
 
 
 
@@ -1304,7 +1307,7 @@ MenuInterface.prototype.toggleMajorLowerMordent = function () {
 
 MenuInterface.prototype.toggleMinorUpperMordent = function () {
 	processNotationKey("w", CursorNote);
-}
+};
 
 
 
@@ -1315,7 +1318,7 @@ MenuInterface.prototype.toggleMinorUpperMordent = function () {
 
 MenuInterface.prototype.toggleMajorUpperMordent = function () {
 	processNotationKey("W", CursorNote);
-}
+};
 
 
 
@@ -1326,7 +1329,7 @@ MenuInterface.prototype.toggleMajorUpperMordent = function () {
 
 MenuInterface.prototype.toggleFermata = function () {
 	processNotationKey(";", CursorNote);
-}
+};
 
 
 
@@ -1337,7 +1340,7 @@ MenuInterface.prototype.toggleFermata = function () {
 
 MenuInterface.prototype.toggleArpeggio = function () {
 	processNotationKey(":", CursorNote);
-}
+};
 
 
 
@@ -1348,7 +1351,7 @@ MenuInterface.prototype.toggleArpeggio = function () {
 
 MenuInterface.prototype.toggleAccent = function () {
 	processNotationKey("^", CursorNote);
-}
+};
 
 
 
@@ -1359,7 +1362,7 @@ MenuInterface.prototype.toggleAccent = function () {
 
 MenuInterface.prototype.toggleMarcato = function () {
 	processNotationKey("^^", CursorNote);
-}
+};
 
 
 
@@ -1370,7 +1373,7 @@ MenuInterface.prototype.toggleMarcato = function () {
 
 MenuInterface.prototype.toggleStaccatissimo = function () {
 	processNotationKey("`", CursorNote);
-}
+};
 
 
 
@@ -1381,7 +1384,7 @@ MenuInterface.prototype.toggleStaccatissimo = function () {
 
 MenuInterface.prototype.toggleTenuto = function () {
 	processNotationKey("~", CursorNote);
-}
+};
 
 
 
@@ -1392,7 +1395,7 @@ MenuInterface.prototype.toggleTenuto = function () {
 
 MenuInterface.prototype.toggleMajorTrill = function () {
 	processNotationKey("T", CursorNote);
-}
+};
 
 
 
@@ -1403,8 +1406,7 @@ MenuInterface.prototype.toggleMajorTrill = function () {
 
 MenuInterface.prototype.toggleMinorTrill = function () {
 	processNotationKey("t", CursorNote);
-}
-
+};
 
 
 
@@ -1415,8 +1417,7 @@ MenuInterface.prototype.toggleMinorTrill = function () {
 
 MenuInterface.prototype.forceSlurAbove = function () {
 	processNotationKey("a", CursorNote);
-}
-
+};
 
 
 
@@ -1427,7 +1428,7 @@ MenuInterface.prototype.forceSlurAbove = function () {
 
 MenuInterface.prototype.forceSlurBelow = function () {
 	processNotationKey("b", CursorNote);
-}
+};
 
 
 
@@ -1438,7 +1439,7 @@ MenuInterface.prototype.forceSlurBelow = function () {
 
 MenuInterface.prototype.removeSlurOrientation = function () {
 	processNotationKey("c", CursorNote);
-}
+};
 
 
 
@@ -1449,8 +1450,7 @@ MenuInterface.prototype.removeSlurOrientation = function () {
 
 MenuInterface.prototype.deleteSlur = function () {
 	processNotationKey("D", CursorNote);
-}
-
+};
 
 
 
@@ -1461,7 +1461,7 @@ MenuInterface.prototype.deleteSlur = function () {
 
 MenuInterface.prototype.forceBeamAbove = function () {
 	processNotationKey("a", CursorNote);
-}
+};
 
 
 
@@ -1473,7 +1473,7 @@ MenuInterface.prototype.forceBeamAbove = function () {
 
 MenuInterface.prototype.forceBeamBelow = function () {
 	processNotationKey("b", CursorNote);
-}
+};
 
 
 
@@ -1484,7 +1484,7 @@ MenuInterface.prototype.forceBeamBelow = function () {
 
 MenuInterface.prototype.removeBeamOrientation = function () {
 	processNotationKey("c", CursorNote);
-}
+};
 
 
 
@@ -1495,8 +1495,7 @@ MenuInterface.prototype.removeBeamOrientation = function () {
 
 MenuInterface.prototype.forceTieAbove = function () {
 	processNotationKey("a", CursorNote);
-}
-
+};
 
 
 
@@ -1507,7 +1506,7 @@ MenuInterface.prototype.forceTieAbove = function () {
 
 MenuInterface.prototype.forceTieBelow = function () {
 	processNotationKey("b", CursorNote);
-}
+};
 
 
 
@@ -1518,7 +1517,7 @@ MenuInterface.prototype.forceTieBelow = function () {
 
 MenuInterface.prototype.removeTieOrientation = function () {
 	processNotationKey("c", CursorNote);
-}
+};
 
 
 
@@ -1529,7 +1528,7 @@ MenuInterface.prototype.removeTieOrientation = function () {
 
 MenuInterface.prototype.breakBeamAfterNote = function () {
 	processNotationKey("J", CursorNote);
-}
+};
 
 
 
@@ -1540,7 +1539,7 @@ MenuInterface.prototype.breakBeamAfterNote = function () {
 
 MenuInterface.prototype.breakBeamBeforeNote = function () {
 	processNotationKey("L", CursorNote);
-}
+};
 
 
 
@@ -1551,7 +1550,7 @@ MenuInterface.prototype.breakBeamBeforeNote = function () {
 
 MenuInterface.prototype.makeRestInvisible = function () {
 	processNotationKey("y", CursorNote);
-}
+};
 
 
 
@@ -1563,7 +1562,7 @@ MenuInterface.prototype.makeRestInvisible = function () {
 
 MenuInterface.prototype.togglePedalDown = function () {
 	processNotationKey("p", CursorNote);
-}
+};
 
 
 
@@ -1574,7 +1573,7 @@ MenuInterface.prototype.togglePedalDown = function () {
 
 MenuInterface.prototype.togglePedalUp = function () {
 	processNotationKey("P", CursorNote);
-}
+};
 
 
 
@@ -1585,7 +1584,7 @@ MenuInterface.prototype.togglePedalUp = function () {
 
 MenuInterface.prototype.togglePedalUp = function () {
 	processNotationKey("P", CursorNote);
-}
+};
 
 
 
@@ -1596,7 +1595,7 @@ MenuInterface.prototype.togglePedalUp = function () {
 
 MenuInterface.prototype.toggleGraceNoteStyle = function () {
 	processNotationKey("q", CursorNote);
-}
+};
 
 
 
@@ -1607,7 +1606,7 @@ MenuInterface.prototype.toggleGraceNoteStyle = function () {
 
 MenuInterface.prototype.toggleAtMark = function () {
 	processNotationKey("@", CursorNote);
-}
+};
 
 
 
@@ -1618,7 +1617,7 @@ MenuInterface.prototype.toggleAtMark = function () {
 
 MenuInterface.prototype.addSlur = function (number) {
 	if ((number < 10) && (number > 1)) {
-		var event = {};
+		let event = {};
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
@@ -1642,7 +1641,7 @@ MenuInterface.prototype.addSlur = function (number) {
 	}
 
 	processNotationKey("s", CursorNote);
-}
+};
 
 
 //////////////////////////////
@@ -1652,7 +1651,7 @@ MenuInterface.prototype.addSlur = function (number) {
 
 MenuInterface.prototype.nextHarmonicNote = function () {
 	goUpHarmonically(CursorNote);
-}
+};
 
 
 
@@ -1663,7 +1662,7 @@ MenuInterface.prototype.nextHarmonicNote = function () {
 
 MenuInterface.prototype.previousHarmonicNote = function () {
 	goDownHarmonically(CursorNote);
-}
+};
 
 
 
@@ -1674,7 +1673,7 @@ MenuInterface.prototype.previousHarmonicNote = function () {
 
 MenuInterface.prototype.nextMelodicNote = function () {
 	goToNextNoteOrRest(CursorNote.id);
-}
+};
 
 
 
@@ -1685,7 +1684,7 @@ MenuInterface.prototype.nextMelodicNote = function () {
 
 MenuInterface.prototype.previousMelodicNote = function () {
 	goToPreviousNoteOrRest(CursorNote.id);
-}
+};
 
 
 
@@ -1696,7 +1695,7 @@ MenuInterface.prototype.previousMelodicNote = function () {
 
 MenuInterface.prototype.pitchDownStep = function (number) {
 	if ((number < 10) && (number > 1)) {
-		var event = {};
+		let event = {};
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
@@ -1719,7 +1718,7 @@ MenuInterface.prototype.pitchDownStep = function (number) {
 		processInterfaceKeyCommand(event);
 	}
 	processNotationKey("transpose-down-step", CursorNote);
-}
+};
 
 
 
@@ -1730,7 +1729,7 @@ MenuInterface.prototype.pitchDownStep = function (number) {
 
 MenuInterface.prototype.pitchUpStep = function (number) {
 	if ((number < 10) && (number > 1)) {
-		var event = {};
+		let event = {};
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
@@ -1753,7 +1752,7 @@ MenuInterface.prototype.pitchUpStep = function (number) {
 		processInterfaceKeyCommand(event);
 	}
 	processNotationKey("transpose-up-step", CursorNote);
-}
+};
 
 
 
@@ -1764,7 +1763,7 @@ MenuInterface.prototype.pitchUpStep = function (number) {
 
 MenuInterface.prototype.pitchUpOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
-		var event = {};
+		let event = {};
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
@@ -1787,7 +1786,7 @@ MenuInterface.prototype.pitchUpOctave = function (number) {
 		processInterfaceKeyCommand(event);
 	}
 	processNotationKey("transpose-up-octave", CursorNote);
-}
+};
 
 
 
@@ -1798,7 +1797,7 @@ MenuInterface.prototype.pitchUpOctave = function (number) {
 
 MenuInterface.prototype.pitchDownOctave = function (number) {
 	if ((number < 10) && (number > 1)) {
-		var event = {};
+		let event = {};
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
@@ -1821,7 +1820,7 @@ MenuInterface.prototype.pitchDownOctave = function (number) {
 		processInterfaceKeyCommand(event);
 	}
 	processNotationKey("transpose-down-octave", CursorNote);
-}
+};
 
 
 
@@ -1834,7 +1833,7 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 	if (number < 0) {
 		if ((number < 10) && (number > 1)) {
 			number = -number;
-			var event = {};
+			let event = {};
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
@@ -1859,7 +1858,7 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 		processNotationKey("leftEndMoveBack", CursorNote);
 	} else {
 		if ((number < 10) && (number > 1)) {
-			var event = {};
+			let event = {};
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
@@ -1883,7 +1882,7 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 		}
 		processNotationKey("leftEndMoveForward", CursorNote);
 	}
-}
+};
 
 
 
@@ -1896,7 +1895,7 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 	if (number < 0) {
 		number = -number;
 		if ((number < 10) && (number > 1)) {
-			var event = {};
+			let event = {};
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
@@ -1921,7 +1920,7 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 		processNotationKey("rightEndMoveBack", CursorNote);
 	} else {
 		if ((number < 10) && (number > 1)) {
-			var event = {};
+			let event = {};
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
@@ -1945,7 +1944,7 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 		}
 		processNotationKey("rightEndMoveForward", CursorNote);
 	}
-}
+};
 
 
 
@@ -1969,7 +1968,7 @@ MenuInterface.prototype.adjustNotationScale = function (event, number) {
 	localStorage.SCALE = SCALE;
 
 	displayNotation();
-}
+};
 
 
 
@@ -1982,14 +1981,14 @@ MenuInterface.prototype.setLanguage = function (lang) {
 	LANGUAGE = lang;
 
 	// Use handlebars to generate HTML code for menu.
-	var tsource = document.querySelector("#template-menu").textContent;
-	var menuTemplate = Handlebars.compile(tsource);
-	var output = menuTemplate(MENUDATA);
-	var newmenuelement = document.querySelector("#menu-div");
+	let tsource = document.querySelector("#template-menu").textContent;
+	let menuTemplate = Handlebars.compile(tsource);
+	let output = menuTemplate(MENUDATA);
+	let newmenuelement = document.querySelector("#menu-div");
 	if (newmenuelement) {
 		newmenuelement.innerHTML = output;
 	}
-}
+};
 
 
 
@@ -2000,7 +1999,7 @@ MenuInterface.prototype.setLanguage = function (lang) {
 
 MenuInterface.prototype.saveCurrentLanguagePreference = function () {
 	localStorage["LANGUAGE"] = LANGUAGE;
-}
+};
 
 
 
@@ -2011,7 +2010,7 @@ MenuInterface.prototype.saveCurrentLanguagePreference = function () {
 
 MenuInterface.prototype.clearLanguagePreference = function () {
 	delete localStorage["LANGUAGE"];
-}
+};
 
 
 
@@ -2029,13 +2028,13 @@ MenuInterface.prototype.increaseTextFontSize = function (event) {
 			INPUT_FONT_SIZE = 3.0;
 		}
 	}
-	var element = document.querySelector("#input");
+	let element = document.querySelector("#input");
 	if (!element) {
 		return;
 	}
 	element.style.fontSize = INPUT_FONT_SIZE + "rem";
 	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
-}
+};
 
 
 
@@ -2046,13 +2045,13 @@ MenuInterface.prototype.increaseTextFontSize = function (event) {
 
 MenuInterface.prototype.resetTextFontSize = function (event) {
 	INPUT_FONT_SIZE = 1.0;
-	var element = document.querySelector("#input");
+	let element = document.querySelector("#input");
 	if (!element) {
 		return;
 	}
 	element.style.fontSize = INPUT_FONT_SIZE + "rem";
 	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
-}
+};
 
 
 //////////////////////////////
@@ -2069,13 +2068,13 @@ MenuInterface.prototype.decreaseTextFontSize = function (event) {
 			INPUT_FONT_SIZE = 0.25;
 		}
 	}
-	var element = document.querySelector("#input");
+	let element = document.querySelector("#input");
 	if (!element) {
 		return;
 	}
 	element.style.fontSize = INPUT_FONT_SIZE + "rem";
 	localStorage.INPUT_FONT_SIZE = INPUT_FONT_SIZE;
-}
+};
 
 
 
@@ -2087,7 +2086,7 @@ MenuInterface.prototype.decreaseTextFontSize = function (event) {
 MenuInterface.prototype.lineBreaksOff = function () {
 	BREAKS = true;
 	toggleLineBreaks();
-}
+};
 
 
 
@@ -2099,7 +2098,7 @@ MenuInterface.prototype.lineBreaksOff = function () {
 MenuInterface.prototype.lineBreaksOn = function () {
 	BREAKS = false;
 	toggleLineBreaks();
-}
+};
 
 
 
@@ -2110,16 +2109,16 @@ MenuInterface.prototype.lineBreaksOn = function () {
 
 MenuInterface.prototype.singlePageView = function () {
 	PAGED = false;
-	var element = document.querySelector("#page-nav");
+	let element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "none";
 	}
-	var element2 = document.querySelector("#multi-page");
+	let element2 = document.querySelector("#multi-page");
 	if (element2) {
 		element2.style.display = "block";
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -2131,16 +2130,16 @@ MenuInterface.prototype.singlePageView = function () {
 MenuInterface.prototype.multiPageView = function () {
 	// return; // disabled until fix for issue https://github.com/rism-digital/verovio/issues/2034
 	PAGED = true;
-	var element = document.querySelector("#page-nav");
+	let element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "block";
 	}
-	var element2 = document.querySelector("#multi-page");
+	let element2 = document.querySelector("#multi-page");
 	if (element2) {
 		element2.style.display = "none";
 	}
 	displayNotation();
-}
+};
 
 
 
@@ -2154,13 +2153,12 @@ MenuInterface.prototype.startSplit = function (count) {
 		count = 32;
 	}
 	MenuInterface.prototype.removeSplits();
-	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
-	var position = EDITOR.getCursorPosition();
-	var output;
-	var counter = 0;
-	var adjust = 0;
-	var change = 0;
-	var i;
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
+	let counter = 0;
+	let adjust = 0;
+	let change = 0;
+	let i;
 	for (i=0; i<lines.length; i++) {
 		if (lines[i].match(/^=/)) {
 			counter++;
@@ -2177,14 +2175,14 @@ MenuInterface.prototype.startSplit = function (count) {
 	if (!change) {
 		return;
 	}
-	var output = "";
+	let output = "";
 	for (i=0; i<lines.length; i++) {
 		output += lines[i] + "\n";
 	}
 	EDITOR.setValue(output, -1);
 	position.row += adjust;
 	EDITOR.moveCursorToPosition(position);
-}
+};
 
 
 
@@ -2197,16 +2195,16 @@ MenuInterface.prototype.nextSplit = function (count) {
 	if (!count) {
 		count = 32;
 	}
-	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
-	var position = EDITOR.getCursorPosition();
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
 	if (lines.length == 0) {
 		return;
 	}
-	var i;
-	var adjust = 0;
-	var changed = 0;
-	var startpos = -1;
-	var counter = 0;
+	let i;
+	let adjust = 0;
+	let changed = 0;
+	let startpos = -1;
+	let counter = 0;
 	for (i=1; i<lines.length; i++) {
 		if (lines[i] === "!!Xignore") {
 			lines[i] = "XXX DELETE XXX";
@@ -2240,7 +2238,7 @@ MenuInterface.prototype.nextSplit = function (count) {
 		lines[0] = "!!ignore\n" + lines[0];
 		adjust++;
 	}
-	var output = "";
+	let output = "";
 	for (i=0; i<lines.length; i++) {
 		if (lines[i] === "XXX DELETE XXX") {
 			continue;
@@ -2250,7 +2248,7 @@ MenuInterface.prototype.nextSplit = function (count) {
 	EDITOR.setValue(output, -1);
 	position.row += adjust;
 	EDITOR.moveCursorToPosition(position);
-}
+};
 
 
 
@@ -2263,16 +2261,16 @@ MenuInterface.prototype.previousSplit = function (count) {
 	if (!count) {
 		count = 32;
 	}
-	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
-	var position = EDITOR.getCursorPosition();
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
 	if (lines.length == 0) {
 		return;
 	}
-	var i;
-	var adjust = 0;
-	var changed = 0;
-	var startpos = -1;
-	var counter = 0;
+	let i;
+	let adjust = 0;
+	let changed = 0;
+	let startpos = -1;
+	let counter = 0;
 	for (i=1; i<lines.length; i++) {
 		if (lines[i] === "!!Xignore") {
 			lines[i] = "!!ignore";
@@ -2304,7 +2302,7 @@ MenuInterface.prototype.previousSplit = function (count) {
 		lines[0] = "!!ignore\n" + lines[0];
 		adjust++;
 	}
-	var output = "";
+	let output = "";
 	for (i=0; i<lines.length; i++) {
 		if (lines[i] === "XXX DELETE XXX") {
 			continue;
@@ -2314,7 +2312,7 @@ MenuInterface.prototype.previousSplit = function (count) {
 	EDITOR.setValue(output, -1);
 	position.row += adjust;
 	EDITOR.moveCursorToPosition(position);
-}
+};
 
 
 
@@ -2324,13 +2322,13 @@ MenuInterface.prototype.previousSplit = function (count) {
 //
 
 MenuInterface.prototype.removeSplits = function () {
-	var lines = EDITOR.getValue().match(/[^\r\n]+/g);
-	var output = "";
-	var position = EDITOR.getCursorPosition();
-	var row = position.row;
-	var col = position.column;
-	var change = 0;
-	for (var i=0; i<lines.length; i++) {
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let output = "";
+	let position = EDITOR.getCursorPosition();
+	let row = position.row;
+	let col = position.column;
+	let change = 0;
+	for (let i=0; i<lines.length; i++) {
 		if (lines[i] === "!!ignore") {
 			if (i < row) {
 				row--;
@@ -2352,8 +2350,7 @@ MenuInterface.prototype.removeSplits = function () {
 		position.row = row;
 		EDITOR.moveCursorToPosition(position);
 	}
-}
-
+};
 
 
 
@@ -2364,7 +2361,7 @@ MenuInterface.prototype.removeSplits = function () {
 
 MenuInterface.prototype.undo = function () {
 	EDITOR.undo();
-}
+};
 
 
 
@@ -2375,7 +2372,7 @@ MenuInterface.prototype.undo = function () {
 
 MenuInterface.prototype.chooseToolbarMenu = function () {
 	chooseToolbarMenu();
-}
+};
 
 
 
@@ -2386,7 +2383,7 @@ MenuInterface.prototype.chooseToolbarMenu = function () {
 
 MenuInterface.prototype.convertToHumdrum = function () {
 	replaceEditorContentWithHumdrumFile();
-}
+};
 
 
 
@@ -2398,7 +2395,7 @@ MenuInterface.prototype.convertToHumdrum = function () {
 
 MenuInterface.prototype.trimTabsInEditor = function () {
 	trimTabsInEditor();
-}
+};
 
 
 
@@ -2408,10 +2405,10 @@ MenuInterface.prototype.trimTabsInEditor = function () {
 //
 
 MenuInterface.prototype.mimeEncode = function () {
-	var text = getTextFromEditorNoCsvProcessing();
-	var lines = btoa(text).match(/.{1,80}/g);
-	var output = "";
-	for (var i=0; i<lines.length; i++) {
+	let text = getTextFromEditorNoCsvProcessing();
+	let lines = btoa(text).match(/.{1,80}/g);
+	let output = "";
+	for (let i=0; i<lines.length; i++) {
 		if (i < lines.length - 1) {
 			output += lines[i] + "\n";
 		} else {
@@ -2419,7 +2416,7 @@ MenuInterface.prototype.mimeEncode = function () {
 		}
 	}
 	EDITOR.setValue(output, -1);
-}
+};
 
 
 
@@ -2429,10 +2426,10 @@ MenuInterface.prototype.mimeEncode = function () {
 //
 
 MenuInterface.prototype.mimeDecode = function () {
-	var text = getTextFromEditorNoCsvProcessing();
+	let text = getTextFromEditorNoCsvProcessing();
 	// text is already decoded by getTextFromEditor().
 	EDITOR.setValue(text, -1);
-}
+};
 
 
 
@@ -2443,7 +2440,7 @@ MenuInterface.prototype.mimeDecode = function () {
 
 MenuInterface.prototype.toggleCsvTsv = function () {
 	toggleHumdrumCsvTsv();
-}
+};
 
 
 
@@ -2456,5 +2453,106 @@ MenuInterface.prototype.convertToMusicXmlAndSave = function () {
 	convertToMusicXmlAndSave();
 }
 
+
+
+//////////////////////////////
+//
+// MenuInterface::selectLandscapePdfOrientation --
+//
+
+MenuInterface.prototype.selectLandscapePdfOrientation = function () {
+	PDFOPTIONS.orientation = "landscape";
+	localStorage.PDFOPTIONS_orientation = "landscape";
+	this.highlightSelectedPdfOrientation();
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::selectPortraitPdfOrientation --
+//
+
+MenuInterface.prototype.selectPortraitPdfOrientation = function () {
+	PDFOPTIONS.orientation = "portrait";
+	localStorage.PDFOPTIONS_orientation = "portrait";
+	this.highlightSelectedPdfOrientation();
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::highlightSelectedPdfOrientation --
+//
+
+MenuInterface.prototype.highlightSelectedPdfOrientation = function () {
+	let landscapeElement = document.querySelector("#menu_option-orientation-landscape");
+	let portraitElement = document.querySelector("#menu_option-orientation-portrait");
+	if (PDFOPTIONS.orientation === "landscape") {
+		landscapeElement.classList.add("menu-highlight");
+		portraitElement.classList.remove("menu-highlight");
+	} else {
+		landscapeElement.classList.remove("menu-highlight");
+		portraitElement.classList.add("menu-highlight");
+	}
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::setA4SizedPdf --
+//
+
+MenuInterface.prototype.setA4SizedPdf = function () {
+	PDFOPTIONS.format = "A4";
+	localStorage.PDFOPTIONS_format = "A4";
+	this.highlightSelectedPdfFormat();
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::setLetterSizedPdf --
+//
+
+MenuInterface.prototype.setLetterSizedPdf = function () {
+	PDFOPTIONS.format = "letter";
+	localStorage.PDFOPTIONS_format = "letter";
+	this.highlightSelectedPdfFormat();
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::highlightSelectedPdfFormat --
+//
+
+MenuInterface.prototype.highlightSelectedPdfFormat = function () {
+	let a4Element = document.querySelector("#menu_option-format-a4");
+	let letterElement = document.querySelector("#menu_option-format-letter");
+	if (PDFOPTIONS.format === "A4") {
+		a4Element.classList.add("menu-highlight");
+		letterElement.classList.remove("menu-highlight");
+	} else {
+		a4Element.classList.remove("menu-highlight");
+		letterElement.classList.add("menu-highlight");
+	}
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::highlightOptions --
+//
+
+MenuInterface.prototype.highlightOptions = function () {
+	this.highlightSelectedPdfFormat();
+	this.highlightSelectedPdfOrientation();
+};
 
 

@@ -15,6 +15,14 @@ let OPTIONS = {};
 // PDFOPTIONS: debugging parameter to see what options were used
 // for the last call to the verovio toolkit when creating PDF files.
 let PDFOPTIONS = {};
+PDFOPTIONS.pageMarginTop    = 100;
+PDFOPTIONS.pageMarginBottom = 100;
+PDFOPTIONS.pageMarginLeft   = 50;
+PDFOPTIONS.pageMarginRight  = 50;
+PDFOPTIONS.pageMarginRight  = 95;
+
+PDFOPTIONS.format = localStorage.PDFOPTIONS_format ? localStorage.PDFOPTIONS_format : "letter";
+PDFOPTIONS.orientation = localStorage.PDFOPTIONS_orientation ? localStorage.PDFOPTIONS_orientation : "portrait";
 
 // var turl = "https://raw.githubusercontent.com/craigsapp/mozart-piano-sonatas/master/index.hmd";
 

@@ -31,6 +31,9 @@
 // MusicXML related functions
 {% include vhv-scripts/musicxml/main.js %}
 
+// PDF related functions
+{% include vhv-scripts/pdf/main.js %}
+
 // Functions related to saving files:
 {% include vhv-scripts/saving/main.js %}
 

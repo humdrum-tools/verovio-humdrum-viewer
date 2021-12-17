@@ -86,47 +86,10 @@
 @@END: ENTRY
 
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Save as PDF
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:			Sla op als PDF
-@NO:
-@PL:			Pobierz PDF
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.createPdf()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-t
+@DEFAULT:		PDF
 @AR:
 @BE:
 @CA:
@@ -160,91 +123,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-T
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Save view as PDF
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:			Sla beeld op als PDF
-@NO:
-@PL:			Pobierz aktualny widok PDF
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.createPdfPage()
 @@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-T
-@AR:
-@BE:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-t
-@@END: LINK
-@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/file-pdf.aton %}
+@@END: SUBMENU
 @@END: ENTRY
 
 

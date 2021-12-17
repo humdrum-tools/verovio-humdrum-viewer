@@ -66,8 +66,7 @@ single-entry example:
 	<li>
 		<table class="menu">
 			<tr>
-				<td>
-
+				<td {{#if ID}}id="{{{ID}}}"{{/if}}>
 {{{printObject "PRINTING A MENU ITEM" this}}}
 					{{#if TEXT}}
 						{{#if SUBMENU}}

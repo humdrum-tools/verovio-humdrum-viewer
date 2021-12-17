@@ -19,6 +19,10 @@ nav.navbar {
 }
 
 
+.menu-highlight {
+	background: gold;
+}
+
 #primary-nav a.dropdown-toggle {
 	color: #cccccc !important;
 	margin-top: 5px;
