@@ -49,10 +49,48 @@ function getIiifBoundingBoxInfo(path) {
 		return;
 	}
 
+	let isManipulator = function (line) {
+		let tokens = line.split(/\t+/);
+		let output = true;
+		let empty = true;
+		for (let i=0; i<tokens.length; i++) {
+			if (tokens[i] === "*") { continue; }
+			empty = 0;
+			if (tokens[i].substring(0, 2) === "**") { continue; }
+			if (tokens[i] === "*-") { continue; }
+			if (tokens[i] === "*v") { continue; }
+			if (tokens[i] === "*^") { continue; }
+			// not dealing with *+
+			return false;
+		}
+		if (empty) {
+			return false;
+		}
+		return true;
+	};
+
+	let getNewFieldIndex = function (ofield, line) {
+		let tokens = line.split(/\t+/);
+		let adjust = [];
+		for (let i=0; i<tokens.length; i++) {
+			adjust[i] = 0;
+		}
+		let ladjust = 0;
+		for (let i=1; i<tokens.length; i++) {
+			if ((tokens[i] === "*v") && (tokens[i-1] === "*v")) {
+				ladjust++;
+			} else if (tokens[i-1] === "*^") {
+				ladjust--;
+			}
+			adjust[i] += ladjust;
+		}
+		return ofield + adjust[ofield];
+	};
+
 	// zero-index line and field
 	line--;
 	field--;
-console.warn("LINE", line, "FIELD", field);
+	let cfield = field; // current field;
 
 	let humdrum = getTextFromEditor();
 	let lines = humdrum.split(/\r?\n/);
@@ -69,18 +107,23 @@ console.warn("LINE", line, "FIELD", field);
 		if (!lines[i].match(/^\*/)) {
 			continue;
 		}
+		let ismanipulator = isManipulator(lines[i]);
+		if (ismanipulator) {
+			cfield = getNewFieldIndex(cfield, lines[i]);
+		}
+
 		let fields = lines[i].split(/\t+/);
-		let matches = fields[field].match(/^\*xywh-([^:]+):(.*)$/);
+		let matches = fields[cfield].match(/^\*xywh-([^:]+):(.*)$/);
 		if (matches) {
 			output.label = matches[1];
 			output.xywh = matches[2];
 			break;
 		}
-		matches = fields[field].match(/^\*xywh:(.*)$/);
+		matches = fields[cfield].match(/^\*xywh:(.*)$/);
 		if (matches) {
 			output.xywh = matches[1];
 		}
-		matches = fields[field].match(/^\*iiif:([^:]+)/);
+		matches = fields[cfield].match(/^\*iiif:([^:]+)/);
 		if (matches) {
 			output.label = matches[1];
 			break;
