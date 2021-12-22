@@ -84,7 +84,12 @@ function getIiifBoundingBoxInfo(path) {
 			}
 			adjust[i] += ladjust;
 		}
-		return ofield + adjust[ofield];
+		for (let j=0; j<adjust.length; j++) {
+			if (j - adjust[j] == ofield) {
+				return j;
+			}
+		}
+		return -100;
 	};
 
 	// zero-index line and field
