@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force stem above
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force stem below
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Clear stem direction
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 1
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		1 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -89,7 +87,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 2
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -127,7 +124,6 @@
 @TYPE:			shortcut
 @DEFAULT:		2 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -169,7 +165,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 3
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -207,7 +202,6 @@
 @TYPE:			shortcut
 @DEFAULT:		3 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -249,7 +243,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 4
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -287,7 +280,6 @@
 @TYPE:			shortcut
 @DEFAULT:		4 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -329,7 +321,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 5
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -367,7 +358,6 @@
 @TYPE:			shortcut
 @DEFAULT:		5 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -409,7 +399,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 6
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -447,7 +436,6 @@
 @TYPE:			shortcut
 @DEFAULT:		6 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -489,7 +477,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 7
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -527,7 +514,6 @@
 @TYPE:			shortcut
 @DEFAULT:		7 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -569,7 +555,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 8
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -607,7 +592,6 @@
 @TYPE:			shortcut
 @DEFAULT:		8 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -649,7 +633,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to buffer 9
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -687,7 +670,6 @@
 @TYPE:			shortcut
 @DEFAULT:		9 alt-S
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

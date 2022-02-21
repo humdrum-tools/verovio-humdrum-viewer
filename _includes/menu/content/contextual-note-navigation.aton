@@ -8,7 +8,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Next melodic note
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -55,7 +54,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Previous melodic note
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -102,7 +100,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Next harmonic note
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -149,7 +146,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Previous harmonic note
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Unfocus beam
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -58,7 +57,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force beam above
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -105,7 +103,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force beam below
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -152,7 +149,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Clear beam direction
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

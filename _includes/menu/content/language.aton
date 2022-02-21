@@ -16,15 +16,6 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@FORCE:			BE
-@DEFAULT:		Belarusian
-@BE:			Беларуская
-@ACTION:		MENU.setLanguage('BE')
-@@END: TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
 @FORCE:			CA
 @DEFAULT:		Catalan
 @CA:			Català
@@ -169,6 +160,15 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
+@FORCE:			UK
+@DEFAULT:		Ukranian
+@UK:			Український
+@ACTION:		MENU.setLanguage('UK')
+@@END: TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
 @FORCE:			ZH-simplified
 @DEFAULT:		Chinese (simplified characters)
 @ZH-simplified:		中文（简体字）
@@ -189,7 +189,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save language preference
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -229,7 +228,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Clear language preference
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle text display
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-y
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -89,7 +87,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase font size
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -136,7 +133,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease font size
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -183,7 +179,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle vi/plain text editor mode
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -221,7 +216,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-v
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -263,7 +257,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle CSV/TSV Humdrum display
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

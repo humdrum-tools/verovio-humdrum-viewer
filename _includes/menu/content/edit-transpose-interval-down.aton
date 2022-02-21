@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a minor second
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a major second
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a minor third
 @AR:
-@BE:
 @CA:
 @CS:
 @CS:
@@ -151,7 +148,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a major third
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -198,7 +194,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a perfect fourth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -245,7 +240,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down an augmented fourth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -292,7 +286,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down an diminished fifth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -339,7 +332,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a perfect fifth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -386,7 +378,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a minor sixth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -433,7 +424,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a major sixth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -480,7 +470,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a minor seventh
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -527,7 +516,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a major seventh
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -574,7 +562,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a perfect octave
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

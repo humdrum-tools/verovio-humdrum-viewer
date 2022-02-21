@@ -5,7 +5,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Beam
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -48,7 +47,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Note
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -91,7 +89,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Rest
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -134,7 +131,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Slur
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -177,7 +173,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tie
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

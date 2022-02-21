@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Beam by meter
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Split beams by lyrics
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove beams
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

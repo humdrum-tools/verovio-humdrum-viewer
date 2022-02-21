@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Clear text editor
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-e
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -89,7 +87,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Undo last change
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -127,7 +124,6 @@
 @TYPE:			shortcut
 @DEFAULT:		ctrl-z
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -169,7 +165,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Compile embedded filters
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -207,7 +202,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-c
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -249,7 +243,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove trailing tabs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -287,7 +280,6 @@
 @TYPE:			
 @DEFAULT:		
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -329,7 +321,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Beams
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -378,7 +369,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Chords
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -427,7 +417,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Data
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -476,7 +465,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Ornaments
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -525,7 +513,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		System
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -574,7 +561,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Stems
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -623,7 +609,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Text
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -672,7 +657,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Transpose by key (if data contains key)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -721,7 +705,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Transpose by up interval
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -770,7 +753,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Transpose down by interval
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -819,7 +801,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Import Formatting
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -869,7 +850,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Convert to Humdrum
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -907,7 +887,6 @@
 @TYPE:			link
 @DEFAULT:		info
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

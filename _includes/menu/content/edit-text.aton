@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add lyric verse to top staff
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -57,7 +56,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove lyric text
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -105,7 +103,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Split beams by lyrics
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

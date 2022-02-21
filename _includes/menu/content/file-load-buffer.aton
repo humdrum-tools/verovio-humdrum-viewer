@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 1
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		1 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -89,7 +87,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 2
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -127,7 +124,6 @@
 @TYPE:			shortcut
 @DEFAULT:		2 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -171,7 +167,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 3
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -209,7 +204,6 @@
 @TYPE:			shortcut
 @DEFAULT:		3 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -251,7 +245,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 4
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -289,7 +282,6 @@
 @TYPE:			shortcut
 @DEFAULT:		4 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -331,7 +323,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 5
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -369,7 +360,6 @@
 @TYPE:			shortcut
 @DEFAULT:		5 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -411,7 +401,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 6
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -449,7 +438,6 @@
 @TYPE:			shortcut
 @DEFAULT:		6 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -491,7 +479,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 7
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -529,7 +516,6 @@
 @TYPE:			shortcut
 @DEFAULT:		7 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -571,7 +557,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 8
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -609,7 +594,6 @@
 @TYPE:			shortcut
 @DEFAULT:		8 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -651,7 +635,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from buffer 9
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -689,7 +672,6 @@
 @TYPE:			shortcut
 @DEFAULT:		9 alt-R
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -731,7 +713,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load from autosave buffer
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

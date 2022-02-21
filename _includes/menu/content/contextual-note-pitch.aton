@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Up a step
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a step
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Up an octave
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down an octave
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -197,7 +193,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Up a fifth
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -244,7 +239,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Down a third
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

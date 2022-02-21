@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Start splitting (32 measure splits)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -57,7 +56,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Next split
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -105,7 +103,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Previous split
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -153,7 +150,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove splits
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

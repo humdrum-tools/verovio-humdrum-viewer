@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Auto tab width
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase tab width
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -94,7 +92,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-&gt;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -136,7 +133,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease tab width
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -174,7 +170,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-&lt;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -216,7 +211,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add spacing tabs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -263,7 +257,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove spacing tabs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

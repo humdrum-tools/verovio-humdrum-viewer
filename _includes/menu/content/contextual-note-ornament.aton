@@ -8,7 +8,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle minor trill
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -57,7 +56,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle major trill
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -104,7 +102,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle minor lower mordent
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -151,7 +148,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle major lower mordent
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -198,7 +194,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle minor upper mordent
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -245,7 +240,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle major upper mordent
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

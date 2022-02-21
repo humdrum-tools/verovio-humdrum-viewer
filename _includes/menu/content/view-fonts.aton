@@ -4,7 +4,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Bravura
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -51,7 +50,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Gootville
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -98,7 +96,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Leipzig
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -145,7 +142,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Leland
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -194,7 +190,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Petaluma
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

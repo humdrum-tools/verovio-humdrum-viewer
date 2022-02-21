@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Make notation larger
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Make notation smaller
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase horizontal notation spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -141,7 +138,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-w
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -183,7 +179,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease horizontal notation spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -221,7 +216,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-W
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -263,7 +257,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase vertical staff spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -310,7 +303,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease vertical staff spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -357,7 +349,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase vertical system spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -404,7 +395,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease vertical system spacing
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -451,7 +441,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Ignore encoded line breaks
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -498,7 +487,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Display with encoded line breaks
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -545,7 +533,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Increase text size
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -592,7 +579,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Decrease text size
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

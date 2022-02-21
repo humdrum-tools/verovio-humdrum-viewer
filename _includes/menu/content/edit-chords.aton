@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Sort chords highest note first
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Sort chords lowest note first
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Extract first note in chord
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Extract last note in chord
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -197,7 +193,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Highest note in chord
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -244,7 +239,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Lowest note in chord
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -291,7 +285,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Compress chords
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -338,7 +331,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Expand chords
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -385,7 +377,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Bass/melody chord notes (for grand staff scores)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

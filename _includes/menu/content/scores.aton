@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Bach 370 chorales
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -59,7 +58,6 @@
 @ACTION: 		MENU.loadRepertory('chorales', 'satb2gs')
 @DEFAULT:		<i>on grand-staff</i>
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -97,7 +95,6 @@
 @ACTION: 		MENU.loadRepertory('chorales', 'transpose -k c | satb2gs')
 @DEFAULT:		transposed to C
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -137,7 +134,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Bach WTC fugues
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -182,7 +178,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Beethoven piano sonatas
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -227,7 +222,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Beethoven string quartets
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -272,7 +266,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Chopin First Editions
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -321,7 +314,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Chopin mazurkas
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -367,7 +359,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Gaspar Online Edition
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -416,7 +407,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Haydn keyboard sonatas
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -461,7 +451,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Hummel preludes, op. 67
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -506,7 +495,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Joplin
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -551,7 +539,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mozart piano sonatas
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -597,7 +584,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mozart, 100 Contradances, K<sup>6</sup> Anh. C30.01
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -635,7 +621,6 @@
 @@BEGIN: RIGHT_TEXT
 @DEFAULT:		<i>measures</i>
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -677,7 +662,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Scarlatti sonatas
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -724,7 +708,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Harmonized songs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -776,7 +759,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Josquin Research Project
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -828,7 +810,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tasso in Music Edition
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -879,7 +860,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Polyrhythm Project
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

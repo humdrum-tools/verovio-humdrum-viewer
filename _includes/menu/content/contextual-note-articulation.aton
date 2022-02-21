@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle staccato
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle staccatissimo
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle tenuto
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle accent
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -197,7 +193,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle marcato
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -246,7 +241,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle fermata
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -293,7 +287,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle arpeggio
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

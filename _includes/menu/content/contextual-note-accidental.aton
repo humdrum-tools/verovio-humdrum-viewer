@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle natural accidental
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle sharp accidental
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -94,7 +92,6 @@
 @TYPE:			shortcut
 @DEFAULT:		#
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -136,7 +133,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle flat accidental
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -174,7 +170,6 @@
 @TYPE:			shortcut
 @DEFAULT:		-
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -216,7 +211,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle forced display of accidental
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -263,7 +257,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle editorial accidental
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

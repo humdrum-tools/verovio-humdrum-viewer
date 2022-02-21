@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Insert local comment line (above cursor)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-L
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -90,7 +88,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Insert interpretation line (above cursor)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -128,7 +125,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-I
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -171,7 +167,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Insert null data line (above cursor)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -209,7 +204,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-D
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -252,7 +246,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Insert barline (above cursor)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -290,7 +283,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-B
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -333,7 +325,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove null lines
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -381,7 +372,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove null data lines
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -429,7 +419,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove null interpretation lines
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -477,7 +466,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove null local comment lines
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Single-page view
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Multi-page view
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Navigation
 @AR:			التنقل
-@BE:			Рух
 @CA:			Navegació
 @CS:
 @DE:			Navigation
@@ -152,7 +149,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Notation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -201,7 +197,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tabs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -250,7 +245,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Splits
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -299,7 +293,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Music Font
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -348,7 +341,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Text editor
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -397,7 +389,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle layer highlighting
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -435,7 +426,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-l
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -479,7 +469,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle VHV logo
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -517,7 +506,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-b
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -559,7 +547,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		View next toolbar menu
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -597,7 +584,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-n
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -639,7 +625,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle toolbar visibility
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -677,7 +662,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-N
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -719,7 +703,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Freeze/unfreeze notation rendering 
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -757,7 +740,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-f
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -799,7 +781,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle original clefs
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -837,7 +818,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-o
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -879,7 +859,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Show source scan (when avail.)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -917,7 +896,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-p
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

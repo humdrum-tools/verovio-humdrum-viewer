@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save editor contents
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -47,7 +46,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-s
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -91,7 +89,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		PDF
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -135,7 +132,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save view as SVG
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -173,7 +169,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-g
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -216,7 +211,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save as HTML
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -254,7 +248,6 @@
 @TYPE:			
 @DEFAULT:		
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -296,7 +289,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save as MusicXML
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -334,7 +326,6 @@
 @TYPE:			
 @DEFAULT:		
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -377,7 +368,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Display MEI data
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -415,7 +405,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-m
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -458,7 +447,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Display Humdrum data
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -496,7 +484,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-h
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -539,7 +526,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save to local buffer
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -576,7 +562,6 @@
 @TYPE:			link
 @DEFAULT:		info
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -622,7 +607,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Load local buffer
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -672,7 +656,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Reload data from source
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -710,7 +693,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-r
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -753,7 +735,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Convert to Humdrum
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -791,7 +772,6 @@
 @TYPE:			link
 @DEFAULT:		info
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -834,7 +814,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Toggle CSV/TSV
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -872,7 +851,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-u
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -914,7 +892,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		MIME encode
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -952,7 +929,6 @@
 @TYPE:			link
 @DEFAULT:		info
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -995,7 +971,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		MIME decode
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -1033,7 +1008,6 @@
 @TYPE:			link
 @DEFAULT:		info
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

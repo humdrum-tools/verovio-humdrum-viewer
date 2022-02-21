@@ -13,7 +13,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Identify diatonic imitation between monophonic parts
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -62,7 +61,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Ignore duration when identifying imitation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

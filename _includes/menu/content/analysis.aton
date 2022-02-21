@@ -13,7 +13,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Imitation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -62,7 +61,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Melisma
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -111,7 +109,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Renaissance dissonance labels
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -160,7 +157,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Composite rhythm
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -211,7 +207,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Meter
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -10,7 +10,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save as PDF
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -48,7 +47,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-t
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -91,7 +89,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Save current view as PDF
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -129,7 +126,6 @@
 @TYPE:			shortcut
 @DEFAULT:		alt-T
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -174,7 +170,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Letter-sized paper
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -216,7 +211,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		A4-sized paper
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -258,7 +252,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Portrait orientation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -300,7 +293,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Landscape orientation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

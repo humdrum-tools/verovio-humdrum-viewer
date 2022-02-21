@@ -13,7 +13,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Dissonance labels
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -62,7 +61,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Color dissonant notes by metric position
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -8,7 +8,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Remove non-kern spines
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add staff above system
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add staff above system with hidden rests
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add staff below system
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -197,7 +193,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Add staff below system with hidden rests
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

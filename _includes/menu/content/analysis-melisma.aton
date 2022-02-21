@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mark melismas (two notes or more per syllable)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -58,7 +57,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mark melismas (three notes or more per syllable)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -107,7 +105,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mark melismas (four notes or more per syllable)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -156,7 +153,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Mark melismas (five notes or more per syllable)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -206,7 +202,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Display note counts for each syllable
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to C
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to C&sharp;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to D&flat;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to D
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -197,7 +193,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to E&flat;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -244,7 +239,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to E
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -291,7 +285,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to F
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -338,7 +331,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to F&sharp;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -385,7 +377,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to G
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -432,7 +423,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to A&flat;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -479,7 +469,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to A
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -526,7 +515,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to B&flat;
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -573,7 +561,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Tonic to B
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		File
 @AR:			ملف
-@BE:			Файл
 @CA:			Dossier
 @CS:
 @DE:			Datei
@@ -52,7 +51,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		View
 @AR:			رأي
-@BE:			Выгляд
 @CA:			Vista
 @CS:
 @DE:			Ansicht
@@ -95,7 +93,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Edit
 @AR:			تصحيح
-@BE:			Рэдагаваць
 @CA:			Editar
 @CS:
 @DE:			Bearbeiten
@@ -142,7 +139,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Analysis
 @AR:			تحليل
-@BE:			Аналіз
 @CA:			Anàlisi
 @CS:
 @DE:			Analyse
@@ -185,7 +181,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Scores
 @AR:			ذخيرة
-@BE:			Рэпертуар
 @CA:			Repertori
 @CS:
 @DE:			Werke
@@ -228,7 +223,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Help
 @AR:			مساعدة
-@BE:			Дапамажыце
 @CA:			Ajuda
 @CS:
 @DE:			Hilfe

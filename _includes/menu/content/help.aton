@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Documentation
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -51,7 +50,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Getting started
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -93,7 +91,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Encoding tutorial
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -135,7 +132,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Online repertories
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -177,7 +173,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Filters
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -219,7 +214,6 @@
 @@BEGIN: TEXT
 @DEFAULT:	Embedded notation options
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

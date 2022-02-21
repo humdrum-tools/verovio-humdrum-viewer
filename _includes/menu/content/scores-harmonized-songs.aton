@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Barbershop quartets
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		&nbsp;&nbsp;&nbsp;Barbershop quartets (Grand staff)
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Deutscher Liderschatz
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -148,7 +145,6 @@
 @ACTION: 		MENU.loadRepertory('liederschatz1', 'extract -k3')
 @DEFAULT:		<i>vocal part</i>
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -185,7 +181,6 @@
 @ACTION: 		MENU.loadRepertory('liederschatz1', 'extract -k1-2')
 @DEFAULT:		<i>piano part</i>
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:

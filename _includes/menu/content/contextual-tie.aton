@@ -9,7 +9,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Unfocus slur
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -56,7 +55,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force tie above
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -103,7 +101,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Force tie below
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
@@ -150,7 +147,6 @@
 @@BEGIN: TEXT
 @DEFAULT:		Clear tie direction
 @AR:
-@BE:
 @CA:
 @CS:
 @DE:
