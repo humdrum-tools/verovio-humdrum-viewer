@@ -14,6 +14,8 @@ function verovioCalls() {
 		if (data.charAt(0) == "<") {
 			return true;
 		}
+		// Maybe filter out ESaC and MuseData here
+
 		var error = false,
 		// [20190613: Allow multiple tabs between spine fields]
 		// [20200914: Allow Windows newlines]
@@ -82,7 +84,16 @@ function verovioCalls() {
 	//
 
 	this.renderData = function (opts, data, page, force) {
-		if (!force) this.validate(data);
+		if (opts.inputFrom !== "musedata") {
+			// do not validate Musedata as Humdrum
+			// (maybe add other input formats here, or
+			// only allow validation of Humdrum data).
+			// XML formats are filtered out in this.validate()
+			// already.
+			if (!force) {
+				this.validate(data);
+			}
+		}
 		page = page || this.page;
 		if (page == 0) {
 			page = 1;

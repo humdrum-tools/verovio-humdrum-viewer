@@ -45,19 +45,33 @@ function displayNotation(page, force, restoreid) {
 	if (data.match(/Group memberships:/)) {
 		options.inputFrom = "musedata";
 	};
-	if (GLOBALFILTER) {
-		data += "\n!!!filter: " + GLOBALFILTER + "\n";
+
+	let prefix = "!!!";
+	if (options.inputFrom === "musedata") {
+		prefix = "@@@";
+	} else if (options.inputFrom === "esac") {
+		prefix = "";
+	} else if (options.inputFrom === "musicxml") {
+		prefix = "";
+	} else if (options.inputFrom === "mei") {
+		prefix = "";
 	}
-	if (SEARCHFILTER) {
-		data += "\n!!!filter: ";
-		if (SEARCHCHORDDIRECTION) {
-			data += SEARCHCHORDDIRECTION + " | ";
+
+	if (prefix) {
+		if (GLOBALFILTER) {
+			data += `\n${prefix}filter: ${GLOBALFILTER}\n`;
 		}
-		data += SEARCHFILTER;
-		if (BRIEFSEARCHVIEW) {
-			data += " | " + BRIEFSEARCHVIEW;
+		if (SEARCHFILTER) {
+			data += `\n${prefix}filter: `;
+			if (SEARCHCHORDDIRECTION) {
+				data += SEARCHCHORDDIRECTION + " | ";
+			}
+			data += SEARCHFILTER;
+			if (BRIEFSEARCHVIEW) {
+				data += " | " + BRIEFSEARCHVIEW;
+			}
+			data += "\n";
 		}
-		data += "\n";
 	}
 
 	OPTIONS = options;
