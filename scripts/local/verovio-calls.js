@@ -1,3 +1,4 @@
+// vim: ts=3
 
 function verovioCalls() {
 	this.page = 1;
@@ -241,6 +242,17 @@ function verovioCalls() {
 	this.renderToMidi = function () {
 		var midi64 = this.vrvToolkit.renderToMIDI();
 		return midi64;
+	};
+
+
+
+	////////////////////////////
+	//
+	// verovioCalls.renderToTimemap --
+	//
+
+	this.renderToTimemap = function () {
+		return this.vrvToolkit.renderToTimemap();
 	};
 
 

@@ -1190,7 +1190,10 @@ function displayPdf() {
 	// then load that file.
 	let loaded = false;
 	if (EditorMode === "humdrum") {
-		let loaded = displayHumdrumPdf();
+		let loaded = displayHumdrumPdf("!!!");
+	} else if (EditorMode === "musedata") {
+console.log("GOT HERE AAA");
+		let loaded = displayHumdrumPdf("@@@");
 	}
 
 	if (loaded) {
@@ -1286,8 +1289,10 @@ function displayKeyscape() {
 //
 //
 
-function displayHumdrumPdf() {
-	let urllist = getPdfUrlList();
+function displayHumdrumPdf(prefix) {
+console.log("GOT HERE AAA");
+	let urllist = getPdfUrlList(prefix);
+console.log("URLLIST", urllist);
 
 	let url = "";
 	let i;
@@ -1327,9 +1332,17 @@ function displayHumdrumPdf() {
 // getPdfUrlList --
 //
 
-function getPdfUrlList() {
-	if (EditorMode !== "humdrum") {
-		// can't handle MEI mode yet
+function getPdfUrlList(prefix) {
+	if (EditorMode === "humdrum") {
+		if (!prefix) {
+			prefix = "!!!";
+		}
+	} else if (EditorMode === "musedata") {
+		if (!prefix) {
+			prefix = "@@@";
+		}
+	} else {
+		// Can't handle URLs in this format
 		return 0;
 	}
 	let predata = getTextFromEditor();
@@ -1342,19 +1355,29 @@ function getPdfUrlList() {
 	let title = "";
 
 	let query;
-	query = '^!!!URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)';
+	query = `^${prefix}URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)`;
 	query += "\\s+(.*)\\s*$";
 	let rex = new RegExp(query);
 
+	let query2;
+	query2 = `^${prefix}URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)`;
+	let rex2 = new RegExp(query2);
+
 	let references = [];
 
-	let i;
-	for (i=0; i<data.length; i++) {
-		if (data[i].charAt(0) != '!') {
-			continue;
+	let firstchar = prefix.charAt(0);
+	for (let i=0; i<data.length; i++) {
+		if (data[i].charAt(0) != firstchar) { continue; }
+		if (prefix.length > 1) {
+			if (data[i].charAt(1) != firstchar) { continue; }
+		}
+		if (prefix.length > 2) {
+			if (data[i].charAt(2) != firstchar) { continue; }
 		}
 		let line = data[i];
-		let matches = line.match(rex);
+
+		let matches;
+		matches = rex.exec(line);
 		if (matches) {
 			let obj = {};
 			if (!matches[1]) {
@@ -1365,9 +1388,25 @@ function getPdfUrlList() {
 			obj.url = matches[2];
 			obj.title = matches[3];
 			output.push(obj);
+		} else {
+			matches = rex2.exec(line);
+			if (matches) {
+				let obj = {};
+				if (!matches[1]) {
+					obj.number = -1;
+				} else {
+					obj.number = parseInt(matches[1]);
+				}
+				obj.url = matches[2];
+				obj.title = matches[3];
+				output.push(obj);
+			} else {
+				console.error("NO MATCH FOR ", line);
+			}
 		}
 
-		matches = line.match(/^!!!([^:]+)\s*:\s*(.*)\s*$/);
+		let regex = new RegExp(`^${prefix}([^:]+)\s*:\s*(.*)\s*$`);
+		matches = line.match(regex);
 		if (matches) {
 			obj = {};
 			obj.key = matches[1];
@@ -1378,9 +1417,12 @@ function getPdfUrlList() {
 			refrecords[obj.key].push(obj);
 		}
 	}
-
 	for (let i=0; i<output.length; i++) {
-		output[i].title = templateExpansion(output[i].title, refrecords);
+		let title = output[i].title;
+		if (!title) {
+			title = "View PDF of score";
+		}
+		output[i].title = templateExpansion(title, refrecords);
 	}
 
 	return output;

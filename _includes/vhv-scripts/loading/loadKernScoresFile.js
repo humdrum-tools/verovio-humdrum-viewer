@@ -119,29 +119,34 @@ function loadKernScoresFile(obj, force) {
 			}
 			var data = "";
 			var filenames = commaDuplicate(key);
-			for (j=0; j<infos.length; j++) {
-				// print file header
-				data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
-				//mm = key.match(/([^\/]+)\/([^\/]+)\s*$/);
-				//if (mm) {
-				//	// filename = mm[1] + "/" + base;
-				//	filename = filenames[j];
-				//} else {
-				//	filename = "unknown";
-				//}
-				filename = infos[j].url;
-				data += "@filename==" + filename + "\n";
-				data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
-				var oinfo = infos[j];
-				data += oinfo.data;
-				data += "/eof\n";
+			if (infos.length > 1) {
+				for (j=0; j<infos.length; j++) {
+					// print file header
+					data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+					//mm = key.match(/([^\/]+)\/([^\/]+)\s*$/);
+					//if (mm) {
+					//	// filename = mm[1] + "/" + base;
+					//	filename = filenames[j];
+					//} else {
+					//	filename = "unknown";
+					//}
+					filename = infos[j].url;
+					data += "@filename==" + filename + "\n";
+					data += "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n";
+					var oinfo = infos[j];
+					data += oinfo.data;
+					data += "/eof\n";
+				}
+				data += "//\n"; // end-of-transmission marker for MuseData stage2 multipart file.
+			} else if (infos.length == 1) {
+				data = infos[0].data;
 			}
-			data += "//\n"; // end-of-transmission marker for MuseData stage2 multipart file.
 			displayScoreTextInEditor(data, vrvWorker.page);
 
 			if (infos.length > 1) {
 				// console.log("GOING TO ADD MULTIPLE FILES TO EDITOR", infos);
 			} else if (infos.length == 1) {
+/*
 				info = basketSession.get(key);
 				console.log("INFO = ", info);
 				if (info) {
@@ -177,7 +182,9 @@ function loadKernScoresFile(obj, force) {
 					console.log("Error retrieving", key);
 				}
 				redrawInputArea();
+*/
 			}
+
 		}, function() {
 			console.log("Error retrieving", key);
 		});
