@@ -6,14 +6,27 @@
 //
 
 function getReferenceRecords(contents) {
-	var lines = contents.split(/\r?\n/);
-	var output = {};
+	if (!contents) {
+		contents = getTextFromEditor();
+	}
+	let lines = contents.split(/\r?\n/);
+	let output = {};
 
-	var matches;
+	// @ markers for musedata-embededded reference records.
+	let query1 = "^(?:!!!|@@@)([^\s]+):\s*(.*)\s*$";
+	let regex1 = new RegExp(query1);
+	let matches;
+
+	let query2 = "^(?:!?!!|@?@@)title:\s*(.*)\s*";
+	let regex2 = new RegExp(query2);
+
 	for (i=lines.length-1; i>=0; i--) {
-		if (matches = lines[i].match(/^\!\!\!([^\s]+):\s*(.*)\s*$/)) {
-			var key   = matches[1];
-			var value = matches[2];
+		if (!lines[i].match(/!|@/)) {
+			continue;
+		}
+		if (matches = lines[i].match(regex1)) {
+			let key   = matches[1];
+			let value = matches[2];
 			output[key] = value;
 			if (matches = key.match(/(.*)@@(.*)/)) {
 				output[matches[1]] = value;
@@ -22,7 +35,7 @@ function getReferenceRecords(contents) {
 				output[matches[1]] = value;
 			}
 		}
-		if (matches = lines[i].match(/^\!?\!\!title:\s*(.*)\s*/)) {
+		if (matches = lines[i].match(query2)) {
 			output["title"] = matches[1];
 		}
 	}
@@ -31,12 +44,12 @@ function getReferenceRecords(contents) {
 		output["title"] = FILEINFO["title-expansion"];
 	}
 
-	var counter = 0;
-	var prefix = "";
-	var postfix = "";
-	var substitute;
+	let counter = 0;
+	let prefix = "";
+	let postfix = "";
+	let substitute;
 	if (output["title"] && !output["title"].match(/^\s*$/)) {
-		var pattern = output["title"];
+		let pattern = output["title"];
 		while (matches = pattern.match(/@\{([^\}]*)\}/)) {
 			prefix = "";
 			postfix = "";
@@ -90,16 +103,16 @@ function getReferenceRecords(contents) {
 //
 
 function getStaffCount(data) {
-	var output = 0;
-	var lines = data.split(/\r?\n/);
-	for (var i=0; i<lines.length; i++) {
+	let output = 0;
+	let lines = data.split(/\r?\n/);
+	for (let i=0; i<lines.length; i++) {
 		if (!lines[i].match(/^\*\*/)) {
 			continue;
 		}
-		var tokens = lines[i].split(/\t+/);
-		var kcount = 0;
-		var mcount = 0;
-		for (var j=0; j<tokens.length; j++) {
+		let tokens = lines[i].split(/\t+/);
+		let kcount = 0;
+		let mcount = 0;
+		for (let j=0; j<tokens.length; j++) {
 			if (tokens[j] === "**kern") {
 				kcount++;
 			} else if (tokens[j] === "**mens") {
@@ -125,9 +138,9 @@ function getStaffCount(data) {
 
 function diatonicToHumdrum(pitch) {
 	pitch = parseInt(pitch);
-	var octave = parseInt(pitch / 7);
-	var pc = pitch % 7;
-	var pchar = "x";
+	let octave = parseInt(pitch / 7);
+	let pc = pitch % 7;
+	let pchar = "x";
 	if      (pc == 0) { pchar = "c"; }
 	else if (pc == 1) { pchar = "d"; }
 	else if (pc == 2) { pchar = "e"; }
@@ -136,9 +149,9 @@ function diatonicToHumdrum(pitch) {
 	else if (pc == 5) { pchar = "a"; }
 	else if (pc == 6) { pchar = "b"; }
 
-	var i;
-	var count;
-	var output = "";
+	let i;
+	let count;
+	let output = "";
 	if (octave < 4) {
 		pchar = pchar.toUpperCase();
 		count = 4 - octave;
@@ -163,16 +176,16 @@ function diatonicToHumdrum(pitch) {
 //
 
 function humdrumToDiatonic(pitch) {
-	var len = pitch.length;
-	var octave = 0;
-	var firstchar = pitch.charAt(0);
-	var firstlow = firstchar.toLowerCase();
+	let len = pitch.length;
+	let octave = 0;
+	let firstchar = pitch.charAt(0);
+	let firstlow = firstchar.toLowerCase();
 	if (firstchar === firstlow) {
 		octave = 3 + len;
 	} else {
 		octave = 4 - len;
 	}
-	var diatonic = 0;
+	let diatonic = 0;
 	if      (firstlow === "d") { diatonic = 1; }
 	else if (firstlow === "e") { diatonic = 2; }
 	else if (firstlow === "f") { diatonic = 3; }
@@ -190,12 +203,12 @@ function humdrumToDiatonic(pitch) {
 //
 
 function transposeDiatonic(pitch, amount) {
-	var len = pitch.length;
+	let len = pitch.length;
 	amount = parseInt(amount);
 	if (len == 0) {
 		return "";
 	}
-	var pitchnum = humdrumToDiatonic(pitch);
+	let pitchnum = humdrumToDiatonic(pitch);
 	pitchnum += amount;
 
 	if (pitchnum < 1) {
@@ -220,7 +233,7 @@ function transposeDiatonic(pitch, amount) {
 
 function getFieldAndSubtoken(text, column) {
 	// column++; // needed for some reason?
-	var output = {field: -1, subspine: -1};
+	let output = {field: -1, subspine: -1};
 	if (text.match(/^[*!=]/)) {
 		return output;
 	}
@@ -228,9 +241,9 @@ function getFieldAndSubtoken(text, column) {
 		return output;
 	}
 
-	var field = 0;
-	var subspine = 0;
-	var i;
+	let field = 0;
+	let subspine = 0;
+	let i;
 	for (i=0; i<column; i++) {
 		// deal with tab at start of line?
 		if ((i > 0) && (text[i] == '\t') && (text[i-1] != '\t')) {
@@ -241,7 +254,7 @@ function getFieldAndSubtoken(text, column) {
 		}
 	}
 
-	var subtok = false;
+	let subtok = false;
 	// check if the field contains subtokens.  If so, set the
 	if (subspine > 0) {
 		subtok = true;
@@ -275,16 +288,16 @@ function getFieldAndSubtoken(text, column) {
 //
 
 function insertMarkedNoteRdf() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var editchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
+	let limit = 20; // search only first and last 20 lines of data for RDF entries.
+	let editchar = "";
+	let matches;
+	let i;
+	let size = EDITOR.session.getLength();
 	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
-		var line = EDITOR.session.getLine(i);
+		let line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
 			editchar = matches[1];
 		}
@@ -298,7 +311,7 @@ function insertMarkedNoteRdf() {
 			if (i > limit) {
 				break;
 			}
-			var line = EDITOR.session.getLine(i);
+			let line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*mark.*\s+note/)) {
 				editchar = matches[1];
 			}
@@ -312,7 +325,7 @@ function insertMarkedNoteRdf() {
 		return editchar;
 	}
 
-	var text  = "";
+	let text  = "";
 
 	if (editchar === "") {
 		text     +=  "!!!RDF**kern: @ = marked note";
@@ -322,7 +335,7 @@ function insertMarkedNoteRdf() {
 	}
 
 	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
+	let freezeBackup = FreezeRendering;
 	if (FreezeRendering == false) {
 		FreezeRendering = true;
 	}
@@ -348,17 +361,17 @@ function insertMarkedNoteRdf() {
 //
 
 function insertDirectionRdfs() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var abovechar = "";
-	var belowchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
+	let limit = 20; // search only first and last 20 lines of data for RDF entries.
+	let abovechar = "";
+	let belowchar = "";
+	let matches;
+	let i;
+	let size = EDITOR.session.getLength();
 	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
-		var line = EDITOR.session.getLine(i);
+		let line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
 			abovechar = matches[1];
 		} else if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
@@ -374,7 +387,7 @@ function insertDirectionRdfs() {
 			if (i > limit) {
 				break;
 			}
-			var line = EDITOR.session.getLine(i);
+			let line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*above/)) {
 				abovechar = matches[1];
 			} else if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*below/)) {
@@ -390,7 +403,7 @@ function insertDirectionRdfs() {
 		return [abovechar, belowchar];
 	}
 
-	var text  = "";
+	let text  = "";
 
 	if (abovechar === "") {
 		text     +=  "!!!RDF**kern: > = above\n";
@@ -407,7 +420,7 @@ function insertDirectionRdfs() {
 	}
 
 	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
+	let freezeBackup = FreezeRendering;
 	if (FreezeRendering == false) {
 		FreezeRendering = true;
 	}
@@ -431,16 +444,16 @@ function insertDirectionRdfs() {
 //
 
 function insertEditorialAccidentalRdf() {
-	var limit = 20; // search only first and last 20 lines of data for RDF entries.
-	var editchar = "";
-	var matches;
-	var i;
-	var size = EDITOR.session.getLength();
+	let limit = 20; // search only first and last 20 lines of data for RDF entries.
+	let editchar = "";
+	let matches;
+	let i;
+	let size = EDITOR.session.getLength();
 	for (i=size-1; i>=0; i--) {
 		if (size - i > limit) {
 			break;
 		}
-		var line = EDITOR.session.getLine(i);
+		let line = EDITOR.session.getLine(i);
 		if (matches = line.match(/^!!!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
 			editchar = matches[1];
 		}
@@ -454,7 +467,7 @@ function insertEditorialAccidentalRdf() {
 			if (i > limit) {
 				break;
 			}
-			var line = EDITOR.session.getLine(i);
+			let line = EDITOR.session.getLine(i);
 			if (matches = line.match(/^\!\!\!RDF\*\*kern:\s+([^\s])\s*=.*edit.*\s+acc/)) {
 				editchar = matches[1];
 			}
@@ -468,7 +481,7 @@ function insertEditorialAccidentalRdf() {
 		return editchar;
 	}
 
-	var text  = "";
+	let text  = "";
 
 	if (editchar === "") {
 		text     +=  "!!!RDF**kern: i = editorial accidental\n";
@@ -478,7 +491,7 @@ function insertEditorialAccidentalRdf() {
 	}
 
 	// append markers to end of file.
-	var freezeBackup = FreezeRendering;
+	let freezeBackup = FreezeRendering;
 	if (FreezeRendering == false) {
 		FreezeRendering = true;
 	}

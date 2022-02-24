@@ -78,17 +78,19 @@ function displayNotation(page, force, restoreid) {
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		let ishumdrum = true;
+		let ismusedata = false;
 		if (data.charAt(0) == "<") {
 			ishumdrum = false;
 		} else if (data.match(/CUT[[]/)) {
 			ishumdrum = false;
 		} else if (data.match(/Group memberships:/)) {
 			ishumdrum = false;
+			ismusedata = true;
 		}
 
 		let output = document.querySelector("#output");
 		output.innerHTML = svg;
-		if (ishumdrum) {
+		if (ishumdrum | ismusedata) {
 			if (restoreid) {
 				restoreSelectedSvgElement(restoreid);
 			} else if (RestoreCursorNote) {
@@ -554,6 +556,8 @@ function displayFileTitle(contents) {
 	let composer = "";
 	let sct = "";
 	let matches;
+
+console.warn("REFERENCES", references);
 
 	if (references["title"] && !references["title"].match(/^\s*$/)) {
 		title = references["title"];
@@ -1400,8 +1404,6 @@ function getPdfUrlList(prefix) {
 				obj.url = matches[2];
 				obj.title = matches[3];
 				output.push(obj);
-			} else {
-				console.error("NO MATCH FOR ", line);
 			}
 		}
 
