@@ -47,16 +47,16 @@ function verovioCalls() {
 		if (type !== "humdrum") {
 			checkdata = false;
 		}
-		if (opts.from === "musicxml") {
+		if (opts.inputFrom === "musicxml") {
+			checkdata = false;
+		} else if (opts.inputFrom === "mei") {
+			checkdata = false;
+		} else if (opts.inputFrom === "musicxml-hum") {
+			checkdata = false;
+		} else if (opts.inputFrom === "musedata-hum") {
 			checkdata = false;
 		}
-		if (opts.from === "mei") {
-			checkdata = false;
-		}
-		if (opts.from === "musicxml-hum") {
-			checkdata = false;
-		}
-		if ((opts.from === "auto") && (type === "humdrum")) {
+		if ((opts.inputFrom === "auto") && (type === "humdrum")) {
 			checkdata = true;
 		}
 		if (checkdata) {

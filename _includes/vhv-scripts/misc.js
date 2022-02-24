@@ -90,7 +90,7 @@ function displayNotation(page, force, restoreid) {
 
 		let output = document.querySelector("#output");
 		output.innerHTML = svg;
-		if (ishumdrum | ismusedata) {
+		if (ishumdrum) {
 			if (restoreid) {
 				restoreSelectedSvgElement(restoreid);
 			} else if (RestoreCursorNote) {
@@ -557,8 +557,6 @@ function displayFileTitle(contents) {
 	let sct = "";
 	let matches;
 
-console.warn("REFERENCES", references);
-
 	if (references["title"] && !references["title"].match(/^\s*$/)) {
 		title = references["title"];
 	} else if (references["OTL"] && !references["OTL"].match(/^\s*$/)) {
@@ -687,8 +685,15 @@ function replaceEditorContentWithHumdrumFile(text, page) {
 
 	if (options) {
 		if ((options.inputFrom == "musedata") || (options.inputFrom == "musedata-hum")) {
+			options.outputTo = "humdrum";
 			vrvWorker.filterData(options, text, "humdrum")
-			.then(showMei);
+			.then(showHumdrum)
+			.catch(function (error) {
+				console.error("Error converting MuseData to Humdrum:", error);
+			})
+			.then(function() {
+				console.warn("Done converting MuseData");
+			});
 		} else if ((options.inputFrom == "musicxml") || (options.inputFrom == "musicxml-hum")) {
 			vrvWorker.filterData(options, text, "humdrum")
 			.then(showMei);
@@ -1196,7 +1201,6 @@ function displayPdf() {
 	if (EditorMode === "humdrum") {
 		let loaded = displayHumdrumPdf("!!!");
 	} else if (EditorMode === "musedata") {
-console.log("GOT HERE AAA");
 		let loaded = displayHumdrumPdf("@@@");
 	}
 
@@ -1294,9 +1298,7 @@ function displayKeyscape() {
 //
 
 function displayHumdrumPdf(prefix) {
-console.log("GOT HERE AAA");
 	let urllist = getPdfUrlList(prefix);
-console.log("URLLIST", urllist);
 
 	let url = "";
 	let i;
