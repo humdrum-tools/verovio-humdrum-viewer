@@ -6,7 +6,27 @@
 //
 
 function loadKernScoresFile(obj, force) {
-	var file        = obj.file;
+	var file = obj.file;
+	if (!file) {
+		if (obj.bb) {
+			file = `bitbucket:${obj.bb}`;
+		} else if (obj.bitbucket) {
+			file = `bitbucket:${obj.bitbucket}`;
+		} else if (obj.github) {
+			file = `github:${obj.github}`;
+		} else if (obj.gh) {
+			file = `github:${obj.gh}`;
+		} else if (obj.jrp) {
+			file = `jrp:${obj.jrp}`;
+		} else if (obj.tasso) {
+			file = `tasso:${obj.tasso}`;
+		}
+	}
+	if (!file) {
+		console.warn("No file to load in loadKernScoresFile");
+		return;
+	}
+
 	var measures    = obj.measures;
 	var page        = obj.page;
 	var getnext     = obj.next;
@@ -29,58 +49,38 @@ function loadKernScoresFile(obj, force) {
 	var key = "";
 	var ret;
 
-	if (file) {
-		if (file.match(/^https?:/)) {
-			url = file;
-			key = file;
-		} else if (file.match(/^bb:/)) {
-			ret = getBitbucketUrl(file, measures);
-			if (ret) {
-				url = ret.url;
-				key = ret.key;
-			}
-		} else if (file.match(/^bitbucket:/)) {
-			ret = getBitbucketUrl(file, measures);
-			if (ret) {
-				url = ret.url;
-				key = ret.key;
-			}
-		} else if (file.match(/^github:/)) {
-			ret = getGithubUrl(file, measures);
-			if (ret) {
-				url = ret.url;
-				key = ret.key;
-			}
-		} else {
-			ret = kernScoresUrl(file, measures);
-			if (ret) {
-				url = ret.url;
-				key = ret.url;
-			}
-		}
-	} else if (obj.tasso) {
-		ret = getTassoUrl(obj.tasso, measures);
+	if (file.match(/^https?:/)) {
+		url = file;
+		key = file;
+	} else if (file.match(/^bb:/)) {
+		ret = getBitbucketUrl(file, measures);
 		if (ret) {
 			url = ret.url;
 			key = ret.key;
 		}
-	} else if (obj.bb) {
-		ret = getBitbucketUrl(obj.bb, measures);
+	} else if (file.match(/^bitbucket:/)) {
+		ret = getBitbucketUrl(file, measures);
 		if (ret) {
 			url = ret.url;
 			key = ret.key;
 		}
-	} else if (obj.github) {
-		ret = getGithubUrl(obj.bb, measures);
+	} else if (file.match(/^github:/)) {
+		ret = getGithubUrl(file, measures);
 		if (ret) {
 			url = ret.url;
 			key = ret.key;
 		}
-	} else if (obj.bitbucket) {
-		ret = getBitbucketUrl(obj.bitbucket, measures);
+	} else if (file.match(/^gh:/)) {
+		ret = getGithubUrl(file, measures);
 		if (ret) {
 			url = ret.url;
 			key = ret.key;
+		}
+	} else {
+		ret = kernScoresUrl(file, measures);
+		if (ret) {
+			url = ret.url;
+			key = ret.url;
 		}
 	}
 

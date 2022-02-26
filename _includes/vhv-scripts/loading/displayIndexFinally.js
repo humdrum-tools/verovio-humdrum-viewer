@@ -28,6 +28,7 @@ function displayIndexFinally(index, location) {
 		if (data.length >= 3) {
 			if (matches = data[1].match(/(.*)HIDE$/)) {
 				// data[1] = matches[1];
+				data[1] = data[1].replace(/\/.ref/, "");
 				data[2] = data[2].replace(/<hlstart>/g, "");
 				data[2] = data[2].replace(/<hlend>/g, "");
 			}
@@ -90,7 +91,7 @@ function displayIndexFinally(index, location) {
 		} else {
 			var spantext = "";
 			spantext += "<span class='ilink' onclick=\"displayWork('";
-			spantext += location;
+			spantext += location.replace(/\/.ref/, "");
 			spantext += "/" + items[i].filename;
 			spantext += "');\">";
 			items[i].text = items[i].text.replace(/<hlstart>/, spantext);

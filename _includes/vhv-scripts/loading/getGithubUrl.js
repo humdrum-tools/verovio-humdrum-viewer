@@ -10,6 +10,7 @@
 //
 
 function getGithubUrl(file, measures) {
+
 	file = file.replace(/^github:\/*/, "");
 
 	var username = "";
@@ -29,7 +30,9 @@ function getGithubUrl(file, measures) {
 	url += repository;
 	url += "/master/";
 	if (!pathandfile) {
-		url += "index.hmd";
+		url += ".ref";
+		loadIndexFile(url);
+		return;
 	} else {
 		url += pathandfile;
 	}
@@ -39,4 +42,6 @@ function getGithubUrl(file, measures) {
 	var obj = {url: url, key: key};
 	return obj;
 }
+
+
 

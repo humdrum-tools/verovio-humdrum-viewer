@@ -1,5 +1,6 @@
 
 
+
 ///////////////////////////////
 //
 // loadIndexFile --
@@ -10,16 +11,22 @@ function loadIndexFile(location) {
 		loadHmdIndexFile(location);
 		return;
 	}
-	var url = "https://kern.humdrum.org/data?l=" + location;
-	url += "&format=index";
+
+	let url;
+	if (location.match(/http/)) {
+		url = location;
+	} else {
+		url = "https://kern.humdrum.org/data?l=" + location;
+		url += "&format=index";
+	}
 
 	console.log("Loading index", url);
 
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 	request.open("GET", url);
 	request.addEventListener("load", function() {
 		if (request.status == 200) {
-			var INDEX = request.responseText;
+			let INDEX = request.responseText;
 			// console.log("INDEX= ", INDEX);
 			$('html').css('cursor', 'auto');
 			displayIndexFinally(INDEX, location);
@@ -27,5 +34,6 @@ function loadIndexFile(location) {
 	});
 	request.send();
 }
+
 
 
