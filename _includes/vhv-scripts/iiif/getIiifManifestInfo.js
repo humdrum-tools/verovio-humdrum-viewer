@@ -14,8 +14,11 @@
 //
 {% endcomment %}
 
-function getIiifManifestInfo(info, event, callback) {
 
+var DATA = "XXX";
+
+function getIiifManifestInfo(info, event, callback) {
+console.warn("GETIIIFMANIFEST INFO", info);
 	let humdrum = info.humdrum;
 	if (!humdrum) {
 		console.error("NO HUMDRUM DATA IN", info);
@@ -27,7 +30,7 @@ function getIiifManifestInfo(info, event, callback) {
 	}
 	let label = info.label;
 
-	let skey = `^!!!IIIF:\\s*([^\\s]+manifest.json)`;
+	let skey = `^!!!IIIF:\\s*([^\\s]+)`;
 	let regex = new RegExp(skey);
 	for (let i=humdrum.length - 1; i>=0; i--) {
 		let matches = humdrum[i].match(regex);
@@ -65,23 +68,42 @@ function getIiifManifestInfo(info, event, callback) {
 				.then(results => results.json())
 				.then(data => {
 				   let items = data.items;
-   				let maninfo = {};
+					let version = 3;
+					if (!items) {
+						// Assume IIIF version 2 (better check can be done).
+						version = 2;
+						items = data.sequences[0].canvases;
+					}
+					let maninfo = {};
 					maninfo.images = [];
 					maninfo.manifest = manifest;
-   				for (let i=0; i<items.length; i++) {
-      				let entry = {};
-      				entry.iiifbase = items[i].id.replace(/\/?info\.json$/, "");
-      				let lobj = items[i].label;
-      				let keys = Object.keys(lobj);
-      				let label = "";
-      				if (keys.length > 0) {
-         				label = lobj[keys[0]][0];
-      				}
-      				entry.label = label;
+					for (let i=0; i<items.length; i++) {
+						let entry = {};
+						if (items[i].id) {
+							entry.iiifbase = items[i].id.replace(/\/?info\.json$/, "");
+						} else if (items[i]["@id"]) {
+							entry.iiifbase = items[i].images[0].resource["@id"].replace(/\/?full.*\.jpg$/, "");
+						} else {
+							console.warn("PROBLEM HERE WITH IIIF BASE");
+						}
+						let lobj = items[i].label;
+						let label = "";
+						if (version == 3) {
+							let keys = Object.keys(lobj);
+							if (keys.length > 0) {
+								label = lobj[keys[0]][0];
+							}
+						}
+						if (!label) {
+							label = items[i].label;
+						}
+						if (label) {
+							entry.label = label;
+						}
 						if (label === info.label) {
 							info.iiifbase = entry.iiifbase;
 						}
-      				maninfo.images.push(entry);
+						maninfo.images.push(entry);
 					}
 
 					info.manifest = maninfo;
@@ -99,10 +121,9 @@ function getIiifManifestInfo(info, event, callback) {
 							info.iiifbase = info.manifest.images[parseInt(matches[1]) - 1].iiifbase;
 						}
 					}
-
 					IIIF_MANIFEST[manifest] = maninfo;
 					callback(event, info);
-   			})
+				})
 				.catch(error => { console.error(error); });
 			break;
 		}
