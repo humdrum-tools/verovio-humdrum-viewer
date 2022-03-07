@@ -156,6 +156,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-end
+@PL:			https://doc.verovio.humdrum.org/commands/alt-end/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

@@ -235,6 +235,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-c
+@PL:			https://doc.verovio.humdrum.org/commands/alt-c/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

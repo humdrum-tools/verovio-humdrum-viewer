@@ -43,6 +43,7 @@
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org
 @ES:	https://doc.verovio.humdrum.org/index-ES.html
+@PL:	https://doc.verovio.humdrum.org/index-PL.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY

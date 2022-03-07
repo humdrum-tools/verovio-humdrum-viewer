@@ -202,6 +202,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-g
+@PL:			https://doc.verovio.humdrum.org/commands/alt-g/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -438,6 +439,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-m
+@PL:			https://doc.verovio.humdrum.org/commands/alt-m/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -517,6 +519,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-h
+@PL:			https://doc.verovio.humdrum.org/commands/alt-h/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -884,6 +887,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-u
+@PL:		https://doc.verovio.humdrum.org/commands/alt-u/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

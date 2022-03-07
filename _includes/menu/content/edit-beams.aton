@@ -47,6 +47,7 @@
 @DEFAULT:		autobeam
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
+@PL:			https://doc.verovio.humdrum.org/filter/autobeam/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -93,6 +94,7 @@
 @DEFAULT:		autobeam -l
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
+@PL:			https://doc.verovio.humdrum.org/filter/autobeam/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -139,6 +141,7 @@
 @DEFAULT:		autobeam -r
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/autobeam
+@PL:			https://doc.verovio.humdrum.org/filter/autobeam/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
