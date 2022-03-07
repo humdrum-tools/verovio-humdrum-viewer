@@ -28,7 +28,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Documentatie
+@NL:		Documentatie
 @NO:
 @PL:
 @PT:
@@ -42,6 +42,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org
+@ES:	https://doc.verovio.humdrum.org/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -69,7 +70,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Van start gaan
+@NL:		Van start gaan
 @NO:
 @PL:
 @PT:
@@ -83,6 +84,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/interface/getting_started
+@DEFAULT:	https://doc.verovio.humdrum.org/interface/getting_started/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -110,7 +112,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Handleiding code-gebruik
+@NL:		Handleiding code-gebruik
 @NO:
 @PL:
 @PT:
@@ -124,6 +126,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/humdrum/getting_started
+@ES:	https://doc.verovio.humdrum.org/humdrum/getting_started/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -151,7 +154,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Online repertoire
+@NL:		Online repertoire
 @NO:
 @PL:
 @PT:
@@ -163,11 +166,13 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@@END: TEXT
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/repertory
+@ES:	https://doc.verovio.humdrum.org/repertory/index-ES.html
 @@END: LINK
+@@END: TEXT
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -206,6 +211,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/filter
+@DEFAULT:	https://doc.verovio.humdrum.org/filter/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -233,7 +239,7 @@
 @KO:
 @LT:
 @LV:
-@NL:			Ingevoegde notatie-opties
+@NL:		Ingevoegde notatie-opties
 @NO:
 @PL:
 @PT:
@@ -247,6 +253,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/options
+@ES:	https://doc.verovio.humdrum.org/options/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
