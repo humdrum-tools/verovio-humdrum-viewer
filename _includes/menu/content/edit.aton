@@ -79,6 +79,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-e
+@ES:			https://doc.verovio.humdrum.org/commands/alt-e/index-ES.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -235,6 +236,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-c
+@ES:			https://doc.verovio.humdrum.org/commands/alt-c/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-c/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT

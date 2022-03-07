@@ -51,6 +51,7 @@
 @DEFAULT:		imitation
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/imitation
+@ES:			https://doc.verovio.humdrum.org/filter/imitation/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -99,6 +100,7 @@
 @DEFAULT:		imitation -D
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/imitation
+@ES:			https://doc.verovio.humdrum.org/filter/imitation/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK

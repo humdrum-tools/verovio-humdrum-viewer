@@ -51,6 +51,7 @@
 @DEFAULT:		composite
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
+@ES:			https://doc.verovio.humdrum.org/filter/composite/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -99,6 +100,7 @@
 @DEFAULT:		composite -G
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
+@ES:			https://doc.verovio.humdrum.org/filter/composite/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -147,6 +149,7 @@
 @DEFAULT:		composite | colorgroups
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
+@ES:			https://doc.verovio.humdrum.org/filter/composite/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -195,6 +198,7 @@
 @DEFAULT:		composite | composite -G | colorgroups
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/composite
+@ES:			https://doc.verovio.humdrum.org/filter/composite/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK

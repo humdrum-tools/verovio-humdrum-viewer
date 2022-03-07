@@ -249,6 +249,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-v
+@ES:			https://doc.verovio.humdrum.org/commands/alt-v/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-v/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT

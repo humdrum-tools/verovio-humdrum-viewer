@@ -51,6 +51,7 @@
 @DEFAULT:		dissonant
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/dissonant
+@ES:			https://doc.verovio.humdrum.org/filter/dissonant/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK

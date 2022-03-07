@@ -47,6 +47,7 @@
 @DEFAULT:		melisma
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ES:			https://doc.verovio.humdrum.org/filter/melisma/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -95,6 +96,7 @@
 @DEFAULT:		melisma -m 3
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ES:			https://doc.verovio.humdrum.org/filter/melisma/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -143,6 +145,7 @@
 @DEFAULT:		melisma -m 4
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ES:			https://doc.verovio.humdrum.org/filter/melisma/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -191,6 +194,7 @@
 @DEFAULT:		melisma -m 5
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ES:			https://doc.verovio.humdrum.org/filter/melisma/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK
@@ -240,6 +244,7 @@
 @DEFAULT:		melisma -r
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/melisma
+@ES:			https://doc.verovio.humdrum.org/filter/melisma/index-ES.html
 @ZH-simplified:
 @ZH-traditional:
 @@END: LINK

@@ -363,6 +363,7 @@
 @DEFAULT:		rid -glid
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
+@ES:		https://doc.verovio.humdrum.org/filter/rid/index-ES.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -410,6 +411,7 @@
 @DEFAULT:		rid -d
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
+@ES:		https://doc.verovio.humdrum.org/filter/rid/index-ES.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -457,6 +459,7 @@
 @DEFAULT:		rid -i
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
+@ES:		https://doc.verovio.humdrum.org/filter/rid/index-ES.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -504,6 +507,7 @@
 @DEFAULT:		rid -l
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/filter/rid
+@ES:		https://doc.verovio.humdrum.org/filter/rid/index-ES.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY

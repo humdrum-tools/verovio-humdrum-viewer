@@ -459,6 +459,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-l
+@ES:			https://doc.verovio.humdrum.org/commands/alt-l/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-l/index-PL.html
 @ZH-simplified:
 @ZH-traditional:
@@ -540,6 +541,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-b
+@ES:			https://doc.verovio.humdrum.org/commands/alt-b/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-b/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
@@ -775,6 +777,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-f
+@ES:			https://doc.verovio.humdrum.org/commands/alt-f/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-f/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
@@ -854,6 +857,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-o
+@ES:			https://doc.verovio.humdrum.org/commands/alt-o/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-o/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
@@ -933,6 +937,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-p
+@ES:			https://doc.verovio.humdrum.org/commands/alt-p/index-ES.html
 @PL:			https://doc.verovio.humdrum.org/commands/alt-p/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
