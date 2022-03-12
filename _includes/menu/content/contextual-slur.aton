@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Deselecciona la ligatura
 @ET:
 @EU:
 @FI:
@@ -61,7 +61,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Fuerza arriba la ligadura de expresión
 @ET:
 @EU:
 @FI:
@@ -107,7 +107,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Fuerza abajo ligadura de expresión
 @ET:
 @EU:
 @FI:
@@ -153,7 +153,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Fuerza la dirección de la ligadura de expresión
 @ET:
 @EU:
 @FI:
@@ -199,7 +199,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Borra la ligadura de expresión
 @ET:
 @EU:
 @FI:
@@ -245,7 +245,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mueve el inicio de la ligadura a la izquierda
 @ET:
 @EU:
 @FI:
@@ -291,7 +291,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mueve el inicio de la ligadura a la derecha
 @ET:
 @EU:
 @FI:
@@ -337,7 +337,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mueve el final de la ligadura a la izquierda
 @ET:
 @EU:
 @FI:
@@ -383,7 +383,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mueve el final de la ligadura a la derecha
 @ET:
 @EU:
 @FI:
@@ -429,7 +429,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mueve el final de la ligadura 3 notas a la derecha
 @ET:
 @EU:
 @FI:

@@ -14,7 +14,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Elimina las columnas no **kern
 @ET:
 @EU:
 @FI:
@@ -62,7 +62,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Añade un pentagrama por encima del sistema
 @ET:
 @EU:
 @FI:
@@ -109,7 +109,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Añade un pentagrama por encima del sistema con silencios ocultos
 @ET:
 @EU:
 @FI:
@@ -156,7 +156,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Añade un pentagrama por bajo del sistema
 @ET:
 @EU:
 @FI:
@@ -203,7 +203,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Añade un pentagrama por debajo del sistema con silencios ocultos
 @ET:
 @EU:
 @FI:

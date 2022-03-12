@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Inserta línea de comentario local (sobre el cursor)
 @ET:
 @EU:
 @FI:
@@ -52,7 +52,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-L
 @ET:
 @EU:
 @FI:
@@ -94,7 +94,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Inserta línea de interpretación (sobre el cursor)
 @ET:
 @EU:
 @FI:
@@ -131,7 +131,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-I
 @ET:
 @EU:
 @FI:
@@ -173,7 +173,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Inserta línea de datos nula (por encima del cursor)
 @ET:
 @EU:
 @FI:
@@ -252,7 +252,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Inserta línea de barra (por encima del cursor)
 @ET:
 @EU:
 @FI:
@@ -289,7 +289,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-B
 @ET:
 @EU:
 @FI:
@@ -331,7 +331,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Elimina las líneas nulas
 @ET:
 @EU:
 @FI:
@@ -379,7 +379,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Elimina las líneas de datos nulas
 @ET:
 @EU:
 @FI:
@@ -427,7 +427,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Elimina las líneas de interpretación nula
 @ET:
 @EU:
 @FI:
@@ -475,7 +475,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Elimina las líneas de comentarios locales nulos
 @ET:
 @EU:
 @FI:

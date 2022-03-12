@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ordena los acordes con la nota más alta primero
 @ET:
 @EU:
 @FI:
@@ -61,7 +61,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ordenar los acordes con la nota más grave primero
 @ET:
 @EU:
 @FI:
@@ -107,7 +107,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Extrae la primera nota del acorde
 @ET:
 @EU:
 @FI:
@@ -153,7 +153,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Extraer la última nota del acorde
 @ET:
 @EU:
 @FI:
@@ -199,7 +199,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Nota más alta del acorde
 @ET:
 @EU:
 @FI:
@@ -245,7 +245,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Nota más grave del acorde
 @ET:
 @EU:
 @FI:
@@ -291,7 +291,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Comprime los acordes
 @ET:
 @EU:
 @FI:
@@ -337,7 +337,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Expande los acordes
 @ET:
 @EU:
 @FI:
@@ -383,7 +383,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Notas de acordes de bajo/melodía (para las partituras de piano)
 @ET:
 @EU:
 @FI:

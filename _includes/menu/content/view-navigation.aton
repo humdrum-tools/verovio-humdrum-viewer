@@ -14,7 +14,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Primera página
 @ET:
 @EU:
 @FI:
@@ -51,7 +51,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-inicio
 @ET:
 @EU:
 @FI:
@@ -92,7 +92,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Última página
 @ET:
 @EU:
 @FI:
@@ -129,7 +129,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-fin
 @ET:
 @EU:
 @FI:
@@ -171,7 +171,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Página anterior
 @ET:
 @EU:
 @FI:
@@ -208,7 +208,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-&larr;
 @ET:
 @EU:
 @FI:
@@ -249,7 +249,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Página siguiente
 @ET:
 @EU:
 @FI:
@@ -286,7 +286,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-&rarr;
 @ET:
 @EU:
 @FI:
@@ -327,7 +327,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Próxima obra/movimiento
 @ET:
 @EU:
 @FI:
@@ -364,7 +364,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			shift-&rarr;
 @ET:
 @EU:
 @FI:
@@ -407,7 +407,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Trabajo/movimiento anterior
 @ET:
 @EU:
 @FI:
@@ -444,7 +444,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			shift-&larr;
 @ET:
 @EU:
 @FI:
@@ -485,7 +485,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Reproduce/pausa la interpretación MIDI
 @ET:
 @EU:
 @FI:
@@ -522,7 +522,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			espacio
 @ET:
 @EU:
 @FI:

@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Borra el editor de texto
 @ET:
 @EU:
 @FI:
@@ -52,7 +52,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-e
 @ET:
 @EU:
 @FI:
@@ -94,7 +94,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Deshaz el último cambio
 @ET:
 @EU:
 @FI:
@@ -131,7 +131,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			ctrl-z
 @ET:
 @EU:
 @FI:
@@ -172,7 +172,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Compila los filtros embebidos
 @ET:
 @EU:
 @FI:
@@ -209,7 +209,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-c
 @ET:
 @EU:
 @FI:
@@ -252,7 +252,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Eliminar las pestañas finales
 @ET:
 @EU:
 @FI:
@@ -330,7 +330,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Barrados
 @ET:
 @EU:
 @FI:
@@ -378,7 +378,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Acordes
 @ET:
 @EU:
 @FI:
@@ -426,7 +426,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Datos
 @ET:
 @EU:
 @FI:
@@ -474,7 +474,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ornamentos
 @ET:
 @EU:
 @FI:
@@ -522,7 +522,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Sistema
 @ET:
 @EU:
 @FI:
@@ -570,7 +570,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Plicas
 @ET:
 @EU:
 @FI:
@@ -618,7 +618,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Texto
 @ET:
 @EU:
 @FI:
@@ -666,7 +666,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Transpón por clave (si los datos contienen clave)
 @ET:
 @EU:
 @FI:
@@ -714,7 +714,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Transpón por intervalo ascendente
 @ET:
 @EU:
 @FI:
@@ -762,7 +762,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Transpón por intervalo descendente
 @ET:
 @EU:
 @FI:
@@ -810,7 +810,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Importa formato
 @ET:
 @EU:
 @FI:
@@ -859,7 +859,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Convierte a Humdrum
 @ET:
 @EU:
 @FI:
@@ -896,7 +896,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			info
 @ET:
 @EU:
 @FI:

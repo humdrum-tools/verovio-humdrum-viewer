@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Amplia la notación
 @ET:
 @EU:
 @FI:
@@ -61,7 +61,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Reduce la notación
 @ET:
 @EU:
 @FI:
@@ -107,7 +107,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Aumenta el espacio horizontal de la notación
 @ET:
 @EU:
 @FI:
@@ -144,7 +144,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-w
 @ET:
 @EU:
 @FI:
@@ -185,7 +185,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Decrementa el espacio horizontal de la notación
 @ET:
 @EU:
 @FI:
@@ -222,7 +222,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-W
 @ET:
 @EU:
 @FI:
@@ -263,7 +263,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Incrementa el espacio vertical entre pentagramas
 @ET:
 @EU:
 @FI:
@@ -309,7 +309,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Decrementa el espacio vertical entre pentagramas
 @ET:
 @EU:
 @FI:
@@ -355,7 +355,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Incrementa el espacio vertical entre sistemas
 @ET:
 @EU:
 @FI:
@@ -401,7 +401,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Decrementa el espacio vertical entre sistemas
 @ET:
 @EU:
 @FI:
@@ -447,7 +447,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ignorar los saltos de línea codificados
 @ET:
 @EU:
 @FI:
@@ -493,7 +493,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Visualiza los saltos de línea codificados
 @ET:
 @EU:
 @FI:
@@ -539,7 +539,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Aumenta el tamaño del texto
 @ET:
 @EU:
 @FI:
@@ -585,7 +585,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Reduce el tamaño del texto
 @ET:
 @EU:
 @FI:

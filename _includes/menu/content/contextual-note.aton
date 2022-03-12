@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Deselecciona la nota
 @ET:
 @EU:
 @FI:
@@ -61,7 +61,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Navegación
 @ET:
 @EU:
 @FI:
@@ -109,7 +109,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Altura
 @ET:
 @EU:
 @FI:
@@ -159,7 +159,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Plicas
 @ET:
 @EU:
 @FI:
@@ -207,7 +207,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Alteraciones
 @ET:
 @EU:
 @FI:
@@ -255,7 +255,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Articulaciones
 @ET:
 @EU:
 @FI:
@@ -303,7 +303,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ornamentos
 @ET:
 @EU:
 @FI:
@@ -351,7 +351,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Ligaduras de expresión
 @ET:
 @EU:
 @FI:
@@ -399,7 +399,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Divide el barrado antes de la nota
 @ET:
 @EU:
 @FI:
@@ -445,7 +445,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Divide el barrado después de la nota
 @ET:
 @EU:
 @FI:
@@ -491,7 +491,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa / desactiva el pedal bajo de la nota
 @ET:
 @EU:
 @FI:
@@ -537,7 +537,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa / desactiva el pedal liberado bajo de la nota
 @ET:
 @EU:
 @FI:
@@ -583,7 +583,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa / desactiva el estilo de nota de adorno
 @ET:
 @EU:
 @FI:
@@ -629,7 +629,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa / desactiva la marca @
 @ET:
 @EU:
 @FI:

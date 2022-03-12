@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda el contenido del editor
 @ET:
 @EU:
 @FI:
@@ -52,7 +52,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-s
 @ET:
 @EU:
 @FI:
@@ -95,7 +95,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			PDF
 @ET:
 @EU:
 @FI:
@@ -138,7 +138,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda la vista como SVG
 @ET:
 @EU:
 @FI:
@@ -175,7 +175,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-g
 @ET:
 @EU:
 @FI:
@@ -219,7 +219,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda como HTML
 @ET:
 @EU:
 @FI:
@@ -297,7 +297,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda como MusicXML
 @ET:
 @EU:
 @FI:
@@ -376,7 +376,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda como MEI
 @ET:
 @EU:
 @FI:
@@ -413,7 +413,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-m
 @ET:
 @EU:
 @FI:
@@ -457,7 +457,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Visualización de los datos de Humdrum
 @ET:
 @EU:
 @FI:
@@ -494,7 +494,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-h
 @ET:
 @EU:
 @FI:
@@ -538,7 +538,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Guarda en el buffer local
 @ET:
 @EU:
 @FI:
@@ -574,7 +574,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			info
 @ET:
 @EU:
 @FI:
@@ -620,7 +620,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Carga buffer local
 @ET:
 @EU:
 @FI:
@@ -669,7 +669,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Recarga de datos desde la fuente
 @ET:
 @EU:
 @FI:
@@ -706,7 +706,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-r
 @ET:
 @EU:
 @FI:
@@ -748,7 +748,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Convierte a Humdrum
 @ET:
 @EU:
 @FI:
@@ -785,7 +785,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			info
 @ET:
 @EU:
 @FI:
@@ -827,7 +827,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Conmuta CSV/TSV
 @ET:
 @EU:
 @FI:
@@ -864,7 +864,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-u
 @ET:
 @EU:
 @FI:
@@ -907,7 +907,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Codifica MIME
 @ET:
 @EU:
 @FI:
@@ -944,7 +944,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			info
 @ET:
 @EU:
 @FI:
@@ -986,7 +986,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Decodifica MIME
 @ET:
 @EU:
 @FI:
@@ -1023,7 +1023,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			info
 @ET:
 @EU:
 @FI:

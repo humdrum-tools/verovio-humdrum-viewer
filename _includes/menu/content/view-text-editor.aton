@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa/desactiva la visualización de texto
 @ET:
 @EU:
 @FI:
@@ -52,7 +52,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-y
 @ET:
 @EU:
 @FI:
@@ -93,7 +93,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Aumenta el tamaño de la letra
 @ET:
 @EU:
 @FI:
@@ -139,7 +139,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Reduce el tamaño de la letra
 @ET:
 @EU:
 @FI:
@@ -185,7 +185,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Conmuta el modo de editor de texto vi/plano
 @ET:
 @EU:
 @FI:
@@ -222,7 +222,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-v
 @ET:
 @EU:
 @FI:
@@ -265,7 +265,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Conmutar la visualización de CSV/TSV Humdrum
 @ET:
 @EU:
 @FI:

@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Vista de una sola página
 @ET:
 @EU:
 @FI:
@@ -61,7 +61,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Vista multipágina
 @ET:
 @EU:
 @FI:
@@ -155,7 +155,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Notación
 @ET:
 @EU:
 @FI:
@@ -203,7 +203,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Pestañas
 @ET:
 @EU:
 @FI:
@@ -251,7 +251,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Divisiones
 @ET:
 @EU:
 @FI:
@@ -299,7 +299,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Fuente musical
 @ET:
 @EU:
 @FI:
@@ -347,7 +347,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Editor de texto
 @ET:
 @EU:
 @FI:
@@ -395,7 +395,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa/desactiva el resaltado de las capas
 @ET:
 @EU:
 @FI:
@@ -432,7 +432,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-l
 @ET:
 @EU:
 @FI:
@@ -477,7 +477,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa/desactiva el logo VHV
 @ET:
 @EU:
 @FI:
@@ -514,7 +514,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-b
 @ET:
 @EU:
 @FI:
@@ -557,7 +557,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Visualiza el siguiente menú de la barra de herramientas
 @ET:
 @EU:
 @FI:
@@ -594,7 +594,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-n
 @ET:
 @EU:
 @FI:
@@ -635,7 +635,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Alterna la visibilidad de la barra de herramientas
 @ET:
 @EU:
 @FI:
@@ -672,7 +672,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-N
 @ET:
 @EU:
 @FI:
@@ -750,7 +750,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-f
 @ET:
 @EU:
 @FI:
@@ -793,7 +793,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Activa/desactiva las claves originales
 @ET:
 @EU:
 @FI:
@@ -830,7 +830,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-o
 @ET:
 @EU:
 @FI:
@@ -873,7 +873,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Muestra el escaneo de la fuente (si está disponible)
 @ET:
 @EU:
 @FI:
@@ -910,7 +910,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			alt-p
 @ET:
 @EU:
 @FI:

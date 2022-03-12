@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Marcar melismas (dos notas o más por sílaba)
 @ET:
 @EU:
 @FI:
@@ -64,7 +64,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Marcar melismas (tres notas o más por sílaba)
 @ET:
 @EU:
 @FI:
@@ -113,7 +113,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Marcar melismas (cuatro notas o más por sílaba)
 @ET:
 @EU:
 @FI:
@@ -162,7 +162,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Marcar melismas (cinco notas o más por sílaba)
 @ET:
 @EU:
 @FI:
@@ -212,7 +212,7 @@
 @DK:
 @EL:
 @EN:
-@ES:
+@ES:			Mostrar el número de notas para cada sílaba
 @ET:
 @EU:
 @FI:
