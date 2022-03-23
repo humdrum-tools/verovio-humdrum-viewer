@@ -144,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			HIDEINITIALTOOLBAR = true;
 		}
 		if (CGI.k.match(/m/)) {
-console.error("INITIALMEI = true");
 				toggleTextVisibility(true);
 				INITIALMEI = true;
 				// displayMeiNoType();
@@ -179,11 +178,12 @@ console.error("INITIALMEI = true");
 		GLOBALFILTER = CGI.filter;
 	}
 
-	if (CGI.file || CGI.tasso || CGI.jrp || CGI.bb || CGI.bitbucket || CGI.gh || CGI.github) {
+	if (CGI.file || CGI.tasso || CGI.jrp || CGI.bb || CGI.bitbucket || CGI.gh || CGI.github || CGI.poly) {
 		loadKernScoresFile(
 			{
 				file: CGI.file,
 				tasso: CGI.tasso,
+				poly: CGI.poly,
 				jrp: CGI.jrp,
 				bitbucket: CGI.bitbucket,
 				bb: CGI.bb,
