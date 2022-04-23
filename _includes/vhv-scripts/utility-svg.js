@@ -727,7 +727,7 @@ function restoreSelectedSvgElement(id) {
 	var line;
 	var matches = id.match(/L(\d+)/);
 	if (matches) {
-		line = parseInt(line);0
+		line = parseInt(line);
 	} else {
 		return;
 	}

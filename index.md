@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: chopin-wiosna.krn
+splash: scarlatti2.krn
 ---
 
 <div id="output"></div>

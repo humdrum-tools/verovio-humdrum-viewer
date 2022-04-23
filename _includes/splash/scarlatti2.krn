@@ -1,13 +1,13 @@
 !!!COM: Scarlatti, Domenico
 !!!CDT: 1685-1757
-!!!OTL: Sonata in F-sharp minor, K.25, L.481
+!!!OTL: Sonata in F-sharp minor, L.481, K.25
 !!!SCT: K. 025
 !!!SCT: L. 481
 !!!OMD: Allegro ([quarter]=112)
 **kern	**kern	**dynam
 *staff2	*staff1	*staff1/2
 *Icemba	*Icemba	*
-*I"K.25 (L.481)	*I"K.25 (L.481)	*
+*I"L.481 (K.25)	*I"L.481 (K.25)	*
 *>[A,A,B,B]	*>[A,A,B,B]	*>[A,A,B,B]
 *>norep[A,B]	*>norep[A,B]	*>norep[A,B]
 *>A	*>A	*>A
@@ -124,9 +124,9 @@
 *	*^	*
 8FF#')	(32aLLL	8ryy	mf
 .	32g#J	.	.
-.	16f#JJ)	.	p
-!	!LO:TX:a:i:t=m.s.	!	!
-8ryy	(8cc#L	(16c#LL	.
+.	16f#JJ)	.	.
+!	!LO:TX:a:i:t=m.s.	!	!LO:DY:rj
+8ryy	(8cc#L	(16c#LL	p
 .	.	16f#JJ	.
 4ryy	8dd^	16aLL	.
 .	.	16f#	.
@@ -268,8 +268,8 @@
 .	.	16bJJ	.
 8A	8ff#	16cc#LL	.
 .	.	16a	.
-8G#J	8gg#J	16b	.
-.	.	16g#JJ))	.
+8G#J	8gg#J)	16b	.
+.	.	16g#JJ)	.
 *	*v	*v	*
 =27	=27	=27
 8F#)	(16aaLL	mf
@@ -295,12 +295,12 @@
 8G#')	16dd#LL	.
 .	16a	.
 (<8BB#L	16g#	.
-.	16f#JJ	.
-8C#	(32eLLL)	f
+.	16f#JJ)	.
+8C#	(32eLLL	f
 .	32d#J	.
 .	16c#JJ)	.
 !!!ONB: linked slur needs to be added here
-8AAJ	16B#LL	mf
+8AAJ	N(16B#LL	mf
 .	16c#JJ	.
 =30	=30	=30
 *^	*	*
@@ -349,7 +349,7 @@
 16d#>\LL	4ryy	8a^	.
 16B#/	.	.	.
 16G#/	.	8g#J)	.
-16B#/JJ	.	.	.
+16B#/JJN)	.	.	.
 *v	*v	*	*
 =35	=35	=35
 8C#	(32eLLL	mf
@@ -390,7 +390,7 @@
 8A#' 8c#' 8d#'J	16gg#	.
 .	16ff##JJ	.
 =39	=39	=39
-8G#' 8d#'L	16gg#LL)	.
+8G#' 8d#'L	16gg#LL>)	.
 .	(16g#	p
 8G#' 8d#'J	16f##	.
 .	16g#JJ	.
@@ -421,7 +421,7 @@
 =42	=42	=42
 8C#' 8c#'	16eeLL	.
 .	16aa	.
-(8F#^L	16gg#	.
+(8F#^L<	16gg#	.
 .	16ff#JJ	.
 8G#')	16eeLL	.
 .	16dd#	.
@@ -451,7 +451,7 @@
 8GG#'J	8B#' 8d#'J	.
 =45	=45	=45
 *MM88	*MM88	*
-2CC# 2C#@	2c#mm	.
+2CC# 2C#+	2c#mm	.
 !!LO:LB:g=z
 =46:|!|:	=46:|!|:	=46:|!|:
 *>B	*>B	*>B
@@ -729,21 +729,21 @@
 8F# 8A)	(32aLLL	mf
 .	32g#J	.
 .	16f#JJ)	.
-8d (8f#@L	(16ff#LL	p
+8d (8f#+L	(16ff#LL	p
 .	16bJJ	.
-8c# 8en@	16eenLL	.
+8c# 8en+	16eenLL	.
 .	16a	.
-8B 8d@J	16dd	.
+8B 8d+J	16dd	.
 .	16g#JJ	.
 =74	=74	=74
 8A 8c#L	16cc#LL	.
 .	16f#	.
 8G# 8B	16b	.
-.	16e#JJ	.
-8F# 8A)	(32aLLL)	mf
+.	16e#JJ)	.
+8F# 8A)	(32aLLL	mf
 .	32g#J	.
 .	16f#JJ)	.
-(<8D^ 8B^J	(<16e#LL	.
+(<8D^< 8B^<J	(<16e#LL	.
 .	16f#JJ	.
 !!LO:LB:g=z
 =75	=75	=75
@@ -791,7 +791,7 @@
 4ryy	8dd^	16g#LL	.
 .	.	16e#	.
 .	8cc#J)	16c#	.
-.	.	16e#JJ)	.
+.	.	16e#JJ	.
 *	*v	*v	*
 !!LO:LB:g=z
 =80	=80	=80
@@ -818,11 +818,11 @@
 8F# 8A)	(32aLLL	mf
 .	32g#J	.
 .	16f#JJ)	.
-(8d 8f#@L	(16ff#LL	<
+(8d 8f#+L	(16ff#LL	<
 .	16bJJ	.
-8c# 8en@	16eenLL	.
+8c# 8en+	16eenLL	.
 .	16a	.
-8B 8d@J	16dd	.
+8B 8d+J	16dd	.
 .	16g#JJ	.
 =83	=83	=83
 8A 8c#)	16cc#LL	.
@@ -881,14 +881,20 @@
 !!!RDF**kern: > = above
 !!!RDF**kern: < = below
 !!!RDF**dynam: > = dim.
-!!!RDF**kern: @ = marked note, color="silver", optional note
+!!!RDF**kern: N = linked
+!!!RDF**kern: + = marked note, optional, color=silver
+!!!verovio: beamFrenchStyle 1
 !!!URL-pdf: https://github.com/craigsapp/scarlatti-keyboard-sonatas/blob/master/reference-edition/L481K025.pdf
-!!!PTL: Domenico Scarlatti: Opere complete per clavicembalo, vol. 1
+!!!URL-vhv: https://verovio.humdrum.org/?file=scarlatti/sonatas/L481K025.krn
+!!!URL-pdf: https://github.com/craigsapp/scarlatti-keyboard-sonatas/blob/master/reference-edition/L481K025.pdf
+!!!PTL: Domenico Scarlatti: Opere complete per clavicembalo
 !!!PED: Longo, Alessandro
 !!!PPR: Ricordi
 !!!PPP: Milan
 !!!PDT: 1906-1913
+!!!YEC: 2021 Craig Stuart Sapp
+!!!YEM: Licence: (CC BY-NC-SA 4.0) https://creativecommons.org/licenses/by-nc-sa/4.0
 !!!ENC: Craig Stuart Sapp
 !!!END: 2006/08/13
 !!!EED: Craig Stuart Sapp
-!!!EEV: 2021/02/10
+!!!EEV: 2022/04/18
