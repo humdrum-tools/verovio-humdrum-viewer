@@ -290,95 +290,124 @@ let FreezeRendering     = false;
 //
 // See also:
 //    https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+//    https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
 //    https://keycode.info
 //    https://wangchujiang.com/hotkeys
 //
 
+let KEYS = {};
+
 // event:             .code           .keyCode   .key (US keyboard)
-let AKey            = "KeyA";         // 65      "A", "a"
-let BKey            = "KeyB";         // 66      "B", "b"
-let CKey            = "KeyC";         // 67      "C", "c"
-let DKey            = "KeyD";         // 68      "D", "d"
-let EKey            = "KeyE";         // 69      "E", "e"
-let FKey            = "KeyF";         // 70      "F", "f"
-let GKey            = "KeyG";         // 71      "G", "g"
-let HKey            = "KeyH";         // 72      "H", "h"
-let IKey            = "KeyI";         // 73      "I", "i"
-let JKey            = "KeyJ";         // 74      "J", "j"
-let KKey            = "KeyK";         // 75      "K", "k"
-let LKey            = "KeyL";         // 76      "L", "l"
-let MKey            = "KeyM";         // 77      "M", "m"
-let NKey            = "KeyN";         // 78      "N", "n"
-let OKey            = "KeyO";         // 79      "O", "o"
-let PKey            = "KeyP";         // 80      "P", "p"
-let QKey            = "KeyQ";         // 81      "Q", "q"
-let RKey            = "KeyR";         // 82      "R", "r"
-let SKey            = "KeyS";         // 83      "S", "s"
-let TKey            = "KeyT";         // 84      "T", "t"
-let UKey            = "KeyU";         // 85      "U", "u"
-let VKey            = "KeyV";         // 86      "V", "v"
-let WKey            = "KeyW";         // 87      "W", "w"
-let XKey            = "KeyX";         // 88      "X", "x"
-let YKey            = "KeyY";         // 89      "Y", "y"
-let ZKey            = "KeyZ";         // 90      "Z", "z"
-let ZeroKey         = "Digit0";       // 48      "0", "("
-let OneKey          = "Digit1";       // 49      "1", "@"
-let TwoKey          = "Digit2";       // 50      "2", "@"
-let ThreeKey        = "Digit3";       // 51      "3", "#"
-let FourKey         = "Digit4";       // 52      "4", "$"
-let FiveKey         = "Digit5";       // 53      "5", "%"
-let SixKey          = "Digit6";       // 54      "6", "^"
-let SevenKey        = "Digit7";       // 55      "7", "&"
-let EightKey        = "Digit8";       // 56      "8", "*"
-let NineKey         = "Digit9";       // 57      "9", "("
+KEYS.AKey            = "KeyA";         // 65      "A", "a"
+KEYS.BKey            = "KeyB";         // 66      "B", "b"
+KEYS.CKey            = "KeyC";         // 67      "C", "c"
+KEYS.DKey            = "KeyD";         // 68      "D", "d"
+KEYS.EKey            = "KeyE";         // 69      "E", "e"
+KEYS.FKey            = "KeyF";         // 70      "F", "f"
+KEYS.GKey            = "KeyG";         // 71      "G", "g"
+KEYS.HKey            = "KeyH";         // 72      "H", "h"
+KEYS.IKey            = "KeyI";         // 73      "I", "i"
+KEYS.JKey            = "KeyJ";         // 74      "J", "j"
+KEYS.KKey            = "KeyK";         // 75      "K", "k"
+KEYS.LKey            = "KeyL";         // 76      "L", "l"
+KEYS.MKey            = "KeyM";         // 77      "M", "m"
+KEYS.NKey            = "KeyN";         // 78      "N", "n"
+KEYS.OKey            = "KeyO";         // 79      "O", "o"
+KEYS.PKey            = "KeyP";         // 80      "P", "p"
+KEYS.QKey            = "KeyQ";         // 81      "Q", "q"
+KEYS.RKey            = "KeyR";         // 82      "R", "r"
+KEYS.SKey            = "KeyS";         // 83      "S", "s"
+KEYS.TKey            = "KeyT";         // 84      "T", "t"
+KEYS.UKey            = "KeyU";         // 85      "U", "u"
+KEYS.VKey            = "KeyV";         // 86      "V", "v"
+KEYS.WKey            = "KeyW";         // 87      "W", "w"
+KEYS.XKey            = "KeyX";         // 88      "X", "x"
+KEYS.YKey            = "KeyY";         // 89      "Y", "y"
+KEYS.ZKey            = "KeyZ";         // 90      "Z", "z"
+KEYS.ZeroKey         = "Digit0";       // 48      "0", "("
+KEYS.OneKey          = "Digit1";       // 49      "1", "@"
+KEYS.TwoKey          = "Digit2";       // 50      "2", "@"
+KEYS.ThreeKey        = "Digit3";       // 51      "3", "#"
+KEYS.FourKey         = "Digit4";       // 52      "4", "$"
+KEYS.FiveKey         = "Digit5";       // 53      "5", "%"
+KEYS.SixKey          = "Digit6";       // 54      "6", "^"
+KEYS.SevenKey        = "Digit7";       // 55      "7", "&"
+KEYS.EightKey        = "Digit8";       // 56      "8", "*"
+KEYS.NineKey         = "Digit9";       // 57      "9", "("
 // Numpad keys: 0=96 .. 9=105
 
-let BackKey         = "Backspace";    // 8       "Backspace"
-let BackQuoteKey    = "Backquote";    // 192     "`", "~"
-let BackSlashKey    = "Backslash";    // 220     "\\"
-let CommaKey        = "Comma";        // 188     ",", "<"
-let DeleteKey       = "Delete";       // 46      "Delete"
-let DotKey          = "Period";       // 190     ".", ">"
-let EnterKey        = "Enter";        // 13      "Enter"
-let EscKey          = "Escape";       // 27      "Escape"
-let MinusKey        = "Minus";        // 189     "-", "_"
-let SemiColonKey    = "Semicolon";    // 186     ";", ":"
-let SingleQuoteKey  = "Quote";        // 222     "'", "\""
-let SlashKey        = "Slash";        // 191     "/"
-let SpaceKey        = "Space"         // 32      " "
-let TabKey          = "Tab";          // 9       "Tab"
-let BracketLeftKey  = "BracketLeft";  // 219     "[", "{"
-let BracketRightKey = "BracketRight"; // 221     "]", "}"
-let EqualKey        = "Equal";        // 187     "=", "+"
+KEYS.BackKey         = "Backspace";    // 8       "Backspace"
+KEYS.BackQuoteKey    = "Backquote";    // 192     "`", "~"
+KEYS.BackSlashKey    = "Backslash";    // 220     "\\"
+KEYS.CommaKey        = "Comma";        // 188     ",", "<"
+KEYS.DeleteKey       = "Delete";       // 46      "Delete"
+KEYS.DotKey          = "Period";       // 190     ".", ">"
+KEYS.EnterKey        = "Enter";        // 13      "Enter"
+KEYS.EscKey          = "Escape";       // 27      "Escape"
+KEYS.MinusKey        = "Minus";        // 189     "-", "_"
+KEYS.SemiColonKey    = "Semicolon";    // 186     ";", ":"
+KEYS.SingleQuoteKey  = "Quote";        // 222     "'", "\""
+KEYS.SlashKey        = "Slash";        // 191     "/"
+KEYS.SpaceKey        = "Space"         // 32      " "
+KEYS.TabKey          = "Tab";          // 9       "Tab"
+KEYS.BracketLeftKey  = "BracketLeft";  // 219     "[", "{"
+KEYS.BracketRightKey = "BracketRight"; // 221     "]", "}"
+KEYS.EqualKey        = "Equal";        // 187     "=", "+"
 
-let ControlLeftKey  = "ControlLeft";  // 17      "Control"   event.ctrl
-let ControlRightKey = "ControlRight"; // 17      "Control"   event.ctrl
-let ShiftLeftKey    = "ShiftLeft";    // 16      "Shift"     event.shift
-let ShiftRightKey   = "ShiftRight";   // 16      "Shift"     event.shift
+KEYS.ControlLeftKey  = "ControlLeft";  // 17      "Control"   event.ctrl
+KEYS.ControlRightKey = "ControlRight"; // 17      "Control"   event.ctrl
+KEYS.ShiftLeftKey    = "ShiftLeft";    // 16      "Shift"     event.shift
+KEYS.ShiftRightKey   = "ShiftRight";   // 16      "Shift"     event.shift
 
-let LeftKey         = "ArrowLeft";    // 37      "ArrowLeft"
-let UpKey           = "ArrowUp";      // 38      "ArrowUp"
-let RightKey        = "ArrowRight";   // 39      "ArrowRight"
-let DownKey         = "ArrowDown";    // 40      "ArrowDown"
+KEYS.LeftKey         = "ArrowLeft";    // 37      "ArrowLeft"
+KEYS.UpKey           = "ArrowUp";      // 38      "ArrowUp"
+KEYS.RightKey        = "ArrowRight";   // 39      "ArrowRight"
+KEYS.DownKey         = "ArrowDown";    // 40      "ArrowDown"
 
-let PgUpKey         = "PageUp";       // 33      "PageUp"
-let PgDnKey         = "PageDown";     // 34      "PageDown"
-let EndKey          = "End";          // 35      "End"
-let HomeKey         = "Home";         // 36      "Home"
+KEYS.PgUpKey         = "PageUp";       // 33      "PageUp"
+KEYS.PgDnKey         = "PageDown";     // 34      "PageDown"
+KEYS.EndKey          = "End";          // 35      "End"
+KEYS.HomeKey         = "Home";         // 36      "Home"
 
-let F1Key           = "F1";           // 112     "F1"
-let F2Key           = "F2";           // 113     "F2"
-let F3Key           = "F3";           // 114     "F3"
-let F4Key           = "F4";           // 115     "F4"
-let F5Key           = "F5";           // 116     "F5"
-let F6Key           = "F6";           // 117     "F6"
-let F7Key           = "F7";           // 118     "F7"
-let F8Key           = "F8";           // 119     "F8"
-let F9Key           = "F9";           // 120     "F9"
-let F10Key          = "F10";          // 121     "F10"
-let F11Key          = "F11";          // 122     "F11"
-let F12Key          = "F12";          // 123     "F12"
+KEYS.F1Key           = "F1";           // 112     "F1"
+KEYS.F2Key           = "F2";           // 113     "F2"
+KEYS.F3Key           = "F3";           // 114     "F3"
+KEYS.F4Key           = "F4";           // 115     "F4"
+KEYS.F5Key           = "F5";           // 116     "F5"
+KEYS.F6Key           = "F6";           // 117     "F6"
+KEYS.F7Key           = "F7";           // 118     "F7"
+KEYS.F8Key           = "F8";           // 119     "F8"
+KEYS.F9Key           = "F9";           // 120     "F9"
+KEYS.F10Key          = "F10";          // 121     "F10"
+KEYS.F11Key          = "F11";          // 122     "F11"
+KEYS.F12Key          = "F12";          // 123     "F12"
 // etc. to F32Key
+
+
+
+//////////////////////////////
+//
+// GetKey --
+// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState
+// https://hacks.mozilla.org/2017/03/internationalize-your-keyboard-controls
+//
+
+function GetKey(event) {
+	let code = event.code;
+	let key  = event.key;
+	if (key.match(/[A-Za-z]/)) {
+		return KEYS[`${key.toUpperCase()}Key`];
+	}
+
+	// German keyboard
+	if ((key == "›") && (code == "KeyZ")) {
+		return KEYS.YKey;
+	} else if ((key == "Dead") && (code == "KeyY")) {
+		return KEYS.ZKey;
+	}
+
+	return event.code;
+}
 
 
 

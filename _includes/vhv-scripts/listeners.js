@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Thu Aug 18 21:03:35 CEST 2016
+// Last Modified:  Sat Apr 23 14:14:38 PDT 2022
 // Filename:       listeners.js
 // Web Address:    https://verovio.humdrum.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -280,7 +280,7 @@ function processNotationKeyCommand(event) {
 	}
 
 	//undo doesn't need CursorNote
-	if (event.code === ZKey && (event.ctrlKey || event.metaKey)) {
+	if (event.code === KEYS.ZKey && (event.ctrlKey || event.metaKey)) {
 		EDITOR.undo();
 		return;
 	};
@@ -292,53 +292,55 @@ function processNotationKeyCommand(event) {
 		return;
 	}
 
-	switch (event.code) {
-		case AKey:
+	let inputKey = GetKey(event);
+
+	switch (inputKey) {
+		case KEYS.AKey:
 			processNotationKey("a", CursorNote);
 			break;
 
-		case BKey:
+		case KEYS.BKey:
 			processNotationKey("b", CursorNote);
 			break;
 
-		case CKey:
+		case KEYS.CKey:
 			processNotationKey("c", CursorNote);
 			break;
 
-		case DKey:
+		case KEYS.DKey:
 			if (event.shiftKey) {
 				processNotationKey("D", CursorNote);
 			}
 			break;
 
-		// case EKey:
+		// case KEYS.EKey:
 
-		case FKey:
+		case KEYS.FKey:
 			processNotationKey("f", CursorNote);
 			break;
 
-		// case GKey:
-		// case HKey:
+		// case KEYS.GKey:
+		// case KEYS.HKey:
 
-		case IKey:
+		case KEYS.IKey:
 			processNotationKey("i", CursorNote);
 			break;
 
-		case JKey:
+		case KEYS.JKey:
 			if (event.shiftKey) {
 				processNotationKey("J", CursorNote);
 			}
 			break;
 
-		// case KKey:
+		// case KEYS.KKey:
 
-		case LKey:
+		case KEYS.LKey:
 			if (event.shiftKey) {
 				processNotationKey("L", CursorNote);
 			}
 			break;
 
-		case MKey:
+		case KEYS.MKey:
 			if (event.shiftKey) {
 				processNotationKey("M", CursorNote);
 			} else {
@@ -346,13 +348,13 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case NKey:
+		case KEYS.NKey:
 			processNotationKey("n", CursorNote);
 			break;
 
-		// case OKey:
+		// case KEYS.OKey:
 
-		case PKey:
+		case KEYS.PKey:
 			if (event.shiftKey) {
 				processNotationKey("P", CursorNote);
 			} else {
@@ -360,17 +362,17 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case QKey:
+		case KEYS.QKey:
 			processNotationKey("q", CursorNote);
 			break;
 
-		// case RKey:
+		// case KEYS.RKey:
 
-		case SKey:
+		case KEYS.SKey:
 			processNotationKey("s", CursorNote);
 			break;
 
-		case TKey:
+		case KEYS.TKey:
 			if (event.shiftKey) {
 				processNotationKey("T", CursorNote);
 			} else {
@@ -378,15 +380,15 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		// case UKey:
+		// case KEYS.UKey:
 
-		case VKey:
+		case KEYS.VKey:
 			if (CursorNote.id.match("note-")) {
 				processNotationKey("^", CursorNote);
 			}
 			break;
 
-		case WKey:
+		case KEYS.WKey:
 			if (event.shiftKey) {
 				processNotationKey("W", CursorNote);
 			} else {
@@ -394,15 +396,15 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case XKey:
+		case KEYS.XKey:
 			processNotationKey("X", CursorNote);
 			break;
 
-		case YKey:
+		case KEYS.YKey:
 			processNotationKey("y", CursorNote);
 			break;
 
-		// case ZKey:
+		// case KEYS.ZKey:
 
 		case OneKey:
 			processNotationKey("1", CursorNote);
@@ -593,7 +595,7 @@ function processInterfaceKeyCommand(event) {
 
 	if (event.metaKey) {
 		// usually ignore metaKey unless 0:
-		if (event.code == ZeroKey) {
+		if (event.code == KEYS.ZeroKey) {
 			MENU.resetTextFontSize();
 			SCALE = 40;
 			localStorage.SCALE = SCALE;
@@ -603,8 +605,10 @@ function processInterfaceKeyCommand(event) {
 		return;
 	}
 
-	switch (event.code) {
-		case AKey:          // UNUSED
+	let inputKey = GetKey(event);
+
+	switch (inputKey) {
+		case KEYS.AKey:          // UNUSED
 			if (event.altKey) {
 				if (event.shiftKey) {
 					// toggle display of toolbar
@@ -617,7 +621,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case BKey:
+		case KEYS.BKey:
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addBarlineAboveCurrentPosition();
@@ -626,7 +630,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case CKey:
+		case KEYS.CKey:
 			if (event.altKey) {
 				if (event.shiftKey) {
 					togglePlaceColoring();
@@ -638,7 +642,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case DKey:          // Add null data line
+		case KEYS.DKey:          // Add null data line
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addDataLineAboveCurrentPosition();
@@ -649,7 +653,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case EKey:          // erase text editor contents or Tooggle display of menu with shift key.
+		case KEYS.EKey:          // erase text editor contents or Tooggle display of menu with shift key.
 			if (event.altKey) {
 				if (event.shiftKey) {
 					toggleMenuAndToolbarDisplay();
@@ -660,7 +664,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case FKey:          // toogle notation update freezing
+		case KEYS.FKey:          // toogle notation update freezing
 			if (event.altKey) {
 				if (event.shiftKey) {
 					displayNotation(false, true);
@@ -671,7 +675,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case GKey:          // save current view to SVG image
+		case KEYS.GKey:          // save current view to SVG image
 			if (event.altKey) {
 				// displaySvg();
 				saveSvgData();
@@ -679,7 +683,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case HKey:          // show Humdrum data in text editor
+		case KEYS.HKey:          // show Humdrum data in text editor
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					showBufferedHumdrumData();
@@ -688,7 +692,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case IKey:          // Add null interpretation line
+		case KEYS.IKey:          // Add null interpretation line
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addInterpretationLineAboveCurrentPosition();
@@ -697,13 +701,13 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case JKey:          // UNUSED
+		case KEYS.JKey:          // UNUSED
 			break;
 
-		case KKey:          // UNUSED
+		case KEYS.KKey:          // UNUSED
 			break;
 
-		case LKey:          // toggle color of staff layers
+		case KEYS.LKey:          // toggle color of staff layers
 			if (event.altKey) {
 				if (event.shiftKey) {
 					addLocalCommentLineAboveCurrentPosition();
@@ -714,7 +718,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-	 	case MKey:          // show MEI data in text editor
+	 	case KEYS.MKey:          // show MEI data in text editor
 			if (event.altKey) {
 				EditorMode = "xml";
 				if (event.shiftKey) {
@@ -728,7 +732,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-	 	case NKey:          // toggle display of navigation toolbar
+	 	case KEYS.NKey:          // toggle display of navigation toolbar
 			if (event.altKey) {
 				if (event.shiftKey) {
 					// toggleNavigationToolbar();
@@ -740,7 +744,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case OKey:          // toggle display of *oclef data
+		case KEYS.OKey:          // toggle display of *oclef data
 			if (event.altKey) {
 				OriginalClef = !OriginalClef;
 				console.log("Original clef changed to:", OriginalClef);
@@ -751,14 +755,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case PKey:          // show PDF in separate window
+		case KEYS.PKey:          // show PDF in separate window
 			if (event.altKey) {
 				displayPdf();
 				event.preventDefault();
 			}
 			break;
 
-		case QKey:          // toggle coloring of appoggiaturas
+		case KEYS.QKey:          // toggle coloring of appoggiaturas
 			if (event.altKey) {
 				if (event.shiftKey) {
 					// do nothing
@@ -769,7 +773,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case RKey:          // reload Humdrum data from server
+		case KEYS.RKey:          // reload Humdrum data from server
 			if (event.altKey) {
 				if (event.shiftKey) {
 					restoreEditorContentsLocally();
@@ -781,7 +785,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case SKey:          // save contents of text editor to file
+		case KEYS.SKey:          // save contents of text editor to file
 			if (event.altKey) {
 				if (event.shiftKey) {
 					saveEditorContentsLocally();
@@ -793,7 +797,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case TKey:          // save PDF file
+		case KEYS.TKey:          // save PDF file
 			// Needed functions are defined in _includes/pdfkit.html
 			if (event.altKey) {
 				if (event.shiftKey) {
@@ -805,7 +809,7 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case UKey:              // toggle TSV/CSV display of Humdrum data
+		case KEYS.UKey:              // toggle TSV/CSV display of Humdrum data
 			if (event.shiftKey) {
 				decreaseTab();
 				event.preventDefault();
@@ -815,14 +819,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case VKey:          // toggle vi mode in text editor
+		case KEYS.VKey:          // toggle vi mode in text editor
 			if (event.altKey) {
 				toggleEditorMode();
 				event.preventDefault();
 			}
 			break;
 
-	 	case WKey:          // adjust notation width parameter
+	 	case KEYS.WKey:          // adjust notation width parameter
 			if (event.altKey) {
 				if (event.shiftKey) {
 					SPACINGADJUSTMENT -= 0.05;
@@ -837,10 +841,10 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case XKey:          // UNUSED
+		case KEYS.XKey:          // UNUSED
 			break;
 
-		case YKey:          // show/hide text editor
+		case KEYS.YKey:          // show/hide text editor
 			if (event.altKey) {
 				if (!ShowingIndex) {
 					toggleTextVisibility();
@@ -849,25 +853,25 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-/*		case ZKey:  // use undo key from OS/browser
+/*		case KEYS.ZKey:  // use undo key from OS/browser
 			if (event.ctrlKey || event.metaKey) {
 				EDITOR.undo();
 			};
 			break;
 */
 
-		case ZeroKey:  InterfaceSingleNumber = 0; break;
-		case OneKey:   InterfaceSingleNumber = 1; break;
-		case TwoKey:   InterfaceSingleNumber = 2; break;
-		case ThreeKey: InterfaceSingleNumber = 3; break;
-		case FourKey:  InterfaceSingleNumber = 4; break;
-		case FiveKey:  InterfaceSingleNumber = 5; break;
-		case SixKey:   InterfaceSingleNumber = 6; break;
-		case SevenKey: InterfaceSingleNumber = 7; break;
-		case EightKey: InterfaceSingleNumber = 8; break;
-		case NineKey:  InterfaceSingleNumber = 9; break;
+		case KEYS.ZeroKey:  InterfaceSingleNumber = 0; break;
+		case KEYS.OneKey:   InterfaceSingleNumber = 1; break;
+		case KEYS.TwoKey:   InterfaceSingleNumber = 2; break;
+		case KEYS.ThreeKey: InterfaceSingleNumber = 3; break;
+		case KEYS.FourKey:  InterfaceSingleNumber = 4; break;
+		case KEYS.FiveKey:  InterfaceSingleNumber = 5; break;
+		case KEYS.SixKey:   InterfaceSingleNumber = 6; break;
+		case KEYS.SevenKey: InterfaceSingleNumber = 7; break;
+		case KEYS.EightKey: InterfaceSingleNumber = 8; break;
+		case KEYS.NineKey:  InterfaceSingleNumber = 9; break;
 
-		case SpaceKey:          // start/pause MIDI playback
+		case KEYS.SpaceKey:          // start/pause MIDI playback
 			if (!PLAY) {
 				if (PAUSE) {
 					play();
@@ -886,7 +890,7 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case CommaKey:          // toggle TSV/CSV display of Humdrum data
+		case KEYS.CommaKey:     // toggle TSV/CSV display of Humdrum data
 		                        // decrease tab size in editor
 			// See UKey for relocation of comma-command for
 			// (related to non-US keyboard layout)
@@ -899,14 +903,14 @@ function processInterfaceKeyCommand(event) {
 			}
 			break;
 
-		case DotKey:          // increase tab size in editor
+		case KEYS.DotKey:          // increase tab size in editor
 			if (event.shiftKey) {
 				increaseTab();
 				event.preventDefault();
 			}
 			break;
 
-		case UpKey:          // return to repertory index
+		case KEYS.UpKey:          // return to repertory index
 			if (event.shiftKey) {
 				if (FILEINFO["has-index"] == "true") {
 					displayIndex(FILEINFO["location"]);
@@ -915,8 +919,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case PgUpKey:          // shift: go to previous repertory work/movement
-		case LeftKey:          // go to previous page
+		case KEYS.PgUpKey:          // shift: go to previous repertory work/movement
+		case KEYS.LeftKey:          // go to previous page
 			if (event.shiftKey) {
 				displayWork(FILEINFO["previous-work"]);
 			} else {
@@ -925,8 +929,8 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case PgDnKey:          // shift: go to next repertory work/movement
-		case RightKey:         // go to next page
+		case KEYS.PgDnKey:          // shift: go to next repertory work/movement
+		case KEYS.RightKey:         // go to next page
 			if (event.shiftKey) {
 				displayWork(FILEINFO["next-work"]);
 			} else {
@@ -935,23 +939,23 @@ function processInterfaceKeyCommand(event) {
 			event.preventDefault();
 			break;
 
-		case HomeKey:          // go to the first page
+		case KEYS.HomeKey:          // go to the first page
 			gotoFirstPage();
 			event.preventDefault();
 			break;
 
-		case EndKey:          // go to the last page
+		case KEYS.EndKey:          // go to the last page
 			gotoLastPage();
 			event.preventDefault();
 			break;
 
-		case SlashKey:          // toggle menu display (to be implemented)
+		case KEYS.SlashKey:          // toggle menu display (to be implemented)
 			if (event.shiftKey) {
 				event.preventDefault();
 			}
 			break;
 
-		case EscKey:
+		case KEYS.EscKey:
 			hideRepertoryIndex();
 			event.preventDefault();
 			break;
