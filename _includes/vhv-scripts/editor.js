@@ -1897,6 +1897,7 @@ function toggleExplicitAccidental(id, line, field, subfield) {
 //
 
 function toggleStaccato(id, line, field) {
+console.warn("TOGGLING STACCATO AT ID", id);
 	var counter = 0;
 	var maxline = EDITOR.session.getLength();
 	var i = line;
