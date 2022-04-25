@@ -989,16 +989,16 @@ MenuInterface.prototype.displayMeiData = function () {
 MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	let event = {};
 	switch (bufferNumber) {
-		case 0: event.code = ZeroKey;  break;
-		case 1: event.code = OneKey;   break;
-		case 2: event.code = TwoKey;   break;
-		case 3: event.code = ThreeKey; break;
-		case 4: event.code = FourKey;  break;
-		case 5: event.code = FiveKey;  break;
-		case 6: event.code = SixKey;   break;
-		case 7: event.code = SevenKey; break;
-		case 8: event.code = EightKey; break;
-		case 9: event.code = NineKey;  break;
+		case 0: event.code = KEYS.ZeroKey;  break;
+		case 1: event.code = KEYS.OneKey;   break;
+		case 2: event.code = KEYS.TwoKey;   break;
+		case 3: event.code = KEYS.ThreeKey; break;
+		case 4: event.code = KEYS.FourKey;  break;
+		case 5: event.code = KEYS.FiveKey;  break;
+		case 6: event.code = KEYS.SixKey;   break;
+		case 7: event.code = KEYS.SevenKey; break;
+		case 8: event.code = KEYS.EightKey; break;
+		case 9: event.code = KEYS.NineKey;  break;
 		default:
 			console.log("UNKNOWN BUFFER:", bufferNumber);
 			return;
@@ -1023,16 +1023,16 @@ MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 
 	// First store the buffer number in the number register:
 	switch (bufferNumber) {
-		case 0: event.code = ZeroKey;  break;
-		case 1: event.code = OneKey;   break;
-		case 2: event.code = TwoKey;   break;
-		case 3: event.code = ThreeKey; break;
-		case 4: event.code = FourKey;  break;
-		case 5: event.code = FiveKey;  break;
-		case 6: event.code = SixKey;   break;
-		case 7: event.code = SevenKey; break;
-		case 8: event.code = EightKey; break;
-		case 9: event.code = NineKey;  break;
+		case 0: event.code = KEYS.ZeroKey;  break;
+		case 1: event.code = KEYS.OneKey;   break;
+		case 2: event.code = KEYS.TwoKey;   break;
+		case 3: event.code = KEYS.ThreeKey; break;
+		case 4: event.code = KEYS.FourKey;  break;
+		case 5: event.code = KEYS.FiveKey;  break;
+		case 6: event.code = KEYS.SixKey;   break;
+		case 7: event.code = KEYS.SevenKey; break;
+		case 8: event.code = KEYS.EightKey; break;
+		case 9: event.code = KEYS.NineKey;  break;
 		default:
 			console.log("UNKNOWN BUFFER:", bufferNumber);
 			return;

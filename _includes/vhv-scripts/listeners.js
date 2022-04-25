@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Sat Apr 23 14:14:38 PDT 2022
+// Last Modified:  Mon Apr 25 06:30:20 PDT 2022
 // Filename:       listeners.js
 // Web Address:    https://verovio.humdrum.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -406,11 +406,11 @@ function processNotationKeyCommand(event) {
 
 		// case KEYS.ZKey:
 
-		case OneKey:
+		case KEYS.OneKey:
 			processNotationKey("1", CursorNote);
 			break;
 
-		case TwoKey:
+		case KEYS.TwoKey:
 			if (event.shiftKey) {
 				processNotationKey("@", CursorNote);
 			} else {
@@ -418,7 +418,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case ThreeKey:
+		case KEYS.ThreeKey:
 			if (event.shiftKey) {
 				processNotationKey("#", CursorNote);
 			} else {
@@ -426,15 +426,15 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case FourKey:
+		case KEYS.FourKey:
 			processNotationKey("4", CursorNote);
 			break;
 
-		case FiveKey:
+		case KEYS.FiveKey:
 			processNotationKey("5", CursorNote);
 			break;
 
-		case SixKey:
+		case KEYS.SixKey:
 			if (CursorNote.id.match("note-")) {
 				if (event.shiftKey) {
 					processNotationKey("^^", CursorNote);
@@ -446,27 +446,27 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case SevenKey:
+		case KEYS.SevenKey:
 			processNotationKey("7", CursorNote);
 			break;
 
-		case EightKey:
+		case KEYS.EightKey:
 			processNotationKey("8", CursorNote);
 			break;
 
-		case NineKey:
+		case KEYS.NineKey:
 			processNotationKey("9", CursorNote);
 			break;
 
-		case MinusKey:
+		case KEYS.MinusKey:
 			processNotationKey("-", CursorNote);
 			break;
 
-		case SingleQuoteKey:
+		case KEYS.SingleQuoteKey:
 			processNotationKey("'", CursorNote);
 			break;
 
-		case SemiColonKey:
+		case KEYS.SemiColonKey:
 			if (event.shiftKey) {
 				processNotationKey(":", CursorNote);
 			} else {
@@ -474,7 +474,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case BackQuoteKey:
+		case KEYS.BackQuoteKey:
 			if (event.shiftKey) {
 				processNotationKey("~", CursorNote);
 			} else {
@@ -482,7 +482,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case UpKey:
+		case KEYS.UpKey:
 			if (event.shiftKey) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -502,7 +502,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case DownKey:
+		case KEYS.DownKey:
 			if (event.shiftKey) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -522,13 +522,13 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case DeleteKey:
-		case BackKey:
+		case KEYS.DeleteKey:
+		case KEYS.BackKey:
 			processNotationKey("delete", CursorNote);
 			event.stopPropagation();
 			break;
 
-		case LeftKey:
+		case KEYS.LeftKey:
 			if (CursorNote.id.match("slur-")) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -545,7 +545,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case RightKey:
+		case KEYS.RightKey:
 			if (CursorNote.id.match("slur-")) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -562,7 +562,7 @@ function processNotationKeyCommand(event) {
 			}
 			break;
 
-		case EscKey:
+		case KEYS.EscKey:
 			event.preventDefault();
 			event.stopPropagation();
 			processNotationKey("esc", CursorNote);
