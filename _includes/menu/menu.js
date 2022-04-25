@@ -2318,6 +2318,179 @@ MenuInterface.prototype.previousSplit = function (count) {
 
 //////////////////////////////
 //
+// MenuInterface::startSplitSystem --
+//
+
+MenuInterface.prototype.startSplitSystem = function (count) {
+	if (!count) {
+		count = 8;
+	}
+	count--;  // adjustment for first system not being labeled.
+	MenuInterface.prototype.removeSplits();
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
+	let counter = 0;
+	let adjust = 0;
+	let change = 0;
+	let i;
+	for (i=0; i<lines.length; i++) {
+		if (lines[i].match(/^!!LO:LB/)) {
+			counter++;
+			if (counter == count) {
+				lines[i] = "!!ignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (!change) {
+		return;
+	}
+	let output = "";
+	for (i=0; i<lines.length; i++) {
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::nextSplitSystem --
+//
+
+MenuInterface.prototype.nextSplitSystem = function (count) {
+	if (!count) {
+		count = 8;
+	}
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
+	if (lines.length == 0) {
+		return;
+	}
+	let i;
+	let adjust = 0;
+	let changed = 0;
+	let startpos = -1;
+	let counter = 0;
+	for (i=1; i<lines.length; i++) {
+		if (lines[i] === "!!Xignore") {
+			lines[i] = "XXX DELETE XXX";
+			changed = 1;
+			continue;
+		} else if (lines[i] === "!!ignore") {
+			lines[i] = "!!Xignore";
+			changed = 1;
+			startpos = i;
+			break;
+		}
+	}
+	if (!changed) {
+		return;
+	}
+	// mark count measures later with !!ignore
+	for (i=startpos + 1; i<lines.length; i++) {
+		if (lines[i].match(/^!!LO:LB/)) {
+			counter++;
+			if (counter == count) {
+				lines[i] = "!!ignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (lines[0] !== "!!ignore") {
+		lines[0] = "!!ignore\n" + lines[0];
+		adjust++;
+	}
+	let output = "";
+	for (i=0; i<lines.length; i++) {
+		if (lines[i] === "XXX DELETE XXX") {
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::previousSplitSystem --
+//
+
+MenuInterface.prototype.previousSplitSystem = function (count) {
+	if (!count) {
+		count = 8;
+	}
+	let lines = EDITOR.getValue().match(/[^\r\n]+/g);
+	let position = EDITOR.getCursorPosition();
+	if (lines.length == 0) {
+		return;
+	}
+	let i;
+	let adjust = 0;
+	let changed = 0;
+	let startpos = -1;
+	let counter = 0;
+	for (i=1; i<lines.length; i++) {
+		if (lines[i] === "!!Xignore") {
+			lines[i] = "!!ignore";
+			changed = 1;
+			startpos = i;
+		} else if (lines[i] === "!!ignore") {
+			lines[i] = "XXX DELETE XXX";
+		}
+	}
+	if (!changed) {
+		return;
+	}
+
+	// mark count measures later with !!ignore
+	for (i=startpos - 2; i>0; i--) {
+		if (lines[i].match(/^!!LO:LB/)) {
+			counter++;
+			if (counter == count - 1) {
+				lines[i] = "!!Xignore\n" + lines[i];
+				if (i > lines.row) {
+					adjust++;
+				}
+				change = 1;
+				break;
+			}
+		}
+	}
+	if (lines[0] !== "!!ignore") {
+		lines[0] = "!!ignore\n" + lines[0];
+		adjust++;
+	}
+	let output = "";
+	for (i=0; i<lines.length; i++) {
+		if (lines[i] === "XXX DELETE XXX") {
+			continue;
+		}
+		output += lines[i] + "\n";
+	}
+	EDITOR.setValue(output, -1);
+	position.row += adjust;
+	EDITOR.moveCursorToPosition(position);
+};
+
+
+//////////////////////////////
+//
 // MenuInterface::removeSplits --
 //
 

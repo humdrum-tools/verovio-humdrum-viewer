@@ -42,8 +42,8 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org
-@ES:	https://doc.verovio.humdrum.org/index-ES.html
-@PL:	https://doc.verovio.humdrum.org/index-PL.html
+@ES:		https://doc.verovio.humdrum.org/index-ES.html
+@PL:		https://doc.verovio.humdrum.org/index-PL.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -85,7 +85,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/interface/getting_started
-@DEFAULT:	https://doc.verovio.humdrum.org/interface/getting_started/index-ES.html
+@ES:		https://doc.verovio.humdrum.org/interface/getting_started/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -127,7 +127,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/humdrum/getting_started
-@ES:	https://doc.verovio.humdrum.org/humdrum/getting_started/index-ES.html
+@ES:		https://doc.verovio.humdrum.org/humdrum/getting_started/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -169,7 +169,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/repertory
-@ES:	https://doc.verovio.humdrum.org/repertory/index-ES.html
+@ES:		https://doc.verovio.humdrum.org/repertory/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -212,7 +212,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/filter
-@DEFAULT:	https://doc.verovio.humdrum.org/filter/index-ES.html
+@ES:		https://doc.verovio.humdrum.org/filter/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY
@@ -254,7 +254,7 @@
 @ZH-traditional:
 @@BEGIN: LINK
 @DEFAULT:	https://doc.verovio.humdrum.org/options
-@ES:	https://doc.verovio.humdrum.org/options/index-ES.html
+@ES:		https://doc.verovio.humdrum.org/options/index-ES.html
 @@END: LINK
 @@END: TEXT
 @@END: ENTRY

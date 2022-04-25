@@ -279,9 +279,9 @@
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			
-@DEFAULT:		
+@DEFAULT:		[info]
 @@BEGIN: LINK
-@DEFAULT:		
+@DEFAULT:		https://doc.verovio.humdrum.org/topics/splits
 @@END: LINK
 @@END: RIGHT_TEXT
 @@BEGIN: SUBMENU

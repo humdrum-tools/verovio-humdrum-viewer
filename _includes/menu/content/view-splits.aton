@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Start splitting (32 measure splits)
+@DEFAULT:		Start splitting (32-measure splits)
 @AR:
 @CA:
 @CS:
@@ -43,10 +43,10 @@
 @ACTION:		MENU.startSplit(32)
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			
-@DEFAULT:		
+@TYPE:			link
+@DEFAULT:		[info]
 @@BEGIN: LINK
-@DEFAULT:		
+@DEFAULT:		https://doc.verovio.humdrum.org/topics/splits
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
@@ -54,7 +54,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Next split
+@DEFAULT:		Next measure split
 @AR:
 @CA:
 @CS:
@@ -101,7 +101,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Previous split
+@DEFAULT:		Previous measure split
 @AR:
 @CA:
 @CS:
@@ -145,6 +145,144 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Start splitting (8-system splits)
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.startSplitSystem(8)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Next system split
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.nextSplitSystem(8)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Previous system split
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.previousSplitSystem(8)
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
