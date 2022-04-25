@@ -395,6 +395,9 @@ KEYS.F12Key          = "F12";          // 123     "F12"
 function GetKey(event) {
 	let code = event.code;
 	let key  = event.key;
+	if (key && key === "Dead") {
+		return code;
+	}
 	if (key.match(/[A-Za-z]/)) {
 		return KEYS[`${key.toUpperCase()}Key`];
 	}

@@ -320,7 +320,7 @@ MenuInterface.prototype.getContextualMenus = function () {
 
 MenuInterface.prototype.toggleOriginalClefs = function () {
 	let event = {};
-	event.code = OKey;
+	event.code = KEYS.OKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -335,7 +335,7 @@ MenuInterface.prototype.toggleOriginalClefs = function () {
 
 MenuInterface.prototype.displaySvgData = function () {
 	let event = {};
-	event.code = GKey;
+	event.code = KEYS.GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -349,7 +349,7 @@ MenuInterface.prototype.displaySvgData = function () {
 
 MenuInterface.prototype.saveSvgData = function () {
 	let event = {};
-	event.code = GKey;
+	event.code = KEYS.GKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -385,7 +385,7 @@ MenuInterface.prototype.loadRepertory = function (repertory, filter) {
 
 MenuInterface.prototype.saveTextEditorContents = function () {
 	let event = {};
-	event.code = SKey;
+	event.code = KEYS.SKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -410,7 +410,7 @@ MenuInterface.prototype.saveHtmlContents = function () {
 
 MenuInterface.prototype.compileEmbeddedFilters = function () {
 	let event = {};
-	event.code = CKey;
+	event.code = KEYS.CKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -424,7 +424,7 @@ MenuInterface.prototype.compileEmbeddedFilters = function () {
 
 MenuInterface.prototype.clearEditorContents = function () {
 	let event = {};
-	event.code = EKey;
+	event.code = KEYS.EKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -438,7 +438,7 @@ MenuInterface.prototype.clearEditorContents = function () {
 
 MenuInterface.prototype.showSourceScan = function () {
 	let event = {};
-	event.code = PKey;
+	event.code = KEYS.PKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -452,7 +452,7 @@ MenuInterface.prototype.showSourceScan = function () {
 
 MenuInterface.prototype.createPdf = function () {
 	let event = {};
-	event.code = TKey;
+	event.code = KEYS.TKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -466,7 +466,7 @@ MenuInterface.prototype.createPdf = function () {
 
 MenuInterface.prototype.reloadFromSource = function () {
 	let event = {};
-	event.code = RKey;
+	event.code = KEYS.RKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -480,7 +480,7 @@ MenuInterface.prototype.reloadFromSource = function () {
 
 MenuInterface.prototype.createPdfPage = function () {
 	let event = {};
-	event.code = TKey;
+	event.code = KEYS.TKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -495,7 +495,7 @@ MenuInterface.prototype.createPdfPage = function () {
 
 MenuInterface.prototype.increaseNotationSpacing = function () {
 	let event = {};
-	event.code = WKey;
+	event.code = KEYS.WKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -509,7 +509,7 @@ MenuInterface.prototype.increaseNotationSpacing = function () {
 
 MenuInterface.prototype.decreaseNotationSpacing = function () {
 	let event = {};
-	event.code = WKey;
+	event.code = KEYS.WKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -718,7 +718,7 @@ MenuInterface.prototype.applyFilter = function (filter, data, callback) {
 
 MenuInterface.prototype.insertLocalCommentLine = function () {
 	let event = {};
-	event.code = LKey;
+	event.code = KEYS.LKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -733,7 +733,7 @@ MenuInterface.prototype.insertLocalCommentLine = function () {
 
 MenuInterface.prototype.insertNullDataLine = function () {
 	let event = {};
-	event.code = DKey;
+	event.code = KEYS.DKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -748,7 +748,7 @@ MenuInterface.prototype.insertNullDataLine = function () {
 
 MenuInterface.prototype.insertInterpretationLine = function () {
 	let event = {};
-	event.code = IKey;
+	event.code = KEYS.IKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -763,7 +763,7 @@ MenuInterface.prototype.insertInterpretationLine = function () {
 
 MenuInterface.prototype.insertBarline = function () {
 	let event = {};
-	event.code = BKey;
+	event.code = KEYS.BKey;
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
@@ -778,7 +778,7 @@ MenuInterface.prototype.insertBarline = function () {
 
 MenuInterface.prototype.toggleDataDisplay = function () {
 	let event = {};
-	event.code = YKey;
+	event.code = KEYS.YKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -803,7 +803,7 @@ MenuInterface.prototype.toggleToolbarDisplay = function () {
 
 MenuInterface.prototype.toggleLogoDisplay = function () {
 	let event = {};
-	event.code = BKey;
+	event.code = KEYS.BKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -817,7 +817,7 @@ MenuInterface.prototype.toggleLogoDisplay = function () {
 
 MenuInterface.prototype.toggleLayerHighlighting = function () {
 	let event = {};
-	event.code = LKey;
+	event.code = KEYS.LKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -831,7 +831,7 @@ MenuInterface.prototype.toggleLayerHighlighting = function () {
 
 MenuInterface.prototype.increaseTabSize = function () {
 	let event = {};
-	event.code = DotKey;
+	event.code = KEYS.DotKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -846,7 +846,7 @@ MenuInterface.prototype.increaseTabSize = function () {
 
 MenuInterface.prototype.decreaseTabSize = function () {
 	let event = {};
-	event.code = CommaKey;
+	event.code = KEYS.CommaKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -945,7 +945,7 @@ MenuInterface.prototype.toggleCsvTsv = function () {
 
 MenuInterface.prototype.toggleVimPlainTextMode = function () {
 	let event = {};
-	event.code = VKey;
+	event.code = KEYS.VKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -960,7 +960,7 @@ MenuInterface.prototype.toggleVimPlainTextMode = function () {
 
 MenuInterface.prototype.displayHumdrumData = function () {
 	let event = {};
-	event.code = HKey;
+	event.code = KEYS.HKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -974,7 +974,7 @@ MenuInterface.prototype.displayHumdrumData = function () {
 
 MenuInterface.prototype.displayMeiData = function () {
 	let event = {};
-	event.code = MKey;
+	event.code = KEYS.MKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -989,16 +989,16 @@ MenuInterface.prototype.displayMeiData = function () {
 MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	let event = {};
 	switch (bufferNumber) {
-		case 0: event.code = KEYS.ZeroKey;  break;
-		case 1: event.code = KEYS.OneKey;   break;
-		case 2: event.code = KEYS.TwoKey;   break;
-		case 3: event.code = KEYS.ThreeKey; break;
-		case 4: event.code = KEYS.FourKey;  break;
-		case 5: event.code = KEYS.FiveKey;  break;
-		case 6: event.code = KEYS.SixKey;   break;
-		case 7: event.code = KEYS.SevenKey; break;
-		case 8: event.code = KEYS.EightKey; break;
-		case 9: event.code = KEYS.NineKey;  break;
+		case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+		case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+		case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+		case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+		case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+		case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+		case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+		case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+		case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+		case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 		default:
 			console.log("UNKNOWN BUFFER:", bufferNumber);
 			return;
@@ -1006,7 +1006,7 @@ MenuInterface.prototype.loadFromBuffer = function (bufferNumber) {
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 
-	event.code = RKey;
+	event.code = KEYS.RKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1023,16 +1023,16 @@ MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 
 	// First store the buffer number in the number register:
 	switch (bufferNumber) {
-		case 0: event.code = KEYS.ZeroKey;  break;
-		case 1: event.code = KEYS.OneKey;   break;
-		case 2: event.code = KEYS.TwoKey;   break;
-		case 3: event.code = KEYS.ThreeKey; break;
-		case 4: event.code = KEYS.FourKey;  break;
-		case 5: event.code = KEYS.FiveKey;  break;
-		case 6: event.code = KEYS.SixKey;   break;
-		case 7: event.code = KEYS.SevenKey; break;
-		case 8: event.code = KEYS.EightKey; break;
-		case 9: event.code = KEYS.NineKey;  break;
+		case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+		case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+		case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+		case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+		case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+		case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+		case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+		case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+		case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+		case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 		default:
 			console.log("UNKNOWN BUFFER:", bufferNumber);
 			return;
@@ -1042,7 +1042,7 @@ MenuInterface.prototype.saveToBuffer = function (bufferNumber) {
 	processInterfaceKeyCommand(event);
 
 	// Now run the save buffer command:
-	event.code = SKey;
+	event.code = KEYS.SKey;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1058,7 +1058,7 @@ MenuInterface.prototype.goToLastPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.code = EndKey;
+	event.code = KEYS.EndKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1074,7 +1074,7 @@ MenuInterface.prototype.goToFirstPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.code = HomeKey;
+	event.code = KEYS.HomeKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1166,7 +1166,7 @@ MenuInterface.prototype.toggleMidiPlayback = function () {
 
 MenuInterface.prototype.toggleNotationFreezing = function () {
 	let event = {};
-	event.code = FKey;
+	event.code = KEYS.FKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1621,16 +1621,16 @@ MenuInterface.prototype.addSlur = function (number) {
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
-			case 0: event.code = ZeroKey;  break;
-			case 1: event.code = OneKey;   break;
-			case 2: event.code = TwoKey;   break;
-			case 3: event.code = ThreeKey; break;
-			case 4: event.code = FourKey;  break;
-			case 5: event.code = FiveKey;  break;
-			case 6: event.code = SixKey;   break;
-			case 7: event.code = SevenKey; break;
-			case 8: event.code = EightKey; break;
-			case 9: event.code = NineKey;  break;
+			case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+			case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+			case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+			case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+			case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+			case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+			case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+			case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+			case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+			case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 			default:
 				console.log("UNKNOWN BUFFER:", bufferNumber);
 				return;
@@ -1699,16 +1699,16 @@ MenuInterface.prototype.pitchDownStep = function (number) {
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
-			case 0: event.code = ZeroKey;  break;
-			case 1: event.code = OneKey;   break;
-			case 2: event.code = TwoKey;   break;
-			case 3: event.code = ThreeKey; break;
-			case 4: event.code = FourKey;  break;
-			case 5: event.code = FiveKey;  break;
-			case 6: event.code = SixKey;   break;
-			case 7: event.code = SevenKey; break;
-			case 8: event.code = EightKey; break;
-			case 9: event.code = NineKey;  break;
+			case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+			case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+			case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+			case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+			case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+			case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+			case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+			case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+			case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+			case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 			default:
 				console.log("UNKNOWN BUFFER:", bufferNumber);
 				return;
@@ -1733,16 +1733,16 @@ MenuInterface.prototype.pitchUpStep = function (number) {
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
-			case 0: event.code = ZeroKey;  break;
-			case 1: event.code = OneKey;   break;
-			case 2: event.code = TwoKey;   break;
-			case 3: event.code = ThreeKey; break;
-			case 4: event.code = FourKey;  break;
-			case 5: event.code = FiveKey;  break;
-			case 6: event.code = SixKey;   break;
-			case 7: event.code = SevenKey; break;
-			case 8: event.code = EightKey; break;
-			case 9: event.code = NineKey;  break;
+			case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+			case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+			case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+			case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+			case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+			case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+			case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+			case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+			case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+			case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 			default:
 				console.log("UNKNOWN BUFFER:", bufferNumber);
 				return;
@@ -1767,16 +1767,16 @@ MenuInterface.prototype.pitchUpOctave = function (number) {
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
-			case 0: event.code = ZeroKey;  break;
-			case 1: event.code = OneKey;   break;
-			case 2: event.code = TwoKey;   break;
-			case 3: event.code = ThreeKey; break;
-			case 4: event.code = FourKey;  break;
-			case 5: event.code = FiveKey;  break;
-			case 6: event.code = SixKey;   break;
-			case 7: event.code = SevenKey; break;
-			case 8: event.code = EightKey; break;
-			case 9: event.code = NineKey;  break;
+			case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+			case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+			case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+			case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+			case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+			case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+			case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+			case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+			case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+			case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 			default:
 				console.log("UNKNOWN BUFFER:", bufferNumber);
 				return;
@@ -1801,16 +1801,16 @@ MenuInterface.prototype.pitchDownOctave = function (number) {
 
 		// First store the buffer number in the number register:
 		switch (bufferNumber) {
-			case 0: event.code = ZeroKey;  break;
-			case 1: event.code = OneKey;   break;
-			case 2: event.code = TwoKey;   break;
-			case 3: event.code = ThreeKey; break;
-			case 4: event.code = FourKey;  break;
-			case 5: event.code = FiveKey;  break;
-			case 6: event.code = SixKey;   break;
-			case 7: event.code = SevenKey; break;
-			case 8: event.code = EightKey; break;
-			case 9: event.code = NineKey;  break;
+			case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+			case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+			case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+			case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+			case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+			case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+			case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+			case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+			case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+			case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 			default:
 				console.log("UNKNOWN BUFFER:", bufferNumber);
 				return;
@@ -1837,16 +1837,16 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
-				case 0: event.code = ZeroKey;  break;
-				case 1: event.code = OneKey;   break;
-				case 2: event.code = TwoKey;   break;
-				case 3: event.code = ThreeKey; break;
-				case 4: event.code = FourKey;  break;
-				case 5: event.code = FiveKey;  break;
-				case 6: event.code = SixKey;   break;
-				case 7: event.code = SevenKey; break;
-				case 8: event.code = EightKey; break;
-				case 9: event.code = NineKey;  break;
+				case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+				case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+				case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+				case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+				case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+				case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+				case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+				case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+				case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+				case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 				default:
 					console.log("UNKNOWN BUFFER:", bufferNumber);
 					return;
@@ -1862,16 +1862,16 @@ MenuInterface.prototype.moveSlurStart = function (number) {
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
-				case 0: event.code = ZeroKey;  break;
-				case 1: event.code = OneKey;   break;
-				case 2: event.code = TwoKey;   break;
-				case 3: event.code = ThreeKey; break;
-				case 4: event.code = FourKey;  break;
-				case 5: event.code = FiveKey;  break;
-				case 6: event.code = SixKey;   break;
-				case 7: event.code = SevenKey; break;
-				case 8: event.code = EightKey; break;
-				case 9: event.code = NineKey;  break;
+				case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+				case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+				case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+				case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+				case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+				case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+				case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+				case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+				case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+				case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 				default:
 					console.log("UNKNOWN BUFFER:", bufferNumber);
 					return;
@@ -1899,16 +1899,16 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
-				case 0: event.code = ZeroKey;  break;
-				case 1: event.code = OneKey;   break;
-				case 2: event.code = TwoKey;   break;
-				case 3: event.code = ThreeKey; break;
-				case 4: event.code = FourKey;  break;
-				case 5: event.code = FiveKey;  break;
-				case 6: event.code = SixKey;   break;
-				case 7: event.code = SevenKey; break;
-				case 8: event.code = EightKey; break;
-				case 9: event.code = NineKey;  break;
+				case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+				case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+				case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+				case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+				case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+				case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+				case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+				case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+				case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+				case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 				default:
 					console.log("UNKNOWN BUFFER:", bufferNumber);
 					return;
@@ -1924,16 +1924,16 @@ MenuInterface.prototype.moveSlurEnd = function (number) {
 
 			// First store the buffer number in the number register:
 			switch (bufferNumber) {
-				case 0: event.code = ZeroKey;  break;
-				case 1: event.code = OneKey;   break;
-				case 2: event.code = TwoKey;   break;
-				case 3: event.code = ThreeKey; break;
-				case 4: event.code = FourKey;  break;
-				case 5: event.code = FiveKey;  break;
-				case 6: event.code = SixKey;   break;
-				case 7: event.code = SevenKey; break;
-				case 8: event.code = EightKey; break;
-				case 9: event.code = NineKey;  break;
+				case 0: event.code = KEYS.ZeroKey;  event.key = "0"; break;
+				case 1: event.code = KEYS.OneKey;   event.key = "1"; break;
+				case 2: event.code = KEYS.TwoKey;   event.key = "2"; break;
+				case 3: event.code = KEYS.ThreeKey; event.key = "3"; break;
+				case 4: event.code = KEYS.FourKey;  event.key = "4"; break;
+				case 5: event.code = KEYS.FiveKey;  event.key = "5"; break;
+				case 6: event.code = KEYS.SixKey;   event.key = "6"; break;
+				case 7: event.code = KEYS.SevenKey; event.key = "7"; break;
+				case 8: event.code = KEYS.EightKey; event.key = "8"; break;
+				case 9: event.code = KEYS.NineKey;  event.key = "9"; break;
 				default:
 					console.log("UNKNOWN BUFFER:", bufferNumber);
 					return;
