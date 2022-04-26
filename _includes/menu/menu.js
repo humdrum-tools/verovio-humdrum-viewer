@@ -2604,6 +2604,28 @@ MenuInterface.prototype.copyMimeUrl = function () {
 	let text = getTextFromEditorNoCsvProcessing();
 	let mime = btoa(text).replace(/=+$/, "");
 	let url = `https://verovio.humdrum.org?t=${mime}`;
+	let felement = document.querySelector("#filter");
+	let ftext = "";
+	if (felement) {
+		ftext = felement.value;
+		if (!ftext.match(/^\s*$/)) {
+			ftext = encodeURIComponent(ftext);
+		}
+	}
+	let applyfilter = document.querySelector("#apply-filter");
+	if (applyfilter) {
+		if (!applyfilter.classList.contains("active")) {
+			ftext = "";
+		}
+	}
+	if (ftext.length > 0) {
+		url += "&filter=" + ftext;
+	}
+
+	let length = url.length;
+	if (length > 2083) {
+		alert(`Warning: URL length of ${length} is too long for some browsers.`);
+	}
 	copyToClipboard(url);
 }
 
