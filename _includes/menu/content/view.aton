@@ -278,7 +278,7 @@
 @ZH-traditional:
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			
+@TYPE:			link
 @DEFAULT:		[info]
 @@BEGIN: LINK
 @DEFAULT:		https://doc.verovio.humdrum.org/topics/splits

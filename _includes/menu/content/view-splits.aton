@@ -43,10 +43,10 @@
 @ACTION:		MENU.startSplit(32)
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			link
-@DEFAULT:		[info]
+@TYPE:
+@DEFAULT:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/topics/splits
+@DEFAULT:
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
