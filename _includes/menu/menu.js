@@ -2602,7 +2602,7 @@ MenuInterface.prototype.mimeEncode = function () {
 
 MenuInterface.prototype.copyMimeUrl = function () {
 	let text = getTextFromEditorNoCsvProcessing();
-	let mime = btoa(text);
+	let mime = btoa(text).replace(/=+$/, "");
 	let url = `https://verovio.humdrum.org?t=${mime}`;
 	copyToClipboard(url);
 }
