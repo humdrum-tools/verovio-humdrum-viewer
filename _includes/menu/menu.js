@@ -2595,6 +2595,21 @@ MenuInterface.prototype.mimeEncode = function () {
 
 //////////////////////////////
 //
+// MenuInterface::copyMimeUrl -- Copy the editor contents into a
+//   MIME encoded string as an input parameter to display
+//   from a URL in VHV.
+//
+
+MenuInterface.prototype.copyMimeUrl = function () {
+	let text = getTextFromEditorNoCsvProcessing();
+	let mime = btoa(text);
+	let url = `https://verovio.humdrum.org?t=${mime}`;
+	copyToClipboard(url);
+}
+
+
+//////////////////////////////
+//
 // MenuInterface::mimeDecode --
 //
 
