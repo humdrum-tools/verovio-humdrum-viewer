@@ -579,6 +579,7 @@ function processNotationKeyCommand(event) {
 //
 
 function processInterfaceKeyCommand(event) {
+console.warn("EVENT", event);
 
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
@@ -606,6 +607,7 @@ function processInterfaceKeyCommand(event) {
 	}
 
 	let inputKey = GetKey(event);
+console.error("INPUT KEY" ,inputKey);
 
 	switch (inputKey) {
 		case KEYS.AKey:          // UNUSED

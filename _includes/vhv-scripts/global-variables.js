@@ -398,7 +398,7 @@ function GetKey(event) {
 	if (key && key === "Dead") {
 		return code;
 	}
-	if (key.match(/[A-Za-z]/)) {
+	if (key.match(/^[A-Za-z]$/)) {
 		return KEYS[`${key.toUpperCase()}Key`];
 	}
 
