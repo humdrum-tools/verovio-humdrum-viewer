@@ -99,6 +99,7 @@ function verovioCalls() {
 		if (page == 0) {
 			page = 1;
 		}
+		this.vrvToolkit.resetOptions();
 		cleanopts = cleanOptions(data, opts);
 		this.vrvToolkit.setOptions(cleanopts);
 		this.vrvToolkit.loadData(data);
@@ -114,7 +115,6 @@ function verovioCalls() {
 				}
 				svg = this.vrvToolkit.renderToSVG(page, {});
 			} else {
-				this.vrvToolkit.resetOptions();
 				svg = this.vrvToolkit.renderData(data, cleanopts);
 			};
 			this.page = page;
