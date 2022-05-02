@@ -13,7 +13,7 @@ function goDownHarmonically(current) {
 
 //////////////////////////////
 //
-// goUpHarmonically --
+// goUpHarmonically -- Move up harmonically in the SVG score. 
 //
 
 function goUpHarmonically(current) {
@@ -24,7 +24,10 @@ function goUpHarmonically(current) {
 
 //////////////////////////////
 //
-// moveHarmonically --
+// moveHarmonically -- Move up (+1) or down (-1) harmonically in the SVG score.
+//     Go to the next chord note or voice on the same staff, or go to the next
+//     higher staff.  If at the top of the top staff, then wrap around to the bottom
+//     chord of the bottom voice of the bottom staff in the system.
 //
 
 function moveHarmonically(current, direction) {
@@ -32,11 +35,11 @@ function moveHarmonically(current, direction) {
 		return;
 	}
 	var startid = current.id;
-	unhighlightCurrentNote(current);
 	var nextid = getNextHarmonicNote(startid, direction)
 	if (!nextid) {
 		return;
 	}
+	unhighlightCurrentNote(current);
 	highlightIdInEditor(nextid, "moveHarmonically");
 }
 
@@ -150,7 +153,7 @@ function getNextHarmonicNote(startid, direction) {
 	// Assuming one svg on the page, which is currently correct.
 	var svg = document.querySelector('svg');
 	var allids = svg.querySelectorAll('*[id]:not([id=""])');
-	var regex = new RegExp("^[^-]+-[^-]*L" + startline + "(?!\d)");
+	var regex = new RegExp("^[^-]+-[^-]*L" + startline + "(?!\\d)");
 	var harmonic = [];
 	var x;
 	var i;
