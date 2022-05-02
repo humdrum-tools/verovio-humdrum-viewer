@@ -114,6 +114,7 @@ function verovioCalls() {
 				}
 				svg = this.vrvToolkit.renderToSVG(page, {});
 			} else {
+				this.vrvToolkit.resetOptions();
 				svg = this.vrvToolkit.renderData(data, cleanopts);
 			};
 			this.page = page;
@@ -191,6 +192,7 @@ function verovioCalls() {
 		data = data += "\n!!!verovio-parameter-group: pdf\n";
 		cleanopts = cleanOptions(data, opts);
 
+		this.resetOptions();
 		svglist.push(this.renderData(cleanopts, data));
 		for (var i = 2; i <= this.pageCount; i++) {
 			svglist.push(this.renderPage(i));
