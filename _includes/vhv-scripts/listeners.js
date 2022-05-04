@@ -1,7 +1,7 @@
 //
 // Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Mon Apr 25 06:30:20 PDT 2022
+// Last Modified:  Wed May  4 00:27:30 PDT 2022
 // Filename:       listeners.js
 // Web Address:    https://verovio.humdrum.org/listeners.js
 // Syntax:         JavaScript 1.8/ECMAScript 5
@@ -11,6 +11,7 @@
 //
 
 var PDFLISTINTERVAL = null;
+var EVENNOTESPACING = false;
 var HIDEINITIALTOOLBAR = false;
 var HIDEMENUANDTOOLBAR = false;
 var HIDEMENU = false;
@@ -831,9 +832,11 @@ console.error("INPUT KEY" ,inputKey);
 	 	case KEYS.WKey:          // adjust notation width parameter
 			if (event.altKey) {
 				if (event.shiftKey) {
-					SPACINGADJUSTMENT -= 0.05;
+					SPACINGADJUSTMENT -= 0.02;
+				} else if (event.ctrlKey) {
+					EVENNOTESPACING = !EVENNOTESPACING;
 				} else {
-					SPACINGADJUSTMENT += 0.05;
+					SPACINGADJUSTMENT += 0.02;
 				}
 				if (SPACINGADJUSTMENT <= 0.0) {
 					SPACINGADJUSTMENT = 0.0;

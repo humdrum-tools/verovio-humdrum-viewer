@@ -72,6 +72,9 @@ function displayNotation(page, force, restoreid) {
 			}
 			data += "\n";
 		}
+		if (EVENNOTESPACING) {
+			data += "\n!!!verovio: evenNoteSpacing\n";
+		}
 	}
 
 	OPTIONS = options;
