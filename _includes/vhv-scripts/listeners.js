@@ -626,7 +626,11 @@ console.error("INPUT KEY" ,inputKey);
 		case KEYS.BKey:
 			if (event.altKey) {
 				if (event.shiftKey) {
-					addBarlineAboveCurrentPosition();
+					if (event.ctrlKey) {
+						addInvisibleBarlineAboveCurrentPosition();
+					} else {
+						addBarlineAboveCurrentPosition();
+					}
 					event.preventDefault();
 				}
 			}

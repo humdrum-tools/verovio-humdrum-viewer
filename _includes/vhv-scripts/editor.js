@@ -3014,6 +3014,18 @@ function addBarlineAboveCurrentPosition() {
 }
 
 
+
+//////////////////////////////
+//
+// addInvisibleBarlineAboveCurrentPosition -- Add barline above the current
+//   line which is invisible. Cursor keeps its position on the original line.
+//
+
+function addInvisibleBarlineAboveCurrentPosition() {
+	addNullLine("=-", "**blank");
+}
+
+
 //////////////////////////////
 //
 // createNullLine --
