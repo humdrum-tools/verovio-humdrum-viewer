@@ -764,10 +764,29 @@ MenuInterface.prototype.insertInterpretationLine = function () {
 MenuInterface.prototype.insertBarline = function () {
 	let event = {};
 	event.code = KEYS.BKey;
+	event.key = "B";
 	event.shiftKey = true;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
+
+
+
+//////////////////////////////
+//
+// MenuInterface::insertInvisibleBarline --
+//
+
+MenuInterface.prototype.insertInvisibleBarline = function () {
+	let event = {};
+	event.code = KEYS.BKey;
+	event.key = "B";
+	event.shiftKey = true;
+	event.altKey = true;
+	event.ctrlKey = true;
+	processInterfaceKeyCommand(event);
+};
+
 
 
 
