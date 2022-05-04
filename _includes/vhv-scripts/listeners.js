@@ -580,7 +580,6 @@ function processNotationKeyCommand(event) {
 //
 
 function processInterfaceKeyCommand(event) {
-console.warn("EVENT", event);
 
 	if (!event.preventDefault) {
 		event.preventDefault = function() { };
