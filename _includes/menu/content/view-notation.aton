@@ -255,6 +255,84 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
+@DEFAULT:		Toggle compact score
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.toggleCompactScore()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		ctrl-alt-w
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			ctrl-alt-w
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-w
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
 @DEFAULT:		Increase vertical staff spacing
 @AR:
 @CA:

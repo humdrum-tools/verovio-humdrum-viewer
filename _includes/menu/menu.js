@@ -2766,3 +2766,15 @@ MenuInterface.prototype.highlightOptions = function () {
 };
 
 
+
+//////////////////////////////
+//
+// MenuInterface::toggleCompactScore --
+//
+
+MenuInterface.prototype.toggleCompactScore = function () {
+	EVENNOTESPACING = !EVENNOTESPACING;
+	displayNotation();
+};
+
+
