@@ -234,8 +234,6 @@ function generateMenuItem(entry) {
 
 
 
-
-
 //////////////////////////////
 //
 // languageText Handlebars helper  -- 
@@ -247,7 +245,6 @@ Handlebars.registerHelper("languageText", function(text) {
 	if (!text) {
 		return new Handlebars.SafeString("");
 	}
-
 
 	if (typeof text === "string") {
 		text = text.replace(/[[]info[]]/, "<i class='fa fa-question-circle' aria-hidden='true'></i>");
@@ -273,6 +270,10 @@ Handlebars.registerHelper("languageText", function(text) {
 			} else {
 				translation = text["DEFAULT"];
 			}
+		}
+		if (Array.isArray(translation)) {
+			console.warn("Warning: duplicate translation in entry:", text, "for language", language);
+			translation = translation[0];
 		}
 		translation = translation.replace("[info]", "<i class='fa fa-question-circle' aria-hidden='true'></i>", "g");
 		return new Handlebars.SafeString(translation);
