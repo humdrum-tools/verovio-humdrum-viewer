@@ -832,10 +832,7 @@ MenuInterface.prototype.toggleMenuAndToolbarDisplay = function () {
 //
 
 MenuInterface.prototype.toggleLogoDisplay = function () {
-	let event = {};
-	event.code = KEYS.BKey;
-	event.altKey = true;
-	processInterfaceKeyCommand(event);
+	toggleVhvTitle();
 };
 
 

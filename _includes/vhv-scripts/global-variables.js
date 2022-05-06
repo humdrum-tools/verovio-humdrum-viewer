@@ -393,24 +393,43 @@ KEYS.F12Key          = "F12";          // 123     "F12"
 //
 
 function GetKey(event) {
+console.log("EVENT", event);
 	let code = event.code;
 	let key  = event.key;
 	if (key && key === "Dead") {
 		return code;
 	}
-	if (key.match(/^[A-Za-z]$/)) {
+
+
+	if (key && key.match(/^[A-Za-z]$/)) {
 		return KEYS[`${key.toUpperCase()}Key`];
 	}
 
-	// German keyboard
-	if ((key == "›") && (code == "KeyZ")) {
-		return KEYS.YKey;
-	} else if ((key == "Dead") && (code == "KeyY")) {
-		return KEYS.ZKey;
+	// Alt-key hassles which will cause problems entering
+	// text that uses the alt key to create characters...
+
+	if (event.altKey) {
+console.log("GOT HERE CCC", event);
+		if ((key == "›") && (code == "KeyZ")) {
+			return KEYS.YKey;
+		} 
+		if ((key == "Dead") && (code == "KeyY")) {
+			return KEYS.ZKey;
+		}
+		if ((key == "∫") && (code == "KeyB")) {
+console.log("GOT HERE BBB", event);
+			return KEYS.BKey;
+		} 
 	}
+
+console.log("GOT HERE AAA", event);
 
 	return event.code;
 }
+
+
+
+
 
 
 
