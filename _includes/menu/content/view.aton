@@ -51,6 +51,7 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Multi-page view
@@ -96,6 +97,88 @@
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Freeze/unfreeze notation rendering 
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:			Pauzeer/hervat het genereren van de notatie
+@NO:
+@PL:			Zablokuj/Odblokuj generowanie partytury
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.toggleNotationFreezing()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		alt-f
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			alt-f
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-f
+@ES:			https://doc.verovio.humdrum.org/commands/alt-f/index-ES.html
+@PL:			https://doc.verovio.humdrum.org/commands/alt-f/index-PL.html
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -145,6 +228,7 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Notation
@@ -192,6 +276,7 @@
 {% include menu/content/view-notation.aton %}
 @@END: SUBMENU
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -241,6 +326,7 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Splits
@@ -288,6 +374,7 @@
 {% include menu/content/view-splits.aton %}
 @@END: SUBMENU
 @@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -337,6 +424,7 @@
 @@END: SUBMENU
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Text editor
@@ -384,6 +472,56 @@
 {% include menu/content/view-text-editor.aton %}
 @@END: SUBMENU
 @@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Toolbar
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			
+@DEFAULT:		
+@@BEGIN: LINK
+@DEFAULT:		
+@@END: LINK
+@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/view-toolbar.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -467,9 +605,10 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Toggle VHV logo
+@DEFAULT:		Show source scan (when avail.)
 @AR:
 @CA:
 @CS:
@@ -477,7 +616,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			Activa/desactiva el logo VHV
+@ES:			Muestra el escaneo de la fuente (si está disponible)
 @ET:
 @EU:
 @FI:
@@ -490,9 +629,9 @@
 @KO:
 @LT:
 @LV:
-@NL:
+@NL:			Toon de bronscan (wanneer beschikbaar)
 @NO:
-@PL:			Pokaż/Ukryj logo VHV
+@PL:			Pokaż skan źródła (jeśli jest)
 @PT:
 @RU:
 @SK:
@@ -502,11 +641,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.toggleLogoDisplay()
+@ACTION:		MENU.showSourceScan()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-b
+@DEFAULT:		alt-p
 @AR:
 @CA:
 @CS:
@@ -514,7 +653,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			alt-b
+@ES:			alt-p
 @ET:
 @EU:
 @FI:
@@ -540,248 +679,13 @@
 @ZH-simplified:
 @ZH-traditional:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-b
-@ES:			https://doc.verovio.humdrum.org/commands/alt-b/index-ES.html
-@PL:			https://doc.verovio.humdrum.org/commands/alt-b/index-PL.html
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-p
+@ES:			https://doc.verovio.humdrum.org/commands/alt-p/index-ES.html
+@PL:			https://doc.verovio.humdrum.org/commands/alt-p/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		View next toolbar menu
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			Visualiza el siguiente menú de la barra de herramientas
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:			Volgende werkbalkmenu weergeven
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.chooseToolbarMenu()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-n
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			alt-n
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-n
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Toggle toolbar visibility
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			Alterna la visibilidad de la barra de herramientas
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:			Toggle zichtbaarheid werkbalk
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.toggleToolbarDisplay()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-N
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			alt-N
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-N
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Freeze/unfreeze notation rendering 
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:			Pauzeer/hervat het genereren van de notatie
-@NO:
-@PL:			Zablokuj/Odblokuj generowanie partytury
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ACTION:		MENU.toggleNotationFreezing()
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			shortcut
-@DEFAULT:		alt-f
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			alt-f
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-f
-@ES:			https://doc.verovio.humdrum.org/commands/alt-f/index-ES.html
-@PL:			https://doc.verovio.humdrum.org/commands/alt-f/index-PL.html
-@@END: LINK
-@@END: RIGHT_TEXT
-@@END: ENTRY
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
@@ -863,9 +767,10 @@
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Show source scan (when avail.)
+@DEFAULT:		Toggle VHV logo
 @AR:
 @CA:
 @CS:
@@ -873,7 +778,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			Muestra el escaneo de la fuente (si está disponible)
+@ES:			Activa/desactiva el logo VHV
 @ET:
 @EU:
 @FI:
@@ -886,9 +791,9 @@
 @KO:
 @LT:
 @LV:
-@NL:			Toon de bronscan (wanneer beschikbaar)
+@NL:
 @NO:
-@PL:			Pokaż skan źródła (jeśli jest)
+@PL:			Pokaż/Ukryj logo VHV
 @PT:
 @RU:
 @SK:
@@ -898,11 +803,11 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ACTION:		MENU.showSourceScan()
+@ACTION:		MENU.toggleLogoDisplay()
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			shortcut
-@DEFAULT:		alt-p
+@DEFAULT:		alt-b
 @AR:
 @CA:
 @CS:
@@ -910,7 +815,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			alt-p
+@ES:			alt-b
 @ET:
 @EU:
 @FI:
@@ -936,9 +841,11 @@
 @ZH-simplified:
 @ZH-traditional:
 @@BEGIN: LINK
-@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-p
-@ES:			https://doc.verovio.humdrum.org/commands/alt-p/index-ES.html
-@PL:			https://doc.verovio.humdrum.org/commands/alt-p/index-PL.html
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-b
+@ES:			https://doc.verovio.humdrum.org/commands/alt-b/index-ES.html
+@PL:			https://doc.verovio.humdrum.org/commands/alt-b/index-PL.html
 @@END: LINK
 @@END: RIGHT_TEXT
 @@END: ENTRY
+
+

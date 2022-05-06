@@ -607,7 +607,6 @@ function processInterfaceKeyCommand(event) {
 	}
 
 	let inputKey = GetKey(event);
-console.error("INPUT KEY" ,inputKey);
 
 	switch (inputKey) {
 		case KEYS.AKey:          // UNUSED
@@ -740,8 +739,9 @@ console.error("INPUT KEY" ,inputKey);
 
 	 	case KEYS.NKey:          // toggle display of navigation toolbar
 			if (event.altKey) {
-				if (event.shiftKey) {
-					// toggleNavigationToolbar();
+				if (event.ctrlKey) {
+					toggleNavigationToolbar();
+				} else if (event.shiftKey) {
 					gotoPrevToolbarDelta();
 				} else {
 					chooseToolbarMenu();

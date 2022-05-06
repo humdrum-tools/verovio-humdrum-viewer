@@ -2570,6 +2570,17 @@ MenuInterface.prototype.chooseToolbarMenu = function () {
 
 //////////////////////////////
 //
+// MenuInterface::choosePreviousToolbarMenu --
+//
+
+MenuInterface.prototype.choosePreviousToolbarMenu = function () {
+	gotoPrevToolbarDelta();
+};
+
+
+
+//////////////////////////////
+//
 // MenuInterface::convertToHumdrum --
 //
 
