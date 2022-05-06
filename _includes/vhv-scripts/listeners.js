@@ -623,7 +623,6 @@ function processInterfaceKeyCommand(event) {
 			break;
 
 		case KEYS.BKey:
-console.error("ENTERING BKEY CASE");
 			if (event.altKey) {
 				if (event.shiftKey) {
 					if (event.ctrlKey) {

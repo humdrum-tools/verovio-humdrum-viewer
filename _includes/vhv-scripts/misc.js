@@ -312,10 +312,8 @@ function toggleVhvTitle() {
 	VrvTitle = !VrvTitle;
 	let area = document.querySelector("#vhv");
 	if (VrvTitle) {
-		area.style.visibility = "visible";
-		area.style.display = "inline";
+		area.style.display = "block";
 	} else {
-		area.style.visibility = "hidden";
 		area.style.display = "none";
 	}
 }
