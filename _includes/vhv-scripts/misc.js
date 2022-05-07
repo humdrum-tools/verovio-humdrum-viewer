@@ -950,7 +950,8 @@ function getTextFromEditor() {
 	let starting = text.substring(0, 100);
 	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
 		try {
-			text = atob(text);
+			// text = atob(text);
+			text = Base64.decode(text);
 			text = ensureTsv(text);
 		} catch (err) {
 			// console.log("text is not mime", text);
@@ -994,7 +995,8 @@ function getTextFromEditorNoCsvProcessing() {
 	let starting = text.substring(0, 100);
 	if (starting.match(/^[\nA-Za-z0-9/+=]+$/)) {
 		try {
-			text = atob(text);
+			// text = atob(text);
+			text = Base64.decode(text);
 		} catch (err) {
 			// console.log("text is not mime", text);
 			// It is still possible that the text is not

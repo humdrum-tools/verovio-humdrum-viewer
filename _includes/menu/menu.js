@@ -1,6 +1,6 @@
 //
 // menu.js -- functions to interface with the top menu.
-// 
+//
 // vim: ts=3
 //
 
@@ -10,7 +10,7 @@ let LANGUAGE = "DEFAULT";
 let DICTIONARY = {};
 let COMPILEFILTERAUTOMATIC = false;
 
-function MenuInterface() { 
+function MenuInterface() {
 	this.contextualMenus = {};
 }
 
@@ -45,7 +45,7 @@ function processMenuAton() {
 	let aton = new ATON();
 	MENUDATA = aton.parse(element.textContent).MENU;
 	adjustMenu(MENUDATA);
-	
+
 	DICTIONARY = {};
 	let MD = MENUDATA.DICTIONARY.ENTRY;
 	for (let i=0; i<MD.length; i++) {
@@ -2617,7 +2617,8 @@ MenuInterface.prototype.trimTabsInEditor = function () {
 
 MenuInterface.prototype.mimeEncode = function () {
 	let text = getTextFromEditorNoCsvProcessing();
-	let lines = btoa(text).match(/.{1,80}/g);
+	// let lines = btoa(text).match(/.{1,80}/g);
+	let lines = Base64.encode(text).match(/.{1,80}/g);
 	let output = "";
 	for (let i=0; i<lines.length; i++) {
 		if (i < lines.length - 1) {
@@ -2640,7 +2641,10 @@ MenuInterface.prototype.mimeEncode = function () {
 
 MenuInterface.prototype.copyMimeUrl = function () {
 	let text = getTextFromEditorNoCsvProcessing();
-	let mime = btoa(text).replace(/=+$/, "");
+	let mime = Base64.encode(text).replace(/=+$/, "");
+	// Alternately	mime = btoa(escape(encodeURIComponent(text))).replace(/=+$/, "");
+	// but that is much longer.
+
 	let url = `https://verovio.humdrum.org?t=${mime}`;
 	let felement = document.querySelector("#filter");
 	let ftext = "";

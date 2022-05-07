@@ -214,11 +214,13 @@ function loadKernScoresFile(obj, force) {
 					try {
 						jinfo = JSON.parse(info.data);
 						if (force) {
-							let textdata = atob(jinfo.content);
+							// let textdata = atob(jinfo.content);
+							let textdata = Base64.decode(jinfo.content);
 							if (textdata.match(/^\s*$/)) {
 								textdata = "!!!ONB: No data content\n";
 							}
-							displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
+							// displayScoreTextInEditor(atob(jinfo.content), vrvWorker.page);
+							displayScoreTextInEditor(Base64.decode(jinfo.content), vrvWorker.page);
 						}
 						if (getnext) {
 							processInfo(jinfo, obj, false, false);

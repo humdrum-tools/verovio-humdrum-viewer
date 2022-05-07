@@ -186,7 +186,7 @@ function trimTabsInEditor(text) {
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//  Base64 encode/decode: Fixs problems with atob and btoa with UTF-8 encoded text.
+//  Base64 encode/decode: Fixes problems with atob and btoa with UTF-8 encoded text.
 //
 //  https://www.webtoolkit.info
 //

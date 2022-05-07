@@ -208,7 +208,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				// presumably MIME data, so decode
 				// will have to deal with embedded UTF-8 probably.
 				try {
-					text = atob(text);
+					// text = atob(text);
+					text = Base64.decode(text);
 				} catch (err) {
 					// text is not MIME encoded
 				}
