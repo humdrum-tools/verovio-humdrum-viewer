@@ -12,6 +12,7 @@ function chooseToolbarMenu(menunum) {
 	if (menunum === "load")   { menunum = 3; }
 	if (menunum === "search") { menunum = 4; }
 	if (menunum === "filter") { menunum = 5; }
+	if (menunum === "spreadsheet") { menunum = 6; }
 	if (!menunum) {
 		menunum = InterfaceSingleNumber;
 		InterfaceSingleNumber = 0;

@@ -94,6 +94,8 @@ function processMenuAton() {
 			chooseToolbarMenu("search");
 		} else if (TOOLBAR.match(/filter/i)) {
 			chooseToolbarMenu("filter");
+		} else if (TOOLBAR.match(/spreadsheet/i)) {
+			chooseToolbarMenu("spreadsheet");
 		} else {
 			// toolbar menu 1 is otherwise the default
 			chooseToolbarMenu(1);
@@ -2572,6 +2574,72 @@ MenuInterface.prototype.undo = function () {
 
 MenuInterface.prototype.chooseToolbarMenu = function () {
 	chooseToolbarMenu();
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displayMainToolbar --
+//
+
+MenuInterface.prototype.displayMainToolbar = function () {
+	chooseToolbarMenu(1);
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displayLoadToolbar --
+//
+
+MenuInterface.prototype.displayLoadToolbar = function () {
+	chooseToolbarMenu("load");
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displaySearchToolbar --
+//
+
+MenuInterface.prototype.displaySearchToolbar = function () {
+	chooseToolbarMenu("search");
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displayFilterToolbar --
+//
+
+MenuInterface.prototype.displayFilterToolbar = function () {
+	chooseToolbarMenu("filter");
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displaySpreadsheetToolbar --
+//
+
+MenuInterface.prototype.displaySpreadsheetToolbar = function () {
+	chooseToolbarMenu("spreadsheet");
+};
+
+
+
+//////////////////////////////
+//
+// MenuInterface::displaySaveToolbar --
+//
+
+MenuInterface.prototype.displaySaveToolbar = function () {
+	chooseToolbarMenu("save");
 };
 
 
