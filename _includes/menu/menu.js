@@ -1179,7 +1179,7 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 
 MenuInterface.prototype.toggleMidiPlayback = function () {
 	let event = {};
-	event.code = SpaceKey;
+	event.code = KEYS.SpaceKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
