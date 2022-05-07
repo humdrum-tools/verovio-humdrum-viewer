@@ -1,0 +1,242 @@
+@@ This is the contents of the "View->Navigation" menu entry in the top menu.
+@@ This file is included into menu/content/view.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		View next toolbar menu
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			Visualiza el siguiente menú de la barra de herramientas
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:			Volgende werkbalkmenu weergeven
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.chooseToolbarMenu()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		alt-n
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-n
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		View previous toolbar menu
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			Visualiza el menú de la barra de herramienta anterior
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:			Volgende werkbalkmenu weergeven
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.choosePreviousToolbarMenu()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		alt-N
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/alt-N
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Toggle toolbar visibility
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			Alterna la visibilidad de la barra de herramientas
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:			Toggle zichtbaarheid werkbalk
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.toggleToolbarDisplay()
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			shortcut
+@DEFAULT:		ctrl-alt-N
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@@BEGIN: LINK
+@DEFAULT:		https://doc.verovio.humdrum.org/commands/ctrl-alt-n
+@@END: LINK
+@@END: RIGHT_TEXT
+@@END: ENTRY
