@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: scarlatti2.krn
+splash: scarlatti3.krn
 ---
 
 <div id="output"></div>
