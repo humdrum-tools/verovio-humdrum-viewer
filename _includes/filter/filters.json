@@ -1,4 +1,5 @@
 [
+
 "autoaccid",
 "autobeam",
 "autostem",
@@ -27,6 +28,7 @@
 "humdiff",
 "humsheet",
 "humsort",
+"humtr",
 "imitation",
 "kern2mens",
 "kernview",
@@ -44,7 +46,6 @@
 "periodicity",
 "phrase",
 "pnum",
-"popctext",
 "recip",
 "restfill",
 "rid",
@@ -69,5 +70,6 @@
 "transpose",
 "tremolo",
 "trillspell",
+
 ""
 ]
