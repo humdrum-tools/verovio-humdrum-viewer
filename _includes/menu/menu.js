@@ -75,6 +75,11 @@ function processMenuAton() {
 		if (HIDEMENUANDTOOLBAR) {
 			toggleMenuAndToolbarDisplay();
 		}
+		if (MULTIPAGEVIEW) {
+			MENU.multiPageView();
+			// just used once at initialization:
+			MULTIPAGEVIEW = false;
+		}
 		fillSearchFieldsFromCgi();
 		fillFilterFieldFromCgi();
 		if (HIDEMENU) {
