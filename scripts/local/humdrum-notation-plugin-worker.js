@@ -1,9 +1,3 @@
----
-layout: empty
-permalink: /scripts/humdrum-notation-plugin-worker.js
-vim: ts=3
----
-
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sun Dec  2 08:11:05 EST 2018
@@ -113,7 +107,7 @@ function setHumdrumOption(baseid, key, value) {
 		console.log("Error: property must be a string, but is", key, "which is a", typeof baseid);
 		return;
 	}
-	var entry = HNP.entries[baseid];
+	let entry = HNP.entries[baseid];
 	if (!entry) {
 		console.log("Error: ID does not reference a Humdrum notation script:", baseid);
 		return;
@@ -141,7 +135,7 @@ function getHumdrumOption(baseid, key) {
 		console.log("Error: property must be a string, but is", key, "which is a", typeof baseid);
 		return;
 	}
-	var entry = HNP.entries[baseid];
+	let entry = HNP.entries[baseid];
 	if (!entry) {
 		console.log("Error: ID does not reference a Humdrum notation script:", baseid);
 		return;
@@ -196,9 +190,9 @@ function downloadHumdrumUrlData(source, opts) {
 	if (opts.processedUrl.match(/^\s*$/)) {
 		return;
 	}
-	var url = opts.processedUrl;
-	var fallback = opts.urlFallback;
-	var request = new XMLHttpRequest();
+	let url = opts.processedUrl;
+	let fallback = opts.urlFallback;
+	let request = new XMLHttpRequest();
 
 	request.addEventListener("load", function() {
 		source.textContent = this.responseText;
@@ -232,7 +226,7 @@ function downloadFallback(source, opts, url) {
 		HNP.displayHumdrumNow(opts);
 	}
 
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 	request.onload = function() {
 		if (this.status == 200) {
 			source.textContent = this.responseText;
@@ -258,25 +252,25 @@ function downloadFallback(source, opts, url) {
 //
 
 function checkParentResize(baseid) {
-	var entry = HNP.entries[baseid];
+	let entry = HNP.entries[baseid];
 	if (!entry) {
 		console.log("Error: cannot find data for ID", baseid);
 		return;
 	}
-	var container = entry.container;
+	let container = entry.container;
 	if (!container) {
 		console.log("Error: cannot find container for ID", baseid);
 		return;
 	}
-	var pluginOptions = entry.options;
+	let pluginOptions = entry.options;
 	if (!pluginOptions) {
 		console.log("Error: cannot find options for ID", baseid);
 		return;
 	}
-	var scale = pluginOptions.scale;
-	var previousWidth = parseInt(pluginOptions._currentPageWidth * scale / 100.0);
-	var style = window.getComputedStyle(container, null);
-	var currentWidth = parseInt(style.getPropertyValue("width"));
+	let scale = pluginOptions.scale;
+	let previousWidth = parseInt(pluginOptions._currentPageWidth * scale / 100.0);
+	let style = window.getComputedStyle(container, null);
+	let currentWidth = parseInt(style.getPropertyValue("width"));
 	if (currentWidth == previousWidth) {
 		// nothing to do
 		return;
@@ -306,7 +300,7 @@ function checkParentResize(baseid) {
 
 
 function convertMusicXmlToHumdrum(targetElement, sourcetext, vrvOptions, pluginOptions) {
-	// var toolkit = pluginOptions.renderer;
+	// let toolkit = pluginOptions.renderer;
 	if (typeof vrvWorker !== "undefined") {
 		toolkit = vrvWorker;
 	}
@@ -339,7 +333,7 @@ function convertMusicXmlToHumdrum(targetElement, sourcetext, vrvOptions, pluginO
 
 
 function getHumdrum(pluginOptions) {
-	var toolkit = pluginOptions.renderer;
+	let toolkit = pluginOptions.renderer;
 	if (typeof vrvWorker !== "undefined") {
 		toolkit = vrvWorker;
 	}
@@ -367,7 +361,7 @@ function getHumdrum(pluginOptions) {
 
 
 function convertMeiToHumdrum(targetElement, sourcetext, vrvOptions, pluginOptions) {
-	var toolkit = pluginOptions.renderer;
+	let toolkit = pluginOptions.renderer;
 	if (typeof vrvWorker !== "undefined") {
 		toolkit = vrvWorker;
 	}
@@ -398,7 +392,7 @@ function convertMeiToHumdrum(targetElement, sourcetext, vrvOptions, pluginOption
 //
 
 function getFilters(options) {
-	var filters = options.filter;
+	let filters = options.filter;
 	if (!filters) {
 		filters = options.filters;
 	}
@@ -411,10 +405,215 @@ function getFilters(options) {
 		// expected to be a string or array, so giving up
 		return "";
 	}
-	var output = "";
-	for (var i=0; i<filters.length; i++) {
+	let output = "";
+	for (let i=0; i<filters.length; i++) {
 		output += "!!!filter: " + filters[i] + "\n";
 	}
+
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// processHtml -- Extract PREHTML/POSTHTML content from file and 
+//    place into div.PREHTML element and div.POSTHTML element.
+//
+
+function processHtml(entry) {
+	// console.log("PROCESSHTML ENTRY", entry);
+	if (!entry) {
+		console.error("Error: No entry in processHtml");
+		return;
+	}
+	if (!entry.humdrumOutput) {
+		return;
+	}
+	let parameters = getHumdrumParameters(entry.humdrumOutput);
+	// console.log("EXTRACTED PARAMETERS", parameters);
+
+	if (!parameters) {
+		return;
+	}
+
+	let preHtml = parameters.PREHTML;
+	let postHtml = parameters.POSTHTML;
+
+	let preElement = entry.container.querySelector("div.PREHTML");
+	let postElement = entry.container.querySelector("div.POSTHTML");
+
+	if (!preHtml) {
+		if (preElement) {
+			preElement.style.display = "none";
+		}
+	}
+	if (!postHtml) {
+		if (postElement) {
+			postElement.style.display = "none";
+		}
+	}
+	if (!preHtml && !postHtml) {
+		return;
+	}
+
+	// Also deal with paged content: show preHtml only above first page
+	// and postHtml only below last page.
+
+	let lang = entry.options.lang || "";
+	let preContent = "";
+	let postContent = "";
+	if (lang) {
+		if (preHtml) {
+			preContent = preHtml[`CONTENT-${lang}`];
+		} 
+		if (postHtml) {
+			postContent = postHtml[`CONTENT-${lang}`];
+		}
+		if (typeof preContent === 'undefined') {
+			if (preHtml) {
+				preContent = preHtml.CONTENT;
+			}
+		}
+		if (typeof postContent === 'undefined') {
+			if (postHtml) {
+				postContent = postHtml.CONTENT;
+			}
+		}
+	} else {
+		if (preHtml) {
+			preContent = preHtml.CONTENT;
+		}
+		if (postHtml) {
+			postContent = postHtml.CONTENT;
+		}
+	}
+
+	// Get the first content-lang parameter:
+	if (typeof preContent === 'undefined') {
+		if (preHtml) {
+			for (var name in preHtml) {
+				if (name.match(/^CONTENT/)) {
+					preContent = preHtml[name];
+					break;
+				}
+			}
+		}
+	}
+	if (typeof postContent === 'undefined') {
+		if (postHtml) {
+			for (var name in postHtml) {
+				if (name.match(/^CONTENT/)) {
+					postContent = postHtml[name];
+					break;
+				}
+			}
+		}
+	}
+
+	let preStyle = "";
+	let postStyle = "";
+
+	if (preHtml) {
+		preStyle = preHtml.STYLE || "";
+	}
+	if (postHtml) {
+		postStyle = postHtml.STYLE || "";
+	}
+
+	if (!preContent) {
+		if (preElement) {
+			preElement.style.display = "none";
+		}
+	} else if (preElement) {
+		preElement.style.display = "block";
+		if (preStyle) {
+			preElement.style.cssText = preStyle;
+		}
+		preElement.innerHTML = preContent;
+	}
+
+	if (!postContent) {
+		if (postElement) {
+			postElement.style.display = "none";
+		}
+	} else if (postElement) {
+		postElement.style.display = "block";
+		if (postStyle) {
+			postElement.style.cssText = postStyle;
+		}
+		postElement.innerHTML = postContent;
+	}
+}
+
+
+
+//////////////////////////////
+//
+// getHumdrumParameters --
+//
+
+function getHumdrumParameters(humdrum) {
+	let REFS = {};
+
+	let atonlines = "";
+	let lines = humdrum.split(/\r?\n/);
+	let atonactive = "";
+
+	for (let i=0; i<lines.length; i++) {
+		if (!lines[i].match(/^!!/)) {
+			continue;
+		}
+		let matches = lines[i].match(/^!!!\s*([^:]+)\s*:\s*(.*)\s*/);
+		if (matches) {
+			let key = matches[1];
+			let value = matches[2];
+			let item = {
+				key: key,
+				value: value,
+				line: i+1
+			};
+			if (typeof REFS[key] === "undefined") {
+				REFS[key] = item;
+			} else if (Array.isArray(REFS[key]) == false) {
+				REFS[key] = [ REFS[key], item ];
+			} else {
+				REFS[key].push(item);
+			}
+			continue;
+		}
+		matches = lines[i].match(/^!!(?!!)/);
+		if (!matches) {
+			continue;
+		}
+		let newline = lines[i].substr(2);
+		if (atonactive) {
+			atonlines += newline + "\n";
+			let stringg = `^@@END:\\s*${atonactive}\\s*$`;
+			let regex = new RegExp(stringg);
+			if (newline.match(regex)) {
+				atonactive = "";
+			}
+			continue;
+		} else {
+			matches = newline.match(/^@@BEGIN:\s*(.*)\s*$/);
+			if (matches) {
+				atonactive = matches[1];
+				atonlines += newline + "\n";
+			}
+		}
+	}
+
+	let output = {};
+	if (atonlines) {
+		let aton = new ATON;
+		try {
+			output = aton.parse(atonlines);
+		} catch (error) {
+			console.error("Error in ATON data:\n", atonlines);
+		}
+	}
+	output._REFS = REFS;
 
 	return output;
 }
@@ -430,10 +629,10 @@ function executeFunctionByName(functionName, context /*, args */) {
 	if (typeof functionName === "function") {
 		return
 	}
-	var args = Array.prototype.slice.call(arguments, 2);
-	var namespaces = functionName.split(".");
-	var func = namespaces.pop();
-	for (var i = 0; i < namespaces.length; i++) {
+	let args = Array.prototype.slice.call(arguments, 2);
+	let namespaces = functionName.split(".");
+	let func = namespaces.pop();
+	for (let i = 0; i < namespaces.length; i++) {
 		context = context[namespaces[i]];
 		if (context && context[func]) {
 			break;
@@ -450,7 +649,7 @@ function executeFunctionByName(functionName, context /*, args */) {
 //
 
 function functionName(fun) {
-  var ret = fun.toString();
+  let ret = fun.toString();
   ret = ret.substr('function '.length);
   ret = ret.substr(0, ret.indexOf('('));
   return ret;
@@ -473,16 +672,16 @@ function functionName(fun) {
 function saveHumdrumSvg(tags, savename) {
 	if ((tags instanceof Element) && (tags.nodeName === "svg")) {
 		// Save a single SVG element's contents to the hard disk.
-		var sid = "";
+		let sid = "";
 		sid = tags.id;
 		if (!sid) {
 			sid = tags.parentNode.id;
 		}
-		var filename = savename;
+		let filename = savename;
 		if (!filename) {
 			filename = sid.replace(/-svg$/, "") + ".svg";
 		}
-		var text = tags.outerHTML.replace(/&nbsp;/g, " ").replace(/&#160;/g, " ");;
+		let text = tags.outerHTML.replace(/&nbsp;/g, " ").replace(/&#160;/g, " ");;
 		blob = new Blob([text], { type: 'image/svg+xml' }),
 		anchor = document.createElement('a');
 		anchor.download = filename;
@@ -498,19 +697,18 @@ function saveHumdrumSvg(tags, savename) {
 		return;
 	}
 
-	var i;
 	if (!tags) {
-		// var selector = 'script[type="text/x-humdrum"]';
-		var selector = '.humdrum-text[id$="-humdrum"]';
-		var items = document.querySelectorAll(selector);
+		// let selector = 'script[type="text/x-humdrum"]';
+		let selector = '.humdrum-text[id$="-humdrum"]';
+		let items = document.querySelectorAll(selector);
 		tags = [];
-		for (i=0; i<items.length; i++) {
-			var id = items[i].id.replace(/-humdrum$/, "");
+		for (let i=0; i<items.length; i++) {
+			let id = items[i].id.replace(/-humdrum$/, "");
 			if (!id) {
 				continue;
 			}
-			var ss = "#" + id + "-svg svg";
-			var item = document.querySelector(ss);
+			let ss = "#" + id + "-svg svg";
+			let item = document.querySelector(ss);
 			if (item) {
 				tags.push(item);
 			}
@@ -522,13 +720,13 @@ function saveHumdrumSvg(tags, savename) {
 
 	(function (i, sname) {
 		(function j () {
-			var tag = tags[i++];
+			let tag = tags[i++];
 			if (typeof tag  === "string" || tag instanceof String) {
-				var s = tag
+				let s = tag
 				if (!tag.match(/-svg$/)) {
 					s += "-svg";
 				}
-				var thing = document.querySelector("#" + s + " svg");
+				let thing = document.querySelector("#" + s + " svg");
 				if (thing) {
 					saveHumdrumSvg(thing, sname);
 				}
@@ -575,7 +773,7 @@ function saveHumdrumText(tags, savename, savetext) {
 			savename = "humdrum.txt";
 		}
 		// Unescaping < and >, which may cause problems in certain conditions, but not many:
-		var stext = savetext.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+		let stext = savetext.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 		blob = new Blob([stext], { type: 'text/plain' }),
 		anchor = document.createElement('a');
 		anchor.download = savename;
@@ -593,16 +791,16 @@ function saveHumdrumText(tags, savename, savetext) {
 
 	if ((tags instanceof Element) && (tags.className.match(/humdrum-text/))) {
 		// Save the text from a single element.
-		var sid = "";
+		let sid = "";
 		sid = tags.id;
 		if (!sid) {
 			sid = tags.parentNode.id;
 		}
-		var filename = savename;
+		let filename = savename;
 		if (!filename) {
 			filename = sid.replace(/-humdrum$/, "") + ".txt";
 		}
-		var text = tags.textContent.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+		let text = tags.textContent.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 		blob = new Blob([text], { type: 'text/plain' }),
 		anchor = document.createElement('a');
 		anchor.download = filename;
@@ -616,8 +814,8 @@ function saveHumdrumText(tags, savename, savetext) {
 
 	if (typeof tags  === "string" || tags instanceof String) {
 		// Convert a Humdrum ID into an element and save contents in that element.
-		var myid = tags.replace(/-humdrum$/, "");
-		var myelement = document.querySelector("#" + myid + "-humdrum");
+		let myid = tags.replace(/-humdrum$/, "");
+		let myelement = document.querySelector("#" + myid + "-humdrum");
 		if (!myelement) {
 			myelement = document.querySelector("#" + myid);
 		}
@@ -628,7 +826,7 @@ function saveHumdrumText(tags, savename, savetext) {
 	if (!tags) {
 		// If tags is empty, then create a list of all elements that
 		// should contain Humdrum content.
-		var selector = '.humdrum-text[id$="-humdrum"]';
+		let selector = '.humdrum-text[id$="-humdrum"]';
 		tags = document.querySelectorAll(selector);
 	}
 	if (tags.constructor !== NodeList) {
@@ -652,21 +850,20 @@ function saveHumdrumText(tags, savename, savetext) {
 	// be saved to the hard-disk.  Combine all of the content into a single data
 	// stream, and then save (with a default filename of "humdrum.txt").
 
-	var i;
-	var outputtext = "";
-	var humtext = "";
-	for (i=0; i<tags.length; i++) {
+	let outputtext = "";
+	let humtext = "";
+	for (let i=0; i<tags.length; i++) {
 		if (!tags[i]) {
 			continue;
 		}
 		if (typeof tags[i]  === "string" || tags[i] instanceof String) {
 			saveHumdrumText(tags[i]);
 			// convert a tag to an element:
-			var s = tags[i];
+			let s = tags[i];
 			if (!tags[i].match(/-humdrum$/)) {
 				s += "-humdrum";
 			}
-			var thing = document.querySelector("#" + s);
+			let thing = document.querySelector("#" + s);
 			if (thing) {
 				tags[i] = thing;
 			} else {
@@ -675,7 +872,7 @@ function saveHumdrumText(tags, savename, savetext) {
 		}
 		// Collect the Humdrum file text of the element.
 		if (tags[i] instanceof Element) {
-			var segmentname = tags[i].id.replace(/-humdrum$/, "");
+			let segmentname = tags[i].id.replace(/-humdrum$/, "");
 			if (!segmentname.match(/\.[.]*$/)) {
 				segmentname += ".krn";
 			}
@@ -982,6 +1179,7 @@ HumdrumNotationPluginEntry.prototype.initializeContainer = function () {
 		hvisible = true;
 	}
 
+	output += "<div style='display:none' class='PREHTML'></div>\n";
 	output += "<table class='humdrum-verovio'";
 	output += " style='border:0; border-collapse:collapse;'";
 	output += ">\n";
@@ -1013,6 +1211,7 @@ HumdrumNotationPluginEntry.prototype.initializeContainer = function () {
 	output += "</tr>\n";
 	output += "</tbody>\n";
 	output += "</table>\n";
+	output += "<div style='display:none' class='POSTHTML'></div>\n";
 
 	var oldcontent = this.container.innerHTML;
 	this.container.innerHTML = output;
@@ -1700,15 +1899,6 @@ HumdrumNotationPluginDatabase.prototype.verovioOptions = {
          "MAX": "3.00"
       },
       {
-         "NAME": "minMeasureWidth",
-         "INFO": "The minimal measure width.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "15",
-         "MIN": "1",
-         "MAX": "30"
-      },
-      {
          "NAME": "mnumInterval",
          "INFO": "Repeat measure numbers at the given cycle size.",
          "CAT": "General layout",
@@ -1745,49 +1935,13 @@ HumdrumNotationPluginDatabase.prototype.verovioOptions = {
          "MAX": "2.00"
       },
       {
-         "NAME": "slurControlPoints",
-         "INFO": "Slur control points.  Higher values mean more curvature at endpoints.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "5",
-         "MIN": "1",
-         "MAX": "10"
-      },
-      {
-         "NAME": "slurHeightFactor",
-         "INFO": "Slur height factor.  Higher values mean flatter slurs.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "5",
-         "MIN": "1",
-         "MAX": "100"
-      },
-      {
-         "NAME": "slurMinHeight",
-         "INFO": "Minimum slur height.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "1.20",
-         "MIN": "0.30",
-         "MAX": "2.00"
-      },
-      {
-         "NAME": "slurMaxHeight",
-         "INFO": "Maximum slur height.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "3.00",
-         "MIN": "2.00",
-         "MAX": "6.00"
-      },
-      {
          "NAME": "slurMaxSlope",
          "INFO": "Maximum slur slope in degrees.",
          "CAT": "General layout",
          "ARG": "float",
-         "DEF": "20",
-         "MIN": "0",
-         "MAX": "60"
+         "DEF": "60",
+         "MIN": "30",
+         "MAX": "85"
       },
       {
          "NAME": "slurEndpointThickness",
@@ -1830,15 +1984,6 @@ HumdrumNotationPluginDatabase.prototype.verovioOptions = {
          "INFO": "Detect long duration for adjusting spacing.",
          "CAT": "General layout",
          "ARG": "boolean"
-      },
-      {
-         "NAME": "slurCurveFactor",
-         "INFO": "Slur curve factor.  Higher values mean rounder slurs.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "10",
-         "MIN": "1",
-         "MAX": "100"
       },
       {
          "NAME": "octaveAlternativeSymbols",
@@ -2778,6 +2923,7 @@ HumdrumNotationPluginDatabase.prototype.displayHumdrumSvg = function (baseid) {
 	}
 
 	
+	vrvWorker.resetOptions();
 	vrvWorker.renderData(vrvOptions, sourcetext)
 	.then(function(svg) {
 		entry.svg.innerHTML = svg;
@@ -2795,6 +2941,8 @@ HumdrumNotationPluginDatabase.prototype.displayHumdrumSvg = function (baseid) {
 			delete pluginOptions.postFunction;
 		}
 		pluginOptions._currentPageWidth = vrvOptions.pageWidth;
+
+		processHtml(that2.entries[baseid]);
 
 		// Update stored options
 		var autoresize = pluginOptions.autoResize === "true" ||
@@ -3503,14 +3651,8 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 	this.renderDataPending = 0;
 	this.renderDataWaiting = null;
 
-{% if site.local == 'true' %}
-	console.log("LOADING /scripts/verovio-worker.js");
-	var workerUrl = "/scripts/verovio-worker.js";
-{% else %}
-	console.log("LOADING https://verovio-script.humdrum.org/scripts/verovio-worker.js");
 	var workerUrl = "https://verovio-script.humdrum.org/scripts/verovio-worker.js";
-{% endif %}
-
+	console.log("LOADING https://verovio-script.humdrum.org/scripts/verovio-worker.js");
 	this.worker = null;
 	var that = this;
 	try {
@@ -3650,6 +3792,17 @@ vrvInterface.prototype.renderData = function (opts, data, page) {
 
 //////////////////////////////
 //
+// vrvInterface::resetOptions -- Clear old option settings
+//
+
+vrvInterface.prototype.resetOptions = function () {
+	return this.execute("resetOptions", arguments);
+};
+
+
+
+//////////////////////////////
+//
 // vrvInterface::getHumdrum --
 //
 
@@ -3732,6 +3885,18 @@ vrvInterface.prototype.getMEI = function (page) {
 vrvInterface.prototype.renderToMidi = function () {
 	var value = this.execute("renderToMidi", arguments);
 	return value;
+};
+
+
+
+//////////////////////////////
+//
+// vrvInterface::renderToTimemap --
+//
+
+vrvInterface.prototype.renderToTimemap = function () {
+	console.log("%cvrvInterface.renderToTimemap", "color: #aa8800; font-weight: bold");
+	return this.execute("renderToTimemap", arguments);
 };
 
 
@@ -3873,6 +4038,562 @@ vrvInterface.prototype.postDeferredMessage = function (method, args, deferred) {
 */
 (function(){"use strict";function a(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1}function b(a){var b=a._promiseCallbacks;return b||(b=a._promiseCallbacks={}),b}function c(a,b){return"onerror"===a?void rb.on("error",b):2!==arguments.length?rb[a]:void(rb[a]=b)}function d(a){return"function"==typeof a||"object"==typeof a&&null!==a}function e(a){return"function"==typeof a}function f(a){return"object"==typeof a&&null!==a}function g(){}function h(){setTimeout(function(){for(var a,b=0;b<wb.length;b++){a=wb[b];var c=a.payload;c.guid=c.key+c.id,c.childGuid=c.key+c.childId,c.error&&(c.stack=c.error.stack),rb.trigger(a.name,a.payload)}wb.length=0},50)}function i(a,b,c){1===wb.push({name:a,payload:{key:b._guidKey,id:b._id,eventName:a,detail:b._result,childId:c&&c._id,label:b._label,timeStamp:ub(),error:rb["instrument-with-stack"]?new Error(b._label):null}})&&h()}function j(){return new TypeError("A promises callback cannot return that same promise.")}function k(){}function l(a){try{return a.then}catch(b){return Bb.error=b,Bb}}function m(a,b,c,d){try{a.call(b,c,d)}catch(e){return e}}function n(a,b,c){rb.async(function(a){var d=!1,e=m(c,b,function(c){d||(d=!0,b!==c?q(a,c):s(a,c))},function(b){d||(d=!0,t(a,b))},"Settle: "+(a._label||" unknown promise"));!d&&e&&(d=!0,t(a,e))},a)}function o(a,b){b._state===zb?s(a,b._result):b._state===Ab?(b._onError=null,t(a,b._result)):u(b,void 0,function(c){b!==c?q(a,c):s(a,c)},function(b){t(a,b)})}function p(a,b){if(b.constructor===a.constructor)o(a,b);else{var c=l(b);c===Bb?t(a,Bb.error):void 0===c?s(a,b):e(c)?n(a,b,c):s(a,b)}}function q(a,b){a===b?s(a,b):d(b)?p(a,b):s(a,b)}function r(a){a._onError&&a._onError(a._result),v(a)}function s(a,b){a._state===yb&&(a._result=b,a._state=zb,0===a._subscribers.length?rb.instrument&&xb("fulfilled",a):rb.async(v,a))}function t(a,b){a._state===yb&&(a._state=Ab,a._result=b,rb.async(r,a))}function u(a,b,c,d){var e=a._subscribers,f=e.length;a._onError=null,e[f]=b,e[f+zb]=c,e[f+Ab]=d,0===f&&a._state&&rb.async(v,a)}function v(a){var b=a._subscribers,c=a._state;if(rb.instrument&&xb(c===zb?"fulfilled":"rejected",a),0!==b.length){for(var d,e,f=a._result,g=0;g<b.length;g+=3)d=b[g],e=b[g+c],d?y(c,d,e,f):e(f);a._subscribers.length=0}}function w(){this.error=null}function x(a,b){try{return a(b)}catch(c){return Cb.error=c,Cb}}function y(a,b,c,d){var f,g,h,i,k=e(c);if(k){if(f=x(c,d),f===Cb?(i=!0,g=f.error,f=null):h=!0,b===f)return void t(b,j())}else f=d,h=!0;b._state!==yb||(k&&h?q(b,f):i?t(b,g):a===zb?s(b,f):a===Ab&&t(b,f))}function z(a,b){var c=!1;try{b(function(b){c||(c=!0,q(a,b))},function(b){c||(c=!0,t(a,b))})}catch(d){t(a,d)}}function A(a,b,c){return a===zb?{state:"fulfilled",value:c}:{state:"rejected",reason:c}}function B(a,b,c,d){this._instanceConstructor=a,this.promise=new a(k,d),this._abortOnReject=c,this._validateInput(b)?(this._input=b,this.length=b.length,this._remaining=b.length,this._init(),0===this.length?s(this.promise,this._result):(this.length=this.length||0,this._enumerate(),0===this._remaining&&s(this.promise,this._result))):t(this.promise,this._validationError())}function C(a,b){return new Db(this,a,!0,b).promise}function D(a,b){function c(a){q(f,a)}function d(a){t(f,a)}var e=this,f=new e(k,b);if(!tb(a))return t(f,new TypeError("You must pass an array to race.")),f;for(var g=a.length,h=0;f._state===yb&&g>h;h++)u(e.resolve(a[h]),void 0,c,d);return f}function E(a,b){var c=this;if(a&&"object"==typeof a&&a.constructor===c)return a;var d=new c(k,b);return q(d,a),d}function F(a,b){var c=this,d=new c(k,b);return t(d,a),d}function G(){throw new TypeError("You must pass a resolver function as the first argument to the promise constructor")}function H(){throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.")}function I(a,b){this._id=Jb++,this._label=b,this._state=void 0,this._result=void 0,this._subscribers=[],rb.instrument&&xb("created",this),k!==a&&(e(a)||G(),this instanceof I||H(),z(this,a))}function J(){this.value=void 0}function K(a){try{return a.then}catch(b){return Lb.value=b,Lb}}function L(a,b,c){try{a.apply(b,c)}catch(d){return Lb.value=d,Lb}}function M(a,b){for(var c,d,e={},f=a.length,g=new Array(f),h=0;f>h;h++)g[h]=a[h];for(d=0;d<b.length;d++)c=b[d],e[c]=g[d+1];return e}function N(a){for(var b=a.length,c=new Array(b-1),d=1;b>d;d++)c[d-1]=a[d];return c}function O(a,b){return{then:function(c,d){return a.call(b,c,d)}}}function P(a,b){var c=function(){for(var c,d=this,e=arguments.length,f=new Array(e+1),g=!1,h=0;e>h;++h){if(c=arguments[h],!g){if(g=S(c),g===Mb){var i=new Kb(k);return t(i,Mb.value),i}g&&g!==!0&&(c=O(g,c))}f[h]=c}var j=new Kb(k);return f[e]=function(a,c){a?t(j,a):void 0===b?q(j,c):b===!0?q(j,N(arguments)):tb(b)?q(j,M(arguments,b)):q(j,c)},g?R(j,f,a,d):Q(j,f,a,d)};return c.__proto__=a,c}function Q(a,b,c,d){var e=L(c,d,b);return e===Lb&&t(a,e.value),a}function R(a,b,c,d){return Kb.all(b).then(function(b){var e=L(c,d,b);return e===Lb&&t(a,e.value),a})}function S(a){return a&&"object"==typeof a?a.constructor===Kb?!0:K(a):!1}function T(a,b){return Kb.all(a,b)}function U(a,b,c){this._superConstructor(a,b,!1,c)}function V(a,b){return new U(Kb,a,b).promise}function W(a,b){return Kb.race(a,b)}function X(a,b,c){this._superConstructor(a,b,!0,c)}function Y(a,b){return new Rb(Kb,a,b).promise}function Z(a,b,c){this._superConstructor(a,b,!1,c)}function $(a,b){return new Z(Kb,a,b).promise}function _(a){throw setTimeout(function(){throw a}),a}function ab(a){var b={};return b.promise=new Kb(function(a,c){b.resolve=a,b.reject=c},a),b}function bb(a,b,c){return Kb.all(a,c).then(function(a){if(!e(b))throw new TypeError("You must pass a function as map's second argument.");for(var d=a.length,f=new Array(d),g=0;d>g;g++)f[g]=b(a[g]);return Kb.all(f,c)})}function cb(a,b){return Kb.resolve(a,b)}function db(a,b){return Kb.reject(a,b)}function eb(a,b,c){return Kb.all(a,c).then(function(a){if(!e(b))throw new TypeError("You must pass a function as filter's second argument.");for(var d=a.length,f=new Array(d),g=0;d>g;g++)f[g]=b(a[g]);return Kb.all(f,c).then(function(b){for(var c=new Array(d),e=0,f=0;d>f;f++)b[f]&&(c[e]=a[f],e++);return c.length=e,c})})}function fb(a,b){gc[_b]=a,gc[_b+1]=b,_b+=2,2===_b&&Tb()}function gb(){var a=process.nextTick,b=process.versions.node.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/);return Array.isArray(b)&&"0"===b[1]&&"10"===b[2]&&(a=setImmediate),function(){a(lb)}}function hb(){return function(){vertxNext(lb)}}function ib(){var a=0,b=new dc(lb),c=document.createTextNode("");return b.observe(c,{characterData:!0}),function(){c.data=a=++a%2}}function jb(){var a=new MessageChannel;return a.port1.onmessage=lb,function(){a.port2.postMessage(0)}}function kb(){return function(){setTimeout(lb,1)}}function lb(){for(var a=0;_b>a;a+=2){var b=gc[a],c=gc[a+1];b(c),gc[a]=void 0,gc[a+1]=void 0}_b=0}function mb(){try{var a=require("vertx");return a.runOnLoop||a.runOnContext,hb()}catch(b){return kb()}}function nb(a,b){rb.async(a,b)}function ob(){rb.on.apply(rb,arguments)}function pb(){rb.off.apply(rb,arguments)}var qb={mixin:function(a){return a.on=this.on,a.off=this.off,a.trigger=this.trigger,a._promiseCallbacks=void 0,a},on:function(c,d){var e,f=b(this);e=f[c],e||(e=f[c]=[]),-1===a(e,d)&&e.push(d)},off:function(c,d){var e,f,g=b(this);return d?(e=g[c],f=a(e,d),void(-1!==f&&e.splice(f,1))):void(g[c]=[])},trigger:function(a,c){var d,e,f=b(this);if(d=f[a])for(var g=0;g<d.length;g++)(e=d[g])(c)}},rb={instrument:!1};qb.mixin(rb);var sb;sb=Array.isArray?Array.isArray:function(a){return"[object Array]"===Object.prototype.toString.call(a)};var tb=sb,ub=Date.now||function(){return(new Date).getTime()},vb=Object.create||function(a){if(arguments.length>1)throw new Error("Second argument not supported");if("object"!=typeof a)throw new TypeError("Argument must be an object");return g.prototype=a,new g},wb=[],xb=i,yb=void 0,zb=1,Ab=2,Bb=new w,Cb=new w,Db=B;B.prototype._validateInput=function(a){return tb(a)},B.prototype._validationError=function(){return new Error("Array Methods must be provided an Array")},B.prototype._init=function(){this._result=new Array(this.length)},B.prototype._enumerate=function(){for(var a=this.length,b=this.promise,c=this._input,d=0;b._state===yb&&a>d;d++)this._eachEntry(c[d],d)},B.prototype._eachEntry=function(a,b){var c=this._instanceConstructor;f(a)?a.constructor===c&&a._state!==yb?(a._onError=null,this._settledAt(a._state,b,a._result)):this._willSettleAt(c.resolve(a),b):(this._remaining--,this._result[b]=this._makeResult(zb,b,a))},B.prototype._settledAt=function(a,b,c){var d=this.promise;d._state===yb&&(this._remaining--,this._abortOnReject&&a===Ab?t(d,c):this._result[b]=this._makeResult(a,b,c)),0===this._remaining&&s(d,this._result)},B.prototype._makeResult=function(a,b,c){return c},B.prototype._willSettleAt=function(a,b){var c=this;u(a,void 0,function(a){c._settledAt(zb,b,a)},function(a){c._settledAt(Ab,b,a)})};var Eb=C,Fb=D,Gb=E,Hb=F,Ib="rsvp_"+ub()+"-",Jb=0,Kb=I;I.cast=Gb,I.all=Eb,I.race=Fb,I.resolve=Gb,I.reject=Hb,I.prototype={constructor:I,_guidKey:Ib,_onError:function(a){rb.async(function(b){setTimeout(function(){b._onError&&rb.trigger("error",a)},0)},this)},then:function(a,b,c){var d=this,e=d._state;if(e===zb&&!a||e===Ab&&!b)return rb.instrument&&xb("chained",this,this),this;d._onError=null;var f=new this.constructor(k,c),g=d._result;if(rb.instrument&&xb("chained",d,f),e){var h=arguments[e-1];rb.async(function(){y(e,f,h,g)})}else u(d,f,a,b);return f},"catch":function(a,b){return this.then(null,a,b)},"finally":function(a,b){var c=this.constructor;return this.then(function(b){return c.resolve(a()).then(function(){return b})},function(b){return c.resolve(a()).then(function(){throw b})},b)}};var Lb=new J,Mb=new J,Nb=P,Ob=T;U.prototype=vb(Db.prototype),U.prototype._superConstructor=Db,U.prototype._makeResult=A,U.prototype._validationError=function(){return new Error("allSettled must be called with an array")};var Pb=V,Qb=W,Rb=X;X.prototype=vb(Db.prototype),X.prototype._superConstructor=Db,X.prototype._init=function(){this._result={}},X.prototype._validateInput=function(a){return a&&"object"==typeof a},X.prototype._validationError=function(){return new Error("Promise.hash must be called with an object")},X.prototype._enumerate=function(){var a=this.promise,b=this._input,c=[];for(var d in b)a._state===yb&&b.hasOwnProperty(d)&&c.push({position:d,entry:b[d]});var e=c.length;this._remaining=e;for(var f,g=0;a._state===yb&&e>g;g++)f=c[g],this._eachEntry(f.entry,f.position)};var Sb=Y;Z.prototype=vb(Rb.prototype),Z.prototype._superConstructor=Db,Z.prototype._makeResult=A,Z.prototype._validationError=function(){return new Error("hashSettled must be called with an object")};var Tb,Ub=$,Vb=_,Wb=ab,Xb=bb,Yb=cb,Zb=db,$b=eb,_b=0,ac=fb,bc="undefined"!=typeof window?window:void 0,cc=bc||{},dc=cc.MutationObserver||cc.WebKitMutationObserver,ec="undefined"!=typeof process&&"[object process]"==={}.toString.call(process),fc="undefined"!=typeof Uint8ClampedArray&&"undefined"!=typeof importScripts&&"undefined"!=typeof MessageChannel,gc=new Array(1e3);if(Tb=ec?gb():dc?ib():fc?jb():void 0===bc&&"function"==typeof require?mb():kb(),rb.async=ac,"undefined"!=typeof window&&"object"==typeof window.__PROMISE_INSTRUMENTATION__){var hc=window.__PROMISE_INSTRUMENTATION__;c("instrument",!0);for(var ic in hc)hc.hasOwnProperty(ic)&&ob(ic,hc[ic])}var jc={race:Qb,Promise:Kb,allSettled:Pb,hash:Sb,hashSettled:Ub,denodeify:Nb,on:ob,off:pb,map:Xb,filter:$b,resolve:Yb,reject:Zb,all:Ob,rethrow:Vb,defer:Wb,EventTarget:qb,configure:c,async:nb};"function"==typeof define&&define.amd?define(function(){return jc}):"undefined"!=typeof module&&module.exports?module.exports=jc:"undefined"!=typeof this&&(this.RSVP=jc)}).call(this),function(a,b){"use strict";var c=b.head||b.getElementsByTagName("head")[0],d="basket-",e=5e3,f=[],g=function(a,b){try{return localStorage.setItem(d+a,JSON.stringify(b)),!0}catch(c){if(c.name.toUpperCase().indexOf("QUOTA")>=0){var e,f=[];for(e in localStorage)0===e.indexOf(d)&&f.push(JSON.parse(localStorage[e]));return f.length?(f.sort(function(a,b){return a.stamp-b.stamp}),basket.remove(f[0].key),g(a,b)):void 0}return}},h=function(a){var b=new RSVP.Promise(function(b,c){var d=new XMLHttpRequest;d.open("GET",a),d.onreadystatechange=function(){4===d.readyState&&(200===d.status||0===d.status&&d.responseText?b({content:d.responseText,type:d.getResponseHeader("content-type")}):c(new Error(d.statusText)))},setTimeout(function(){d.readyState<4&&d.abort()},basket.timeout),d.send()});return b},i=function(a){return h(a.url).then(function(b){var c=j(a,b);return a.skipCache||g(a.key,c),c})},j=function(a,b){var c=+new Date;return a.data=b.content,a.originalType=b.type,a.type=a.type||b.type,a.skipCache=a.skipCache||!1,a.stamp=c,a.expire=c+60*(a.expire||e)*60*1e3,a},k=function(a,b){return!a||a.expire-+new Date<0||b.unique!==a.unique||basket.isValidItem&&!basket.isValidItem(a,b)},l=function(a){var b,c,d;if(a.url)return a.key=a.key||a.url,b=basket.get(a.key),a.execute=a.execute!==!1,d=k(b,a),a.live||d?(a.unique&&(a.url+=(a.url.indexOf("?")>0?"&":"?")+"basket-unique="+a.unique),c=i(a),a.live&&!d&&(c=c.then(function(a){return a},function(){return b}))):(b.type=a.type||b.originalType,b.execute=a.execute,c=new RSVP.Promise(function(a){a(b)})),c},m=function(a){var d=b.createElement("script");d.defer=!0,d.text=a.data,c.appendChild(d)},n={"default":m},o=function(a){return a.type&&n[a.type]?n[a.type](a):n["default"](a)},p=function(a){return a.map(function(a){return a.execute&&o(a),a})},q=function(){var a,b,c=[];for(a=0,b=arguments.length;b>a;a++)c.push(l(arguments[a]));return RSVP.all(c)},r=function(){var a=q.apply(null,arguments),b=this.then(function(){return a}).then(p);return b.thenRequire=r,b};a.basket={require:function(){for(var a=0,b=arguments.length;b>a;a++)arguments[a].execute=arguments[a].execute!==!1,arguments[a].once&&f.indexOf(arguments[a].url)>=0?arguments[a].execute=!1:arguments[a].execute!==!1&&f.indexOf(arguments[a].url)<0&&f.push(arguments[a].url);var c=q.apply(null,arguments).then(p);return c.thenRequire=r,c},remove:function(a){return localStorage.removeItem(d+a),this},get:function(a){var b=localStorage.getItem(d+a);try{return JSON.parse(b||"false")}catch(c){return!1}},clear:function(a){var b,c,e=+new Date;for(b in localStorage)c=b.split(d)[1],c&&(!a||this.get(c).expire<=e)&&this.remove(c);return this},isValidItem:null,timeout:5e3,addHandler:function(a,b){Array.isArray(a)||(a=[a]),a.forEach(function(a){n[a]=b})},removeHandler:function(a){basket.addHandler(a,void 0)}},basket.clear(!0)}(this,document);
 //# sourceMappingURL=basket.full.min.js.map
+
+
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Fri Jan  9 11:19:47 PST 2015
+// Last Modified: Thu Jan 22 21:45:50 PST 2015
+// Filename:      aton.js
+// Syntax:        JavaScript 1.8.5/ECMAScript 5.1
+// vim:           ts=3
+//
+// Description:   AT Object Notation library.  An alternate JavaScript
+//                object packing notation to JSON that allows for
+//                multi-line property values.
+//
+// Todo:
+//
+
+'use strict';
+
+//////////////////////////////
+//
+// ATON constructor -- The ATON object is used to manage options for
+//    parsing of AT Notation Object strings and stringifying JavaScript
+//    objects into ATON strings.
+//
+
+function ATON () {
+	this.options = {};
+	return this;
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.defaultOptions -- Defaults for parsing/stringifying ATON
+//    strings.  Preparing for a future version of parser, currently mostly
+//    inactive.
+//
+
+ATON.prototype.defaultOptions = {
+
+	// recordTerminator: String which marks the end of each data record
+	// in the incoming/outgoing data.  By default this is the newline character.
+	recordTerminator: '\n',
+
+	// metaMarker: String which marks the start of a control record, such as
+	// the start/stop of an object value.  This must always occur at the
+	// start of an incoming record.
+	metaMarker: '@@',
+
+	// objectBegin: The meta key used to indicate the start of a property
+	// object value.  This can be an array of strings, with the first one
+	// being the control parameter name for starting an object when using
+	// stringify().
+	objectBegin: ['BEGIN', 'START'],
+
+	// objectEnd: The meta key used to indicate the end of a property
+	// object value.  This can be an array of stings, with the first one
+	// being the control parameter name for ending an object when using
+	// stringify().
+	objectEnd: ['END', 'STOP'],
+
+	// commentMarker: Regular expression which indicates a comment record.
+	commentMarker: '^@{5,}|^@{1,4}[^@]|^@{,4}$',
+
+	// keyMarker: String which indicates the start of a property key/name.
+	// This must always occur at the start of an incoming record.
+	keyMarker: '@',
+
+	// keyTerminator: Regular expression which indicates the separator between
+	// a property key/name and the property value.
+	keyTerminator: '\s*:\s*',
+
+	// keyTerminatorOut: The string used to separate key/value pairs when
+	// stringifying an object to ATON.
+	keyTerminatorOut: ':\t',
+
+	// forceKeyCase: Set the case of the property name characters.
+	//   '' = do not alter case of property name characters.
+	//   'lc' = force property name characters to lower case.
+	//   'uc' = force property name characters to upper case.
+	forceKeyCase: '',
+
+	// forceType: When reading in an ATON file, convert property values
+	// matching the given key to the given type.  The types are case
+	// insensitive and globally affect all property names in any object.
+	// Use "@@TYPE:key:type" records in the ATON file to locally adjust
+	// the type if the conversions should not apply globally in the file.
+	// Strinified ATON content only contains string types, so "@@TYPE"
+	// records can be used to force the type when parsing the ATON string
+	// again.  The forceType property value is an object containing
+	// sub-properties indexed by a property name.  The allowed types are:
+	// 	String	=	default type.
+	// 	Number	=	convert to a JavaScript Number.
+	//    Integer  =  convert to a JavaScript Number with parseInt().
+	forceType: undefined,
+
+   // onlyChildToRoot: If the parsed output contains a single property whose
+	// value is an object, then return that property value rather than the
+	// root object.  This will convert:
+   //    @BEGIN:X
+	//    @Y:Z
+   //    @END:X
+   // into '{"Y":"Z"}' rather than '{"X":{"Y":"Z"}}'
+   onlyChildToRoot: false
+};
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.getOption -- Return the value of the given option name.
+//    First search this.options for the property, then if not found, try
+//    the ATON.prototype.defaultOptions object.
+//
+
+ATON.prototype.getOption = function (name) {
+	if ((typeof this.options === 'undefined')
+			|| (this.options[name] === 'undefined')) {
+		return this.defaultOptions[name];
+	} else if ((typeof this.options === 'object')
+			&& (typeof this.options[name] === 'undefined')) {
+		return this.defaultOptions[name];
+	} else {
+		return this.options[name];
+	}
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.setOption -- Set the value of a particular option.
+//
+
+ATON.prototype.setOption = function (name, value) {
+   if (typeof this.options === 'undefined') {
+			this.options = {};
+	}
+	this.options[name] = value;
+	return this;
+}
+
+//
+// Alias methods for setOption:
+//
+
+// convert all input keys into lower case.
+ATON.prototype.setLCKeys = function () { this.setOption('forceKeyCase', 'lc'); return this; }
+// convert all input keys into upper case.
+ATON.prototype.setUCKeys = function () { this.setOption('forceKeyCase', 'uc'); return this; }
+// OC = original case (don't alter case of key letters).
+ATON.prototype.setOCKeys = function () { this.setOption('forceKeyCase', ''); return this; }
+ATON.prototype.unsetKeyCase = function ()  { this.setOCKeys(); }
+
+ATON.prototype.setOnlyChildRoot = function () { 
+	this.setOption('onlyChildToRoot', true);
+}
+ATON.prototype.unsetOnlyChildRoot = function () { 
+	this.setOption('onlyChildToRoot', false);
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.getOptionString -- Return the value of the given option
+//    name, guaranteeing that it is a string.  If the value is an array,
+//		return the first element.  If the value is undefined then return an
+//    empty string.
+//
+
+ATON.prototype.getOptionString = function (name) {
+	var value = this.getOption(name);
+	if (typeof value === 'string') {
+		return value;
+	} else if (value instanceof Array) {
+		return value.length ? value[0].toString() : '';
+	} else if (typeof value === 'number') {
+		return String(value);
+	} else {
+		return '';
+	}
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.resetOptions --
+//
+
+ATON.prototype.resetOptions = function () {
+	this.options = {};
+};
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.parse -- parse ATON content and return the JavaScript
+//   object that it describes.
+//
+
+ATON.prototype.parse = function (string) {
+	var output = this.parseRecordArray(string.split(/\n/));
+	if (this.getOption('onlyChildToRoot')) {
+		var keys = Object.keys(output);
+		if ((keys.length === 1) && (typeof output[keys[0]] === 'object')) {
+			return output[keys[0]];
+		}
+	} 
+	return output;
+};
+
+
+
+//////////////////////////////
+//
+// ATON.prototype._initializeParsingStateVariables -- Initalize
+//    ATON string parsing variables.  This is a pseudo private member
+//    of the ATON class and has no function outside of the class.
+//
+
+ATON.prototype._initializeParsingStateVariables = function () {
+	return {
+		action:     undefined,
+		label:      undefined,
+		labelbegin: undefined,
+		labelend:   undefined,
+		curobj:     undefined,
+		curobjname: undefined,
+		curkey:     undefined, // name of current property being processed
+		ocurkey:    undefined, // same as curkey, but not case adjustments
+		newkey:     undefined, // name of next property to be processed
+		onewkey:    undefined, // same as newkey, no case adjustment
+		newvalue:   undefined, // initial value of next property to be processed
+		linenum:    undefined, // Current line parsing, 1-indexed.
+		node:       [],        // Object parsing hierarchy.
+		typer:      {},        // Database of properties to typecast.
+		output:     {},         // Final output from parser.
+		// options:
+		keycase:    this.getOptionString('forceKeyCase')
+	};
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.parseRecordArray -- Parse ATON data from a list of
+//   individual records.
+//
+
+ATON.prototype.parseRecordArray = function (records) {
+	if (!(records instanceof Array) || (records.length === 0) ||
+			(typeof records[0] !== 'string')) {
+		return {};
+	}
+
+	var parsingVariables = this._initializeParsingStateVariables();
+	parsingVariables.curobj = parsingVariables.output;
+
+	for (var i=0; i<records.length; i++) {
+		parsingVariables.linenum = i+1;
+		try {
+			this._parseRecord(records[i], parsingVariables);
+		} catch(error) {
+			console.log(error);
+			process.exit(1);
+		}
+	}
+
+	// Remove whitespace around last property value:
+	var v = parsingVariables;
+	this._cleanParameter(v);
+
+	return v.output;
+};
+
+
+
+//////////////////////////////
+//
+// ATON.prototype._parseRecord -- read an individual ATON record and process
+//    according to the variable object given as the second parameter.  This
+//    is a pseudo-private method which is only useful inside of the ATON
+//    object.
+//
+
+ATON.prototype._parseRecord = function (line, v) {
+	var matches;
+	if (line.match(/^@{5,}|^@+\s|^@{1,4}$/)) {
+		// Filter out comment lines.
+		return;
+	} else if ((typeof v.curkey === 'undefined') && line.match(/^[^@]|^$/)) {
+		// Ignore unassociated text.
+		return;
+	} else if (matches = line.match(/^@@[^@ ]/)) {
+		// Control message.
+		// End current property.
+		this._cleanParameter(v);
+		v.curkey  = undefined;
+		v.ocurkey = undefined;
+		if (matches = line.match(/^@@(BEGIN|START)\s*:\s*(.*)\s*$/i)) {
+			v.label  = matches[2];
+			if (typeof v.curobj[v.label] === 'undefined') {
+				// create a new object and enter into it
+				v.curobj[v.label] = {};
+				v.node.push({label:v.label, startline:v.linenum});
+				v.curobj = v.curobj[v.label];
+			} else if (v.curobj[v.label] instanceof Array) {
+				// Append at end of array of objects with same v.label and
+				// update the array index in the last v.node entry.
+				v.curobj[v.label].push({});
+				v.node.push({});
+				v.node[v.node.length-1].index = v.curobj[v.label].length - 1;
+				v.node[v.node.length-1].label = v.label;
+				v.node[v.node.length-1].startline = v.linenum;
+				v.curobj = v.curobj[v.label][v.curobj[v.label].length - 1];
+			} else {
+				// Single string value already exists. Convert it to an array
+				// and then append new object and enter it.
+				var temp = v.curobj[v.label];
+				v.curobj[v.label] = [v.curobj[v.label], {}];
+				v.node.push({});
+				v.node[v.node.length-1].index = v.curobj[v.label].length - 1;
+				v.node[v.node.length-1].label = v.label;
+				v.node[v.node.length-1].startline = v.linenum;
+				v.curobj = v.curobj[v.label][v.curobj[v.label].length - 1];
+			}
+		} else if (matches = line.match(/^@@(END|STOP)\s*:?\s*(.*)\s*$/i)) {
+			// End an object, so go back to the parent.
+			if (typeof v.curkey !== 'undefined') {
+				// clean whitespace of last read property:
+				v.curobj[v.curkey] = v.curobj[v.curkey].replace(/^\s+|\s+$/g, '');
+				v.curkey = undefined;
+				v.ocurkey = undefined;
+			}
+			v.action     = matches[1];
+			v.labelend   = matches[2];
+			v.labelbegin = v.node[v.node.length - 1].label;
+			if (typeof v.node[v.node.length-1].startline === 'undefined') {
+				throw new Error('No start for ' + v.action + ' tag on line '
+					+ v.node[v.node.length-1].startline + ': ' + line);
+				v.output = {};
+				// return v.output;
+			}
+			if (typeof v.labelend !== 'undefined') {
+				// ensure that the v.label begin/end tags match
+				if ((v.labelbegin !== v.labelend) && (v.labelend !== "")) {
+					throw new Error('Labels do not match on lines '
+						+ v.node[v.node.length-1].startline + ' and '
+						+ v.linenum + ': "' + v.labelbegin
+						+ '" compared to "' + v.labelend + '".');
+					v.output = {};
+					// return v.output;
+				}
+			}
+			// Go back to the parent object.
+			if (!v.node) {
+				throw new Error('Error on line ' + v.linenum +
+					': already at object root.');
+				v.output = {};
+				// return v.output;
+			}
+			v.node.pop();
+			v.curobj = v.node.reduce(function (obj, x) {
+					return (obj[x.label] instanceof Array) ?
+							obj[x.label][x.index] : obj[x.label];
+				}, v.output);
+		} else if (matches=line.match(/^@@TYPE\s*:\s*([^:]+)\s*:\s*(.*)\s*$/i)) {
+			// Automatic property value conversion.
+			v.typer[matches[1]] = matches[2];
+		}
+	} else if (matches = line.match(/^@([^\s:@][^:]*)\s*:\s*(.*)\s*$/)) {
+		// New property
+		v.newkey   = matches[1];
+		v.onewkey  = v.newkey;
+		v.newvalue = matches[2];
+		this._cleanParameter(v);
+		if (v.keycase === 'uc') {
+			v.ocurkey = v.newkey;
+			v.curkey  = v.newkey.toUpperCase();
+		} else if (v.keycase === 'lc') {
+			v.ocurkey = v.newkey;
+			v.curkey  = v.newkey.toLowerCase();
+		} else {
+			v.ocurkey = v.newkey;
+			v.curkey  = v.newkey;
+		}
+		if (typeof v.curobj[v.curkey] === 'undefined') {
+			// create a new property
+			v.curobj[v.curkey] = v.newvalue;
+		} else if (v.curobj[v.curkey] instanceof Array) {
+			// append next object to end of array
+			v.curobj[v.curkey].push(v.newvalue);
+		} else {
+			// convert property value to array, and then append
+			v.curobj[v.curkey] = [v.curobj[v.curkey], v.newvalue];
+		}
+	} else if (typeof v.curkey !== 'undefined') {
+		// Continuing value from property started previously
+		// If the line starts with a backslash, remove it since it is an
+		//escape for the "@" sign or a literal "\" at the start of a line:
+		// \@some data line   -=>  @some data line
+		// \\@some data line  -=>  \@some data line
+		// Only "@" and "\@" at the start of the line need to be esacaped;
+		// otherwise, all other "@" and "\" characters are literal.
+		// If another property marker is used other than "@", then that
+		// character (or string) needs to be backslash escaped at the
+		// start of a multi-line value line.
+		if (line.charAt(0) !== '@') {
+			if (line.slice(0,2) === '\\@') {
+				line = line.slice(1);
+			}
+			if (line.slice(0,3) === '\\\\@') {
+				line = line.slice(1);
+			}
+			if (v.curobj[v.curkey] instanceof Array) {
+				v.curobj[v.curkey][v.curobj[v.curkey].length - 1] += '\n' + line;
+			} else {
+				v.curobj[v.curkey] += '\n' + line;
+			}
+		}
+	}
+};
+
+
+
+//////////////////////////////
+//
+// ATON.prototype._cleanParameter -- Remove whitespace from beginning
+//    and ending of value.  If the type should be cast to another form,
+//    also do that.  This is a pseudo-private method of the ATON class.
+//
+
+ATON.prototype._cleanParameter = function (v) {
+	if ((typeof v.curkey !== 'undefined') && v.curobj && v.curobj[v.curkey]) {
+		var value;
+		if (v.curobj[v.curkey] instanceof Array) {
+			value = v.curobj[v.curkey][v.curobj[v.curkey].length-1];
+		} else if (typeof v.curobj[v.curkey] === 'string') {
+			value = v.curobj[v.curkey];
+		}
+		value = value.replace(/^\s+|\s+$/g, '');
+		if (v.typer && (typeof v.typer[v.ocurkey] !== 'undefined')) {
+			var newtype = v.typer[v.ocurkey];
+			if (newtype.match(/number/i)) {
+				value = Number(value);
+			} else if (newtype.match(/integer/i)) {
+				value = parseInt(value);
+			} else if (newtype.match(/json/i)) {
+				value = JSON.parse(value);
+			}
+		}
+		if (v.curobj[v.curkey] instanceof Array) {
+			v.curobj[v.curkey][v.curobj[v.curkey].length-1] = value;
+		} else if (typeof v.curobj[v.curkey] === 'string') {
+			v.curobj[v.curkey] = value;
+		}
+	}
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype.stringify -- Convert a JavaScript object into an ATON
+//    string.  If an array, then each element in the array must be an
+//    object.
+//
+
+ATON.prototype.stringify = function (obj, nodelabel) {
+	var output = '';
+	if (typeof obj !== 'object') {
+		// can only process objects, not plain strings or numbers
+		return output;
+	}
+
+	if (obj instanceof Array) {
+		for (var i=0; i<obj.length; i++) {
+			output += this.stringify(obj[i], nodelabel);
+		}
+	} else {
+		if (nodelabel) {
+			output += this.getOptionString('metaMarker');
+			output += this.getOptionString('objectBegin');
+			output += this.getOptionString('keyTerminatorOut');
+			output += nodelabel;
+			output += this.getOptionString('recordTerminator');
+		}
+
+		Object.keys(obj).forEach(function (name) {
+			var value = obj[name];
+			if (value instanceof Function) {
+				// ignoring functions (for now at least)
+				return;
+			} else if ((value instanceof Array) && value.length) {
+				for (var j=0; j<value.length; j++) {
+					if (typeof value[j] === 'object') {
+						output += this.stringify(value[j], name);
+					} else {
+						output += this._printSingleParameter(name, value[j]);
+					}
+				}
+			} else if (typeof value === 'object') {
+				output += this.stringify(value, name);
+			} else {
+				output += this._printSingleParameter(name, value);
+			}
+		}, this);
+
+		if (nodelabel) {
+			output += this.getOptionString('metaMarker');
+			output += this.getOptionString('objectEnd');
+			output += this.getOptionString('keyTerminatorOut');
+			output += nodelabel;
+			output += this.getOptionString('recordTerminator');
+		}
+	}
+
+	return output;
+}
+
+
+
+//////////////////////////////
+//
+// ATON.prototype._printSingleParameter -- A pseudo-private method which
+//    is a helper function for ATON.prototype.stringify().  Prints a
+//    simple ATON parameter (not an object or an array).
+//
+
+ATON.prototype._printSingleParameter = function (name, value) {
+	var output = '';
+	output += this.getOptionString('keyMarker');
+	output += name;
+	output += this.getOptionString('keyTerminatorOut');
+	output += value;
+	output += this.getOptionString('recordTerminator');
+	return output;
+};
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//
+// Export ATON constructor if running in node:
+//
+
+if (typeof module !== 'undefined' && module.hasOwnProperty('exports')) {
+	module.exports = ATON;
+};
+
 
 
 
