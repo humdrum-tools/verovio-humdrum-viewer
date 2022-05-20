@@ -14,7 +14,6 @@ var PDFLISTINTERVAL = null;
 var EVENNOTESPACING = false;
 var HIDEINITIALTOOLBAR = false;
 var HIDEMENUANDTOOLBAR = false;
-var MULTIPAGEVIEW = false;
 var HIDEMENU = false;
 var TOOLBAR = null;  // used to select the toolbar from URL toolbar parameter.
 var LASTTOOLBAR = 1;
@@ -157,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			HIDEMENU = true;
 		}
 		if (CGI.k.match(/p/)) {
-			MULTIPAGEVIEW = true;
+			PAGED = true;
 		}
 
 		var wcount = 0;

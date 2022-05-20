@@ -75,10 +75,8 @@ function processMenuAton() {
 		if (HIDEMENUANDTOOLBAR) {
 			toggleMenuAndToolbarDisplay();
 		}
-		if (MULTIPAGEVIEW) {
+		if (PAGED) {
 			MENU.multiPageView();
-			// just used once at initialization:
-			MULTIPAGEVIEW = false;
 		}
 		fillSearchFieldsFromCgi();
 		fillFilterFieldFromCgi();
@@ -2143,6 +2141,7 @@ MenuInterface.prototype.lineBreaksOn = function () {
 
 MenuInterface.prototype.singlePageView = function () {
 	PAGED = false;
+	localStorage.PAGEMODE = "single";
 	let element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "none";
@@ -2164,6 +2163,7 @@ MenuInterface.prototype.singlePageView = function () {
 MenuInterface.prototype.multiPageView = function () {
 	// return; // disabled until fix for issue https://github.com/rism-digital/verovio/issues/2034
 	PAGED = true;
+	localStorage.PAGEMODE = "multi";
 	let element = document.querySelector("#page-nav");
 	if (element) {
 		element.style.display = "block";

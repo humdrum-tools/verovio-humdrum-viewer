@@ -101,6 +101,9 @@ ERASED_FILEINFO = {};
 //
 
 let PAGED = false;
+if (localStorage.PAGEMODE === "multi") {
+	PAGED = true;
+}
 
 //////////////////////////////
 //
