@@ -233,15 +233,29 @@ var Base64 = {
 		var chr1, chr2, chr3;
 		var enc1, enc2, enc3, enc4;
 		var i = 0;
-
 		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
 
 		while (i < input.length) {
 
 			enc1 = this._keyStr.indexOf(input.charAt(i++));
-			enc2 = this._keyStr.indexOf(input.charAt(i++));
-			enc3 = this._keyStr.indexOf(input.charAt(i++));
-			enc4 = this._keyStr.indexOf(input.charAt(i++));
+
+			if (i < input.length) {
+				enc2 = this._keyStr.indexOf(input.charAt(i++));
+			} else {
+				enc2 = 64;
+			}
+
+			if (i < input.length) {
+				enc3 = this._keyStr.indexOf(input.charAt(i++));
+			} else {
+				enc3 = 64;
+			}
+
+			if (i < input.length) {
+				enc4 = this._keyStr.indexOf(input.charAt(i++));
+			} else {
+				enc4 = 64;
+			}
 
 			chr1 = (enc1 << 2) | (enc2 >> 4);
 			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
