@@ -2714,6 +2714,10 @@ MenuInterface.prototype.mimeEncode = function () {
 
 MenuInterface.prototype.copyMimeUrl = function () {
 	let text = getTextFromEditorNoCsvProcessing();
+	let lastchar = text.charAt(text.length - 1);
+	if (lastchar != "\n") {
+		text += "\n";
+	}
 	let mime = Base64.encode(text).replace(/=+$/, "");
 	// Alternately	mime = btoa(escape(encodeURIComponent(text))).replace(/=+$/, "");
 	// but that is much longer.

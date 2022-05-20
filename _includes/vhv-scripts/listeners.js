@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					text = Base64.decode(text);
 				} catch (err) {
 					// text is not MIME encoded
+					console.error("INPUT TEXT IS NOT MIME ENCODED");
 				}
 			}
 			setTextInEditor(text);

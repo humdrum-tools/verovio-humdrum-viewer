@@ -461,14 +461,25 @@ function processHtml(entry) {
 	// and postHtml only below last page.
 
 	let lang = entry.options.lang || "";
+	let langs = lang.split(/[^A-Za-z0-9_-]+/).filter(e => e);
 	let preContent = "";
 	let postContent = "";
-	if (lang) {
-		if (preHtml) {
-			preContent = preHtml[`CONTENT-${lang}`];
-		} 
-		if (postHtml) {
-			postContent = postHtml[`CONTENT-${lang}`];
+	if (langs.length > 0) {
+		for (let i=0; i<langs.length; i++) {
+			if (preHtml) {
+				preContent = preHtml[`CONTENT-${langs[i]}`];
+			} 
+			if (typeof preContent !== 'undefined') {
+				break;
+			}
+		}
+		for (let i=0; i<langs.length; i++) {
+			if (postHtml) {
+				postContent = postHtml[`CONTENT-${langs[i]}`];
+			} 
+			if (typeof postContent !== 'undefined') {
+				break;
+			}
 		}
 		if (typeof preContent === 'undefined') {
 			if (preHtml) {
