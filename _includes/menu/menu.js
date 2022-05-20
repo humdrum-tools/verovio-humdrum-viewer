@@ -1124,7 +1124,7 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.code = LeftKey;
+	event.code = KEYS.LeftKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -1139,7 +1139,7 @@ MenuInterface.prototype.goToPreviousWork = function (event) {
 
 MenuInterface.prototype.goToNextWork = function () {
 	let event = {};
-	event.code = RightKey;
+	event.code = KEYS.RightKey;
 	event.altKey = true;
 	event.shiftKey = true;
 	processInterfaceKeyCommand(event);
@@ -1156,7 +1156,7 @@ MenuInterface.prototype.goToNextPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.code = RightKey;
+	event.code = KEYS.RightKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
@@ -1172,7 +1172,7 @@ MenuInterface.prototype.goToPreviousPage = function (event) {
 	if (!event) {
 		event = {};
 	}
-	event.code = LeftKey;
+	event.code = KEYS.LeftKey;
 	event.altKey = true;
 	processInterfaceKeyCommand(event);
 };
