@@ -2694,11 +2694,7 @@ MenuInterface.prototype.mimeEncode = function () {
 	let lines = Base64.encode(text).match(/.{1,80}/g);
 	let output = "";
 	for (let i=0; i<lines.length; i++) {
-		if (i < lines.length - 1) {
-			output += lines[i] + "\n";
-		} else {
-			output += lines[i].replace(/=/g, "") + "\n";
-		}
+		output += lines[i] + "\n";
 	}
 	EDITOR.setValue(output, -1);
 };
@@ -2718,8 +2714,8 @@ MenuInterface.prototype.copyMimeUrl = function () {
 	if (lastchar != "\n") {
 		text += "\n";
 	}
-	let mime = Base64.encode(text).replace(/=+$/, "");
-	// Alternately	mime = btoa(escape(encodeURIComponent(text))).replace(/=+$/, "");
+	let mime = Base64.encode(text);
+	// Alternately	mime = btoa(escape(encodeURIComponent(text)));
 	// but that is much longer.
 
 	let url = `https://verovio.humdrum.org?t=${mime}`;
