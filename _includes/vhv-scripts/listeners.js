@@ -155,6 +155,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (CGI.k.match(/d/)) {
 			HIDEMENU = true;
 		}
+		if (CGI.k.match(/l/)) {
+			// Presumed to be off at initialization of the page.
+			toggleLayerColoring();
+		}
 		if (CGI.k.match(/p/)) {
 			PAGED = true;
 		}
