@@ -391,15 +391,6 @@
          "ARG": "boolean"
       },
       {
-         "NAME": "clefChangeFactor",
-         "CAT": "Input and page layout options",
-         "INFO": "Set the size ratio of normal clefs to changing clefs.",
-         "ARG": "float",
-         "DEF": "0.66",
-         "MIN": "0.25;",
-         "MAX": "1.00;"
-      },
-      {
          "NAME": "midiTempoAdjustment",
          "CAT": "General layout",
          "INFO": "MIDI tempo adjustment factor.",
