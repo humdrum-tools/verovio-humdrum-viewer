@@ -167,6 +167,18 @@ function verovioCalls() {
 
 	////////////////////////////
 	//
+	// verovioCalls.renderToTimemap --
+	//
+
+	this.renderToTimemap = function () {
+		var timemap = this.vrvToolkit.renderToTimemap({});
+		return timemap;
+	};
+
+
+
+	////////////////////////////
+	//
 	// verovioCalls.renderPage --
 	//
 
