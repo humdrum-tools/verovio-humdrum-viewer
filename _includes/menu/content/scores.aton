@@ -858,7 +858,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Polyrhythm Project
+@DEFAULT:		Polyrhythm Project sampler
 @AR:
 @CA:
 @CS:
@@ -866,7 +866,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			Polyrhythm Project
+@ES:			Polyrhythm Project sampler
 @ET:
 @EU:
 @FI:
