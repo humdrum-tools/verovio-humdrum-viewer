@@ -1661,15 +1661,6 @@ HumdrumNotationPluginDatabase.prototype.verovioOptions = {
          "ARG": "boolean"
       },
       {
-         "NAME": "clefChangeFactor",
-         "CAT": "Input and page layout options",
-         "INFO": "Set the size ratio of normal clefs to changing clefs.",
-         "ARG": "float",
-         "DEF": "0.66",
-         "MIN": "0.25;",
-         "MAX": "1.00;"
-      },
-      {
          "NAME": "midiTempoAdjustment",
          "CAT": "General layout",
          "INFO": "MIDI tempo adjustment factor.",
@@ -3662,8 +3653,9 @@ vrvInterface.prototype.createWorkerInterface = function (onReady) {
 	this.renderDataPending = 0;
 	this.renderDataWaiting = null;
 
-	var workerUrl = "https://verovio-script.humdrum.org/scripts/verovio-worker.js";
-	console.log("LOADING https://verovio-script.humdrum.org/scripts/verovio-worker.js");
+	// var workerUrl = "https://verovio-script.humdrum.org/scripts/verovio-worker.js";
+	var workerUrl = "/scripts/local/verovio-worker.js";
+	console.log("LOADING", workerUrl);
 	this.worker = null;
 	var that = this;
 	try {
@@ -3840,17 +3832,6 @@ vrvInterface.prototype.redoLayout = function (opts, redo, measure) {
 
 //////////////////////////////
 //
-// vrvInterface::renderToTimemap --
-//
-
-vrvInterface.prototype.renderToTimemap = function () {
-	return this.execute("renderToTimemap", arguments);
-};
-
-
-
-//////////////////////////////
-//
 // vrvInterface::renderPage --
 //
 
@@ -3917,8 +3898,9 @@ vrvInterface.prototype.renderToMidi = function () {
 //
 
 vrvInterface.prototype.renderToTimemap = function () {
-	console.log("%cvrvInterface.renderToTimemap", "color: #aa8800; font-weight: bold");
-	return this.execute("renderToTimemap", arguments);
+	// console.log("%cvrvInterface.renderToTimemap", "color: #aa8800; font-weight: bold");
+	let result = this.execute("renderToTimemap", arguments);
+	return result;
 };
 
 

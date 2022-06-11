@@ -1,6 +1,6 @@
 ---
 layout: empty
-permalink: /scripts/verovio-worker.js
+permalink: /scripts/local/verovio-worker.js
 vim: ts=3 
 ---
 

@@ -1,2 +1,1 @@
 https://raw.githubusercontent.com/humdrum-tools/verovio-script/gh-pages/scripts/verovio-toolkit-wasm.js
-https://plugin.humdrum.org/scripts/humdrum-notation-plugin-worker.js
