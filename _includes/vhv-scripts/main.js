@@ -95,5 +95,7 @@
 // Main event listener functions:
 {% include vhv-scripts/listeners.js %}
 
+// Display of Pre/Post HTML content
+{% include vhv-scripts/html/main.js %}
 
 

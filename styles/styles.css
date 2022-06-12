@@ -289,7 +289,7 @@ div#index {
 	z-index: 300;
 }
 
-#output {
+#output-container {
 	position: fixed;
 	top: 64px;
 	left: 415px;
@@ -299,7 +299,7 @@ div#index {
 	z-index: 2;
 }
 
-#output {
+#output-container {
 	overflow-y: scroll !important;
 	scroll-behavior: smooth;
 }

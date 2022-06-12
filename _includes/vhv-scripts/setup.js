@@ -191,7 +191,7 @@ function setupSplitter() {
 		Splitter.splitContent = document.querySelector('#splitter');
 	}
 	if (!this.rightContent) {
-		Splitter.rightContent = document.querySelector('#output');
+		Splitter.rightContent = document.querySelector('#output-container');
 	}
 
 	splitter.addEventListener('mousedown', function(event) {
@@ -203,7 +203,7 @@ function setupSplitter() {
 			Splitter.splitContent  = document.querySelector('#splitter');
 		}
 		if (!Splitter.rightContent) {
-			Splitter.rightContent  = document.querySelector('#output');
+			Splitter.rightContent  = document.querySelector('#output-container');
 		}
 		Splitter.setPositionX(event.pageX);
 	});

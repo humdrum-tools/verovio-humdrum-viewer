@@ -1027,7 +1027,7 @@ function verovioCallback(data) {
 	console.log("SVG updated");
 	if (GOTOTOPOFNOTATION) {
 		GOTOTOPOFNOTATION = false;
-		let scroller = document.querySelector("#output");
+		let scroller = document.querySelector("#output-container");
 		if (scroller) {
 			scroller.scrollTo(0, 0);
 		}
@@ -1045,6 +1045,7 @@ function verovioCallback(data) {
 		INITIALMEI = false;
 	}
 
+	displayPrePostHtml();
 }
 
 

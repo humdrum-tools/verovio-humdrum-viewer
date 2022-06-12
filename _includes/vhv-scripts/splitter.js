@@ -41,7 +41,7 @@ SPLITTER.prototype.setPositionX = function(xPosition) {
 		this.splitContent = document.querySelector('#splitter');
 	}
 	if (!this.rightContent) {
-		this.rightContent = document.querySelector('#output');
+		this.rightContent = document.querySelector('#output-container');
 	}
 
 	if (this.leftContent) {
