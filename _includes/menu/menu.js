@@ -2011,6 +2011,7 @@ MenuInterface.prototype.adjustNotationScale = function (event, number) {
 
 MenuInterface.prototype.setLanguage = function (lang) {
 	LANGUAGE = lang;
+	displayPrePostHtml();
 
 	// Use handlebars to generate HTML code for menu.
 	let tsource = document.querySelector("#template-menu").textContent;

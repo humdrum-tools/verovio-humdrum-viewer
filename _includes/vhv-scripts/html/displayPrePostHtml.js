@@ -17,16 +17,30 @@ function	displayPrePostHtml() {
 	let posthtml = document.querySelector(".POSTHTML");
 	let humdrum = getTextFromEditor();
 	let parameters = getHumdrumParameters(humdrum);
+	let language = LANGUAGE;
 
-	if (parameters.PREHTML) {
-			let text = parameters.PREHTML.CONTENT;
-			text = applyParameters(text, parameters.PREHTML, parameters._REFS);
+	if (parameters.PREHTML && (Object.keys(parameters.PREHTML).length !== 0)) {
+		let text;
+		if (language) {
+			text = parameters.PREHTML[`CONTENT-${language}`];
+		}
+		if (typeof text === "undefined") {
+			text = parameters.PREHTML.CONTENT;
+		}
+		text = applyParameters(text, parameters.PREHTML, parameters._REFS, language);
+		if (text && prehtml) {
 			prehtml.innerHTML = text;
 			prehtml.style.display = "block";
 			let prestyle = parameters.PREHTML.STYLE;
 			if (prestyle) {
 				prehtml.style.cssText = prestyle;
 			}
+		} else {
+			if (prehtml) {
+				prehtml.innerHTML = "";
+				prehtml.style.display = "none";
+			}
+		}
 	} else {
 		if (prehtml) {
 			prehtml.innerHTML = "";
@@ -34,14 +48,27 @@ function	displayPrePostHtml() {
 		}
 	}
 
-	if (parameters.POSTHTML) {
-			let text = parameters.POSTHTML.CONTENT;
-			text = applyParameters(text, parameters.POSTHTML, parameters._REFS);
-			posthtml.innerHTML = text;
-			posthtml.style.display = "block";
-			let poststyle = parameters.POSTHTML.STYLE;
-			if (poststyle) {
-				posthtml.style.cssText = poststyle;
+	if (parameters.POSTHTML && (Object.keys(parameters.POSTHTML).length !== 0)) {
+			let text;
+			if (language) {
+				text = parameters.POSTHTML[`CONTENT-${language}`];
+			}
+			if (typeof text === "undefined") {
+				text = parameters.POSTHTML.CONTENT;
+			}
+			text = applyParameters(text, parameters.POSTHTML, parameters._REFS, language);
+			if (text && posthtml) {
+				posthtml.innerHTML = text;
+				posthtml.style.display = "block";
+				let poststyle = parameters.POSTHTML.STYLE;
+				if (poststyle) {
+					posthtml.style.cssText = poststyle;
+				}
+			} else {
+				if (posthtml) {
+					posthtml.innerHTML = "";
+					posthtml.style.display = "none";
+				}
 			}
 	} else {
 		if (posthtml) {
