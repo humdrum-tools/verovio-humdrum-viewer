@@ -18,5 +18,8 @@ splash: scarlatti3.krn
 
 <div id="help-container" style="display:none;"></div>
 
+<script id="script-prehtml"></script>
+
+<script id="script-posthtml"></script>
 
 

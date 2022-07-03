@@ -2,7 +2,7 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Jun 11 19:15:38 PDT 2022
-// Last Modified: Sat Jun 11 19:15:40 PDT 2022
+// Last Modified: Sat Jul  2 20:45:13 PDT 2022
 // Filename:      _includes/vhv-scripts/html/applyParameters.js
 // Included in:   _includes/vhv-scripts/html/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
@@ -20,12 +20,28 @@ function applyParameters(text, refs1, refs2, language) {
 	}
 
 	let regex = /@\{(.*?)\}/g;
+
 	text = text.replace(regex, function(value0, value1) {
 		let output = "";
-		console.warn("VALUE0", value0, "VALUE1", value1);
+		// console.warn("VALUE0", value0, "VALUE1", value1);
 		let key = value1;
 		let keyolang;
 		let keylang;
+
+		let matches = value1.match("^([A-Za-z_].*?):(.*)$");
+		if (matches) {
+			let fname = matches[1];
+			let params = matches[2];
+			if (refs1[params]) {
+				let newparams = prepareParameters(refs1[params]);
+				return window[fname](newparams, refs1, refs2, language);
+			} else if (refs2[params]) {
+				let newparams = prepareParameters(refs2[params]);
+				return window[fname](newparams, refs1, refs2, language);
+			} else {
+				return window[fname](refs1, refs2, language);
+			}
+		}
 
 		if (language) {
 			keyolang = `${key}@@${language}`;
@@ -72,6 +88,24 @@ function applyParameters(text, refs1, refs2, language) {
 		return output;
 	});
 	return text;
+}
+
+
+//////////////////////////////
+//
+// prepareParameters --
+//
+
+function prepareParameters(plist) {
+	if (Array.isArray(plist)) {
+		let output = [];
+		for (let i=0; i<plist.length; i++) {
+			output.push(plist[i].value);
+		}
+		return output;
+	} else {
+		return [ plist.value ];
+	}
 }
 
 

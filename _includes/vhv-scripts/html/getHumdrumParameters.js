@@ -33,7 +33,7 @@ function getHumdrumParameters(humdrum) {
 				line: i+1
 			};
 			if (typeof REFS[key] === "undefined") {
-				REFS[key] = item;
+				REFS[key] = [ item ];
 			} else if (Array.isArray(REFS[key]) == false) {
 				REFS[key] = [ REFS[key], item ];
 			} else {
