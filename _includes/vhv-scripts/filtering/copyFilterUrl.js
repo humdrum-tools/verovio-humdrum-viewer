@@ -43,6 +43,10 @@ function copyFilterUrl() {
 	link += encodeURIComponent(file);
 	link += "&filter=";
 	link += encodeURIComponent(GLOBALFILTER);
+	if (GLOBAL_VEROVIO_FILTER) {
+		link += "&v=";
+		link += encodeURIComponent(GLOBAL_VEROVIO_FILTER);
+	}
 	link = link.replace(/%2f/gi, "/");
 	copyToClipboard(link);
 }

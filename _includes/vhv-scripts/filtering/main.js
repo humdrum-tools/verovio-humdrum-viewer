@@ -2,7 +2,7 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 12:54:52 CET 2021
-// Last Modified: Mon Dec  6 12:54:54 CET 2021
+// Last Modified: Tue Feb 28 10:05:25 PST 2023
 // Filename:      _includes/vhv-scripts/filtering/main.js
 // Included in:   _includes/vhv-scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
@@ -21,6 +21,7 @@
 {% include vhv-scripts/filtering/copyFilterUrl.js             %}
 {% include vhv-scripts/filtering/deactivateFilterInToolbar.js %}
 {% include vhv-scripts/filtering/detachGlobalFilter.js        %}
+{% include vhv-scripts/filtering/detachGlobalVerovioOptions.js %}
 {% include vhv-scripts/filtering/getPipedRegion.js            %}
 {% include vhv-scripts/filtering/hideFilterLinkIcon.js        %}
 {% include vhv-scripts/filtering/removeStrings.js             %}

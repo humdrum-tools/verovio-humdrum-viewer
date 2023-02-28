@@ -113,6 +113,7 @@ if (localStorage.PAGEMODE === "multi") {
 let SEARCHFILTEROBJ = {};
 let SEARCHFILTER    = "";
 let GLOBALFILTER    = "";
+let GLOBAL_VEROVIO_OPTIONS = "";
 
 let FILTERS = {% include filter/filters.json %};
 

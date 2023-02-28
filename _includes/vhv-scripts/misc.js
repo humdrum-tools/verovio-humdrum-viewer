@@ -37,7 +37,9 @@ function displayNotation(page, force, restoreid) {
 	if (data.match(/^\s*$/)) {
 		console.log("Editor contents is empty (2)");
 		return;
-	};
+	} else if (!data.endsWith("\n")) {
+		data += "\n";
+	}
 	let options = humdrumToSvgOptions();
 	if (data.match(/CUT[[]/)) {
 		options.inputFrom = "esac";
@@ -59,10 +61,13 @@ function displayNotation(page, force, restoreid) {
 
 	if (prefix) {
 		if (GLOBALFILTER) {
-			data += `\n${prefix}filter: ${GLOBALFILTER}\n`;
+			data += `${prefix}filter: ${GLOBALFILTER}\n`;
+		}
+		if (GLOBAL_VEROVIO_OPTIONS) {
+			data += `${prefix}verovio: ${GLOBAL_VEROVIO_OPTIONS}\n`;
 		}
 		if (SEARCHFILTER) {
-			data += `\n${prefix}filter: `;
+			data += `${prefix}filter: `;
 			if (SEARCHCHORDDIRECTION) {
 				data += SEARCHCHORDDIRECTION + " | ";
 			}
@@ -73,7 +78,7 @@ function displayNotation(page, force, restoreid) {
 			data += "\n";
 		}
 		if (EVENNOTESPACING) {
-			data += "\n!!!verovio: evenNoteSpacing\n";
+			data += "!!!verovio: evenNoteSpacing\n";
 		}
 	}
 
@@ -507,6 +512,16 @@ function getRepertoryUrlWithFilters(file) {
 		}
 		url += "filter=";
 		url += encodeURIComponent(GLOBALFILTER);
+	}
+	if (GLOBAL_VEROVIO_OPTIONS && (GLOBAL_VEROVIO_OPTIONS.length > 0)) {
+		if (!initialized) {
+			url += "/?";
+			initialized = 1;
+		} else {
+			url += "&";
+		}
+		url += "v=";
+		url += encodeURIComponent(GLOBAL_VEROVIO_OPTIONS);
 	}
 	if (PQUERY && (PQUERY.length > 0)) {
 		if (!initialized) {
@@ -960,7 +975,12 @@ function getTextFromEditor() {
 			// into junk.
 		}
 	}
-	return text;
+	// ensure the text ends with a newline:
+	if (text.endsWith("\n")) {
+		return text;
+	} else {
+		return text + "\n";
+	}
 }
 
 
@@ -1095,6 +1115,22 @@ function getTextFromEditorWithGlobalFilter(data) {
 		// also consider other data formats such as EsAC
 	}
 
+	// Also add global verovio options:
+	if (GLOBAL_VEROVIO_OPTIONS) {
+		let mode = getMode(data);
+		if (mode === "musedata") {
+			data += "\n@@@verovio: " + GLOBAL_VEROVIO_OPTIONS + "\n";
+		} else if (mode === "humdrum") {
+			data += "\n!!!verovio: " + GLOBAL_VEROVIO_OPTIONS + "\n";
+		} else {
+			// This will not really be useful, however, since
+			// MusicXML data get converted directly to MEI
+			// when it is in the text editor.
+			data += "\n<!-- !!!verovio: " + GLOBALFILTER + " -->\n";
+		}
+		// also consider other data formats such as EsAC
+	}
+
 	return data;
 }
 
@@ -1128,13 +1164,21 @@ function displayMeiNoType() {
 	let options = humdrumToSvgOptions();
 	options.humType = 0;
 	let text = getTextFromEditor();
+	if (!text.endsWith("\n")) {
+		text += "\n";
+	}
 	if (GLOBALFILTER) {
-		text += "\n!!!filter: " + GLOBALFILTER + "\n";
+		text += "!!!filter: " + GLOBALFILTER + "\n";
 		detachGlobalFilter();
+	}
+	if (GLOBAL_VEROVIO_OPTIONS) {
+		text += "!!!verovio: " + GLOBAL_VEROVIO_OPTIONS + "\n";
+		detachGlobalVerovioOptions();
 	}
 	vrvWorker.filterData(options, text, "mei")
 	.then(function(meidata) {
 		detachGlobalFilter();
+		detachGlobalVerovioOptions();
 		showMei(meidata);
 	});
 }
@@ -1149,6 +1193,7 @@ function displayMei() {
 	vrvWorker.getMEI()
 	.then(function(meidata) {
 		detachGlobalFilter();
+		detachGlobalVerovioOptions();
 		showMei(meidata);
 	});
 }
