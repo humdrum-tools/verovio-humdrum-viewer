@@ -31,6 +31,10 @@ body {
 	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
+g[id^="note-"] {
+    pointer-events: bounding-box;
+}
+
 g[id^="clef-"]:hover,
 g[id^="ksig-"]:hover,
 g[id^="msig-"]:hover,
