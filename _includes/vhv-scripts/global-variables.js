@@ -66,7 +66,7 @@ let SPACING_STAFF  = 12;
 // the verovio option justifyVertically may expand from this minimum distance, and
 // musical elements extending outside of this range will also push the systems further
 // apart.
-let SPACING_SYSTEM = 18;
+let SPACING_SYSTEM = 6;
 
 // LYRIC_SIZE: control the relative size of lyrics in the rendered notation.  Units
 // are in terms of diatonic steps (1/2 of the space between staff lines).

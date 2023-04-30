@@ -818,7 +818,7 @@
          "ARG": "integer",
          "INFO": "The system minimal spacing",
          "CAT": "General layout",
-         "DEF": "12",
+         "DEF": "4",
          "MIN": "0",
          "MAX": "48"
       },
