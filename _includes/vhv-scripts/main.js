@@ -61,7 +61,7 @@
 {% include vhv-scripts/setup.js %}
 
 // Functions related to graphical editing:
-{% include vhv-scripts/editor.js %}
+{% include vhv-scripts/editor/main.js %}
 
 // Functions related to repertory indexes:
 {% include vhv-scripts/hmdindex.js %}
