@@ -1,7 +1,6 @@
 
+
 let VEROVIOOPTIONS = {% include verovio-options.json %};
-
-
 
 
 //////////////////////////////

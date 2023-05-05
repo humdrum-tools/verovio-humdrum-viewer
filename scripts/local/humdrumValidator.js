@@ -8,6 +8,9 @@
 
 
 function validateHumdrum_Process(hum, onError, onWarning) {
+
+ggg
+
 	var current_no_of_spines = 0;
 	var first_interpretation_yet = false;
 	var new_path = false;

@@ -602,7 +602,7 @@ function getHumdrumParameters(humdrum) {
 			atonlines += newline + "\n";
 			let stringg = `^@@END:\\s*${atonactive}\\s*$`;
 			let regex = new RegExp(stringg);
-			if (newline.match(regex)) {
+			if (newline.match(eegex)) {
 				atonactive = "";
 			}
 			continue;

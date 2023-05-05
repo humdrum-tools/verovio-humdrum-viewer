@@ -112,7 +112,7 @@ function displayNotation(page, force, restoreid) {
 	})
 	.catch(function(message) {
 		document.querySelector('body').classList.add("invalid");
-		console.log(">>>>>>>>>> ERROR LOG:", message);
+		console.log(">>>>>>>>>> ERROR LOG AFTER renderData:", message);
 		return false;
 	})
 	.finally(function() {
