@@ -704,6 +704,8 @@
 @@END: ENTRY
 
 
+@@@ Collections with multiple composers:
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Harmonized songs
@@ -806,6 +808,108 @@
 @@END: ENTRY
 
 
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Polish Music Heritage (1600&mdash;1900)
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			http://github.com/pl-wnifc/humdrum-polish-scores
+@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/scores-popc2.aton %}
+@@END: SUBMENU
+@@END: ENTRY
+
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Polyrhythm Project sampler
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			Polyrhythm Project sampler
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('poly')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polirhythm.humdrum.org
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/polyrhythm-project/rds-scores
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
 @DEFAULT:		Tasso in Music Edition
@@ -853,50 +957,5 @@
 @@BEGIN: SUBMENU
 {% include menu/content/scores-tasso.aton %}
 @@END: SUBMENU
-@@END: ENTRY
-
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Polyrhythm Project sampler
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			Polyrhythm Project sampler
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:			
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('poly')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/polyrhythm-project/rds-scores
-@@END: RIGHT_TEXT
 @@END: ENTRY
 
