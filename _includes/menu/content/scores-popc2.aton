@@ -1,0 +1,956 @@
+@@ This is the contents of the "Scores->Polish Music Heritage (1600&ndash;1900)" menu 
+@@ entry in the top menu. This file is included into menu/content/scores.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-CZ: Jasna Góra Monastery
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-CZ: Archiwum Jasnogórskie
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-cz')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-cz
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-cz/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-GD: Gdańsk Library PAoS
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-GD: Biblioteka Gdańska PAN
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-gd')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-gd
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-gd/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Kc: Czartoryski Library, Cracow
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-Kc: Biblioteka Czartoryskich
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-kc')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-kc
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-kc/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Kd: Dominican Monastery, Cracow
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL:Kd: Klasztor OO. Dominikanów, Kraków
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-kd')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-kd
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-kd/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Kj: Jagiellonian Library, Cracow
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-Kj: Biblioteka Jagiellońska
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-kj')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-kj
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-kj/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Kk: Wawel Cathedral, Cracow
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-Kk: Krakowska Kapituła Katedralna
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-kk')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-kk
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-kk/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-KOZmzk: Zamoyski Museum, Kozłówka
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-KOZmzk: Muzeum Zamoyskich, Kozłówka
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-kozmzk')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-kozmzk
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-kozmzk/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-SA: Diocesan Library, Sandomierz
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-SA: Biblioteka Diecezjalna, Sandomierz
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-sa')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-sa
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-sa/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-STAb: St. Adalbert Abbey, Staniątki
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-STAb: Opactwo Benedyktynek, Staniątki
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-stab')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-stab
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-stab/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Wn: Polish National Library
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-Wn: Biblioteka Narodowa
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-wn')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-wn
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-wn/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Wnifc: Chopin Institute, Warsaw
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-Wnifc: Instytut Chopina
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-wnifc')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-wnifc
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-wnifc/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-WRu: Wrocław University Library
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL-WRu: Biblioteka Uniwersytecka, Wrocław
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-wru')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-wru
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-wru/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Wtm: Warsaw Music Society
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL:Wtm: Warszawskie Towarzystwo Muzyczne
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-wtm')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-wtm
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-wtm/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		PL-Wumfc: Chopin University of Music
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			PL:Wumfc: Uniwersytet Muzyczny Chopina
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/pl-wumfc')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=pl-wumfc
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/pl-wumfc/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		D-B: Berlin State Library
+@AR:
+@CA:
+@CS:
+@DE:			D-B: Staatsbibliothek zu Berlin
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			D-B: Staatsbibliothek zu Berlin
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/d-b')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=d-b
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/d-b/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		D-BNu: Bonn University Library
+@AR:
+@CA:
+@CS:
+@DE:			D-BNu: Universitätsbibliothek, Bonn
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			D-BNu: Universitätsbibliothek, Bonn
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/d-bnu')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=d-bnu
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/d-bnu/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		D-Dl: Dresden University Library
+@AR:
+@CA:
+@CS:
+@DE:			D-Dl: SLUB Dresden
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			D-Dl: SLUB Dresden
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/d-dl')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=d-dl
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/d-dl/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		D-Hs: Hamburg University Library
+@AR:
+@CA:
+@CS:
+@DE:			D-Hs: Stabi, Hamburg
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			D-Hs: Stabi, Hamburg
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/d-hs')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=d-hs
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/d-hs/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		D-Mbs: Bavarian State Library
+@AR:
+@CA:
+@CS:
+@DE:			D-Mbs: BSB München
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			D-Mbs: BSB München
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/d-mbs')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=d-mbs
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/d-mbs/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		S-Uu: Uppsala University Library
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:			S-Uu: Biblioteka Uniwersytecka w Uppsali
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('nifc/popc2/s-uu')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			http://polishscores.org/?s=s-uu
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/pl-wnifc/humdrum-polish-scores/tree/main/s-uu/kern
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+
