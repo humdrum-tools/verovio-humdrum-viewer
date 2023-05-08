@@ -32,7 +32,7 @@ function downloadEditorContentsInHtml() {
 	output += '      autoResize: "true",\n';
 	output += '      header: "true"\n';
 	output += '   });\n';
-	output += '<!-- See https://plugin.humdrum.org/#options for more display options -->\n';
+	output += '<!-- See https://plugin.humdrum.org/options/#list for more display options -->\n';
 	output += '</script>\n';
 	output += '\n';
 	output += '<script type="text/x-humdrum" id="my-score">\n';
