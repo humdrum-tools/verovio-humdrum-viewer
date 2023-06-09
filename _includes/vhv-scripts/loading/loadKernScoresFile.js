@@ -197,6 +197,17 @@ function loadKernScoresFile(obj, force) {
 		});
 	} else if (!info) {
 		console.log("Going to download", key);
+
+		// Allow redirect of Github links to raw file:
+		let matches = url.match(/^https?:\/\/github.com\/(.*?)\/(.*?)\/(blob|tree)\/(.*?)\/(.*)$/);
+		if (matches) {
+			let account = matches[1];
+			let repo    = matches[2];
+			let branch  = matches[3];
+			let rest    = matches[4];
+			url = `https://raw.githubusercontent.com/${account}/${repo}/${branch}/${rest}`;
+		}
+
 		basketSession.require(
 			{	url: url,
 				key: key,
