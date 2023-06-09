@@ -216,6 +216,17 @@ function loadKernScoresFile(obj, force) {
 			}
 		).then(function() {
 			info = basketSession.get(key);
+			if (info.url) {
+				// Allow redirect of Github links to raw file:
+				let matches = url.match(/^https?:\/\/github.com\/(.*?)\/(.*?)\/(blob|tree)\/(.*?)\/(.*)$/);
+				if (matches) {
+					let account = matches[1];
+					let repo    = matches[2];
+					let branch  = matches[3];
+					let rest    = matches[4];
+					info.url = `https://raw.githubusercontent.com/${account}/${repo}/${branch}/${rest}`;
+				}
+			}
 			if (info) {
 				if (info.url.match(/\/index.hmd$/)) {
 					HMDINDEX = new HMDIndex(info.data);
