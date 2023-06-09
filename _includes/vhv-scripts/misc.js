@@ -626,7 +626,7 @@ function displayWork(file) {
 	clearCgiHash();
 	moveToTopOfNotation();
 	vrvWorker.page = 1;
-	CGI.file = file;
+	CGI.file = decodeURIComponent(file);
 	delete CGI.mm;
 	delete CGI.kInitialized;
 	$('html').css('cursor', 'wait');
