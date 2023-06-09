@@ -6,7 +6,22 @@
 //
 
 function loadKernScoresFile(obj, force) {
+
+	// Allow redirect of Github links to raw file:
+
+	if (obj.file) {
+		let matches = obj.file.match(/^https?:\/\/github.com\/(.*?)\/(.*?)\/(?:blob|tree)\/(.*?)\/(.*)$/);
+		if (matches) {
+			let account = matches[1];
+			let repo    = matches[2];
+			let branch  = matches[3];
+			let rest    = matches[4];
+			obj.file = `https://raw.githubusercontent.com/${account}/${repo}/${branch}/${rest}`;
+		}
+	}
+
 	let file = obj.file;
+
 	let matches = file.match(/poly\/[RT]?(\d+[^_]*)$/);
 	if (matches) {
 		file = getPolyFile(matches[1]);
@@ -118,7 +133,7 @@ function loadKernScoresFile(obj, force) {
 	// console.log("INFO", info)
 
 	if (obj && obj.file && (obj.file.match(/musedata/))) {
-		// console.log("Going to download", key);
+		// console.log("Going to download3", key);
 		basketSession.require(...requires).then(function() {
 			let infos = [];
 			for (let j=0; j<keys.length; j++) {
@@ -196,17 +211,7 @@ function loadKernScoresFile(obj, force) {
 			console.log("Error retrieving", key);
 		});
 	} else if (!info) {
-		console.log("Going to download", key);
-
-		// Allow redirect of Github links to raw file:
-		let matches = url.match(/^https?:\/\/github.com\/(.*?)\/(.*?)\/(blob|tree)\/(.*?)\/(.*)$/);
-		if (matches) {
-			let account = matches[1];
-			let repo    = matches[2];
-			let branch  = matches[3];
-			let rest    = matches[4];
-			url = `https://raw.githubusercontent.com/${account}/${repo}/${branch}/${rest}`;
-		}
+		console.log("Going to download2", key);
 
 		basketSession.require(
 			{	url: url,
@@ -216,17 +221,7 @@ function loadKernScoresFile(obj, force) {
 			}
 		).then(function() {
 			info = basketSession.get(key);
-			if (info.url) {
-				// Allow redirect of Github links to raw file:
-				let matches = url.match(/^https?:\/\/github.com\/(.*?)\/(.*?)\/(blob|tree)\/(.*?)\/(.*)$/);
-				if (matches) {
-					let account = matches[1];
-					let repo    = matches[2];
-					let branch  = matches[3];
-					let rest    = matches[4];
-					info.url = `https://raw.githubusercontent.com/${account}/${repo}/${branch}/${rest}`;
-				}
-			}
+
 			if (info) {
 				if (info.url.match(/\/index.hmd$/)) {
 					HMDINDEX = new HMDIndex(info.data);
