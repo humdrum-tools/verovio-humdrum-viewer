@@ -68,6 +68,17 @@ function getHumdrumParameters(humdrum) {
 		let aton = new ATON;
 		try {
 			output = aton.parse(atonlines);
+			// Force PREHTML/POSTHTML parameters into an array.
+			if (output.PREHTML) {
+				if (!Array.isArray(output.PREHTML)) {
+					output.PREHTML = [ output.PREHTML ];
+				}
+			}
+			if (output.POSTHTML) {
+				if (!Array.isArray(output.POSTHTML)) {
+					output.POSTHTML = [ output.POSTHTML ];
+				}
+			}
 		} catch (error) {
 			console.error("Error in ATON data:\n", atonlines);
 		}
