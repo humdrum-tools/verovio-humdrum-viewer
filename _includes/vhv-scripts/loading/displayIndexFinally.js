@@ -56,7 +56,12 @@ function displayIndexFinally(index, location) {
 		}
 		items[i].text = items[i].text.replace(/\[?<a[^>]*wikipedia[^<]*.*?<\/a>\]?/gi, "");
 
-		final += "<tr><td>"
+		final += "<tr>";
+		if (items[i].filename.match(/^@/)) {
+			final += "<td class='dummy'>"
+		} else {
+			final += "<td>"
+		}
 
 		if (indents[items[i].sorter]) {
 			final += "<span class='indenter'></span>";

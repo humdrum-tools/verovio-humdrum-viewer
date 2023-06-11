@@ -6,7 +6,6 @@
 //
 
 function loadKernScoresFile(obj, force) {
-
 	// Allow redirect of Github links to raw file:
 
 	if (obj.file) {
