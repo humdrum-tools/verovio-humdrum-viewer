@@ -44,13 +44,7 @@ function	displayPrePostHtml() {
 				let pretext = "";
 				for (let i=0; i<PREHTML.length; i++) {
 					if (Object.keys(PREHTML[i]).length !== 0) {
-						if (PREHTML[i].JAVASCRIPT) {
-							let jelement = document.querySelector("script#script-prehtml");
-							if (jelement) {
-								jelement.textContent = PREHTML[i].JAVASCRIPT;
-							}
-						}
-						let text; // output text of PREHTML content
+						let text = null;
 						if (language) {
 							text = PREHTML[i][`CONTENT-${language}`];
 						}
@@ -61,23 +55,18 @@ function	displayPrePostHtml() {
 						pretext += text;
 					}
 				}
-
-				if (pretext && prehtmlElement) {
-					prehtmlElement.innerHTML = pretext;
-					prehtmlElement.style.display = "block";
-					let prestyle = PREHTML[i].STYLE;
-					if (prestyle) {
-						prehtmlElement.style.cssText = prestyle;
-					}
-				} else if (prehtmlElement) {
-					prehtmlElement.innerHTML = "";
-					prehtmlElement.style.display = "none";
-				}
-			} else {
 				if (prehtmlElement) {
-					prehtmlElement.innerHTML = "";
-					prehtmlElement.style.display = "none";
+					if (pretext) {
+						prehtmlElement.innerHTML = pretext;
+						prehtmlElement.style.display = "block";
+					} else {
+						prehtmlElement.innerHTML = "";
+						prehtmlElement.style.display = "none";
+					}
 				}
+			} else if (prehtmlElement) {
+				prehtmlElement.innerHTML = "";
+				prehtmlElement.style.display = "none";
 			}
 
 			if (POSTHTML && Array.isArray(POSTHTML)) {
@@ -101,23 +90,21 @@ function	displayPrePostHtml() {
 						posttext += text;
 					}
 				}
-
-				if (posttext && posthtmlElement) {
-					posthtmlElement.innerHTML = posttext;
-					posthtmlElement.style.display = "block";
-					let poststyle = PREHTML[i].STYLE;
-					if (poststyle) {
-						posthtmlElement.style.cssText = poststyle;
-					}
-				} else if (posthtmlElement) {
-					posthtmlElement.innerHTML = "";
-					posthtmlElement.style.display = "none";
-				}
-			} else {
 				if (posthtmlElement) {
+					if (posttext) {
+						posthtmlElement.innerHTML = posttext;
+						posthtmlElement.style.display = "block";
+					} else {
+						posthtmlElement.innerHTML = "";
+						posthtmlElement.style.display = "none";
+					}
+				} else {
 					posthtmlElement.innerHTML = "";
 					posthtmlElement.style.display = "none";
 				}
+			} else if (posthtmlElement) {
+				posthtmlElement.innerHTML = "";
+				posthtmlElement.style.display = "none";
 			}
 
 		});
