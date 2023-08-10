@@ -12,6 +12,7 @@ function loadPdfFonts(pdf) {
 		loadFontResource(pdf, 'TimesBold', '/scripts/pdfkit/EBGaramond-Bold.ttf'),
 		loadFontResource(pdf, 'TimesBoldItalic', '/scripts/pdfkit/EBGaramond-BoldItalic.ttf'),
 		loadFontResource(pdf, 'VerovioText', '/scripts/pdfkit/VerovioText-1.0.ttf'),
+		loadFontResource(pdf, 'Leipzig', '/scripts/pdfkit/Leipzig.ttf'),
 	]);
 }
 
