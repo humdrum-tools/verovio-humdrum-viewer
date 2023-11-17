@@ -106,9 +106,15 @@ function getIiifBoundingBoxInfo(path) {
 
 	// The iiifbase parameter will be extracted in the calling function.
 	output.iiifbase = "";
+	let matches;
 
-	// Currently requires no spine splits or merges.
 	for (let i=line-1; i>=0; i--) {
+		matches = lines[i].match(/^!!xywh-([^:]+):(.*)$/);
+		if (matches) {
+			output.label = matches[1];
+			output.xywh = matches[2];
+			break;
+		}
 		if (!lines[i].match(/^\*/)) {
 			continue;
 		}
@@ -118,7 +124,7 @@ function getIiifBoundingBoxInfo(path) {
 		}
 
 		let fields = lines[i].split(/\t+/);
-		let matches = fields[cfield].match(/^\*xywh-([^:]+):(.*)$/);
+		matches = fields[cfield].match(/^\*xywh-([^:]+):(.*)$/);
 		if (matches) {
 			output.label = matches[1];
 			output.xywh = matches[2];
