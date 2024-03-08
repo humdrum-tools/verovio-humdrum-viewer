@@ -20,7 +20,7 @@ function loadPdfFonts(pdf) {
 		loadFontResource(pdf, 'Leipzig', '/scripts/pdfkit/Leipzig.ttf'),
 		loadFontResource(pdf, 'Leland', '/scripts/pdfkit/Leland.ttf'),
 		loadFontResource(pdf, 'Bravura', '/scripts/pdfkit/Bravura.ttf'),
-		loadFontResource(pdf, 'Gootville', '/scripts/pdfkit/GootVille.ttf'),
+		loadFontResource(pdf, 'Gootville', '/scripts/pdfkit/Gootville.ttf'),
 		loadFontResource(pdf, 'Petaluma', '/scripts/pdfkit/Petaluma.ttf'),
 	]);
 }
