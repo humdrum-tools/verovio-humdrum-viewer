@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /index.html
-splash: scarlatti3.krn
+splash: artfugue-001.krn
 ---
 
 <div id="output-container">
