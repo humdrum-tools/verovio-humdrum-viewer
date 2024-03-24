@@ -689,3 +689,6 @@
 !!!EED: Craig Stuart Sapp
 !!!EEV: 2024/03/21
 !!!filter: modori -o
+!!!filter: msearch -d "2 2 2 2 2 4 4"
+!!!filter: satb2gs
+!!!filter: shed -e s/C1/G2/I
