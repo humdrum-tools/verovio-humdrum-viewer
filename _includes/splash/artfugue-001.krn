@@ -694,6 +694,6 @@
 !!!EED: Craig Stuart Sapp
 !!!EEV: 2024/03/21
 !!!title: @{OPR} (@{SCA}), @{OTL}
-!!!filter: msearch -d "2 2 2 2 2 4 4"
+!!!filter: msearch -d "2 2 2 2 2 4 4" -c dodgerblue
 !!!filter: satb2gs
 !!!filter: shed -e s/C1/G2/I
