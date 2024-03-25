@@ -2,20 +2,21 @@
 !!!CDT: 1685/03/31-1750/07/28
 !!!OPR@@DE: Die Kunst der Fuge
 !!!OPR@EN: The Art of the Fugue
-!!!OTL: Contrapunctus 1
+!!!OTL: Contrapunctus 1, a 4.
 !!!SCA: BWV 1080
-!!!voice: 4
+!!!voices: 4
 !!!AGN: Simple fugue
 **kern	**kern	**kern	**kern
 *part4	*part3	*part2	*part1
 *staff4	*staff3	*staff2	*staff1
-*oclefF4	*oclefC4	*oclefC3	*oclefC1
-*clefF4	*clefC3	*clefG2	*clefG2
+*clefF4	*clefC4	*clefC3	*clefC1
+*mclefF4	*mclefC3	*mclefG2	*mclefG2
 *k[b-]	*k[b-]	*k[b-]	*k[b-]
 *d:	*d:	*d:	*d:
 *M2/2	*M2/2	*M2/2	*M2/2
-*omet(c|)	*omet(c|)	*omet(c|)	*omet(c|)
 *met(c|)	*met(c|)	*met(c|)	*met(c|)
+*mmet(c|)	*mmet(c|)	*mmet(c|)	*mmet(c|)
+*MM100	*MM100	*MM100	*MM100
 =1	=1	=1	=1
 1r	1r	2d	1r
 .	.	2a	.
@@ -59,7 +60,7 @@
 .	.	.	8dd
 .	.	.	8cc
 .	.	.	8b-XJ
-!!LO:LB:g=z
+!!LO:LB:g=original
 =9	=9	=9	=9
 2D	1r	4g]	8aL
 .	.	.	8dJ
@@ -119,7 +120,7 @@
 8F	.	.	.
 8E	4Bn	4r	4dd
 8DJ	.	.	.
-!!LO:LB:g=z
+!!LO:LB:g=original
 =16	=16	=16	=16
 8EL	[2c	1r	8gL
 8G	.	.	8b-XJ
@@ -174,7 +175,7 @@
 8FJ	.	.	.
 [4G	.	.	4b-X
 .	8e	.	.
-!!LO:LB:g=z
+!!LO:LB:g=original
 =22	=22	=22	=22
 8GL]	4c#X	1r	2a
 8EJ	.	.	.
@@ -234,7 +235,7 @@
 4EE	4B	8aL]	.
 .	.	8f#XJ	.
 4r	[4e	4g	.
-!!LO:PB:g=z
+!!LO:PB:g=original
 =29	=29	=29	=29
 2r	8eL]	4.f#X	2a
 .	8AJ	.	.
@@ -289,7 +290,7 @@
 .	.	.	8a
 4AA	.	.	8g
 .	.	.	8f#XJ
-!!LO:LB:g=z
+!!LO:LB:g=original
 =35	=35	=35	=35
 [2BB-	1r	8dL]	4.g
 .	.	8dJ	.
@@ -344,7 +345,7 @@
 8E	.	.	.
 8D	.	.	[4ee
 8C#XJ	.	.	.
-!!LO:LB:g=z
+!!LO:LB:g=original
 =41	=41	=41	=41
 4.D	2F	2a_	8eeL]
 .	.	.	8cc#XJ
@@ -399,7 +400,7 @@
 .	.	8gJ	.
 .	4F	[4a	.
 8C#X	.	.	.
-!!LO:LB:g=z
+!!LO:LB:g=original
 =47	=47	=47	=47
 4.D	4B-	8aL]	1r
 .	.	8fJ	.
@@ -454,7 +455,7 @@
 .	.	8eJ	8gg
 .	8AL	[4cc	8ff
 .	8FJ	.	8eeJ
-!!LO:PB:g=z
+!!LO:PB:g=original
 =53	=53	=53	=53
 1r	8B-L	4cc]	4.dd
 .	8dJ	.	.
@@ -509,7 +510,7 @@
 .	.	8g	8ee
 4E	4G	8f	8dd
 .	.	8eJ	8cc#XJ
-!!LO:LB:g=z
+!!LO:LB:g=original
 =59	=59	=59	=59
 [2F	2A	2.d	8ddL
 .	.	.	8ccn
@@ -564,7 +565,7 @@
 .	.	.	8ddnJ
 .	.	.	[4ee
 .	8C#X	8g	.
-!!LO:LB:g=z
+!!LO:LB:g=original
 =65	=65	=65	=65
 2.AA]	4.F	4.a	8eeL]
 .	.	.	8cc#XJ
@@ -621,7 +622,7 @@
 2r	2r	2r	2r
 4A	4f	4a	4dd
 4r	4r	4r	4r
-!!LO:LB:g=z
+!!LO:LB:g=original
 =72	=72	=72	=72
 2r	2r	2r	2r
 2G#X	[2f	2bn	[2dd
@@ -678,8 +679,12 @@
 .	.	2f#;	.
 ==	==	==	==
 *-	*-	*-	*-
-!!!system-decoration: [s1,s2,s3,s4]
-!!!URL-pdf: https://vmirror.imslp.org/files/imglnks/usimg/8/88/IMSLP504269-PMLP05843-BGA-25.1.pdf#page=3
+!!!system-decoration: [(s1,s2,s3,s4)]
+!!!URL-pdf: https://vmirror.imslp.org/files/imglnks/usimg/8/88/IMSLP504269-PMLP05843-BGA-25.1.pdf#page=3 @{SMS}
+!!!URL-youtube: https://www.youtube.com/watch?v=OMtjlaDEMdI&t=5 Netherlands Bach Society/Malinowski
+!!!URL-youtube: https://www.youtube.com/watch?v=zwkzf-KUNPM Glenn Gould
+!!!URL-youtube: https://www.youtube.com/watch?v=8ILd81jY1v4 Julliard String Quartet
+!!!URL-youtube: https://www.youtube.com/watch?v=drVbEHEYxJg Ludvig Käll, organ in Lau Church, Gotland island, 3 august 2019.
 !!!SMS: Bach-Gesellschaft Ausgabe, Band 25.1 (pp.1-116) Leipzig: Breitkopf und Härtel, 1878. Plate B.W. XXV (1).
 !!!PED: Wilhelm Rust
 !!!PED-ODT: 1822-1892
@@ -688,7 +693,7 @@
 !!!END: 2024/03/21
 !!!EED: Craig Stuart Sapp
 !!!EEV: 2024/03/21
-!!!title: @{OPR@@DE} (@{SCA}), @{OMV}
+!!!title: @{OPR} (@{SCA}), @{OTL}
 !!!filter: modori -o
 !!!filter: msearch -d "2 2 2 2 2 4 4"
 !!!filter: satb2gs
