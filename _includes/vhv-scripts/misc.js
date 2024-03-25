@@ -1490,7 +1490,7 @@ function getUrlList(prefix) {
 			if (!title) {
 				title = "View PDF of score";
 			}
-			output[key][i].title = templateExpansion(title, refrecords);
+			output[key][i].title = templateExpansion(title, refrecords).trim();
 		}
 	}
 
