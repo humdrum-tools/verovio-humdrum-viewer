@@ -14,12 +14,19 @@ function buildPdfIconListInMenu() {
 		return;
 	}
 
-	var urllist = getPdfUrlList();
+	var urllist = getUrlList();
 
 	var output = "";
-	if (urllist.length > 0) {
-		for (var i=0; i<urllist.length; i++) {
-			output += makePdfIcon(urllist[i].url, urllist[i].title);
+
+	if (urllist.youtube && urllist.youtube.length > 0) {
+		for (var i=0; i<urllist.youtube.length; i++) {
+			output += makeYoutubeIcon(urllist.youtube[i].url, urllist.youtube[i].title);
+		}
+	}
+
+	if (urllist.pdf && urllist.pdf.length > 0) {
+		for (var i=0; i<urllist.pdf.length; i++) {
+			output += makePdfIcon(urllist.pdf[i].url, urllist.pdf[i].title);
 		}
 	} else {
 		if (FILEINFO && FILEINFO["has-pdf"] && (FILEINFO["has-pdf"] === "true")) {

@@ -1336,7 +1336,7 @@ function displayKeyscape() {
 
 //////////////////////////////
 //
-// displayHumdrumPdf --
+// displayHumdrumPdf -- Also does URL-youtube
 //
 //         !!!URL-pdf: (https?://[^\s]*)
 // If there is a number in the keyboard buffer:
@@ -1346,21 +1346,21 @@ function displayKeyscape() {
 //
 
 function displayHumdrumPdf(prefix) {
-	let urllist = getPdfUrlList(prefix);
+	let urllist = getUrlList(prefix);
 
 	let url = "";
 	let i;
 	if (InterfaceSingleNumber > 1) {
-		for (i=0; i<urllist.length; i++) {
-			if (urllist[i].number == InterfaceSingleNumber) {
-				url = urllist[i].url;
+		for (i=0; i<urllist.pdf.length; i++) {
+			if (urllist.pdf[i].number == InterfaceSingleNumber) {
+				url = urllist.pdf[i].url;
 				break;
 			}
 		}
 	} else {
 		for (i=0; i<urllist.length; i++) {
-			if (urllist[i].number <= 1) {
-				url = urllist[i].url;
+			if (urllist.pdf[i].number <= 1) {
+				url = urllist.pdf[i].url;
 				break;
 			}
 		}
@@ -1383,10 +1383,10 @@ function displayHumdrumPdf(prefix) {
 
 //////////////////////////////
 //
-// getPdfUrlList --
+// getUrlList --
 //
 
-function getPdfUrlList(prefix) {
+function getUrlList(prefix) {
 	if (EditorMode === "humdrum") {
 		if (!prefix) {
 			prefix = "!!!";
@@ -1397,7 +1397,7 @@ function getPdfUrlList(prefix) {
 		}
 	} else {
 		// Can't handle URLs in this format
-		return 0;
+		return {};
 	}
 	let predata = getTextFromEditor();
 	if (!predata) {
@@ -1405,19 +1405,17 @@ function getPdfUrlList(prefix) {
 	}
 	let data = predata.split(/\r?\n/);
 	let refrecords = {};
-	let output = [];
+	let output = {};
 	let title = "";
 
 	let query;
-	query = `^${prefix}URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)`;
+	query = `^${prefix}URL(\\d*)-(.+?):\\s*((?:ftp|https?)://[^\\s]+)`;
 	query += "\\s+(.*)\\s*$";
 	let rex = new RegExp(query);
 
 	let query2;
-	query2 = `^${prefix}URL(\\d*)-pdf:\\s*((?:ftp|https?)://[^\\s]+)`;
+	query2 = `^${prefix}URL(\\d*)-(.+?):\\s*((?:ftp|https?)://[^\\s]+)`;
 	let rex2 = new RegExp(query2);
-
-	let references = [];
 
 	let firstchar = prefix.charAt(0);
 	for (let i=0; i<data.length; i++) {
@@ -1439,9 +1437,15 @@ function getPdfUrlList(prefix) {
 			} else {
 				obj.number = parseInt(matches[1]);
 			}
-			obj.url = matches[2];
-			obj.title = matches[3];
-			output.push(obj);
+			obj.line = i;
+			obj.text = data[i];
+			obj.type = matches[2];
+			obj.url = matches[3];
+			obj.title = matches[4];
+			if (typeof output[obj.type] === "undefined") {
+				output[obj.type] = [];
+			}
+			output[obj.type].push(obj);
 		} else {
 			matches = rex2.exec(line);
 			if (matches) {
@@ -1451,16 +1455,25 @@ function getPdfUrlList(prefix) {
 				} else {
 					obj.number = parseInt(matches[1]);
 				}
-				obj.url = matches[2];
-				obj.title = matches[3];
-				output.push(obj);
+				obj.line = i;
+				obj.text = data[i];
+				obj.type = matches[2]
+				obj.url = matches[3];
+				obj.title = matches[4];
+				if (typeof output[obj.type] === "undefined") {
+					output[obj.type] = [];
+				}
+				output[obj.type].push(obj);
 			}
 		}
 
+		// Extract reference records for title template:
 		let regex = new RegExp(`^${prefix}([^:]+)\s*:\s*(.*)\s*$`);
 		matches = line.match(regex);
 		if (matches) {
 			obj = {};
+			obj.line = i;
+			obj.text = data[i];
 			obj.key = matches[1];
 			obj.value = matches[2];
 			if (!refrecords[obj.key]) {
@@ -1469,12 +1482,16 @@ function getPdfUrlList(prefix) {
 			refrecords[obj.key].push(obj);
 		}
 	}
-	for (let i=0; i<output.length; i++) {
-		let title = output[i].title;
-		if (!title) {
-			title = "View PDF of score";
+
+	// Go through extracted reference records and fill in any templating:
+	for (let key in output) {
+		for (let i=0; i<output[key].length; i++) {
+			let title = output[key][i].title;
+			if (!title) {
+				title = "View PDF of score";
+			}
+			output[key][i].title = templateExpansion(title, refrecords);
 		}
-		output[i].title = templateExpansion(title, refrecords);
 	}
 
 	return output;
