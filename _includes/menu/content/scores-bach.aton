@@ -2,7 +2,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Bach 370 chorales
+@DEFAULT:		Art of the Fugue
 @AR:
 @CA:
 @CS:
@@ -10,7 +10,52 @@
 @DK:
 @EL:
 @EN:
-@ES:			370 corales de Bach
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory('artfugue')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/craigsapp/art-of-the-fugue
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		chorales (370)
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			370 corales
 @ET:
 @EU:
 @FI:
@@ -129,52 +174,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Art of the Fugue
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('artfugue')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/art-of-the-fugue
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Bach WTC fugues
+@DEFAULT:		fugues from the Well-tempered clavier
 @AR:
 @CA:
 @CS:
