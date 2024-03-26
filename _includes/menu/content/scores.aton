@@ -7,7 +7,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Bach 370 chorales
+@DEFAULT:		Bach, Johnann Sebastian
 @AR:
 @CA:
 @CS:
@@ -15,7 +15,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			370 corales de Bach
+@ES:
 @ET:
 @EU:
 @FI:
@@ -30,7 +30,7 @@
 @LV:
 @NL:
 @NO:
-@PL:			370 chorałów Bacha
+@PL:
 @PT:
 @RU:
 @SK:
@@ -40,138 +40,18 @@
 @VI:
 @ZH-simplified:
 @ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('chorales')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			website
-@LINK: 			https://chorales.sapp.org
+@TYPE:
+@LINK:
 @@END: RIGHT_TEXT
 @@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/craigsapp/bach-370-chorales
+@TYPE:
+@LINK:
 @@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: RIGHT_TEXT
-@ACTION: 		MENU.loadRepertory('chorales', 'satb2gs')
-@DEFAULT:		<i>on grand-staff</i>
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			<i>sobre gran pentagrama</i>
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@@END: RIGHT_TEXT
-@@BEGIN: RIGHT_TEXT
-@ACTION: 		MENU.loadRepertory('chorales', 'transpose -k c | satb2gs')
-@DEFAULT:		transposed to C
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			transpuesto a Do
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@@END: RIGHT_TEXT
-@@END: ENTRY
-
-@@BEGIN: ENTRY
-@@BEGIN: TEXT
-@DEFAULT:		Bach WTC fugues
-@AR:
-@CA:
-@CS:
-@DE:
-@DK:
-@EL:
-@EN:
-@ES:			Fugas del Clave Bien Temperado de Bach
-@ET:
-@EU:
-@FI:
-@FR:
-@HE:
-@HI:
-@ID:
-@IT:
-@JA:
-@KO:
-@LT:
-@LV:
-@NL:
-@NO:
-@PL:
-@PT:
-@RU:
-@SK:
-@SV:
-@TR:
-@UK:
-@VI:
-@ZH-simplified:
-@ZH-traditional:
-@ZH-traditional:
-@ACTION:		MENU.loadRepertory('bach-wtc-fugues')
-@@END: TEXT
-@@BEGIN: RIGHT_TEXT
-@TYPE:			github
-@LINK:			https://github.com/humdrum-tools/bach-wtc-fugues
-@@END: RIGHT_TEXT
+@@BEGIN: SUBMENU
+{% include menu/content/scores-bach.aton %}
+@@END: SUBMENU
 @@END: ENTRY
 
 @@BEGIN: ENTRY
