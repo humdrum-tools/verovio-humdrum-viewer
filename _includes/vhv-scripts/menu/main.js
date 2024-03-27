@@ -17,6 +17,7 @@
 
 {% include vhv-scripts/menu/buildPdfIconListInMenu.js  %}
 {% include vhv-scripts/menu/buildScanIconListInMenu.js %}
+{% include vhv-scripts/menu/makeFilterIcon.js          %}
 {% include vhv-scripts/menu/makePdfIcon.js             %}
 {% include vhv-scripts/menu/makeScanIcon.js            %}
 {% include vhv-scripts/menu/makeYoutubeIcon.js         %}

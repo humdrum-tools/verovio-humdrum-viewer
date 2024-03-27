@@ -15,22 +15,23 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/filtering/applyGlobalFilter.js         %}
-{% include vhv-scripts/filtering/checkForFilterActivate.js    %}
-{% include vhv-scripts/filtering/compileFilters.js            %}
-{% include vhv-scripts/filtering/copyFilterUrl.js             %}
-{% include vhv-scripts/filtering/deactivateFilterInToolbar.js %}
-{% include vhv-scripts/filtering/detachGlobalFilter.js        %}
+{% include vhv-scripts/filtering/applyGlobalFilter.js          %}
+{% include vhv-scripts/filtering/checkForFilterActivate.js     %}
+{% include vhv-scripts/filtering/compileFilters.js             %}
+{% include vhv-scripts/filtering/copyFilterUrl.js              %}
+{% include vhv-scripts/filtering/deactivateFilterInToolbar.js  %}
+{% include vhv-scripts/filtering/detachGlobalFilter.js         %}
 {% include vhv-scripts/filtering/detachGlobalVerovioOptions.js %}
-{% include vhv-scripts/filtering/getPipedRegion.js            %}
-{% include vhv-scripts/filtering/hideFilterLinkIcon.js        %}
-{% include vhv-scripts/filtering/removeStrings.js             %}
-{% include vhv-scripts/filtering/showCompiledFilterData.js    %}
-{% include vhv-scripts/filtering/showFilterHelp.js            %}
-{% include vhv-scripts/filtering/showFilterLinkIcon.js        %}
-{% include vhv-scripts/filtering/showSpreadsheetHelp.js       %}
-{% include vhv-scripts/filtering/updateFilterState.js         %}
-{% include vhv-scripts/filtering/validateFilter.js            %}
+{% include vhv-scripts/filtering/getPipedRegion.js             %}
+{% include vhv-scripts/filtering/hideFilterLinkIcon.js         %}
+{% include vhv-scripts/filtering/loadFilter.js                 %}
+{% include vhv-scripts/filtering/removeStrings.js              %}
+{% include vhv-scripts/filtering/showCompiledFilterData.js     %}
+{% include vhv-scripts/filtering/showFilterHelp.js             %}
+{% include vhv-scripts/filtering/showFilterLinkIcon.js         %}
+{% include vhv-scripts/filtering/showSpreadsheetHelp.js        %}
+{% include vhv-scripts/filtering/updateFilterState.js          %}
+{% include vhv-scripts/filtering/validateFilter.js             %}
 
 
 

@@ -1346,7 +1346,7 @@ function displayKeyscape() {
 //
 
 function displayHumdrumPdf(prefix) {
-	let urllist = getUrlList(prefix);
+	let urllist = getUrlAndFilterList(prefix);
 
 	let url = "";
 	let i;
@@ -1383,10 +1383,10 @@ function displayHumdrumPdf(prefix) {
 
 //////////////////////////////
 //
-// getUrlList --
+// getUrlAndFilterList --
 //
 
-function getUrlList(prefix) {
+function getUrlAndFilterList(prefix) {
 	if (EditorMode === "humdrum") {
 		if (!prefix) {
 			prefix = "!!!";
@@ -1406,6 +1406,8 @@ function getUrlList(prefix) {
 	let data = predata.split(/\r?\n/);
 	let refrecords = {};
 	let output = {};
+	output.url = {};
+	output.filter = {};
 	let title = "";
 
 	let query;
@@ -1417,6 +1419,10 @@ function getUrlList(prefix) {
 	query2 = `^${prefix}URL(\\d*)-(.+?):\\s*((?:ftp|https?)://[^\\s]+)`;
 	let rex2 = new RegExp(query2);
 
+	let query3;
+	query3 = `${prefix}filter-(.+?):\\s*(.*)\\s*$`;
+	let rex3 = new RegExp(query3);
+
 	let firstchar = prefix.charAt(0);
 	for (let i=0; i<data.length; i++) {
 		if (data[i].charAt(0) != firstchar) { continue; }
@@ -1427,8 +1433,20 @@ function getUrlList(prefix) {
 			if (data[i].charAt(2) != firstchar) { continue; }
 		}
 		let line = data[i];
-
 		let matches;
+
+		// Store named filters:
+		matches = rex3.exec(line);
+		if (matches) {
+			let obj = {};
+			obj.type = matches[1];
+			if (!output.filter[obj.type]) {
+				output.filter[obj.type] = [];
+			}
+			output.filter[obj.type].push(matches[2]);
+		}
+
+		// Store named urls
 		matches = rex.exec(line);
 		if (matches) {
 			let obj = {};
@@ -1442,10 +1460,10 @@ function getUrlList(prefix) {
 			obj.type = matches[2];
 			obj.url = matches[3];
 			obj.title = matches[4];
-			if (typeof output[obj.type] === "undefined") {
-				output[obj.type] = [];
+			if (typeof output.url[obj.type] === "undefined") {
+				output.url[obj.type] = [];
 			}
-			output[obj.type].push(obj);
+			output.url[obj.type].push(obj);
 		} else {
 			matches = rex2.exec(line);
 			if (matches) {
@@ -1460,10 +1478,10 @@ function getUrlList(prefix) {
 				obj.type = matches[2]
 				obj.url = matches[3];
 				obj.title = matches[4];
-				if (typeof output[obj.type] === "undefined") {
-					output[obj.type] = [];
+				if (typeof output.url[obj.type] === "undefined") {
+					output.url[obj.type] = [];
 				}
-				output[obj.type].push(obj);
+				output.url[obj.type].push(obj);
 			}
 		}
 
@@ -1484,13 +1502,13 @@ function getUrlList(prefix) {
 	}
 
 	// Go through extracted reference records and fill in any templating:
-	for (let key in output) {
-		for (let i=0; i<output[key].length; i++) {
-			let title = output[key][i].title;
+	for (let key in output.url) {
+		for (let i=0; i<output.url[key].length; i++) {
+			let title = output.url[key][i].title;
 			if (!title) {
 				title = "View PDF of score";
 			}
-			output[key][i].title = templateExpansion(title, refrecords).trim();
+			output.url[key][i].title = templateExpansion(title, refrecords).trim();
 		}
 	}
 

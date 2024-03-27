@@ -11,22 +11,25 @@
 function buildPdfIconListInMenu() {
 	var container = document.querySelector("#pdf-urls");
 	if (!container) {
+		console.error("ERROR: Cannot find URL container");
 		return;
 	}
 
-	var urllist = getUrlList();
+	var urllist = getUrlAndFilterList();
 
 	var output = "";
 
-	if (urllist.youtube && urllist.youtube.length > 0) {
-		for (var i=0; i<urllist.youtube.length; i++) {
-			output += makeYoutubeIcon(urllist.youtube[i].url, urllist.youtube[i].title);
+	let urls = urllist.url || {};
+
+	if (urls.youtube && urls.youtube.length > 0) {
+		for (var i=0; i<urls.youtube.length; i++) {
+			output += makeYoutubeIcon(urls.youtube[i].url, urls.youtube[i].title);
 		}
 	}
 
-	if (urllist.pdf && urllist.pdf.length > 0) {
-		for (var i=0; i<urllist.pdf.length; i++) {
-			output += makePdfIcon(urllist.pdf[i].url, urllist.pdf[i].title);
+	if (urls.pdf && urls.pdf.length > 0) {
+		for (var i=0; i<urls.pdf.length; i++) {
+			output += makePdfIcon(urls.pdf[i].url, urls.pdf[i].title);
 		}
 	} else {
 		if (FILEINFO && FILEINFO["has-pdf"] && (FILEINFO["has-pdf"] === "true")) {
@@ -38,5 +41,25 @@ function buildPdfIconListInMenu() {
 	}
 
 	container.innerHTML = output;
+
+	container = document.querySelector("#embedded-filters");
+	if (!container) {
+		console.error("ERROR: Cannot find filter container");
+		return;
+	}
+
+	let filters = urllist.filter || {};
+
+	output = "";
+	for (let prop in filters) {
+		output += makeFilterIcon(filters[prop], prop);
+	}
+	if (output === "") {
+		container.style.display = "none";
+	} else {
+		container.style.display = "inline-block";
+	}
+	container.innerHTML = output;
+
 }
 

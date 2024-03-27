@@ -53,7 +53,7 @@
 	</span>
 	<div title="About the toolbar" onclick="showToolbarHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(1, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 
@@ -73,7 +73,7 @@
 	<span id="save-8" onclick="saveBuffer(8, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">8</strong></span>
 	<span id="save-9" onclick="saveBuffer(9, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">9</strong></span>
 	<span id="line-break-icon" onclick="gotoNextToolbar(2, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 
@@ -93,7 +93,7 @@
 	<span id="load-8" onclick="loadBuffer(8, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">8</strong></span>
 	<span id="load-9" onclick="loadBuffer(9, event)" class="nav-icon fa-stack"><span class="fa fa-square fa-stack-2x"></span><strong class="fa-stack-1x">9</strong></span>
 	<span id="line-break-icon" onclick="gotoNextToolbar(3, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 
@@ -117,7 +117,7 @@
 	</span>
 	<div title="Search help" onclick="showSearchHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(4, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 
@@ -126,13 +126,14 @@
 <!-- Filtering toolbar ================================================= -->
 
 <div class="nav-icon-group" id="toolbar-5" style="display:none;">
+	<div id="embedded-filters" style="display: none;" title="Embedded filters"></div>
 	<div id="filter-link" style="display: none;" title="Copy URL link to score with filter" onclick="copyRepertoryUrl()" class='nav-icon fa fa-link'></div>
 	<input id="filter"  onkeyup="checkForFilterActivate(event)" oninput="updateFilterState(event)" type="text" spellcheck="false" placeholder="filter">
 	<div id="apply-filter" title="Apply filter (return key)" onclick="applyGlobalFilter()" class='filter-icon nav-icon fa fa-filter'></div>
 	<div id="filter-compile" title="Compile filter (alt-c)" onclick="compileFilters()" class='nav-icon fa fa-plus'></div>
 	<div title="About filters" onclick="showFilterHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(5, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 
@@ -147,7 +148,7 @@
 	<div id="sheetid" style="display:none;" title="Open spreadsheet" onclick="openSpreadsheet()" class='nav-icon fa fa-file-text'></div>
 	<div title="About spreadsheets" onclick="showSpreadsheetHelp()" class='nav-icon fas fa-question-circle'></div>
 	<span id="line-break-icon" onclick="gotoNextToolbar(6, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fa fa-superpowers'></div>
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	</span>
 </div>
 

@@ -7,8 +7,7 @@
 //    activate the filter icon in the filter toolbar.
 //
 
-function applyGlobalFilter() {
-
+function applyGlobalFilter(force) {
 	let target = document.querySelector("input#filter");
 	let results = validateFilter(target, "Enter");
 	if (!results.status) {
@@ -32,12 +31,14 @@ function applyGlobalFilter() {
 		return;
 	}
 
-	if (ficon.classList.contains("active")) {
-		// The filter is already active, so deactivate it.
-		ficon.classList.remove("active");
-		GLOBALFILTER = "";
-		displayNotation();
-		return;
+	if (!force) {
+		if (ficon.classList.contains("active")) {
+			// The filter is already active, so deactivate it.
+			ficon.classList.remove("active");
+			GLOBALFILTER = "";
+			displayNotation();
+			return;
+		}
 	}
 
 	var efilter = document.querySelector("input#filter");
