@@ -47,7 +47,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		chorales (370)
+@DEFAULT:		Chorales (370)
 @AR:
 @CA:
 @CS:
@@ -55,7 +55,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			370 corales
+@ES:			Corales	(370)
 @ET:
 @EU:
 @FI:
@@ -174,7 +174,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		fugues from the Well-tempered clavier
+@DEFAULT:		Well-tempered Clavier fugues
 @AR:
 @CA:
 @CS:
