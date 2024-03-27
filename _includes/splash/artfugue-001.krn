@@ -680,13 +680,15 @@
 ==	==	==	==
 *-	*-	*-	*-
 !!!system-decoration: [(s1,s2,s3,s4)]
-!!!URL-pdf: https://vmirror.imslp.org/files/imglnks/usimg/8/88/IMSLP504269-PMLP05843-BGA-25.1.pdf#page=3 @{SMS}
-!!!URL-pdf: https://s9.imslp.org/files/imglnks/usimg/1/1d/IMSLP469177-PMLP5843-Bach,_J.S._-_The_Art_of_the_Fugue.pdf#page=1 @{SMS2}
-!!!URL-youtube: https://www.youtube.com/watch?v=OMtjlaDEMdI&t=5 Netherlands Bach Society/Malinowski
+!!!URL-pdf: https://vmirror.imslp.org/files/imglnks/usimg/8/88/IMSLP504269-PMLP05843-BGA-25.1.pdf#page=3 @{SMS1}, page 3
+!!!URL-pdf: https://s9.imslp.org/files/imglnks/usimg/1/1d/IMSLP469177-PMLP5843-Bach,_J.S._-_The_Art_of_the_Fugue.pdf#page=1 @{SMS2}, page 1
+!!!URL-youtube: https://www.youtube.com/watch?v=OMtjlaDEMdI&t=5s Netherlands Bach Society/Malinowski
+!!!URL-youtube: https://www.youtube.com/watch?v=N6sUlZa-IrU&t=7s Netherlands Bach Society
 !!!URL-youtube: https://www.youtube.com/watch?v=zwkzf-KUNPM Glenn Gould
 !!!URL-youtube: https://www.youtube.com/watch?v=8ILd81jY1v4 Julliard String Quartet
 !!!URL-youtube: https://www.youtube.com/watch?v=drVbEHEYxJg Ludvig Käll, organ in Lau Church, Gotland island, 3 august 2019.
-!!!SMS: Bach-Gesellschaft Ausgabe, Band 25.1 (pp.1-116) Leipzig: Breitkopf und Härtel, 1878. Plate B.W. XXV (1).
+!!!SMS: @{SMS1}
+!!!SMS1: Bach-Gesellschaft Ausgabe, Band 25.1 Leipzig: Breitkopf und Härtel, 1878. Plate B.W. XXV (1).
 !!!SMS2: Bach-Gesellschaft Ausgabe, Band 47 Leipzig: Breitkopf und Härtel, 1926. Plate B.W. XLVII.
 !!!PED: Wilhelm Rust
 !!!PED-ODT: 1822-1892
