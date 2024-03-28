@@ -2,7 +2,7 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 13:04:55 CET 2021
-// Last Modified: Mon Dec  6 13:04:58 CET 2021
+// Last Modified: Wed Mar 27 17:53:13 PDT 2024
 // Filename:      _includes/vhv-scripts/main/main.js
 // Included in:   _includes/vhv-scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
@@ -21,6 +21,7 @@
 {% include vhv-scripts/menu/makePdfIcon.js             %}
 {% include vhv-scripts/menu/makeScanIcon.js            %}
 {% include vhv-scripts/menu/makeYoutubeIcon.js         %}
+{% include vhv-scripts/menu/openOrReplaceYoutube.js    %}
 
 
 

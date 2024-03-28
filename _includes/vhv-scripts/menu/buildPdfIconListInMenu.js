@@ -50,9 +50,15 @@ function buildPdfIconListInMenu() {
 
 	let filters = urllist.filter || {};
 
+	outputMain = "";
+
 	output = "";
 	for (let prop in filters) {
-		output += makeFilterIcon(filters[prop], prop);
+		let text = makeFilterIcon(filters[prop], prop);
+		output += text;
+		if ((prop === "modern") || (prop === "keyboard")) {
+			outputMain += text;
+		}
 	}
 	if (output === "") {
 		container.style.display = "none";
@@ -60,6 +66,11 @@ function buildPdfIconListInMenu() {
 		container.style.display = "inline-block";
 	}
 	container.innerHTML = output;
+
+	let mainContainer = document.querySelector("#main-filter-buttons");
+	if (mainContainer) {
+		mainContainer.innerHTML = outputMain;
+	}
 
 }
 
