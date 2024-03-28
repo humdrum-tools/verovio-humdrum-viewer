@@ -1346,21 +1346,28 @@ function displayKeyscape() {
 //
 
 function displayHumdrumPdf(prefix) {
-	let urllist = getUrlAndFilterList(prefix);
+	let list = getUrlAndFilterList(prefix);
+	if (!list.url) {
+		return 0;
+	}
+	if (!list.url.pdf) {
+		return 0;
+	}
+	let pdflist = list.url.pdf;
 
 	let url = "";
 	let i;
 	if (InterfaceSingleNumber > 1) {
-		for (i=0; i<urllist.pdf.length; i++) {
-			if (urllist.pdf[i].number == InterfaceSingleNumber) {
-				url = urllist.pdf[i].url;
+		for (i=0; i<pdflist.length; i++) {
+			if (pdflist.pdf[i].number == InterfaceSingleNumber) {
+				url = pdflist[i].url;
 				break;
 			}
 		}
 	} else {
-		for (i=0; i<urllist.length; i++) {
-			if (urllist.pdf[i].number <= 1) {
-				url = urllist.pdf[i].url;
+		for (i=0; i<pdflist.length; i++) {
+			if (pdflist[i].number <= 1) {
+				url = pdflist[i].url;
 				break;
 			}
 		}
