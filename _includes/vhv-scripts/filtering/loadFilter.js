@@ -10,11 +10,24 @@ function loadFilter(element) {
 	if (!filterElement) {
 		return;
 	}
-	let filter = decodeURIComponent(element.dataset.filter);
-	if (filter) {
-		filterElement.value = filter;
+
+	let filterText = filterElement.value || "";
+	if (filterText) {
+		filterText = encodeURIComponent(filterText);
 	}
-	applyGlobalFilter(true);
+
+	let elementFilter = element.dataset.filter;
+	if (elementFilter === filterText) {
+		// Filter is currently active with matching filter, so disable it:
+		filterElement.value = "";
+		applyGlobalFilter();
+	} else {
+		let filter = decodeURIComponent(elementFilter);
+		if (filter) {
+			filterElement.value = filter;
+		}
+		applyGlobalFilter(true);
+	}
 }
 
 

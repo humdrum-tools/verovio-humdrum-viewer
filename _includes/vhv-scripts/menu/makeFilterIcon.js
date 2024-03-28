@@ -15,12 +15,36 @@ function makeFilterIcon(filterList, title) {
 	}
 	string = encodeURIComponent(string);
 
+	let letter = title.charAt(0).toUpperCase();
+
 	title = title.replace(/"/g, "'");
-	var output = "<div title=\"" + title + "\" ";
-	output += `data-filter="${string}"`;
-	output += "style='margin-left:10px !important; margin-right:0px !important; font-size:100%' ";
-	output += "onclick='loadFilter(this)' ";
-	output += "class='nav-icon fas fa-filter'></div>";
+
+	let output = "";
+
+	// Highlight any .filter-button that matches the contents
+	// of #filter.
+	let filterElement = document.querySelector("#filter");
+	let filterText = filterElement.value || "";
+	if (!filterText) {
+		filterText = "";
+	} else {
+		filterText = encodeURIComponent(filterText);
+	}
+
+	let highlight = "";
+	if ((filterText !== "") && (filterText === string)) {
+		highlight = "highlight";
+	}
+
+	output += `<span title="${title}" `;
+	output += `data-filter="${string}" `;
+	output += `style="margin-left:0px !important; margin-right:0px !important; font-size:80%" `;
+	output += `onclick="loadFilter(this)" `;
+	output += `class="nav-icon fa-stack">`;
+	output += `<span class="${highlight} filter-button fa fa-square fa-stack-2x"></span>`;
+	output += `<strong style="font-size:130%; color:#01313f;" class="fa-stack-1x">${letter}</strong>`;
+	output += `</span>`;
+
 	return output;
 }
 

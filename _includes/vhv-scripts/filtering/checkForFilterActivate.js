@@ -23,6 +23,30 @@ function checkForFilterActivate(event) {
 	} else if (event.key === "Enter") {
 		applyGlobalFilter();
 	}
+
+	// Highlight any .filter-button that matches the contents
+	// of #filter.
+	let filterText = event.target.value;
+	if (!filterText) {
+		filterText = "";
+	} else {
+		filterText = encodeURIComponent(filterText);
+	}
+	let filters = document.querySelectorAll(".filter-button");
+	for (let i=0; i<filters.length; i++) {
+		let localText = filters[i].dataset.filter;
+		if (!localText) {
+			localText = "";
+		} else {
+			localText = encodeURIComponent(localText);
+		}
+		if ((localText !== "") && (localText === filterText)) {
+			filters[i].classList.add("highlight");
+		} else {
+			filters[i].classList.remove("highlight");
+		}
+	}
+
 }
 
 
