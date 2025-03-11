@@ -128,6 +128,7 @@ function humdrumToSvgOptions() {
 	output.spacingSystem        = SPACING_SYSTEM;
 	output.staffLineWidth       = 0.12;
 	output.outputIndent         = 1;
+	output.lyricElision         = "narrow";
 	/* output.mensuralToMeasure    = 1; */
 
 	if (OriginalClef) {

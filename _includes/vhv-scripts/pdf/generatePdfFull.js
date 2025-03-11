@@ -122,6 +122,7 @@ function generatePdfFull(format, orientation) {
 		// restore the old layout for the VHV  webpage:
 		let force = false;
 		let page = vrvWorker.page;
+
 		let cleanoldoptions = cleanOptions2(scoredata, oldOptions);
 		vrvWorker.redoLayout(oldOptions, true);
 		vrvWorker.options = oldOptions;

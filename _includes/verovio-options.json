@@ -1,5 +1,8 @@
 {
    "OPTION": [
+
+
+
       {
          "NAME": "help",
          "ABBR": "?",
@@ -31,6 +34,20 @@
          "CLI_ONLY": "true?"
       },
       {
+         "NAME": "logLevel",
+         "ABBR": "l",
+         "INFO": "Set the log level",
+         "ARG": "string",
+         "DEF": "warning",
+         "ALT": [
+            "off",
+            "error",
+            "info",
+            "debug"
+         ],
+         "CLI_ONLY": "true?"
+      },
+      {
          "NAME": "outfile",
          "ABBR": "o",
          "INFO": "Output file name (use \"-\" for standard output).",
@@ -47,9 +64,9 @@
          "CLI_ONLY": "true"
       },
       {
-         "NAME": "resources",
+         "NAME": "resourcePath",
          "ABBR": "r",
-         "INFO": "Path to SVG resources.",
+         "INFO": "Path to the directory with Verovio resources",
          "ARG": "string",
          "DEF": "/usr/local/share/verovio",
          "CLI_ONLY": "true"
@@ -60,15 +77,8 @@
          "INFO": "Scale percentage",
          "ARG": "integer",
          "DEF": "100",
-         "MIN": "1"
-      },
-      {
-         "NAME": "minLastJustification",
-         "INFO": "Minimum length of last system which can be stretched to 100% width of page.",
-         "ARG": "float",
-         "DEF": "0.8",
-         "MIN": "0.0",
-         "MAX": "1.0"
+         "MIN": "1",
+         "MAX": "1000"
       },
       {
          "NAME": "outputTo",
@@ -78,7 +88,14 @@
          "DEF": "svg",
          "ALT": [
             "mei",
-            "midi"
+            "mei-pb",
+            "mei-facs",
+            "mei-basic",
+            "midi",
+            "timemap",
+            "expansionmap",
+            "humdrum",
+            "pae"
          ]
       },
       {
@@ -91,19 +108,21 @@
       {
          "NAME": "xmlIdSeed",
          "ABBR": "x",
-         "INFO": "Seed the random number generator for XML IDs.",
-         "ARG": "integer"
+         "INFO": "Seed the random number generator for XML IDs (default is random).",
+         "ARG": "integer",
+         "MIN": "1",
+         "MAX": "2147483647"
       },
       {
          "NAME": "adjustPageHeight",
          "CAT": "Input and page layout options",
-         "INFO": "Crop the page height to the actual height of the content.",
+         "INFO": "Crop the page height to the height of svg content.",
          "ARG": "boolean"
       },
       {
          "NAME": "adjustPageWidth",
          "CAT": "Input and page layout options.",
-         "INFO": "Crop the page width to the actual width of the content.",
+         "INFO": "Crop the page width to the width of the svg content.",
          "ARG": "boolean"
       },
       {
@@ -122,7 +141,7 @@
       {
          "NAME": "breaksSmartSb",
          "CAT": "Input and page layout options",
-         "INFO": "In smart breaks mode, the portion of the system width usage\n\tat which an encoded system break will be used.",
+         "INFO": "In smart breaks mode, the portion of the system width usage at which an encoded system break will be used.",
          "ARG": "float",
          "DEF": "0.66",
          "MIN": "0.00",
@@ -146,15 +165,21 @@
          "ARG": "boolean"
       },
       {
+         "NAME": "condenseNotLastSystem",
+         "CAT": "Input and page layout options",
+         "INFO": "When condensing a score, never condense the last system.",
+         "ARG": "boolean"
+      },
+      {
          "NAME": "condenseTempoPages",
          "CAT": "Input and page layout options",
-         "INFO": "When condensing a score, also condense pages with a tempo.",
+         "INFO": "When condensing a score, also condense pages with a tempo change.",
          "ARG": "boolean"
       },
       {
          "NAME": "evenNoteSpacing",
          "CAT": "Input and page layout options",
-         "INFO": "Specify the linear spacing factor.  This is useful for mensural notation display.",
+         "INFO": "Align notes and rests without adding duration-based space.  This is useful for mensural notation display.",
          "ARG": "boolean"
       },
       {
@@ -164,39 +189,9 @@
          "ARG": "string"
       },
       {
-         "NAME": "humType",
-         "CAT": "Input and page layout options",
-         "INFO": "Include type attributes when importing rom Humdrum",
-         "ARG": "boolean"
-      },
-      {
-         "NAME": "justifyVertically",
-         "CAT": "Input and page layout options",
-         "INFO": "Justify spacing veritcally to fill a page.",
-         "ARG": "boolean"
-      },
-      {
-         "NAME": "landscape",
-         "CAT": "Input and page layout options",
-         "INFO": "The landscape paper orientation flag.",
-         "ARG": "boolean"
-      },
-      {
-         "NAME": "mensuralToMeasure",
-         "CAT": "Input and page layout options",
-         "INFO": "Convert mensural sections to measure-based MEI.",
-         "ARG": "boolean"
-      },
-      {
-         "NAME": "mmOutput",
-         "CAT": "Input and page layout options",
-         "INFO": "Specify that the output in the SVG is given in mm (default is px).",
-         "ARG": "boolean"
-      },
-      {
          "NAME": "footer",
          "CAT": "Input and page layout options",
-         "INFO": "Do not add any footer, add a footer, use automatic footer.",
+         "INFO": "Control footer layout",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
@@ -208,13 +203,64 @@
       {
          "NAME": "header",
          "CAT": "Input and page layout options",
-         "INFO": "Do not add any header, add a header, use automatic header.",
+         "INFO": "Control header layout",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
             "none",
             "encoded"
          ]
+      },
+      {
+         "NAME": "humType",
+         "CAT": "Input and page layout options",
+         "INFO": "Include type attributes when importing rom Humdrum",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "incip",
+         "CAT": "Input and page layout options",
+         "INFO": "Read <incip> elements as data input",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "justifyVertically",
+         "CAT": "Input and page layout options",
+         "INFO": "Justify spacing veritcally to fill a page.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "landscape",
+         "CAT": "Input and page layout options",
+         "INFO": "Landscape paper orientation flag.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "minLastJustification",
+         "CAT": "General layout",
+         "INFO": "Last system is only justified if unjustified width is greater than given frection.",
+         "ARG": "float",
+         "DEF": "0.80",
+         "MIN": "0.00",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "mmOutput",
+         "CAT": "Input and page layout options",
+         "INFO": "Specify that the output in the SVG is given in mm (default is px).",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "moveScoreDefinitionToStaff",
+         "CAT": "Input and page layout options",
+         "INFO": "Move score definition (clef, keySig, meterSig, etc.) from scoreDef to staffDef.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "neumeAsNote",
+         "CAT": "Input and page layout options",
+         "INFO": "Render neumes as note heads instead of original notation",
+         "ARG": "boolean"
       },
       {
          "NAME": "noJustification",
@@ -307,7 +353,19 @@
          "ARG": "integer",
          "DEF": "2100",
          "MIN": "100",
-         "MAX": "60000"
+         "MAX": "100000"
+      },
+      {
+         "NAME": "pedalStyle",
+         "CAT": "General layout",
+         "INFO": "Global pedal style",
+         "ARG": "string",
+         "DEF": "auto",
+         "ALT": [
+            "line",
+            "pedstar",
+            "altpedstar"
+         ]
       },
       {
          "NAME": "preserveAnalyticalMarkup",
@@ -322,9 +380,44 @@
          "ARG": "boolean"
       },
       {
+         "NAME": "scaleToPageSize",
+         "CAT": "Input and page layout options",
+         "INFO": "Scale the content within the page instead of scaling the page itself",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "setLocale",
+         "CAT": "Input and page layout options",
+         "INFO": "Change the global locale to C (this is not thread-safe).",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "showRuntime",
+         "CAT": "Input and page layout options",
+         "INFO": "Display the total runtime on command-line",
+         "ARG": "boolean"
+      },
+      {
          "NAME": "shrinkToFit",
          "CAT": "Input and page layout options",
          "INFO": "Scale down page content to fit the page height if needed.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "smuflTextFont",
+         "INFO": "Specify the smufl text font location.",
+         "CAT": "General layout",
+         "ARG": "string",
+         "DEF": "embedded",
+         "ALT": [
+            "linked",
+            "none"
+         ]
+      },
+      {
+         "NAME": "staccatoCenter",
+         "CAT": "Input and page layout options",
+         "INFO": "Align staccato and staccatissimo articulations with center of the note.",
          "ARG": "boolean"
       },
       {
@@ -332,6 +425,13 @@
          "CAT": "Input and page layout options",
          "INFO": "Include bounding boxes in SVG output.",
          "ARG": "boolean"
+      },
+      {
+         "NAME": "svgCss",
+         "CAT": "Input and page layout options",
+         "INFO": "CSS to be added to the SVG output",
+         "ARG": "string",
+         "DEF": ""
       },
       {
          "NAME": "svgViewBox",
@@ -358,13 +458,19 @@
          "ARG": "boolean"
       },
       {
+         "NAME": "svgAdditionalAttribute",
+         "CAT": "Input and page layout options",
+         "INFO": "Add additional attributes for graphical elements in SVG as 'data-*', for example, 'note@pname' would add a 'data-pname' to all note elements.",
+         "ARG": "string"
+      },
+      {
          "NAME": "unit",
          "CAT": "Input and page layout options",
          "INFO": "The MEI unit (1/2 of the distance between the staff lines).",
-         "ARG": "integer",
-         "DEF": "9",
-         "MIN": "6",
-         "MAX": "20"
+         "ARG": "float",
+         "DEF": "9.00",
+         "MIN": "4.50",
+         "MAX": "12.00"
       },
       {
          "NAME": "useBraceGlyph",
@@ -391,14 +497,14 @@
          "ARG": "boolean"
       },
       {
-         "NAME": "midiTempoAdjustment",
-         "CAT": "General layout",
-         "INFO": "MIDI tempo adjustment factor.",
-         "ARG": "float",
-         "DEF": "1.00",
-         "MIN": "0.20",
-         "MAX": "4.00"
+         "NAME": "xmlIdChecksum",
+         "CAT": "Input and page layout options",
+         "INFO": "Seed the generator for XML IDs using the checksum of the input data.",
+         "ARG": "boolean"
       },
+     
+
+
       {
          "NAME": "barLineSeparation",
          "CAT": "General layout",
@@ -418,12 +524,18 @@
          "MAX": "0.80"
       },
       {
+         "NAME": "beamFrenchStyle",
+         "CAT": "Input and page layout options",
+         "INFO": "For notes in beams, stems will stop at first outermost sub-beam without crossing it.",
+         "ARG": "boolean"
+      },
+      {
          "NAME": "beamMaxSlope",
          "INFO": "The maximum beam slope.",
          "CAT": "General layout",
          "ARG": "integer",
          "DEF": "10",
-         "MIN": "1",
+         "MIN": "0",
          "MAX": "20"
       },
       {
@@ -435,6 +547,22 @@
          "MIN": "0",
          "MAX": "0"
       },
+      {
+         "NAME": "beamMixedPreserve",
+         "CAT": "Input and page layout options",
+         "INFO": "Mixed beams will be drawn even if there is not enough space.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "beamMixedStemMin",
+         "INFO": "The minimal stem length in MEI units used to draw mixed beams",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "3.50",
+         "MIN": "1.00",
+         "MAX": "8.00"
+      },
+
       {
          "NAME": "bracketThickness",
          "INFO": "Thickness of the system bracket.",
@@ -578,6 +706,18 @@
          "DEF": "0.54",
          "MIN": "0.20",
          "MAX": "1.00"
+      },
+      {
+         "NAME": "lyricElision",
+         "CAT": "General layout",
+         "INFO": "Lyric elision width",
+         "ARG": "string",
+         "DEF": "regular",
+         "ALT": [
+            "unicode",
+            "narrow",
+            "wide"
+         ]
       },
       {
          "NAME": "lyricSize",
@@ -1304,6 +1444,74 @@
          "DEF": "1.00",
          "MIN": "0.00",
          "MAX": "10.00"
+      },
+
+
+
+      {
+         "NAME": "midiNoCue",
+         "CAT": "MIDI options",
+         "INFO": "Skip cue notes in MIDI output",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "midiTempoAdjustment",
+         "CAT": "MIDI options",
+         "INFO": "MIDI tempo adjustment factor.",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.20",
+         "MAX": "4.00"
+      },
+
+
+
+      {
+         "NAME": "durationEquivalence",
+         "CAT": "Mensural notation options",
+         "INFO": "Mensural duration equivalence.",
+         "ARG": "string",
+         "DEF": "brevis",
+         "ALT": [
+            "semibrevis",
+            "minima"
+         ]
+      },
+      {
+         "NAME": "ligatureAsBracket",
+         "CAT": "Mensural notation options",
+         "INFO": "Render ligatures as bracket instead of original notation.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "mensuralResponsiveView",
+         "CAT": "Mensural notation options",
+         "INFO": "Convert mensural content to a more responsive view reduced to the seleceted markup",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "mensuralToCmn",
+         "CAT": "Mensural notation options",
+         "INFO": "Convert mensural sections to CMN measure-based MEI",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "mensuralScoreUp",
+         "CAT": "Mensural notation options",
+         "INFO": "Score up the mensural voices by providing a dur.quality to the notes",
+         "ARG": "boolean"
+      },
+
+
+
+      {
+         "NAME": "timemapOptions",
+         "CAT": "Timemap JSON options",
+         "INFO": "JSON options to be passed when producing the timemap",
+         "ARG": "string",
+         "DEF": "{}"
       }
+
+
    ]
 }
