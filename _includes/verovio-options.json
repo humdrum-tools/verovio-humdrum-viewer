@@ -1,63 +1,86 @@
 {
    "OPTION": [
-
-
-
+      {
+         "NAME": "stdin",
+         "ABBR": "-",
+         "INFO": "Read input data from standard input.",
+         "CAT": "Base options",
+         "ARG": "string",
+         "CLI_ONLY": "true"
+      },
       {
          "NAME": "help",
-         "ABBR": "?",
-         "INFO": "Display help message.",
-         "ARG": "boolean",
+         "ABBR": "h",
+         "INFO": "Display help message or list of options by category.",
+         "CAT": "Base options",
+         "ARG": "string",
+         "DEF": "\"\"",
+         "ALT": [
+            "base",
+            "general",
+            "layout",
+            "selectors",
+            "margins",
+            "midi",
+            "mensural",
+            "json",
+            "full"
+         ],
          "CLI_ONLY": "true"
       },
       {
          "NAME": "allPages",
          "ABBR": "a",
          "INFO": "Output all pages.",
+         "CAT": "Base options",
          "ARG": "boolean",
          "CLI_ONLY": "true?"
       },
       {
          "NAME": "inputFrom",
          "ABBR": "f",
-         "INFO": "Select input data type.",
+         "INFO": "Specify input data type (otherwise automatically detected from content).",
+         "CAT": "Base options",
          "ARG": "string",
          "DEF": "mei",
          "ALT": [
-            "auto",
+            "abc",
+            "cmme.xml",
             "darms",
-            "pae",
-            "xml",
+            "esac",
             "humdrum",
-            "humdrum-xml"
-         ],
-         "CLI_ONLY": "true?"
+            "musicxml-hum",
+            "pae",
+            "volpiano",
+            "xml"
+         ]
       },
       {
          "NAME": "logLevel",
          "ABBR": "l",
-         "INFO": "Set the log level",
+         "INFO": "Set log level.",
+         "CAT": "Base options",
          "ARG": "string",
          "DEF": "warning",
          "ALT": [
-            "off",
+            "debug",
             "error",
             "info",
-            "debug"
-         ],
-         "CLI_ONLY": "true?"
+            "off"
+         ]
       },
       {
          "NAME": "outfile",
          "ABBR": "o",
          "INFO": "Output file name (use \"-\" for standard output).",
-         "ARG": "string",
-         "CLI_ONLY": "true"
+         "CAT": "Base options",
+         "ARG": "string"
       },
       {
          "NAME": "page",
          "ABBR": "p",
          "INFO": "Select the page to engrave.",
+         "CAT": "Base options",
          "ARG": "integer",
          "DEF": "1",
          "MIN": "1",
@@ -66,7 +89,8 @@
       {
          "NAME": "resourcePath",
          "ABBR": "r",
-         "INFO": "Path to the directory with Verovio resources",
+         "INFO": "Path to the directory with Verovio resources.",
+         "CAT": "Base options",
          "ARG": "string",
          "DEF": "/usr/local/share/verovio",
          "CLI_ONLY": "true"
@@ -74,7 +98,8 @@
       {
          "NAME": "scale",
          "ABBR": "s",
-         "INFO": "Scale percentage",
+         "INFO": "Size of the output SVG notation.",
+         "CAT": "Base options",
          "ARG": "integer",
          "DEF": "100",
          "MIN": "1",
@@ -84,6 +109,7 @@
          "NAME": "outputTo",
          "ABBR": "t",
          "INFO": "Select output data format",
+         "CAT": "Base options",
          "ARG": "string",
          "DEF": "svg",
          "ALT": [
@@ -102,6 +128,7 @@
          "NAME": "version",
          "ABBR": "v",
          "INFO": "Display verovio version number.",
+         "CAT": "Base options",
          "ARG": "boolean",
          "CLI_ONLY": "true"
       },
@@ -109,39 +136,40 @@
          "NAME": "xmlIdSeed",
          "ABBR": "x",
          "INFO": "Seed the random number generator for XML IDs (default is random).",
+         "CAT": "Base options",
          "ARG": "integer",
          "MIN": "1",
          "MAX": "2147483647"
       },
       {
          "NAME": "adjustPageHeight",
-         "CAT": "Input and page layout options",
-         "INFO": "Crop the page height to the height of svg content.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Crop page height to visible height of the SVG.",
          "ARG": "boolean"
       },
       {
          "NAME": "adjustPageWidth",
-         "CAT": "Input and page layout options.",
-         "INFO": "Crop the page width to the width of the svg content.",
+         "CAT": "Input and page configuration options.",
+         "INFO": "Crop page width to visible width of the SVG.",
          "ARG": "boolean"
       },
       {
          "NAME": "breaks",
-         "CAT": "Input and page layout options",
-         "INFO": "Define page and system breaks layout.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page and system breaks layout for rendered notation.",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
-            "none",
+            "encoded",
             "line",
-            "smart",
-            "encoded"
+            "none",
+            "smart"
          ]
       },
       {
          "NAME": "breaksSmartSb",
-         "CAT": "Input and page layout options",
-         "INFO": "In smart breaks mode, the portion of the system width usage at which an encoded system break will be used.",
+         "CAT": "Input and page configuration options",
+         "INFO": "In smart breaks mode, portion of system width usage at which an encoded system break will be used.",
          "ARG": "float",
          "DEF": "0.66",
          "MIN": "0.00",
@@ -149,48 +177,48 @@
       },
       {
          "NAME": "condense",
-         "CAT": "Input and page layout options",
-         "INFO": "Control condensed score layout.",
+         "INFO": "Control condensed score layout (rules for removing staves on a system that has only rests).",
+         "CAT": "Input and page configuration options",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
-            "none",
-            "encoded"
+            "encoded",
+            "none"
          ]
       },
       {
          "NAME": "condenseFirstPage",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "When condensing a score, also condense the first page.",
          "ARG": "boolean"
       },
       {
          "NAME": "condenseNotLastSystem",
-         "CAT": "Input and page layout options",
-         "INFO": "When condensing a score, never condense the last system.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Do not condense last system.",
          "ARG": "boolean"
       },
       {
          "NAME": "condenseTempoPages",
-         "CAT": "Input and page layout options",
-         "INFO": "When condensing a score, also condense pages with a tempo change.",
+         "CAT": "Input and page configuration options",
+         "INFO": "When condensing, also condense pages with a tempo change.",
          "ARG": "boolean"
       },
       {
          "NAME": "evenNoteSpacing",
-         "CAT": "Input and page layout options",
-         "INFO": "Align notes and rests without adding duration-based space.  This is useful for mensural notation display.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Align notes and rests without adding duration based space.",
          "ARG": "boolean"
       },
       {
          "NAME": "expand",
-         "CAT": "Input and page layout options",
-         "INFO": "Expand all referenced elements in the expanion.  Input is an xml:id of the expansion list.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Expand all referenced elements in expanion.  Input is an xml:id of the expansion list.",
          "ARG": "string"
       },
       {
          "NAME": "footer",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Control footer layout",
          "ARG": "string",
          "DEF": "auto",
@@ -202,7 +230,7 @@
       },
       {
          "NAME": "header",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options.",
          "INFO": "Control header layout",
          "ARG": "string",
          "DEF": "auto",
@@ -213,32 +241,32 @@
       },
       {
          "NAME": "humType",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Include type attributes when importing rom Humdrum",
          "ARG": "boolean"
       },
       {
          "NAME": "incip",
-         "CAT": "Input and page layout options",
-         "INFO": "Read <incip> elements as data input",
+         "CAT": "Input and page configuration options",
+         "INFO": "Read incip elements as data input",
          "ARG": "boolean"
       },
       {
          "NAME": "justifyVertically",
-         "CAT": "Input and page layout options",
-         "INFO": "Justify spacing veritcally to fill a page.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Justify spacing vertically to fill a page.",
          "ARG": "boolean"
       },
       {
          "NAME": "landscape",
-         "CAT": "Input and page layout options",
-         "INFO": "Landscape paper orientation flag.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Swap values for page height and width.",
          "ARG": "boolean"
       },
       {
          "NAME": "minLastJustification",
-         "CAT": "General layout",
-         "INFO": "Last system is only justified if unjustified width is greater than given frection.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Minimum length of last system which can be stretched to 100% width of page.",
          "ARG": "float",
          "DEF": "0.80",
          "MIN": "0.00",
@@ -246,37 +274,37 @@
       },
       {
          "NAME": "mmOutput",
-         "CAT": "Input and page layout options",
-         "INFO": "Specify that the output in the SVG is given in mm (default is px).",
+         "CAT": "Input and page configuration options",
+         "INFO": "Use millimeter units in SVG output (default is px).",
          "ARG": "boolean"
       },
       {
          "NAME": "moveScoreDefinitionToStaff",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Move score definition (clef, keySig, meterSig, etc.) from scoreDef to staffDef.",
          "ARG": "boolean"
       },
       {
          "NAME": "neumeAsNote",
-         "CAT": "Input and page layout options",
-         "INFO": "Render neumes as note heads instead of original notation",
+         "CAT": "Input and page configuration options",
+         "INFO": "Render neumes as noteheads instead of original notation.",
          "ARG": "boolean"
       },
       {
          "NAME": "noJustification",
-         "CAT": "Input and page layout options",
-         "INFO": "Do not justify the system.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Do not justify the system (ragged right).",
          "ARG": "boolean"
       },
       {
          "NAME": "openControlEvents",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Render open control events.",
          "ARG": "boolean"
       },
       {
          "NAME": "outputIndent",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Output indent value for MEI and SVG.",
          "ARG": "integer",
          "DEF": "3",
@@ -285,25 +313,25 @@
       },
       {
          "NAME": "outputFormatRaw",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Output MEI with no line indents or non-content newlines. See svgFormatRaw.",
          "ARG": "boolean"
       },
       {
          "NAME": "outputIndentTab",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use tabs rather than spaces for indenting XML output.",
          "ARG": "boolean"
       },
       {
          "NAME": "outputSmuflXmlEntities",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Output SMuFL characters as XML entities instead of hex byte codes.",
          "ARG": "boolean"
       },
       {
          "NAME": "pageHeight",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "The page height.",
          "ARG": "integer",
          "DEF": "2970",
@@ -312,8 +340,8 @@
       },
       {
          "NAME": "pageMarginBottom",
-         "CAT": "Input and page layout options",
-         "INFO": "Bottom margin of pages.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page bottom margin",
          "ARG": "integer",
          "DEF": "50",
          "MIN": "0",
@@ -321,8 +349,8 @@
       },
       {
          "NAME": "pageMarginLeft",
-         "CAT": "Input and page layout options",
-         "INFO": "Left margin of pages.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page left margin.",
          "ARG": "integer",
          "DEF": "50",
          "MIN": "0",
@@ -330,8 +358,8 @@
       },
       {
          "NAME": "pageMarginRight",
-         "CAT": "Input and page layout options",
-         "INFO": "Right margin of pages.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page right margin.",
          "ARG": "integer",
          "DEF": "50",
          "MIN": "0",
@@ -339,8 +367,8 @@
       },
       {
          "NAME": "pageMarginTop",
-         "CAT": "Input and page layout options",
-         "INFO": "Top margin of pages.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page top margin.",
          "ARG": "integer",
          "DEF": "50",
          "MIN": "0",
@@ -348,16 +376,16 @@
       },
       {
          "NAME": "pageWidth",
-         "CAT": "Input and page layout options",
-         "INFO": "Page width.",
-         "ARG": "integer",
+         "CAT": "Input and page configuration options",
+         "INFO": "Page width",
+         "ARG": "float",
          "DEF": "2100",
          "MIN": "100",
          "MAX": "100000"
       },
       {
          "NAME": "pedalStyle",
-         "CAT": "General layout",
+         "CAT": "Input and page configuration options",
          "INFO": "Global pedal style",
          "ARG": "string",
          "DEF": "auto",
@@ -369,44 +397,45 @@
       },
       {
          "NAME": "preserveAnalyticalMarkup",
-         "CAT": "Input and page layout options",
-         "INFO": "Preserves the analytical markup in MEI.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Preserves analytical markup in MEI.",
          "ARG": "boolean"
       },
       {
-         "NAME": "removeIDs",
-         "CAT": "Input and page layout options",
+         "NAME": "removeIds",
+         "CAT": "Input and page configuration options",
          "INFO": "Remove XML IDs in the MEI output when not referenced.",
          "ARG": "boolean"
       },
       {
          "NAME": "scaleToPageSize",
-         "CAT": "Input and page layout options",
-         "INFO": "Scale the content within the page instead of scaling the page itself",
+         "CAT": "Input and page configuration options",
+         "INFO": "Scale content with page instead of scaling page itself.",
          "ARG": "boolean"
       },
       {
          "NAME": "setLocale",
-         "CAT": "Input and page layout options",
-         "INFO": "Change the global locale to C (this is not thread-safe).",
+         "CAT": "Input and page configuration options",
+         "INFO": "Changes the global locale to C (this is not thread-safe).",
          "ARG": "boolean"
       },
       {
          "NAME": "showRuntime",
-         "CAT": "Input and page layout options",
-         "INFO": "Display the total runtime on command-line",
-         "ARG": "boolean"
+         "CAT": "Input and page configuration options",
+         "INFO": "Display processing time.",
+         "ARG": "boolean",
+         "CLI-ONLY": "true"
       },
       {
          "NAME": "shrinkToFit",
-         "CAT": "Input and page layout options",
-         "INFO": "Scale down page content to fit the page height if needed.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Scale down page content to fit page height, if needed.",
          "ARG": "boolean"
       },
       {
          "NAME": "smuflTextFont",
-         "INFO": "Specify the smufl text font location.",
-         "CAT": "General layout",
+         "CAT": "Input and page configuration options",
+         "INFO": "Specify if the SMuFL text font access.",
          "ARG": "string",
          "DEF": "embedded",
          "ALT": [
@@ -415,57 +444,57 @@
          ]
       },
       {
-         "NAME": "staccatoCenter",
-         "CAT": "Input and page layout options",
-         "INFO": "Align staccato and staccatissimo articulations with center of the note.",
+         "NAME": "staccato-center",
+         "CAT": "Input and page configuration options",
+         "INFO": "Align staccato and staccatissimo articulations with center of note.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgBoundingBoxes",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Include bounding boxes in SVG output.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgCss",
-         "CAT": "Input and page layout options",
-         "INFO": "CSS to be added to the SVG output",
-         "ARG": "string",
-         "DEF": ""
+         "CAT": "Input and page configuration options",
+         "INFO": "CSS to embed in SVG output.",
+         "ARG": "string"
       },
       {
          "NAME": "svgViewBox",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use viewbox on SVG root element for easy scaling of document.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgHtml5",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Write data-id and data-class attributes for JS usage and ID clash avoidance.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgFormatRaw",
-         "CAT": "Input and page layout options",
-         "INFO": "Writes SVG with no line indenting or non-content newlines. See outputFormatRaw.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Write SVG with no line indenting or non-content newlines. See outputFormatRaw.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgRemoveXlink",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Removes the \"xlink:\" prefix from href attributes for compatibility with some newer browsers.",
          "ARG": "boolean"
       },
       {
          "NAME": "svgAdditionalAttribute",
-         "CAT": "Input and page layout options",
-         "INFO": "Add additional attributes for graphical elements in SVG as 'data-*', for example, 'note@pname' would add a 'data-pname' to all note elements.",
-         "ARG": "string"
+         "CAT": "Input and page configuration options",
+         "INFO": "Add additional attributes for graphical elements in SVG as \"data-*\".  For example: \"note@pname\" adds \"data-pname to all note elements.",
+         "ARG": "string",
+         "REPEAT": "true"
       },
       {
          "NAME": "unit",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "The MEI unit (1/2 of the distance between the staff lines).",
          "ARG": "float",
          "DEF": "9.00",
@@ -474,37 +503,34 @@
       },
       {
          "NAME": "useBraceGlyph",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use brace glyph from current font.",
          "ARG": "boolean"
       },
       {
          "NAME": "useFacsimile",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use information in the facsimile element to control the layout.",
          "ARG": "boolean"
       },
       {
          "NAME": "usePgFooterForAll",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use the pgFooter element for all pages.",
          "ARG": "boolean"
       },
       {
          "NAME": "usePgHeaderForAll",
-         "CAT": "Input and page layout options",
+         "CAT": "Input and page configuration options",
          "INFO": "Use the pgHeader element for all pages.",
          "ARG": "boolean"
       },
       {
          "NAME": "xmlIdChecksum",
-         "CAT": "Input and page layout options",
-         "INFO": "Seed the generator for XML IDs using the checksum of the input data.",
+         "CAT": "Input and page configuration options",
+         "INFO": "Seed XML ID generator using checkoug of input data",
          "ARG": "boolean"
       },
-     
-
-
       {
          "NAME": "barLineSeparation",
          "CAT": "General layout",
@@ -517,64 +543,78 @@
       {
          "NAME": "barLineWidth",
          "CAT": "General layout",
+         "INFO": "Width of barlines.",
          "ARG": "float",
-         "INFO": "The width of a barline.",
          "DEF": "0.30",
          "MIN": "0.10",
          "MAX": "0.80"
       },
       {
          "NAME": "beamFrenchStyle",
-         "CAT": "Input and page layout options",
-         "INFO": "For notes in beams, stems will stop at first outermost sub-beam without crossing it.",
+         "CAT": "General layout",
+         "INFO": "Note stems stop at first beam rather than last.",
          "ARG": "boolean"
       },
       {
          "NAME": "beamMaxSlope",
-         "INFO": "The maximum beam slope.",
          "CAT": "General layout",
+         "INFO": "Maximum beam slope.",
          "ARG": "integer",
          "DEF": "10",
          "MIN": "0",
          "MAX": "20"
       },
       {
-         "NAME": "beamMinSlope",
-         "INFO": "The minimum beam slope.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "0",
-         "MIN": "0",
-         "MAX": "0"
-      },
-      {
          "NAME": "beamMixedPreserve",
-         "CAT": "Input and page layout options",
          "INFO": "Mixed beams will be drawn even if there is not enough space.",
+         "CAT": "General layout",
          "ARG": "boolean"
       },
       {
          "NAME": "beamMixedStemMin",
-         "INFO": "The minimal stem length in MEI units used to draw mixed beams",
+         "INFO": "Minimal stem length in diatonic steps for mixed beams.",
          "CAT": "General layout",
          "ARG": "float",
-         "DEF": "3.50",
+         "DEF": "3.5",
          "MIN": "1.00",
          "MAX": "8.00"
       },
-
       {
          "NAME": "bracketThickness",
-         "INFO": "Thickness of the system bracket.",
+         "CAT": "General layout",
+         "INFO": "Thickness of system brackets.",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.50",
+         "MAX": "2.00"
+      },
+      {
+         "NAME": "breaksNoWidow",
+         "INFO": "Prevent single measures on last page by fitting on previous page.",
+         "CAT": "General layout",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "dashedBarLineDashLength",
+         "INFO": "Dashed barline dash length.",
          "CAT": "General layout",
          "ARG": "float",
-         "DEF": "1.0",
-         "MIN": "0.5",
-         "MAX": "2.0"
+         "DEF": "1.14",
+         "MIN": "0.10",
+         "MAX": "5.00"
+      },
+      {
+         "NAME": "dashedBarLineGapLength",
+         "INFO": "Dashed barline gap length.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "1.14",
+         "MIN": "0.10",
+         "MAX": "5.00"
       },
       {
          "NAME": "dynamDist",
-         "INFO": "Default distance from staff to dynamic marks.",
+         "INFO": "Distance from staff for dynamic marks",
          "CAT": "General layout",
          "ARG": "float",
          "DEF": "1.00",
@@ -582,33 +622,78 @@
          "MAX": "16.00"
       },
       {
+         "NAME": "dynamSingleGlyphs",
+         "INFO": "Do not use SMuFL dynamics glyph combinations.",
+         "CAT": "General layout",
+         "ARG": "boolean"
+      },
+      {
          "NAME": "engravingDefaults",
-         "INFO": "JSON describing defaults for engraving SMuFL elements.",
+         "INFO": "Default options for engraving SMuFL font as JSON string.",
          "CAT": "General layout",
          "ARG": "string"
       },
       {
          "NAME": "engravingDefaultsFile",
-         "INFO": "Path to JSON file describing defaults for engraving SMuFL elements.",
+         "INFO": "Path to JSON file for engraving SMuFL font as JSON string.",
          "CAT": "General layout",
          "ARG": "string"
       },
       {
-         "NAME": "font",
-         "INFO": "Set the music font.",
+         "NAME": "extenderLineMinSpace",
          "CAT": "General layout",
+         "INFO": "Minimum space required for extender line to be drawn.",
+         "ARG": "float",
+         "DEF": "1.5",
+         "MIN": "1.5",
+         "MAX": "10.0"
+      },
+      {
+         "NAME": "fingeringScale",
+         "CAT": "General layout",
+         "INFO": "Scale of fingering numbers compared to default font size.",
+         "ARG": "float",
+         "DEF": "0.75",
+         "MIN": "0.25",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "font",
+         "CAT": "General layout",
+         "INFO": "Set the music font.",
          "ARG": "string",
          "DEF": "Leipzig",
          "ALT": [
             "Bravura",
             "Gootville",
-            "Leland"
+            "Leland",
+            "Petaluma"
          ]
       },
       {
-         "NAME": "graceFactor",
-         "INFO": "The grace size ratio numerator.",
+         "NAME": "fontAddCustom",
+         "INFO": "Add a custom music font as zip file.",
          "CAT": "General layout",
+         "ARG": "string"
+      },
+      {
+         "NAME": "fontFallback",
+         "INFO": "Fallback music font for missing glyphs",
+         "CAT": "General layout",
+         "ARG": "string",
+         "DEF": "Leipzig",
+         "ALT": "Bravura"
+      },
+      {
+         "NAME": "fontLoadAll",
+         "INFO": "Load all music fonts.",
+         "CAT": "General layout",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "graceFactor",
+         "CAT": "General layout",
+         "INFO": "Size of grace notes relative to regular notes.",
          "ARG": "float",
          "DEF": "0.75",
          "MIN": "0.50",
@@ -616,21 +701,21 @@
       },
       {
          "NAME": "graceRhythmAlign",
-         "INFO": "Align grace notes rhythmically with all staves.",
          "CAT": "General layout",
+         "INFO": "Align grace notes rhythmically with all staves.",
          "ARG": "boolean"
       },
       {
          "NAME": "graceRightAlign",
-         "INFO": "Align the right position of a grace group with all staves.",
          "CAT": "General layout",
+         "INFO": "Align the right position of a grace group with all staves.",
          "ARG": "boolean"
       },
       {
          "NAME": "hairpinSize",
          "CAT": "General layout",
+         "INFO": "Size of hairpins (crescendo lines) in diatonic steps.",
          "ARG": "float",
-         "INFO": "Size of hairpins (crescendo lines).",
          "DEF": "3.00",
          "MIN": "1.00",
          "MAX": "8.00"
@@ -638,16 +723,23 @@
       {
          "NAME": "hairpinThickness",
          "CAT": "General layout",
-         "INFO": "Hairpin thickness (crescendo lines).",
+         "INFO": "Hairpin thickness (crescendo lines) in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.20",
          "MIN": "0.10",
          "MAX": "0.80"
       },
       {
+         "NAME": "handwrittenFont",
+         "CAT": "General layout",
+         "INFO": "Handwriting fonts that require special handling.",
+         "ARG": "string",
+         "REPEAT": "true"
+      },
+      {
          "NAME": "harmDist",
          "CAT": "General layout",
-         "INFO": "Default distance from haromonic labels to the staff.",
+         "INFO": "Default distance from harmonic labels to the staff.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.50",
@@ -656,7 +748,7 @@
       {
          "NAME": "justificationStaff",
          "CAT": "General layout",
-         "INFO": "Staff justification.",
+         "INFO": "Vertical staff justification.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -665,7 +757,7 @@
       {
          "NAME": "justificationSystem",
          "CAT": "General layout",
-         "INFO": "Vertical system spacing justification.",
+         "INFO": "System spacing justification.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -690,9 +782,18 @@
          "MAX": "10.00"
       },
       {
+         "NAME": "justificationMaxVertical",
+         "CAT": "General layout",
+         "INFO": "Maximum ratio of justifiable height to page height that can be used for the vertical justification.",
+         "ARG": "float",
+         "DEF": "0.30",
+         "MIN": "0.00",
+         "MAX": "1.00"
+      },
+      {
          "NAME": "ledgerLineThickness",
          "CAT": "General layout",
-         "INFO": "Thickness of ledger lines.",
+         "INFO": "Thickness of ledger lines (diatonic steps).",
          "ARG": "float",
          "DEF": "0.25",
          "MIN": "0.10",
@@ -701,7 +802,7 @@
       {
          "NAME": "ledgerLineExtension",
          "CAT": "General layout",
-         "INFO": "Amount by which ledger lines should extend on either side of a notehead.",
+         "INFO": "Amount by which ledger lines should extend on either side of a notehead (diatonic steps).",
          "ARG": "float",
          "DEF": "0.54",
          "MIN": "0.20",
@@ -710,7 +811,7 @@
       {
          "NAME": "lyricElision",
          "CAT": "General layout",
-         "INFO": "Lyric elision width",
+         "INFO": "Lyric elision width.",
          "ARG": "string",
          "DEF": "regular",
          "ALT": [
@@ -720,60 +821,66 @@
          ]
       },
       {
+         "NAME": "lyricHeightFactor",
+         "CAT": "General layout",
+         "INFO": "Lyric verse line height factor.",
+         "ARG": "float",
+         "DEF": "1.00",
+         "ALT": [
+            "1.00",
+            "20.00"
+         ]
+      },
+      {
+         "NAME": "lyricLineThickness",
+         "CAT": "General layout",
+         "INFO": "Lyric verse line height factor.",
+         "ARG": "float",
+         "DEF": "0.25",
+         "ALT": [
+            "0.10",
+            "0.50"
+         ]
+      },
+      {
+         "NAME": "lyricNoStartHyphen",
+         "CAT": "General layout",
+         "INFO": "Do not show hyphens at beginning of system",
+         "ARG": "boolean"
+      },
+      {
          "NAME": "lyricSize",
          "CAT": "General layout",
+         "INFO": "Size of lyric text in diatonic-step units.",
          "ARG": "float",
-         "INFO": "Size of lyric text.",
          "DEF": "4.50",
          "MIN": "2.00",
          "MAX": "8.00"
       },
       {
-         "NAME": "lyricHyphenLength",
-         "CAT": "General layout",
-         "ARG": "float",
-         "INFO": "Lyric hyphen and dash lengths.",
-         "DEF": "1.20",
-         "MIN": "0.50",
-         "MAX": "3.00"
-      },
-      {
-         "NAME": "lyricLineThickness",
-         "CAT": "General layout",
-         "INFO": "Lyric extender line thicknesses.",
-         "ARG": "float",
-         "DEF": "0.25",
-         "MIN": "0.10",
-         "MAX": "0.50"
-      },
-      {
-         "NAME": "lyricNoStartHyphen",
-         "CAT": "General layout",
-         "INFO": "Do not show hyphens at system beginnings.",
-         "ARG": "boolean"
-      },
-      {
          "NAME": "lyricTopMinMargin",
          "CAT": "General layout",
-         "INFO": "The minmal margin above the lyrics",
-         "ARG": "float",
-         "DEF": "3.00",
-         "MIN": "3.00",
-         "MAX": "8.00"
+         "INFO": "Minmal margin above lyrics (in diatonic steps)."
       },
       {
          "NAME": "lyricWordSpace",
          "CAT": "General layout",
-         "INFO": "Minimum width of spaces separating lyric text.",
+         "INFO": "Minimum width of spaces separating lyrics syllables.",
          "ARG": "float",
          "DEF": "1.20",
-         "MIN": "0.50",
-         "MAX": "3.00"
+         "MIN": "0.00",
+         "MAX": "10.00"
       },
       {
-         "NAME": "minMeasureWidth",
-         "INFO": "The minimal measure width.",
+         "NAME": "lyricVerseCollapse",
          "CAT": "General layout",
+         "INFO": "Remove unused verse numbers from score.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "measureMinWidth",
+         "CAT": "General layout",
+         "INFO": "Minimal measure width in diatonic-step units.",
          "ARG": "integer",
          "DEF": "15",
          "MIN": "1",
@@ -781,14 +888,22 @@
       },
       {
          "NAME": "mnumInterval",
-         "INFO": "Repeat measure numbers at the given cycle size.",
+         "INFO": [
+            "Repeat measure numbers at the given frequency.",
+            "Repeat measure numbers at the given cycle size."
+         ],
          "CAT": "General layout",
-         "ARG": "integer"
+         "ARG": "integer",
+         "DEF": "0",
+         "MIN": [
+            "0",
+            "64"
+         ]
       },
       {
          "NAME": "multiRestStyle",
-         "INFO": "Rendering style of multiple measure rests.",
          "CAT": "General layout",
+         "INFO": "Rendering style of multiple measure rests.",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
@@ -798,118 +913,13 @@
          ]
       },
       {
-         "NAME": "repeatBarLineDotSeparation",
-         "INFO": "Default horizontal distance between dots and inner repeat barline.",
+         "NAME": "multiRestThickness",
          "CAT": "General layout",
+         "INFO": "Thickness of multi rest in diatonic steps.",
          "ARG": "float",
-         "DEF": "0.30",
-         "MIN": "0.10",
-         "MAX": "1.00"
-      },
-      {
-         "NAME": "repeatEndingLineThickness",
-         "INFO": "Repeat and endling line thickness.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "0.15",
-         "MIN": "0.10",
-         "MAX": "2.00"
-      },
-      {
-         "NAME": "slurControlPoints",
-         "INFO": "Slur control points.  Higher values mean more curvature at endpoints.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "5",
-         "MIN": "1",
-         "MAX": "10"
-      },
-      {
-         "NAME": "slurHeightFactor",
-         "INFO": "Slur height factor.  Higher values mean flatter slurs.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "5",
-         "MIN": "1",
-         "MAX": "100"
-      },
-      {
-         "NAME": "slurMinHeight",
-         "INFO": "Minimum slur height.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "1.20",
-         "MIN": "0.30",
-         "MAX": "2.00"
-      },
-      {
-         "NAME": "slurMaxHeight",
-         "INFO": "Maximum slur height.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "3.00",
-         "MIN": "2.00",
+         "DEF": "2.00",
+         "MIN": "0.50",
          "MAX": "6.00"
-      },
-      {
-         "NAME": "slurMaxSlope",
-         "INFO": "Maximum slur slope in degrees.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "20",
-         "MIN": "0",
-         "MAX": "60"
-      },
-      {
-         "NAME": "slurEndpointThickness",
-         "INFO": "Slur endpoint thickness.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "0.10",
-         "MIN": "0.05",
-         "MAX": "0.25"
-      },
-      {
-         "NAME": "slurMidpointThickness",
-         "INFO": "Slur midpoint thickness.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "0.60",
-         "MIN": "0.20",
-         "MAX": "1.20"
-      },
-      {
-         "NAME": "spacingBraceGroup",
-         "INFO": "Minimum space between staves inside of a braced group.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "12",
-         "MIN": "0",
-         "MAX": "48"
-      },
-      {
-         "NAME": "spacingBracketGroup",
-         "INFO": "Minimum space between staves inside a bracketed group.",
-         "CAT": "General layout",
-         "ARG": "float",
-         "DEF": "12",
-         "MIN": "0",
-         "MAX": "48"
-      },
-      {
-         "NAME": "spacingDurDetection",
-         "INFO": "Detect long duration for adjusting spacing.",
-         "CAT": "General layout",
-         "ARG": "boolean"
-      },
-      {
-         "NAME": "slurCurveFactor",
-         "INFO": "Slur curve factor.  Higher values mean rounder slurs.",
-         "CAT": "General layout",
-         "ARG": "integer",
-         "DEF": "10",
-         "MIN": "1",
-         "MAX": "100"
       },
       {
          "NAME": "octaveAlternativeSymbols",
@@ -927,10 +937,133 @@
          "MAX": "1.00"
       },
       {
-         "NAME": "spacingLinear",
+         "NAME": "octaveNoSpanningParentheses",
+         "INFO": "Do not add parentheses around octaves after system breaks.",
+         "CAT": "General layout",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "pedalLineThickness",
+         "INFO": "Line thickness for piano pedalling in diatonci steps.",
          "CAT": "General layout",
          "ARG": "float",
-         "INFO": "Specify the linear spacing factor",
+         "DEF": "0.20",
+         "MIN": "0.10",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "repeatBarLineDotSeparation",
+         "INFO": "Default horizontal distance between dots and inner repeat barline.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.36",
+         "MIN": "0.10",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "repeatEndingLineThickness",
+         "INFO": "Repeat and endling line thickness in diatonic steps.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.15",
+         "MIN": "0.10",
+         "MAX": "2.00"
+      },
+      {
+         "NAME": "slurCurveFactor",
+         "INFO": "Higher values mean rounder slurs.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.20",
+         "MAX": "5.00"
+      },
+      {
+         "NAME": "slurEndpointFlexibility",
+         "INFO": "Allow more endpoint movement during adjustment.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.00",
+         "MIN": "0.00",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "slurEndpointThickness",
+         "INFO": "Slur endpoint thickness in diatonic steps.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.10",
+         "MIN": "0.05",
+         "MAX": "0.25"
+      },
+      {
+         "NAME": "slurMargin",
+         "INFO": "Slur padding in diatonic steps to avoid obstacles.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.10",
+         "MAX": "4.00"
+      },
+      {
+         "NAME": "slurMaxSlope",
+         "INFO": "Maximum slur slope in degrees.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "60",
+         "MIN": "30",
+         "MAX": "85"
+      },
+      {
+         "NAME": "slurMidpointThickness",
+         "INFO": "Slur midpoint thickness in diatonic steps.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.60",
+         "MIN": "0.20",
+         "MAX": "1.20"
+      },
+      {
+         "NAME": "slurSymmetry",
+         "INFO": "High value means more symmetric slurs.",
+         "CAT": "General layout",
+         "ARG": "float",
+         "DEF": "0.00",
+         "MIN": "0.00",
+         "MAX": "1.00"
+      },
+      {
+         "NAME": "spacingBraceGroup",
+         "INFO": "Minimum space between staves inside of a braced group in diatonic steps.",
+         "CAT": "General layout",
+         "ARG": "integer",
+         "DEF": "12",
+         "MIN": "0",
+         "MAX": "48"
+      },
+      {
+         "NAME": "spacingBracketGroup",
+         "INFO": "Minimum space between staves inside a bracketed group in diatonic steps.",
+         "CAT": "General layout",
+         "ARG": "integer",
+         "DEF": "12",
+         "MIN": "0",
+         "MAX": "48"
+      },
+      {
+         "NAME": "spacingDurDetection",
+         "INFO": "Detect long duration for adjusting spacing.",
+         "CAT": "General layout",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "spacingLinear",
+         "CAT": "General layout",
+         "INFO": [
+            "Specify the linear spacing factor.",
+            "Linear spacing factor between notes/rests."
+         ],
+         "ARG": "float",
          "DEF": "0.25",
          "MIN": "0.00",
          "MAX": "1.00"
@@ -939,24 +1072,27 @@
          "NAME": "spacingNonLinear",
          "CAT": "General layout",
          "ARG": "float",
-         "INFO": "Specify the non-linear spacing factor.",
+         "INFO": "Ratio of spacing between rhythmic levels (such as width of quarter note compared to eighth note).",
          "DEF": "0.60",
          "MIN": "0.00",
          "MAX": "1.00"
       },
       {
          "NAME": "spacingStaff",
-         "ARG": "integer",
          "INFO": "The staff minimal spacing",
          "CAT": "General layout",
+         "ARG": "integer",
          "DEF": "12",
          "MIN": "0",
          "MAX": "48"
       },
       {
          "NAME": "spacingSystem",
-         "ARG": "integer",
-         "INFO": "The system minimal spacing",
+         "ARG": [
+            "integer",
+            "integer"
+         ],
+         "INFO": "Minimum spacing between systems in diatonic steps.",
          "CAT": "General layout",
          "DEF": "4",
          "MIN": "0",
@@ -964,9 +1100,12 @@
       },
       {
          "NAME": "staffLineWidth",
+         "INFO": [
+            "The staff line width in unit",
+            "Staff line width in diatonic-step units."
+         ],
          "CAT": "General layout",
          "ARG": "float",
-         "INFO": "The staff line width in unit",
          "DEF": "0.15",
          "MIN": "0.10",
          "MAX": "0.30"
@@ -974,8 +1113,8 @@
       {
          "NAME": "stemWidth",
          "CAT": "General layout",
+         "INFO": "The stem width of notes in diaontic steps.",
          "ARG": "float",
-         "INFO": "The stem width",
          "DEF": "0.20",
          "MIN": "0.10",
          "MAX": "0.50"
@@ -984,7 +1123,7 @@
          "NAME": "subBracketThickness",
          "CAT": "General layout",
          "ARG": "float",
-         "INFO": "Thickness of system sub-brackets.",
+         "INFO": "Thickness of system sub-brackets in diatonic steps.",
          "DEF": "0.20",
          "MIN": "0.10",
          "MAX": "2.00"
@@ -992,7 +1131,7 @@
       {
          "NAME": "systemDivider",
          "CAT": "General layout",
-         "INFO": "Display style of system dividers",
+         "INFO": "Display style of system dividers.",
          "ARG": "string",
          "DEF": "auto",
          "ALT": [
@@ -1004,13 +1143,16 @@
       {
          "NAME": "systemMaxPerPage",
          "CAT": "General layout",
-         "INFO": "Maximum number of systems per page",
-         "ARG": "integer"
+         "INFO": "Maximum number of systems per page.",
+         "ARG": "integer",
+         "DEF": "0",
+         "MIN": "0",
+         "MAX": "24"
       },
       {
          "NAME": "textEnclosureThickness",
          "CAT": "General layout",
-         "INFO": "Thickness of text-enclosing boxes.",
+         "INFO": "Thickness of text-enclosing boxes in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.20",
          "MIN": "0.10",
@@ -1019,7 +1161,7 @@
       {
          "NAME": "thickBarlineThickness",
          "CAT": "General layout",
-         "INFO": "Thickness of thick barlines.",
+         "INFO": "Thickness of thick barlines in diatonic steps.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.50",
@@ -1028,7 +1170,7 @@
       {
          "NAME": "tieEndpointThickness",
          "CAT": "General layout",
-         "INFO": "Endpoint tie thickenesses",
+         "INFO": "Endpoint tie thickeness (diatonic steps).",
          "ARG": "float",
          "DEF": "0.10",
          "MIN": "0.05",
@@ -1037,16 +1179,31 @@
       {
          "NAME": "tieMidpointThickness",
          "CAT": "General layout",
-         "INFO": "Tie midpoint thickenesses",
+         "INFO": "Tie midpoint thickeness (in diatonic steps).",
          "ARG": "float",
          "DEF": "0.50",
          "MIN": "0.20",
          "MAX": "1.00"
       },
       {
+         "NAME": "tieMinLength",
+         "CAT": "General layout",
+         "INFO": "Midpoint tie thickness (in diatonic steps).",
+         "ARG": "float",
+         "DEF": "2.00",
+         "MIN": "0.00",
+         "MAX": "10.00"
+      },
+      {
+         "NAME": "tupletAngledOnBeams",
+         "CAT": "General layout",
+         "INFO": "Tuplet brackets angled on beams only.",
+         "ARG": "boolearn"
+      },
+      {
          "NAME": "tupletBracketThickness",
          "CAT": "General layout",
-         "INFO": "Tuplet bracket thicknesses.",
+         "INFO": "Tuplet bracket thickness in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.20",
          "MIN": "0.10",
@@ -1055,13 +1212,82 @@
       {
          "NAME": "tupletNumHead",
          "CAT": "General layout",
-         "INFO": "Placement of tuplet number on the notehead-side.",
+         "INFO": "Place tuplet number on notehead-side.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "appXPathQuery",
+         "CAT": "Selectors",
+         "INFO": "Set xPath query for selecting app child elements. By default first lem or rdg is selected.",
+         "ARG": "string",
+         "REPEAT": "true",
+         "EXAM": "\"./rdg[contains(@source, 'source-id')]\""
+      },
+      {
+         "NAME": "choiceXPathQuery",
+         "CAT": "Selectors",
+         "INFO": "Set xPath query for selecting choice child elements. By default first child is selected.",
+         "ARG": "string",
+         "REPEAT": "true",
+         "EXAM": "\"./orig\""
+      },
+      {
+         "NAME": "loadSelectedMdivOnly",
+         "CAT": "Selectors",
+         "INFO": "Load only the selected mdif; the content of other mdivs are skipped.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "mdivAll",
+         "CAT": "Selectors",
+         "INFO": "Load and render all mdiv elements (movements/works).",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "mdivXPathQuery",
+         "CAT": "Selectors",
+         "INFO": "Set xPath query for selecting mdiv to be rendered, only one mdiv can be rendered.",
+         "ARG": "string",
+         "DEF": "\"\""
+      },
+      {
+         "NAME": "substXPAthQuery",
+         "CAT": "Selectors",
+         "INFO": "Set xPath query for selecting subst child elements.  By default first child is selected",
+         "ARG": "string",
+         "EXAM": "\"./del\"",
+         "REPEAT": "true"
+      },
+      {
+         "NAME": "transpose",
+         "CAT": "Selectors",
+         "INFO": "Transpose the entire content",
+         "ARG": "string",
+         "DEF": "\"\"",
+         "REPEAT": "true"
+      },
+      {
+         "NAME": "transposeMdiv",
+         "CAT": "Selectors",
+         "INFO": "JSON mapping mdiv IDs to corresponding transposition",
+         "ARG": "string"
+      },
+      {
+         "NAME": "transposeSelectedOnly",
+         "CAT": "Selectors",
+         "INFO": "Transpose only selected content and ignore unselected editorial content.",
+         "ARG": "boolean"
+      },
+      {
+         "NAME": "transposeToSoundingPitch",
+         "CAT": "Selectors",
+         "INFO": "Transpose to sounding pitch by evaluating @trans.semi",
          "ARG": "boolean"
       },
       {
          "NAME": "defaultBottomMargin",
-         "CAT": "element margins",
-         "INFO": "Default bottom margin",
+         "CAT": "Element margins",
+         "INFO": "Default bottom margin.",
          "ARG": "float",
          "DEF": "0.50",
          "MIN": "0.00",
@@ -1069,7 +1295,7 @@
       },
       {
          "NAME": "defaultLeftMargin",
-         "CAT": "element margins",
+         "CAT": "Element margins",
          "INFO": "Default left margin.",
          "ARG": "float",
          "DEF": "0.00",
@@ -1078,8 +1304,8 @@
       },
       {
          "NAME": "defaultRightMargin",
-         "CAT": "element margins",
-         "INFO": "The default right margin",
+         "CAT": "Element margins",
+         "INFO": "Default right margin.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1087,26 +1313,17 @@
       },
       {
          "NAME": "defaultTopMargin",
-         "CAT": "element margins",
-         "INFO": "The default top margin",
+         "CAT": "Element margins",
+         "INFO": "Default top margin.",
          "ARG": "float",
          "DEF": "0.50",
          "MIN": "0.00",
          "MAX": "6.00"
       },
       {
-         "NAME": "leftMarginAccid",
-         "CAT": "element margins",
-         "INFO": "The margin for accid",
-         "ARG": "float",
-         "DEF": "1.00",
-         "MIN": "0.00",
-         "MAX": "2.00"
-      },
-      {
          "NAME": "bottomMarginArtic",
-         "CAT": "element margins",
-         "INFO": "Bottom margin for articulations.",
+         "CAT": "Element margins",
+         "INFO": "Bottom margin for articulations in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.75",
          "MIN": "0.00",
@@ -1114,8 +1331,17 @@
       },
       {
          "NAME": "bottomMarginHarm",
+         "CAT": "Element margins",
+         "INFO": "Bottom margin for harmony labels in diatonic-step units.",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.00",
+         "MAX": "10.00"
+      },
+      {
+         "NAME": "bottomMarginOctave",
          "CAT": "element margins",
-         "INFO": "Bottom margin for harmony labels.",
+         "INFO": "Margin for octave (diatonic steps).",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1123,17 +1349,26 @@
       },
       {
          "NAME": "bottomMarginHeader",
-         "CAT": "element margins",
-         "INFO": "Bottom margin for page headers.",
+         "CAT": "Element margins",
+         "INFO": "Bottom margin for page headers in diatonic-step units.",
          "ARG": "float",
-         "DEF": "8.00",
+         "DEF": "2.00",
          "MIN": "0.00",
          "MAX": "24.00"
       },
       {
-         "NAME": "leftMarginBarLine",
+         "NAME": "leftMarginAccid",
          "CAT": "element margins",
-         "INFO": "Left margin for barLines.",
+         "INFO": "The margin for accid (diatonic steps).",
+         "ARG": "float",
+         "DEF": "1.00",
+         "MIN": "0.00",
+         "MAX": "2.00"
+      },
+      {
+         "NAME": "leftMarginBarLine",
+         "CAT": "Element margins",
+         "INFO": "Left margin for barlines in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1141,8 +1376,8 @@
       },
       {
          "NAME": "leftMarginBeatRpt",
-         "CAT": "element margins",
-         "INFO": "Left margin for beatRpt.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for beat repetition symbols in diatonic-step units.",
          "ARG": "float",
          "DEF": "2.00",
          "MIN": "0.00",
@@ -1150,8 +1385,8 @@
       },
       {
          "NAME": "leftMarginChord",
-         "CAT": "element margins",
-         "INFO": "Left margin for chords.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for chords in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1159,8 +1394,8 @@
       },
       {
          "NAME": "leftMarginClef",
-         "CAT": "element margins",
-         "INFO": "Left margin for clefs.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for clefs in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1168,8 +1403,8 @@
       },
       {
          "NAME": "leftMarginKeySig",
-         "CAT": "element margins",
-         "INFO": "Left margin for key signatures.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for key signatures in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1177,8 +1412,8 @@
       },
       {
          "NAME": "leftMarginLeftBarLine",
-         "CAT": "element margins",
-         "INFO": "Left margin for left barLines.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for left barlines in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1186,8 +1421,8 @@
       },
       {
          "NAME": "leftMarginMensur",
-         "CAT": "element margins",
-         "INFO": "Left margin for mensur.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for mensuration signs.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1195,8 +1430,8 @@
       },
       {
          "NAME": "leftMarginMeterSig",
-         "CAT": "element margins",
-         "INFO": "Left margin for meterSig.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for time signatures.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1204,8 +1439,8 @@
       },
       {
          "NAME": "leftMarginMRest",
-         "CAT": "element margins",
-         "INFO": "Left margin for mRest.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for measure rests in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1213,8 +1448,8 @@
       },
       {
          "NAME": "leftMarginMRpt2",
-         "CAT": "element margins",
-         "INFO": "Left margin for mRpt2.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for two-measure repeat signs in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1222,8 +1457,8 @@
       },
       {
          "NAME": "leftMarginMultiRest",
-         "CAT": "element margins",
-         "INFO": "Left margin for multiRest.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for multi-bar rests in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1231,8 +1466,8 @@
       },
       {
          "NAME": "leftMarginMultiRpt",
-         "CAT": "element margins",
-         "INFO": "Left  margin for multiRpt.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for multi-bar repeats in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1241,7 +1476,7 @@
       {
          "NAME": "leftMarginNote",
          "CAT": "element margins",
-         "INFO": "Right margin for note.",
+         "INFO": "Left margin for note.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1249,8 +1484,8 @@
       },
       {
          "NAME": "leftMarginRest",
-         "CAT": "element margins",
-         "INFO": "Left margin for rest.",
+         "CAT": "Element margins",
+         "INFO": "Left margin for rest in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1259,7 +1494,7 @@
       {
          "NAME": "leftMarginRightBarLine",
          "CAT": "element margins",
-         "INFO": "Margin for right barLine.",
+         "INFO": "Left margin for right barLine.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1268,7 +1503,7 @@
       {
          "NAME": "leftMarginTabDurSym",
          "CAT": "element margins",
-         "INFO": "Margin for tabDurSym.",
+         "INFO": "Left margin for tabDurSym.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1276,17 +1511,17 @@
       },
       {
          "NAME": "rightMarginAccid",
-         "CAT": "element margins",
-         "INFO": "Right margin for accid.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for accidentals.",
          "ARG": "float",
-         "DEF": "0.00",
+         "DEF": "0.50",
          "MIN": "0.00",
          "MAX": "2.00"
       },
       {
          "NAME": "rightMarginBarLine",
-         "CAT": "element margins",
-         "INFO": "Right margin for barLine.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for barlines in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1294,8 +1529,8 @@
       },
       {
          "NAME": "rightMarginBeatRpt",
-         "CAT": "element margins",
-         "INFO": "Right margin for beatRpt.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for beat repeat symbols in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1303,8 +1538,8 @@
       },
       {
          "NAME": "rightMarginChord",
-         "CAT": "element margins",
-         "INFO": "Right margin for chord.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for chords.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1312,8 +1547,8 @@
       },
       {
          "NAME": "rightMarginClef",
-         "CAT": "element margins",
-         "INFO": "Right margin for clef.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for clefs.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1321,8 +1556,8 @@
       },
       {
          "NAME": "rightMarginKeySig",
-         "CAT": "element margins",
-         "INFO": "Right margin for keySig.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for key signatures.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1330,8 +1565,8 @@
       },
       {
          "NAME": "rightMarginLeftBarLine",
-         "CAT": "element margins",
-         "INFO": "Right margin for left barLine.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for left barlines in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1339,8 +1574,8 @@
       },
       {
          "NAME": "rightMarginMensur",
-         "CAT": "element margins",
-         "INFO": "Right margin for mensur.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for mensuration signs.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1348,8 +1583,8 @@
       },
       {
          "NAME": "rightMarginMeterSig",
-         "CAT": "element margins",
-         "INFO": "Right margin for meterSig.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for time signatures.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
@@ -1357,8 +1592,8 @@
       },
       {
          "NAME": "rightMarginMRest",
-         "CAT": "element margins",
-         "INFO": "Right margin for mRest.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for full-measure rests in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1366,8 +1601,8 @@
       },
       {
          "NAME": "rightMarginMRpt2",
-         "CAT": "element margins",
-         "INFO": "Right margin for mRpt2.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for two-measure repeat symbols in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1375,8 +1610,8 @@
       },
       {
          "NAME": "rightMarginMultiRest",
-         "CAT": "element margins",
-         "INFO": "Right margin for multiRest.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for multi-bar rests in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1384,8 +1619,8 @@
       },
       {
          "NAME": "rightMarginMultiRpt",
-         "CAT": "element margins",
-         "INFO": "Right margin for multiRpt.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for multi-measure repeat signs in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1393,8 +1628,8 @@
       },
       {
          "NAME": "rightMarginNote",
-         "CAT": "element margins",
-         "INFO": "The right margin for note.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for notes.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1402,8 +1637,8 @@
       },
       {
          "NAME": "rightMarginRest",
-         "CAT": "element margins",
-         "INFO": "The right margin for rest.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for rests.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1411,17 +1646,17 @@
       },
       {
          "NAME": "rightMarginRightBarLine",
-         "CAT": "element margins",
+         "CAT": "Element margins",
+         "INFO": "Right margin for right barLine.",
          "ARG": "float",
-         "INFO": "The right margin for right barLine.",
          "DEF": "0.00",
          "MIN": "0.00",
          "MAX": "2.00"
       },
       {
          "NAME": "rightMarginTabDurSym",
-         "CAT": "element margins",
-         "INFO": "Right margin for tabDurSym.",
+         "CAT": "Element margins",
+         "INFO": "Right margin for tabDurSym in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.00",
          "MIN": "0.00",
@@ -1429,8 +1664,8 @@
       },
       {
          "NAME": "topMarginArtic",
-         "CAT": "element margins",
-         "INFO": "Top margin for articulations.",
+         "CAT": "Element margins",
+         "INFO": "Top margin for articulations in diatonic-step units.",
          "ARG": "float",
          "DEF": "0.75",
          "MIN": "0.00",
@@ -1438,24 +1673,30 @@
       },
       {
          "NAME": "topMarginHarm",
-         "CAT": "element margins",
-         "INFO": "Top margin for harmony labels.",
+         "CAT": "Element margins",
+         "INFO": "Top margin for harmony labels in diatonic-step units.",
          "ARG": "float",
          "DEF": "1.00",
          "MIN": "0.00",
          "MAX": "10.00"
       },
-
-
-
+      {
+         "NAME": "topMarginPgFooter",
+         "CAT": "element margins",
+         "INFO": "Top margin for page footer.",
+         "ARG": "float",
+         "DEF": "2.00",
+         "MIN": "0.00",
+         "MAX": "24.00"
+      },
       {
          "NAME": "midiNoCue",
          "CAT": "MIDI options",
-         "INFO": "Skip cue notes in MIDI output",
+         "INFO": "Skip cue notes in MIDI output.",
          "ARG": "boolean"
       },
       {
-         "NAME": "midiTempoAdjustment",
+         "NAME": "midiTempoAdjust",
          "CAT": "MIDI options",
          "INFO": "MIDI tempo adjustment factor.",
          "ARG": "float",
@@ -1463,12 +1704,9 @@
          "MIN": "0.20",
          "MAX": "4.00"
       },
-
-
-
       {
          "NAME": "durationEquivalence",
-         "CAT": "Mensural notation options",
+         "CAT": "Mensural options",
          "INFO": "Mensural duration equivalence.",
          "ARG": "string",
          "DEF": "brevis",
@@ -1479,39 +1717,34 @@
       },
       {
          "NAME": "ligatureAsBracket",
-         "CAT": "Mensural notation options",
-         "INFO": "Render ligatures as bracket instead of original notation.",
+         "CAT": "Mensural options",
+         "INFO": "Render ligatures as bracket instead of as ligature.",
          "ARG": "boolean"
       },
       {
          "NAME": "mensuralResponsiveView",
-         "CAT": "Mensural notation options",
-         "INFO": "Convert mensural content to a more responsive view reduced to the seleceted markup",
+         "CAT": "Mensural options",
+         "INFO": "Convert mensural content to more responsive view reduced to the selected markup.",
          "ARG": "boolean"
       },
       {
          "NAME": "mensuralToCmn",
-         "CAT": "Mensural notation options",
-         "INFO": "Convert mensural sections to CMN measure-based MEI",
+         "CAT": "Mensural options",
+         "INFO": "Convert mensural sections to CMN measure-based.",
          "ARG": "boolean"
       },
       {
          "NAME": "mensuralScoreUp",
-         "CAT": "Mensural notation options",
-         "INFO": "Score up the mensural voices by providing a dur.quality to the notes",
+         "CAT": "Mensural options",
+         "INFO": "Score up the mensural voices providing a dur.quality to the notes.",
          "ARG": "boolean"
       },
-
-
-
       {
          "NAME": "timemapOptions",
-         "CAT": "Timemap JSON options",
-         "INFO": "JSON options to be passed when producing the timemap",
+         "CAT": "JSON options",
+         "INFO": "JSON options for producing timemap.",
          "ARG": "string",
          "DEF": "{}"
       }
-
-
    ]
 }
