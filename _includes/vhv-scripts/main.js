@@ -84,7 +84,7 @@
 {% include vhv-scripts/splitter.js %}
 
 // Functions related to verovio options:
-{% include vhv-scripts/verovio-options.js %}
+{% include vhv-scripts/options/main.js %}
 
 // Uncategorized files:
 {% include vhv-scripts/misc.js %}

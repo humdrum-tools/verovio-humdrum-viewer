@@ -42,13 +42,14 @@
          "INFO": "Specify input data type (otherwise automatically detected from content).",
          "CAT": "Base options",
          "ARG": "string",
-         "DEF": "mei",
+         "DEF": "auto",
          "ALT": [
             "abc",
             "cmme.xml",
             "darms",
             "esac",
             "humdrum",
+            "mei",
             "musicxml-hum",
             "pae",
             "volpiano",
@@ -1088,12 +1089,9 @@
       },
       {
          "NAME": "spacingSystem",
-         "ARG": [
-            "integer",
-            "integer"
-         ],
          "INFO": "Minimum spacing between systems in diatonic steps.",
          "CAT": "General layout",
+         "ARG": "integer",
          "DEF": "4",
          "MIN": "0",
          "MAX": "48"

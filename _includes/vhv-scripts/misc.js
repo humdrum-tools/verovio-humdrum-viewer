@@ -90,7 +90,8 @@ function displayNotation(page, force, restoreid) {
 		}
 	}
 
-	OPTIONS = options;
+	OPTIONS = validateOptions(options);
+console.error("OPTIONS", OPTIONS);
 	vrvWorker.renderData(options, data, page, force)
 	.then(function(svg) {
 		let ishumdrum = true;
