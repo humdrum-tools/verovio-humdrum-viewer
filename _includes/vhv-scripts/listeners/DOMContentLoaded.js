@@ -223,16 +223,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	$("#input").data('x', $("#input").outerWidth());
 	$("#input").data('y', $("#input").outerHeight());
 
-{% if site.local != "true" %}
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YP4DF7G826"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-	gtag('config', 'G-YP4DF7G826'); // Replace with your actual Measurement ID
-	</script>
-{% endif %}
-
 	var body = document.querySelector("body");
 	body.addEventListener("click", function(event) {
 		// console.log("SINGLE CLICK", event);
