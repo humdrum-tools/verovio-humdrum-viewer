@@ -15,11 +15,12 @@
 
 {% include vhv-scripts/drop/global.js %}
 
-{% include vhv-scripts/drop/allowDrag.js     %}
-{% include vhv-scripts/drop/handleDrop.js    %}
-{% include vhv-scripts/drop/hideDropArea.js  %}
-{% include vhv-scripts/drop/setupDropArea.js %}
-{% include vhv-scripts/drop/showDropArea.js  %}
+{% include vhv-scripts/drop/allowDrag.js      %}
+{% include vhv-scripts/drop/handleDrop.js     %}
+{% include vhv-scripts/drop/hideDropArea.js   %}
+{% include vhv-scripts/drop/processZipFile.js %}
+{% include vhv-scripts/drop/setupDropArea.js  %}
+{% include vhv-scripts/drop/showDropArea.js   %}
 
 
 

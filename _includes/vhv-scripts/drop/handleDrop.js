@@ -8,50 +8,59 @@
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
-// Description:   
+// Description:   Only reading the first file if more than one.
+//                Maybe allow multiple files, but then the order
+//                might be undefined.  Alternatively allow a method
+//                of appending a data file to the end of the text
+//                (such as if the control key is held down when
+//                drag-and-dropping.
 //
 {% endcomment %}
+
 
 function handleDrop(event) {
 	event.preventDefault();
 	$('html').css('cursor', 'wait');
 	hideDropArea();
+	
 	var file;
 	var files = event.dataTransfer.files;
-	for (var i=0; i<files.length; i++) {
+	
+	for (var i = 0; i < files.length; i++) {
 		file = files[i];
 		// console.log("NAME", escape(file.name));
 		// console.log("SIZE", file.size);
 		// console.log("DATE", file.lastModifiedDate.toLocaleDateString());
-
+		
 		var reader = new FileReader();
-
-		// reader.readAsDataURL(file); // loads MIME64 version of file
-		// reader.readAsBinaryString(file);
-		// file has to be read as Text with UTF-8 encoding
-		// in order that files with UTF-8 characters are read
-		// properly:
-		reader.readAsText(file, 'UTF-8');
-
 		var myevent = event;
-
-		reader.onload = function (event) {
-			var contents = reader.result;
-			if (myevent.shiftKey) {
-				replaceEditorContentWithHumdrumFile(contents);
+		
+		// Read first few bytes to check for ZIP signature (PK\x03\x04)
+		var blob = file.slice(0, 4);
+		blob.arrayBuffer().then(buffer => {
+			var signature = new Uint8Array(buffer);
+			var isZip = signature[0] === 0x50 && signature[1] === 0x4B && 
+						signature[2] === 0x03 && signature[3] === 0x04;
+			
+			if (isZip) {
+				// Process ZIP file
+				processZipFile(file, myevent);
 			} else {
-				EDITOR.setValue(contents, -1);
+				// Process as a regular text file
+				reader.readAsText(file, 'UTF-8');
+				reader.onload = function () {
+					var contents = reader.result;
+					if (myevent.shiftKey) {
+						replaceEditorContentWithHumdrumFile(contents);
+					} else {
+						EDITOR.setValue(contents, -1);
+					}
+					$('html').css('cursor', 'auto');
+				};
 			}
-
-			$('html').css('cursor', 'auto');
-		};
-
-		// Only reading the first file if more than one.
-		// Maybe allow multiple files, but then the order
-		// might be undefined.  Alternatively allow a method
-		// of appending a data file to the end of the text (such
-		// as if the control key is held down when drag-and-dropping.
-		break;
+		});
+		
+		break; // Only processing the first file
 	}
 }
 
