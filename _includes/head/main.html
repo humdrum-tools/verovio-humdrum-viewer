@@ -1,33 +1,30 @@
-<!--
-
-This file is included by _layout/default.html, and it contains
-the contents of the <head> tag for the HTML file.
-
--->
-
-<!-- vim: set ts=3: -->
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Wed Jun 19 00:10:07 PDT 2019
+// Last Modified: Tue Mar 18 00:41:18 PDT 2025
+// Filename:      _includes/head/main.html
+// Included in:   _layouts/default.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   Include javascript code and other head-related content into
+//                head element on webpage.
+//
+{% endcomment %}
 
 <title>Verovio Humdrum Viewer </title>
 <meta charset="UTF-8">
 
-{% include head/bootstrap.html  %}
-{% include head/filesaver.html  %}
-{% include head/basket.html     %}
-{% include head/ace-editor.html %}
-{% include head/scripts.html    %}
-{% include head/pdfkit.html     %}
-{% include head/styles.html     %}
-
-<!--
-Use fontawesome version 4 which is better for SVG insertion:
-<link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
--->
-<!--
-<link href="/styles/fontawesome/all.css" rel="stylesheet">
-<link rel="stylesheet" href="/styles/fontawesome/font-awesome.min.css">
--->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+{% include head/bootstrap.html   %}
+{% include head/filesaver.html   %}
+{% include head/basket.html      %}
+{% include head/ace-editor.html  %}
+{% include head/scripts.html     %}
+{% include head/pdfkit.html      %}
+{% include head/jszip.html       %}
+{% include head/fontawesome.html %}
+{% include head/styles.html      %}
 
 
 

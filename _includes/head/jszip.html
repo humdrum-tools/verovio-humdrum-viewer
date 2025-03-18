@@ -1,0 +1,25 @@
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Tue Mar 18 00:45:01 PDT 2025
+// Last Modified: Tue Mar 18 00:45:05 PDT 2025
+// Filename:      _includes/head/zipjs.html
+// Included in:   _includes/head/main.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   Javascript library to extract zip files.  This is used
+//                when extracting MusicXML data from a compressed .mxl
+//                file when drag-and-dropping the file onto the webpage.
+//
+{% endcomment %}
+
+
+{% if site.local == 'true' %}
+	<script src="/scripts/local/jszip-min.js"></script>
+{% else %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+{% endif %}
+
+
+

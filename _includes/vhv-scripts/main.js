@@ -1,14 +1,16 @@
+{% comment %}
 //
-// Programmer:     Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
-// Last Modified:  Mon Dec  6 13:00:55 CET 2021
-// Filename:       _includes/vhv-scripts/main.html
-// Web Address:    https://verovio.humdrum.org/scripts/main.js
-// Syntax:         JavaScript 1.8/ECMAScript 5/6
-// vim:            ts=3
+// Last Modified:  Tue Mar 18 00:56:55 PDT 2025
+// Filename:      _includes/vhv-scripts/main.html
+// Included in:   scripts/main.js
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
 //
 // Description:   Main javascript file for VHV.
 //
+{% endcomment %}
 
 
 // Functions related to load and save buffers,
@@ -93,9 +95,12 @@
 {% include vhv-scripts/highlight.js %}
 
 // Main event listener functions:
-{% include vhv-scripts/listeners.js %}
+{% include vhv-scripts/listeners/main.js %}
 
 // Display of Pre/Post HTML content
 {% include vhv-scripts/html/main.js %}
+
+// Drag-and-drop files onto page:
+{% include vhv-scripts/drop/main.js %}
 
 
