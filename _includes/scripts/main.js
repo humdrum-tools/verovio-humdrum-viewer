@@ -8,7 +8,7 @@
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
-// Description:   Main javascript file for VHV.
+// Description:   JavaScript code interface for VHV.
 //
 {% endcomment %}
 
