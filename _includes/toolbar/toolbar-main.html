@@ -1,0 +1,69 @@
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Sat Mar 29 09:35:55 PDT 2025
+// Last Modified: Sat Mar 29 09:35:58 PDT 2025
+// Filename:      _includes/toolbar/toolbar-main.html
+// Included in:   _includes/toolbar/template-toolbar.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   The main toolbar for the VHV interface which is
+//                displayed on the top right corner of the page.
+//
+{% endcomment %}
+
+<div class="nav-icon-group" id="toolbar-1">
+	<span class="nav-icon-group" style="margin-right: 5px;" id="scan-urls">
+	</span>
+	<span class="nav-icon-group" style="margin-right: 5px;" id="pdf-urls">
+	</span>
+	<span class="nav-icon-group" style="margin-right: 5px;" id="main-filter-buttons">
+	</span>
+	<span id="text-visibility-icon" onclick="toggleTextVisibility()">
+		<div title="Hide text editor (alt-y)" class='nav-icon fas fa-eye'></div>
+	</span>
+	<span class="text-only" id="text-erase-icon" onclick="MENU.clearEditorContents()">
+		<div title="Clear editor contents (alt-e)" class='nav-icon fas fa-eraser'></div>
+	</span>
+	<span class="text-only" id="text-undo-icon" onclick="MENU.undo()">
+		<div title="Undo last change (ctrl-z)" class='nav-icon fas fa-undo'></div>
+	</span>
+	<span class="text-only" id="text-smaller-icon" onclick="MENU.decreaseTextFontSize(event)">
+		<div title="Make text smaller" class='nav-icon fas fa-minus-circle'></div>
+	</span>
+	<span class="text-only" id="text-larger-icon" onclick="MENU.increaseTextFontSize(event)">
+		<div title="Make text larger" class='nav-icon fas fa-plus-circle'></div>
+	</span>
+	<span class="text-only" id="decrease-tab-icon" onclick="decreaseTab()">
+		<div title="Decrease tab size (alt-<)" class='nav-icon fas fa-outdent'></div>
+	</span>
+	<span class="text-only" id="increase-tab-icon" onclick="increaseTab()">
+		<div title="Increase tab size (alt->)" class='nav-icon fas fa-indent'></div>
+	</span>
+	<span class="text-only" id="collapse-tabs-icon" onclick="MENU.applyFilter('tabber -r')">
+		<div title="Collapse tabs" class='nav-icon fa fa-compress-alt'></div>
+	</span>
+	<span class="text-only" id="expand-tabs-icon" onclick="MENU.applyFilter('tabber')">
+		<div title="Expand tabs to align spines" class='nav-icon fa fa-expand-alt'></div>
+	</span>
+	<span id="text-freeze-icon" onclick="toggleFreeze()">
+		<div title="Freeze notation (alt-f)" class='nav-icon fas fa-unlock'></div>
+	</span>
+	<span id="notation-smaller-icon" onclick="MENU.adjustNotationScale(event, 0.95)">
+		<div title="Make notation smaller" class='nav-icon fas fa-minus-square'></div>
+	</span>
+	<span id="notation-larger-icon" onclick="MENU.adjustNotationScale(event, 1.05)">
+		<div title="Make notation larger" class='nav-icon fas fa-plus-square'></div>
+	</span>
+	<span id="line-break-icon" onclick="toggleLineBreaks()">
+		<div title="Use embedded line breaks (if any)" class='nav-icon fas fa-align-center'></div>
+	</span>
+	<div title="About the toolbar" onclick="showToolbarHelp()" class='nav-icon fas fa-question-circle'></div>
+	<span id="line-break-icon" onclick="gotoNextToolbar(1, event)">
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
+	</span>
+</div>
+
+
+

@@ -328,6 +328,8 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gs
 .w3-dropnav .w3-col, .w3-dropnav #nav_references_content .w3-col {
   height:auto;
 }}
+
+/*
 @font-face {
 font-family: 'fontawesome';
 src: url('../lib/fonts/fontawesome.eot?14663396');
@@ -338,6 +340,8 @@ src: url('../lib/fonts/fontawesome.eot?14663396#iefix') format('embedded-opentyp
 font-weight: normal;
 font-style: normal;
 }
+*/
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;

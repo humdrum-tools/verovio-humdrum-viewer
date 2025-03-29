@@ -1,0 +1,36 @@
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Sat Mar 29 09:35:55 PDT 2025
+// Last Modified: Sat Mar 29 09:35:58 PDT 2025
+// Filename:      _includes/toolbar/toolbar-search.html
+// Included in:   _includes/toolbar/template-toolbar.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   Toolbar 4 for music-searching interface in toolbar.
+//
+{% endcomment %}
+
+<div class="nav-icon-group" id="toolbar-4" style="display:none;">
+	<span id="search-results" style="font-style: italic" class="nav-icon">Search</span>
+	<div style="display:none;" id="search-link" title="Copy URL link to score with search" onclick="copyRepertoryUrl()" class='nav-icon fa fa-link'></div>
+	<span id="search-group">
+		<input id="search-pitch"    oninput="doMusicSearch()" type="text" autocomplete="off" spellcheck="false" placeholder="pitch">
+		<input id="search-interval" oninput="doMusicSearch()" type="text" autocomplete="off" spellcheck="false" placeholder="interval">
+		<input id="search-rhythm"   oninput="doMusicSearch()" type="text" autocomplete="off" spellcheck="false" placeholder="rhythm">
+	</span>
+	<span id="search-chord" onclick="toggleChordSearchDirection()">
+		<div title="Melodically searching highest note of chord" class='nav-icon fa fa-hand-o-up'></div>
+	</span>
+	<span id="search-zoom" onclick="toggleSearchView()">
+		<div title="Show only measures with matches" class='nav-icon fa fa-search-minus'></div>
+	</span>
+	<div title="Search help" onclick="showSearchHelp()" class='nav-icon fas fa-question-circle'></div>
+	<span id="line-break-icon" onclick="gotoNextToolbar(4, event)">
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
+	</span>
+</div>
+
+
+

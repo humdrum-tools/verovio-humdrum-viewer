@@ -1,0 +1,70 @@
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Sat Mar 29 09:35:55 PDT 2025
+// Last Modified: Sat Mar 29 09:35:58 PDT 2025
+// Filename:      _includes/toolbar/toolbar-save.html
+// Included in:   _includes/toolbar/template-toolbar.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   Toolbar 2 for saving text from ACE editor.
+//
+{% endcomment %}
+
+<div class="nav-icon-group" id="toolbar-2" style="display:none;">
+	<span style="font-style: italic" class="nav-icon">Save</span>
+
+	<span id="save-1" onclick="saveBuffer(1, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">1</strong>
+	</span>
+
+	<span id="save-2" onclick="saveBuffer(2, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">2</strong>
+	</span>
+
+	<span id="save-3" onclick="saveBuffer(3, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">3</strong>
+	</span>
+
+	<span id="save-4" onclick="saveBuffer(4, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">4</strong>
+	</span>
+
+	<span id="save-5" onclick="saveBuffer(5, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">5</strong>
+	</span>
+
+	<span id="save-6" onclick="saveBuffer(6, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">6</strong>
+	</span>
+
+	<span id="save-7" onclick="saveBuffer(7, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">7</strong>
+	</span>
+
+	<span id="save-8" onclick="saveBuffer(8, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">8</strong>
+	</span>
+
+	<span id="save-9" onclick="saveBuffer(9, event)" class="nav-icon fa-stack">
+		<span class="fas fa-square fa-stack-2x"></span>
+		<strong class="fa-stack-1x">9</strong>
+	</span>
+
+	<span id="line-break-icon" onclick="gotoNextToolbar(2, event)">
+		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
+	</span>
+
+</div>
+
+
+
