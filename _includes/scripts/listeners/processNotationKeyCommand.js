@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Tue Mar 18 01:26:27 PDT 2025
 // Last Modified: Tue Mar 18 01:26:32 PDT 2025
-// Filename:      _includes/vhv-scripts/listeners/processNotationKeyCommand.js
-// Included in:   _includes/vhv-scripts/listeners/main.js
+// Filename:      _includes/scripts/listeners/processNotationKeyCommand.js
+// Included in:   _includes/scripts/listeners/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

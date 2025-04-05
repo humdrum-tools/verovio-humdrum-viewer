@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Tue Mar 18 01:04:42 PDT 2025
 // Last Modified: Tue Mar 18 01:04:45 PDT 2025
-// Filename:      _includes/vhv-scripts/listeners/verovioCallback.js
-// Included in:   _includes/vhv-scripts/listeners/main.js
+// Filename:      _includes/scripts/listeners/verovioCallback.js
+// Included in:   _includes/scripts/listeners/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

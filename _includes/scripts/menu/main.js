@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 13:04:55 CET 2021
 // Last Modified: Wed Mar 27 17:53:13 PDT 2024
-// Filename:      _includes/vhv-scripts/main/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/main/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,15 +15,15 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/menu/buildPdfIconListInMenu.js  %}
-{% include vhv-scripts/menu/buildScanIconListInMenu.js %}
-{% include vhv-scripts/menu/makeFilterIcon.js          %}
-{% include vhv-scripts/menu/makePdfIcon.js             %}
-{% include vhv-scripts/menu/makeScanIcon.js            %}
-{% include vhv-scripts/menu/makeWikipediaIcon.js       %}
-{% include vhv-scripts/menu/makeYoutubeIcon.js         %}
-{% include vhv-scripts/menu/openOrReplaceWikipedia.js  %}
-{% include vhv-scripts/menu/openOrReplaceYoutube.js    %}
+{% include scripts/menu/buildPdfIconListInMenu.js  %}
+{% include scripts/menu/buildScanIconListInMenu.js %}
+{% include scripts/menu/makeFilterIcon.js          %}
+{% include scripts/menu/makePdfIcon.js             %}
+{% include scripts/menu/makeScanIcon.js            %}
+{% include scripts/menu/makeWikipediaIcon.js       %}
+{% include scripts/menu/makeYoutubeIcon.js         %}
+{% include scripts/menu/openOrReplaceWikipedia.js  %}
+{% include scripts/menu/openOrReplaceYoutube.js    %}
 
 
 

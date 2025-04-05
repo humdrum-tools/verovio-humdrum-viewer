@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Jun 27 08:48:10 PDT 2016
 // Last Modified: Tue Mar 18 01:53:50 PDT 2025
-// Filename:      _includes/vhv-scripts/drop/processZipFile.js
-// Included in:   _includes/vhv-scripts/drop/main.js
+// Filename:      _includes/scripts/drop/processZipFile.js
+// Included in:   _includes/scripts/drop/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

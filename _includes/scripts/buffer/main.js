@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 01:28:20 CET 2021
 // Last Modified: Mon Dec  6 01:28:23 CET 2021
-// Filename:      _includes/vhv-scripts/buffer/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/buffer/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,13 +15,13 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/buffer/downloadEditorContentsInHtml.js %}
-{% include vhv-scripts/buffer/loadBuffer.js                   %}
-{% include vhv-scripts/buffer/prepareBufferStates.js          %}
-{% include vhv-scripts/buffer/restoreEditorContentsLocally.js %}
-{% include vhv-scripts/buffer/saveBuffer.js                   %}
-{% include vhv-scripts/buffer/saveEditorContentsLocally.js    %}
-{% include vhv-scripts/buffer/saveSvgData.js                  %}
+{% include scripts/buffer/downloadEditorContentsInHtml.js %}
+{% include scripts/buffer/loadBuffer.js                   %}
+{% include scripts/buffer/prepareBufferStates.js          %}
+{% include scripts/buffer/restoreEditorContentsLocally.js %}
+{% include scripts/buffer/saveBuffer.js                   %}
+{% include scripts/buffer/saveEditorContentsLocally.js    %}
+{% include scripts/buffer/saveSvgData.js                  %}
 
 
 

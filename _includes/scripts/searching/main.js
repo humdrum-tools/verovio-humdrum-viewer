@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Dec  4 13:30:29 CET 2021
 // Last Modified: Sat Dec  4 16:54:57 CET 2021
-// Filename:      _includes/vhv-scripts/searching/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/searching/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -16,15 +16,15 @@
 {% endcomment %}
 
 
-{% include vhv-scripts/searching/buildSearchQueryFilter.js          %}
-{% include vhv-scripts/searching/clearMatchInfo.js                  %}
-{% include vhv-scripts/searching/copySearchUrl.js                   %}
-{% include vhv-scripts/searching/doMusicSearch.js                   %}
-{% include vhv-scripts/searching/hideSearchLinkIcon.js              %}
-{% include vhv-scripts/searching/showSearchHelp.js                  %}
-{% include vhv-scripts/searching/showSearchLinkIcon.js              %}
-{% include vhv-scripts/searching/toggleChordSearchDirection.js      %}
-{% include vhv-scripts/searching/toggleSearchView.js                %}
+{% include scripts/searching/buildSearchQueryFilter.js          %}
+{% include scripts/searching/clearMatchInfo.js                  %}
+{% include scripts/searching/copySearchUrl.js                   %}
+{% include scripts/searching/doMusicSearch.js                   %}
+{% include scripts/searching/hideSearchLinkIcon.js              %}
+{% include scripts/searching/showSearchHelp.js                  %}
+{% include scripts/searching/showSearchLinkIcon.js              %}
+{% include scripts/searching/toggleChordSearchDirection.js      %}
+{% include scripts/searching/toggleSearchView.js                %}
 
 
 

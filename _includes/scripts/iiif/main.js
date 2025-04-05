@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Dec  4 13:30:29 CET 2021
 // Last Modified: Sat Dec  4 16:54:57 CET 2021
-// Filename:      _includes/vhv-scripts/iiif/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/iiif/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,11 +15,11 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/iiif/buildPath.js              %}
-{% include vhv-scripts/iiif/getIiifBase.js            %}
-{% include vhv-scripts/iiif/getIiifBoundingBoxInfo.js %}
-{% include vhv-scripts/iiif/getIiifManifestInfo.js    %}
-{% include vhv-scripts/iiif/iiifCallback.js           %}
-{% include vhv-scripts/iiif/processClickForIiif.js    %}
+{% include scripts/iiif/buildPath.js              %}
+{% include scripts/iiif/getIiifBase.js            %}
+{% include scripts/iiif/getIiifBoundingBoxInfo.js %}
+{% include scripts/iiif/getIiifManifestInfo.js    %}
+{% include scripts/iiif/iiifCallback.js           %}
+{% include scripts/iiif/processClickForIiif.js    %}
 
 

@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 12:54:52 CET 2021
 // Last Modified: Mon Dec  6 12:54:54 CET 2021
-// Filename:      _includes/vhv-scripts/musicxml/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/musicxml/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,7 +15,7 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/musicxml/convertToMusicXmlAndSave.js %}
+{% include scripts/musicxml/convertToMusicXmlAndSave.js %}
 
 
 

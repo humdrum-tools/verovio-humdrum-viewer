@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Tue Jun  4 11:45:16 PDT 2024
 // Last Modified: Tue Jun  4 11:45:20 PDT 2024
-// Filename:      _includes/vhv-scripts/main/openOrReplaceWikipedia.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/main/openOrReplaceWikipedia.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

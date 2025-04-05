@@ -1,7 +1,7 @@
 //
-// _includes/vhv-scripts/global-variables.js
+// _includes/scripts/global-variables.js
 //
-// This file is loaded from _includes/vhv-scripts/main.js and
+// This file is loaded from _includes/scripts/main.js and
 // contains global variables used by VHV.
 //
 

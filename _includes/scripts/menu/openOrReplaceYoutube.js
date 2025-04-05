@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Wed Mar 27 17:53:30 PDT 2024
 // Last Modified: Wed Mar 27 17:53:33 PDT 2024
-// Filename:      _includes/vhv-scripts/main/openOrReplaceYoutube.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/main/openOrReplaceYoutube.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

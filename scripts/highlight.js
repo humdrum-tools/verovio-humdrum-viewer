@@ -1,6 +1,6 @@
 ---
 ---
 
-{% include vhv-scripts/highlight.js %}
+{% include scripts/highlight.js %}
 
 

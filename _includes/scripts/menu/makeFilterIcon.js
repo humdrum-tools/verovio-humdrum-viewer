@@ -38,14 +38,15 @@ function makeFilterIcon(filterList, title) {
 
 	output += `<span title="${title}" `;
 	output += `data-filter="${string}" `;
-	output += `style="margin-left:0px !important; margin-right:0px !important; font-size:70%" `;
+	output += `style="margin-left:0px !important; position:relative; top:-2px; margin-right:0px !important; font-size:70%" `;
 	output += `onclick="loadFilter(this)" `;
 	output += `class="nav-icon fa-stack">`;
-	output += `<span class="${highlight} filter-button fa fa-square fa-stack-2x"></span>`;
+	output += `<i class="${highlight} filter-button fa-solid fa-square fa-stack-2x"></i>`;
 	output += `<strong style="font-size:140%; color:#01313f;" class="fa-stack-1x">${letter}</strong>`;
 	output += `</span>`;
 
 	return output;
 }
+
 
 

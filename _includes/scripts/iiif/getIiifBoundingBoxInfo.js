@@ -3,9 +3,9 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Dec  4 16:55:37 CET 2021
 // Last Modified: Sat Dec 11 18:23:20 CET 2021
-// Filename:      _includes/vhv-scripts/iiif/getIiifBoundingBoxInfo.js
+// Filename:      _includes/scripts/iiif/getIiifBoundingBoxInfo.js
 // Used by:       
-// Included in:   _includes/vhv-scripts/iiif/main.js
+// Included in:   _includes/scripts/iiif/main.js
 // Syntax:        ECMAScript 6
 // vim:           ts=3:nowrap
 //

@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 12:54:52 CET 2021
 // Last Modified: Tue Feb 28 10:05:25 PST 2023
-// Filename:      _includes/vhv-scripts/filtering/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/filtering/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,23 +15,23 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/filtering/applyGlobalFilter.js          %}
-{% include vhv-scripts/filtering/checkForFilterActivate.js     %}
-{% include vhv-scripts/filtering/compileFilters.js             %}
-{% include vhv-scripts/filtering/copyFilterUrl.js              %}
-{% include vhv-scripts/filtering/deactivateFilterInToolbar.js  %}
-{% include vhv-scripts/filtering/detachGlobalFilter.js         %}
-{% include vhv-scripts/filtering/detachGlobalVerovioOptions.js %}
-{% include vhv-scripts/filtering/getPipedRegion.js             %}
-{% include vhv-scripts/filtering/hideFilterLinkIcon.js         %}
-{% include vhv-scripts/filtering/loadFilter.js                 %}
-{% include vhv-scripts/filtering/removeStrings.js              %}
-{% include vhv-scripts/filtering/showCompiledFilterData.js     %}
-{% include vhv-scripts/filtering/showFilterHelp.js             %}
-{% include vhv-scripts/filtering/showFilterLinkIcon.js         %}
-{% include vhv-scripts/filtering/showSpreadsheetHelp.js        %}
-{% include vhv-scripts/filtering/updateFilterState.js          %}
-{% include vhv-scripts/filtering/validateFilter.js             %}
+{% include scripts/filtering/applyGlobalFilter.js          %}
+{% include scripts/filtering/checkForFilterActivate.js     %}
+{% include scripts/filtering/compileFilters.js             %}
+{% include scripts/filtering/copyFilterUrl.js              %}
+{% include scripts/filtering/deactivateFilterInToolbar.js  %}
+{% include scripts/filtering/detachGlobalFilter.js         %}
+{% include scripts/filtering/detachGlobalVerovioOptions.js %}
+{% include scripts/filtering/getPipedRegion.js             %}
+{% include scripts/filtering/hideFilterLinkIcon.js         %}
+{% include scripts/filtering/loadFilter.js                 %}
+{% include scripts/filtering/removeStrings.js              %}
+{% include scripts/filtering/showCompiledFilterData.js     %}
+{% include scripts/filtering/showFilterHelp.js             %}
+{% include scripts/filtering/showFilterLinkIcon.js         %}
+{% include scripts/filtering/showSpreadsheetHelp.js        %}
+{% include scripts/filtering/updateFilterState.js          %}
+{% include scripts/filtering/validateFilter.js             %}
 
 
 

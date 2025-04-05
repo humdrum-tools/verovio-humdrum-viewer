@@ -22,12 +22,12 @@
 //	but this is already included for saving editor contents.
 //
 
-{% include vhv-scripts/pdf/cleanOptions2.js       %}
-{% include vhv-scripts/pdf/generatePdfFull.js     %}
-{% include vhv-scripts/pdf/generatePdfShapshot.js %}
-{% include vhv-scripts/pdf/loadFontResource.js    %}
-{% include vhv-scripts/pdf/loadPdfFonts.js        %}
-{% include vhv-scripts/pdf/svgFontCallback.js     %}
+{% include scripts/pdf/cleanOptions2.js       %}
+{% include scripts/pdf/generatePdfFull.js     %}
+{% include scripts/pdf/generatePdfShapshot.js %}
+{% include scripts/pdf/loadFontResource.js    %}
+{% include scripts/pdf/loadPdfFonts.js        %}
+{% include scripts/pdf/svgFontCallback.js     %}
 
 
 

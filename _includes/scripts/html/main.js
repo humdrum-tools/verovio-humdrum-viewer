@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Jun 11 14:15:24 PDT 2022
 // Last Modified: Sat Jun 11 14:15:26 PDT 2022
-// Filename:      _includes/vhv-scripts/html/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/html/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,8 +15,8 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/html/displayPrePostHtml.js %}
-{% include vhv-scripts/html/getChecksum.js %}
-{% include vhv-scripts/html/getHumdrumParameters.js %}
-{% include vhv-scripts/html/applyParameters.js %}
+{% include scripts/html/displayPrePostHtml.js %}
+{% include scripts/html/getChecksum.js %}
+{% include scripts/html/getHumdrumParameters.js %}
+{% include scripts/html/applyParameters.js %}
 

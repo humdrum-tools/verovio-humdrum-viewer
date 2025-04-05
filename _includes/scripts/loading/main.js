@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 13:11:01 CET 2021
 // Last Modified: Mon Dec  6 13:11:06 CET 2021
-// Filename:      _includes/vhv-scripts/loading/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/loading/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,22 +15,22 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/loading/applyUrlAliases.js         %}
-{% include vhv-scripts/loading/cleanRepertoryEntryText.js %}
-{% include vhv-scripts/loading/commaDuplicate.js          %}
-{% include vhv-scripts/loading/displayHmdIndexFinally.js  %}
-{% include vhv-scripts/loading/displayIndexFinally.js     %}
-{% include vhv-scripts/loading/downloadKernScoresFile.js  %}
-{% include vhv-scripts/loading/downloadMultipleFiles.js   %}
-{% include vhv-scripts/loading/getBitbucketUrl.js         %}
-{% include vhv-scripts/loading/getGithubUrl.js            %}
-{% include vhv-scripts/loading/getRequires.js             %}
-{% include vhv-scripts/loading/getTassoUrl.js             %}
-{% include vhv-scripts/loading/kernScoresUrl.js           %}
-{% include vhv-scripts/loading/loadHmdIndexFile.js        %}
-{% include vhv-scripts/loading/loadIndexFile.js           %}
-{% include vhv-scripts/loading/loadKernScoresFile.js      %}
-{% include vhv-scripts/loading/processInfo.js             %}
+{% include scripts/loading/applyUrlAliases.js         %}
+{% include scripts/loading/cleanRepertoryEntryText.js %}
+{% include scripts/loading/commaDuplicate.js          %}
+{% include scripts/loading/displayHmdIndexFinally.js  %}
+{% include scripts/loading/displayIndexFinally.js     %}
+{% include scripts/loading/downloadKernScoresFile.js  %}
+{% include scripts/loading/downloadMultipleFiles.js   %}
+{% include scripts/loading/getBitbucketUrl.js         %}
+{% include scripts/loading/getGithubUrl.js            %}
+{% include scripts/loading/getRequires.js             %}
+{% include scripts/loading/getTassoUrl.js             %}
+{% include scripts/loading/kernScoresUrl.js           %}
+{% include scripts/loading/loadHmdIndexFile.js        %}
+{% include scripts/loading/loadIndexFile.js           %}
+{% include scripts/loading/loadKernScoresFile.js      %}
+{% include scripts/loading/processInfo.js             %}
 
 
 

@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Jun 27 08:48:10 PDT 2016
 // Last Modified: Tue Mar 18 01:09:49 PDT 2025
-// Filename:      _includes/vhv-scripts/drop/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/drop/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -13,14 +13,14 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/drop/global.js %}
+{% include scripts/drop/global.js %}
 
-{% include vhv-scripts/drop/allowDrag.js      %}
-{% include vhv-scripts/drop/handleDrop.js     %}
-{% include vhv-scripts/drop/hideDropArea.js   %}
-{% include vhv-scripts/drop/processZipFile.js %}
-{% include vhv-scripts/drop/setupDropArea.js  %}
-{% include vhv-scripts/drop/showDropArea.js   %}
+{% include scripts/drop/allowDrag.js      %}
+{% include scripts/drop/handleDrop.js     %}
+{% include scripts/drop/hideDropArea.js   %}
+{% include scripts/drop/processZipFile.js %}
+{% include scripts/drop/setupDropArea.js  %}
+{% include scripts/drop/showDropArea.js   %}
 
 
 

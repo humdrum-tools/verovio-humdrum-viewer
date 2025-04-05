@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Mar 15 19:20:05 PDT 2025
 // Last Modified: Sat Mar 15 19:25:26 PDT 2025
-// Filename:      _includes/vhv-scripts/options/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/options/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,20 +15,20 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/options/global.js %}
+{% include scripts/options/global.js %}
 
-{% include vhv-scripts/options/esacToHumdrumOptions.js     %}
-{% include vhv-scripts/options/getScaleFromPercentSize.js  %}
-{% include vhv-scripts/options/getVerovioDefaultOptions.js %}
-{% include vhv-scripts/options/humdrumToHumdrumOptions.js  %}
-{% include vhv-scripts/options/humdrumToSvgOptions.js      %}
-{% include vhv-scripts/options/loadEditorFontSizes.js      %}
-{% include vhv-scripts/options/meiToHumdrumOptions.js      %}
-{% include vhv-scripts/options/meiToMeiOptions.js          %}
-{% include vhv-scripts/options/musedataToHumdrumOptions.js %}
-{% include vhv-scripts/options/musicxmlToHumdrumOptions.js %}
-{% include vhv-scripts/options/musicxmlToMeiOptions.js     %}
-{% include vhv-scripts/options/validateOptions.js          %}
+{% include scripts/options/esacToHumdrumOptions.js     %}
+{% include scripts/options/getScaleFromPercentSize.js  %}
+{% include scripts/options/getVerovioDefaultOptions.js %}
+{% include scripts/options/humdrumToHumdrumOptions.js  %}
+{% include scripts/options/humdrumToSvgOptions.js      %}
+{% include scripts/options/loadEditorFontSizes.js      %}
+{% include scripts/options/meiToHumdrumOptions.js      %}
+{% include scripts/options/meiToMeiOptions.js          %}
+{% include scripts/options/musedataToHumdrumOptions.js %}
+{% include scripts/options/musicxmlToHumdrumOptions.js %}
+{% include scripts/options/musicxmlToMeiOptions.js     %}
+{% include scripts/options/validateOptions.js          %}
 
 
 

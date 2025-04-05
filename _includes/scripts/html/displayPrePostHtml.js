@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Jun 11 19:15:38 PDT 2022
 // Last Modified: Sat Jun 10 18:01:26 PDT 2023
-// Filename:      _includes/vhv-scripts/html/displayPrePostHtml.js
-// Included in:   _includes/vhv-scripts/html/main.js
+// Filename:      _includes/scripts/html/displayPrePostHtml.js
+// Included in:   _includes/scripts/html/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //

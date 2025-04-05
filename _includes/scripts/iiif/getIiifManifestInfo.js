@@ -3,9 +3,9 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Fri Dec 10 12:46:45 CET 2021
 // Last Modified: Fri Dec 10 12:46:48 CET 2021
-// Filename:      _includes/vhv-scripts/iiif/getIiifManifestInfo.js
+// Filename:      _includes/scripts/iiif/getIiifManifestInfo.js
 // Used by:       
-// Included in:   _includes/vhv-scripts/iiif/main.html
+// Included in:   _includes/scripts/iiif/main.html
 // Syntax:        ECMAScript 6
 // vim:           ts=3:nowrap
 //

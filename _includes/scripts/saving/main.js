@@ -3,8 +3,8 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Mon Dec  6 12:53:18 CET 2021
 // Last Modified: Mon Dec  6 12:53:20 CET 2021
-// Filename:      _includes/vhv-scripts/saving/main.js
-// Included in:   _includes/vhv-scripts/main.js
+// Filename:      _includes/scripts/saving/main.js
+// Included in:   _includes/scripts/main.js
 // Syntax:        HTML; ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -15,7 +15,7 @@
 //
 {% endcomment %}
 
-{% include vhv-scripts/saving/saveEditorContents.js %}
+{% include scripts/saving/saveEditorContents.js %}
 
 
 

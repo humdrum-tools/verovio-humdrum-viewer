@@ -3,7 +3,7 @@
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date:  Sun Apr 17 17:21:46 PDT 2016
 // Last Modified:  Tue Mar 18 00:56:55 PDT 2025
-// Filename:      _includes/vhv-scripts/main.html
+// Filename:      _includes/scripts/main.html
 // Included in:   scripts/main.js
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
@@ -15,92 +15,92 @@
 
 // Functions related to load and save buffers,
 // also related to the load/save toolbar:
-{% include vhv-scripts/buffer/main.js %}
+{% include scripts/buffer/main.js %}
 
 // Functions related to filtering and also related
 // to the filter toolbar:
-{% include vhv-scripts/filtering/main.js %}
+{% include scripts/filtering/main.js %}
 
 // IIIF image interaction
-{% include vhv-scripts/iiif/main.js %}
+{% include scripts/iiif/main.js %}
 
 // Functions related to loading files:
-{% include vhv-scripts/loading/main.js %}
+{% include scripts/loading/main.js %}
 
 // Functions related to the menu (see also _includes/menu):
-{% include vhv-scripts/menu/main.js %}
+{% include scripts/menu/main.js %}
 
 // MusicXML related functions
-{% include vhv-scripts/musicxml/main.js %}
+{% include scripts/musicxml/main.js %}
 
 // PDF related functions
-{% include vhv-scripts/pdf/main.js %}
+{% include scripts/pdf/main.js %}
 
 // Functions related to saving files:
-{% include vhv-scripts/saving/main.js %}
+{% include scripts/saving/main.js %}
 
 // Functions for musical searching, and also
 // related to search toolbar:
-{% include vhv-scripts/searching/main.js %}
+{% include scripts/searching/main.js %}
 
 // Functions for to Google spreadsheet interaction
 // and also related to spreadsheet toolbar:
-{% include vhv-scripts/spreadsheet/main.js %}
+{% include scripts/spreadsheet/main.js %}
 
 // Functions related to sound playback:
-{% include vhv-scripts/timemap/main.js %}
+{% include scripts/timemap/main.js %}
 
 // Functions related to the toolbar:
-{% include vhv-scripts/toolbar/main.js %}
+{% include scripts/toolbar/main.js %}
 
 
 
 
 // Global variables for the VHV interface:
-{% include vhv-scripts/global-variables.js %}
+{% include scripts/global-variables.js %}
 
 // Initialization functions:
-{% include vhv-scripts/setup.js %}
+{% include scripts/setup.js %}
 
 // Functions related to graphical editing:
-{% include vhv-scripts/editor/main.js %}
+{% include scripts/editor/main.js %}
 
 // Functions related to repertory indexes:
-{% include vhv-scripts/hmdindex.js %}
+{% include scripts/hmdindex.js %}
 
 // General functions, mostly for text
 // processing:
-{% include vhv-scripts/utility.js %}
+{% include scripts/utility.js %}
 
 // Functions for processing Humdrum text:
-{% include vhv-scripts/utility-humdrum.js %}
+{% include scripts/utility-humdrum.js %}
 
 // Functions related to svg manipulation:
-{% include vhv-scripts/utility-svg.js %}
+{% include scripts/utility-svg.js %}
 
 // Functions related to svg manipulation:
-{% include vhv-scripts/utility-ace.js %}
+{% include scripts/utility-ace.js %}
 
 // Splitter prototypes for dealing with split
 // windowing system for text and notation:
-{% include vhv-scripts/splitter.js %}
+{% include scripts/splitter.js %}
 
 // Functions related to verovio options:
-{% include vhv-scripts/options/main.js %}
+{% include scripts/options/main.js %}
 
 // Uncategorized files:
-{% include vhv-scripts/misc.js %}
+{% include scripts/misc.js %}
 
 // Measure highlighting:
-{% include vhv-scripts/highlight.js %}
+{% include scripts/highlight.js %}
 
 // Main event listener functions:
-{% include vhv-scripts/listeners/main.js %}
+{% include scripts/listeners/main.js %}
 
 // Display of Pre/Post HTML content
-{% include vhv-scripts/html/main.js %}
+{% include scripts/html/main.js %}
 
 // Drag-and-drop files onto page:
-{% include vhv-scripts/drop/main.js %}
+{% include scripts/drop/main.js %}
 
 
