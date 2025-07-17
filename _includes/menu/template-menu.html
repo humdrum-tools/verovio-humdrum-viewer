@@ -92,7 +92,7 @@ single-entry example:
 				{{#each RIGHT_TEXT}}
 
 					{{#ifEquals TYPE "shortcut"}}
-					<td class="shortcut-cell"">
+					<td class="shortcut-cell">
 						<span class="shortcut">
 							{{#if LINK}}
 								<a target="_blank" href="{{{languageText LINK}}}">
@@ -106,7 +106,7 @@ single-entry example:
 					{{/ifEquals}}
 
 					{{#ifEquals TYPE "link"}}
-					<td class="shortcut-cell"">
+					<td class="shortcut-cell">
 						<span class="documentation">
 							{{#if LINK}}
 								<a target="_blank" class="menu-link" href="{{{languageText LINK}}}">
@@ -120,7 +120,7 @@ single-entry example:
 					{{/ifEquals}}
 
 					{{#ifEquals TYPE "filter"}}
-					<td class="shortcut-cell"">
+					<td class="shortcut-cell">
 						<span class="filter">
 							{{#if LINK}}
 								<a target="_blank" href="{{{languageText LINK}}}">
