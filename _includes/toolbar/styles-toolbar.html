@@ -5,14 +5,16 @@
 	user-select: none;
 }
 
-.nav-icon
-{
+.nav-icon {
+	background: transparent;
+	color: white;
+	cursor: pointer;
+	margin-right: 2px !important;
+	opacity: 0.6;
 	user-select: none;
 	white-space: nowrap;
-	margin-right: 2px;
-	opacity: 0.6;
-	cursor: pointer;
 }
+
 
 [id^=save-],
 [id^=load-]
@@ -20,10 +22,12 @@
 	font-size: 65%;
 }
 
+
 [id^=save-].filled .fa-stack-2x
 {
 	color: red;
 }
+
 
 [id^=load-].filled .fa-stack-2x
 {
@@ -38,15 +42,18 @@
 
 }
 
+
 .nav-play-button:hover,
 .nav-icon:hover
 {
 	opacity: 0.95 !important;
 }
 
+
 #toolbar {
 	white-space: nobreak;
 }
+
 
 input#search-pitch, input#search-interval, input#search-rhythm {
 	width: 80px;
@@ -56,13 +63,16 @@ input#search-pitch, input#search-interval, input#search-rhythm {
 	border: 0;
 }
 
+
 input[type="text"]::placeholder {  
 	text-align: center; 
 } 
 
+
 input:focus {
     outline-width: 0;
 }
+
 
 input#filter {
 	width:          270px;
@@ -72,9 +82,11 @@ input#filter {
 	border:         0;
 }
 
+
 input#filter.invalid {
 	background: #ffe0e0;
 }
+
 
 input#scriptid {
 	width:          270px;
@@ -85,6 +97,7 @@ input#scriptid {
 	font-size:	15px;
 	height:		24px;
 }
+
 
 .filter-icon.active {
 	color: yellow;
@@ -108,6 +121,16 @@ tagle.multipage td:hover
 	opacity: 0.95 !important;
 }
 
+.nav-icon.fa-superpowers {
+	display: inline-block;
+	margin-top: 2px;
+	font-size: 22px;
+}
+
+.nav-icon.fa-question-circle {
+	margin-top: 4px;
+	font-size: 16px;
+}
 
 
 </style>

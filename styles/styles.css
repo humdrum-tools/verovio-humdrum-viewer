@@ -198,78 +198,12 @@ div#dropArea {
 }
 
 
-#topnav {
-	z-index: 20;
-	position: relative;
-}
-
-
-.topnav {
-	z-index: 20;
-	position: relative;
-	font-size: 17px;
-	background-color: #01313f;
-	color: #30edf7;
-	width:100%;
-	padding:0;
-	/* letter-spacing:1px; */
-}
-
-
-.topnav > a{
-	padding:10px 15px 9px 15px !important;
-	display:inline-block;
-}
-
-
-.topnav a:hover{
-	background-color:#000000;
-	color:#ffffff;
-}
-
-
-.topnav a.active {
-	background-color:#73AD21;
-	background-color:#4CAF50;
-	color:#ffffff;
-}
-
-
-a.topnav-icons {
-	width:52px;
-	font-size:20px !important;
-	padding-top:11px !important;
-	padding-bottom:13px !important;
-}
-
-
-a.topnav-icons.fa-home {
-	font-size:22px !important;
-}
-
-
-a.topnav-localicons {
-	font-size:20px !important;
-	padding-top:6px !important;
-	padding-bottom:12px !important;
-}
-
 
 /* For index headings */
 font b {
 	font-size: 22pt;
 }
 
-
-#input {
-	z-index: 10;
-	position: fixed;
-	top: 44px;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 400px;
-}
 
 
 .marked {
@@ -278,23 +212,6 @@ font b {
 	position: absolute;
 }
 
-
-div#splitter {
-	position: fixed;
-	top: 65px;
-	left: 400px;
-	background: #fffcf1;
-	width: 4px;
-	height: 100%;
-	border-left: 1px solid #ddd8d0;
-	cursor: ew-resize;
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	/* this needs to be high enough to click on */
-	z-index: 2;
-}
 
 
 div#index {
@@ -309,47 +226,6 @@ div#index {
 	background: #f8f8f8;
 	z-index: 300;
 }
-
-
-#output-container {
-	position: fixed;
-	top: 64px;
-	left: 415px;
-	right: 0;
-	bottom: 0;
-	background: #fffcf1;
-	z-index: 2;
-}
-
-
-#output-container {
-	overflow-y: scroll !important;
-	scroll-behavior: smooth;
-}
-
-
-#input {
-	font-size: 1rem;
-	width: 400px;
-	min-width: 0;
-	min-height: 0;
-	margin-right: 10px;
-}
-
-
-/*
-textarea#input {
-	-moz-tab-size: 15;
-	-ms-tab-size: 15;
-	-o-tab-size: 15;
-	tab-size: 15;
-	white-space: pre;
-	overflow: scroll;
-	overflow-y: scroll;
-	overflow-x: scroll;
-	/* overflow: -moz-scrollbars-vertical; */
-}
-*/
 
 
 /* Menu stylings */
@@ -868,15 +744,6 @@ svg {
 }
 
 
-body.frozen #output, body.frozen #splitter, body.frozen {
-	background: #ffffff
-}
-
-
-body.invalid #output, body.invalid #splitter, body.invalid {
-	background: #ffe0e0
-}
-
 
 span.ilink {
 	color: #01313f;
@@ -899,57 +766,7 @@ span.ilink {
 }
 
 
-.fas-play :hover {
-	color: white !important;
-}
 
-
-.nav-play-button {
-	position: fixed;
-	top: -1px;
-	right: 68.5px;
-	float: left;
-	color: white;
-	opacity: 0.6;
-	background: #01313f;
-	margin-top: 2px;
-}
-
-
-.nav-icon {
-	background: transparent;
-/*	opacity: 0.6; */
-	color: white;
-	margin-right: 8px;
-	white-space: nospace;
-}
-
-
-.nav-icon table td {
-	cursor: pointer;
-}
-
-
-.nav-icon table td:nth-child(2) {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-
-.nav-icon td: hover {
-	color: white;
-}
-
-
-#work-navigator {
-	opacity: 0.6;
-	color: white;
-}
-
-
-#work-navigator span:hover {
-	color: white;
-}
 
 
 div#index {
@@ -1103,4 +920,10 @@ span.dropdown-toggle {
 	pointer-events: none; /* Allows clicks through the overlay */
 	position: absolute;
 }
+
+
+html, body {
+  overscroll-behavior-x: none;
+}
+
 

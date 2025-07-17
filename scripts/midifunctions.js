@@ -22,11 +22,14 @@ function play_midi(starttime) {
 	vrvWorker.renderToMidi()
 	.then(function (base64midi) {
 		var song = 'data:audio/midi;base64,' + base64midi;
-		$("#play-button").hide();
-		$("#midiPlayer_play").show();
-		$("#midiPlayer_stop").show();
-		$("#midiPlayer_pause").show();
-		$("#player").show();
+		let playButton = document.querySelector("#play-button");
+		if (playButton) {
+			playButton.style.visibility = "hidden";
+		}
+		let player = document.querySelector("#player");
+		if (player) {
+			player.style.display = "inline-block";
+		}
 		$("#player").midiPlayer.play(song, starttime);
 		PLAY = true;
 		LASTLINE = -1;
@@ -93,40 +96,16 @@ var midiUpdate = function (time) {
 							}
 						}
 
-						// $("#" + noteid ).attr("fill", "#c00");
-						// $("#" + noteid ).attr("stroke", "#c00");;
-						// $("#" + noteid ).addClassSVG("highlight");
-
 						var element = document.querySelector("#" + noteid);
 						if (element) {
 							element.classList.add("highlight");
-							/*
-							var classes = element.getAttribute("class");
-							var classlist = classes.split(" ");
-							var outclass = "";
-							for (var i=0; i<classlist.length; i++) {
-								if (classlist[i] == "highlight") {
-									continue;
-								}
-								outclass += " " + classlist[i];
-							}
-							outclass += " highlight";
-							element.setAttribute("class", outclass);*/
 							if (!scrolled) {
 								let system = element.closest(".system");
 								let rect;
 								let nextsystem = system.nextElementSibling;
 								if (system) {
 									rect = system.getBoundingClientRect();
-									/* Cannot use in Firefox:
-									if (rect.top < parentRect.top) {
-										scrollParent.scrollTop = scrollParent.scrollTop - (parentRect.top - rect.top) - rect.height * margin;
-										scrolled = true;
-									} else if (rect.bottom  > parentRect.bottom) {
-										scrollParent.scrollTop = scrollParent.scrollTop + (rect.bottom - parentRect.bottom) + rect.height * margin;
-										scrolled = true;
-									}
-									*/
+
 									let nextrect;
 									let recttop;
 									let rectbottom;
@@ -196,8 +175,14 @@ var midiStop = function () {
 			element.setAttribute("class", outclass);
 		}
 	});
-	$("#player").hide();
-	$("#play-button").show();
+	let player = document.querySelector("#player");
+	if (player) {
+		player.style.display = "none";
+	}
+	let playButton = document.querySelector("#play-button");
+	if (playButton) {
+		playButton.style.visibility = "visible";
+	}
 	CursorNote = null;
 	PLAY = false;
    LASTLINE = -1;

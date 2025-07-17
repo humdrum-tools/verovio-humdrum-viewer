@@ -1,0 +1,15 @@
+
+td#vhv {
+	width: 40px;
+	/* background: orange; */
+}
+
+#vhv-logo {
+	height: 72px;
+	position: relative;
+	top: 4px;
+	left: 12px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+

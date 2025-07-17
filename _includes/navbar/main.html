@@ -1,0 +1,78 @@
+{% comment %}
+//
+// Programmer:		Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Wed Jun 19 00:10:07 PDT 2019
+// Last Modified: Tue Mar 18 00:41:18 PDT 2025
+// Filename:			_includes/navbar/top.html
+// Included in:	 _includes/navbar/main.html
+// Syntax:				ECMAScript 6; Jekyll/Liquid
+// vim:					 ts=3:nowrap
+//
+// Description:	 Main content of top navigation bar.
+//
+{% endcomment %}
+
+<div id="navbar">
+
+	<style>
+		{% include navbar/styles-local.css %}
+	</style>
+
+	<table id="nav-outer-table">
+		<tr>
+			<!-- Left cell: Logo -->
+			<td id="vhv">
+				<a href="https://doc.verovio.humdrum.org" target="_blank" title="Verovio Humdrum Viewer (click to view documentation)">
+					<img id="vhv-logo" src="/images/vhv-logo.svg">
+				</a>
+			</td>
+
+			<!-- Right cell: Nested layout -->
+			<td>
+				<table id="nav-inner-table">
+					<!-- First row: Menu (left), Toolbar (right) -->
+					<tr>
+						<td style="text-align: left;">
+							{% include menu/main.html %}
+						</td>
+
+					</tr>
+
+					<!-- Second row: Composer/Title (left), Navigation (right) -->
+					<tr>
+						<td id="nav-inner-left">
+							<div style="white-space:nowrap">
+								{% include navbar/work-navigator.html %}
+								{% include navbar/composer-title.html %}
+							</div>
+						</td>
+
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<!-- Second column on the right (floating) -->
+
+	<!-- Toolbar on first row-->
+	<div id="container-toolbar">
+		<div id="xxx">
+			{% include toolbar/main.html %}
+			<div id="toolbar"></div>
+		</div>
+	</div>
+
+	<!-- PDFs/scans/pagination/plaubotton on second row -->
+	<div id="container-second-row">
+			<div class="nav-icon-group" style="display: inline-block;" id="scan-urls"></div>
+			<div class="nav-icon-group" style="display: inline-block;" id="pdf-urls"></div>
+			<div style="display: inline-block; width:24px"></div>
+			{% include navbar/page-navigation.html %}
+			{% include navbar/midi.html %}
+	</div>
+
+</div>
+
+
+

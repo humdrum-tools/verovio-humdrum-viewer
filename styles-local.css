@@ -1,0 +1,63 @@
+
+
+#input {
+	position: fixed;
+	top: 70px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 400px;
+	min-width: 0;
+	min-height: 0;
+	margin-right: 10px;
+	font-size: 1rem;
+	z-index: 0;
+}
+
+
+div#splitter {
+	background: #fffcf1;
+	/* background: #f0f0f0; */
+	border-left: 1px solid #ddd8d0;
+	cursor: ew-resize;
+	height: 100%;
+	left: 400px;
+	position: fixed;
+	top: 70px;
+	user-select: none;
+	width: 4px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	/* this needs to be high enough to click on */
+	z-index: 0;
+}
+
+
+#output-container {
+	position: fixed;
+	top: 70px;
+	left: 415px;
+	right: 0;
+	bottom: 0;
+	background: #fffcf1;
+	z-index: 0;
+	overflow-y: scroll !important;
+	scroll-behavior: smooth;
+}
+
+
+body.frozen #output, body.frozen #splitter, body.frozen {
+	background: #ffffff
+}
+
+
+body.invalid #output, body.invalid #splitter, body.invalid {
+	background: #ffe0e0
+}
+
+
+table#nav-inner-table td#nav-inner-left {
+	padding-left: 16px;
+}
+

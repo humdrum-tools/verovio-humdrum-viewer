@@ -1,0 +1,10 @@
+<svg width="440" height="440" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="none" opacity="0.5" />
+  <g transform="translate(206,0)" fill="white">
+    <rect x="60" y="60" width="30" height="280" />
+    <rect x="210" y="60" width="30" height="280" />
+    <rect x="60" y="180" width="180" height="40" />
+    <path d="M106,48 L150,156 L194,48 L181.08,48 L150,144 L118.92,48 Z" />
+    <path d="M106,352 L150,244 L194,352 L181.08,352 L150,256 L118.92,352 Z" />
+  </g>
+</svg>

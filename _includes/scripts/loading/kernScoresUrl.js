@@ -5,7 +5,6 @@
 //
 
 function kernScoresUrl(file, measures, options) {
-console.warn("ENTERING KERNSCORESURL");
 	var location;
 	var filename;
 	var user = "" ;

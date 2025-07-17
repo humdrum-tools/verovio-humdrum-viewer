@@ -4,7 +4,7 @@
 // Creation Date: Sat Mar 29 09:26:24 PDT 2025
 // Last Modified: Sat Mar 29 09:26:28 PDT 2025
 // Filename:      _includes/toolbar/main.html
-// Included in:   _includes/menu/main.html
+// Included in:   _includes/navbar/main.html
 // Syntax:        ECMAScript 6; Jekyll/Liquid
 // vim:           ts=3:nowrap
 //
@@ -12,9 +12,10 @@
 //
 {% endcomment %}
 
-
 {% include toolbar/styles-toolbar.html %}
+
 {% include toolbar/template-toolbar.html %}
 
-
-
+<script>
+	{% include toolbar/scripts-main.js %}
+</script>

@@ -1,0 +1,30 @@
+{% comment %}
+//
+// Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
+// Creation Date: Sat Mar 29 09:35:55 PDT 2025
+// Last Modified: Thu Jul 17 12:34:48 CEST 2025
+// Filename:      _includes/toolbar/toolbar-page-navigation.html
+// Included in:   _includes/toolbar/template-toolbar.html
+// Syntax:        ECMAScript 6; Jekyll/Liquid
+// vim:           ts=3:nowrap
+//
+// Description:   Page navigation toolbar component.
+//
+{% endcomment %}
+
+<div id="pagination">
+	<div id="multi-page" style="width:50px;color:limegreen;;padding-left:14px;padding-top:2px;">
+		<div onclick="MENU.multiPageView()" title="switch to multi-page mode (better for MIDI playback)" style="margin-left:auto; margin-right:auto; font-size:125%" class="nav-icon fas fa-map"></div>
+	</div>
+	<div id="page-nav" style="width:50px;color:limegreen;display:none;">
+		<div onclick="previousPageClick(event)" title="Previous page (shift-click for first page)" style="font-size:110%" class="nav-icon fas fa-arrow-left"></div>
+		<div onclick="MENU.singlePageView()" title="switch to single-page mode" style="font-size:125%" class="nav-icon fas fa-file-alt"></div>
+		<div onclick="nextPageClick(event)" title="Next page (shift-click for last page)" style="font-size:110%" class="nav-icon fas fa-arrow-right"></div>
+	</div>
+	<div class="pagemodeinfo" id="page-mode-info">
+		<div title="Documentation about page modes" onclick="showPageModeHelp()" class="nav-icon fas fa-question-circle"></div>
+	</div>
+</div>
+
+
+

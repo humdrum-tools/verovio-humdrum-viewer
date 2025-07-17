@@ -15,10 +15,8 @@
 //
 {% endcomment %}
 
-{% include scripts/menu/buildPdfIconListInMenu.js  %}
 {% include scripts/menu/buildScanIconListInMenu.js %}
 {% include scripts/menu/makeFilterIcon.js          %}
-{% include scripts/menu/makePdfIcon.js             %}
 {% include scripts/menu/makeScanIcon.js            %}
 {% include scripts/menu/makeWikipediaIcon.js       %}
 {% include scripts/menu/makeYoutubeIcon.js         %}

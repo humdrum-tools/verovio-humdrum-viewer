@@ -247,5 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		buildScanIconListInMenu();
 	}, 3000);
 
+	setupToolbar();
+
 });
 

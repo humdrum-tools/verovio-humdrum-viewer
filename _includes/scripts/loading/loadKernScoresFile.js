@@ -6,7 +6,6 @@
 //
 
 function loadKernScoresFile(options, force) {
-console.warn("ENTERING LOADKERNSCORESFILE", options);
 	// Allow redirect of Github links to raw file:
 
 	if (options.file) {
@@ -54,9 +53,7 @@ console.warn("ENTERING LOADKERNSCORESFILE", options);
 	let getnext     = options.next;
 	let getprevious = options.previous;
 
-console.warn("GOT HERE MMM");
 	file = applyUrlAliases(file);
-console.warn("GOT HERE NNN");
 
 	if (measures) {
 		let getnext     = false;

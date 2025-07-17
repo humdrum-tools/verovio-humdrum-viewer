@@ -61,143 +61,10 @@ function processMenuAton() {
 	let output = menuTemplate(MENUDATA);
 	let newmenuelement = document.querySelector("#menu-div");
 
-	let tsource2 = document.querySelector("#template-toolbar").textContent;
-	let toolbarTemplate = Handlebars.compile(tsource2);
-	let output2 = toolbarTemplate("");
-	let toolbarelement = document.querySelector("#toolbar");
-
-	if (newmenuelement && toolbarelement) {
+	if (newmenuelement) {
 		newmenuelement.innerHTML = output;
 		MENU.highlightOptions();
-		toolbarelement.innerHTML = output2;
-		prepareBufferStates();
-		if (HIDEINITIALTOOLBAR) {
-			toggleNavigationToolbar();
-		}
-		if (HIDEMENUANDTOOLBAR) {
-			toggleMenuAndToolbarDisplay();
-		}
-		if (PAGED) {
-			MENU.multiPageView();
-		}
-		fillSearchFieldsFromCgi();
-		fillFilterFieldFromCgi();
-		if (HIDEMENU) {
-			toggleMenuDisplay();
-		}
-		if (!InputVisible) {
-			// Or do it all of the time.
-			matchToolbarVisibilityIconToState();
-		}
 	}
-	if (TOOLBAR) {
-		if (TOOLBAR.match(/save/i)) {
-			chooseToolbarMenu("save");
-		} else if (TOOLBAR.match(/load/i)) {
-			chooseToolbarMenu("load");
-		} else if (TOOLBAR.match(/search/i)) {
-			chooseToolbarMenu("search");
-		} else if (TOOLBAR.match(/filter/i)) {
-			chooseToolbarMenu("filter");
-		} else if (TOOLBAR.match(/spreadsheet/i)) {
-			chooseToolbarMenu("spreadsheet");
-		} else {
-			// toolbar menu 1 is otherwise the default
-			chooseToolbarMenu(1);
-		}
-	} else if (LASTTOOLBAR) {
-			// load toolbar from last visit
-			chooseToolbarMenu(LASTTOOLBAR);
-	}
-	fillSpreadsheetId();
-}
-
-
-
-//////////////////////////////
-//
-// fillFilterFieldFromCgi --
-//
-
-function fillFilterFieldFromCgi() {
-	if (!GLOBALFILTER) {
-		// nothing to do
-		return;
-	}
-	let efilter = document.querySelector("input#filter");
-	if (!efilter) {
-		return;
-	}
-	efilter.value = GLOBALFILTER;
-	applyGlobalFilter();
-	chooseToolbarMenu("filter");
-	// A different function will try to override this, so force
-	// it back to the filter toolbar:
-	TOOLBAR = "filter";
-	if (CGI.k && CGI.k.match(/c/)) {
-		COMPILEFILTERAUTOMATIC = true;
-	}
-}
-
-
-
-//////////////////////////////
-//
-// fillSpreadsheetId --
-//
-
-function fillSpreadsheetScriptId() {
-	if (!SPREADSHEETSCRIPTID) {
-		return;
-	}
-	let element = document.querySelector("input#scriptid");
-	if (!element) {
-		return;
-	}
-	let value = SPREADSHEETSCRIPTID;
-	if (SPREADSHEETID) {
-		value += "|" + SPREADSHEETID;
-	}
-	element.value = value;
-}
-
-
-
-//////////////////////////////
-//
-// fillSearchFieldsFromCgi --
-//
-
-function fillSearchFieldsFromCgi() {
-	let esearch = document.querySelector("#search-group");
-	if (!esearch) {
-		return;
-	}
-
-	if (!PQUERY.match(/^\s*$/)) {
-		let epitch = esearch.querySelector("#search-pitch");
-		if (epitch) {
-			epitch.value = PQUERY;
-		}
-	}
-
-	if (!IQUERY.match(/^\s*$/)) {
-		let ipitch = esearch.querySelector("#search-interval");
-		if (ipitch) {
-			ipitch.value = IQUERY;
-		}
-	}
-
-	if (!RQUERY.match(/^\s*$/)) {
-		let rpitch = esearch.querySelector("#search-rhythm");
-		if (rpitch) {
-			rpitch.value = RQUERY;
-		}
-	}
-
-	// the SEARCHFILTER let does not need to be built
-	// because that was done in scripts/listeners.js when
-	// DOMContentLoaded event was triggered.
 }
 
 
@@ -2164,7 +2031,7 @@ MenuInterface.prototype.singlePageView = function () {
 	}
 	let element2 = document.querySelector("#multi-page");
 	if (element2) {
-		element2.style.display = "block";
+		element2.style.display = "inline-block";
 	}
 	displayNotation();
 };
@@ -2182,7 +2049,7 @@ MenuInterface.prototype.multiPageView = function () {
 	localStorage.PAGEMODE = "multi";
 	let element = document.querySelector("#page-nav");
 	if (element) {
-		element.style.display = "block";
+		element.style.display = "inline-block";
 	}
 	let element2 = document.querySelector("#multi-page");
 	if (element2) {

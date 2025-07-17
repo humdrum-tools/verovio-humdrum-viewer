@@ -65,8 +65,9 @@ nav.navbar {
 span.gh, span.web {
 	display: block;
 	color: black;
-	/* float: right; */
+	float: right;
 	cursor: pointer;
+background: orange;
 }
 
 .shortcut-cell a {
@@ -173,7 +174,7 @@ td.gh-cell {
 
 
 ul.dropdown-menu li {
-	width: 100%;
+	width: 100% !important;
 }
 
 li.nav-item.dropdown > a {
@@ -190,7 +191,6 @@ a.dropdown-item.dropdown-toggle {
 
 li .dropdown-item.dropdown-toggle:hover {
 	color: #aa3355;
-	background: green;
 }
 
 

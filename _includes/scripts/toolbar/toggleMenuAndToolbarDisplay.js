@@ -8,10 +8,10 @@
 // #menubar.style.display = "none" if not visible
 // #menubar.style.display = "block" if visible
 //
-// #input.style.top: 64px if visible
+// #input.style.top: 70px if visible
 //	#input.style.top  30px if not visible
 //
-// #output.style.top: 64px if visible
+// #output.style.top: 70px if visible
 //	#output.style.top  30px if not visible
 //
 
@@ -33,9 +33,9 @@ function toggleMenuAndToolbarDisplay() {
 
 	} else {
 		// show menu and toolbar
-		ielement.style.top = "64px";
-		oelement.style.top = "64px";
-		selement.style.top = "64px";
+		ielement.style.top = "70px";
+		oelement.style.top = "70px";
+		selement.style.top = "70px";
 		melement.style.display = "block";
 	}
 }

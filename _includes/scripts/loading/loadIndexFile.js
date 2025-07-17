@@ -7,7 +7,6 @@
 //
 
 function loadIndexFile(location, options) {
-console.warn("ENTERING LOADINDEXFILE options = ", options, GITHUB_LINKS);
 	if (location.match(/index.hmd$/)) {
 		loadHmdIndexFile(location);
 		return;
@@ -21,10 +20,8 @@ console.warn("ENTERING LOADINDEXFILE options = ", options, GITHUB_LINKS);
 		url += "&format=index";
 	}
 
-console.warn("OPTIONS", options, "URL", url);
 	if (!options) {
 		let matches = url.match(/data\?l=(.*?)(&|$)/);
-console.warn("LOCATION", matches[1]);
 
 		if (matches) {
 			options = {};

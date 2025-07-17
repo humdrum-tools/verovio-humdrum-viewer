@@ -1,0 +1,103 @@
+
+
+#player {
+	position: fixed; 
+	top: 0px; 
+	right: 7px; 
+	margin-top: -5px; 
+	display: none;
+	color: white;
+}
+
+
+.nav-play-button {
+	color: white;
+	opacity: 0.6;
+	background: #01313f;
+	margin-top: 2px;
+}
+
+
+#midiPlayer_div  {
+	position: absolute;
+	top: 75px;
+	right: 0px;
+	padding-right: 0px;
+	background: red;
+	height: 24px;
+	background: #999;
+	display: inline-block;
+	opacity: 0.70;
+	width: 350px;
+	z-index: 100;
+}
+
+
+#midiPlayer_bar  {
+	height: 12px;
+	z-index: 2000;
+	width: 200px;
+	background: #ccc;
+	cursor: pointer;
+	display: inline-block;
+}
+
+
+#midiPlayer_progress {
+	background: #555;
+	margin: 0;
+	width: 0;
+	height: 100%;
+}
+
+
+#midiPlayer_playingTime {
+	width: 40px;
+	margin: 0px;
+	font-size: 16px;
+	text-align: right;
+	font-family: Arial;
+	display: inline-block;
+	margin-top: -5px;
+}
+
+
+#midiPlayer_totalTime {
+	width: 40px;
+	text-align: right;
+	font-size: 16px;
+	font-family: arial;
+	display: inline-block;
+}
+
+
+#midiPlayer_div a.icon {
+	cursor: pointer;
+	vertical-align: center;
+}
+
+
+#midiPlayer_div a.icon: hover {
+	color: green !important;
+
+}
+
+
+#midiPlayer_div a.play : hover {
+	color: hotpink !important;
+}
+
+
+#midiPlayer_div a.mbutton.play, 
+#midiPlayer_div a.mbutton.pause {
+	width: 5px !important;
+
+}
+
+
+.fas-play :hover {
+	color: white !important;
+}
+
+
+
