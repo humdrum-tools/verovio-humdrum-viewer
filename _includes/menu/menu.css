@@ -65,9 +65,7 @@ nav.navbar {
 span.gh, span.web {
 	display: block;
 	color: black;
-	float: right;
 	cursor: pointer;
-background: orange;
 }
 
 .shortcut-cell a {
@@ -115,6 +113,10 @@ div.menu-heading a:hover {
 	color: #aa3355;
 }
 
+table.menu, table.menu tbody {
+	width: 100%;
+}
+
 table.menu, table.menu tr {
 	width: 100%;
 }
@@ -124,6 +126,7 @@ table.menu tr:hover {
 }
 
 ul.dropdown-menu li {
+	width: 100% !important;
 	background: #dbebf0;
 }
 
@@ -140,7 +143,10 @@ table.menu a {
 }
 
 table.menu .gh a, table.menu .shortcut a, table.menu .filter a, table.menu .web a {
-	padding: 0;
+	padding-right: 3px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
 }
 
 table.menu .shortcut a, table.menu .filter a {
@@ -172,10 +178,6 @@ td.gh-cell {
   margin-right: .1rem;
 }
 
-
-ul.dropdown-menu li {
-	width: 100% !important;
-}
 
 li.nav-item.dropdown > a {
 	margin-left: 15px;
