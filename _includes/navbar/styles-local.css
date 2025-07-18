@@ -8,7 +8,6 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
 	height: 70px;
 	background-color: #01313f;
 	color: #30edf7;
@@ -240,6 +239,7 @@ ul.navbar-nav {
 	margin-top: 0px; 
 	white-space: nowrap;
 	display: inline-block;
+	z-index: 10;
 }
 
 
