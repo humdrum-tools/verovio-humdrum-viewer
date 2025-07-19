@@ -79,7 +79,7 @@ function humdrumToSvgOptions() {
 		// output.pageHeight = ($(window).innerHeight() - $("#navbar").outerHeight()) / ZOOM - 100;
 		// output.pageWidth = ($(window).innerWidth() - tw) / ZOOM - 100;
 		// jQuery $window.innerHeight() not working properly (in Chrome).
-		output.pageHeight = (window.innerHeight - $("#topnav").outerHeight()) / (ZOOM * SCALE / 40) - 50;
+		output.pageHeight = (window.innerHeight - $("#navbar").outerHeight()) / (ZOOM * SCALE / 40) - 50;
 		output.pageWidth = (window.innerWidth - tw) / (ZOOM * SCALE / 40 ) - 100;
 	} else {
 		var tw = $("#input").outerWidth();

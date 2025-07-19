@@ -5,5 +5,7 @@
 {% include toolbar/fillSearchFieldsFromCgi.js %}
 {% include toolbar/fillSpreadsheetId.js       %}
 {% include toolbar/makePdfIcon.js             %}
+{% include toolbar/openPopupControls.js       %}
 {% include toolbar/setupToolbar.js            %}
+
 

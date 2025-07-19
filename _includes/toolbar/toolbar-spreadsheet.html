@@ -2,7 +2,7 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat Mar 29 09:35:55 PDT 2025
-// Last Modified: Sat Mar 29 09:35:58 PDT 2025
+// Last Modified: Sat Jul 19 08:43:17 CEST 2025
 // Filename:      _includes/toolbar/toolbar-save.html
 // Included in:   _includes/toolbar/template-toolbar.html
 // Syntax:        ECMAScript 6; Jekyll/Liquid
@@ -17,10 +17,9 @@
 	<div title="Upload data to spreadsheet" onclick="uploadDataToSpreadsheet(event)" class='nav-icon fa fa-cloud-upload'></div>
 	<div title="Download data from spreadsheet" onclick="downloadDataFromSpreadsheet(event)" class='nav-icon fa fa-cloud-download'></div>
 	<div id="sheetid" style="display:none;" title="Open spreadsheet" onclick="openSpreadsheet()" class='nav-icon fa fa-file-text'></div>
-	<span id="line-break-icon" onclick="gotoNextToolbar(6, event)">
-		<div title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
-	</span>
+	<div onclick="gotoNextToolbar(6, event)" title="Go to next toolbar menu (alt-n)" class='nav-icon fab fa-superpowers'></div>
 	<div title="About spreadsheets" onclick="showSpreadsheetHelp()" class='nav-icon fas fa-question-circle'></div>
+	<div title="Expand toolbar" onclick="openPopupControls()" class='nav-icon fas fa-external-link-alt'></div>
 </div>
 
 

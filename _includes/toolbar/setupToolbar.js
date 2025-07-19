@@ -1,13 +1,9 @@
 
 
 function setupToolbar() {
-	let tsource2 = document.querySelector("#template-toolbar").textContent;
-	let toolbarTemplate = Handlebars.compile(tsource2);
-	let output2 = toolbarTemplate("");
 	let toolbarelement = document.querySelector("#toolbar");
 
 	if (toolbarelement) {
-		toolbarelement.innerHTML = output2;
 		prepareBufferStates();
 		if (HIDEINITIALTOOLBAR) {
 			toggleNavigationToolbar();
@@ -28,7 +24,6 @@ function setupToolbar() {
 			matchToolbarVisibilityIconToState();
 		}
 	}
-
 
 	if (TOOLBAR) {
 		if (TOOLBAR.match(/save/i)) {

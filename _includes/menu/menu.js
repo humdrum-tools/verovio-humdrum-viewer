@@ -4,13 +4,13 @@
 // vim: ts=3
 //
 
-let MENU = new MenuInterface();
-let MENUDATA = { };
-let LANGUAGE = "DEFAULT";
-let DICTIONARY = {};
-let GITHUB_LINKS = {};
-let WEBSITE_LINKS = {};
-let COMPILEFILTERAUTOMATIC = false;
+var MENU = new MenuInterface();
+var MENUDATA = { };
+var LANGUAGE = "DEFAULT";
+var DICTIONARY = {};
+var GITHUB_LINKS = {};
+var WEBSITE_LINKS = {};
+var COMPILEFILTERAUTOMATIC = false;
 
 function MenuInterface() {
 	this.contextualMenus = {};
