@@ -42,8 +42,8 @@ body {
 
 let Interval;
 document.addEventListener("DOMContentLoaded", function () {
+	addToolbarSelectors();
 	addOpenerToClickCode();
-	addEyeballs();
 	updateSaveLoadButtons();
 	// need to poll the load/save buttons in the main window to sync states:
 	Interval = setInterval(() => { updateSaveLoadButtons(); }, 1000);
@@ -92,10 +92,14 @@ function addOpenerToClickCode() {
 //
 
 function addToolbarSelectors() {
-
-<i class="fas fa-arrow-left"></i>
-
-
+	let toolbars = document.querySelectorAll("[id^='toolbar-']");
+	for (let i=0; i<toolbars.length; i++) {
+      let icon = document.createElement("div");
+      icon.className = "nav-icon fas fa-paperclip";
+		icon.title = "Show toolbar in main window";
+		icon.setAttribute("onclick", `gotoNextToolbar(${i});`);
+      toolbars[i].appendChild(icon);
+	}
 }
 
 

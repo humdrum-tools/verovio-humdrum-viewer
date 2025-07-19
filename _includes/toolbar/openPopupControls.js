@@ -5,7 +5,7 @@ function openPopupControls() {
       "Controller",
       [
          "width=425",
-         "height=300",
+         "height=250",
          "left=100",
          "top=100",
          "resizable=no",
