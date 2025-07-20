@@ -22,9 +22,13 @@ function play_midi(starttime) {
 	vrvWorker.renderToMidi()
 	.then(function (base64midi) {
 		var song = 'data:audio/midi;base64,' + base64midi;
-		let playButton = document.querySelector("#play-button");
+		let playButton = document.querySelector("#play-button .fa-play");
 		if (playButton) {
-			playButton.style.visibility = "hidden";
+			// playButton.style.visibility = "hidden";
+			playButton.classList.remove("fa-play");
+			playButton.classList.add("fa-stop");
+			let pb = document.querySelector("#play-button");
+			pb.title = "Stop music (space bar)";
 		}
 		let player = document.querySelector("#player");
 		if (player) {
@@ -179,9 +183,13 @@ var midiStop = function () {
 	if (player) {
 		player.style.display = "none";
 	}
-	let playButton = document.querySelector("#play-button");
+	let playButton = document.querySelector("#play-button .fa-stop");
 	if (playButton) {
-		playButton.style.visibility = "visible";
+		// playButton.style.visibility = "visible";
+		playButton.classList.remove("fa-stop");
+		playButton.classList.add("fa-play");
+		let pb = document.querySelector("#play-button");
+		pb.title = "Play music (space bar)";
 	}
 	CursorNote = null;
 	PLAY = false;

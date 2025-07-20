@@ -277,13 +277,10 @@ ul.navbar-nav {
 	vertical-align: top;
 }
 
-#pagination #page-mode-info {
+#page-mode-info {
 	display: inline-block;
-	vertical-align: top;
-	margin-top: -2px;
-	font-size: 16px;
-	padding-left:5px;
-	padding-right:2px;
+	margin-left:12px;
+	margin-right:4px;
 }
 
 #scan-urls div, #pdf-urls div { 
@@ -291,4 +288,6 @@ ul.navbar-nav {
 }
 
 
-
+.fa-circle-right, .fa-circle-left {
+	font-size: 18px !important;
+}

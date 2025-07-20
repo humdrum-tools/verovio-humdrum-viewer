@@ -21,7 +21,7 @@
 #midiPlayer_div  {
 	position: absolute;
 	top: 75px;
-	right: 0px;
+	right: -3px;
 	padding-right: 0px;
 	background: red;
 	height: 24px;
@@ -95,7 +95,7 @@
 }
 
 
-.fas-play :hover {
+.fa-play :hover {
 	color: white !important;
 }
 
