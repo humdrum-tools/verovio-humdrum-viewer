@@ -205,7 +205,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Distler, Hugo, Der Jahrkreis
+@DEFAULT:		Distler, Hugo (1908&ndash;1942), <i>Der Jahrkreis</i>
 @AR:
 @CA:
 @CS:
@@ -244,6 +244,50 @@
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
 @LINK:			https://github.com/LucasHofmann/DistlerCorpus
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Fux, Johann Joseph (~1660&ndash;1741), <i>Gradus ad Parnassum</i>
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory(event, 'species')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/MarkGotham/species
 @@END: RIGHT_TEXT
 @@END: ENTRY
 
