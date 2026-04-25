@@ -156,6 +156,54 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
+@DEFAULT:		Casulana, Maddalena (~1544&endash;~1590)
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory(event, 'casulana')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			https://cenhtor-msh-lorraine.cnrs.fr/s/digital_casulana/page/home
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/DigitalCasulana/Digital-Casulana/tree/Humdrum-scores
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
 @DEFAULT:		Corelli, Arcangelo (1653&ndash;1713)
 @AR:
 @CA:
