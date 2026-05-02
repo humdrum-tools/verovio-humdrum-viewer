@@ -334,6 +334,10 @@
 @ACTION:		MENU.loadRepertory(event, 'species')
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK: 			https://fourscoreandmore.org/species
+@@END: RIGHT_TEXT
+@@BEGIN: RIGHT_TEXT
 @TYPE:			github
 @LINK:			https://github.com/MarkGotham/species
 @@END: RIGHT_TEXT
