@@ -1,0 +1,52 @@
+@@ This is the contents of the "Scores->Monophonic songs" menu entry in the top menu.
+@@ This file is included into menu/content/scores.aton
+@@
+@@ vim: ts=8:nowrap
+@@
+
+
+@@BEGIN: ENTRY
+@@BEGIN: TEXT
+@DEFAULT:		Barbershop quartets
+@AR:
+@CA:
+@CS:
+@DE:
+@DK:
+@EL:
+@EN:
+@ES:			Cuartetos barbershop
+@ET:
+@EU:
+@FI:
+@FR:
+@HE:
+@HI:
+@ID:
+@IT:
+@JA:
+@KO:
+@LT:
+@LV:
+@NL:
+@NO:
+@PL:		
+@PT:
+@RU:
+@SK:
+@SV:
+@TR:
+@UK:
+@VI:
+@ZH-simplified:
+@ZH-traditional:
+@ZH-traditional:
+@ZH-traditional:
+@ACTION:		MENU.loadRepertory(event, 'osu/barbershop')
+@@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			github
+@LINK:			https://github.com/humdrum-tools/barbershop
+@@END: RIGHT_TEXT
+@@END: ENTRY
+
