@@ -6,7 +6,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Les cent plus belles chansons, Ed. C.É. Gadbois
+@DEFAULT:		Les cent plus belles chansons, Ed. C.-É. Gadbois
 @AR:
 @CA:
 @CS:
@@ -43,6 +43,10 @@
 @ZH-traditional:
 @ACTION:		MENU.loadRepertory(event, 'bc')
 @@END: TEXT
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			https://folklore-vivant.humdrum.org
+@@END: RIGHT_TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github
 @LINK:			https://github.com/chanson-project/chanson-encoding/tree/main/bc100/kern
@@ -87,6 +91,10 @@
 @ZH-traditional:
 @ZH-traditional:
 @ACTION:		MENU.loadRepertory(event, 'eg')
+@@BEGIN: RIGHT_TEXT
+@TYPE:			website
+@LINK:			https://folklore-vivant.humdrum.org
+@@END: RIGHT_TEXT
 @@END: TEXT
 @@BEGIN: RIGHT_TEXT
 @TYPE:			github

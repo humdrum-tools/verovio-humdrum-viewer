@@ -1025,7 +1025,7 @@
 
 @@BEGIN: ENTRY
 @@BEGIN: TEXT
-@DEFAULT:		Polyrhythm Project sampler
+@DEFAULT:		Polyrhythm Project
 @AR:
 @CA:
 @CS:
@@ -1033,7 +1033,7 @@
 @DK:
 @EL:
 @EN:
-@ES:			Polyrhythm Project sampler
+@ES:
 @ET:
 @EU:
 @FI:
