@@ -21,7 +21,7 @@ function convertToMusicXmlAndSave() {
 
 	document.body.classList.add("waiting");
 	let request = new XMLHttpRequest();
-	request.open("POST", "https://data.musicxml.humdrum.org");
+	request.open("POST", "https://musicxml.humdrum.org");
 	request.responseType = "blob";
 	request.onload = function () {
 		document.body.classList.remove("waiting");
